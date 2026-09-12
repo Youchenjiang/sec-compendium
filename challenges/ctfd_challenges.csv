@@ -1,0 +1,40 @@
+name,description,category,value,type,state,max_attempts,flags,tags,hints,type_data
+"中央資管歡迎你！","歡迎來到中央資管碩一新生茶會！🌟
+恭喜大家成為資管所的一份子，這是系上為大家準備的開場祝福：
+
+`NCUMIS{welcome_to_central_mis}`","Misc",100,standard,visible,0,"[{""type"": ""static"", ""content"": ""NCUMIS{welcome_to_central_mis}"", ""data"": """"}]","Welcome,Beginner,Misc","將題目中的 `NCUMIS{welcome_to_central_mis}` 完整複製（包含大括號），貼到下方的輸入框並點擊「提交」即可獲得分數！",""
+"學長的最後目擊照片","據說上週有一位研二學長宣稱「我論文寫完了」之後，就再也沒有出現在管二館了。
+
+系辦只在百花川附近找到他遺留的手機與這張打卡照片。身為系上的資安偵探，你能從這張數位照片留下的蛛絲馬跡中，調查出學長到底逃去了哪裡嗎？
+
+📥 **[點擊下載學長失蹤前的照片 (campus.jpg)](https://im2026ctf.duckdns.org/download/campus)**","Misc",500,dynamic,visible,0,"[{""type"": ""dynamic_shuffle"", ""content"": ""senior_fled_to_kenting"", ""data"": """"}]","OSINT,Campus,Misc","【線索方向】數位相機或手機在拍攝照片時，除了記錄可見像素外，通常還會將拍攝時間、相機型號、甚至備註文字等「中繼資料 (Metadata / EXIF)」一併寫入圖檔內。","{""initial"": 500, ""minimum"": 100, ""decay"": 10}"
+"學長留下的屎山代碼","這是十年前某位畢業學長留下來的內部測試系統，畫面上空無一物，據說是因為前端工程師早就跑路了。
+
+身為 Web 考古學家，你知道瀏覽器呈現出來的畫面往往只是冰山一角。你能深入這個頁面的背後，找出學長當年偷偷留下的兩段自白碎片並拼出完整的 Flag 嗎？
+
+🌐 **[點擊進入屎山代碼考古實驗室](https://im2026ctf.duckdns.org/labs/f12)**","Web",500,dynamic,visible,0,"[{""type"": ""dynamic_shuffle"", ""content"": ""do_not_touch_this_trash"", ""data"": """"}]","Web,DevTools,Beginner","【第一段碎片】現代瀏覽器都內建開發者工具。按下鍵盤 F12（或右鍵點擊檢查），在 Elements（元素）分頁仔細翻找 HTML 原始碼與綠色的註解文字！","{""initial"": 500, ""minimum"": 100, ""decay"": 10}"
+"教授的機密加簽信","聽說系上的熱門研究所課程一開放就被秒殺，幾十個同學擠在研究室門口排隊求加簽？
+
+教授特別把今年最後一份「人工加選授權密碼 (Add-Drop Code)」加密鎖在底下這封機密信件中，宣稱只有具備密碼破譯能力的同學才能加選。你能解開這封神秘信件嗎？
+
+📜 **[點擊拆封教授的機密加簽信件](https://im2026ctf.duckdns.org/labs/crypto)**","Crypto",500,dynamic,visible,0,"[{""type"": ""dynamic_shuffle"", ""content"": ""prof_please_sign_course"", ""data"": """"}]","Crypto,Base64,Caesar","【第一層解密】觀察信件中的密文特徵：末尾有 `=` 填充符號，字元由大小寫英文字母與數字組成。這是一種極常見的編碼方式（Base64）。推薦使用線上解密神器 CyberChef (From Base64) 進行第一層解碼！","{""initial"": 500, ""minimum"": 100, ""decay"": 10}"
+"咪挺出席與成績系統","這台內部伺服器掌握了全系研究生的「咪挺出席率」與「期末考評鑑紀錄」。管理員密碼設了 30 碼連教授自己都記不得，一般人根本無法正常登入。
+
+你能利用資料庫身分驗證邏輯的弱點，在完全不知道密碼的情況下繞過登入驗證、一窺後台真相嗎？
+
+🛡️ **[點擊前往出席評鑑系統閘道](https://im2026ctf.duckdns.org/labs/sqli)**","Web",500,dynamic,visible,0,"[{""type"": ""dynamic_shuffle"", ""content"": ""prof_also_overslept"", ""data"": """"}]","Web,SQLi,Injection","【攻擊思路】登入驗證後台通常使用 SQL 查詢比對帳號密碼（如 `SELECT * FROM users WHERE user='$user' AND pass='$pass'`）。若未妥善過濾輸入，可透過單引號 ' 提前閉合字串，構造出恆真 (Always True) 的邏輯條件。","{""initial"": 500, ""minimum"": 100, ""decay"": 10}"
+"這隻貓吃掉了碩士論文","「教授問我這週論文進度在哪裡，我說被這隻貓吃了，教授不信。」
+
+其實學長是真的把重要文件偷偷塞進這張貓咪照片裡了！這張看似人畜無害的貓咪圖片究竟暗藏了什麼玄機？你能把被貓咪吃掉的檔案救回來嗎？
+
+🐱 **[點擊下載吃掉論文的貓咪圖片 (cat.jpg)](https://im2026ctf.duckdns.org/download/cat)**","Forensics",500,dynamic,visible,0,"[{""type"": ""dynamic_shuffle"", ""content"": ""the_cat_is_innocent"", ""data"": """"}]","Forensics,Stego,Zip","【隱寫原理】在檔案隱寫術 (Steganography) 中，常有人利用 JPEG 檔案結尾標記（FF D9）之後的空間附加其他檔案（例如 ZIP 壓縮包）。這使得檔案在看圖軟體中是一張正常圖片，但同時也是一個壓縮檔！","{""initial"": 500, ""minimum"": 100, ""decay"": 10}"
+"中央資管碩士生存戰","傳說中，每一位進入中央資管的新生，都必須經歷兩年（？）的修羅場考驗。
+這是一款由學長開發的「中央資管碩士生涯模擬遊戲」，據說只有兼顧體力、抗壓性與論文進度、順利存活到口試畢業的勇者，才能在結算畫面上獲得系上頒發的專屬畢業證書 Flag！
+
+身為資安專家，你可以選擇靠真實實力破關，或者發揮逆向工程與二進位分析技巧，直接解開通關秘辛！
+
+💻 **[點擊下載 Windows 版遊戲 (mis_survival_game.exe)](https://im2026ctf.duckdns.org/download/check_graduation.exe)**
+*(Windows 使用者下載後直接雙擊即可開始遊玩！)*
+
+🐧 **[點擊下載 Linux / Mac 版遊戲 (mis_survival_game)](https://im2026ctf.duckdns.org/download/check_graduation)**
+*(Linux / WSL 使用者請使用 chmod +x 賦予權限後執行，或直接使用 strings 分析)*","Reverse",500,dynamic,visible,0,"[{""type"": ""dynamic_shuffle"", ""content"": ""graduation_is_a_lie"", ""data"": """"}]","Reverse,Binary,Game","【靜態分析思維】除了直接在終端機中玩通關之外，程式碼在編譯成二進位執行檔 (PE / ELF Binary) 時，如果沒有經過特別混淆或加密，程式內定義的字串常數 (String Literals) 往往會以明文形式直接存放在二進位檔案的資料段中。","{""initial"": 500, ""minimum"": 100, ""decay"": 10}"

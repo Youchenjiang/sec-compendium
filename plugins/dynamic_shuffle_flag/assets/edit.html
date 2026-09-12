@@ -1,0 +1,19 @@
+<label>
+	Dynamic Shuffle Flag (動態隊名混淆 Flag)<br>
+	<small>輸入預設的 Flag 內容（例如: f12_is_my_superpower 或 NCUMIS{...}），系統將自動根據隊名與密鑰進行確定性隨機混淆比對。</small>
+</label>
+<div class="form-group">
+	<input type="text" class="form-control" name="content" value="{{ content }}">
+</div>
+<div class="form-group">
+	<select class="form-control custom-select col-md-6" name="data">
+		<option value="">Case Sensitive (區分大小寫)</option>
+		<option value="case_insensitive" {% if data %}selected{% endif %}>Case Insensitive (不區分大小寫)</option>
+	</select>
+</div>
+<input type="hidden" name="type" value="dynamic_shuffle">
+<input type="hidden" name="id" value="{{ id }}">
+<hr>
+<div class="form-group">
+	<button class="btn btn-success float-right">Update</button>
+</div>
