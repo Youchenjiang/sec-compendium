@@ -1,0 +1,15 @@
+version = 1
+
+[[analyzers]]
+name = "python"
+enabled = true
+
+[[analyzers]]
+name = "secrets"
+enabled = true
+exclude_patterns = [
+  "security/**",
+  "study/**",
+  "**/*.md",
+  "**/*.csv"
+]
