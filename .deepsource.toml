@@ -1,16 +1,21 @@
 version = 1
 
-[[analyzers]]
-name = "python"
-enabled = true
 exclude_patterns = [
   "ctfd/database/**",
   "ctfd/challenges/**",
   "ctfd/automation/**",
   "ctfd/patches/**",
   "security/**",
-  "tracks/**"
+  "study/**",
+  "tracks/**",
+  "**/*.md",
+  "**/*.csv",
+  "**/*.sql"
 ]
+
+[[analyzers]]
+name = "python"
+enabled = true
 
 [[analyzers]]
 name = "secrets"

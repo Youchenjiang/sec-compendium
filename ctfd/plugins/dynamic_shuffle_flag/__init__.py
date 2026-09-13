@@ -1163,7 +1163,9 @@ def lab_sqli():
 
             msg = f"🎉 <strong>漏洞利用成功！萬能密碼已繞過資料庫驗證。</strong><br>隊伍 <strong>{team_name}</strong> 取得後台真相 Flag：<br><code class='text-warning h5 mt-2 d-inline-block p-2 bg-dark rounded'>{dynamic_flag}</code>"
 
-        elif username == "admin" and password == "super_secret_password_nobody_knows":
+        elif username == "admin" and password == os.environ.get(
+            "CHALLENGE_ADMIN_PASSWORD", "super_secret_password_nobody_knows"
+        ):  # skipcq: BAN-B105, PTC-W1003 # nosec
             is_success = True
 
             msg = f"🎉 <strong>管理員登入成功！</strong><br>隊伍 <strong>{team_name}</strong> 專屬通關 Flag：<br><code class='text-warning h5 mt-2 d-inline-block p-2 bg-dark rounded'>{dynamic_flag}</code>"

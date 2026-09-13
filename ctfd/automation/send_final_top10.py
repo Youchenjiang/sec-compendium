@@ -24,8 +24,20 @@ def log(msg):
 def fetch_top10_users():
     import subprocess
 
-    cmd = '''docker exec ctfd-db-1 mysql -uctfd -pctfd ctfd -e "SELECT id, name, email FROM users WHERE banned = 0 AND hidden = 0;"'''
-    res = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+    cmd = [
+        "docker",
+        "exec",
+        "ctfd-db-1",
+        "mysql",
+        "-uctfd",
+        "-pctfd",
+        "ctfd",
+        "-e",
+        "SELECT id, name, email FROM users WHERE banned = 0 AND hidden = 0;",
+    ]
+    res = subprocess.run(  # skipcq: BAN-B603, BAN-B607 # nosec
+        cmd, shell=False, capture_output=True, text=True, check=False
+    )
     users_by_id = {}
     users_by_name = {}
     for line in res.stdout.strip().splitlines()[1:]:
