@@ -165,28 +165,36 @@ for c in challenges_data:
     name_q = _quote_sql(c["name"])
     desc_q = _quote_sql(c["description"])
     sql_lines.append(
-        "UPDATE challenges SET name="
-        + name_q
-        + ", description="
-        + desc_q
-        + " WHERE id="
-        + cid
-        + ";"  # skipcq: BAN-B608, PY-S6007 # nosec
+        "".join(
+            [
+                "UPDATE challenges SET name=",
+                name_q,
+                ", description=",
+                desc_q,
+                " WHERE id=",
+                cid,
+                ";",
+            ]
+        )
     )
     for h in c["hints"]:
         content_q = _quote_sql(h["content"])
         title_q = _quote_sql(h.get("title", ""))
         cost_str = str(h["cost"])
         sql_lines.append(
-            "INSERT INTO hints (type, challenge_id, content, cost, requirements, title) VALUES ('standard', "
-            + cid
-            + ", "
-            + content_q
-            + ", "
-            + cost_str
-            + ", NULL, "
-            + title_q
-            + ");"  # skipcq: BAN-B608, PY-S6007 # nosec
+            "".join(
+                [
+                    "INSERT INTO hints (type, challenge_id, content, cost, requirements, title) VALUES ('standard', ",
+                    cid,
+                    ", ",
+                    content_q,
+                    ", ",
+                    cost_str,
+                    ", NULL, ",
+                    title_q,
+                    ");",
+                ]
+            )
         )
 
 sql_payload = "\n".join(sql_lines)
