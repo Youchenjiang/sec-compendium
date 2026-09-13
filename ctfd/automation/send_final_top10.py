@@ -9,7 +9,7 @@ GMAIL_USER = os.environ.get("GMAIL_USER", "g1014308@gmail.com")
 GMAIL_APP_PASS = os.environ.get("GMAIL_APP_PASS", "")
 ADMIN_EMAIL = os.environ.get("ADMIN_EMAIL", "g1014308@gmail.com")
 
-LOG_FILE = "/home/ubuntu/ctf_email_results.log"
+LOG_FILE = os.path.expanduser("~/ctf_email_results.log")
 
 
 def log(msg):
