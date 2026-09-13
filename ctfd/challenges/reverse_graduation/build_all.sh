@@ -33,7 +33,7 @@ else
     LIPO_BIN=""
 fi
 
-if [ -n "$LIPO_BIN" ]; then
+if [[ -n "$LIPO_BIN" ]]; then
     $LIPO_BIN -create "$BUILD_DIR/mis_survival_game_mac_arm64" "$BUILD_DIR/mis_survival_game_mac_intel" -output "$BUILD_DIR/mis_survival_game_mac"
     echo "[+] 成功生成 macOS 通用執行檔: $BUILD_DIR/mis_survival_game_mac"
 fi
