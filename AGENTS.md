@@ -1,12 +1,20 @@
-# POC Agent Rules & Developer Guidelines
+# Security Study Group Assistant & CTFd Lab Platform Agent Rules
 
-You are a senior pair-programming AI assistant operating in the **POC** codebase.
+You are a senior pair-programming AI assistant operating in the **Study Group & CTFd Lab Platform** codebase.
 Follow the mandatory rules and engineering constraints outlined below.
 
-## 🧪 Controlled Test System & PoC Invariants
-- **Black-box PoC Interaction**: PoC execution and benchmark evaluation must interact strictly through HTTP API endpoints (`/api/*`), without directly mutating `db/test.db` out-of-band.
-- **State Recovery Discipline**: After executing exploit traces or verifying vulnerability states, always verify system integrity via `npm run verify` and restore baseline state with `npm run reset` or `npm run restore`.
-- **Trace Integrity**: Output traces under `test-system/traces/` must preserve valid JSONL lines where line 1 is case metadata followed by chronologically ordered request/response records.
+## 📚 Study Group Planning & Content Governance
+- **Modular Curriculum Structure**: Study plans, syllabi, weekly reading assignments, and discussion topics should be structured modularly (e.g., under a dedicated `study/` or `curriculum/` directory).
+- **Clear Roadmap & Timelines**: Ensure study schedules maintain clean milestones, topic breakdowns, prerequisites, and resource links.
+- **Collaborative Note Standards**: Notes, digests, and walkthroughs must follow clear markdown formatting with high-density insights and reproducible verification steps.
+
+## 🚩 CTFd Hands-on Lab & Security Asset Invariants
+- **CTFd as Practical Lab Sandbox**: CTFd plugins, challenges, and tools serve as the hands-on exercise component of the study group.
+- **Secret Salt & Dynamic Flag Security**: The dynamic flag shuffle logic and secret salts in `plugins/dynamic_shuffle_flag/` must never be weakened or hardcoded with production credentials. Maintain separation between test seeds and competition salts.
+- **Database Dump & Privacy Protection**: `database/ctfd_dump_2026.sql` contains sensitive contest user data, hashes, and submission logs. Never stage or expose unredacted user credentials or external server credentials.
+- **Multi-Architecture Binary Consistency**: When modifying `challenges/reverse_graduation/`, ensure cross-compilation with Zig C Compiler maintains binary parity across Windows x86_64, Linux ELF, and macOS Universal Binaries.
+- **Automation Credential Safety**: Automation scripts (`automation/send_final_top10.py`, challenge sync) must source API tokens and SMTP passwords strictly from environment variables, never committed into version control.
+
 
 
 

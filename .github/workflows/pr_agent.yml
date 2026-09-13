@@ -1,0 +1,24 @@
+name: PR Agent AI Review
+
+on:
+  pull_request:
+    types: [opened, reopened, ready_for_review]
+  issue_comment:
+    types: [created, edited]
+
+permissions:
+  pull-requests: write
+  issues: write
+  contents: read
+
+jobs:
+  pr_agent_job:
+    if: ${{ github.event.issue.pull_request || github.event_name == 'pull_request' }}
+    runs-on: ubuntu-latest
+    name: Run PR Agent
+    steps:
+      - name: PR Agent action
+        uses: Codium-ai/pr-agent@74210c45b9dc59335ea62787dc63babdbd0a5142
+        env:
+          OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
