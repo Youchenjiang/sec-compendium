@@ -1,22 +1,12 @@
 # 🚀 資訊安全 6 個月攻防讀書會路線圖 (Member Study Group Edition)
 
 > [!IMPORTANT]
-> **當前版本**: `v5.5` (成員發布版)
+> **當前版本**: `v5.6` (成員發布版)
 > **發布日期**: 2026-08-08
 > **核心架構與規則**: 
 > 1. **時間軸**: 每 2 天為 1 個 Run（半年 180 天共 90 個 Run）。
 > 2. **線上資源對接**: 每日課表對接 PortSwigger Academy、pwnable.kr、CryptoHack、Root-Me 等公開平台。
 > 3. **前置需求**: 入會前須自備 Linux CLI 與 Docker 基本環境。
-
----
-
-## 📌 版本變更履歷 (Changelog)
-
-| 版本 (Version) | 發布日期 (Date) | 修訂重點 (Summary of Changes) | 適用對象 (Audience) |
-|---|---|---|---|
-| **v5.5** | 2026-08-19 | 全面校正 02 二進制、04 內網、01 Web、07 藍隊目錄編號與生命週期順序 | **全體成員正式版** |
-| **v5.4** | 2026-08-14 | 補入 Run 3 picoCTF 專屬 RCE 命令注入關卡 (ping-cmd ID:757) | **最新發布版** |
-| **v5.2** | 2026-08-10 | 新增讀書會運作公約 (每 Run 首日 22:00 線上聚會、個人 Writeup 與輪值紀要) | 歷史修訂版 |
 
 ---
 
@@ -103,13 +93,13 @@
 
 ---
 
-#### ⚔️ **Run 7 (Day 13-14): XSS 跨站腳本與 CSRF / SSRF 攻擊**
-🌐 **線上專題**: [PortSwigger XSS](https://portswigger.net/web-security/cross-site-scripting) & [SSRF](https://portswigger.net/web-security/ssrf)
+#### ⚔️ **Run 7 (Day 13-14): XSS 跨站腳本與 CSRF 身分偽造攻擊**
+🌐 **線上專題**: [PortSwigger XSS](https://portswigger.net/web-security/cross-site-scripting) & [PortSwigger CSRF](https://portswigger.net/web-security/csrf)
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
-| **Day 13** | XSS 跨站腳本成因、Reflected XSS 與 DOM-based XSS 彈窗 | 🎯 **必解關卡**:<br>🌐 **PortSwigger**: • [Lab: Reflected XSS into HTML context](https://portswigger.net/web-security/cross-site-scripting/reflected/lab-html-context-nothing-encoded)<br>🚀 **延伸挑戰**:<br>🌐 **PortSwigger**: • [Lab: Stored XSS into anchor href](https://portswigger.net/web-security/cross-site-scripting/stored/lab-html-context-nothing-encoded)<br>• [Lab: CORS with basic origin reflection](https://portswigger.net/web-security) |
-| **Day 14** | CSRF 跨站請求偽造 PoC HTML 產生與 SSRF 內網探測 | 同 Day 13 關卡（延續實操與延伸挑戰） |
+| **Day 13** | XSS 跨站腳本成因、Reflected / Stored / DOM XSS 與 Cookie 竊取 | 🎯 **必解關卡**:<br>🌐 **PortSwigger**: • [Lab: Reflected XSS into HTML context](https://portswigger.net/web-security/cross-site-scripting/reflected/lab-html-context-nothing-encoded)<br>🚀 **延伸挑戰**:<br>🌐 **PortSwigger**: • [Lab: Stored XSS into anchor href](https://portswigger.net/web-security/cross-site-scripting/stored/lab-html-context-nothing-encoded)<br>• [Lab: CORS with basic origin reflection](https://portswigger.net/web-security) |
+| **Day 14** | CSRF 跨站請求偽造原理、PoC 自動提交表單與 Token 防禦 | 🎯 **必解關卡**:<br>🌐 **PortSwigger**: • [Lab: CSRF vulnerability with no defenses](https://portswigger.net/web-security/csrf/lab-no-defenses) |
 
 ---
 
