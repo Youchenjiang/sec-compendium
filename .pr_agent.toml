@@ -1,0 +1,25 @@
+# PR-Agent Configuration
+
+[config]
+max_model_tokens = 16000
+custom_model_max_tokens = 16000
+ignore_glob = [
+    "ctfd/database/**",
+    "**/*.sql",
+    "**/*.json",
+    "**/migrations/**",
+    "**/*.c",
+    "**/*.h"
+]
+
+[pr_code_suggestions]
+# 限制 Chunk 數量與建議數量
+max_number_of_calls = 2
+num_code_suggestions_per_chunk = 3
+max_suggestions_per_file = 2
+
+# 停用並發呼叫改為循序執行，避免觸發 API 速率限制 (429 Rate Limit)
+parallel_calls = false
+
+# 僅輸出評分高於門檻的建議 (>= 7)
+suggestions_score_threshold = 7

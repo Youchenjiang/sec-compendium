@@ -59,6 +59,11 @@ jobs:
           OPENAI_KEY: ${{ secrets.SILICONFLOW_API_KEY || secrets.OPENAI_KEY }}
           OPENAI_API_BASE: "https://api.siliconflow.com/v1"
           CONFIG__MODEL: "openai/Qwen/Qwen3-8B"
-          CONFIG__CUSTOM_MODEL_MAX_TOKENS: "65536"
+          CONFIG__CUSTOM_MODEL_MAX_TOKENS: "16000"
           CONFIG__PR_ACTIONS: '["opened", "reopened", "ready_for_review", "synchronize"]'
+          PR_CODE_SUGGESTIONS__MAX_NUMBER_OF_CALLS: "2"
+          PR_CODE_SUGGESTIONS__NUM_CODE_SUGGESTIONS_PER_CHUNK: "3"
+          PR_CODE_SUGGESTIONS__MAX_SUGGESTIONS_PER_FILE: "2"
+          PR_CODE_SUGGESTIONS__PARALLEL_CALLS: "false"
+          PR_CODE_SUGGESTIONS__SUGGESTIONS_SCORE_THRESHOLD: "7"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
