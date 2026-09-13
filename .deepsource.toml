@@ -3,6 +3,13 @@ version = 1
 [[analyzers]]
 name = "python"
 enabled = true
+exclude_patterns = [
+  "ctfd/database/**",
+  "ctfd/challenges/**",
+  "ctfd/patches/**",
+  "security/**",
+  "tracks/**"
+]
 
 [[analyzers]]
 name = "secrets"
@@ -10,6 +17,12 @@ enabled = true
 exclude_patterns = [
   "security/**",
   "study/**",
+  "tracks/**",
+  "ctfd/database/**",
+  "ctfd/challenges/**",
+  "ctfd/patches/**",
   "**/*.md",
-  "**/*.csv"
+  "**/*.csv",
+  "**/*.sql"
 ]
+

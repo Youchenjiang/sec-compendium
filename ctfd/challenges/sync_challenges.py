@@ -1,5 +1,4 @@
 import subprocess
-import json
 import base64
 
 key = r"f:\OutClass\資訊應用\網路安全\security\ssh-key-2026-08-24.key"
@@ -14,8 +13,12 @@ challenges_data = [
 
 `NCUMIS{welcome_to_central_mis}`""",
         "hints": [
-            {"title": "新手操作指引", "content": "將題目中的 `NCUMIS{welcome_to_central_mis}` 完整複製（包含大括號），貼到下方的輸入框並點擊「提交」即可獲得分數！", "cost": 0}
-        ]
+            {
+                "title": "新手操作指引",
+                "content": "將題目中的 `NCUMIS{welcome_to_central_mis}` 完整複製（包含大括號），貼到下方的輸入框並點擊「提交」即可獲得分數！",
+                "cost": 0,
+            }
+        ],
     },
     {
         "id": 38,
@@ -26,9 +29,17 @@ challenges_data = [
 
 📥 **[點擊下載學長失蹤前的照片 (campus.jpg)](https://im2026ctf.duckdns.org/download/campus)**""",
         "hints": [
-            {"title": "💡 提示 1：線索方向", "content": "【線索方向】數位相機或手機在拍攝照片時，除了記錄可見像素外，通常還會將拍攝時間、相機型號、甚至主旨備註等「中繼資料 (Metadata / EXIF)」一併寫入圖檔內。", "cost": 20},
-            {"title": "🛠️ 提示 2：破關手法", "content": "【解題手法】在 Windows 下對下載的照片檔案點「右鍵 -> 內容 -> 詳細資料 (Details)」，在「主旨」或「備註」欄位即可直接看見 Flag！亦可使用線上 EXIF 工具（如 exiftool、jimpl.com）解析中繼資料。", "cost": 50}
-        ]
+            {
+                "title": "💡 提示 1：線索方向",
+                "content": "【線索方向】數位相機或手機在拍攝照片時，除了記錄可見像素外，通常還會將拍攝時間、相機型號、甚至主旨備註等「中繼資料 (Metadata / EXIF)」一併寫入圖檔內。",
+                "cost": 20,
+            },
+            {
+                "title": "🛠️ 提示 2：破關手法",
+                "content": "【解題手法】在 Windows 下對下載的照片檔案點「右鍵 -> 內容 -> 詳細資料 (Details)」，在「主旨」或「備註」欄位即可直接看見 Flag！亦可使用線上 EXIF 工具（如 exiftool、jimpl.com）解析中繼資料。",
+                "cost": 50,
+            },
+        ],
     },
     {
         "id": 39,
@@ -39,9 +50,17 @@ challenges_data = [
 
 🌐 **[點擊進入屎山代碼考古實驗室](https://im2026ctf.duckdns.org/labs/f12)**""",
         "hints": [
-            {"title": "💡 提示 1：第一段碎片", "content": "【第一段碎片】現代瀏覽器都內建開發者工具。按下鍵盤 F12（或右鍵點擊檢查），在 Elements（元素）分頁仔細翻找 HTML 原始碼與綠色的註解文字！", "cost": 20},
-            {"title": "🛠️ 提示 2：第二段碎片", "content": "【第二段碎片】第二段碎片並沒有寫在 HTML 中，而是被存放在瀏覽器的本地儲存區。請在 F12 開發者工具中切換至「Application (應用程式)」分頁，展開左側「Storage -> Cookies」，查看名為 `flag_part2` 的值，將兩段碎片拼湊為完整的 `NCUMIS{...}` 送出！", "cost": 50}
-        ]
+            {
+                "title": "💡 提示 1：第一段碎片",
+                "content": "【第一段碎片】現代瀏覽器都內建開發者工具。按下鍵盤 F12（或右鍵點擊檢查），在 Elements（元素）分頁仔細翻找 HTML 原始碼與綠色的註解文字！",
+                "cost": 20,
+            },
+            {
+                "title": "🛠️ 提示 2：第二段碎片",
+                "content": "【第二段碎片】第二段碎片並沒有寫在 HTML 中，而是被存放在瀏覽器的本地儲存區。請在 F12 開發者工具中切換至「Application (應用程式)」分頁，展開左側「Storage -> Cookies」，查看名為 `flag_part2` 的值，將兩段碎片拼湊為完整的 `NCUMIS{...}` 送出！",
+                "cost": 50,
+            },
+        ],
     },
     {
         "id": 40,
@@ -52,9 +71,17 @@ challenges_data = [
 
 📜 **[點擊拆封教授的機密加簽信件](https://im2026ctf.duckdns.org/labs/crypto)**""",
         "hints": [
-            {"title": "💡 提示 1：第一層解密", "content": "【第一層解密】觀察信件中的密文特徵：末尾有 `=` 填充符號，字元由大小寫英文字母與數字組成。這是一種極常見的編碼方式（Base64）。推薦使用線上解密神器 CyberChef (From Base64) 進行第一層解碼！", "cost": 20},
-            {"title": "🛠️ 提示 2：第二層解密", "content": "【第二層解密】Base64 解碼後會看到類似 `QFXPLV{...}` 的文字，字母似乎都被固定位移了（古典密碼學的凱撒密碼 Caesar Cipher / ROT）。因為 N 被移成了 Q（位移 +3），請嘗試使用 Caesar Cipher (ROT -3 / Shift -3) 即可還原出 `NCUMIS{...}` 通關 Flag！", "cost": 50}
-        ]
+            {
+                "title": "💡 提示 1：第一層解密",
+                "content": "【第一層解密】觀察信件中的密文特徵：末尾有 `=` 填充符號，字元由大小寫英文字母與數字組成。這是一種極常見的編碼方式（Base64）。推薦使用線上解密神器 CyberChef (From Base64) 進行第一層解碼！",
+                "cost": 20,
+            },
+            {
+                "title": "🛠️ 提示 2：第二層解密",
+                "content": "【第二層解密】Base64 解碼後會看到類似 `QFXPLV{...}` 的文字，字母似乎都被固定位移了（古典密碼學的凱撒密碼 Caesar Cipher / ROT）。因為 N 被移成了 Q（位移 +3），請嘗試使用 Caesar Cipher (ROT -3 / Shift -3) 即可還原出 `NCUMIS{...}` 通關 Flag！",
+                "cost": 50,
+            },
+        ],
     },
     {
         "id": 41,
@@ -65,9 +92,17 @@ challenges_data = [
 
 🛡️ **[點擊前往出席評鑑系統閘道](https://im2026ctf.duckdns.org/labs/sqli)**""",
         "hints": [
-            {"title": "💡 提示 1：攻擊思路", "content": "【攻擊思路】登入驗證後台通常使用 SQL 查詢比對帳號密碼（如 `SELECT * FROM users WHERE user='$user' AND pass='$pass'`）。若未妥善過濾輸入，可透過單引號 ' 提前閉合字串，構造出恆真 (Always True) 的邏輯條件。", "cost": 20},
-            {"title": "🛠️ 提示 2：通關語法", "content": "【通關語法】在「管理員帳號」欄位直接輸入經典萬能密碼：`' OR 1=1 --` 或 `' OR ''='`，後方的 `--` 或 `#` 註解符號會將密碼比對邏輯略過，使系統判定登入成功！", "cost": 50}
-        ]
+            {
+                "title": "💡 提示 1：攻擊思路",
+                "content": "【攻擊思路】登入驗證後台通常使用 SQL 查詢比對帳號密碼（如 `SELECT * FROM users WHERE user='$user' AND pass='$pass'`）。若未妥善過濾輸入，可透過單引號 ' 提前閉合字串，構造出恆真 (Always True) 的邏輯條件。",
+                "cost": 20,
+            },
+            {
+                "title": "🛠️ 提示 2：通關語法",
+                "content": "【通關語法】在「管理員帳號」欄位直接輸入經典萬能密碼：`' OR 1=1 --` 或 `' OR ''='`，後方的 `--` 或 `#` 註解符號會將密碼比對邏輯略過，使系統判定登入成功！",
+                "cost": 50,
+            },
+        ],
     },
     {
         "id": 42,
@@ -78,9 +113,17 @@ challenges_data = [
 
 🐱 **[點擊下載吃掉論文的貓咪圖片 (cat.jpg)](https://im2026ctf.duckdns.org/download/cat)**""",
         "hints": [
-            {"title": "💡 提示 1：隱寫原理", "content": "【隱寫原理】在檔案隱寫術 (Steganography) 中，常有人利用 JPEG 檔案結尾標記（FF D9）之後的空間附加其他檔案（例如 ZIP 壓縮包）。這使得檔案在看圖軟體中是一張正常圖片，但同時也是一個壓縮檔！", "cost": 20},
-            {"title": "🛠️ 提示 2：提取手法", "content": "【提取手法】\\n1. 最簡單的方式：直接將 `cat.jpg` 檔案重新命名為 `cat.zip`，然後解壓縮！\\n2. 或使用 7-Zip / WinRAR 對圖片按右鍵選擇「開啟壓縮檔」。\\n3. Linux 使用者亦可使用 `unzip cat.jpg` 或 `binwalk -e cat.jpg` 進行提取。", "cost": 50}
-        ]
+            {
+                "title": "💡 提示 1：隱寫原理",
+                "content": "【隱寫原理】在檔案隱寫術 (Steganography) 中，常有人利用 JPEG 檔案結尾標記（FF D9）之後的空間附加其他檔案（例如 ZIP 壓縮包）。這使得檔案在看圖軟體中是一張正常圖片，但同時也是一個壓縮檔！",
+                "cost": 20,
+            },
+            {
+                "title": "🛠️ 提示 2：提取手法",
+                "content": "【提取手法】\\n1. 最簡單的方式：直接將 `cat.jpg` 檔案重新命名為 `cat.zip`，然後解壓縮！\\n2. 或使用 7-Zip / WinRAR 對圖片按右鍵選擇「開啟壓縮檔」。\\n3. Linux 使用者亦可使用 `unzip cat.jpg` 或 `binwalk -e cat.jpg` 進行提取。",
+                "cost": 50,
+            },
+        ],
     },
     {
         "id": 43,
@@ -96,10 +139,18 @@ challenges_data = [
 🐧 **[點擊下載 Linux / Mac 版遊戲 (mis_survival_game)](https://im2026ctf.duckdns.org/download/check_graduation)**
 *(Linux / WSL 使用者請使用 chmod +x 賦予權限後執行)*""",
         "hints": [
-            {"title": "💡 提示 1：破關策略指南", "content": "【破關策略】這是一款 12 回合的資源管理遊戲！初期先建立研究基礎，過勞時適時休息補眠，在論文有進展時把握 Meeting 提升進度，並在關鍵時刻喝下大禮堂黑咖啡回血！", "cost": 20},
-            {"title": "🛠️ 提示 2：逆向工程分析", "content": "【資安逆向解法】若想跳過遊戲直接破解，請使用 Ghidra / IDA 等逆向工具載入執行檔，分析口試通過判定函數，你會發現 Flag 是由一組位元組透過 XOR 運算即時還原出來的，逆向推導或除錯跟蹤即可取得！", "cost": 50}
-        ]
-    }
+            {
+                "title": "💡 提示 1：破關策略指南",
+                "content": "【破關策略】這是一款 12 回合的資源管理遊戲！初期先建立研究基礎，過勞時適時休息補眠，在論文有進展時把握 Meeting 提升進度，並在關鍵時刻喝下大禮堂黑咖啡回血！",
+                "cost": 20,
+            },
+            {
+                "title": "🛠️ 提示 2：逆向工程分析",
+                "content": "【資安逆向解法】若想跳過遊戲直接破解，請使用 Ghidra / IDA 等逆向工具載入執行檔，分析口試通過判定函數，你會發現 Flag 是由一組位元組透過 XOR 運算即時還原出來的，逆向推導或除錯跟蹤即可取得！",
+                "cost": 50,
+            },
+        ],
+    },
 ]
 
 # Generate SQL script
@@ -108,16 +159,22 @@ for c in challenges_data:
     cid = c["id"]
     name_escaped = c["name"].replace("\\", "\\\\").replace("'", "''")
     desc_escaped = c["description"].replace("\\", "\\\\").replace("'", "''")
-    sql_lines.append(f"UPDATE challenges SET name='{name_escaped}', description='{desc_escaped}' WHERE id={cid};")
+    sql_lines.append(
+        f"UPDATE challenges SET name='{name_escaped}', description='{desc_escaped}' WHERE id={cid};"
+    )
     for h in c["hints"]:
         content_escaped = h["content"].replace("\\", "\\\\").replace("'", "''")
         title_escaped = h.get("title", "").replace("\\", "\\\\").replace("'", "''")
         cost = h["cost"]
-        sql_lines.append(f"INSERT INTO hints (type, challenge_id, content, cost, requirements, title) VALUES ('standard', {cid}, '{content_escaped}', {cost}, NULL, '{title_escaped}');")
+        sql_lines.append(
+            f"INSERT INTO hints (type, challenge_id, content, cost, requirements, title) VALUES ('standard', {cid}, '{content_escaped}', {cost}, NULL, '{title_escaped}');"
+        )
 
 sql_payload = "\n".join(sql_lines)
 b64_sql = base64.b64encode(sql_payload.encode("utf-8")).decode()
 
 cmd = f"echo {b64_sql} | base64 -d | sudo docker exec -i ctfd-db-1 mariadb -uctfd -pctfd ctfd"
-subprocess.run(["ssh", "-i", key, "-o", "StrictHostKeyChecking=no", host, cmd], check=True)
+subprocess.run(
+    ["ssh", "-i", key, "-o", "StrictHostKeyChecking=no", host, cmd], check=True
+)
 print("Updated MariaDB challenge names, descriptions, and hint titles successfully!")
