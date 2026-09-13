@@ -1,10 +1,10 @@
 # 🧭 藍隊全領域 31 大深度學習路徑全景導航庫 (Blue Team Learning Paths Directory)
 
-> 💡 **核心精神**：本目錄為 [`../BLUE_TEAM_PRACTICE_RESOURCES_INDEX.md`](../BLUE_TEAM_PRACTICE_RESOURCES_INDEX.md) 中 31 個防衛核心領域量身打造的**「全流程深度自學與實戰突破指南」**。
+> 💡 **核心精神**：本目錄為 [`../index.md`](../index.md) 中 31 個防衛核心領域量身打造的**「全流程深度自學與實戰突破指南」**。
 >
 > 徹底解決「只有題目、不知道怎麼學、缺乏系統化底層架構」的信心焦慮，每個領域皆包含：**前置基準測試、底層核心機制與封包/記憶體/代碼結構、實驗環境與工具配置、高階攻防對抗排查、自我評估檢查點、時間衝刺策略**。
 >
-> 🚀 **實戰修課主線**：想知道按部就班的推薦學習順序？請直接參閱 [【現代藍隊實戰通關課表與作戰主線 (Phase 0 ~ Phase 6)】](../BLUE_TEAM_CAREER_CURRICULUM.md)（含 SOC 告警分流八問、Incident Response 圍堵 SOP 與 36 項 Core 核心必修）。
+> 🚀 **實戰修課主線**：想知道按部就班的推薦學習順序？請直接參閱 [【現代藍隊實戰通關課表與作戰主線 (Phase 0 ~ Phase 6)】](../career_curriculum.md)（含 SOC 告警分流八問、Incident Response 圍堵 SOP 與 36 項 Core 核心必修）。
 
 ---
 

@@ -1,6 +1,6 @@
 # 🚀 現代藍隊實戰通關課表與作戰主線 (Blue Team Career & Operational Curriculum)
 
-> 💡 **核心精神**：本文件將 [`BLUE_TEAM_PRACTICE_RESOURCES_INDEX.md`](BLUE_TEAM_PRACTICE_RESOURCES_INDEX.md) 的 31 大領域與 107 項技術點，由「百科全書式的資源索引」昇華為**「以 SOC 營運與實戰事件為核心的修課主線」**。
+> 💡 **核心精神**：本文件將 [`index.md`](index.md) 的 31 大領域與 107 項技術點，由「百科全書式的資源索引」昇華為**「以 SOC 營運與實戰事件為核心的修課主線」**。
 >
 > **徹底打破「難度 (Level) 等同於學習順序 (Phase)」的迷思**，讓學習者知道第一天該學什麼、第三十天該做什麼，以及如何一步一步達到真正的藍隊畢業水準。
 
