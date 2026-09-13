@@ -216,3 +216,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Sensitive Private Keys
+*.key
+*.pem
+
+# Security research projects
+security/projects/

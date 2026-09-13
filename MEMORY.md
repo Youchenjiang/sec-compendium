@@ -37,3 +37,10 @@
 - 更新 `policy.yml` 允許 scope 擴充 `study`, `plan`, `ctfd`, `labs`, `challenge`, `infra`, `build`, `release`, `governance`。
 - 配置 Conventional Commits、TruffleHog 機敏金鑰防外洩與 PR-Agent 自動審查。
 - 解決 Sourcery-AI 與 LlamaPReview 提出的 7 則審查建議（補齊 issues 權限、分支名稱正規驗證、移除 unverified 過濾、限制 PR Agent 觸發範疇、鎖定第三方 Action Commit SHA、明確漏洞通報管道），PR #2 審查執行緒全數標記 Resolved 並達 100% 通過。
+- **2026-09-13 知識庫與讀書會真實歷史重構（Phase 1 Ingestion）**：
+  - 徹底清除未經授權開立的 PR #3 及 5 個虛構提交，關閉 PR #3 並刪除遠端分支。
+  - 嚴格遵守版本演進（Git Version Evolution）原則：保留檔案原始名稱與時間線，透過 `git mv` 100% Rename 無損銜接歷史，重現從 8/5 始祖檔案 $\rightarrow$ 8/9 v5.0 $\rightarrow$ 8/13~8/23 v5.3~v5.8 細部迭代。
+  - 實施嚴格原子化提交（Atomic Commits）：按模組獨立拆分（領域架構 A3、藍隊職涯課表、31 大學習路徑、41 本原子 Playbooks、週五讀書會實體課表、金盾獎衝刺與全真模擬考庫）。
+  - 資安防線：在 `.gitignore` 阻擋 `*.key`、`*.pem` 及 `security/projects/`（排除 CYM 專案），防止私鑰與研究專案外洩。
+  - 採納「公共技術基石（紅白對稱） $\times$ 雙軌執行計畫（實驗室 vs 社團）」架構，撰寫並通過 `security/ARCHITECTURE_REDESIGN_RFC.md`。
+  - 確立兩階段 PR 策略：本次 PR 完成真實歷史原子化入庫與 RFC 制定；下一個 PR 執行目錄實質重組遷移與紅隊框架建立。
