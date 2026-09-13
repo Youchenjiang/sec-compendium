@@ -48,6 +48,7 @@ jobs:
               "build",
               "release",
               "governance",
+              "tracks",
             ];
             const typePattern = allowedTypes.join("|");
             const scopePattern = allowedScopes.join("|");

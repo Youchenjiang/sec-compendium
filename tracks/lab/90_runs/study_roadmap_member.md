@@ -7,7 +7,7 @@
 > 1. **時間軸**: 每 2 天為 1 個 Run（半年 180 天共 90 個 Run）。
 > 2. **線上資源對接**: 每日課表對接 PortSwigger Academy、pwnable.kr、CryptoHack、Root-Me 等公開平台。
 > 3. **前置需求**: 入會前須自備 Linux CLI 與 Docker 基本環境。
-> 4. 🏆 **金盾獎專項衝刺 (9/10～10/10)**: 本學期參賽隊伍在初賽前一個月，可優先切換至專屬實戰衝刺課表 ➔ [`B4_GOLDEN_SHIELD_30DAYS_SPRINT_ROADMAP.md`](B4_GOLDEN_SHIELD_30DAYS_SPRINT_ROADMAP.md)！
+> 4. 🏆 **金盾獎專項衝刺 (9/10～10/10)**: 本學期參賽隊伍在初賽前一個月，可優先切換至專屬實戰衝刺課表 ➔ [`30days_sprint_roadmap.md`](../golden_shield_sprint/30days_sprint_roadmap.md)！
 
 ---
 
