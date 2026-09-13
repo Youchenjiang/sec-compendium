@@ -6,8 +6,8 @@
 
 | 想了解的內容 | 文件 |
 |---|---|
-| 為什麼主攻金盾、社員目標、投入時間、下學期是否轉向 | [B3 目標與規劃考量](security/B3_NCTFU_FRIDAY_GOALS_2026_FALL.md) |
-| 每週做什麼、實際題目連結、聚會流程、驗收及準備工作 | [C5 每週實作課表](security/C5_NCTFU_FRIDAY_PRACTICE_2026_FALL.md) |
+| 為什麼主攻金盾、社員目標、投入時間、下學期是否轉向 | [目標與規劃考量](nctfu_friday_goals.md) |
+| 每週做什麼、實際題目連結、聚會流程、驗收及準備工作 | [每週實作課表](nctfu_friday_practice.md) |
 
-舊混合版已保存至 [v0.4 歷史文件](security/archive/NCTFU_FRIDAY_STUDY_GROUP_2026_FALL_v0.4.md)，不再作為現行課表。
+舊混合版已保存至 [幹部工作交接筆記](friday_study_group_officer_summary.md)，不再作為現行課表。
 

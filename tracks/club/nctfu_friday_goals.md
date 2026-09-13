@@ -2,7 +2,7 @@
 
 版本：v0.5｜2026-09-08｜供幹部與參與者討論方向
 
-本文件回答「為什麼辦、主攻什麼、投入多少、怎麼判斷成果」。每週日期、題目連結、實作流程與材料準備統一維護於 [C5 每週實作課表](C5_NCTFU_FRIDAY_PRACTICE_2026_FALL.md)，本文件不重複列題單。
+本文件回答「為什麼辦、主攻什麼、投入多少、怎麼判斷成果」。每週日期、題目連結、實作流程與材料準備統一維護於 [C5 每週實作課表](nctfu_friday_practice.md)，本文件不重複列題單。
 
 ## 1. 對象與定位
 
@@ -69,14 +69,14 @@
 
 ## 7. 依據、文件分工與維護
 
-參考 [A0 文件規範](doc_rules_and_standards.md)、[B1 組長總綱](master_roadmap_leader.md)、[B2 成員課表](B2_STUDY_ROADMAP_Member_v5.8.md) 及 C 系列題庫對照的分工方式。本組仍採本次議定的每週五時段，不沿用原半年 90 Runs 的每日進度或晚上 22:00 聚會安排。
+參考 [規範手冊](../../security/framework/doc_rules_and_standards.md)、[組長總綱](../lab/90_runs/master_roadmap_leader.md)、[成員課表](../lab/90_runs/study_roadmap_member.md) 及 C 系列題庫對照的分工方式。本組仍採本次議定的每週五時段，不沿用原半年 90 Runs 的每日進度或晚上 22:00 聚會安排。
 
 | 文件 | 唯一維護內容 |
 |---|---|
 | 本文件 B3 | 目標、競賽選擇、投入考量、成效及轉向判斷 |
-| [C5 每週實作課表](C5_NCTFU_FRIDAY_PRACTICE_2026_FALL.md) | 日期、題目、流程、驗收、模擬卷與環境準備 |
-| [讀書會入口](../friday_study_group_fall_2026.md) | 導覽與版本入口，不另存完整課表 |
-| [v0.4 歷史版本](archive/NCTFU_FRIDAY_STUDY_GROUP_2026_FALL_v0.4.md) | 原始混合版，只供追溯 |
+| [C5 每週實作課表](nctfu_friday_practice.md) | 日期、題目、流程、驗收、模擬卷與環境準備 |
+| [讀書會入口](friday_study_group_fall_2026.md) | 導覽與版本入口，不另存完整課表 |
+| [幹部工作交接筆記](friday_study_group_officer_summary.md) | 原始混合版，只供追溯 |
 
 競賽安排依 [金盾官方競賽要點](https://csc.nics.nat.gov.tw/shield.aspx)，上次核對為 2026-09-08：初賽為單選題、決賽為五小時 Jeopardy。官方規定與日期若異動，在 C5 更新操作安排；本文件的選擇理由改變時才同步修訂。
 

@@ -2,7 +2,7 @@
 
 版本：v0.5｜2026-09-08｜成員與輪值主持人使用
 
-本文件只維護日期、指定題目、聚會流程、課外任務及材料準備。競賽選擇、學習目標、投入考量與下學期決策見 [B3 目標與規劃考量](B3_NCTFU_FRIDAY_GOALS_2026_FALL.md)。
+本文件只維護日期、指定題目、聚會流程、課外任務及材料準備。競賽選擇、學習目標、投入考量與下學期決策見 [目標與規劃考量](nctfu_friday_goals.md)。
 
 ## 1. 參加與操作方式
 
@@ -114,9 +114,9 @@ G2/G3 的環境需 12/8 前由帶領者試跑，成員於會前下載與啟動�
 | 轉向評估紀錄 | 全體成員 | 12/18 最後 20 分鐘 | 依 B3 的三項判斷記錄意願、能力及維護人選 |
 ## 7. 題目核對與準備狀態
 
-- [本地 CyLab 題庫快照](cylab_all_challenges_2026-08-08.csv)：核對本表 CyLab 題名／ID；線上搜尋連結沿用本地平台格式，目前附件、服務與耗時未逐題通關驗證。
-- [雙平台題庫規劃](combined_90_runs_challenges.md)、[CyLab 題庫規劃](picoctf_90_runs.md)：只參考主題結構，舊表部分 ID 與 CSV 不符，不直接沿用。
-- [既有課程作業](../CYLAB_COURSE_ASSIGNMENTS.md)：E3 與既有作業重複，其他本版 CyLab 題目避開該 14 題清單。
+- [本地 CyLab 題庫快照](../../security/challenges/cylab_all_challenges_2026-08-08.csv)：核對本表 CyLab 題名／ID；線上搜尋連結沿用本地平台格式，目前附件、服務與耗時未逐題通關驗證。
+- [雙平台題庫規劃](../../security/challenges/combined_90_runs_challenges.md)、[CyLab 題庫規劃](../../security/challenges/picoctf_90_runs.md)：只參考主題結構，舊表部分 ID 與 CSV 不符，不直接沿用。
+- [既有課程作業](cylab_course_assignments.md)：E3 與既有作業重複，其他本版 CyLab 題目避開該 14 題清單。
 - [金盾競賽要點](https://csc.nics.nat.gov.tw/shield.aspx) 與 [SEED Firewall Exploration Lab](https://seedsecuritylabs.org/Labs_20.04/Networking/Firewall/) 已於 2026-09-08 讀取官方頁面。
 - 10/9 自編卷、額外五小時模擬卷及 G3 故障環境屬後續輪值準備事項；此文件是完整排程與選題方案，不是已建好的所有訓練材料。
 
