@@ -220,3 +220,6 @@ __marimo__/
 # Sensitive Private Keys
 *.key
 *.pem
+
+# Security research projects
+security/projects/
