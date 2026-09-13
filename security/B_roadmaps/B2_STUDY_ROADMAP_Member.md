@@ -1,7 +1,7 @@
 # 🚀 資訊安全 6 個月攻防讀書會路線圖 (Member Study Group Edition)
 
 > [!IMPORTANT]
-> **當前版本**: `v5.3` (成員發布版)
+> **當前版本**: `v5.4` (成員發布版)
 > **發布日期**: 2026-08-08
 > **核心架構與規則**: 
 > 1. **時間軸**: 每 2 天為 1 個 Run（半年 180 天共 90 個 Run）。
@@ -14,7 +14,7 @@
 
 | 版本 (Version) | 發布日期 (Date) | 修訂重點 (Summary of Changes) | 適用對象 (Audience) |
 |---|---|---|---|
-| **v5.3** | 2026-08-11 | 補入 Run 3 picoCTF 專屬 RCE 命令注入關卡 (ping-cmd ID:757) | **最新發布版** |
+| **v5.4** | 2026-08-14 | 補入 Run 3 picoCTF 專屬 RCE 命令注入關卡 (ping-cmd ID:757) | **最新發布版** |
 | **v5.2** | 2026-08-10 | 新增讀書會運作公約 (每 Run 首日 22:00 線上聚會、個人 Writeup 與輪值紀要) | 歷史修訂版 |
 
 ---
@@ -43,7 +43,7 @@
 ## 🗓️ Month 1 (第 1 ~ 30 天 / Run 1 ~ Run 15): 攻防雙軌基礎與工具鏈入門
 
 #### ⚔️ **Run 1 (Day 1-2): HTTP 協定原理與 Burp Suite 代理抓包**
-🌐 **線上專題 (含 [picoCTF](https://play.picoctf.org/))**: [PortSwigger Access Control](https://portswigger.net/web-security/access-control)
+🌐 **線上專題**: [picoCTF: General Skills](https://learn.cylabacademy.org/learning-paths/14) ｜ [Beginner's Guide](https://learn.cylabacademy.org/learning-paths/18) ｜ [PortSwigger Access Control](https://portswigger.net/web-security/access-control)
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
@@ -53,7 +53,7 @@
 ---
 
 #### ⚔️ **Run 2 (Day 3-4): SQL Injection 基礎與萬能密碼登入繞過**
-🌐 **線上專題 (含 [picoCTF](https://play.picoctf.org/))**: [PortSwigger SQLi](https://portswigger.net/web-security/sql-injection)
+🌐 **線上專題**: [picoCTF: Irish Name Repo Series](https://learn.cylabacademy.org/learning-paths/7) ｜ [PortSwigger SQLi](https://portswigger.net/web-security/sql-injection)
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
@@ -63,7 +63,7 @@
 ---
 
 #### ⚔️ **Run 3 (Day 5-6): 命令執行 (RCE) 與路徑遍歷 (Path Traversal)**
-🌐 **線上專題 (含 [picoCTF](https://play.picoctf.org/))**: [PortSwigger OS Command Injection](https://portswigger.net/web-security/os-command-injection) ｜ [PortSwigger File Path Traversal](https://portswigger.net/web-security/file-path-traversal)
+🌐 **線上專題**: [PortSwigger OS Command Injection](https://portswigger.net/web-security/os-command-injection) ｜ [PortSwigger File Path Traversal](https://portswigger.net/web-security/file-path-traversal)
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
@@ -73,7 +73,7 @@
 ---
 
 #### ⚔️ **Run 4 (Day 7-8): Wireshark 網路流量分析與協定防禦**
-📁 **本地對接**: [`06_網路安全與數位取證/03_流量分析PCAP/Wireshark專題_流量監聽與分析`](file:///f:/OutClass/資訊應用/網路安全/06_網路安全與數位取證/03_流量分析PCAP/Wireshark專題_流量監聽與分析) ｜ 🌐 **線上專題 (含 [picoCTF](https://play.picoctf.org/))**: [Root-Me Network](https://www.root-me.org/en/Challenges/Network/)
+📁 **本地對接**: [`06_網路安全與數位取證/03_流量分析PCAP/Wireshark專題_流量監聽與分析`](file:///f:/OutClass/資訊應用/網路安全/06_網路安全與數位取證/03_流量分析PCAP/Wireshark專題_流量監聽與分析) ｜ 🌐 **線上專題**: [picoCTF: Forensics in CTF's](https://learn.cylabacademy.org/learning-paths/16) ｜ [Root-Me Network](https://www.root-me.org/en/Challenges/Network/)
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
@@ -83,7 +83,7 @@
 ---
 
 #### ⚔️ **Run 5 (Day 9-10): 任意檔案上傳與 Webshell 木馬權維**
-🌐 **線上專題 (含 [picoCTF](https://play.picoctf.org/))**: [PortSwigger File Upload](https://portswigger.net/web-security/file-upload)
+📁 **本地對接**: [`01_Web安全/08_檔案上傳與Webshell木馬權維`](file:///f:/OutClass/資訊應用/網路安全/01_Web安全/08_檔案上傳與Webshell木馬權維) ｜ 🌐 **線上專題**: [PortSwigger File Upload](https://portswigger.net/web-security/file-upload)
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
@@ -93,7 +93,7 @@
 ---
 
 #### ⚔️ **Run 6 (Day 11-12): x86/x64 彙編基礎與 GDB / Pwntools 環境建立**
-🌐 **線上專題 (含 [picoCTF](https://play.picoctf.org/))**: [pwn.college Dojo](https://pwn.college/)
+📁 **本地對接**: [`02_二進制與逆向/01_彙編語言與二進制基礎/Assembly彙編語言`](file:///f:/OutClass/資訊應用/網路安全/02_二進制與逆向/01_彙編語言與二進制基礎/Assembly彙編語言) ｜ 🌐 **線上專題**: [picoCTF: Low Level Binary Intro](https://learn.cylabacademy.org/learning-paths/2) ｜ [pwn.college: Computing 101](https://pwn.college/computing-101)
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
@@ -103,7 +103,7 @@
 ---
 
 #### ⚔️ **Run 7 (Day 13-14): XSS 跨站腳本與 CSRF / SSRF 攻擊**
-🌐 **線上專題 (含 [picoCTF](https://play.picoctf.org/))**: [PortSwigger XSS](https://portswigger.net/web-security/cross-site-scripting) & [SSRF](https://portswigger.net/web-security/ssrf)
+🌐 **線上專題**: [PortSwigger XSS](https://portswigger.net/web-security/cross-site-scripting) & [SSRF](https://portswigger.net/web-security/ssrf)
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
@@ -113,7 +113,7 @@
 ---
 
 #### ⚔️ **Run 8 (Day 15-16): Ghidra / IDA Pro 靜態逆向工程基礎**
-🌐 **線上專題 (含 [picoCTF](https://play.picoctf.org/))**: [Root-Me Cracking](https://www.root-me.org/en/Challenges/Cracking/)
+🌐 **線上專題**: [Root-Me Cracking](https://www.root-me.org/en/Challenges/Cracking/)
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
@@ -123,7 +123,7 @@
 ---
 
 #### ⚔️ **Run 9 (Day 17-18): 越權漏洞 (IDOR) 與 Cookie/Session 會話劫持**
-🌐 **線上專題 (含 [picoCTF](https://play.picoctf.org/))**: [PortSwigger Access Control](https://portswigger.net/web-security/access-control)
+🌐 **線上專題**: [picoCTF: General Skills](https://learn.cylabacademy.org/learning-paths/14) ｜ [Beginner's Guide](https://learn.cylabacademy.org/learning-paths/18) ｜ [PortSwigger Access Control](https://portswigger.net/web-security/access-control)
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
@@ -133,7 +133,7 @@
 ---
 
 #### ⚔️ **Run 10 (Day 19-20): Linux / Windows 本地權限提升 (PrivEsc)**
-🌐 **線上專題 (含 [picoCTF](https://play.picoctf.org/))**: [OverTheWire Bandit](https://overthewire.org/wargames/bandit/)
+🌐 **線上專題**: [OverTheWire Bandit](https://overthewire.org/wargames/bandit/)
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
@@ -143,7 +143,7 @@
 ---
 
 #### ⚔️ **Run 11 (Day 21-22): SSTI 模板注入與 PHP/Java 反序列化**
-🌐 **線上專題 (含 [picoCTF](https://play.picoctf.org/))**: [PortSwigger SSTI](https://portswigger.net/web-security/server-side-template-injection)
+🌐 **線上專題**: [PortSwigger SSTI](https://portswigger.net/web-security/server-side-template-injection)
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
@@ -153,7 +153,7 @@
 ---
 
 #### ⚔️ **Run 12 (Day 23-24): PWN 堆疊溢出 (Stack Overflow) 緩衝區溢出**
-🌐 **線上專題 (含 [picoCTF](https://play.picoctf.org/))**: [pwnable.kr](http://pwnable.kr/)
+🌐 **線上專題**: [pwnable.kr](http://pwnable.kr/)
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
@@ -163,7 +163,7 @@
 ---
 
 #### ⚔️ **Run 13 (Day 25-26): CryptoHack 密碼學基礎 (RSA / AES 算法原理)**
-🌐 **線上專題 (含 [picoCTF](https://play.picoctf.org/))**: [CryptoHack](https://cryptohack.org/)
+🌐 **線上專題**: [picoCTF: Cryptography Intro](https://learn.cylabacademy.org/learning-paths/17) ｜ [Substitution Series](https://learn.cylabacademy.org/learning-paths/12) ｜ [CryptoHack](https://cryptohack.org/)
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
@@ -173,7 +173,7 @@
 ---
 
 #### ⚔️ **Run 14 (Day 27-28): 內網滲透 (SOCKS5 隧道 / Pivoting / AD 域控攻防)**
-🌐 **線上專題 (含 [picoCTF](https://play.picoctf.org/))**: [TryHackMe Active Directory](https://tryhackme.com/)
+🌐 **線上專題**: [TryHackMe Active Directory](https://tryhackme.com/)
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
@@ -183,7 +183,7 @@
 ---
 
 #### ⚔️ **Run 15 (Day 29-30): Month 1 階段總複盤與黑盒 VulnHub 靶機通關**
-🌐 **線上專題 (含 [picoCTF](https://play.picoctf.org/))**: [VulnHub](https://www.vulnhub.com/)
+🌐 **線上專題**: [VulnHub](https://www.vulnhub.com/)
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
@@ -193,7 +193,7 @@
 ---
 
 ## 🗓️ Month 2 (第 31 ~ 60 天 / Run 16 ~ Run 30): 核心漏洞深造與高級攻防#### ⚔️ **Run 16 (Day 31-32): SQL Injection 盲注與 OOB DNSLog 帶外注入**
-🌐 **線上專題 (含 [picoCTF](https://play.picoctf.org/))**: [PortSwigger Blind SQLi](https://portswigger.net/web-security/sql-injection/blind)
+🌐 **線上專題**: [PortSwigger Blind SQLi](https://portswigger.net/web-security/sql-injection/blind)
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
@@ -203,7 +203,7 @@
 ---
 
 #### ⚔️ **Run 17 (Day 33-34): SQL Injection WAF 繞過與拖庫實戰**
-🌐 **線上專題 (含 [picoCTF](https://play.picoctf.org/))**: [PortSwigger SQLi Filter Bypass](https://portswigger.net/web-security/sql-injection)
+🌐 **線上專題**: [PortSwigger SQLi Filter Bypass](https://portswigger.net/web-security/sql-injection)
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
@@ -222,7 +222,7 @@
 ---
 
 #### ⚔️ **Run 19 (Day 37-38): 任意檔案上傳高級繞過與解析漏洞**
-🌐 **線上專題 (含 [picoCTF](https://play.picoctf.org/))**: [PortSwigger File Upload](https://portswigger.net/web-security/file-upload)
+🌐 **線上專題**: [PortSwigger File Upload](https://portswigger.net/web-security/file-upload)
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
@@ -232,7 +232,7 @@
 ---
 
 #### ⚔️ **Run 20 (Day 39-40): LFI 本地檔案包含與 RFI 遠端檔案包含**
-🌐 **線上專題 (含 [picoCTF](https://play.picoctf.org/))**: [PortSwigger Path Traversal](https://portswigger.net/web-security/file-path-traversal)
+🌐 **線上專題**: [PortSwigger Path Traversal](https://portswigger.net/web-security/file-path-traversal)
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
@@ -242,7 +242,7 @@
 ---
 
 #### ⚔️ **Run 21 (Day 41-42): DOM-based XSS 與 JS 加密解密逆向**
-🌐 **線上專題 (含 [picoCTF](https://play.picoctf.org/))**: [PortSwigger DOM XSS](https://portswigger.net/web-security/cross-site-scripting/dom-based)
+🌐 **線上專題**: [PortSwigger DOM XSS](https://portswigger.net/web-security/cross-site-scripting/dom-based)
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
@@ -252,7 +252,7 @@
 ---
 
 #### ⚔️ **Run 22 (Day 43-44): SSRF 高級利用與 127.0.0.1 內網探測**
-🌐 **線上專題 (含 [picoCTF](https://play.picoctf.org/))**: [PortSwigger SSRF](https://portswigger.net/web-security/ssrf)
+🌐 **線上專題**: [PortSwigger SSRF](https://portswigger.net/web-security/ssrf)
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
@@ -262,7 +262,7 @@
 ---
 
 #### ⚔️ **Run 23 (Day 45-46): 業務邏輯漏洞 (支付篡改、驗證碼繞過、JSON 劫持)**
-🌐 **線上專題 (含 [picoCTF](https://play.picoctf.org/))**: [PortSwigger Logic Flaws](https://portswigger.net/web-security/logic-flaws)
+🌐 **線上專題**: [PortSwigger Logic Flaws](https://portswigger.net/web-security/logic-flaws)
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
@@ -290,7 +290,7 @@
 ---
 
 #### ⚔️ **Run 26 (Day 51-52): PHP 反序列化 POP 鏈與 PHPGGC 實戰**
-🌐 **線上專題 (含 [picoCTF](https://play.picoctf.org/))**: [PortSwigger Deserialization](https://portswigger.net/web-security/deserialization)
+🌐 **線上專題**: [PortSwigger Deserialization](https://portswigger.net/web-security/deserialization)
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
@@ -300,7 +300,7 @@
 ---
 
 #### ⚔️ **Run 27 (Day 53-54): Java 反序列化 (ysoserial, Shiro, Fastjson)**
-🌐 **線上專題 (含 [picoCTF](https://play.picoctf.org/))**: [PortSwigger Java Deserialization](https://portswigger.net/web-security/deserialization)
+🌐 **線上專題**: [PortSwigger Java Deserialization](https://portswigger.net/web-security/deserialization)
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
