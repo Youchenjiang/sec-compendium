@@ -43,4 +43,8 @@
   - 實施嚴格原子化提交（Atomic Commits）：按模組獨立拆分（領域架構 A3、藍隊職涯課表、31 大學習路徑、41 本原子 Playbooks、週五讀書會實體課表、金盾獎衝刺與全真模擬考庫）。
   - 資安防線：在 `.gitignore` 阻擋 `*.key`、`*.pem` 及 `security/projects/`（排除 CYM 專案），防止私鑰與研究專案外洩。
   - 採納「公共技術基石（紅白對稱） $\times$ 雙軌執行計畫（實驗室 vs 社團）」架構，撰寫並通過 `security/ARCHITECTURE_REDESIGN_RFC.md`。
-  - 確立兩階段 PR 策略：本次 PR 完成真實歷史原子化入庫與 RFC 制定；下一個 PR 執行目錄實質重組遷移與紅隊框架建立。
+- **PR #4 合併完成（Phase 1 Ingestion Completed）**：PR #4 已成功合入 `main`，包含全部 103 份核心資安資產、RFC 文檔與 PR-Agent 韌性架構，本地分支已同步清理完畢。
+- **Phase 2 架構重整完成（Decoupling & Restructuring）**：
+  - 公共技術基石：建立 `security/blue_team/`（31 路徑 + 41 手冊 + 課表）與 `security/red_team/`（資源索引 + 對稱槽位），標準化題庫 `security/challenges/` 與考卷庫 `security/exams/`。
+  - 雙軌執行計畫解耦：建立 `tracks/lab/`（180天90-Runs、金盾衝刺、Cyber Range）與 `tracks/club/`（資安社週五讀書會實體課表與目標）。
+  - 全程透過 `git mv` 達成 100% Rename 無損遷移。
