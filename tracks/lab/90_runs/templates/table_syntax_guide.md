@@ -6,22 +6,22 @@
 ---
 
 ## 🛡️ 模板 1: 4 欄組長帶練總綱模板 (Master Leader Roadmap Template)
-適用於 `1_MASTER_ROADMAP.md`。同時包含本地 `file:///` 影片與線上超連結，以及帶練 PoC 腳本提示。
+適用於 `master_roadmap_leader.md`。包含相對路徑教材與線上超連結，以及帶練 PoC 腳本提示。
 
 ```markdown
 #### ⚔️ **Run X (Day Y-Z): [Run 主題名稱]**
-📁 **本地核心目錄**: [`路徑`](file:///...) ｜ 🌐 **線上專題**: [專題名稱](https://...)
+📁 **本地核心目錄**: [`路徑`](../../../../教材目錄/...) ｜ 🌐 **線上專題**: [專題名稱](https://...)
 
-| 天數 (Day) | 🎯 當日教學/學習重點 (Focus Task) | 📁 本地影片/教材與 🌐 線上資源 | 🧪 指定練習與帶練講義/PoC 腳本 (Lab & Starter Kit) |
+| 天數 (Day) | 🎯 當日教學/學習重點 (Focus Task) | 📁 本地教材與 🌐 線上資源 | 🧪 指定練習與帶練講義/PoC 腳本 (Lab & Starter Kit) |
 | :--- | :--- | :--- | :--- |
-| **Day Y** | [觀念與教學重點] | 觀看 [`影片檔名.mp4`](file:///...) <br>🌐 [線上專題](https://...) | [PortSwigger / picoCTF Lab](https://...) <br>💡 **組長帶練指示**: 解題關鍵步驟與腳本說明 |
-| **Day Z** | [實操與進階重點] | 觀看 [`影片檔名.mp4`](file:///...) <br>🌐 [線上專題](https://...) | [PortSwigger / picoCTF Lab](https://...) <br>💡 **組長帶練指示**: 解題關鍵步驟與腳本說明 |
+| **Day Y** | [觀念與教學重點] | 研讀 [`教材檔名`](../../../../教材路徑/...) <br>🌐 [線上專題](https://...) | [PortSwigger / picoCTF Lab](https://...) <br>💡 **組長帶練指示**: 解題關鍵步驟與腳本說明 |
+| **Day Z** | [實操與進階重點] | 研讀 [`教材檔名`](../../../../教材路徑/...) <br>🌐 [線上專題](https://...) | [PortSwigger / picoCTF Lab](https://...) <br>💡 **組長帶練指示**: 解題關鍵步驟與腳本說明 |
 ```
 
 ---
 
 ## 🚀 模板 2: 3 欄成員自學路線圖模板 (Member Study Roadmap Template)
-適用於 `STUDY_GROUP_ROADMAP.md`。100% 採用 `https://` 公開網址，嚴禁出現 `file:///` 本地檔案路徑。
+適用於 `study_roadmap_member.md`。100% 採用 `https://` 公開網址，嚴禁出現本機檔案絕對路徑。
 
 ```markdown
 #### ⚔️ **Run X (Day Y-Z): [Run 主題名稱]**
