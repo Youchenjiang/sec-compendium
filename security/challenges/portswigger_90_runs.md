@@ -5,7 +5,7 @@
 >
 > 圖例：`[ ]` 未完成　`[x]` 已完成　`[/]` 進行中
 >
-> 建議配合 [Week 計劃](FULL_LEARNING_PATH.md) 逐週核對進度
+> 建議配合 [Week 計劃](../blue_team/learning_paths/FULL_LEARNING_PATH.md) 逐週核對進度
 
 ---
 
