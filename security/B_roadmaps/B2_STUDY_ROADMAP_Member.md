@@ -1,12 +1,13 @@
 # 🚀 資訊安全 6 個月攻防讀書會路線圖 (Member Study Group Edition)
 
 > [!IMPORTANT]
-> **當前版本**: `v5.7` (成員發布版)
+> **當前版本**: `v5.8` (成員發布版)
 > **發布日期**: 2026-08-08
 > **核心架構與規則**: 
 > 1. **時間軸**: 每 2 天為 1 個 Run（半年 180 天共 90 個 Run）。
 > 2. **線上資源對接**: 每日課表對接 PortSwigger Academy、pwnable.kr、CryptoHack、Root-Me 等公開平台。
 > 3. **前置需求**: 入會前須自備 Linux CLI 與 Docker 基本環境。
+> 4. 🏆 **金盾獎專項衝刺 (9/10～10/10)**: 本學期參賽隊伍在初賽前一個月，可優先切換至專屬實戰衝刺課表 ➔ [`B4_GOLDEN_SHIELD_30DAYS_SPRINT_ROADMAP.md`](B4_GOLDEN_SHIELD_30DAYS_SPRINT_ROADMAP.md)！
 
 ---
 
@@ -31,15 +32,15 @@
 
 ---
 
-## 🗓️ Month 1 (第 1 ~ 30 天 / Run 1 ~ Run 15): 攻防雙軌基礎與工具鏈入門
+## 🗓️ Month 1 (第 1 ~ 32 天 / Run 1 ~ Run 16): 攻防雙軌基礎與工具鏈入門
 
 #### ⚔️ **Run 1 (Day 1-2): HTTP 協定原理與 Burp Suite 代理抓包**
 🌐 **線上專題**: [picoCTF: General Skills](https://learn.cylabacademy.org/learning-paths/14) ｜ [Beginner's Guide](https://learn.cylabacademy.org/learning-paths/18) ｜ [PortSwigger Access Control](https://portswigger.net/web-security/access-control)
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
-| **Day 1** | HTTP 請求與回應標頭分析 (GET/POST/Header/Status Code) | 🎯 **必解關卡**:<br>🚩 **picoCTF**: • [Insp3ct0r (ID: 367)](https://learn.cylabacademy.org/library?search=Insp3ct0r)<br>🌐 **PortSwigger**: • [Lab: Intercepting Web Requests via Burp](https://portswigger.net/burp)<br>🚀 **延伸挑戰**:<br>🚩 **picoCTF**: • [what's a net cat? (ID: 156)](https://learn.cylabacademy.org/library?search=what%27s%20a%20net%20cat%3F)<br>• [Super SSH (ID: 424)](https://learn.cylabacademy.org/library?search=Super%20SSH)<br>🌐 **PortSwigger**: • [Lab: Modifying Web Requests](https://portswigger.net/burp/proxy) |
-| **Day 2** | Burp Suite 代理截獲、Repeater 重放與 POST 欄位修改 | 同 Day 1 關卡（延續實操與延伸挑戰） |
+| **Day 1** (08/07) | HTTP 請求與回應標頭分析 (GET/POST/Header/Status Code) | 🎯 **必解關卡**:<br>🚩 **picoCTF**: • [Insp3ct0r (ID: 367)](https://learn.cylabacademy.org/library?search=Insp3ct0r)<br>🌐 **PortSwigger**: • [Lab: Intercepting Web Requests via Burp](https://portswigger.net/burp)<br>🚀 **延伸挑戰**:<br>🚩 **picoCTF**: • [what's a net cat? (ID: 156)](https://learn.cylabacademy.org/library?search=what%27s%20a%20net%20cat%3F)<br>• [Super SSH (ID: 424)](https://learn.cylabacademy.org/library?search=Super%20SSH)<br>🌐 **PortSwigger**: • [Lab: Modifying Web Requests](https://portswigger.net/burp/proxy) |
+| **Day 2** (08/08) | Burp Suite 代理截獲、Repeater 重放與 POST 欄位修改 | 同 Day 1 關卡（延續實操與延伸挑戰） |
 
 ---
 
@@ -48,8 +49,8 @@
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
-| **Day 3** | SQL 查詢語法剖析、單引號 `'` 閉合原理與注入點判斷 | 🎯 **必解關卡**:<br>🚩 **picoCTF**: • [Irish-Name-Repo 1 (ID: 548)](https://learn.cylabacademy.org/library?search=Irish-Name-Repo%201)<br>🌐 **PortSwigger**: • [Lab: Retrieval of hidden data](https://portswigger.net/web-security/sql-injection/lab-retrieve-hidden-data)<br>🚀 **延伸挑戰**:<br>🚩 **picoCTF**: • [Irish-Name-Repo 2 (ID: 550)](https://learn.cylabacademy.org/library?search=Irish-Name-Repo%202) & [Irish-Name-Repo 3 (ID: 552)](https://learn.cylabacademy.org/library?search=Irish-Name-Repo%203)<br>🌐 **PortSwigger**: • [Lab: Subverting login logic](https://portswigger.net/web-security/sql-injection/lab-login-bypass) |
-| **Day 4** | `' OR 1=1--` 萬能密碼成因與 POST 表單登入繞過原始碼分析 | 同 Day 3 關卡（延續實操與延伸挑戰） |
+| **Day 3** (08/09) | SQL 查詢語法剖析、單引號 `'` 閉合原理與注入點判斷 | 🎯 **必解關卡**:<br>🚩 **picoCTF**: • [Irish-Name-Repo 1 (ID: 548)](https://learn.cylabacademy.org/library?search=Irish-Name-Repo%201)<br>🌐 **PortSwigger**: • [Lab: Retrieval of hidden data](https://portswigger.net/web-security/sql-injection/lab-retrieve-hidden-data)<br>🚀 **延伸挑戰**:<br>🚩 **picoCTF**: • [Irish-Name-Repo 2 (ID: 550)](https://learn.cylabacademy.org/library?search=Irish-Name-Repo%202) & [Irish-Name-Repo 3 (ID: 552)](https://learn.cylabacademy.org/library?search=Irish-Name-Repo%203)<br>🌐 **PortSwigger**: • [Lab: Subverting login logic](https://portswigger.net/web-security/sql-injection/lab-login-bypass) |
+| **Day 4** (08/10) | `' OR 1=1--` 萬能密碼成因與 POST 表單登入繞過原始碼分析 | 同 Day 3 關卡（延續實操與延伸挑戰） |
 
 ---
 
@@ -58,38 +59,38 @@
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
-| **Day 5** | OS 命令注入原理與 Linux/Windows 命令拼接符 (` ; `, ` & `, ` && `, ` \| `, ` \|\| `) | 🎯 **必解關卡**:<br>🚩 **picoCTF**: • [ping-cmd (ID: 757)](https://learn.cylabacademy.org/library?search=ping-cmd)<br>🌐 **PortSwigger**: • [Lab: OS command injection, simple case](https://portswigger.net/web-security/os-command-injection/lab-simple)<br>🚀 **延伸挑戰**:<br>🌐 **PortSwigger**: • [Lab: File path traversal, simple case](https://portswigger.net/web-security/file-path-traversal/lab-simple) |
-| **Day 6** | 路徑遍歷 (Path Traversal) 與 `../` 讀取 `/etc/passwd` | 同 Day 5 關卡（延續實操與延伸挑戰） |
+| **Day 5** (08/11) | OS 命令注入原理與 Linux/Windows 命令拼接符 (` ; `, ` & `, ` && `, ` \| `, ` \|\| `) | 🎯 **必解關卡**:<br>🚩 **picoCTF**: • [ping-cmd (ID: 757)](https://learn.cylabacademy.org/library?search=ping-cmd)<br>🌐 **PortSwigger**: • [Lab: OS command injection, simple case](https://portswigger.net/web-security/os-command-injection/lab-simple)<br>🚀 **延伸挑戰**:<br>🌐 **PortSwigger**: • [Lab: File path traversal, simple case](https://portswigger.net/web-security/file-path-traversal/lab-simple) |
+| **Day 6** (08/12) | 路徑遍歷 (Path Traversal) 與 `../` 讀取 `/etc/passwd` | 同 Day 5 關卡（延續實操與延伸挑戰） |
 
 ---
 
 #### ⚔️ **Run 4 (Day 7-8): Wireshark 網路流量分析與協定防禦**
-📁 **本地對接**: [`06_網路安全與數位取證/03_流量分析PCAP/Wireshark專題_流量監聽與分析`](file:///f:/OutClass/資訊應用/網路安全/06_網路安全與數位取證/03_流量分析PCAP/Wireshark專題_流量監聽與分析) ｜ 🌐 **線上專題**: [picoCTF: Forensics in CTF's](https://learn.cylabacademy.org/learning-paths/16) ｜ [Root-Me Network](https://www.root-me.org/en/Challenges/Network/)
+🌐 **線上專題**: [picoCTF: Forensics in CTF's](https://learn.cylabacademy.org/learning-paths/16) ｜ [Root-Me Network](https://www.root-me.org/en/Challenges/Network/)
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
-| **Day 7** | Wireshark 基礎介面、網路介面選擇與網絡卡混雜模式捕獲<br>🎥 本地觀看：`1-WireShark简介.mp4` ~ `3-过滤器使用.mp4` ＋ `WireShark操作練習-2024.docx` | 🎯 **必解關卡**:<br>🚩 **picoCTF**: • [Wireshark doo dooo do doo... (ID: 432)](https://learn.cylabacademy.org/library?search=Wireshark%20doo%20dooo%20do%20doo...)<br>🚀 **延伸挑戰**:<br>🚩 **picoCTF**: • [Trivial Flag Transfer Protocol (ID: 434)](https://learn.cylabacademy.org/library?search=Trivial%20Flag%20Transfer%20Protocol) |
-| **Day 8** | Wireshark 顯示過濾語法 (`ip.addr`) 與 HTTP 追蹤流分析<br>🎥 本地觀看：`6-TCP协议.mp4` ~ `8-实战.mp4` ＋ 分析 `SQLInjection.pcapng` | 同 Day 7 關卡（延續實操與延伸挑戰） |
+| **Day 7** (08/13) | Wireshark 基礎介面、網路介面選擇與網絡卡混雜模式捕獲<br>🎥 本地觀看：`1-WireShark简介.mp4` ~ `3-过滤器使用.mp4` ＋ `WireShark操作練習-2024.docx` | 🎯 **必解關卡**:<br>🚩 **picoCTF**: • [Wireshark doo dooo do doo... (ID: 432)](https://learn.cylabacademy.org/library?search=Wireshark%20doo%20dooo%20do%20doo...)<br>🚀 **延伸挑戰**:<br>🚩 **picoCTF**: • [Trivial Flag Transfer Protocol (ID: 434)](https://learn.cylabacademy.org/library?search=Trivial%20Flag%20Transfer%20Protocol) |
+| **Day 8** (08/14) | Wireshark 顯示過濾語法 (`ip.addr`) 與 HTTP 追蹤流分析<br>🎥 本地觀看：`6-TCP协议.mp4` ~ `8-实战.mp4` ＋ 分析 `SQLInjection.pcapng` | 同 Day 7 關卡（延續實操與延伸挑戰） |
 
 ---
 
 #### ⚔️ **Run 5 (Day 9-10): 任意檔案上傳與 Webshell 木馬權維**
-📁 **本地對接**: [`01_Web安全/08_檔案上傳與Webshell木馬權維`](file:///f:/OutClass/資訊應用/網路安全/01_Web安全/08_檔案上傳與Webshell木馬權維) ｜ 🌐 **線上專題**: [PortSwigger File Upload](https://portswigger.net/web-security/file-upload)
+🌐 **線上專題**: [PortSwigger File Upload](https://portswigger.net/web-security/file-upload)
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
-| **Day 9** | 任意檔案上傳原理、前端 JS 驗證繞過與 Content-Type 偽造 | 🎯 **必解關卡**:<br>🌐 **PortSwigger**: • [Lab: Remote code execution via web shell upload](https://portswigger.net/web-security/file-upload/lab-file-upload-remote-code-execution-via-web-shell-upload) |
-| **Day 10** | 一句話木馬編寫與中國蟻劍 (AntSword) 連線 Webshell | 同 Day 9 關卡（延續實操與延伸挑戰） |
+| **Day 9** (08/15) | 任意檔案上傳原理、前端 JS 驗證繞過與 Content-Type 偽造 | 🎯 **必解關卡**:<br>🌐 **PortSwigger**: • [Lab: Remote code execution via web shell upload](https://portswigger.net/web-security/file-upload/lab-file-upload-remote-code-execution-via-web-shell-upload) |
+| **Day 10** (08/16) | 一句話木馬編寫與中國蟻劍 (AntSword) 連線 Webshell | 同 Day 9 關卡（延續實操與延伸挑戰） |
 
 ---
 
 #### ⚔️ **Run 6 (Day 11-12): x86/x64 彙編基礎與 GDB / Pwntools 環境建立**
-📁 **本地對接**: [`02_二進制與逆向/01_彙編語言與二進制基礎/Assembly彙編語言`](file:///f:/OutClass/資訊應用/網路安全/02_二進制與逆向/01_彙編語言與二進制基礎/Assembly彙編語言) ｜ 🌐 **線上專題**: [picoCTF: Low Level Binary Intro](https://learn.cylabacademy.org/learning-paths/2) ｜ [pwn.college: Computing 101](https://pwn.college/computing-101)
+🌐 **線上專題**: [picoCTF: Low Level Binary Intro](https://learn.cylabacademy.org/learning-paths/2) ｜ [pwn.college: Computing 101](https://pwn.college/computing-101)
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
-| **Day 11** | x86/x64 彙編暫存器 (EAX, ESP, EBP, EIP) 與記憶體堆疊結構 | 🎯 **必解關卡**:<br>🚩 **picoCTF**: • [Bit-O-Asm-1 (ID: 125)](https://learn.cylabacademy.org/library?search=Bit-O-Asm-1) ~ [Bit-O-Asm-4 (ID: 138)](https://learn.cylabacademy.org/library?search=Bit-O-Asm-4)<br>🚀 **延伸挑戰**:<br>🚩 **picoCTF**: • [GDB baby step 1 (ID: 142)](https://learn.cylabacademy.org/library?search=GDB%20baby%20step%201) ~ [GDB baby step 4 (ID: 158)](https://learn.cylabacademy.org/library?search=GDB%20baby%20step%204) |
-| **Day 12** | Linux GDB 偵錯程式指令 (`gdb ./pwn`) 與 Pwntools 腳本撰寫 | 同 Day 11 關卡（延續實操與延伸挑戰） |
+| **Day 11** (08/17) | x86/x64 彙編暫存器 (EAX, ESP, EBP, EIP) 與記憶體堆疊結構 | 🎯 **必解關卡**:<br>🚩 **picoCTF**: • [Bit-O-Asm-1 (ID: 125)](https://learn.cylabacademy.org/library?search=Bit-O-Asm-1) ~ [Bit-O-Asm-4 (ID: 138)](https://learn.cylabacademy.org/library?search=Bit-O-Asm-4)<br>🚀 **延伸挑戰**:<br>🚩 **picoCTF**: • [GDB baby step 1 (ID: 142)](https://learn.cylabacademy.org/library?search=GDB%20baby%20step%201) ~ [GDB baby step 4 (ID: 158)](https://learn.cylabacademy.org/library?search=GDB%20baby%20step%204) |
+| **Day 12** (08/18) | Linux GDB 偵錯程式指令 (`gdb ./pwn`) 與 Pwntools 腳本撰寫 | 同 Day 11 關卡（延續實操與延伸挑戰） |
 
 ---
 
@@ -98,8 +99,8 @@
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
-| **Day 13** | HITCON 2026 Wargame 賽事實戰衝刺（Web / Pwn / Reverse / Crypto 題型突破） | 🎯 **實戰任務**:<br>🚩 **HITCON Wargame**: 全隊衝刺解題，即時記錄解題封包與卡關點 |
-| **Day 14** | 賽後 Writeup 整理、官方題解覆盤與全領域盲點歸納 | 🎯 **覆盤任務**:<br>📝 提交個人 Writeup 至筆記軟體並對照官方題解還原 Root Cause |
+| **Day 13** (08/19) | HITCON 2026 Wargame 賽事實戰衝刺（Web / Pwn / Reverse / Crypto 題型突破） | 🎯 **實戰任務**:<br>🚩 **HITCON Wargame**: 全隊衝刺解題，即時記錄解題封包與卡關點 |
+| **Day 14** (08/20) | 賽後 Writeup 整理、官方題解覆盤與全領域盲點歸納 | 🎯 **覆盤任務**:<br>📝 提交個人 Writeup 至筆記軟體並對照官方題解還原 Root Cause |
 
 ---
 
@@ -108,8 +109,13 @@
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
-| **Day 15** | XSS 跨站腳本成因、Reflected / Stored / DOM XSS 與 Cookie 竊取 | 🎯 **必解關卡**:<br>🌐 **PortSwigger**: • [Lab: Reflected XSS into HTML context](https://portswigger.net/web-security/cross-site-scripting/reflected/lab-html-context-nothing-encoded)<br>🚀 **延伸挑戰**:<br>🌐 **PortSwigger**: • [Lab: Stored XSS into anchor href](https://portswigger.net/web-security/cross-site-scripting/stored/lab-html-context-nothing-encoded)<br>• [Lab: CORS with basic origin reflection](https://portswigger.net/web-security) |
-| **Day 16** | CSRF 跨站請求偽造原理、PoC 自動提交表單與 Token 防禦 | 🎯 **必解關卡**:<br>🌐 **PortSwigger**: • [Lab: CSRF vulnerability with no defenses](https://portswigger.net/web-security/csrf/lab-no-defenses) |
+| **Day 15** (08/21) | XSS 跨站腳本成因、Reflected / Stored / DOM XSS 與 Cookie 竊取 | 🎯 **必解關卡**:<br>🌐 **PortSwigger**: • [Lab: Reflected XSS into HTML context](https://portswigger.net/web-security/cross-site-scripting/reflected/lab-html-context-nothing-encoded)<br>🚀 **延伸挑戰**:<br>🌐 **PortSwigger**: • [Lab: Stored XSS into anchor href](https://portswigger.net/web-security/cross-site-scripting/stored/lab-html-context-nothing-encoded)<br>• [Lab: CORS with basic origin reflection](https://portswigger.net/web-security) |
+| **Day 16** (08/22) | CSRF 跨站請求偽造原理、PoC 自動提交表單與 Token 防禦 | 🎯 **必解關卡**:<br>🌐 **PortSwigger**: • [Lab: CSRF vulnerability with no defenses](https://portswigger.net/web-security/csrf/lab-no-defenses) |
+
+---
+
+> [!NOTE]
+> ☕ **階段自習與緩衝 (08/23 ~ 08/24)**: XSS / CSRF 與前階段漏洞自主實踐、Writeup 筆記整理與 PortSwigger 關卡補齊。
 
 ---
 
@@ -118,8 +124,8 @@
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
-| **Day 17** | 逆向工程導論、靜態分析概念與 PE / ELF 可執行檔結構 | 🎯 **必解關卡**:<br>🚩 **picoCTF**: • [Safe Opener 1 (ID: 513)](https://learn.cylabacademy.org/library?search=Safe%20Opener%201) & [Safe Opener 2 (ID: 515)](https://learn.cylabacademy.org/library?search=Safe%20Opener%202)<br>🚀 **延伸挑戰**:<br>🚩 **picoCTF**: • [vault-door-training (ID: 472)](https://learn.cylabacademy.org/library?search=vault-door-training) |
-| **Day 18** | Ghidra / IDA Pro 反編譯 C 虛擬碼與 Serial 驗證邏輯逆向 | 同 Day 15 關卡（延續實操與延伸挑戰） |
+| **Day 17** (08/25) | 逆向工程導論、靜態分析概念與 PE / ELF 可執行檔結構 | 🎯 **必解關卡**:<br>🚩 **picoCTF**: • [Safe Opener 1 (ID: 513)](https://learn.cylabacademy.org/library?search=Safe%20Opener%201) & [Safe Opener 2 (ID: 515)](https://learn.cylabacademy.org/library?search=Safe%20Opener%202)<br>🚀 **延伸挑戰**:<br>🚩 **picoCTF**: • [vault-door-training (ID: 472)](https://learn.cylabacademy.org/library?search=vault-door-training) |
+| **Day 18** (08/26) | Ghidra / IDA Pro 反編譯 C 虛擬碼與 Serial 驗證邏輯逆向 | 同 Day 21 關卡（延續實操與延伸挑戰） |
 
 ---
 
@@ -128,8 +134,8 @@
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
-| **Day 19** | IDOR 越權原理與平行越權修改 `id=1001` 檢視他人信件 | 🎯 **必解關卡**:<br>🌐 **PortSwigger**: • [Lab: Unprotected admin functionality](https://portswigger.net/web-security/access-control/lab-unprotected-admin-functionality)<br>🚀 **延伸挑戰**:<br>🌐 **PortSwigger**: • [Lab: User ID controlled bypass of access controls](https://portswigger.net/web-security)<br>• [Lab: Username enumeration via different responses](https://portswigger.net/web-security/authentication/password-based/lab-username-enumeration-via-different-responses) |
-| **Day 20** | 垂直越權、URL 許可權控制繞過與 Session 劫持攻擊 | 同 Day 17 關卡（延續實操與延伸挑戰） |
+| **Day 19** (08/27) | IDOR 越權原理與平行越權修改 `id=1001` 檢視他人信件 | 🎯 **必解關卡**:<br>🌐 **PortSwigger**: • [Lab: Unprotected admin functionality](https://portswigger.net/web-security/access-control/lab-unprotected-admin-functionality)<br>🚀 **延伸挑戰**:<br>🌐 **PortSwigger**: • [Lab: User ID controlled bypass of access controls](https://portswigger.net/web-security)<br>• [Lab: Username enumeration via different responses](https://portswigger.net/web-security/authentication/password-based/lab-username-enumeration-via-different-responses) |
+| **Day 20** (08/28) | 垂直越權、URL 許可權控制繞過與 Session 劫持攻擊 | 同 Day 21 關卡（延續實操與延伸挑戰） |
 
 ---
 
@@ -138,18 +144,18 @@
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
-| **Day 21** | Linux SUID 提權原理與 `find / -perm -4000` 尋找特權 binary | 🎯 **必解關卡**:<br>🚩 **picoCTF**: • [Magikarp Ground Mission (ID: 189)](https://learn.cylabacademy.org/library?search=Magikarp%20Ground%20Mission) / [First Find (ID: 320)](https://learn.cylabacademy.org/library?search=First%20Find)<br>🚀 **延伸挑戰**:<br>🚩 **picoCTF**: • [Big Zip (ID: 322)](https://learn.cylabacademy.org/library?search=Big%20Zip) / [strings it (ID: 163)](https://learn.cylabacademy.org/library?search=strings%20it) / [plumbing (ID: 156)](https://learn.cylabacademy.org/library?search=plumbing) |
-| **Day 22** | MySQL UDF 提權原理與 Windows 服務路徑弱點提權實戰 | 同 Day 19 關卡（延續實操與延伸挑戰） |
+| **Day 21** (08/29) | Linux SUID 提權原理與 `find / -perm -4000` 尋找特權 binary | 🎯 **必解關卡**:<br>🚩 **picoCTF**: • [Magikarp Ground Mission (ID: 189)](https://learn.cylabacademy.org/library?search=Magikarp%20Ground%20Mission) / [First Find (ID: 320)](https://learn.cylabacademy.org/library?search=First%20Find)<br>🚀 **延伸挑戰**:<br>🚩 **picoCTF**: • [Big Zip (ID: 322)](https://learn.cylabacademy.org/library?search=Big%20Zip) / [strings it (ID: 163)](https://learn.cylabacademy.org/library?search=strings%20it) / [plumbing (ID: 156)](https://learn.cylabacademy.org/library?search=plumbing) |
+| **Day 22** (08/30) | MySQL UDF 提權原理與 Windows 服務路徑弱點提權實戰 | 同 Day 21 關卡（延續實操與延伸挑戰） |
 
 ---
 
 #### ⚔️ **Run 12 (Day 23-24): SSTI 模板注入與 PHP/Java 反序列化**
-🌐 **線上專題**: [PortSwigger SSTI](https://portswigger.net/web-security/server-side-template-injection)
+🌐 **線上專題**: [PortSwigger SSTI](https://portswigger.net/web-security/server-side-template-injection) ｜ [PortSwigger Deserialization](https://portswigger.net/web-security/deserialization)
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
-| **Day 23** | Flask Jinja2 SSTI 原理與 `{{config}}` / `__class__` 變數洩露 | 🎯 **必解關卡**:<br>🌐 **PortSwigger**: • [Lab: Basic server-side template injection (ERB)](https://portswigger.net/web-security)<br>🚀 **延伸挑戰**:<br>🌐 **PortSwigger**: • [Lab: Basic SSTI in Tornado](https://portswigger.net/web-security) |
-| **Day 24** | PHP 魔術方法 `__wakeup()` 觸發與 Java 物件反序列化 | 同 Day 21 關卡（延續實操與延伸挑戰） |
+| **Day 23** (08/31) | Flask Jinja2 SSTI 原理與 `{{config}}` / `__class__` 變數洩露 | 🎯 **必解關卡**:<br>🌐 **PortSwigger**: • [Lab: Basic server-side template injection (ERB)](https://portswigger.net/web-security/server-side-template-injection/exploiting/lab-server-side-template-injection-basic)<br>🚀 **延伸挑戰**:<br>🌐 **PortSwigger**: • [Lab: Basic SSTI in Tornado](https://portswigger.net/web-security/server-side-template-injection/exploiting/lab-server-side-template-injection-basic-tornado) |
+| **Day 24** (09/01) | PHP 魔術方法 `__wakeup()` 觸發與 Java 物件反序列化 | 🎯 **必解關卡**:<br>🌐 **PortSwigger**: • [Lab: Modifying serialized objects](https://portswigger.net/web-security/deserialization/exploiting/lab-deserialization-modifying-serialized-objects)<br>🚀 **延伸挑戰**:<br>🌐 **PortSwigger**: • [Lab: Modifying serialized data types](https://portswigger.net/web-security/deserialization/exploiting/lab-deserialization-modifying-serialized-data-types) |
 
 ---
 
@@ -158,8 +164,8 @@
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
-| **Day 25** | PWN 堆疊溢位 (Stack Overflow) 記憶體佈局與 NOP Sled 原理 | 🎯 **必解關卡**:<br>🚩 **picoCTF**: • [buffer overflow 0 (ID: 184)](https://learn.cylabacademy.org/library?search=buffer%20overflow%200) / [Local Target (ID: 188)](https://learn.cylabacademy.org/library?search=Local%20Target)<br>🚀 **延伸挑戰**:<br>🚩 **picoCTF**: • [buffer overflow 1 (ID: 192)](https://learn.cylabacademy.org/library?search=buffer%20overflow%201) / [Picker I (ID: 118)](https://learn.cylabacademy.org/library?search=Picker%20I) ~ [Picker IV (ID: 180)](https://learn.cylabacademy.org/library?search=Picker%20IV) |
-| **Day 26** | `ret2text` 篡改 EIP/RIP 執行流與 Pwntools 自動化 Exp 撰寫 | 同 Day 23 關卡（延續實操與延伸挑戰） |
+| **Day 25** (09/02) | PWN 堆疊溢位 (Stack Overflow) 記憶體佈局與 NOP Sled 原理 | 🎯 **必解關卡**:<br>🚩 **picoCTF**: • [buffer overflow 0 (ID: 184)](https://learn.cylabacademy.org/library?search=buffer%20overflow%200) / [Local Target (ID: 188)](https://learn.cylabacademy.org/library?search=Local%20Target)<br>🚀 **延伸挑戰**:<br>🚩 **picoCTF**: • [buffer overflow 1 (ID: 192)](https://learn.cylabacademy.org/library?search=buffer%20overflow%201) / [Picker I (ID: 118)](https://learn.cylabacademy.org/library?search=Picker%20I) ~ [Picker IV (ID: 180)](https://learn.cylabacademy.org/library?search=Picker%20IV) |
+| **Day 26** (09/03) | `ret2text` 篡改 EIP/RIP 執行流與 Pwntools 自動化 Exp 撰寫 | 同 Day 23 關卡（延續實操與延伸挑戰） |
 
 ---
 
@@ -168,8 +174,8 @@
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
-| **Day 27** | Base64、ASCII、XOR 位元運算與對稱加密基礎觀念 | 🎯 **必解關卡**:<br>🚩 **picoCTF**: • [2warm (ID: 100)](https://learn.cylabacademy.org/library?search=2warm) / [Warmed Up (ID: 172)](https://learn.cylabacademy.org/library?search=Warmed%20Up) / [caesar (ID: 16)](https://learn.cylabacademy.org/library?search=caesar)<br>🚀 **延伸挑戰**:<br>🚩 **picoCTF**: • [interencdec (ID: 418)](https://learn.cylabacademy.org/library?search=interencdec)<br>• [Mind your Ps and Qs (ID: 27)](https://learn.cylabacademy.org/library?search=Mind%20your%20Ps%20and%20Qs) / [Mini RSA (ID: 18)](https://learn.cylabacademy.org/library?search=Mini%20RSA) / [rsa_oracle (ID: 29)](https://learn.cylabacademy.org/library?search=rsa_oracle) |
-| **Day 28** | RSA 公私鑰數學原理 (p, q, n, e, d) 與大數分解陷阱 | 同 Day 25 關卡（延續實操與延伸挑戰） |
+| **Day 27** (09/04) | Base64、ASCII、XOR 位元運算與對稱加密基礎觀念 | 🎯 **必解關卡**:<br>🚩 **picoCTF**: • [2warm (ID: 100)](https://learn.cylabacademy.org/library?search=2warm) / [Warmed Up (ID: 172)](https://learn.cylabacademy.org/library?search=Warmed%20Up) / [caesar (ID: 16)](https://learn.cylabacademy.org/library?search=caesar)<br>🚀 **延伸挑戰**:<br>🚩 **picoCTF**: • [interencdec (ID: 418)](https://learn.cylabacademy.org/library?search=interencdec)<br>• [Mind your Ps and Qs (ID: 27)](https://learn.cylabacademy.org/library?search=Mind%20your%20Ps%20and%20Qs) / [Mini RSA (ID: 18)](https://learn.cylabacademy.org/library?search=Mini%20RSA) / [rsa_oracle (ID: 29)](https://learn.cylabacademy.org/library?search=rsa_oracle) |
+| **Day 28** (09/05) | RSA 公私鑰數學原理 (p, q, n, e, d) 與大數分解陷阱 | 同 Day 27 關卡（延續實操與延伸挑戰） |
 
 ---
 
@@ -178,8 +184,8 @@
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
-| **Day 29** | MSF / Chisel 搭建 SOCKS5 代理隧道與 Pivoting 內網穿透 | 按專題課後練習進度 |
-| **Day 30** | Active Directory 域控基礎、Kerberos 驗證流程與黃金票據 | 按專題課後練習進度 |
+| **Day 29** (09/06) | MSF / Chisel 搭建 SOCKS5 代理隧道與 Pivoting 內網穿透 | 按專題課後練習進度 |
+| **Day 30** (09/07) | Active Directory 域控基礎、Kerberos 驗證流程與黃金票據 | 按專題課後練習進度 |
 
 ---
 
@@ -188,12 +194,14 @@
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
 | :--- | :--- | :--- |
-| **Day 31** | 黑盒 VulnHub 靶機 (Os-hackNos) 資訊收集與 Nmap 服務掃描 | 按專題課後練習進度 |
-| **Day 32** | 靶機漏洞組合利用、獲取 Root 許可權與 Writeup 撰寫 | 按專題課後練習進度 |
+| **Day 31** (09/08) | 黑盒 VulnHub 靶機 (Os-hackNos) 資訊收集與 Nmap 服務掃描 | 按專題課後練習進度 |
+| **Day 32** (09/09) | 靶機漏洞組合利用、獲取 Root 許可權與 Writeup 撰寫 | 按專題課後練習進度 |
 
 ---
 
-## 🗓️ Month 2 (第 31 ~ 60 天 / Run 16 ~ Run 30): 核心漏洞深造與高階攻防#### ⚔️ **Run 17 (Day 33-34): SQL Injection 盲注與 OOB DNSLog 帶外注入**
+## 🗓️ Month 2 (第 33 ~ 62 天 / Run 17 ~ Run 31): 核心漏洞深造與高級攻防
+
+#### ⚔️ **Run 17 (Day 33-34): SQL Injection 盲注與 OOB DNSLog 帶外注入**
 🌐 **線上專題**: [PortSwigger Blind SQLi](https://portswigger.net/web-security/sql-injection/blind)
 
 | 天數 (Day) | 🎯 當日學習重點 (Focus Task) | 🧪 指定練習關卡 (Lab / Challenge) |
