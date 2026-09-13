@@ -1,6 +1,5 @@
 import subprocess
 import base64
-import json
 import os
 
 key = os.environ.get("CTFD_SSH_KEY", os.path.expanduser("~/.ssh/id_rsa"))
