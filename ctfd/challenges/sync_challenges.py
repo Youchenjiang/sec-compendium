@@ -1,8 +1,9 @@
 import subprocess
 import base64
+import os
 
-key = r"f:\OutClass\資訊應用\網路安全\security\ssh-key-2026-08-24.key"
-host = "ubuntu@129.225.174.13"
+key = os.environ.get("CTFD_SSH_KEY", os.path.expanduser("~/.ssh/id_rsa"))
+host = os.environ.get("CTFD_SSH_HOST", "ubuntu@129.225.174.13")
 
 challenges_data = [
     {

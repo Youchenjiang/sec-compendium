@@ -45,6 +45,7 @@
   - 採納「公共技術基石（紅白對稱） $\times$ 雙軌執行計畫（實驗室 vs 社團）」架構，撰寫並通過 `security/ARCHITECTURE_REDESIGN_RFC.md`。
 - **PR #4 合併完成（Phase 1 Ingestion Completed）**：PR #4 已成功合入 `main`，包含全部 103 份核心資安資產、RFC 文檔與 PR-Agent 韌性架構，本地分支已同步清理完畢。
 - **Phase 2 架構重整完成（Decoupling & Restructuring）**：
-  - 公共技術基石：建立 `security/blue_team/`（31 路徑 + 41 手冊 + 課表）與 `security/red_team/`（資源索引 + 對稱槽位），標準化題庫 `security/challenges/` 與考卷庫 `security/exams/`。
+  - 公共技術基石：建立 `security/blue_team/`（31 路徑 + 41 手冊 + 課表）與 `security/red_team/`（資源索引 + 對稱槽位），標準化題庫 `security/challenges/`、框架規範 `security/framework/` 與考卷庫 `security/exams/`。
   - 雙軌執行計畫解耦：建立 `tracks/lab/`（180天90-Runs、金盾衝刺、Cyber Range）與 `tracks/club/`（資安社週五讀書會實體課表與目標）。
-  - 全程透過 `git mv` 達成 100% Rename 無損遷移。
+  - 平台資產收斂：將 CTFd 核心與插件收納於 `ctfd/`。
+  - 檔名規範化重構：移除歷史前綴 `A_`、`B1_`~`B5_`、`C1_`~`C4_`、`D1_`~`D2_` 與中文字元檔名，全數標準化為 Linux/Git 友善之 `lower_snake_case`，全程透過 `git mv` 達成 100% Rename 無損遷移並修復全庫內部 Markdown 相對鏈結。

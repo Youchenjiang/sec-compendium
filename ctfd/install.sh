@@ -5,9 +5,10 @@
 # ==============================================================================
 set -e
 
-CTFD_DIR="${1:-/home/ubuntu/CTFd}"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+CTFD_DIR="${1:-${HOME}/CTFd}"
 
-if [ ! -d "$CTFD_DIR" ]; then
+if [[ ! -d "$CTFD_DIR" ]]; then
     echo "[!] 找不到 CTFd 目錄: $CTFD_DIR"
     echo "使用方式: ./install.sh [CTFd目錄路徑]"
     exit 1
@@ -18,16 +19,16 @@ echo "[*] 目標 CTFd 路徑: $CTFD_DIR"
 # 1. 複製 dynamic_shuffle_flag 插件
 echo "[+] 安裝 dynamic_shuffle_flag 插件..."
 mkdir -p "$CTFD_DIR/CTFd/plugins"
-cp -r plugins/dynamic_shuffle_flag "$CTFD_DIR/CTFd/plugins/"
+cp -r "$SCRIPT_DIR/plugins/dynamic_shuffle_flag" "$CTFD_DIR/CTFd/plugins/"
 
 # 2. 詢問是否套用核心修補檔案
-if [ -f "patches/core_changes.patch" ]; then
+if [[ -f "$SCRIPT_DIR/patches/core_changes.patch" ]]; then
     echo "[?] 是否套用核心自訂修改（包含首殺加分、自訂主題與繁中化）? (y/N)"
     read -r apply_patch
     if [[ "$apply_patch" =~ ^[Yy]$ ]]; then
         echo "[+] 套用 Git Patch..."
         cd "$CTFD_DIR"
-        git apply "$OLDPWD/patches/core_changes.patch" || echo "[!] Patch 套用時有衝突，請手動檢視 patches/core_changes.patch"
+        git apply "$SCRIPT_DIR/patches/core_changes.patch" || echo "[!] Patch 套用時有衝突，請手動檢視 patches/core_changes.patch"
         cd - > /dev/null
     fi
 fi

@@ -39,7 +39,7 @@
   - ****Day 7****: 🎯 Wireshark 基礎界面、網路介面選擇與網卡混雜模式捕獲
     🧪 **指定練習/講義**: [Root-Me: Network HTTP Headers](https://www.root-me.org/en/Challenges/Network/HTTP-headers)  ｜ ＋ picoCTF: Wireshark doo dooo do doo... ｜ 💡 **帶練指引**: 演示 Wireshark `http.request.method==POST` 顯示過濾語法
   - ****Day 8****: 🎯 Wireshark 顯示過濾語法 (`ip.addr`) 與 HTTP 追蹤流分析
-    🧪 **指定練習/講義**: 分析本地 [`SQLInjection.pcapng`](file:///f:/OutClass/資訊應用/網路安全/06_網路安全與數位取證/01_網路協定分析與Scapy/網路指令/SQLInjection.pcapng) 封包  ｜ ＋ picoCTF: Trivial Flag Transfer Protocol ｜ 💡 **帶練指引**: 指導學員配置 Burp 代理 127.0.0.1:8080 並示範 Repeater 抓包重放
+    🧪 **指定練習/講義**: 分析本地 [`SQLInjection.pcapng`](../../../06_網路安全與數位取證/01_網路協定分析與Scapy/網路指令/SQLInjection.pcapng) 封包  ｜ ＋ picoCTF: Trivial Flag Transfer Protocol ｜ 💡 **帶練指引**: 指導學員配置 Burp 代理 127.0.0.1:8080 並示範 Repeater 抓包重放
 
 ### ⚔️ **Run 5 (Day 9-10): 任意檔案上傳與 Webshell 木馬權維**
 - 🔗 **CyLab / 線上專題**: [PortSwigger File Upload](https://portswigger.net/web-security/file-upload)
@@ -148,7 +148,7 @@
   - ****Day 33****: 🎯 大小寫混淆、雙寫繞過與 `/*!50000union*/` 行內註釋繞過 WAF
     🧪 **指定練習/講義**: PortSwigger: SQLi Filter Bypass ｜ 💡 **帶練指引**: 講解關鍵技術原理並提供隨堂練習講義
   - ****Day 34****: 🎯 `mysqldump` 資料庫備份與 MySQL UDF (`sys_eval`) 特權執行
-    🧪 **指定練習/講義**: 觀看 [`10.8MYSQLUDF提权与命令执行.mp4`](file:///f:/OutClass/資訊應用/網路安全/01_Web安全/06_SQL注入漏洞專題/07_SQL注入WAF繞過與拖庫/10.8MYSQLUDF提权与命令执行.mp4) ｜ 💡 **帶練指引**: 引導學員推算單引號閉合 `' OR 1=1--` 並手繪 SQL 查詢結構
+    🧪 **指定練習/講義**: 觀看 [`10.8MYSQLUDF提权与命令执行.mp4`](../../../01_Web安全/06_SQL注入漏洞專題/07_SQL注入WAF繞過與拖庫/10.8MYSQLUDF提权与命令执行.mp4) ｜ 💡 **帶練指引**: 引導學員推算單引號閉合 `' OR 1=1--` 並手繪 SQL 查詢結構
 
 ### ⚔️ **Run 18 (Day 35-36): Sqlmap 工具高級參數與 Tamper 腳本編寫**
 - 🔗 **CyLab / 線上專題**: CyLab 綜合實戰 / 離線靶場對接
@@ -180,7 +180,7 @@
   - ****Day 41****: 🎯 DOM XSS Source & Sink (`location.search`, `document.write`) 剖析
     🧪 **指定練習/講義**: [PortSwigger: DOM XSS document.write Sink](https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-document-write-sink)  ｜ ＋ picoCTF: vault-door-1 ~ 4 ｜ 💡 **帶練指引**: 講解關鍵技術原理並提供隨堂練習講義
   - ****Day 42****: 🎯 前端 JS 混淆代碼逆向與 Chrome DevTools 中斷點調試解密
-    🧪 **指定練習/講義**: 破解本地 [`exam.html`](file:///f:/OutClass/資訊應用/網路安全/01_Web安全/01_前端語言與語法/05_JS加密解密與前端解題/exam.html) 前端加密  ｜ ＋ picoCTF: vault-door-5 ~ 8 ｜ 💡 **帶練指引**: 引導學員在 Chrome DevTools 設定 Event Listener Breakpoints
+    🧪 **指定練習/講義**: 破解本地 [`exam.html`](../../../01_Web安全/01_前端語言與語法/05_JS加密解密與前端解題/exam.html) 前端加密  ｜ ＋ picoCTF: vault-door-5 ~ 8 ｜ 💡 **帶練指引**: 引導學員在 Chrome DevTools 設定 Event Listener Breakpoints
 
 ### ⚔️ **Run 22 (Day 43-44): SSRF 高級利用與 127.0.0.1 內網探測**
 - 🔗 **CyLab / 線上專題**: [PortSwigger SSRF](https://portswigger.net/web-security/ssrf)
@@ -202,17 +202,17 @@
 - 🔗 **CyLab / 線上專題**: CyLab 綜合實戰 / 離線靶場對接
 - 📌 **每日實操與關卡細節**:
   - ****Day 47****: 🎯 Linux 內核溢出漏洞利用 (Dirty COW 臟牛, PTRACE_TRACEME)
-    🧪 **指定練習/講義**: 觀看 [`10.1WEB安全第六章提权篇LINUX内核漏洞提权.mp4`](file:///f:/OutClass/資訊應用/網路安全/04_系統與內網安全/03_權限提升/Linux內核提權/10.1WEB安全第六章提权篇LINUX内核漏洞提权.mp4) ｜ 💡 **帶練指引**: 講解關鍵技術原理並提供隨堂練習講義
+    🧪 **指定練習/講義**: 觀看 [`10.1WEB安全第六章提权篇LINUX内核漏洞提权.mp4`](../../../04_系統與內網安全/03_權限提升/Linux內核提權/10.1WEB安全第六章提权篇LINUX内核漏洞提权.mp4) ｜ 💡 **帶練指引**: 講解關鍵技術原理並提供隨堂練習講義
   - ****Day 48****: 🎯 Sudo 權限配置漏洞 (`sudo -l`) 與 Linux Cron Jobs 定時任務提權
-    🧪 **指定練習/講義**: 觀看 [`10.5WEB安全第六章提权篇LINUXCRONJOBS提权.mp4`](file:///f:/OutClass/資訊應用/網路安全/04_系統與內網安全/03_權限提升/Linux內核提權/10.5WEB安全第六章提权篇LINUXCRONJOBS提权.mp4) ｜ 💡 **帶練指引**: 講解關鍵技術原理並提供隨堂練習講義
+    🧪 **指定練習/講義**: 觀看 [`10.5WEB安全第六章提权篇LINUXCRONJOBS提权.mp4`](../../../04_系統與內網安全/03_權限提升/Linux內核提權/10.5WEB安全第六章提权篇LINUXCRONJOBS提权.mp4) ｜ 💡 **帶練指引**: 講解關鍵技術原理並提供隨堂練習講義
 
 ### ⚔️ **Run 25 (Day 49-50): Windows 權限提升進階 (Bypass UAC, Token Impersonation)**
 - 🔗 **CyLab / 線上專題**: CyLab 綜合實戰 / 離線靶場對接
 - 📌 **每日實操與關卡細節**:
   - ****Day 49****: 🎯 Windows Server 2008R2 溢出提權與 LPK 劫持提權
-    🧪 **指定練習/講義**: 觀看 [`10.10WEB安全第六章提权篇winserver2008R2溢出提权.mp4`](file:///f:/OutClass/資訊應用/網路安全/04_系統與內網安全/03_權限提升/Windows溢出提權/10.10WEB安全第六章提权篇winserver2008R2溢出提权.mp4) ｜ 💡 **帶練指引**: 講解關鍵技術原理並提供隨堂練習講義
+    🧪 **指定練習/講義**: 觀看 [`10.10WEB安全第六章提权篇winserver2008R2溢出提权.mp4`](../../../04_系統與內網安全/03_權限提升/Windows溢出提權/10.10WEB安全第六章提权篇winserver2008R2溢出提权.mp4) ｜ 💡 **帶練指引**: 講解關鍵技術原理並提供隨堂練習講義
   - ****Day 50****: 🎯 Token 冒充 (JuicyPotato, RoguePotato) 與 Zend 反彈 Shell
-    🧪 **指定練習/講義**: 觀看 [`10.13WEB安全第六章提权篇zend反弹shell提权.mp4`](file:///f:/OutClass/資訊應用/網路安全/04_系統與內網安全/03_權限提升/Windows溢出提權/10.13WEB安全第六章提权篇zend反弹shell提权.mp4) ｜ 💡 **帶練指引**: 講解關鍵技術原理並提供隨堂練習講義
+    🧪 **指定練習/講義**: 觀看 [`10.13WEB安全第六章提权篇zend反弹shell提权.mp4`](../../../04_系統與內網安全/03_權限提升/Windows溢出提權/10.13WEB安全第六章提权篇zend反弹shell提权.mp4) ｜ 💡 **帶練指引**: 講解關鍵技術原理並提供隨堂練習講義
 
 ### ⚔️ **Run 26 (Day 51-52): PHP 反序列化 POP 鏈與 PHPGGC 實戰**
 - 🔗 **CyLab / 線上專題**: [PortSwigger Deserialization](https://portswigger.net/web-security/deserialization)
@@ -226,7 +226,7 @@
 - 🔗 **CyLab / 線上專題**: [PortSwigger Java Deserialization](https://portswigger.net/web-security/deserialization)
 - 📌 **每日實操與關卡細節**:
   - ****Day 53****: 🎯 Java `readObject()` 漏洞成因、ysoserial 工具與 CC 鏈分析
-    🧪 **指定練習/講義**: 測試本地 [`Java反序列化终极测试工具.jar`](file:///f:/OutClass/資訊應用/網路安全/01_Web安全/11_反序列化與組件漏洞/03_Java反序列化漏洞/Java反序列化终极测试工具.jar) ｜ 💡 **帶練指引**: 演示 ysoserial 工具 CommonsCollections 鏈命令行生成 Exp
+    🧪 **指定練習/講義**: 測試本地 [`Java反序列化终极测试工具.jar`](../../../01_Web安全/11_反序列化與組件漏洞/03_Java反序列化漏洞/Java反序列化终极测试工具.jar) ｜ 💡 **帶練指引**: 演示 ysoserial 工具 CommonsCollections 鏈命令行生成 Exp
   - ****Day 54****: 🎯 Apache Shiro RememberMe 金鑰硬編碼與 Fastjson autoType 繞過 Exp
     🧪 **指定練習/講義**: Shiro / Fastjson Exp 測試 ｜ 💡 **帶練指引**: 講解關鍵技術原理並提供隨堂練習講義
 
@@ -250,9 +250,9 @@
 - 🔗 **CyLab / 線上專題**: CyLab 綜合實戰 / 離線靶場對接
 - 📌 **每日實操與關卡細節**:
   - ****Day 59****: 🎯 YXCMS 1.4.7 離線靶場部署與黑盒滲透測試
-    🧪 **指定練習/講義**: 解壓 [`YXCMS.zip`](file:///f:/OutClass/資訊應用/網路安全/01_Web安全/15_綜合靶場與VulnHub實戰演練/02_CMS實務靶場環境/YXCMS.zip) 本地搭建測試 ｜ 💡 **帶練指引**: 協助學員在本地 phpStudy/Docker 部署 YXCMS 並引導黑盒測試
+    🧪 **指定練習/講義**: 解壓 [`YXCMS.zip`](../../../01_Web安全/15_綜合靶場與VulnHub實戰演練/02_CMS實務靶場環境/YXCMS.zip) 本地搭建測試 ｜ 💡 **帶練指引**: 協助學員在本地 phpStudy/Docker 部署 YXCMS 並引導黑盒測試
   - ****Day 60****: 🎯 WordPress 綜合檢測與 Month 2 階段 Writeup 總結
-    🧪 **指定練習/講義**: 使用 [`Wordpress综合检测工具.exe`](file:///f:/OutClass/資訊應用/網路安全/01_Web安全/15_綜合靶場與VulnHub實戰演練/02_CMS實務靶場環境/Wordpress综合检测工具.exe) 測試 ｜ 💡 **帶練指引**: 協助學員在本地 phpStudy/Docker 部署 YXCMS 並引導黑盒測試
+    🧪 **指定練習/講義**: 使用 [`Wordpress综合检测工具.exe`](../../../01_Web安全/15_綜合靶場與VulnHub實戰演練/02_CMS實務靶場環境/Wordpress综合检测工具.exe) 測試 ｜ 💡 **帶練指引**: 協助學員在本地 phpStudy/Docker 部署 YXCMS 並引導黑盒測試
 
 
 ---
@@ -343,9 +343,9 @@
 - 🔗 **CyLab / 線上專題**: CyLab 綜合實戰 / 離線靶場對接
 - 📌 **每日實操與關卡細節**:
   - ****Day 81****: 🎯 免殺技術：Shellcode Loader 異或 / AES 特徵加密解密
-    🧪 **指定練習/講義**: 閱讀 [`紅隊軟體免殺技術`](file:///f:/OutClass/資訊應用/網路安全/04_系統與內網安全/08_C2與控權/紅隊軟體免殺技術) 指南 ｜ 💡 **帶練指引**: 講解關鍵技術原理並提供隨堂練習講義
+    🧪 **指定練習/講義**: 閱讀 [`紅隊軟體免殺技術`](../../../04_系統與內網安全/08_C2與控權/紅隊軟體免殺技術) 指南 ｜ 💡 **帶練指引**: 講解關鍵技術原理並提供隨堂練習講義
   - ****Day 82****: 🎯 利用 Windows API (`VirtualAlloc`, `RtlMoveMemory`) 繞過記憶體掃描
-    🧪 **指定練習/講義**: 測試本地 [`木馬測試`](file:///f:/OutClass/資訊應用/網路安全/04_系統與內網安全/08_C2與控權/木馬測試) 目錄 ｜ 💡 **帶練指引**: 講解關鍵技術原理並提供隨堂練習講義
+    🧪 **指定練習/講義**: 測試本地 [`木馬測試`](../../../04_系統與內網安全/08_C2與控權/木馬測試) 目錄 ｜ 💡 **帶練指引**: 講解關鍵技術原理並提供隨堂練習講義
 
 ### ⚔️ **Run 42 (Day 83-84): Linux / Windows 權限維持與後門 (Persistence)**
 - 🔗 **CyLab / 線上專題**: CyLab 綜合實戰 / 離線靶場對接
@@ -361,7 +361,7 @@
   - ****Day 85****: 🎯 MSF `msfvenom` 生成 Payload 與 Handler 監聽設定
     🧪 **指定練習/講義**: MSF Meterpreter 操練 ｜ 💡 **帶練指引**: 講解關鍵技術原理並提供隨堂練習講義
   - ****Day 86****: 🎯 MSF 自訂 Ruby 漏洞利用模組 (Exp) 寫作規範與 API 對接
-    🧪 **指定練習/講義**: 閱讀 [`漏洞利用Exp框架`](file:///f:/OutClass/資訊應用/網路安全/04_系統與內網安全/08_C2與控權/漏洞利用Exp框架) ｜ 💡 **帶練指引**: 講解關鍵技術原理並提供隨堂練習講義
+    🧪 **指定練習/講義**: 閱讀 [`漏洞利用Exp框架`](../../../04_系統與內網安全/08_C2與控權/漏洞利用Exp框架) ｜ 💡 **帶練指引**: 講解關鍵技術原理並提供隨堂練習講義
 
 ### ⚔️ **Run 44 (Day 87-88): 內網縱深防禦與痕跡清理**
 - 🔗 **CyLab / 線上專題**: CyLab 綜合實戰 / 離線靶場對接
@@ -492,9 +492,9 @@
 - 🔗 **CyLab / 線上專題**: CyLab 綜合實戰 / 離線靶場對接
 - 📌 **每日實操與關卡細節**:
   - ****Day 117****: 🎯 滲透測試項目經歷 STAR 原則描述與漏洞復盤表達
-    🧪 **指定練習/講義**: 閱讀 [`技术面 分享.md`](file:///f:/OutClass/資訊應用/網路安全/08_通用學習與面試庫/05_HR與跨領域面試/HR綜合面試與跨領域考題/技术面%20分享.md) ｜ 💡 **帶練指引**: 講解關鍵技術原理並提供隨堂練習講義
+    🧪 **指定練習/講義**: 閱讀 [`技术面 分享.md`](../../../08_通用學習與面試庫/05_HR與跨領域面試/HR綜合面試與跨領域考題/技术面%20分享.md) ｜ 💡 **帶練指引**: 講解關鍵技術原理並提供隨堂練習講義
   - ****Day 118****: 🎯 資安工程師履歷包裝、GitHub 專案展示與 HR 常見問答
-    🧪 **指定練習/講義**: 閱讀 [`HR问题.md`](file:///f:/OutClass/資訊應用/網路安全/08_通用學習與面試庫/05_HR與跨領域面試/HR綜合面試與跨領域考題/HR问题.md) ｜ 💡 **帶練指引**: 講解關鍵技術原理並提供隨堂練習講義
+    🧪 **指定練習/講義**: 閱讀 [`HR问题.md`](../../../08_通用學習與面試庫/05_HR與跨領域面試/HR綜合面試與跨領域考題/HR问题.md) ｜ 💡 **帶練指引**: 講解關鍵技術原理並提供隨堂練習講義
 
 ### ⚔️ **Run 60 (Day 119-120): Month 4 階段總復盤與藍隊防禦報告產出**
 - 🔗 **CyLab / 線上專題**: CyLab 綜合實戰 / 離線靶場對接

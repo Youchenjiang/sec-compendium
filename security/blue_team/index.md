@@ -4,7 +4,7 @@
 >
 > 💡 **配套學習路徑手冊**：若您在特定領域感到缺乏信心或需要底層知識系統化構建，請直接查閱 [【藍隊全領域 31 大深度學習路徑全景導航庫】](learning_paths/README.md)（涵蓋 31 個領域的底層架構、前置測試、核心指令、進階防禦與階段通過檢查表）。
 >
-> 🚀 **實戰通關主線課表**：**技術難度 (Level) ≠ 修課順序 (Phase)！** 請參閱 [【現代藍隊實戰通關課表與作戰主線 (Phase 0 ~ Phase 6)】](BLUE_TEAM_CAREER_CURRICULUM.md)（含 SOC 告警分流八問、Incident Response 圍堵 SOP 與 **36 項 Core 核心必修** 分流導引）。
+> 🚀 **實戰通關主線課表**：**技術難度 (Level) ≠ 修課順序 (Phase)！** 請參閱 [【現代藍隊實戰通關課表與作戰主線 (Phase 0 ~ Phase 6)】](career_curriculum.md)（含 SOC 告警分流八問、Incident Response 圍堵 SOP 與 **36 項 Core 核心必修** 分流導引）。
 
 ### 📊 難度分級體系與項目分佈 (Difficulty Matrix)
 
@@ -27,11 +27,11 @@
 >
 > 📋 **本區塊核心領域說明 (Domains Overview)**：
 >
-> - [**領域 1：Linux 系統基礎加固**](learning_paths/01_LINUX_HARDENING_LEARNING_PATH.md)：系統權限模型、敏感檔案安全、SSH/PAM 硬化與排程排查。
-> - [**領域 2：網路分段與防火牆加固**](learning_paths/02_NETWORK_SEGMENTATION_FIREWALL_LEARNING_PATH.md)：Netfilter 邊界策略、狀態追蹤、內部網路微隔離與次世代防火牆 (NGFW/IPS) 聯防。
-> - [**領域 3：交換機硬體安全與鏈路隔離**](learning_paths/03_SWITCHING_SECURITY_PORT_SECURITY_LEARNING_PATH.md)：Switch Port-Security 違規模式、802.1Q VLAN Tag 結構與生成樹 (STP) 防護。
-> - [**領域 4：軟體供應鏈安全 (DevSecOps)**](learning_paths/04_DEVSECOPS_SUPPLY_CHAIN_LEARNING_PATH.md)：開源依賴投毒、SBOM 審查與 CI/CD 管道金鑰審計。
-> - [**領域 5：雲原生防衛與雲端責任模型**](learning_paths/05_CLOUD_SECURITY_SHARED_RESPONSIBILITY_LEARNING_PATH.md)：IaaS/PaaS/SaaS 共同責任模型、IMDSv2 SSRF 防護與容器逃逸防衛。
+> - [**領域 1：Linux 系統基礎加固**](learning_paths/block_1_hardening/01_linux_hardening.md)：系統權限模型、敏感檔案安全、SSH/PAM 硬化與排程排查。
+> - [**領域 2：網路分段與防火牆加固**](learning_paths/block_1_hardening/02_network_segmentation_firewall.md)：Netfilter 邊界策略、狀態追蹤、內部網路微隔離與次世代防火牆 (NGFW/IPS) 聯防。
+> - [**領域 3：交換機硬體安全與鏈路隔離**](learning_paths/block_1_hardening/03_switching_port_security.md)：Switch Port-Security 違規模式、802.1Q VLAN Tag 結構與生成樹 (STP) 防護。
+> - [**領域 4：軟體供應鏈安全 (DevSecOps)**](learning_paths/block_1_hardening/04_devsecops_supply_chain.md)：開源依賴投毒、SBOM 審查與 CI/CD 管道金鑰審計。
+> - [**領域 5：雲原生防衛與雲端責任模型**](learning_paths/block_1_hardening/05_cloud_security_shared_responsibility.md)：IaaS/PaaS/SaaS 共同責任模型、IMDSv2 SSRF 防護與容器逃逸防衛。
 
 | 難度 | 細分實戰技術點 (Sub-Topic & Technique) | 🎯 具體線上靶場、實戰房間、開源數據集與題目清單 (Practicable Challenges & Labs) |
 | :---: | :--- | :--- |
@@ -39,7 +39,7 @@
 | **🟢 L1** | **1.2 Linux 連線狀態與服務進程排查**<br>(`ss -antup`, `netstat`, `ps -ef`, `lsof -i`) | • [SadServers: "Saskatoon" (Check port listening 監聽埠鑑識)](https://sadservers.com/)<br>• [OverTheWire: Bandit (Level 11~14 服務進程排查)](https://overthewire.org/wargames/bandit/)<br>• `07_藍隊防禦與護網營運/01_系統與資料庫加固/Linux系統安全加固/` |
 | **🟢 L1** | **1.3 帳號安全與 SSH 遠端登入硬化**<br>(SSH 金鑰認證、停用 Root 登入、PAM 限制) | • [OverTheWire: Bandit (Level 15~17 SSH 金鑰認證與憑證)](https://overthewire.org/wargames/bandit/)<br>• [SadServers: "Rosario" (Restore SSH access 遠端登入加固)](https://sadservers.com/) |
 | **🟢 L1** | **1.4 排程作業與自啟動項排查**<br>(`/etc/cron*`, `crontab -l`, `systemd` 計時器) | • [OverTheWire: Bandit (Level 21~24 排程 Cron 作業檢視)](https://overthewire.org/wargames/bandit/)<br>• [SadServers: "Bilbao" (Cron process 故障鑑識)](https://sadservers.com/) |
-| **🟡 L2** | **2.1 邊界防火牆策略與微創阻斷實務**<br>(iptables In-line 串接、DROP 規則與連線追蹤) | • `07_藍隊防禦與護網營運/02_存取控制與防火牆/Linux存取控制與防火牆/`<br>• [Netfilter iptables 官方封包過濾與狀態追蹤手冊](https://netfilter.org/)<br>• [`final_mock_exams/03_全真模擬測驗_B卷_實體真題演練題本.md`](final_mock_exams/03_全真模擬測驗_B卷_實體真題演練題本.md)（第 24~28 題） |
+| **🟡 L2** | **2.1 邊界防火牆策略與微創阻斷實務**<br>(iptables In-line 串接、DROP 規則與連線追蹤) | • `07_藍隊防禦與護網營運/02_存取控制與防火牆/Linux存取控制與防火牆/`<br>• [Netfilter iptables 官方封包過濾與狀態追蹤手冊](https://netfilter.org/)<br>• [`../exams/mock_exam_b_lab_questions.md`](../exams/mock_exam_b_lab_questions.md)（第 24~28 題） |
 | **🟡 L2** | **2.2 內部網路微隔離與 VLAN 存取控制**<br>(零信任存取控制、ACL 限制橫向移動、管理平面隔離) | • [iptables-nft 規則集加固實作指南](https://netfilter.org/)<br>• [NIST SP 800-207: Zero Trust Architecture 網路分段指南](https://csrc.nist.gov/) |
 | **🟡 L2** | **2.3 次世代防火牆 (NGFW) 與 IPS 聯防**<br>(應用層 App-ID 辨識、TLS 解密檢測、IPS 特徵阻斷) | • [Suricata Inline IPS 模式實操指南](https://suricata.io/)<br>• [OPNsense 開源防火牆防護手冊](https://opnsense.org/) |
 | **🟢 L1** | **3.1 Switch Port-Security 違規處理模式**<br>(Protect / Restrict / Shutdown 進入 err-disable、安全 MAC 學習機制) | • [Packet Tracer 官方免費實驗與題庫 (Cisco Networking Academy)](https://skillsforall.com/course/getting-started-cisco-packet-tracer)<br>• [Cisco 開放社群: Port-Security 違規模式與 Errdisable 復原指引](https://community.cisco.com/)<br>• [Yamol: iPAS 資訊安全工程師 - Switch 埠安全性與 MAC 欺騙歷屆真題庫](https://yamol.tw/) |
@@ -58,12 +58,12 @@
 >
 > 📋 **本區塊核心領域說明 (Domains Overview)**：
 >
-> - [**領域 6：網路協定與基礎封包分析**](learning_paths/06_NETWORK_PROTOCOLS_PACKET_ANALYSIS_LEARNING_PATH.md)：TCP 三向交握狀態機、Wireshark 高階過濾、DNS 異常排查與 HTTP 串流導出。
-> - [**領域 7：網路管理協定 (SNMP) 與 VPN 傳輸安全**](learning_paths/07_SNMP_VPN_SECURITY_LEARNING_PATH.md)：SNMPv1/v2c/v3 authPriv 安全等級、四大 VPN 協定對決與 IPsec AH/ESP。
-> - [**領域 8：無線通訊安全機制與協定演進**](learning_paths/08_WIRELESS_SECURITY_WPA_LEARNING_PATH.md)：802.11 四向握手 PTK 計算、KRACK 重放攻擊與 WPA3 SAE 前向保密。
-> - [**領域 9：Web 基礎弱點識別**](learning_paths/09_WEB_VULNERABILITY_DEFENSE_LEARNING_PATH.md)：SQL/命令注入防護、路徑穿越、XXE 外部實體注入與 XSS/CSRF 安全標頭。
-> - [**領域 10：電子郵件與社交工程防衛**](learning_paths/10_EMAIL_PHISHING_DEFENSE_LEARNING_PATH.md)：SPF/DKIM/DMARC 驗證、EML 標頭 Received 溯源與 oledump 巨集提取。
-> - [**領域 11：密碼學基礎與證書安全**](learning_paths/11_CRYPTOGRAPHY_CERTIFICATES_LEARNING_PATH.md)：對稱/非對稱演算法、X.509 憑證鏈、OCSP Stapling 與 PFS 前向保密。
+> - [**領域 6：網路協定與基礎封包分析**](learning_paths/block_2_protocols_crypto_app/06_network_protocols_packet_analysis.md)：TCP 三向交握狀態機、Wireshark 高階過濾、DNS 異常排查與 HTTP 串流導出。
+> - [**領域 7：網路管理協定 (SNMP) 與 VPN 傳輸安全**](learning_paths/block_2_protocols_crypto_app/07_snmp_vpn_security.md)：SNMPv1/v2c/v3 authPriv 安全等級、四大 VPN 協定對決與 IPsec AH/ESP。
+> - [**領域 8：無線通訊安全機制與協定演進**](learning_paths/block_2_protocols_crypto_app/08_wireless_security_wpa.md)：802.11 四向握手 PTK 計算、KRACK 重放攻擊與 WPA3 SAE 前向保密。
+> - [**領域 9：Web 基礎弱點識別**](learning_paths/block_2_protocols_crypto_app/09_web_vulnerability_defense.md)：SQL/命令注入防護、路徑穿越、XXE 外部實體注入與 XSS/CSRF 安全標頭。
+> - [**領域 10：電子郵件與社交工程防衛**](learning_paths/block_2_protocols_crypto_app/10_email_phishing_defense.md)：SPF/DKIM/DMARC 驗證、EML 標頭 Received 溯源與 oledump 巨集提取。
+> - [**領域 11：密碼學基礎與證書安全**](learning_paths/block_2_protocols_crypto_app/11_cryptography_certificates.md)：對稱/非對稱演算法、X.509 憑證鏈、OCSP Stapling 與 PFS 前向保密。
 
 | 難度 | 細分實戰技術點 (Sub-Topic & Technique) | 🎯 具體線上靶場、實戰房間、開源數據集與題目清單 (Practicable Challenges & Labs) |
 | :---: | :--- | :--- |
@@ -92,14 +92,14 @@
 >
 > 📋 **本區塊核心領域說明 (Domains Overview)**：
 >
-> - [**領域 12：AD 網域攻防**](learning_paths/12_ACTIVE_DIRECTORY_DEFENSE_LEARNING_PATH.md)：Kerberos 票據交握、AS-REP/Kerberoasting、黃金/白銀票據防護與 DCSync 偵測。
-> - [**領域 13：身分存取管理安全 (IAM)**](learning_paths/13_IDENTITY_ACCESS_MANAGEMENT_LEARNING_PATH.md)：OAuth 2.0 授權碼模式、MFA 疲勞轟炸防衛與 FIDO2 Passkey 架構。
+> - [**領域 12：AD 網域攻防**](learning_paths/block_3_identity_directory/12_active_directory_defense.md)：Kerberos 票據交握、AS-REP/Kerberoasting、黃金/白銀票據防護與 DCSync 偵測。
+> - [**領域 13：身分存取管理安全 (IAM)**](learning_paths/block_3_identity_directory/13_identity_access_management.md)：OAuth 2.0 授權碼模式、MFA 疲勞轟炸防衛與 FIDO2 Passkey 架構。
 
 | 難度 | 細分實戰技術點 (Sub-Topic & Technique) | 🎯 具體線上靶場、實戰房間、開源數據集與題目清單 (Practicable Challenges & Labs) |
 | :---: | :--- | :--- |
 | **🔴 L3** | **12.1 Kerberos 預驗證弱點與 AS-REP Roasting**<br>(DONT_REQ_PREAUTH 帳戶爆破分析) | • [Orange-Cyberdefense/GOAD (AS-REP Roasting 實戰環境)](https://github.com/Orange-Cyberdefense/GOAD)<br>• [Hashcat Mode 18200 票據碰撞防護指引](https://hashcat.net/) |
 | **🔴 L3** | **12.2 SPN 服務票據請求與 Kerberoasting**<br>(RC4-HMAC 票據截獲、日誌 Event ID 4769) | • [Orange-Cyberdefense/GOAD (Game of Active Directory 實戰靶場)](https://github.com/Orange-Cyberdefense/GOAD)<br>• [HTB Sherlocks: GhostTrace (AD 橫向移動調查)](https://app.hackthebox.com/sherlocks) |
-| **🔴 L3** | **12.3 偽造票據攻擊與全域特權維持**<br>(Golden Ticket 偽造 TGT / Silver Ticket 偽造 ST) | • [`final_mock_exams/01_全真模擬測驗_A卷_客觀100題試卷.md`](final_mock_exams/01_全真模擬測驗_A卷_客觀100題試卷.md)（Kerberos 核心題群）<br>• [BloodHound 官方開源專案 (AD 攻擊路徑繪製)](https://github.com/SpecterOps/BloodHound) |
+| **🔴 L3** | **12.3 偽造票據攻擊與全域特權維持**<br>(Golden Ticket 偽造 TGT / Silver Ticket 偽造 ST) | • [`../exams/mock_exam_a_100q_questions.md`](../exams/mock_exam_a_100q_questions.md)（Kerberos 核心題群）<br>• [BloodHound 官方開源專案 (AD 攻擊路徑繪製)](https://github.com/SpecterOps/BloodHound) |
 | **🔴 L3** | **12.4 NTDS.dit 憑證導出與 DCSync 偵測**<br>(DRSUAPI 複製協定呼叫、Event ID 4662 權限審查) | • [sbousseaden/EVTX-ATTACK-SAMPLES (DCSync Event 4662 樣本)](https://github.com/sbousseaden/EVTX-ATTACK-SAMPLES)<br>• [Impacket `secretsdump.py` 流量特徵檢測實務](https://github.com/fortra/impacket) |
 | **🔴 L3** | **12.5 AD 存取控制路徑與特權提升分析**<br>(ACL 濫用 GenericAll/WriteDacl、GPO 劫持) | • [GOAD v2 實戰環境 (多樹林域安全測試環境)](https://github.com/Orange-Cyberdefense/GOAD)<br>• [SpecterOps BloodHound 攻擊圖解析手冊](https://bloodhound.specterops.io/) |
 | **🔴 L3** | **13.1 OAuth 2.0 / SAML 權杖竊取與重放**<br>(Token Theft、偽造 Assertion、授權碼攔截) | • [PortSwigger: OAuth 2.0 認證漏洞防衛實驗](https://portswigger.net/web-security/oauth)<br>• [CloudGoat: IAM Privilege Escalation 演練場景](https://github.com/RhinoSecurityLabs/cloudgoat) |
@@ -111,22 +111,22 @@
 >
 > 📋 **本區塊核心領域說明 (Domains Overview)**：
 >
-> - [**領域 14：端點核心日誌與排查**](learning_paths/14_ENDPOINT_LOGS_TRIAGE_LEARNING_PATH.md)：Windows Logon Types 2/3/10、4688 命令列參數審計與 7045 服務安裝日誌。
-> - [**領域 15：SIEM 大數據分析**](learning_paths/15_SIEM_SPLUNK_BIG_DATA_LEARNING_PATH.md)：Splunk SPL 管道語法、rex 欄位抽取、stats 統計聚合與動態基準線告警。
-> - [**領域 16：惡意流量與隱蔽通訊**](learning_paths/16_MALICIOUS_TRAFFIC_COVERT_COMM_LEARNING_PATH.md)：C2 心跳與 Jitter 方差分析、DNS 隱蔽通道外洩與重大 N-day 漏洞利用封包逆推。
-> - [**領域 17：偵測工程與簽章**](learning_paths/17_DETECTION_ENGINEERING_RULES_LEARNING_PATH.md)：YARA 二進位特徵碼撰寫、Sigma 跨平台日誌規則轉譯與 Suricata 網路簽章。
+> - [**領域 14：端點核心日誌與排查**](learning_paths/block_4_detection_siem_soc/14_endpoint_logs_triage.md)：Windows Logon Types 2/3/10、4688 命令列參數審計與 7045 服務安裝日誌。
+> - [**領域 15：SIEM 大數據分析**](learning_paths/block_4_detection_siem_soc/15_siem_splunk_big_data.md)：Splunk SPL 管道語法、rex 欄位抽取、stats 統計聚合與動態基準線告警。
+> - [**領域 16：惡意流量與隱蔽通訊**](learning_paths/block_4_detection_siem_soc/16_malicious_traffic_covert_comm.md)：C2 心跳與 Jitter 方差分析、DNS 隱蔽通道外洩與重大 N-day 漏洞利用封包逆推。
+> - [**領域 17：偵測工程與簽章**](learning_paths/block_4_detection_siem_soc/17_detection_engineering_rules.md)：YARA 二進位特徵碼撰寫、Sigma 跨平台日誌規則轉譯與 Suricata 網路簽章。
 
 | 難度 | 細分實戰技術點 (Sub-Topic & Technique) | 🎯 具體線上靶場、實戰房間、開源數據集與題目清單 (Practicable Challenges & Labs) |
 | :---: | :--- | :--- |
 | **🟢 L1** | **14.1 Windows 身分驗證與暴力破解日誌**<br>(Event ID 4624 登入類型 / 4625 爆破) | • [CyberDefenders: Spotlight (Event ID 4624/4625 登入排查)](https://cyberdefenders.org/blueteam-ctf-challenges/spotlight/)<br>• [Ultimate Windows Security Event ID 4624 官方參照手冊](https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/)<br>• [sbousseaden/EVTX-ATTACK-SAMPLES (RDP 爆破與登入樣本)](https://github.com/sbousseaden/EVTX-ATTACK-SAMPLES) |
 | **🟢 L1** | **14.2 Windows 正常核心進程基準線**<br>(`System` ➔ `smss` ➔ `services` 親緣關係) | • [SANS Hunt Evil Poster (Windows 核心進程基準對照圖)](https://www.sans.org/posters/hunt-evil/)<br>• [CyberDefenders: RedLine (進程親緣樹排查實戰)](https://cyberdefenders.org/blueteam-ctf-challenges/redline/) |
-| **🟢 L1** | **14.3 基礎系統管理與服務安裝日誌**<br>(Event ID 7045 新服務 / 4720 帳戶建立) | • [HTB Sherlocks: Logjammer (Defender/PowerShell/System 日誌取證)](https://app.hackthebox.com/sherlocks)<br>• [sbousseaden/EVTX-ATTACK-SAMPLES (EID 7045 新服務樣本)](https://github.com/sbousseaden/EVTX-ATTACK-SAMPLES)<br>• [`final_mock_exams/03_全真模擬測驗_B卷_實體真題演練題本.md`](final_mock_exams/03_全真模擬測驗_B卷_實體真題演練題本.md)（第 6~8 題） |
+| **🟢 L1** | **14.3 基礎系統管理與服務安裝日誌**<br>(Event ID 7045 新服務 / 4720 帳戶建立) | • [HTB Sherlocks: Logjammer (Defender/PowerShell/System 日誌取證)](https://app.hackthebox.com/sherlocks)<br>• [sbousseaden/EVTX-ATTACK-SAMPLES (EID 7045 新服務樣本)](https://github.com/sbousseaden/EVTX-ATTACK-SAMPLES)<br>• [`../exams/mock_exam_b_lab_questions.md`](../exams/mock_exam_b_lab_questions.md)（第 6~8 題） |
 | **🟢 L1** | **14.4 防毒與主機防護日誌鑑識**<br>(Defender Event ID 1116 威脅偵測 / 1117 隔離) | • [sbousseaden/EVTX-ATTACK-SAMPLES (Defender Operational 阻斷樣本)](https://github.com/sbousseaden/EVTX-ATTACK-SAMPLES)<br>• [CyberDefenders: Spotlight (Defender 告警研判)](https://cyberdefenders.org/blueteam-ctf-challenges/spotlight/) |
 | **🟡 L2** | **15.1 Splunk SPL 管道檢索與過濾最佳化**<br>(`index=`, `sourcetype=`, `eval`, `where`) | • [Splunk Boss of the SOC: BOTSv1 開源資料庫](https://github.com/splunk/botsv1)<br>• [Splunk Search Reference (SPL 核心手冊)](https://docs.splunk.com/Documentation/Splunk/latest/SearchReference) |
 | **🟡 L2** | **15.2 SPL 動態欄位提取與聚合統計分析**<br>(`rex field=_raw`, `stats count by`, `transaction`) | • [Splunk Boss of the SOC: BOTSv1 (SPL 欄位提取演練)](https://github.com/splunk/botsv1) |
 | **🟡 L2** | **15.3 關聯分析規則建立與告警門檻設計**<br>(跨來源關聯、暴力破解成功後橫向移動告警) | • [Elastic Security Detection Rules 開源專案](https://github.com/elastic/detection-rules)<br>• [Splunk Security Content 關聯偵測分析庫](https://github.com/splunk/security_content) |
 | **🟡 L2** | **15.4 巨量資安日誌基準線與異常偏離偵測**<br>(非上班時間異常存取、流量突增 Baseline 塑模) | • [Splunk BOTSv1 威脅 hunting 全流程演練](https://github.com/splunk/botsv1)<br>• [SANS SOC Anomaly Baseline Modeling 白皮書](https://www.sans.org/white-papers/) |
-| **🟡 L2** | **16.1 DNS 隱蔽通道與外洩特徵鑑識**<br>(DNS Tunneling, dnscat2, 異常長子網域) | • [CyberDefenders: PacketDetective (PCAP 鑑識)](https://cyberdefenders.org/blueteam-ctf-challenges/packetdetective/)<br>• [MTA: 2020-09-02 DNS Tunneling 流量樣本分析](https://www.malware-traffic-analysis.net/)<br>• [`final_mock_exams/03_全真模擬測驗_B卷_實體真題演練題本.md`](final_mock_exams/03_全真模擬測驗_B卷_實體真題演練題本.md)（第 30~35 題：DNS 隧道推演） |
+| **🟡 L2** | **16.1 DNS 隱蔽通道與外洩特徵鑑識**<br>(DNS Tunneling, dnscat2, 異常長子網域) | • [CyberDefenders: PacketDetective (PCAP 鑑識)](https://cyberdefenders.org/blueteam-ctf-challenges/packetdetective/)<br>• [MTA: 2020-09-02 DNS Tunneling 流量樣本分析](https://www.malware-traffic-analysis.net/)<br>• [`../exams/mock_exam_b_lab_questions.md`](../exams/mock_exam_b_lab_questions.md)（第 30~35 題：DNS 隧道推演） |
 | **🟡 L2** | **16.2 C2 心跳模式與週期抖動分析**<br>(Cobalt Strike Beaconing, Jitter 抖動計算) | • [HTB Sherlocks: Knock Knock (勒索軟體 PCAP 網路鑑識)](https://app.hackthebox.com/sherlocks)<br>• [MTA: 2024 C2 流量樣本專題實戰](https://www.malware-traffic-analysis.net/2024/index.html) |
 | **🟡 L2** | **16.3 知名 N-day 漏洞利用封包逆推**<br>(Log4j JNDI 注入、ActiveMQ OpenWire) | • [CyberDefenders: OpenWire (ActiveMQ CVE-2023-46604 封包分析)](https://cyberdefenders.org/blueteam-ctf-challenges/openwire/)<br>• [Emerging Threats (ET Open Rules) 開源特徵規則庫](https://rules.emergingthreats.net/) |
 | **🟡 L2** | **16.4 協定走私與反向代理混淆鑑識**<br>(HTTP Request Smuggling、WebSocket 隱蔽通道) | • [PortSwigger: HTTP Request Smuggling (協定走私防護實驗)](https://portswigger.net/web-security/request-smuggling)<br>• [Zeek 網路安全監控開源專案日誌排查](https://zeek.org/) |
@@ -140,11 +140,11 @@
 >
 > 📋 **本區塊核心領域說明 (Domains Overview)**：
 >
-> - [**領域 18：端點威脅獵捕**](learning_paths/18_THREAT_HUNTING_SYSMON_LEARNING_PATH.md)：Sysmon Event 1/3/7/8 遙測、LOLBAS 合法程式白利用排查與 CreateRemoteThread 注入。
-> - [**領域 19：惡意程式靜態分流 (Triage)**](learning_paths/19_MALWARE_STATIC_TRIAGE_LEARNING_PATH.md)：PE 結構區段表、Shannon 資訊熵加殼辨識與 Win32 API 導入表功能逆推。
-> - [**領域 20：Web 無檔案防禦**](learning_paths/20_WEB_FILELESS_DEFENSE_LEARNING_PATH.md)：Tomcat Filter/Servlet 內存馬原理與 Arthas 記憶體反編譯排查。
-> - [**領域 21：威脅情資 (CTI)**](learning_paths/21_CYBER_THREAT_INTELLIGENCE_LEARNING_PATH.md)：Bianco 痛苦之塔 (Pyramid of Pain)、MITRE ATT&CK 戰術映射與主動獵捕假說。
-> - [**領域 22：漏洞通用評分系統 (CVSS) 與重大 CVE 剖析**](learning_paths/22_CVSS_METRICS_CVE_ANALYSIS_LEARNING_PATH.md)：CVSS v3.1 基本指標計算、Log4Shell 滿分 10.0 逆推與 Heartbleed。
+> - [**領域 18：端點威脅獵捕**](learning_paths/block_5_threat_hunting_triage/18_threat_hunting_sysmon.md)：Sysmon Event 1/3/7/8 遙測、LOLBAS 合法程式白利用排查與 CreateRemoteThread 注入。
+> - [**領域 19：惡意程式靜態分流 (Triage)**](learning_paths/block_5_threat_hunting_triage/19_malware_static_triage.md)：PE 結構區段表、Shannon 資訊熵加殼辨識與 Win32 API 導入表功能逆推。
+> - [**領域 20：Web 無檔案防禦**](learning_paths/block_5_threat_hunting_triage/20_web_fileless_defense.md)：Tomcat Filter/Servlet 內存馬原理與 Arthas 記憶體反編譯排查。
+> - [**領域 21：威脅情資 (CTI)**](learning_paths/block_5_threat_hunting_triage/21_cyber_threat_intelligence.md)：Bianco 痛苦之塔 (Pyramid of Pain)、MITRE ATT&CK 戰術映射與主動獵捕假說。
+> - [**領域 22：漏洞通用評分系統 (CVSS) 與重大 CVE 剖析**](learning_paths/block_5_threat_hunting_triage/22_cvss_metrics_cve_analysis.md)：CVSS v3.1 基本指標計算、Log4Shell 滿分 10.0 逆推與 Heartbleed。
 
 | 難度 | 細分實戰技術點 (Sub-Topic & Technique) | 🎯 具體線上靶場、實戰房間、開源數據集與題目清單 (Practicable Challenges & Labs) |
 | :---: | :--- | :--- |
@@ -157,7 +157,7 @@
 | **🟡 L2** | **19.3 文件型惡意巨集與內嵌物件萃取**<br>(PDF JavaScript 注入、RTF 漏洞利用、OLE 串流) | • [Didier Stevens: pdf-parser 開源腳本解析](https://blog.didierstevens.com/programs/pdf-tools/)<br>• [ViperMonkey VBA 巨集模擬執行框架手冊](https://github.com/decalage2/ViperMonkey) |
 | **🟡 L2** | **19.4 動態沙箱行為報告解讀**<br>(API Hooking 序列、釋放二進位檔案、連線行為) | • [ANY.RUN 公開惡意樣本沙箱資料庫](https://any.run/)<br>• [Hybrid Analysis 公開自動化沙箱報告庫](https://www.hybrid-analysis.com/) |
 | **🔴 L3** | **20.1 Java Filter/Servlet 內存馬清剿**<br>(Alibaba Arthas JVM 掛載、`sc` 列舉、`jad` 反編譯) | • [Alibaba Arthas 官方開源工具庫與實機演練](https://arthas.aliyun.com/)<br>• [Neo23x0/Loki (IOC / Webshell 開源掃描器)](https://github.com/Neo23x0/Loki)<br>• `07_藍隊防禦與護網營運/03_日誌與告警研判/Web日誌分析與逃逸檢測/` |
-| **🔴 L3** | **20.2 加密 WebShell 流量辨析與日誌還原**<br>(冰蠍 Behinder / 哥斯拉 Godzilla 流量解密) | • [PortSwigger: File Upload Attacks (Webshell 上傳防禦實驗)](https://portswigger.net/web-security/file-upload)<br>• [`final_mock_exams/03_全真模擬測驗_B卷_實體真題演練題本.md`](final_mock_exams/03_全真模擬測驗_B卷_實體真題演練題本.md)（第 15~23 題） |
+| **🔴 L3** | **20.2 加密 WebShell 流量辨析與日誌還原**<br>(冰蠍 Behinder / 哥斯拉 Godzilla 流量解密) | • [PortSwigger: File Upload Attacks (Webshell 上傳防禦實驗)](https://portswigger.net/web-security/file-upload)<br>• [`../exams/mock_exam_b_lab_questions.md`](../exams/mock_exam_b_lab_questions.md)（第 15~23 題） |
 | **🔴 L3** | **20.3 .NET 與 PHP 內存馬無檔案後門排查**<br>(IIS 模組注入、PHP 記憶體執行碼檢測) | • [CyberDefenders: OpenWire (Web 漏洞日誌鑑識)](https://cyberdefenders.org/blueteam-ctf-challenges/openwire/)<br>• [tennc/webshell 知名 WebShell 鑑識特徵庫](https://github.com/tennc/webshell) |
 | **🔴 L3** | **21.1 威脅指標管理與 ATT&CK 戰術映射**<br>(IOC 提取、MISP 共享、ATT&CK 導航器) | • [OpenCTI 官方開源平台 (威脅情資知識庫)](https://github.com/OpenCTI-Platform/opencti)<br>• [OpenCTI (開源威脅情資在線知識庫)](https://www.opencti.io/) |
 | **🔴 L3** | **21.2 攻擊者基礎設施拓撲關聯追蹤**<br>(Passive DNS 歷史解析、JARM SSL 指紋比對) | • [salesforce/jarm (TLS 伺服器指紋開源掃描工具)](https://github.com/salesforce/jarm)<br>• [Shodan Community (連網設備檢索)](https://www.shodan.io/) |
@@ -170,18 +170,18 @@
 >
 > 📋 **本區塊核心領域說明 (Domains Overview)**：
 >
-> - [**領域 23：記憶體鑑識實戰**](learning_paths/23_MEMORY_FORENSICS_LEARNING_PATH.md)：EPROCESS 雙向鏈表、VAD 二元樹、Volatility 3 核心 Plugin 與 DKOM 斷鏈隱蔽排查。
-> - [**領域 24：磁碟檔案系統鑑識**](learning_paths/24_DISK_FILESYSTEM_FORENSICS_LEARNING_PATH.md)：NTFS `$MFT`、`$SI` vs `$FN` 時間偽造辨析與 Prefetch/ShimCache/Amcache 三大鐵證。
-> - [**領域 25：Linux 核心鑑識**](learning_paths/25_LINUX_KERNEL_FORENSICS_LEARNING_PATH.md)：LKM 核心模組 Rootkit、/etc/ld.so.preload 劫持與 eBPF 核心級追蹤。
-> - [**領域 26：行動裝置取證 (Mobile)**](learning_paths/26_MOBILE_DEVICE_FORENSICS_LEARNING_PATH.md)：APK 靜態解包、classes.dex 反編譯、SQLite 快取分析與 iOS Keychain。
+> - [**領域 23：記憶體鑑識實戰**](learning_paths/block_6_dfir_memory_disk/23_memory_forensics.md)：EPROCESS 雙向鏈表、VAD 二元樹、Volatility 3 核心 Plugin 與 DKOM 斷鏈隱蔽排查。
+> - [**領域 24：磁碟檔案系統鑑識**](learning_paths/block_6_dfir_memory_disk/24_disk_filesystem_forensics.md)：NTFS `$MFT`、`$SI` vs `$FN` 時間偽造辨析與 Prefetch/ShimCache/Amcache 三大鐵證。
+> - [**領域 25：Linux 核心鑑識**](learning_paths/block_6_dfir_memory_disk/25_linux_kernel_forensics.md)：LKM 核心模組 Rootkit、/etc/ld.so.preload 劫持與 eBPF 核心級追蹤。
+> - [**領域 26：行動裝置取證 (Mobile)**](learning_paths/block_6_dfir_memory_disk/26_mobile_device_forensics.md)：APK 靜態解包、classes.dex 反編譯、SQLite 快取分析與 iOS Keychain。
 
 | 難度 | 細分實戰技術點 (Sub-Topic & Technique) | 🎯 具體線上靶場、實戰房間、開源數據集與題目清單 (Practicable Challenges & Labs) |
 | :---: | :--- | :--- |
-| **🟡 L2** | **23.1 隱藏進程與 DKOM 斷鏈破譯**<br>(`pslist` 雙向鏈表 vs `psscan` 核心搜尋) | • [CyberDefenders: RedLine (記憶體進程分析)](https://cyberdefenders.org/blueteam-ctf-challenges/redline/)<br>• [SANS Memory Forensics Cheat Sheet (進程斷鏈篇)](https://www.sans.org/posters/memory-forensics-cheat-sheet/)<br>• [`final_mock_exams/03_全真模擬測驗_B卷_實體真題演練題本.md`](final_mock_exams/03_全真模擬測驗_B卷_實體真題演練題本.md)（第 1~3 題） |
+| **🟡 L2** | **23.1 隱藏進程與 DKOM 斷鏈破譯**<br>(`pslist` 雙向鏈表 vs `psscan` 核心搜尋) | • [CyberDefenders: RedLine (記憶體進程分析)](https://cyberdefenders.org/blueteam-ctf-challenges/redline/)<br>• [SANS Memory Forensics Cheat Sheet (進程斷鏈篇)](https://www.sans.org/posters/memory-forensics-cheat-sheet/)<br>• [`../exams/mock_exam_b_lab_questions.md`](../exams/mock_exam_b_lab_questions.md)（第 1~3 題） |
 | **🟡 L2** | **23.2 代碼注入與 VAD 記憶體屬性排查**<br>(`malfind` / `PAGE_EXECUTE_READWRITE`) | • [CyberDefenders: Spotlight (VAD 結構注入定位)](https://cyberdefenders.org/blueteam-ctf-challenges/spotlight/)<br>• [Volatility 3 `windows.malfind` 官方範例解析庫](https://volatility3.readthedocs.io/) |
 | **🟡 L2** | **23.3 核心網路連線還原與二進位導出**<br>(`netscan` / `dumpfiles` 提取 Payload) | • [CyberDefenders: DeepDive (進階記憶體取證)](https://cyberdefenders.org/blueteam-ctf-challenges/deepdive/)<br>• [DFIR Madness: Case 001 (開源記憶體映像檔實戰)](https://dfirmadness.com/case-001-the-stolen-szechuan-sauce/)<br>• [Volatility 3 `windows.netscan` 實機演練手冊](https://volatility3.readthedocs.io/) |
 | **🟡 L2** | **23.4 記憶體憑證抓取與暫存區取證**<br>(`hashdump`、`lsadump`、剪貼簿與命令列歷程提取) | • [Gentilkiwi Mimikatz 記憶體特徵對照庫](https://github.com/gentilkiwi/mimikatz)<br>• [CyberDefenders: Spotlight (記憶體憑證抓取分析)](https://cyberdefenders.org/blueteam-ctf-challenges/spotlight/) |
-| **🟡 L2** | **24.1 NTFS 主檔案表與時間戳偽造辨析**<br>(`$MFT` / `$STANDARD_INFORMATION` vs `$FILE_NAME`) | • [HTB Sherlocks: BFT (MFT 主檔案表與 Timestomping 深度鑑識)](https://app.hackthebox.com/sherlocks)<br>• [Eric Zimmerman's MFTECmd 實機解析演練](https://ericzimmerman.github.io/)<br>• [`final_mock_exams/03_全真模擬測驗_B卷_實體真題演練題本.md`](final_mock_exams/03_全真模擬測驗_B卷_實體真題演練題本.md)（第 12~14 題） |
+| **🟡 L2** | **24.1 NTFS 主檔案表與時間戳偽造辨析**<br>(`$MFT` / `$STANDARD_INFORMATION` vs `$FILE_NAME`) | • [HTB Sherlocks: BFT (MFT 主檔案表與 Timestomping 深度鑑識)](https://app.hackthebox.com/sherlocks)<br>• [Eric Zimmerman's MFTECmd 實機解析演練](https://ericzimmerman.github.io/)<br>• [`../exams/mock_exam_b_lab_questions.md`](../exams/mock_exam_b_lab_questions.md)（第 12~14 題） |
 | **🟡 L2** | **24.2 程式執行三大鐵證深度鑑識**<br>(Prefetch `.pf`、Amcache、Shimcache) | • [Eric Zimmerman's PECmd & AmcacheParser 工具鏈實作](https://ericzimmerman.github.io/)<br>• [CyberDefenders: Spotlight (檔案系統執行鐵證取證)](https://cyberdefenders.org/blueteam-ctf-challenges/spotlight/)<br>• [ShimcacheParser 開源取證腳本實操](https://github.com/mandiant/ShimCacheParser) |
 | **🟡 L2** | **24.3 使用者活動軌跡與登錄檔鑑識**<br>(Registry RunKey / USBSTOR / Shellbags) | • [HTB Sherlocks: Latus (RDP 連線日誌、註冊表分析)](https://app.hackthebox.com/sherlocks)<br>• [NIST CFReDS: Hacking Case Datasets (官方磁碟映像檔)](https://cfreds.nist.gov/)<br>• [Eric Zimmerman's Registry Explorer 與 ShellBags Explorer 演練](https://ericzimmerman.github.io/) |
 | **🟡 L2** | **24.4 系統更新日誌與陰影複製取證**<br>(`$LogFile`、`$UsnJrnl`、VSS Volume Shadow Copy) | • [Eric Zimmerman's USNParser 實戰演練](https://ericzimmerman.github.io/)<br>• [SANS SIFT Workstation 鑑識工作站手冊](https://www.sans.org/tools/sift-workstation/) |
@@ -198,8 +198,8 @@
 >
 > 📋 **本區塊核心領域說明 (Domains Overview)**：
 >
-> - [**領域 27：防禦驗證工程**](learning_paths/27_PURPLE_TEAM_BREACH_SIMULATION_LEARNING_PATH.md)：Atomic Red Team 原子化對抗測試、MITRE Caldera 與遙測覆蓋率量化。
-> - [**領域 28：全真綜合演練**](learning_paths/28_ENTERPRISE_CYBER_RANGE_LEARNING_PATH.md)：Splunk BOTSv2/v3 實網數據集、跨主機橫向移動全局溯源與金盾獎全真模擬。
+> - [**領域 27：防禦驗證工程**](learning_paths/block_7_purple_team_range/27_purple_team_breach_simulation.md)：Atomic Red Team 原子化對抗測試、MITRE Caldera 與遙測覆蓋率量化。
+> - [**領域 28：全真綜合演練**](learning_paths/block_7_purple_team_range/28_enterprise_cyber_range.md)：Splunk BOTSv2/v3 實網數據集、跨主機橫向移動全局溯源與金盾獎全真模擬。
 
 | 難度 | 細分實戰技術點 (Sub-Topic & Technique) | 🎯 具體線上靶場、實戰房間、開源數據集與題目清單 (Practicable Challenges & Labs) |
 | :---: | :--- | :--- |
@@ -209,21 +209,21 @@
 | **👑 L4** | **28.1 端到端 APT 攻擊鏈全局溯源與奪旗**<br>(Initial Access ➔ Privilege Escalation ➔ C2 ➔ Data Exfil) | • [SANS Holiday Hack Challenge (KringleCon 全真 DFIR 攻防奪旗賽)](https://www.sans.org/mlp/holiday-hack-challenge/)<br>• [Digital Corpora (DFRWS 歷年真實硬碟/記憶體/網路映像檔)](https://digitalcorpora.org/) |
 | **👑 L4** | **28.2 大規模企業級實網攻防對抗資料集**<br>(Splunk Boss of the SOC: BOTSv2 & BOTSv3) | • [Splunk Boss of the SOC: BOTSv2 官方資料集](https://github.com/splunk/botsv2)<br>• [Splunk Boss of the SOC: BOTSv3 官方資料集](https://github.com/splunk/botsv3)<br>• [OpenSOC 官方社群公開資料庫](https://github.com/opensoc) |
 | **👑 L4** | **28.3 跨主機橫向移動與多源鑑識綜合歸因**<br>(端點日誌 + 封包流量 + 記憶體混合鑑識題組) | • [HTB Sherlocks 跨主機混合攻防調查場景](https://app.hackthebox.com/sherlocks)<br>• [CyberDefenders: DeepDive 綜合關卡](https://cyberdefenders.org/blueteam-ctf-challenges/deepdive/) |
-| **👑 L4** | **28.4 台灣資安法規與實體攻防檢定真題演練**<br>(台灣資通安全事件通報、實體推演題本與答案解構) | • [`final_mock_exams/03_全真模擬測驗_B卷_實體真題演練題本.md`](final_mock_exams/03_全真模擬測驗_B卷_實體真題演練題本.md)（全套 81 題實體推演）<br>• [`final_mock_exams/04_全真模擬測驗_B卷_官方標準答案與解題手冊.md`](final_mock_exams/04_全真模擬測驗_B卷_官方標準答案與解題手冊.md)<br>• [`final_mock_exams/01_全真模擬測驗_A卷_客觀100題試卷.md`](final_mock_exams/01_全真模擬測驗_A卷_客觀100題試卷.md) |
+| **👑 L4** | **28.4 台灣資安法規與實體攻防檢定真題演練**<br>(台灣資通安全事件通報、實體推演題本與答案解構) | • [`../exams/mock_exam_b_lab_questions.md`](../exams/mock_exam_b_lab_questions.md)（全套 81 題實體推演）<br>• [`../exams/mock_exam_b_lab_solutions.md`](../exams/mock_exam_b_lab_solutions.md)<br>• [`../exams/mock_exam_a_100q_questions.md`](../exams/mock_exam_a_100q_questions.md) |
 
 ## 📜 區塊八：法規遵循、合規治理與數位證據監管 (GRC, Standards & Chain of Custody)
 > 💡 **作戰任務**：企業與國家級合規治理與法律保障。涵蓋 ISO/IEC 27037 證據監管鏈、台灣《資通安全管理法》與責任等級制、台灣《個人資料保護法》以及 ISO 27001 / NIST CSF 國際標準框架。
 >
 > 📋 **本區塊核心領域說明 (Domains Overview)**：
 >
-> - [**領域 29：數位證據法規與監管鏈**](learning_paths/29_DIGITAL_EVIDENCE_CHAIN_OF_CUSTODY_LEARNING_PATH.md)：RFC 3227 數據揮發次序、ISO/IEC 27037 標準與防寫設備雙雜湊驗證。
-> - [**領域 30：台灣《資通安全管理法》與責任等級制**](learning_paths/30_CYBER_SECURITY_MANAGEMENT_ACT_LEARNING_PATH.md)：A~E 級責任等級劃分、專職配置與受訓時數、1~4 級事件「1 小時法定通報時限」。
-> - [**領域 31：《個人資料保護法》與隱私安全架構**](learning_paths/31_PERSONAL_DATA_PROTECTION_FRAMEWORKS_LEARNING_PATH.md)：六大特種個資法定除外要件、個資外洩罰則、ISO 27001:2022 與 NIST CSF 2.0。
+> - [**領域 29：數位證據法規與監管鏈**](learning_paths/block_8_grc_standards_custody/29_digital_evidence_chain_of_custody.md)：RFC 3227 數據揮發次序、ISO/IEC 27037 標準與防寫設備雙雜湊驗證。
+> - [**領域 30：台灣《資通安全管理法》與責任等級制**](learning_paths/block_8_grc_standards_custody/30_cyber_security_management_act.md)：A~E 級責任等級劃分、專職配置與受訓時數、1~4 級事件「1 小時法定通報時限」。
+> - [**領域 31：《個人資料保護法》與隱私安全架構**](learning_paths/block_8_grc_standards_custody/31_personal_data_protection_frameworks.md)：六大特種個資法定除外要件、個資外洩罰則、ISO 27001:2022 與 NIST CSF 2.0。
 
 | 難度 | 細分實戰技術點 (Sub-Topic & Technique) | 🎯 具體線上靶場、實戰房間、開源數據集與題目清單 (Practicable Challenges & Labs) |
 | :---: | :--- | :--- |
-| **🟢 L1** | **29.1 數位證據監管鏈與 ISO/IEC 27037**<br>(證據識別、收集、獲取與保存標準程序) | • [NIST SP 800-86: 數位鑑識整合指引手冊](https://csrc.nist.gov/publications/detail/sp/800-86/final)<br>• [DFRWS 數位證據監管鏈標準指引範本](https://dfrws.org/)<br>• [`final_mock_exams/01_全真模擬測驗_A卷_客觀100題試卷.md`](final_mock_exams/01_全真模擬測驗_A卷_客觀100題試卷.md)（鑑識法規題群） |
-| **🟢 L1** | **29.2 資安事件通報時限與 RFC 3227**<br>(1~4 級事件 1 小時通報、數據揮發次序) | • [國家資通安全研究院: 資安事件分級指引](https://www.nics.nat.gov.tw/)<br>• [SANS Incident Handler's Handbook 應變步驟](https://www.sans.org/white-papers/)<br>• [`final_mock_exams/05_考前必背高頻速記卡_三人包幹檢定.md`](final_mock_exams/05_考前必背高頻速記卡_三人包幹檢定.md) |
+| **🟢 L1** | **29.1 數位證據監管鏈與 ISO/IEC 27037**<br>(證據識別、收集、獲取與保存標準程序) | • [NIST SP 800-86: 數位鑑識整合指引手冊](https://csrc.nist.gov/publications/detail/sp/800-86/final)<br>• [DFRWS 數位證據監管鏈標準指引範本](https://dfrws.org/)<br>• [`../exams/mock_exam_a_100q_questions.md`](../exams/mock_exam_a_100q_questions.md)（鑑識法規題群） |
+| **🟢 L1** | **29.2 資安事件通報時限與 RFC 3227**<br>(1~4 級事件 1 小時通報、數據揮發次序) | • [國家資通安全研究院: 資安事件分級指引](https://www.nics.nat.gov.tw/)<br>• [SANS Incident Handler's Handbook 應變步驟](https://www.sans.org/white-papers/)<br>• [`../exams/high_frequency_flashcards.md`](../exams/high_frequency_flashcards.md) |
 | **🟢 L1** | **29.3 證據真偽性與鑑識複製完整性驗證**<br>(防寫設備 Write Blocker、雙重雜湊 MD5+SHA256) | • [Autopsy 官方開源取證訓練樣本庫](https://www.autopsy.com/)<br>• [FTK Imager 映像檔製作與雜湊比對指南](https://www.exterro.com/digital-forensics-software/ftk-imager)<br>• [NIST CFTT 鑑識複製驗證測試數據集](https://www.cftt.nist.gov/) |
 | **🟢 L1** | **30.1 《資通安全管理法》體系與公務/特定非公務機關權利義務**<br>(CISO 設置規範、資通安全維護計畫、關鍵基礎設施 CI 提供者責任) | • [全國法規資料庫: 《資通安全管理法》母法現行條文全文](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=A0030297)<br>• [數位發展部資通安全署: 資通安全管理法專區與法遵指引](https://moda.gov.tw/ACS/)<br>• [Yamol: 公共數位歷屆公務人員高考、技師與金盾獎資通法規歷屆考古題庫](https://yamol.tw/) |
 | **🟢 L1** | **30.2 資通安全責任等級分級辦法**<br>(A~E 級劃分標準、專職人員配置、每人每年受訓時數、ISO 27001 導入與驗證期限) | • [全國法規資料庫: 《資通安全責任等級分級辦法》法規條文與附表標準](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=A0030300)<br>• [iPAS 資訊安全工程師: 能力鑑定官方考試指引與法規試題大綱](https://www.ipas.org.tw/)<br>• [Yamol: iPAS 資訊安全法規與責任等級歷屆模擬題庫](https://yamol.tw/) |

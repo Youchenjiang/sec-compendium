@@ -10,7 +10,7 @@
 ctfd-kit/
 │
 ├── 🛡️ security/      # 【資安核心技術知識庫】(全體共享技術基石)
-│   ├── A_framework/  # 全域架構地圖 (A3)、3.9萬檔案索引 (A2)、文檔規範 (A0)
+│   ├── framework/  # 全域架構地圖 (A3)、3.9萬檔案索引 (A2)、文檔規範 (A0)
 │   ├── blue_team/    # 🔵 藍隊體系 (Phase 0~6 課表、31大學習路徑、41本原子手冊)
 │   ├── red_team/     # 🔴 紅隊體系 (實戰資源索引、攻防手法與滲透擴展槽位)
 │   ├── challenges/   # 🎯 靶場與實戰題庫清單 (picoCTF, PortSwigger, CyLab)

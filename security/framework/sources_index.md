@@ -1,7 +1,7 @@
 # 📂 資料來源總索引 (SOURCES_INDEX)
 
 > 自動掃描生成｜來源數：**25**｜資料夾總數：**394**
-> 路徑：`f:\OutClass\資訊應用\網路安全\`
+> 路徑：`./\`
 
 ---
 
@@ -815,7 +815,7 @@
 | `2.md` | Perplexity 生成的資安學習規劃（第二份）|
 | `3.md` | Perplexity 生成的資安學習規劃（第三份）|
 | `1.txt` | 目錄架構規劃對話紀錄（AI 諮詢紀錄）|
-| `FULL_LEARNING_PATH.md` | 6 個月完整學習路線圖（雙北極星版）|
+| `full_learning_path.md` | 6 個月完整學習路線圖（雙北極星版）|
 | `PORTSWIGGER_TRACKER.md` | PortSwigger 全 282 Lab 追蹤清單 |
 | `LEARNING_PATH_AND_AUDIT.md` | 資源完整性審計樹（齊備/缺影片/缺講義）|
 | `ORGANIZATION_RULES.md` | 目錄命名與整理規則 |
