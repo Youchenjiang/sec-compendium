@@ -34,5 +34,6 @@
 ## ✅ Completed Decisions & Lessons Learned
 - Initialized with `research` scaffolding preset.
 - **2026-09-13 專案轉型決策**：確立以「讀書會輔助」為核心主體，CTFd 套件收斂為「實戰靶場演練模組」。
-- 更新 `policy.yml` 允許 scope 擴充 `study`, `plan`, `ctfd`, `labs`, `challenge`。
+- 更新 `policy.yml` 允許 scope 擴充 `study`, `plan`, `ctfd`, `labs`, `challenge`, `infra`, `build`, `release`, `governance`。
 - 配置 Conventional Commits、TruffleHog 機敏金鑰防外洩與 PR-Agent 自動審查。
+- 解決 Sourcery-AI 與 LlamaPReview 提出的 7 則審查建議（補齊 issues 權限、分支名稱正規驗證、移除 unverified 過濾、限制 PR Agent 觸發範疇、明確漏洞通報管道），PR #2 審查執行緒全數標記 Resolved 並達 100% 通過。
