@@ -6,6 +6,7 @@ enabled = true
 exclude_patterns = [
   "ctfd/database/**",
   "ctfd/challenges/**",
+  "ctfd/automation/**",
   "ctfd/patches/**",
   "security/**",
   "tracks/**"
@@ -20,9 +21,9 @@ exclude_patterns = [
   "tracks/**",
   "ctfd/database/**",
   "ctfd/challenges/**",
+  "ctfd/automation/**",
   "ctfd/patches/**",
   "**/*.md",
   "**/*.csv",
   "**/*.sql"
 ]
-
