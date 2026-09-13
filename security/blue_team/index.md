@@ -27,11 +27,11 @@
 >
 > 📋 **本區塊核心領域說明 (Domains Overview)**：
 >
-> - [**領域 1：Linux 系統基礎加固**](learning_paths/01_LINUX_HARDENING_LEARNING_PATH.md)：系統權限模型、敏感檔案安全、SSH/PAM 硬化與排程排查。
-> - [**領域 2：網路分段與防火牆加固**](learning_paths/02_NETWORK_SEGMENTATION_FIREWALL_LEARNING_PATH.md)：Netfilter 邊界策略、狀態追蹤、內部網路微隔離與次世代防火牆 (NGFW/IPS) 聯防。
-> - [**領域 3：交換機硬體安全與鏈路隔離**](learning_paths/03_SWITCHING_SECURITY_PORT_SECURITY_LEARNING_PATH.md)：Switch Port-Security 違規模式、802.1Q VLAN Tag 結構與生成樹 (STP) 防護。
-> - [**領域 4：軟體供應鏈安全 (DevSecOps)**](learning_paths/04_DEVSECOPS_SUPPLY_CHAIN_LEARNING_PATH.md)：開源依賴投毒、SBOM 審查與 CI/CD 管道金鑰審計。
-> - [**領域 5：雲原生防衛與雲端責任模型**](learning_paths/05_CLOUD_SECURITY_SHARED_RESPONSIBILITY_LEARNING_PATH.md)：IaaS/PaaS/SaaS 共同責任模型、IMDSv2 SSRF 防護與容器逃逸防衛。
+> - [**領域 1：Linux 系統基礎加固**](learning_paths/block_1_hardening/01_linux_hardening.md)：系統權限模型、敏感檔案安全、SSH/PAM 硬化與排程排查。
+> - [**領域 2：網路分段與防火牆加固**](learning_paths/block_1_hardening/02_network_segmentation_firewall.md)：Netfilter 邊界策略、狀態追蹤、內部網路微隔離與次世代防火牆 (NGFW/IPS) 聯防。
+> - [**領域 3：交換機硬體安全與鏈路隔離**](learning_paths/block_1_hardening/03_switching_port_security.md)：Switch Port-Security 違規模式、802.1Q VLAN Tag 結構與生成樹 (STP) 防護。
+> - [**領域 4：軟體供應鏈安全 (DevSecOps)**](learning_paths/block_1_hardening/04_devsecops_supply_chain.md)：開源依賴投毒、SBOM 審查與 CI/CD 管道金鑰審計。
+> - [**領域 5：雲原生防衛與雲端責任模型**](learning_paths/block_1_hardening/05_cloud_security_shared_responsibility.md)：IaaS/PaaS/SaaS 共同責任模型、IMDSv2 SSRF 防護與容器逃逸防衛。
 
 | 難度 | 細分實戰技術點 (Sub-Topic & Technique) | 🎯 具體線上靶場、實戰房間、開源數據集與題目清單 (Practicable Challenges & Labs) |
 | :---: | :--- | :--- |
@@ -58,12 +58,12 @@
 >
 > 📋 **本區塊核心領域說明 (Domains Overview)**：
 >
-> - [**領域 6：網路協定與基礎封包分析**](learning_paths/06_NETWORK_PROTOCOLS_PACKET_ANALYSIS_LEARNING_PATH.md)：TCP 三向交握狀態機、Wireshark 高階過濾、DNS 異常排查與 HTTP 串流導出。
-> - [**領域 7：網路管理協定 (SNMP) 與 VPN 傳輸安全**](learning_paths/07_SNMP_VPN_SECURITY_LEARNING_PATH.md)：SNMPv1/v2c/v3 authPriv 安全等級、四大 VPN 協定對決與 IPsec AH/ESP。
-> - [**領域 8：無線通訊安全機制與協定演進**](learning_paths/08_WIRELESS_SECURITY_WPA_LEARNING_PATH.md)：802.11 四向握手 PTK 計算、KRACK 重放攻擊與 WPA3 SAE 前向保密。
-> - [**領域 9：Web 基礎弱點識別**](learning_paths/09_WEB_VULNERABILITY_DEFENSE_LEARNING_PATH.md)：SQL/命令注入防護、路徑穿越、XXE 外部實體注入與 XSS/CSRF 安全標頭。
-> - [**領域 10：電子郵件與社交工程防衛**](learning_paths/10_EMAIL_PHISHING_DEFENSE_LEARNING_PATH.md)：SPF/DKIM/DMARC 驗證、EML 標頭 Received 溯源與 oledump 巨集提取。
-> - [**領域 11：密碼學基礎與證書安全**](learning_paths/11_CRYPTOGRAPHY_CERTIFICATES_LEARNING_PATH.md)：對稱/非對稱演算法、X.509 憑證鏈、OCSP Stapling 與 PFS 前向保密。
+> - [**領域 6：網路協定與基礎封包分析**](learning_paths/block_2_protocols_crypto_app/06_network_protocols_packet_analysis.md)：TCP 三向交握狀態機、Wireshark 高階過濾、DNS 異常排查與 HTTP 串流導出。
+> - [**領域 7：網路管理協定 (SNMP) 與 VPN 傳輸安全**](learning_paths/block_2_protocols_crypto_app/07_snmp_vpn_security.md)：SNMPv1/v2c/v3 authPriv 安全等級、四大 VPN 協定對決與 IPsec AH/ESP。
+> - [**領域 8：無線通訊安全機制與協定演進**](learning_paths/block_2_protocols_crypto_app/08_wireless_security_wpa.md)：802.11 四向握手 PTK 計算、KRACK 重放攻擊與 WPA3 SAE 前向保密。
+> - [**領域 9：Web 基礎弱點識別**](learning_paths/block_2_protocols_crypto_app/09_web_vulnerability_defense.md)：SQL/命令注入防護、路徑穿越、XXE 外部實體注入與 XSS/CSRF 安全標頭。
+> - [**領域 10：電子郵件與社交工程防衛**](learning_paths/block_2_protocols_crypto_app/10_email_phishing_defense.md)：SPF/DKIM/DMARC 驗證、EML 標頭 Received 溯源與 oledump 巨集提取。
+> - [**領域 11：密碼學基礎與證書安全**](learning_paths/block_2_protocols_crypto_app/11_cryptography_certificates.md)：對稱/非對稱演算法、X.509 憑證鏈、OCSP Stapling 與 PFS 前向保密。
 
 | 難度 | 細分實戰技術點 (Sub-Topic & Technique) | 🎯 具體線上靶場、實戰房間、開源數據集與題目清單 (Practicable Challenges & Labs) |
 | :---: | :--- | :--- |
@@ -92,8 +92,8 @@
 >
 > 📋 **本區塊核心領域說明 (Domains Overview)**：
 >
-> - [**領域 12：AD 網域攻防**](learning_paths/12_ACTIVE_DIRECTORY_DEFENSE_LEARNING_PATH.md)：Kerberos 票據交握、AS-REP/Kerberoasting、黃金/白銀票據防護與 DCSync 偵測。
-> - [**領域 13：身分存取管理安全 (IAM)**](learning_paths/13_IDENTITY_ACCESS_MANAGEMENT_LEARNING_PATH.md)：OAuth 2.0 授權碼模式、MFA 疲勞轟炸防衛與 FIDO2 Passkey 架構。
+> - [**領域 12：AD 網域攻防**](learning_paths/block_3_identity_directory/12_active_directory_defense.md)：Kerberos 票據交握、AS-REP/Kerberoasting、黃金/白銀票據防護與 DCSync 偵測。
+> - [**領域 13：身分存取管理安全 (IAM)**](learning_paths/block_3_identity_directory/13_identity_access_management.md)：OAuth 2.0 授權碼模式、MFA 疲勞轟炸防衛與 FIDO2 Passkey 架構。
 
 | 難度 | 細分實戰技術點 (Sub-Topic & Technique) | 🎯 具體線上靶場、實戰房間、開源數據集與題目清單 (Practicable Challenges & Labs) |
 | :---: | :--- | :--- |
@@ -111,10 +111,10 @@
 >
 > 📋 **本區塊核心領域說明 (Domains Overview)**：
 >
-> - [**領域 14：端點核心日誌與排查**](learning_paths/14_ENDPOINT_LOGS_TRIAGE_LEARNING_PATH.md)：Windows Logon Types 2/3/10、4688 命令列參數審計與 7045 服務安裝日誌。
-> - [**領域 15：SIEM 大數據分析**](learning_paths/15_SIEM_SPLUNK_BIG_DATA_LEARNING_PATH.md)：Splunk SPL 管道語法、rex 欄位抽取、stats 統計聚合與動態基準線告警。
-> - [**領域 16：惡意流量與隱蔽通訊**](learning_paths/16_MALICIOUS_TRAFFIC_COVERT_COMM_LEARNING_PATH.md)：C2 心跳與 Jitter 方差分析、DNS 隱蔽通道外洩與重大 N-day 漏洞利用封包逆推。
-> - [**領域 17：偵測工程與簽章**](learning_paths/17_DETECTION_ENGINEERING_RULES_LEARNING_PATH.md)：YARA 二進位特徵碼撰寫、Sigma 跨平台日誌規則轉譯與 Suricata 網路簽章。
+> - [**領域 14：端點核心日誌與排查**](learning_paths/block_4_detection_siem_soc/14_endpoint_logs_triage.md)：Windows Logon Types 2/3/10、4688 命令列參數審計與 7045 服務安裝日誌。
+> - [**領域 15：SIEM 大數據分析**](learning_paths/block_4_detection_siem_soc/15_siem_splunk_big_data.md)：Splunk SPL 管道語法、rex 欄位抽取、stats 統計聚合與動態基準線告警。
+> - [**領域 16：惡意流量與隱蔽通訊**](learning_paths/block_4_detection_siem_soc/16_malicious_traffic_covert_comm.md)：C2 心跳與 Jitter 方差分析、DNS 隱蔽通道外洩與重大 N-day 漏洞利用封包逆推。
+> - [**領域 17：偵測工程與簽章**](learning_paths/block_4_detection_siem_soc/17_detection_engineering_rules.md)：YARA 二進位特徵碼撰寫、Sigma 跨平台日誌規則轉譯與 Suricata 網路簽章。
 
 | 難度 | 細分實戰技術點 (Sub-Topic & Technique) | 🎯 具體線上靶場、實戰房間、開源數據集與題目清單 (Practicable Challenges & Labs) |
 | :---: | :--- | :--- |
@@ -140,11 +140,11 @@
 >
 > 📋 **本區塊核心領域說明 (Domains Overview)**：
 >
-> - [**領域 18：端點威脅獵捕**](learning_paths/18_THREAT_HUNTING_SYSMON_LEARNING_PATH.md)：Sysmon Event 1/3/7/8 遙測、LOLBAS 合法程式白利用排查與 CreateRemoteThread 注入。
-> - [**領域 19：惡意程式靜態分流 (Triage)**](learning_paths/19_MALWARE_STATIC_TRIAGE_LEARNING_PATH.md)：PE 結構區段表、Shannon 資訊熵加殼辨識與 Win32 API 導入表功能逆推。
-> - [**領域 20：Web 無檔案防禦**](learning_paths/20_WEB_FILELESS_DEFENSE_LEARNING_PATH.md)：Tomcat Filter/Servlet 內存馬原理與 Arthas 記憶體反編譯排查。
-> - [**領域 21：威脅情資 (CTI)**](learning_paths/21_CYBER_THREAT_INTELLIGENCE_LEARNING_PATH.md)：Bianco 痛苦之塔 (Pyramid of Pain)、MITRE ATT&CK 戰術映射與主動獵捕假說。
-> - [**領域 22：漏洞通用評分系統 (CVSS) 與重大 CVE 剖析**](learning_paths/22_CVSS_METRICS_CVE_ANALYSIS_LEARNING_PATH.md)：CVSS v3.1 基本指標計算、Log4Shell 滿分 10.0 逆推與 Heartbleed。
+> - [**領域 18：端點威脅獵捕**](learning_paths/block_5_threat_hunting_triage/18_threat_hunting_sysmon.md)：Sysmon Event 1/3/7/8 遙測、LOLBAS 合法程式白利用排查與 CreateRemoteThread 注入。
+> - [**領域 19：惡意程式靜態分流 (Triage)**](learning_paths/block_5_threat_hunting_triage/19_malware_static_triage.md)：PE 結構區段表、Shannon 資訊熵加殼辨識與 Win32 API 導入表功能逆推。
+> - [**領域 20：Web 無檔案防禦**](learning_paths/block_5_threat_hunting_triage/20_web_fileless_defense.md)：Tomcat Filter/Servlet 內存馬原理與 Arthas 記憶體反編譯排查。
+> - [**領域 21：威脅情資 (CTI)**](learning_paths/block_5_threat_hunting_triage/21_cyber_threat_intelligence.md)：Bianco 痛苦之塔 (Pyramid of Pain)、MITRE ATT&CK 戰術映射與主動獵捕假說。
+> - [**領域 22：漏洞通用評分系統 (CVSS) 與重大 CVE 剖析**](learning_paths/block_5_threat_hunting_triage/22_cvss_metrics_cve_analysis.md)：CVSS v3.1 基本指標計算、Log4Shell 滿分 10.0 逆推與 Heartbleed。
 
 | 難度 | 細分實戰技術點 (Sub-Topic & Technique) | 🎯 具體線上靶場、實戰房間、開源數據集與題目清單 (Practicable Challenges & Labs) |
 | :---: | :--- | :--- |
@@ -170,10 +170,10 @@
 >
 > 📋 **本區塊核心領域說明 (Domains Overview)**：
 >
-> - [**領域 23：記憶體鑑識實戰**](learning_paths/23_MEMORY_FORENSICS_LEARNING_PATH.md)：EPROCESS 雙向鏈表、VAD 二元樹、Volatility 3 核心 Plugin 與 DKOM 斷鏈隱蔽排查。
-> - [**領域 24：磁碟檔案系統鑑識**](learning_paths/24_DISK_FILESYSTEM_FORENSICS_LEARNING_PATH.md)：NTFS `$MFT`、`$SI` vs `$FN` 時間偽造辨析與 Prefetch/ShimCache/Amcache 三大鐵證。
-> - [**領域 25：Linux 核心鑑識**](learning_paths/25_LINUX_KERNEL_FORENSICS_LEARNING_PATH.md)：LKM 核心模組 Rootkit、/etc/ld.so.preload 劫持與 eBPF 核心級追蹤。
-> - [**領域 26：行動裝置取證 (Mobile)**](learning_paths/26_MOBILE_DEVICE_FORENSICS_LEARNING_PATH.md)：APK 靜態解包、classes.dex 反編譯、SQLite 快取分析與 iOS Keychain。
+> - [**領域 23：記憶體鑑識實戰**](learning_paths/block_6_dfir_memory_disk/23_memory_forensics.md)：EPROCESS 雙向鏈表、VAD 二元樹、Volatility 3 核心 Plugin 與 DKOM 斷鏈隱蔽排查。
+> - [**領域 24：磁碟檔案系統鑑識**](learning_paths/block_6_dfir_memory_disk/24_disk_filesystem_forensics.md)：NTFS `$MFT`、`$SI` vs `$FN` 時間偽造辨析與 Prefetch/ShimCache/Amcache 三大鐵證。
+> - [**領域 25：Linux 核心鑑識**](learning_paths/block_6_dfir_memory_disk/25_linux_kernel_forensics.md)：LKM 核心模組 Rootkit、/etc/ld.so.preload 劫持與 eBPF 核心級追蹤。
+> - [**領域 26：行動裝置取證 (Mobile)**](learning_paths/block_6_dfir_memory_disk/26_mobile_device_forensics.md)：APK 靜態解包、classes.dex 反編譯、SQLite 快取分析與 iOS Keychain。
 
 | 難度 | 細分實戰技術點 (Sub-Topic & Technique) | 🎯 具體線上靶場、實戰房間、開源數據集與題目清單 (Practicable Challenges & Labs) |
 | :---: | :--- | :--- |
@@ -198,8 +198,8 @@
 >
 > 📋 **本區塊核心領域說明 (Domains Overview)**：
 >
-> - [**領域 27：防禦驗證工程**](learning_paths/27_PURPLE_TEAM_BREACH_SIMULATION_LEARNING_PATH.md)：Atomic Red Team 原子化對抗測試、MITRE Caldera 與遙測覆蓋率量化。
-> - [**領域 28：全真綜合演練**](learning_paths/28_ENTERPRISE_CYBER_RANGE_LEARNING_PATH.md)：Splunk BOTSv2/v3 實網數據集、跨主機橫向移動全局溯源與金盾獎全真模擬。
+> - [**領域 27：防禦驗證工程**](learning_paths/block_7_purple_team_range/27_purple_team_breach_simulation.md)：Atomic Red Team 原子化對抗測試、MITRE Caldera 與遙測覆蓋率量化。
+> - [**領域 28：全真綜合演練**](learning_paths/block_7_purple_team_range/28_enterprise_cyber_range.md)：Splunk BOTSv2/v3 實網數據集、跨主機橫向移動全局溯源與金盾獎全真模擬。
 
 | 難度 | 細分實戰技術點 (Sub-Topic & Technique) | 🎯 具體線上靶場、實戰房間、開源數據集與題目清單 (Practicable Challenges & Labs) |
 | :---: | :--- | :--- |
@@ -216,9 +216,9 @@
 >
 > 📋 **本區塊核心領域說明 (Domains Overview)**：
 >
-> - [**領域 29：數位證據法規與監管鏈**](learning_paths/29_DIGITAL_EVIDENCE_CHAIN_OF_CUSTODY_LEARNING_PATH.md)：RFC 3227 數據揮發次序、ISO/IEC 27037 標準與防寫設備雙雜湊驗證。
-> - [**領域 30：台灣《資通安全管理法》與責任等級制**](learning_paths/30_CYBER_SECURITY_MANAGEMENT_ACT_LEARNING_PATH.md)：A~E 級責任等級劃分、專職配置與受訓時數、1~4 級事件「1 小時法定通報時限」。
-> - [**領域 31：《個人資料保護法》與隱私安全架構**](learning_paths/31_PERSONAL_DATA_PROTECTION_FRAMEWORKS_LEARNING_PATH.md)：六大特種個資法定除外要件、個資外洩罰則、ISO 27001:2022 與 NIST CSF 2.0。
+> - [**領域 29：數位證據法規與監管鏈**](learning_paths/block_8_grc_standards_custody/29_digital_evidence_chain_of_custody.md)：RFC 3227 數據揮發次序、ISO/IEC 27037 標準與防寫設備雙雜湊驗證。
+> - [**領域 30：台灣《資通安全管理法》與責任等級制**](learning_paths/block_8_grc_standards_custody/30_cyber_security_management_act.md)：A~E 級責任等級劃分、專職配置與受訓時數、1~4 級事件「1 小時法定通報時限」。
+> - [**領域 31：《個人資料保護法》與隱私安全架構**](learning_paths/block_8_grc_standards_custody/31_personal_data_protection_frameworks.md)：六大特種個資法定除外要件、個資外洩罰則、ISO 27001:2022 與 NIST CSF 2.0。
 
 | 難度 | 細分實戰技術點 (Sub-Topic & Technique) | 🎯 具體線上靶場、實戰房間、開源數據集與題目清單 (Practicable Challenges & Labs) |
 | :---: | :--- | :--- |

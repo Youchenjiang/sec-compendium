@@ -348,4 +348,4 @@ vol -f memory.raw windows.modscan   # 掃描 pool
 ---
 
 *本路徑對應藍隊防衛矩陣領域 23：記憶體鑑識實戰 (23.1 ~ 23.4)*
-*建議搭配 [`BLUE_TEAM_PRACTICE_RESOURCES_INDEX.md`](../index.md) 中的靶場連結一起使用*
+*建議搭配 [`BLUE_TEAM_PRACTICE_RESOURCES_INDEX.md`](../../index.md) 中的靶場連結一起使用*
