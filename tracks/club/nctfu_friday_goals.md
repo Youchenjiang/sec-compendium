@@ -69,13 +69,13 @@
 
 ## 7. 依據、文件分工與維護
 
-參考 [A0 文件規範](A0_DOC_RULES_AND_STANDARDS.md)、[B1 組長總綱](B1_MASTER_ROADMAP_Leader.md)、[B2 成員課表](B2_STUDY_ROADMAP_Member_v5.8.md) 及 C 系列題庫對照的分工方式。本組仍採本次議定的每週五時段，不沿用原半年 90 Runs 的每日進度或晚上 22:00 聚會安排。
+參考 [A0 文件規範](doc_rules_and_standards.md)、[B1 組長總綱](master_roadmap_leader.md)、[B2 成員課表](B2_STUDY_ROADMAP_Member_v5.8.md) 及 C 系列題庫對照的分工方式。本組仍採本次議定的每週五時段，不沿用原半年 90 Runs 的每日進度或晚上 22:00 聚會安排。
 
 | 文件 | 唯一維護內容 |
 |---|---|
 | 本文件 B3 | 目標、競賽選擇、投入考量、成效及轉向判斷 |
 | [C5 每週實作課表](C5_NCTFU_FRIDAY_PRACTICE_2026_FALL.md) | 日期、題目、流程、驗收、模擬卷與環境準備 |
-| [讀書會入口](../NCTFU_FRIDAY_STUDY_GROUP_2026_FALL.md) | 導覽與版本入口，不另存完整課表 |
+| [讀書會入口](../friday_study_group_fall_2026.md) | 導覽與版本入口，不另存完整課表 |
 | [v0.4 歷史版本](archive/NCTFU_FRIDAY_STUDY_GROUP_2026_FALL_v0.4.md) | 原始混合版，只供追溯 |
 
 競賽安排依 [金盾官方競賽要點](https://csc.nics.nat.gov.tw/shield.aspx)，上次核對為 2026-09-08：初賽為單選題、決賽為五小時 Jeopardy。官方規定與日期若異動，在 C5 更新操作安排；本文件的選擇理由改變時才同步修訂。
