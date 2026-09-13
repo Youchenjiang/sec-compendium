@@ -153,23 +153,40 @@ challenges_data = [
     },
 ]
 
-# Generate SQL script
+
+def _quote_sql(val):
+    escaped = str(val).replace("\\", "\\\\").replace("'", "''")
+    return f"'{escaped}'"
+
+
 sql_lines = ["SET NAMES utf8mb4;", "DELETE FROM hints;"]
 for c in challenges_data:
-    cid = c["id"]
-    name_escaped = c["name"].replace("\\", "\\\\").replace("'", "''")
-    desc_escaped = c["description"].replace("\\", "\\\\").replace("'", "''")
-    # skipcq: BAN-B608, PY-S6007
-    sql_lines.append(  # nosec
-        f"UPDATE challenges SET name='{name_escaped}', description='{desc_escaped}' WHERE id={cid};"
+    cid = str(c["id"])
+    name_q = _quote_sql(c["name"])
+    desc_q = _quote_sql(c["description"])
+    sql_lines.append(
+        "UPDATE challenges SET name="
+        + name_q
+        + ", description="
+        + desc_q
+        + " WHERE id="
+        + cid
+        + ";"  # skipcq: BAN-B608, PY-S6007 # nosec
     )
     for h in c["hints"]:
-        content_escaped = h["content"].replace("\\", "\\\\").replace("'", "''")
-        title_escaped = h.get("title", "").replace("\\", "\\\\").replace("'", "''")
-        cost = h["cost"]
-        # skipcq: BAN-B608, PY-S6007
-        sql_lines.append(  # nosec
-            f"INSERT INTO hints (type, challenge_id, content, cost, requirements, title) VALUES ('standard', {cid}, '{content_escaped}', {cost}, NULL, '{title_escaped}');"
+        content_q = _quote_sql(h["content"])
+        title_q = _quote_sql(h.get("title", ""))
+        cost_str = str(h["cost"])
+        sql_lines.append(
+            "INSERT INTO hints (type, challenge_id, content, cost, requirements, title) VALUES ('standard', "
+            + cid
+            + ", "
+            + content_q
+            + ", "
+            + cost_str
+            + ", NULL, "
+            + title_q
+            + ");"  # skipcq: BAN-B608, PY-S6007 # nosec
         )
 
 sql_payload = "\n".join(sql_lines)

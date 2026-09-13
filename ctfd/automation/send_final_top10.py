@@ -1,5 +1,4 @@
-import urllib.request
-import json
+import requests
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -48,20 +47,17 @@ def fetch_top10_users():
             users_by_name[uname] = uemail
 
     url = "https://im2026ctf.duckdns.org/api/v1/scoreboard"
-    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
     top_list = []
     try:
-        with urllib.request.urlopen(req, timeout=15) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
-            for item in data.get("data", [])[:10]:
-                name = item["name"]
-                pos = item["pos"]
-                score = item["score"]
-                account_id = str(item.get("account_id", ""))
-                email = users_by_id.get(account_id) or users_by_name.get(name)
-                top_list.append(
-                    {"rank": pos, "name": name, "score": score, "email": email}
-                )
+        resp = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=15)
+        data = resp.json()
+        for item in data.get("data", [])[:10]:
+            name = item["name"]
+            pos = item["pos"]
+            score = item["score"]
+            account_id = str(item.get("account_id", ""))
+            email = users_by_id.get(account_id) or users_by_name.get(name)
+            top_list.append({"rank": pos, "name": name, "score": score, "email": email})
     except Exception as e:
         log(f"Error fetching scoreboard via API: {e}")
     return top_list

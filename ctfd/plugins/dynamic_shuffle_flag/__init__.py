@@ -20,6 +20,7 @@ from flask import (
     Response,
     jsonify,
     make_response,
+    render_template_string,
     request,
     send_from_directory,
     session,
@@ -106,9 +107,6 @@ def require_login_for_labs():
     if request.path.startswith("/labs/assets/") or "/visits" in request.path:
         return None
     if not authed():
-        from flask import render_template_string
-        from urllib.parse import quote
-
         next_url = request.url
         login_url = f"/login?next={quote(next_url)}"
         register_url = "/register"
@@ -1125,9 +1123,18 @@ def lab_crypto():
     return html
 
 
-@labs_bp.route("/labs/sqli", methods=["GET", "POST"])
+@labs_bp.route("/labs/sqli", methods=["GET"])
+def lab_sqli_get():
+    return _render_lab_sqli()
+
+
+@labs_bp.route("/labs/sqli", methods=["POST"])
 @bypass_csrf_protection
-def lab_sqli():
+def lab_sqli_post():
+    return _render_lab_sqli()
+
+
+def _render_lab_sqli():
 
     team_name = get_current_player_name()
 
