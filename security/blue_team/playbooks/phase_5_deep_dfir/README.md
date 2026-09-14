@@ -22,5 +22,5 @@
 - [24.4_vss_volume_shadow_copy_forensics.md](track_a_memory_disk/24.4_vss_volume_shadow_copy_forensics.md)：系統更新日誌與陰影複製取證 (Volume Shadow Copy Forensics & Event Log Recovery)
 
 #### 🏰 Track B: AD 網域攻防與身分治理專精 (8 項)
-- 規劃建置中：`12.1` ~ `12.5` (Kerberos / DCSync / BloodHound) 與 `13.1` ~ `13.3` (IAM / MFA / PRT)
+- [12.1_kerberos_preauth_asrep_roasting.md](track_b_active_directory/12.1_kerberos_preauth_asrep_roasting.md)：Kerberos 預驗證弱點與 AS-REP Roasting 攻防 (Kerberos Pre-Auth & AS-REP Roasting)
 

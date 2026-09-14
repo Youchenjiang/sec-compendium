@@ -309,7 +309,7 @@ graph TD
 
 | 技術點編號與名稱 | 難度 | 核心定位 (Track) | 學習目標與驗收指標 | 對應深度指南 |
 | :--- | :---: | :---: | :--- | :--- |
-| **12.1 Kerberos 預驗證弱點與 AS-REP Roasting**| 🔴 L3 | 🔬 Specialization | 識別 Event ID 4768 預認證類型為 0x0 之 TGT 索取行為 | [領域 12 手冊](learning_paths/block_3_identity_directory/12_active_directory_defense.md) |
+| **12.1 Kerberos 預驗證弱點與 AS-REP Roasting**| 🔴 L3 | 🔬 Specialization | 識別 Event ID 4768 預認證類型為 0x0 之 TGT 索取行為 | [📘 12.1 實戰手冊](playbooks/phase_5_deep_dfir/track_b_active_directory/12.1_kerberos_preauth_asrep_roasting.md) |
 | **12.2 SPN 服務票據請求與 Kerberoasting** | 🔴 L3 | 🔬 Specialization | 監控 Event ID 4769 異常高頻 RC4-HMAC 服務票據請求 | [領域 12 手冊](learning_paths/block_3_identity_directory/12_active_directory_defense.md) |
 | **12.3 偽造票據攻擊與全域特權維持 (Golden)**| 🔴 L3 | 🔬 Specialization | 掌握黃金票據 (krbtgt Hash) 與白銀票據之偵測與雙重輪換重設 | [領域 12 手冊](learning_paths/block_3_identity_directory/12_active_directory_defense.md) |
 | **12.4 NTDS.dit 憑證導出與 DCSync 偵測** | 🔴 L3 | 🔬 Specialization | 偵測非 DC 主機發起之目錄複製服務 (DRSUAPI / RPC 呼叫) | [領域 12 手冊](learning_paths/block_3_identity_directory/12_active_directory_defense.md) |
