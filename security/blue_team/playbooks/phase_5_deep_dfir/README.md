@@ -23,4 +23,5 @@
 
 #### 🏰 Track B: AD 網域攻防與身分治理專精 (8 項)
 - [12.1_kerberos_preauth_asrep_roasting.md](track_b_active_directory/12.1_kerberos_preauth_asrep_roasting.md)：Kerberos 預驗證弱點與 AS-REP Roasting 攻防 (Kerberos Pre-Auth & AS-REP Roasting)
+- [12.2_spn_kerberoasting_detection.md](track_b_active_directory/12.2_spn_kerberoasting_detection.md)：SPN 服務票據請求與 Kerberoasting 偵測 (SPN Tickets & Kerberoasting Detection)
 
