@@ -1,0 +1,6 @@
+-D
+-b 8192
+-w /etc/shadow -p rwa -k shadow_access
+-w /etc/passwd -p rwa -k passwd_access
+-w /bin/bash -p x -k shell_exec
+-w /usr/bin/curl -p x -k outbound_transfer

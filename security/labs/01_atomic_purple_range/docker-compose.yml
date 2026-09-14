@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  # -------------------------------------------------------------
+  # MITRE Caldera 自動化紅藍對抗 C2 平台伺服器
+  # -------------------------------------------------------------
+  caldera-server:
+    image: mitre/caldera:latest
+    container_name: caldera-c2
+    restart: unless-stopped
+    ports:
+      - "8888:8888"   # Caldera Web UI (預設帳密: admin/admin)
+      - "7010:7010"   # Sandcat TCP Beacon
+      - "7012:7012"   # Sandcat Contact Server
+    networks:
+      purple-net:
+        ipv4_address: 172.28.0.10
+    volumes:
+      - ./configs/caldera_local.yml:/usr/src/app/conf/local.yml:ro
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 1536M
+
+  # -------------------------------------------------------------
+  # 被測靶機：Linux Ubuntu 22.04 終端 (裝載 Auditd & Agent)
+  # -------------------------------------------------------------
+  victim-linux:
+    image: ubuntu:22.04
+    container_name: victim-node-01
+    restart: unless-stopped
+    hostname: linux-victim-01
+    stdin_open: true
+    tty: true
+    networks:
+      purple-net:
+        ipv4_address: 172.28.0.20
+    volumes:
+      - ./scripts:/opt/scripts:ro
+      - ./configs/audit.rules:/etc/audit/rules.d/audit.rules:ro
+    command: >
+      bash -c "apt-get update && apt-get install -y curl python3 iputils-ping auditd netcat-openbsd sudo &&
+               service auditd start || true &&
+               echo '=== Victim Container Ready ===' &&
+               tail -f /dev/null"
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+
+networks:
+  purple-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/24
