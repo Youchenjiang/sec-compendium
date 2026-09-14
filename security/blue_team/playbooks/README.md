@@ -105,7 +105,15 @@
 - [20.1_java_memshell_filter_servlet_forensics.md](phase_5_deep_dfir/track_c_cloud_supplychain/20.1_java_memshell_filter_servlet_forensics.md)：Java 內存馬清剿與 Filter/Servlet 運行時取證 (Java Memory Shell Forensics)
 - [20.3_dotnet_php_fileless_memshell.md](phase_5_deep_dfir/track_c_cloud_supplychain/20.3_dotnet_php_fileless_memshell.md)：.NET 與 PHP 內存馬與無檔案後門排查 (DotNet & PHP Fileless Memory Shell Defense)
 
-
+#### 🔌 Track D: 網路通訊設備與硬體安全專精 (8 項)
+- [03.1_switch_port_security_errdisable.md](phase_5_deep_dfir/track_d_network_hardware/03.1_switch_port_security_errdisable.md)：交換機連接埠安全與 MAC 違規處置 (Switch Port-Security & Errdisable Recovery)
+- [03.2_vlan_tagging_trunk_hopping_defense.md](phase_5_deep_dfir/track_d_network_hardware/03.2_vlan_tagging_trunk_hopping_defense.md)：VLAN 標記結構與 Trunk 跳躍攻擊防禦 (IEEE 802.1Q VLAN Tagging & Double-Tagging Defense)
+- [03.3_stp_bpdu_guard_dhcp_snooping.md](phase_5_deep_dfir/track_d_network_hardware/03.3_stp_bpdu_guard_dhcp_snooping.md)：交換機鏈路防護與生成樹安全 (BPDU Guard, Root Guard & DHCP Snooping)
+- [07.1_snmpv3_security_authpriv_hardening.md](phase_5_deep_dfir/track_d_network_hardware/07.1_snmpv3_security_authpriv_hardening.md)：SNMP 版本安全演進與 v3 authPriv 實踐 (SNMPv3 Security & authPriv Hardening)
+- [07.2_vpn_ipsec_wireguard_security_showdown.md](phase_5_deep_dfir/track_d_network_hardware/07.2_vpn_ipsec_wireguard_security_showdown.md)：企業級 VPN 協定對決與 IPsec/WireGuard 防禦 (Enterprise VPN Protocols IPsec & WireGuard)
+- [08.1_wifi_80211_four_way_handshake_analysis.md](phase_5_deep_dfir/track_d_network_hardware/08.1_wifi_80211_four_way_handshake_analysis.md)：802.11 四向握手鑑識與 EAPOL 重播攻擊分析 (802.11 4-Way Handshake & EAPOL Forensics)
+- [08.2_wifi_wpa3_sae_dragonfly_defense.md](phase_5_deep_dfir/track_d_network_hardware/08.2_wifi_wpa3_sae_dragonfly_defense.md)：Wi-Fi WPA3 SAE 密鑰交換防禦與 KRACK 重裝攻擊獵捕 (WPA3 SAE Dragonfly & KRACK Defense)
+- [11.3_crypto_ciphersuite_downgrade_pfs.md](phase_5_deep_dfir/track_d_network_hardware/11.3_crypto_ciphersuite_downgrade_pfs.md)：傳輸加密密鑰套件降級防禦與前向保密性實踐 (Cipher Suite Downgrade & Perfect Forward Secrecy)
 
 ### 👑 [phase_6_capstone/](phase_6_capstone/) —— 紫隊全真演練與畢業門檻
 *(即將依修課時序編撰)*

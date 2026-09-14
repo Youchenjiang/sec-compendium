@@ -336,18 +336,18 @@ graph TD
 | **20.3 .NET 與 PHP 內存馬無檔案後門排查**| 🔴 L3 | 🚀 Advanced | 排查 IIS HTTP 模組注入與 PHP 內存執行碼特徵 | [📘 20.3 實戰手冊](playbooks/phase_5_deep_dfir/track_c_cloud_supplychain/20.3_dotnet_php_fileless_memshell.md) |
 
 
-#### 🔌 Track D: 網路通訊設備與硬體安全專精 (6 項)
+#### 🔌 Track D: 網路通訊設備與硬體安全專精 (8 項)
 
 | 技術點編號與名稱 | 難度 | 核心定位 (Track) | 學習目標與驗收指標 | 對應深度指南 |
 | :--- | :---: | :---: | :--- | :--- |
-| **3.1 Switch Port-Security 違規處理模式** | 🟢 L1 | 🔬 Specialization | 精通 Protect / Restrict / Shutdown 進入 err-disable 處置 | [領域 03 手冊](learning_paths/block_1_hardening/03_switching_port_security.md) |
-| **3.2 IEEE 802.1Q VLAN Tag 結構與 Trunk** | 🟢 L1 | 🔬 Specialization | 掌握 4-Byte Tag、12-bit VID 與 Native VLAN 跳躍防禦 | [領域 03 手冊](learning_paths/block_1_hardening/03_switching_port_security.md) |
-| **3.3 交換機鏈路防護與生成樹安全** | 🟢 L1 | 🔬 Specialization | 配置 BPDU Guard、Root Guard 與 DHCP Snooping 防惡意交換機 | [領域 03 手冊](learning_paths/block_1_hardening/03_switching_port_security.md) |
-| **7.1 SNMP 版本演進與安全等級** | 🟢 L1 | 🔬 Specialization | 辨識 v1/v2c 明文弱點，掌握 v3 authPriv 認證與加密 | [領域 07 手冊](learning_paths/block_2_protocols_crypto_app/07_snmp_vpn_security.md) |
-| **7.2 四大 VPN 協定深度對決與安全性** | 🟢 L1 | 🔬 Specialization | 掌握 IPsec AH vs ESP (ESP具備加密) 與 WireGuard 架構 | [領域 07 手冊](learning_paths/block_2_protocols_crypto_app/07_snmp_vpn_security.md) |
-| **8.1 802.11 四向握手與 EAPOL 認證流程** | 🟢 L1 | 🔬 Specialization | 掌握 ANonce, SNonce, PTK 5大運算元素與交握過程 | [領域 08 手冊](learning_paths/block_2_protocols_crypto_app/08_wireless_security_wpa.md) |
-| **8.2 WPA2 離線字典攻擊與 WPA3 SAE 防禦** | 🟢 L1 | 🔬 Specialization | 剖析 KRACK 金鑰重放漏洞，理解 WPA3 Dragonfly 前向保密 | [領域 08 手冊](learning_paths/block_2_protocols_crypto_app/08_wireless_security_wpa.md) |
-| **11.3 密碼套件協商與弱加密協定降級防範** | 🟢 L1 | 🔬 Specialization | 停用 SSLv3/TLS 1.0，強制採用具備 PFS 前向保密之 ECDHE | [領域 11 手冊](learning_paths/block_2_protocols_crypto_app/11_cryptography_certificates.md) |
+| **3.1 Switch Port-Security 違規處理模式** | 🟢 L1 | 🔬 Specialization | 精通 Protect / Restrict / Shutdown 進入 err-disable 處置 | [📘 03.1 實戰手冊](playbooks/phase_5_deep_dfir/track_d_network_hardware/03.1_switch_port_security_errdisable.md) |
+| **3.2 IEEE 802.1Q VLAN Tag 結構與 Trunk** | 🟢 L1 | 🔬 Specialization | 掌握 4-Byte Tag、12-bit VID 與 Native VLAN 跳躍防禦 | [📘 03.2 實戰手冊](playbooks/phase_5_deep_dfir/track_d_network_hardware/03.2_vlan_tagging_trunk_hopping_defense.md) |
+| **3.3 交換機鏈路防護與生成樹安全** | 🟢 L1 | 🔬 Specialization | 配置 BPDU Guard、Root Guard 與 DHCP Snooping 防惡意交換機 | [📘 03.3 實戰手冊](playbooks/phase_5_deep_dfir/track_d_network_hardware/03.3_stp_bpdu_guard_dhcp_snooping.md) |
+| **7.1 SNMP 版本演進與安全等級** | 🟢 L1 | 🔬 Specialization | 辨識 v1/v2c 明文弱點，掌握 v3 authPriv 認證與加密 | [📘 07.1 實戰手冊](playbooks/phase_5_deep_dfir/track_d_network_hardware/07.1_snmpv3_security_authpriv_hardening.md) |
+| **7.2 四大 VPN 協定深度對決與安全性** | 🟢 L1 | 🔬 Specialization | 掌握 IPsec AH vs ESP (ESP具備加密) 與 WireGuard 架構 | [📘 07.2 實戰手冊](playbooks/phase_5_deep_dfir/track_d_network_hardware/07.2_vpn_ipsec_wireguard_security_showdown.md) |
+| **8.1 802.11 四向握手與 EAPOL 認證流程** | 🟢 L1 | 🔬 Specialization | 掌握 ANonce, SNonce, PTK 5大運算元素與交握過程 | [📘 08.1 實戰手冊](playbooks/phase_5_deep_dfir/track_d_network_hardware/08.1_wifi_80211_four_way_handshake_analysis.md) |
+| **8.2 WPA2 離線字典攻擊與 WPA3 SAE 防禦** | 🟢 L1 | 🔬 Specialization | 剖析 KRACK 金鑰重放漏洞，理解 WPA3 Dragonfly 前向保密 | [📘 08.2 實戰手冊](playbooks/phase_5_deep_dfir/track_d_network_hardware/08.2_wifi_wpa3_sae_dragonfly_defense.md) |
+| **11.3 密碼套件協商與弱加密協定降級防範** | 🟢 L1 | 🔬 Specialization | 停用 SSLv3/TLS 1.0，強制採用具備 PFS 前向保密之 ECDHE | [📘 11.3 實戰手冊](playbooks/phase_5_deep_dfir/track_d_network_hardware/11.3_crypto_ciphersuite_downgrade_pfs.md) |
 
 #### 🔬 Track E: 逆向、核心與行動鑑識專精 (10 項)
 
