@@ -24,4 +24,5 @@
 #### 🏰 Track B: AD 網域攻防與身分治理專精 (8 項)
 - [12.1_kerberos_preauth_asrep_roasting.md](track_b_active_directory/12.1_kerberos_preauth_asrep_roasting.md)：Kerberos 預驗證弱點與 AS-REP Roasting 攻防 (Kerberos Pre-Auth & AS-REP Roasting)
 - [12.2_spn_kerberoasting_detection.md](track_b_active_directory/12.2_spn_kerberoasting_detection.md)：SPN 服務票據請求與 Kerberoasting 偵測 (SPN Tickets & Kerberoasting Detection)
+- [12.3_golden_silver_ticket_forgery.md](track_b_active_directory/12.3_golden_silver_ticket_forgery.md)：偽造票據攻擊與全域特權維持 (Golden & Silver Ticket Forgery Detection)
 
