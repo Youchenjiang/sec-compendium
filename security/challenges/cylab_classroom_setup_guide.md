@@ -39,7 +39,7 @@
   - ****Day 7****: 🎯 Wireshark 基礎界面、網路介面選擇與網卡混雜模式捕獲
     🧪 **指定練習/講義**: [Root-Me: Network HTTP Headers](https://www.root-me.org/en/Challenges/Network/HTTP-headers)  ｜ ＋ picoCTF: Wireshark doo dooo do doo... ｜ 💡 **帶練指引**: 演示 Wireshark `http.request.method==POST` 顯示過濾語法
   - ****Day 8****: 🎯 Wireshark 顯示過濾語法 (`ip.addr`) 與 HTTP 追蹤流分析
-    🧪 **指定練習/講義**: 分析本地 [`SQLInjection.pcapng`](../../../06_網路安全與數位取證/01_網路協定分析與Scapy/網路指令/SQLInjection.pcapng) 封包  ｜ ＋ picoCTF: Trivial Flag Transfer Protocol ｜ 💡 **帶練指引**: 指導學員配置 Burp 代理 127.0.0.1:8080 並示範 Repeater 抓包重放
+    🧪 **指定練習/講義**: 分析本地 [`SQLInjection.pcapng`](../../../06_網路安全與數位取證/03_流量分析PCAP/Wireshark專題_流量監聽與分析/02_帶練講義與PCAP實戰/SQLInjection.pcapng) 封包  ｜ ＋ picoCTF: Trivial Flag Transfer Protocol ｜ 💡 **帶練指引**: 指導學員配置 Burp 代理 127.0.0.1:8080 並示範 Repeater 抓包重放
 
 ### ⚔️ **Run 5 (Day 9-10): 任意檔案上傳與 Webshell 木馬權維**
 - 🔗 **CyLab / 線上專題**: [PortSwigger File Upload](https://portswigger.net/web-security/file-upload)
@@ -202,17 +202,17 @@
 - 🔗 **CyLab / 線上專題**: CyLab 綜合實戰 / 離線靶場對接
 - 📌 **每日實操與關卡細節**:
   - ****Day 47****: 🎯 Linux 內核溢出漏洞利用 (Dirty COW 臟牛, PTRACE_TRACEME)
-    🧪 **指定練習/講義**: 觀看 [`10.1WEB安全第六章提权篇LINUX内核漏洞提权.mp4`](../../../04_系統與內網安全/03_權限提升/Linux內核提權/10.1WEB安全第六章提权篇LINUX内核漏洞提权.mp4) ｜ 💡 **帶練指引**: 講解關鍵技術原理並提供隨堂練習講義
+    🧪 **指定練習/講義**: 觀看 [`10.1WEB安全第六章提权篇LINUX内核漏洞提权.mp4`](../../../04_系統與內網安全/05_權限提升/Linux內核提權/10.1WEB安全第六章提权篇LINUX内核漏洞提权.mp4) ｜ 💡 **帶練指引**: 講解關鍵技術原理並提供隨堂練習講義
   - ****Day 48****: 🎯 Sudo 權限配置漏洞 (`sudo -l`) 與 Linux Cron Jobs 定時任務提權
-    🧪 **指定練習/講義**: 觀看 [`10.5WEB安全第六章提权篇LINUXCRONJOBS提权.mp4`](../../../04_系統與內網安全/03_權限提升/Linux內核提權/10.5WEB安全第六章提权篇LINUXCRONJOBS提权.mp4) ｜ 💡 **帶練指引**: 講解關鍵技術原理並提供隨堂練習講義
+    🧪 **指定練習/講義**: 觀看 [`10.5WEB安全第六章提权篇LINUXCRONJOBS提权.mp4`](../../../04_系統與內網安全/05_權限提升/Linux內核提權/10.5WEB安全第六章提权篇LINUXCRONJOBS提权.mp4) ｜ 💡 **帶練指引**: 講解關鍵技術原理並提供隨堂練習講義
 
 ### ⚔️ **Run 25 (Day 49-50): Windows 權限提升進階 (Bypass UAC, Token Impersonation)**
 - 🔗 **CyLab / 線上專題**: CyLab 綜合實戰 / 離線靶場對接
 - 📌 **每日實操與關卡細節**:
   - ****Day 49****: 🎯 Windows Server 2008R2 溢出提權與 LPK 劫持提權
-    🧪 **指定練習/講義**: 觀看 [`10.10WEB安全第六章提权篇winserver2008R2溢出提权.mp4`](../../../04_系統與內網安全/03_權限提升/Windows溢出提權/10.10WEB安全第六章提权篇winserver2008R2溢出提权.mp4) ｜ 💡 **帶練指引**: 講解關鍵技術原理並提供隨堂練習講義
+    🧪 **指定練習/講義**: 觀看 [`10.10WEB安全第六章提权篇winserver2008R2溢出提权.mp4`](../../../04_系統與內網安全/05_權限提升/Windows溢出提權/10.10WEB安全第六章提权篇winserver2008R2溢出提权.mp4) ｜ 💡 **帶練指引**: 講解關鍵技術原理並提供隨堂練習講義
   - ****Day 50****: 🎯 Token 冒充 (JuicyPotato, RoguePotato) 與 Zend 反彈 Shell
-    🧪 **指定練習/講義**: 觀看 [`10.13WEB安全第六章提权篇zend反弹shell提权.mp4`](../../../04_系統與內網安全/03_權限提升/Windows溢出提權/10.13WEB安全第六章提权篇zend反弹shell提权.mp4) ｜ 💡 **帶練指引**: 講解關鍵技術原理並提供隨堂練習講義
+    🧪 **指定練習/講義**: 觀看 [`10.13WEB安全第六章提权篇zend反弹shell提权.mp4`](../../../04_系統與內網安全/05_權限提升/Windows溢出提權/10.13WEB安全第六章提权篇zend反弹shell提权.mp4) ｜ 💡 **帶練指引**: 講解關鍵技術原理並提供隨堂練習講義
 
 ### ⚔️ **Run 26 (Day 51-52): PHP 反序列化 POP 鏈與 PHPGGC 實戰**
 - 🔗 **CyLab / 線上專題**: [PortSwigger Deserialization](https://portswigger.net/web-security/deserialization)
@@ -250,9 +250,9 @@
 - 🔗 **CyLab / 線上專題**: CyLab 綜合實戰 / 離線靶場對接
 - 📌 **每日實操與關卡細節**:
   - ****Day 59****: 🎯 YXCMS 1.4.7 離線靶場部署與黑盒滲透測試
-    🧪 **指定練習/講義**: 解壓 [`YXCMS.zip`](../../../01_Web安全/15_綜合靶場與VulnHub實戰演練/02_CMS實務靶場環境/YXCMS.zip) 本地搭建測試 ｜ 💡 **帶練指引**: 協助學員在本地 phpStudy/Docker 部署 YXCMS 並引導黑盒測試
+    🧪 **指定練習/講義**: 解壓 [`YXCMS.zip`](../../../01_Web安全/14_綜合靶場與VulnHub實戰演練/02_CMS實務靶場環境/YXCMS.zip) 本地搭建測試 ｜ 💡 **帶練指引**: 協助學員在本地 phpStudy/Docker 部署 YXCMS 並引導黑盒測試
   - ****Day 60****: 🎯 WordPress 綜合檢測與 Month 2 階段 Writeup 總結
-    🧪 **指定練習/講義**: 使用 [`Wordpress综合检测工具.exe`](../../../01_Web安全/15_綜合靶場與VulnHub實戰演練/02_CMS實務靶場環境/Wordpress综合检测工具.exe) 測試 ｜ 💡 **帶練指引**: 協助學員在本地 phpStudy/Docker 部署 YXCMS 並引導黑盒測試
+    🧪 **指定練習/講義**: 使用 [`Wordpress综合检测工具.exe`](../../../01_Web安全/14_綜合靶場與VulnHub實戰演練/02_CMS實務靶場環境/Wordpress综合检测工具.exe) 測試 ｜ 💡 **帶練指引**: 協助學員在本地 phpStudy/Docker 部署 YXCMS 並引導黑盒測試
 
 
 ---
@@ -492,7 +492,7 @@
 - 🔗 **CyLab / 線上專題**: CyLab 綜合實戰 / 離線靶場對接
 - 📌 **每日實操與關卡細節**:
   - ****Day 117****: 🎯 滲透測試項目經歷 STAR 原則描述與漏洞復盤表達
-    🧪 **指定練習/講義**: 閱讀 [`技术面 分享.md`](../../../08_通用學習與面試庫/05_HR與跨領域面試/HR綜合面試與跨領域考題/技术面%20分享.md) ｜ 💡 **帶練指引**: 講解關鍵技術原理並提供隨堂練習講義
+    🧪 **指定練習/講義**: 閱讀 [`技术面 分享.md`](../../../08_通用學習與面試庫/05_HR與跨領域面試/HR綜合面試與跨領域考題/技术面 分享.md) ｜ 💡 **帶練指引**: 講解關鍵技術原理並提供隨堂練習講義
   - ****Day 118****: 🎯 資安工程師履歷包裝、GitHub 專案展示與 HR 常見問答
     🧪 **指定練習/講義**: 閱讀 [`HR问题.md`](../../../08_通用學習與面試庫/05_HR與跨領域面試/HR綜合面試與跨領域考題/HR问题.md) ｜ 💡 **帶練指引**: 講解關鍵技術原理並提供隨堂練習講義
 
