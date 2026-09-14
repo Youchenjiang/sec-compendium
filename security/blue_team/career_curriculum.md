@@ -353,16 +353,16 @@ graph TD
 
 | 技術點編號與名稱 | 難度 | 核心定位 (Track) | 學習目標與驗收指標 | 對應深度指南 |
 | :--- | :---: | :---: | :--- | :--- |
-| **19.1 PE 結構、區段屬性與雜湊特徵** | 🔴 L3 | 🔬 Specialization | 解析 DOS MZ 標頭、PE 區段表，以 Shannon 資訊熵辨識加殼 | [領域 19 手冊](learning_paths/block_5_threat_hunting_triage/19_malware_static_triage.md) |
-| **19.2 程式碼混淆還原與字串解密** | 🔴 L3 | 🔬 Specialization | 使用 FLOSS / x64dbg 提取經 XOR / 混淆之 C2 域名與字串 | [領域 19 手冊](learning_paths/block_5_threat_hunting_triage/19_malware_static_triage.md) |
-| **19.3 文件型惡意巨集與內嵌物件萃取** | 🔴 L3 | 🔬 Specialization | 靜態萃取 Office 文件中的 AutoOpen / Shellcode 載荷 | [領域 19 手冊](learning_paths/block_5_threat_hunting_triage/19_malware_static_triage.md) |
-| **25.1 Linux 核心模組 Rootkit 與隱蔽技術**| 🔴 L3 | 🚀 Advanced | 偵測 LKM Syscall Hooking 與斷鏈繞過 `lsmod` 之隱藏模組 | [領域 25 手冊](learning_paths/block_6_dfir_memory_disk/25_linux_kernel_forensics.md) |
-| **25.2 用戶態動態庫劫持與防禦 (LD_PRELOAD)**| 🔴 L3 | 🚀 Advanced | 排查 `/etc/ld.so.preload` 劫持 `readdir()` 之用戶態後門 | [領域 25 手冊](learning_paths/block_6_dfir_memory_disk/25_linux_kernel_forensics.md) |
-| **25.3 雲原生 eBPF 核心級威脅偵測 (Falco)**| 🔴 L3 | 🚀 Advanced | 編寫 Falco 規則，在核心層攔截敏感檔案讀取與越權呼叫 | [領域 25 手冊](learning_paths/block_6_dfir_memory_disk/25_linux_kernel_forensics.md) |
-| **25.4 Linux 記憶體採集與符號表還原 (LiME)**| 🔴 L3 | 🚀 Advanced | 編譯 LiME 核心模組採集實體 RAM 映像並產出 ISF 符號表 | [領域 25 手冊](learning_paths/block_6_dfir_memory_disk/25_linux_kernel_forensics.md) |
-| **26.1 Android APK 惡意行為與靜態解包** | 🔴 L3 | 🚀 Advanced | 使用 JADX 反編譯 `classes.dex`，審查危險廣播與權限 | [領域 26 手冊](learning_paths/block_6_dfir_memory_disk/26_mobile_device_forensics.md) |
-| **26.2 Android 系統執行時日誌與暫存提取**| 🔴 L3 | 🚀 Advanced | 解析通訊軟體 SQLite 資料庫快取與未加密敏感資料 | [領域 26 手冊](learning_paths/block_6_dfir_memory_disk/26_mobile_device_forensics.md) |
-| **26.3 iOS 備份檔案與鑰匙圈取證分析** | 🔴 L3 | 🚀 Advanced | 提取並解析 iTunes 加密備份中的 Keychain 敏感憑證 | [領域 26 手冊](learning_paths/block_6_dfir_memory_disk/26_mobile_device_forensics.md) |
+| **19.1 PE 結構、區段屬性與雜湊特徵** | 🔴 L3 | 🔬 Specialization | 解析 DOS MZ 標頭、PE 區段表，以 Shannon 資訊熵辨識加殼 | [📘 19.1 實戰手冊](playbooks/phase_5_deep_dfir/track_e_reverse_mobile/19.1_pe_structure_entropy_packer_analysis.md) |
+| **19.2 程式碼混淆還原與字串解密** | 🔴 L3 | 🔬 Specialization | 使用 FLOSS / x64dbg 提取經 XOR / 混淆之 C2 域名與字串 | [📘 19.2 實戰手冊](playbooks/phase_5_deep_dfir/track_e_reverse_mobile/19.2_code_deobfuscation_string_decryption.md) |
+| **19.3 文件型惡意巨集與內嵌物件萃取** | 🔴 L3 | 🔬 Specialization | 靜態萃取 Office 文件中的 AutoOpen / Shellcode 載荷 | [📘 19.3 實戰手冊](playbooks/phase_5_deep_dfir/track_e_reverse_mobile/19.3_malicious_office_macro_ole_extraction.md) |
+| **25.1 Linux 核心模組 Rootkit 與隱蔽技術**| 🔴 L3 | 🚀 Advanced | 偵測 LKM Syscall Hooking 與斷鏈繞過 `lsmod` 之隱藏模組 | [📘 25.1 實戰手冊](playbooks/phase_5_deep_dfir/track_e_reverse_mobile/25.1_linux_kernel_lkm_rootkit_forensics.md) |
+| **25.2 用戶態動態庫劫持與防禦 (LD_PRELOAD)**| 🔴 L3 | 🚀 Advanced | 排查 `/etc/ld.so.preload` 劫持 `readdir()` 之用戶態後門 | [📘 25.2 實戰手冊](playbooks/phase_5_deep_dfir/track_e_reverse_mobile/25.2_user_space_shared_library_preload_hijacking.md) |
+| **25.3 雲原生 eBPF 核心級威脅偵測 (Falco)**| 🔴 L3 | 🚀 Advanced | 編寫 Falco 規則，在核心層攔截敏感檔案讀取與越權呼叫 | [📘 25.3 實戰手冊](playbooks/phase_5_deep_dfir/track_e_reverse_mobile/25.3_cloud_native_ebpf_threat_detection_falco.md) |
+| **25.4 Linux 記憶體採集與符號表還原 (LiME)**| 🔴 L3 | 🚀 Advanced | 編譯 LiME 核心模組採集實體 RAM 映像並產出 ISF 符號表 | [📘 25.4 實戰手冊](playbooks/phase_5_deep_dfir/track_e_reverse_mobile/25.4_linux_memory_acquisition_lime_volatility.md) |
+| **26.1 Android APK 惡意行為與靜態解包** | 🔴 L3 | 🚀 Advanced | 使用 JADX 反編譯 `classes.dex`，審查危險廣播與權限 | [📘 26.1 實戰手冊](playbooks/phase_5_deep_dfir/track_e_reverse_mobile/26.1_android_apk_malware_static_decompilation.md) |
+| **26.2 Android 系統執行時日誌與暫存提取**| 🔴 L3 | 🚀 Advanced | 解析通訊軟體 SQLite 資料庫快取與未加密敏感資料 | [📘 26.2 實戰手冊](playbooks/phase_5_deep_dfir/track_e_reverse_mobile/26.2_android_runtime_logs_sqlite_forensics.md) |
+| **26.3 iOS 備份檔案與鑰匙圈取證分析** | 🔴 L3 | 🚀 Advanced | 提取並解析 iTunes 加密備份中的 Keychain 敏感憑證 | [📘 26.3 實戰手冊](playbooks/phase_5_deep_dfir/track_e_reverse_mobile/26.3_ios_backup_forensics_keychain_extraction.md) |
 
 ---
 
