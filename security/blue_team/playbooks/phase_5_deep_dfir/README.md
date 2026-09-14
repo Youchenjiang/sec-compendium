@@ -9,6 +9,6 @@
 
 ---
 
-### 📑 實戰手冊目錄
 - [23.1_volatility_hidden_process_dkom.md](23.1_volatility_hidden_process_dkom.md)：隱藏進程與 DKOM 斷鏈破譯 (Volatility 3 / EPROCESS ActiveProcessLinks)
+- [23.2_vad_tree_code_injection_malfind.md](23.2_vad_tree_code_injection_malfind.md)：VAD 樹與記憶體程式碼注入分析 (Virtual Address Descriptors & Code Injection)
 

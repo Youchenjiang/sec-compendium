@@ -297,7 +297,7 @@ graph TD
 | 技術點編號與名稱 | 難度 | 核心定位 (Track) | 學習目標與驗收指標 | 對應深度指南 |
 | :--- | :---: | :---: | :--- | :--- |
 | **23.1 隱藏進程與 DKOM 斷鏈破譯 (Volatility)**| 🟡 L2 | 🔬 Specialization | 比對 `pslist` 與 `psscan` 差異找出遭斷鏈隱藏之惡意進程 | [📘 23.1 實戰手冊](playbooks/phase_5_deep_dfir/23.1_volatility_hidden_process_dkom.md) |
-| **23.2 代碼注入與 VAD 記憶體屬性排查** | 🟡 L2 | 🔬 Specialization | 使用 `malfind` 找出 PAGE_EXECUTE_READWRITE 注入段與 MZ 頭 | [領域 23 手冊](learning_paths/block_6_dfir_memory_disk/23_memory_forensics.md) |
+| **23.2 代碼注入與 VAD 記憶體屬性排查** | 🟡 L2 | 🔬 Specialization | 使用 `malfind` 找出 PAGE_EXECUTE_READWRITE 注入段與 MZ 頭 | [📘 23.2 實戰手冊](playbooks/phase_5_deep_dfir/23.2_vad_tree_code_injection_malfind.md) |
 | **23.3 核心網路連線還原與二進位導出** | 🟡 L2 | 🔬 Specialization | 以 `netscan` 還原已斷線 Socket，並導出內存可執行檔 | [領域 23 手冊](learning_paths/block_6_dfir_memory_disk/23_memory_forensics.md) |
 | **23.4 記憶體憑證抓取與暫存區取證** | 🟡 L2 | 🔬 Specialization | 從 `lsass.exe` 記憶體導出 NTLM Hash 並排查剪貼簿暫存 | [領域 23 手冊](learning_paths/block_6_dfir_memory_disk/23_memory_forensics.md) |
 | **24.1 NTFS 主檔案表與時間戳偽造 ($MFT)**| 🟡 L2 | 🔬 Specialization | 比對 `$SI` 與 `$FN` 時間戳，識破 Timestomping 惡意竄改 | [領域 24 手冊](learning_paths/block_6_dfir_memory_disk/24_disk_filesystem_forensics.md) |
