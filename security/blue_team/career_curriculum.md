@@ -254,6 +254,8 @@ graph TD
 | **31.2 個資外洩通報時限與損害賠償上限** | 🟢 L1 | 🔬 Specialization | 掌握個資外洩之法定通知程序與重大違規最高罰則上限 | [📘 31.2 實戰手冊](playbooks/phase_4_hunting_ir/31.2_data_breach_notification_damage_caps.md) |
 | **31.3 國際資安管理與網路安全框架 (ISO/NIST)**| 🟢 L1 | 🔬 Specialization | 熟悉 ISO 27001:2022 四大控制項與 NIST CSF 2.0 六大核心 | [📘 31.3 實戰手冊](playbooks/phase_4_hunting_ir/31.3_international_cybersecurity_frameworks_iso_nist.md) |
 
+)
+
 ---
 
 ## 🔬 Phase 5: Deep DFIR & Domain Specialization (深度取證與專精分流)
