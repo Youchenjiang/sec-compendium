@@ -93,7 +93,15 @@
 - [24.4_vss_volume_shadow_copy_forensics.md](phase_5_deep_dfir/track_a_memory_disk/24.4_vss_volume_shadow_copy_forensics.md)：系統更新日誌與陰影複製取證 (Volume Shadow Copy Forensics & Event Log Recovery)
 
 #### 🏰 Track B: AD 網域攻防與身分治理專精
-- 規劃建置中：`12.1` ~ `12.5` (Kerberos / DCSync / BloodHound) 與 `13.1` ~ `13.3` (IAM / MFA / PRT)
+- [12.1_kerberos_preauth_asrep_roasting.md](phase_5_deep_dfir/track_b_active_directory/12.1_kerberos_preauth_asrep_roasting.md)：Kerberos 預驗證弱點與 AS-REP Roasting 攻防 (Kerberos Pre-Auth & AS-REP Roasting)
+- [12.2_spn_kerberoasting_detection.md](phase_5_deep_dfir/track_b_active_directory/12.2_spn_kerberoasting_detection.md)：SPN 服務票據請求與 Kerberoasting 偵測 (SPN Tickets & Kerberoasting Detection)
+- [12.3_golden_silver_ticket_forgery.md](phase_5_deep_dfir/track_b_active_directory/12.3_golden_silver_ticket_forgery.md)：偽造票據攻擊與全域特權維持 (Golden & Silver Ticket Forgery Detection)
+- [12.4_dcsync_ntds_credential_dumping.md](phase_5_deep_dfir/track_b_active_directory/12.4_dcsync_ntds_credential_dumping.md)：目錄複寫服務特權與 DCSync 憑證傾印偵測 (DCSync & NTDS.dit Credential Extraction)
+- [12.5_bloodhound_acl_attack_paths.md](phase_5_deep_dfir/track_b_active_directory/12.5_bloodhound_acl_attack_paths.md)：AD 物件權限濫用與 BloodHound 攻擊路徑阻斷 (BloodHound ACL Attack Paths & Remediation)
+- [13.1_oauth2_saml_token_abuse.md](phase_5_deep_dfir/track_b_active_directory/13.1_oauth2_saml_token_abuse.md)：雲端與現代身分驗證協定濫用 (OAuth 2.0 & SAML Token Abuse)
+- [13.2_mfa_fatigue_bypass_defense.md](phase_5_deep_dfir/track_b_active_directory/13.2_mfa_fatigue_bypass_defense.md)：多因素驗證疲勞轟炸與即時中間人釣魚防禦 (MFA Fatigue & AiTM Phishing Defense)
+- [13.3_service_account_prt_abuse.md](phase_5_deep_dfir/track_b_active_directory/13.3_service_account_prt_abuse.md)：服務帳號權限濫用與 Azure AD PRT 權杖劫持防護 (Service Account & Primary Refresh Token Abuse)
+
 
 ### 👑 [phase_6_capstone/](phase_6_capstone/) —— 紫隊全真演練與畢業門檻
 *(即將依修課時序編撰)*
