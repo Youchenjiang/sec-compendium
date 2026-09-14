@@ -16,4 +16,5 @@
 - [24.1_ntfs_mft_timestomping_analysis.md](24.1_ntfs_mft_timestomping_analysis.md)：NTFS 主檔案表與時間戳偽造 ($MFT & Timestomping Analysis)
 - [24.2_windows_execution_prefetch_amcache.md](24.2_windows_execution_prefetch_amcache.md)：程式執行三大鐵證深度鑑識 (Prefetch, ShimCache & Amcache)
 - [24.3_userassist_shellbags_registry_forensics.md](24.3_userassist_shellbags_registry_forensics.md)：使用者活動軌跡與登錄檔鑑識 (UserAssist, ShellBags & Registry Forensics)
+- [24.4_vss_volume_shadow_copy_forensics.md](24.4_vss_volume_shadow_copy_forensics.md)：系統更新日誌與陰影複製取證 (Volume Shadow Copy Forensics & Event Log Recovery)
 
