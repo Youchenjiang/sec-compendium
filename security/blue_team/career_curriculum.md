@@ -237,17 +237,17 @@ graph TD
 
 | 技術點編號與名稱 | 難度 | 核心定位 (Track) | 學習目標與驗收指標 | 對應深度指南 |
 | :--- | :---: | :---: | :--- | :--- |
-| **10.3 誘餌文件與巨集程式碼萃取** | 🟢 L1 | 🔬 Specialization | 使用 `oledump.py` 萃取 Office 文件惡意 VBA 巨集代碼 | [領域 10 手冊](learning_paths/block_2_protocols_crypto_app/10_email_phishing_defense.md) |
-| **18.2 合法程式白利用 (LOLBAS) 特徵識別** | 🔴 L3 | **🎯 Core 核心必修** | 獵捕 `certutil`, `mshta`, `regsvr32` 被濫用之下載與無檔案執行 | [領域 18 手冊](learning_paths/block_5_threat_hunting_triage/18_threat_hunting_sysmon.md) |
-| **18.3 系統持久化與排程任務建立審查** | 🔴 L3 | **🎯 Core 核心必修** | 審查登錄檔 RunKey、自啟動資料夾與 Task Scheduler 異常排程 | [領域 18 手冊](learning_paths/block_5_threat_hunting_triage/18_threat_hunting_sysmon.md) |
-| **18.4 處理程序代碼注入與遠端執行緒監控**| 🔴 L3 | 🔬 Specialization | 監控 `CreateRemoteThread` 獵捕 Process Hollowing 注入行為 | [領域 18 手冊](learning_paths/block_5_threat_hunting_triage/18_threat_hunting_sysmon.md) |
-| **20.2 加密 WebShell 流量辨析與日誌還原**| 🔴 L3 | 🔬 Specialization | 辨識冰蠍 (Behinder) 與哥斯拉 (Godzilla) 密碼學流量握手特徵 | [領域 20 手冊](learning_paths/block_5_threat_hunting_triage/20_web_fileless_defense.md) |
-| **21.2 攻擊者基礎設施拓撲關聯追蹤** | 🔴 L3 | 🔬 Specialization | 使用 Passive DNS 歷史解析與 JARM SSL 指紋拓撲溯源 | [領域 21 手冊](learning_paths/block_5_threat_hunting_triage/21_cyber_threat_intelligence.md) |
-| **21.3 APT 組織特徵畫像與獵捕假說建立** | 🔴 L3 | 🔬 Specialization | 依據威脅情資建立假說 (Hunting Hypothesis)，主動清查內網 | [領域 21 手冊](learning_paths/block_5_threat_hunting_triage/21_cyber_threat_intelligence.md) |
-| **29.1 數位證據監管鏈與 ISO/IEC 27037** | 🟢 L1 | 🔬 Specialization | 掌握鑑識人員在法庭上的監管鏈 (Chain of Custody) 簽署要件 | [領域 29 手冊](learning_paths/block_8_grc_standards_custody/29_digital_evidence_chain_of_custody.md) |
-| **29.2 資安事件通報時限與 RFC 3227 揮發次序**| 🟢 L1 | **🎯 Core 核心必修** | 默背數據揮發性次序 (RAM 優先) 與嚴禁直接拔除電源原則 | [領域 29 手冊](learning_paths/block_8_grc_standards_custody/29_digital_evidence_chain_of_custody.md) |
-| **29.3 證據真偽性與鑑識複製完整性驗證** | 🟢 L1 | 🔬 Specialization | 使用防寫設備 (Write Blocker) 與雙雜湊 (MD5+SHA256) 驗證 | [領域 29 手冊](learning_paths/block_8_grc_standards_custody/29_digital_evidence_chain_of_custody.md) |
-| **30.1 《資通安全管理法》體系與權利義務**| 🟢 L1 | **🎯 Core 核心必修** | 掌握公務與特定非公務機關之資安維護計畫與稽核法定職責 | [領域 30 手冊](learning_paths/block_8_grc_standards_custody/30_cyber_security_management_act.md) |
+| **10.3 誘餌文件與巨集程式碼萃取** | 🟢 L1 | 🔬 Specialization | 使用 `oledump.py` 萃取 Office 文件惡意 VBA 巨集代碼 | [📘 10.3 實戰手冊](playbooks/phase_4_hunting_ir/10.3_phishing_macro_extraction.md) |
+| **18.2 合法程式白利用 (LOLBAS) 特徵識別** | 🔴 L3 | **🎯 Core 核心必修** | 獵捕 `certutil`, `mshta`, `regsvr32` 被濫用之下載與無檔案執行 | [📘 18.2 實戰手冊](playbooks/phase_4_hunting_ir/18.2_lolbas_living_off_the_land.md) |
+| **18.3 系統持久化與排程任務建立審查** | 🔴 L3 | **🎯 Core 核心必修** | 審查登錄檔 RunKey、自啟動資料夾與 Task Scheduler 異常排程 | [📘 18.3 實戰手冊](playbooks/phase_4_hunting_ir/18.3_system_persistence_scheduled_tasks.md) |
+| **18.4 處理程序代碼注入與遠端執行緒監控**| 🔴 L3 | 🔬 Specialization | 監控 `CreateRemoteThread` 獵捕 Process Hollowing 注入行為 | [📘 18.4 實戰手冊](playbooks/phase_4_hunting_ir/18.4_process_injection_remote_thread.md) |
+| **20.2 加密 WebShell 流量辨析與日誌還原**| 🔴 L3 | 🔬 Specialization | 辨識冰蠍 (Behinder) 與哥斯拉 (Godzilla) 密碼學流量握手特徵 | [📘 20.2 實戰手冊](playbooks/phase_4_hunting_ir/20.2_encrypted_webshell_behinder_godzilla.md) |
+| **21.2 攻擊者基礎設施拓撲關聯追蹤** | 🔴 L3 | 🔬 Specialization | 使用 Passive DNS 歷史解析與 JARM SSL 指紋拓撲溯源 | [📘 21.2 實戰手冊](playbooks/phase_4_hunting_ir/21.2_infrastructure_topology_tracking.md) |
+| **21.3 APT 組織特徵畫像與獵捕假說建立** | 🔴 L3 | 🔬 Specialization | 依據威脅情資建立假說 (Hunting Hypothesis)，主動清查內網 | [📘 21.3 實戰手冊](playbooks/phase_4_hunting_ir/21.3_apt_profiling_hunting_hypothesis.md) |
+| **29.1 數位證據監管鏈與 ISO/IEC 27037** | 🟢 L1 | 🔬 Specialization | 掌握鑑識人員在法庭上的監管鏈 (Chain of Custody) 簽署要件 | [📘 29.1 實戰手冊](playbooks/phase_4_hunting_ir/29.1_chain_of_custody_iso_27037.md) |
+| **29.2 資安事件通報時限與 RFC 3227 揮發次序**| 🟢 L1 | **🎯 Core 核心必修** | 默背數據揮發性次序 (RAM 優先) 與嚴禁直接拔除電源原則 | [📘 29.2 實戰手冊](playbooks/phase_4_hunting_ir/29.2_rfc_3227_order_of_volatility.md) |
+| **29.3 證據真偽性與鑑識複製完整性驗證** | 🟢 L1 | 🔬 Specialization | 使用防寫設備 (Write Blocker) 與雙雜湊 (MD5+SHA256) 驗證 | [📘 29.3 實戰手冊](playbooks/phase_4_hunting_ir/29.3_forensic_imaging_integrity.md) |
+| **30.1 《資通安全管理法》體系與權利義務**| 🟢 L1 | **🎯 Core 核心必修** | 掌握公務與特定非公務機關之資安維護計畫與稽核法定職責 | [📘 30.1 實戰手冊](playbooks/phase_4_hunting_ir/30.1_cybersecurity_management_act.md) |
 | **30.2 資通安全責任等級分級辦法 (A~E 級)**| 🟢 L1 | **🎯 Core 核心必修** | 秒記 A/B/C/D 級專職人員配置 (A級4人/B級2人) 與受訓時數要求 | [領域 30 手冊](learning_paths/block_8_grc_standards_custody/30_cyber_security_management_act.md) |
 | **30.3 資通安全事件通報及應變辦法 (1小時)**| 🟢 L1 | **🎯 Core 核心必修** | 熟記「知悉事件後 1 小時內通報」與「3/4級事件 36小時內復原」| [領域 30 手冊](learning_paths/block_8_grc_standards_custody/30_cyber_security_management_act.md) |
 | **31.1 《個人資料保護法》特種個資定義** | 🟢 L1 | 🔬 Specialization | 默背六大特種個資（病歷、醫療、基因、性生活、健檢、犯罪）| [領域 31 手冊](learning_paths/block_8_grc_standards_custody/31_personal_data_protection_frameworks.md) |
@@ -296,7 +296,7 @@ graph TD
 
 | 技術點編號與名稱 | 難度 | 核心定位 (Track) | 學習目標與驗收指標 | 對應深度指南 |
 | :--- | :---: | :---: | :--- | :--- |
-| **23.1 隱藏進程與 DKOM 斷鏈破譯 (Volatility)**| 🟡 L2 | 🔬 Specialization | 比對 `pslist` 與 `psscan` 差異找出遭斷鏈隱藏之惡意進程 | [領域 23 手冊](learning_paths/block_6_dfir_memory_disk/23_memory_forensics.md) |
+| **23.1 隱藏進程與 DKOM 斷鏈破譯 (Volatility)**| 🟡 L2 | 🔬 Specialization | 比對 `pslist` 與 `psscan` 差異找出遭斷鏈隱藏之惡意進程 | [📘 23.1 實戰手冊](playbooks/phase_5_deep_dfir/23.1_volatility_hidden_process_dkom.md) |
 | **23.2 代碼注入與 VAD 記憶體屬性排查** | 🟡 L2 | 🔬 Specialization | 使用 `malfind` 找出 PAGE_EXECUTE_READWRITE 注入段與 MZ 頭 | [領域 23 手冊](learning_paths/block_6_dfir_memory_disk/23_memory_forensics.md) |
 | **23.3 核心網路連線還原與二進位導出** | 🟡 L2 | 🔬 Specialization | 以 `netscan` 還原已斷線 Socket，並導出內存可執行檔 | [領域 23 手冊](learning_paths/block_6_dfir_memory_disk/23_memory_forensics.md) |
 | **23.4 記憶體憑證抓取與暫存區取證** | 🟡 L2 | 🔬 Specialization | 從 `lsass.exe` 記憶體導出 NTLM Hash 並排查剪貼簿暫存 | [領域 23 手冊](learning_paths/block_6_dfir_memory_disk/23_memory_forensics.md) |

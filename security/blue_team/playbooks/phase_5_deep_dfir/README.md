@@ -6,3 +6,9 @@
 - 記憶體鑑識路徑：[block_6_dfir_memory_disk/23_memory_forensics.md](../../learning_paths/block_6_dfir_memory_disk/23_memory_forensics.md)
 - 磁碟鑑識路徑：[block_6_dfir_memory_disk/24_disk_filesystem_forensics.md](../../learning_paths/block_6_dfir_memory_disk/24_disk_filesystem_forensics.md)
 - 撰寫標準規範：[PLAYBOOK_SPECIFICATION_AND_TEMPLATE.md](../PLAYBOOK_SPECIFICATION_AND_TEMPLATE.md)
+
+---
+
+### 📑 實戰手冊目錄
+- [23.1_volatility_hidden_process_dkom.md](23.1_volatility_hidden_process_dkom.md)：隱藏進程與 DKOM 斷鏈破譯 (Volatility 3 / EPROCESS ActiveProcessLinks)
+
