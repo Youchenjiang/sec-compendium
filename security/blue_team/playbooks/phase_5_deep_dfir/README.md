@@ -14,4 +14,5 @@
 - [23.3_memory_netscan_binary_dump.md](23.3_memory_netscan_binary_dump.md)：核心網路連線還原與二進位導出 (Memory Netscan & Binary Dump)
 - [23.4_lsass_memory_credential_extraction.md](23.4_lsass_memory_credential_extraction.md)：記憶體憑證抓取與暫存區取證 (LSASS Memory Credential Extraction & Clipboard Forensics)
 - [24.1_ntfs_mft_timestomping_analysis.md](24.1_ntfs_mft_timestomping_analysis.md)：NTFS 主檔案表與時間戳偽造 ($MFT & Timestomping Analysis)
+- [24.2_windows_execution_prefetch_amcache.md](24.2_windows_execution_prefetch_amcache.md)：程式執行三大鐵證深度鑑識 (Prefetch, ShimCache & Amcache)
 

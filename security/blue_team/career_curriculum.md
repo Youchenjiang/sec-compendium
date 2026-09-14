@@ -301,7 +301,7 @@ graph TD
 | **23.3 核心網路連線還原與二進位導出** | 🟡 L2 | 🔬 Specialization | 以 `netscan` 還原已斷線 Socket，並導出內存可執行檔 | [📘 23.3 實戰手冊](playbooks/phase_5_deep_dfir/23.3_memory_netscan_binary_dump.md) |
 | **23.4 記憶體憑證抓取與暫存區取證** | 🟡 L2 | 🔬 Specialization | 從 `lsass.exe` 記憶體導出 NTLM Hash 並排查剪貼簿暫存 | [📘 23.4 實戰手冊](playbooks/phase_5_deep_dfir/23.4_lsass_memory_credential_extraction.md) |
 | **24.1 NTFS 主檔案表與時間戳偽造 ($MFT)**| 🟡 L2 | 🔬 Specialization | 比對 `$SI` 與 `$FN` 時間戳，識破 Timestomping 惡意竄改 | [📘 24.1 實戰手冊](playbooks/phase_5_deep_dfir/24.1_ntfs_mft_timestomping_analysis.md) |
-| **24.2 程式執行三大鐵證深度鑑識 (Prefetch)**| 🟡 L2 | **🎯 Core 核心必修** | 使用 PECmd 解析 Prefetch 執行次數、時間戳與載入 DLL | [領域 24 手冊](learning_paths/block_6_dfir_memory_disk/24_disk_filesystem_forensics.md) |
+| **24.2 程式執行三大鐵證深度鑑識 (Prefetch)**| 🟡 L2 | **🎯 Core 核心必修** | 使用 PECmd 解析 Prefetch 執行次數、時間戳與載入 DLL | [📘 24.2 實戰手冊](playbooks/phase_5_deep_dfir/24.2_windows_execution_prefetch_amcache.md) |
 | **24.3 使用者活動軌跡與登錄檔鑑識 (RunKey)**| 🟡 L2 | 🔬 Specialization | 解析 USBSTOR, Shellbags 與 UserAssist 還原使用者軌跡 | [領域 24 手冊](learning_paths/block_6_dfir_memory_disk/24_disk_filesystem_forensics.md) |
 | **24.4 系統更新日誌與陰影複製取證 (VSS)**| 🟡 L2 | 🔬 Specialization | 掛載 Volume Shadow Copy 提取被刪除檔案之歷史副本 | [領域 24 手冊](learning_paths/block_6_dfir_memory_disk/24_disk_filesystem_forensics.md) |
 
