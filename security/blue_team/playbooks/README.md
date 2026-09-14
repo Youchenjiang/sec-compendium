@@ -82,7 +82,18 @@
 - [30.1_cybersecurity_management_act.md](phase_4_hunting_ir/30.1_cybersecurity_management_act.md)：《資通安全管理法》體系與應變通報 (Taiwan Cyber Security Management Act & Incident Response)
 
 ### 🔬 [phase_5_deep_dfir/](phase_5_deep_dfir/) —— 深度取證與專精分流
-- [23.1_volatility_hidden_process_dkom.md](phase_5_deep_dfir/23.1_volatility_hidden_process_dkom.md)：隱藏進程與 DKOM 斷鏈破譯 (Volatility 3 / EPROCESS ActiveProcessLinks)
+#### 💾 Track A: 記憶體與磁碟數位鑑識專精
+- [23.1_volatility_hidden_process_dkom.md](phase_5_deep_dfir/track_a_memory_disk/23.1_volatility_hidden_process_dkom.md)：隱藏進程與 DKOM 斷鏈破譯 (Volatility 3 / EPROCESS ActiveProcessLinks)
+- [23.2_vad_tree_code_injection_malfind.md](phase_5_deep_dfir/track_a_memory_disk/23.2_vad_tree_code_injection_malfind.md)：VAD 樹與記憶體程式碼注入分析 (Virtual Address Descriptors & Code Injection)
+- [23.3_memory_netscan_binary_dump.md](phase_5_deep_dfir/track_a_memory_disk/23.3_memory_netscan_binary_dump.md)：核心網路連線還原與二進位導出 (Memory Netscan & Binary Dump)
+- [23.4_lsass_memory_credential_extraction.md](phase_5_deep_dfir/track_a_memory_disk/23.4_lsass_memory_credential_extraction.md)：記憶體憑證抓取與暫存區取證 (LSASS Memory Credential Extraction & Clipboard Forensics)
+- [24.1_ntfs_mft_timestomping_analysis.md](phase_5_deep_dfir/track_a_memory_disk/24.1_ntfs_mft_timestomping_analysis.md)：NTFS 主檔案表與時間戳偽造 ($MFT & Timestomping Analysis)
+- [24.2_windows_execution_prefetch_amcache.md](phase_5_deep_dfir/track_a_memory_disk/24.2_windows_execution_prefetch_amcache.md)：程式執行三大鐵證深度鑑識 (Prefetch, ShimCache & Amcache)
+- [24.3_userassist_shellbags_registry_forensics.md](phase_5_deep_dfir/track_a_memory_disk/24.3_userassist_shellbags_registry_forensics.md)：使用者活動軌跡與登錄檔鑑識 (UserAssist, ShellBags & Registry Forensics)
+- [24.4_vss_volume_shadow_copy_forensics.md](phase_5_deep_dfir/track_a_memory_disk/24.4_vss_volume_shadow_copy_forensics.md)：系統更新日誌與陰影複製取證 (Volume Shadow Copy Forensics & Event Log Recovery)
+
+#### 🏰 Track B: AD 網域攻防與身分治理專精
+- 規劃建置中：`12.1` ~ `12.5` (Kerberos / DCSync / BloodHound) 與 `13.1` ~ `13.3` (IAM / MFA / PRT)
 
 ### 👑 [phase_6_capstone/](phase_6_capstone/) —— 紫隊全真演練與畢業門檻
 *(即將依修課時序編撰)*

@@ -1,0 +1,157 @@
+#!/usr/bin/env python3
+"""
+validate_playbooks.py - 藍隊原子實戰手冊庫自動化品質稽核工具
+功能：
+1. 檢驗全庫所有 Playbook 的 Markdown 程式碼圍欄 (```) 是否 100% 閉合。
+2. 檢驗手冊行數與基礎篇幅。
+3. 檢驗七大黃金規格關鍵字（案發現場破題、第一動~第五動、靶場實戰、過關驗收）。
+4. 檢驗本地超連結有效性 (Broken Links 檢測)。
+5. 統計各階段已完成篇數與程式碼行數。
+"""
+
+import os
+import re
+import sys
+import glob
+
+BASE_DIR = os.path.normpath(os.path.join(os.path.dirname(__file__), ".."))
+PLAYBOOKS_DIR = os.path.join(BASE_DIR, "blue_team", "playbooks")
+
+PHASES = [
+    "phase_0_foundation",
+    "phase_1_visibility",
+    "phase_2_soc_triage",
+    "phase_3_detection_eng",
+    "phase_4_hunting_ir",
+    "phase_5_deep_dfir",
+    "phase_6_capstone"
+]
+
+GOLDEN_KEYWORDS = [
+    "案發現場破題",
+    "第一動",
+    "第二動",
+    "第三動",
+    "第四動",
+    "第五動",
+    "靶場實戰",
+    "過關驗收"
+]
+
+def check_playbook_file(fpath):
+    issues = []
+    with open(fpath, "r", encoding="utf-8", errors="ignore") as f:
+        lines = f.readlines()
+        content = "".join(lines)
+
+    # 1. 圍欄閉合檢查
+    in_code = False
+    fence_count = 0
+    for i, line in enumerate(lines):
+        s = line.strip()
+        if s.startswith("```"):
+            in_code = not in_code
+            fence_count += 1
+    if in_code:
+        issues.append("代碼圍欄未閉合 (Unbalanced code fences)")
+
+    # 2. 行數檢查
+    if len(lines) < 200:
+        issues.append(f"行數過少 ({len(lines)} 行, 建議 >= 350 行)")
+
+    # 3. 七大規格關鍵字檢查
+    missing_kw = []
+    for kw in GOLDEN_KEYWORDS:
+        if kw not in content:
+            missing_kw.append(kw)
+    if missing_kw:
+        issues.append(f"缺少黃金規格章節: {', '.join(missing_kw)}")
+
+    return len(lines), fence_count, issues
+
+def check_broken_links():
+    md_files = glob.glob(os.path.join(BASE_DIR, "**/*.md"), recursive=True)
+    broken = []
+    for fpath in md_files:
+        with open(fpath, "r", encoding="utf-8", errors="ignore") as f:
+            content = f.read()
+        links = re.findall(r'\[([^\]]+)\]\(([^)]+)\)', content)
+        for text, link in links:
+            if link.startswith("http://") or link.startswith("https://") or link.startswith("#") or link.startswith("mailto:"):
+                continue
+            target_path = link.split("#")[0]
+            if not target_path:
+                continue
+            abs_target = os.path.normpath(os.path.join(os.path.dirname(fpath), target_path))
+            if not os.path.exists(abs_target):
+                rel_source = os.path.relpath(fpath, BASE_DIR)
+                broken.append((rel_source, link))
+    return broken
+
+def main():
+    print("=" * 75)
+    print("🛡️  藍隊原子實戰手冊庫自動化品質稽核 (Playbooks Automated Validator)")
+    print("=" * 75)
+
+    total_playbooks = 0
+    total_lines = 0
+    phase_stats = {}
+
+    all_passed = True
+
+    for phase in PHASES:
+        pdir = os.path.join(PLAYBOOKS_DIR, phase)
+        if not os.path.exists(pdir):
+            continue
+        # 支援子目錄遞迴掃描 (例如 phase_5_deep_dfir/track_a_memory_disk/*.md)
+        files = sorted(glob.glob(os.path.join(pdir, "**", "*.md"), recursive=True))
+        active_files = [f for f in files if not os.path.basename(f).lower() == "readme.md"]
+        phase_lines = 0
+        phase_issues = 0
+
+        print(f"\n📂 檢驗階段：{phase} (共 {len(active_files)} 篇實戰手冊)")
+        for f in active_files:
+            bname = os.path.basename(f)
+            lines_cnt, fences, issues = check_playbook_file(f)
+            phase_lines += lines_cnt
+            total_lines += lines_cnt
+            total_playbooks += 1
+
+            if issues:
+                all_passed = False
+                phase_issues += 1
+                print(f"  ⚠️ [{bname}] ({lines_cnt} 行) -> {'; '.join(issues)}")
+            else:
+                print(f"  ✅ [{bname:<48}] ({lines_cnt:>4} 行 | {fences:>2} 圍欄)")
+
+        phase_stats[phase] = (len(active_files), phase_lines)
+
+    print("\n" + "=" * 75)
+    print("🔗 全庫超連結完整性檢查 (Link Integrity Audit)")
+    print("=" * 75)
+    broken_links = check_broken_links()
+    if broken_links:
+        all_passed = False
+        print(f"❌ 發現 {len(broken_links)} 處死鏈 (Broken Links):")
+        for src, lnk in broken_links:
+            print(f"   來源: {src} -> 目標: {lnk}")
+    else:
+        print("✅ 全庫所有內部超連結 100% 暢通，無任何死鏈！")
+
+    print("\n" + "=" * 75)
+    print("📊 稽核總結報告")
+    print("=" * 75)
+    for p, (cnt, lcnt) in phase_stats.items():
+        print(f" - {p:<25}: {cnt:>2} 篇 | 累計 {lcnt:>5} 行")
+    print("-" * 75)
+    print(f"手冊總數: {total_playbooks} 篇 | 程式碼總行數: {total_lines} 行")
+
+    if all_passed:
+        print("\n🎉 驗收結果：【ALL PASSED】所有手冊與連結完全符合品質基準線！")
+        sys.exit(0)
+    else:
+        print("\n⚠️ 驗收結果：【ATTENTION】部分項目未達標，請檢閱上方警示進行優化。")
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()
