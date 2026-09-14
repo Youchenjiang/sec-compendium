@@ -244,15 +244,15 @@ graph TD
 | **20.2 加密 WebShell 流量辨析與日誌還原**| 🔴 L3 | 🔬 Specialization | 辨識冰蠍 (Behinder) 與哥斯拉 (Godzilla) 密碼學流量握手特徵 | [📘 20.2 實戰手冊](playbooks/phase_4_hunting_ir/20.2_encrypted_webshell_behinder_godzilla.md) |
 | **21.2 攻擊者基礎設施拓撲關聯追蹤** | 🔴 L3 | 🔬 Specialization | 使用 Passive DNS 歷史解析與 JARM SSL 指紋拓撲溯源 | [📘 21.2 實戰手冊](playbooks/phase_4_hunting_ir/21.2_infrastructure_topology_tracking.md) |
 | **21.3 APT 組織特徵畫像與獵捕假說建立** | 🔴 L3 | 🔬 Specialization | 依據威脅情資建立假說 (Hunting Hypothesis)，主動清查內網 | [📘 21.3 實戰手冊](playbooks/phase_4_hunting_ir/21.3_apt_profiling_hunting_hypothesis.md) |
-| **29.1 數位證據監管鏈與 ISO/IEC 27037** | 🟢 L1 | 🔬 Specialization | 掌握鑑識人員在法庭上的監管鏈 (Chain of Custody) 簽署要件 | [領域 29 手冊](learning_paths/block_8_grc_standards_custody/29_digital_evidence_chain_of_custody.md) |
-| **29.2 資安事件通報時限與 RFC 3227 揮發次序**| 🟢 L1 | **🎯 Core 核心必修** | 默背數據揮發性次序 (RAM 優先) 與嚴禁直接拔除電源原則 | [領域 29 手冊](learning_paths/block_8_grc_standards_custody/29_digital_evidence_chain_of_custody.md) |
-| **29.3 證據真偽性與鑑識複製完整性驗證** | 🟢 L1 | 🔬 Specialization | 使用防寫設備 (Write Blocker) 與雙雜湊 (MD5+SHA256) 驗證 | [領域 29 手冊](learning_paths/block_8_grc_standards_custody/29_digital_evidence_chain_of_custody.md) |
-| **30.1 《資通安全管理法》體系與權利義務**| 🟢 L1 | **🎯 Core 核心必修** | 掌握公務與特定非公務機關之資安維護計畫與稽核法定職責 | [領域 30 手冊](learning_paths/block_8_grc_standards_custody/30_cyber_security_management_act.md) |
-| **30.2 資通安全責任等級分級辦法 (A~E 級)**| 🟢 L1 | **🎯 Core 核心必修** | 秒記 A/B/C/D 級專職人員配置 (A級4人/B級2人) 與受訓時數要求 | [領域 30 手冊](learning_paths/block_8_grc_standards_custody/30_cyber_security_management_act.md) |
-| **30.3 資通安全事件通報及應變辦法 (1小時)**| 🟢 L1 | **🎯 Core 核心必修** | 熟記「知悉事件後 1 小時內通報」與「3/4級事件 36小時內復原」| [領域 30 手冊](learning_paths/block_8_grc_standards_custody/30_cyber_security_management_act.md) |
-| **31.1 《個人資料保護法》特種個資定義** | 🟢 L1 | 🔬 Specialization | 默背六大特種個資（病歷、醫療、基因、性生活、健檢、犯罪）| [領域 31 手冊](learning_paths/block_8_grc_standards_custody/31_personal_data_protection_frameworks.md) |
-| **31.2 個資外洩通報時限與損害賠償上限** | 🟢 L1 | 🔬 Specialization | 掌握個資外洩之法定通知程序與重大違規最高罰則上限 | [領域 31 手冊](learning_paths/block_8_grc_standards_custody/31_personal_data_protection_frameworks.md) |
-| **31.3 國際資安管理與網路安全框架 (ISO/NIST)**| 🟢 L1 | 🔬 Specialization | 熟悉 ISO 27001:2022 四大控制項與 NIST CSF 2.0 六大核心 | [領域 31 手冊](learning_paths/block_8_grc_standards_custody/31_personal_data_protection_frameworks.md) |
+| **29.1 數位證據監管鏈與 ISO/IEC 27037** | 🟢 L1 | 🔬 Specialization | 掌握鑑識人員在法庭上的監管鏈 (Chain of Custody) 簽署要件 | [📘 29.1 實戰手冊](playbooks/phase_4_hunting_ir/29.1_chain_of_custody_iso_27037.md) |
+| **29.2 資安事件通報時限與 RFC 3227 揮發次序**| 🟢 L1 | **🎯 Core 核心必修** | 默背數據揮發性次序 (RAM 優先) 與嚴禁直接拔除電源原則 | [📘 29.2 實戰手冊](playbooks/phase_4_hunting_ir/29.2_rfc_3227_order_of_volatility.md) |
+| **29.3 證據真偽性與鑑識複製完整性驗證** | 🟢 L1 | 🔬 Specialization | 使用防寫設備 (Write Blocker) 與雙雜湊 (MD5+SHA256) 驗證 | [📘 29.3 實戰手冊](playbooks/phase_4_hunting_ir/29.3_forensic_imaging_integrity.md) |
+| **30.1 《資通安全管理法》體系與權利義務**| 🟢 L1 | **🎯 Core 核心必修** | 掌握公務與特定非公務機關之資安維護計畫與稽核法定職責 | [📘 30.1 實戰手冊](playbooks/phase_4_hunting_ir/30.1_cybersecurity_management_act.md) |
+| **30.2 資通安全責任等級分級辦法 (A~E 級)**| 🟢 L1 | **🎯 Core 核心必修** | 秒記 A/B/C/D 級專職人員配置 (A級4人/B級2人) 與受訓時數要求 | [📘 30.2 實戰手冊](playbooks/phase_4_hunting_ir/30.2_cybersecurity_responsibility_grading.md) |
+| **30.3 資通安全事件通報及應變辦法 (1小時)**| 🟢 L1 | **🎯 Core 核心必修** | 熟記「知悉事件後 1 小時內通報」與「3/4級事件 36小時內復原」| [📘 30.3 實戰手冊](playbooks/phase_4_hunting_ir/30.3_cybersecurity_incident_reporting_response.md) |
+| **31.1 《個人資料保護法》特種個資定義** | 🟢 L1 | 🔬 Specialization | 默背六大特種個資（病歷、醫療、基因、性生活、健檢、犯罪）| [📘 31.1 實戰手冊](playbooks/phase_4_hunting_ir/31.1_sensitive_personal_data_protection.md) |
+| **31.2 個資外洩通報時限與損害賠償上限** | 🟢 L1 | 🔬 Specialization | 掌握個資外洩之法定通知程序與重大違規最高罰則上限 | [📘 31.2 實戰手冊](playbooks/phase_4_hunting_ir/31.2_data_breach_notification_damage_caps.md) |
+| **31.3 國際資安管理與網路安全框架 (ISO/NIST)**| 🟢 L1 | 🔬 Specialization | 熟悉 ISO 27001:2022 四大控制項與 NIST CSF 2.0 六大核心 | [📘 31.3 實戰手冊](playbooks/phase_4_hunting_ir/31.3_international_cybersecurity_frameworks_iso_nist.md) |
 
 ---
 
