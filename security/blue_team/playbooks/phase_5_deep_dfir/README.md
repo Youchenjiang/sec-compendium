@@ -31,4 +31,18 @@
 - [13.2_mfa_fatigue_bypass_defense.md](track_b_active_directory/13.2_mfa_fatigue_bypass_defense.md)：多因素驗證疲勞轟炸與即時中間人釣魚防禦 (MFA Fatigue & AiTM Phishing Defense)
 - [13.3_service_account_prt_abuse.md](track_b_active_directory/13.3_service_account_prt_abuse.md)：服務帳號權限濫用與 Azure AD PRT 權杖劫持防護 (Service Account & Primary Refresh Token Abuse)
 
+#### ☁️ Track C: 雲原生、供應鏈與無檔案專精
+- [02.2_internal_network_microsegmentation.md](track_c_cloud_supplychain/02.2_internal_network_microsegmentation.md)：內部網路微隔離與 VLAN 存取控制 (Internal Network Microsegmentation)
+- [04.1_supply_chain_dependency_confusion.md](track_c_cloud_supplychain/04.1_supply_chain_dependency_confusion.md)：開源依賴投毒與相依性混淆防護 (Supply Chain Dependency Confusion)
+- [04.2_sbom_vulnerability_management.md](track_c_cloud_supplychain/04.2_sbom_vulnerability_management.md)：軟體物料清單 (SBOM) 審查與自動化弱點追蹤 (SBOM Analysis & Vulnerability Tracking)
+- [04.3_cicd_pipeline_secret_protection.md](track_c_cloud_supplychain/04.3_cicd_pipeline_secret_protection.md)：CI/CD 自動化管道審計與密鑰外洩防範 (CI/CD Pipeline Security & Secret Protection)
+- [05.1_cloud_shared_responsibility_matrix.md](track_c_cloud_supplychain/05.1_cloud_shared_responsibility_matrix.md)：雲端運算共同責任模型實務與邊界劃分 (Cloud Security Shared Responsibility Matrix)
+- [05.2_cloud_iam_privilege_escalation.md](track_c_cloud_supplychain/05.2_cloud_iam_privilege_escalation.md)：雲端多租戶 IAM 提權與 CloudTrail 審計日誌研判 (Cloud IAM Privilege Escalation)
+- [05.3_container_escape_k8s_runtime_defense.md](track_c_cloud_supplychain/05.3_container_escape_k8s_runtime_defense.md)：容器逃逸機制與 Kubernetes 運行時威脅防禦 (Container Escape & K8s Runtime Security)
+- [05.4_s3_bucket_leak_imds_ssrf_defense.md](track_c_cloud_supplychain/05.4_s3_bucket_leak_imds_ssrf_defense.md)：雲端儲存桶外洩與中繼資料 (IMDS) 劫持防護 (S3 Bucket Leaks & IMDSv2 SSRF Defense)
+- [16.4_http_request_smuggling_defense.md](track_c_cloud_supplychain/16.4_http_request_smuggling_defense.md)：協定走私與反向代理混淆鑑識 (HTTP Request Smuggling & Reverse Proxy Desync)
+- [20.1_java_memshell_filter_servlet_forensics.md](track_c_cloud_supplychain/20.1_java_memshell_filter_servlet_forensics.md)：Java 內存馬清剿與 Filter/Servlet 運行時取證 (Java Memory Shell Forensics)
+- [20.3_dotnet_php_fileless_memshell.md](track_c_cloud_supplychain/20.3_dotnet_php_fileless_memshell.md)：.NET 與 PHP 內存馬與無檔案後門排查 (DotNet & PHP Fileless Memory Shell Defense)
+
+
 

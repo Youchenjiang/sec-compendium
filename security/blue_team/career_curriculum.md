@@ -323,17 +323,18 @@ graph TD
 
 | 技術點編號與名稱 | 難度 | 核心定位 (Track) | 學習目標與驗收指標 | 對應深度指南 |
 | :--- | :---: | :---: | :--- | :--- |
-| **2.2 內部網路微隔離與 VLAN 存取控制** | 🟡 L2 | 🚀 Advanced | 設計零信任微隔離策略，嚴禁 DMZ 主動直連內部資料庫 | [領域 02 手冊](learning_paths/block_1_hardening/02_network_segmentation_firewall.md) |
-| **4.1 開源依賴投毒與相依性混淆** | 🔴 L3 | 🔬 Specialization | 識別 npm/PyPI 錯字搶注與私有套件高版本投毒行為 | [領域 04 手冊](learning_paths/block_1_hardening/04_devsecops_supply_chain.md) |
-| **4.2 軟體物料清單 (SBOM) 審查與弱點追蹤**| 🔴 L3 | 🔬 Specialization | 使用 Syft 產生 CycloneDX/SPDX，並以 Grype 自動比對 CVE | [領域 04 手冊](learning_paths/block_1_hardening/04_devsecops_supply_chain.md) |
-| **4.3 CI/CD 管道審計與密鑰外洩防範** | 🔴 L3 | 🚀 Advanced | 使用 Gitleaks 掃描全 Git 歷史並加固 GitHub Actions 權限 | [領域 04 手冊](learning_paths/block_1_hardening/04_devsecops_supply_chain.md) |
-| **5.1 雲端運算共同責任模型** | 🟡 L2 | 🔬 Specialization | 精確畫出 IaaS/PaaS/SaaS 各層責任歸屬（身分與資料永不脫責）| [領域 05 手冊](learning_paths/block_1_hardening/05_cloud_security_shared_responsibility.md) |
-| **5.2 雲端多租戶 IAM 提權與審計日誌研判**| 👑 L4 | 🚀 Advanced | 分析 AWS CloudTrail 日誌，還原 AssumeRole 越權操作 | [領域 05 手冊](learning_paths/block_1_hardening/05_cloud_security_shared_responsibility.md) |
-| **5.3 容器逃逸與 K8s 叢集運行時安全** | 👑 L4 | 🚀 Advanced | 識別 Privileged 特權容器掛載與 Docker Socket 逃逸 | [領域 05 手冊](learning_paths/block_1_hardening/05_cloud_security_shared_responsibility.md) |
-| **5.4 雲端儲存桶外洩與中繼資料劫持** | 👑 L4 | 🔬 Specialization | 防範 169.254.169.254 SSRF 劫持，全面推動 IMDSv2 Token | [領域 05 手冊](learning_paths/block_1_hardening/05_cloud_security_shared_responsibility.md) |
-| **16.4 協定走私與反向代理混淆鑑識** | 🟡 L2 | 🚀 Advanced | 解析 HTTP Request Smuggling (CL.TE / TE.CL) 走私封包 | [領域 16 手冊](learning_paths/block_4_detection_siem_soc/16_malicious_traffic_covert_comm.md) |
-| **20.1 Java Filter/Servlet 內存馬清剿** | 🔴 L3 | 🚀 Advanced | 使用 Arthas 動態反編譯 JVM 內存類別，定位無檔案後門 | [領域 20 手冊](learning_paths/block_5_threat_hunting_triage/20_web_fileless_defense.md) |
-| **20.3 .NET 與 PHP 內存馬無檔案後門排查**| 🔴 L3 | 🚀 Advanced | 排查 IIS HTTP 模組注入與 PHP 內存執行碼特徵 | [領域 20 手冊](learning_paths/block_5_threat_hunting_triage/20_web_fileless_defense.md) |
+| **2.2 內部網路微隔離與 VLAN 存取控制** | 🟡 L2 | 🚀 Advanced | 設計零信任微隔離策略，嚴禁 DMZ 主動直連內部資料庫 | [📘 02.2 實戰手冊](playbooks/phase_5_deep_dfir/track_c_cloud_supplychain/02.2_internal_network_microsegmentation.md) |
+| **4.1 開源依賴投毒與相依性混淆** | 🔴 L3 | 🔬 Specialization | 識別 npm/PyPI 錯字搶注與私有套件高版本投毒行為 | [📘 04.1 實戰手冊](playbooks/phase_5_deep_dfir/track_c_cloud_supplychain/04.1_supply_chain_dependency_confusion.md) |
+| **4.2 軟體物料清單 (SBOM) 審查與弱點追蹤**| 🔴 L3 | 🔬 Specialization | 使用 Syft 產生 CycloneDX/SPDX，並以 Grype 自動比對 CVE | [📘 04.2 實戰手冊](playbooks/phase_5_deep_dfir/track_c_cloud_supplychain/04.2_sbom_vulnerability_management.md) |
+| **4.3 CI/CD 管道審計與密鑰外洩防範** | 🔴 L3 | 🚀 Advanced | 使用 Gitleaks 掃描全 Git 歷史並加固 GitHub Actions 權限 | [📘 04.3 實戰手冊](playbooks/phase_5_deep_dfir/track_c_cloud_supplychain/04.3_cicd_pipeline_secret_protection.md) |
+| **5.1 雲端運算共同責任模型** | 🟡 L2 | 🔬 Specialization | 精確畫出 IaaS/PaaS/SaaS 各層責任歸屬（身分與資料永不脫責）| [📘 05.1 實戰手冊](playbooks/phase_5_deep_dfir/track_c_cloud_supplychain/05.1_cloud_shared_responsibility_matrix.md) |
+| **5.2 雲端多租戶 IAM 提權與審計日誌研判**| 👑 L4 | 🚀 Advanced | 分析 AWS CloudTrail 日誌，還原 AssumeRole 越權操作 | [📘 05.2 實戰手冊](playbooks/phase_5_deep_dfir/track_c_cloud_supplychain/05.2_cloud_iam_privilege_escalation.md) |
+| **5.3 容器逃逸與 K8s 叢集運行時安全** | 👑 L4 | 🚀 Advanced | 識別 Privileged 特權容器掛載與 Docker Socket 逃逸 | [📘 05.3 實戰手冊](playbooks/phase_5_deep_dfir/track_c_cloud_supplychain/05.3_container_escape_k8s_runtime_defense.md) |
+| **5.4 雲端儲存桶外洩與中繼資料劫持** | 👑 L4 | 🔬 Specialization | 防範 169.254.169.254 SSRF 劫持，全面推動 IMDSv2 Token | [📘 05.4 實戰手冊](playbooks/phase_5_deep_dfir/track_c_cloud_supplychain/05.4_s3_bucket_leak_imds_ssrf_defense.md) |
+| **16.4 協定走私與反向代理混淆鑑識** | 🟡 L2 | 🚀 Advanced | 解析 HTTP Request Smuggling (CL.TE / TE.CL) 走私封包 | [📘 16.4 實戰手冊](playbooks/phase_5_deep_dfir/track_c_cloud_supplychain/16.4_http_request_smuggling_defense.md) |
+| **20.1 Java Filter/Servlet 內存馬清剿** | 🔴 L3 | 🚀 Advanced | 使用 Arthas 動態反編譯 JVM 內存類別，定位無檔案後門 | [📘 20.1 實戰手冊](playbooks/phase_5_deep_dfir/track_c_cloud_supplychain/20.1_java_memshell_filter_servlet_forensics.md) |
+| **20.3 .NET 與 PHP 內存馬無檔案後門排查**| 🔴 L3 | 🚀 Advanced | 排查 IIS HTTP 模組注入與 PHP 內存執行碼特徵 | [📘 20.3 實戰手冊](playbooks/phase_5_deep_dfir/track_c_cloud_supplychain/20.3_dotnet_php_fileless_memshell.md) |
+
 
 #### 🔌 Track D: 網路通訊設備與硬體安全專精 (6 項)
 
