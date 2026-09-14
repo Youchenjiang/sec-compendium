@@ -12,4 +12,5 @@
 - [23.1_volatility_hidden_process_dkom.md](23.1_volatility_hidden_process_dkom.md)：隱藏進程與 DKOM 斷鏈破譯 (Volatility 3 / EPROCESS ActiveProcessLinks)
 - [23.2_vad_tree_code_injection_malfind.md](23.2_vad_tree_code_injection_malfind.md)：VAD 樹與記憶體程式碼注入分析 (Virtual Address Descriptors & Code Injection)
 - [23.3_memory_netscan_binary_dump.md](23.3_memory_netscan_binary_dump.md)：核心網路連線還原與二進位導出 (Memory Netscan & Binary Dump)
+- [23.4_lsass_memory_credential_extraction.md](23.4_lsass_memory_credential_extraction.md)：記憶體憑證抓取與暫存區取證 (LSASS Memory Credential Extraction & Clipboard Forensics)
 
