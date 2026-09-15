@@ -79,7 +79,7 @@ def check_broken_links():
             content = f.read()
         links = re.findall(r'\[([^\]]+)\]\(([^)]+)\)', content)
         for _, link in links:
-            if link.startswith("http://") or link.startswith("https://") or link.startswith("#") or link.startswith("mailto:"):
+            if link.startswith(("http://", "https://", "#", "mailto:")):
                 continue
             target_path = link.split("#")[0]
             if not target_path:
@@ -90,6 +90,44 @@ def check_broken_links():
                 broken.append((rel_source, link))
     return broken
 
+def audit_phase(phase):
+    pdir = os.path.join(PLAYBOOKS_DIR, phase)
+    if not os.path.exists(pdir):
+        return 0, 0, True
+
+    files = sorted(glob.glob(os.path.join(pdir, "**", "*.md"), recursive=True))
+    active_files = [f for f in files if os.path.basename(f).lower() != "readme.md"]
+    phase_lines = 0
+    phase_passed = True
+
+    print(f"\n📂 檢驗階段：{phase} (共 {len(active_files)} 篇實戰手冊)")
+    for f in active_files:
+        bname = os.path.basename(f)
+        lines_cnt, fences, issues = check_playbook_file(f)
+        phase_lines += lines_cnt
+
+        if issues:
+            phase_passed = False
+            print(f"  ⚠️ [{bname}] ({lines_cnt} 行) -> {'; '.join(issues)}")
+        else:
+            print(f"  ✅ [{bname:<48}] ({lines_cnt:>4} 行 | {fences:>2} 圍欄)")
+
+    return len(active_files), phase_lines, phase_passed
+
+def audit_link_integrity():
+    print("\n" + "=" * 75)
+    print("🔗 全庫超連結完整性檢查 (Link Integrity Audit)")
+    print("=" * 75)
+    broken_links = check_broken_links()
+    if broken_links:
+        print(f"❌ 發現 {len(broken_links)} 處死鏈 (Broken Links):")
+        for src, lnk in broken_links:
+            print(f"   來源: {src} -> 目標: {lnk}")
+        return False
+
+    print("✅ 全庫所有內部超連結 100% 暢通，無任何死鏈！")
+    return True
+
 def main():
     print("=" * 75)
     print("🛡️  藍隊原子實戰手冊庫自動化品質稽核 (Playbooks Automated Validator)")
@@ -98,47 +136,20 @@ def main():
     total_playbooks = 0
     total_lines = 0
     phase_stats = {}
-
     all_passed = True
 
     for phase in PHASES:
-        pdir = os.path.join(PLAYBOOKS_DIR, phase)
-        if not os.path.exists(pdir):
-            continue
-        # 支援子目錄遞迴掃描 (例如 phase_5_deep_dfir/track_a_memory_disk/*.md)
-        files = sorted(glob.glob(os.path.join(pdir, "**", "*.md"), recursive=True))
-        active_files = [f for f in files if not os.path.basename(f).lower() == "readme.md"]
-        phase_lines = 0
-        phase_issues = 0
-
-        print(f"\n📂 檢驗階段：{phase} (共 {len(active_files)} 篇實戰手冊)")
-        for f in active_files:
-            bname = os.path.basename(f)
-            lines_cnt, fences, issues = check_playbook_file(f)
-            phase_lines += lines_cnt
-            total_lines += lines_cnt
-            total_playbooks += 1
-
-            if issues:
+        cnt, plines, passed = audit_phase(phase)
+        if cnt > 0:
+            phase_stats[phase] = (cnt, plines)
+            total_playbooks += cnt
+            total_lines += plines
+            if not passed:
                 all_passed = False
-                phase_issues += 1
-                print(f"  ⚠️ [{bname}] ({lines_cnt} 行) -> {'; '.join(issues)}")
-            else:
-                print(f"  ✅ [{bname:<48}] ({lines_cnt:>4} 行 | {fences:>2} 圍欄)")
 
-        phase_stats[phase] = (len(active_files), phase_lines)
-
-    print("\n" + "=" * 75)
-    print("🔗 全庫超連結完整性檢查 (Link Integrity Audit)")
-    print("=" * 75)
-    broken_links = check_broken_links()
-    if broken_links:
+    links_passed = audit_link_integrity()
+    if not links_passed:
         all_passed = False
-        print(f"❌ 發現 {len(broken_links)} 處死鏈 (Broken Links):")
-        for src, lnk in broken_links:
-            print(f"   來源: {src} -> 目標: {lnk}")
-    else:
-        print("✅ 全庫所有內部超連結 100% 暢通，無任何死鏈！")
 
     print("\n" + "=" * 75)
     print("📊 稽核總結報告")
