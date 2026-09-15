@@ -61,6 +61,8 @@ jobs:
           CONFIG__MODEL: "openai/Qwen/Qwen3-8B"
           CONFIG__CUSTOM_MODEL_MAX_TOKENS: "16000"
           CONFIG__PR_ACTIONS: '["opened", "reopened", "ready_for_review", "synchronize"]'
+          IGNORE__GLOB: '["**/*.json", "**/*.md", "**/*.csv", "**/*.sql", "security/challenges/evidence/**", "security/labs/**/datasets/**"]'
+          CONFIG__IGNORE__GLOB: '["**/*.json", "**/*.md", "**/*.csv", "**/*.sql", "security/challenges/evidence/**", "security/labs/**/datasets/**"]'
           PR_CODE_SUGGESTIONS__MAX_NUMBER_OF_CALLS: "2"
           PR_CODE_SUGGESTIONS__NUM_CODE_SUGGESTIONS_PER_CHUNK: "3"
           PR_CODE_SUGGESTIONS__MAX_SUGGESTIONS_PER_FILE: "2"
