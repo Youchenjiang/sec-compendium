@@ -68,14 +68,23 @@
 - [21.1_cti_pyramid_of_pain_attck_mapping.md](phase_3_detection_eng/21.1_cti_pyramid_of_pain_attck_mapping.md)：威脅指標管理與 ATT&CK 戰術映射 (CTI Pyramid of Pain & MITRE ATT&CK Mapping)
 - [22.2_historical_cve_log4shell_deepdive.md](phase_3_detection_eng/22.2_historical_cve_log4shell_deepdive.md)：歷史重大 CVE 運作機制逆推 (Log4Shell CVE-2021-44228 Deep Dive)
 
-### 🚨 [phase_4_hunting_ir/](phase_4_hunting_ir/) —— 主動威脅獵捕與應變處置 SOP (7 項)
-- [10.3_phishing_macro_extraction.md](phase_4_hunting_ir/10.3_phishing_macro_extraction.md)：誘餌文件與惡意巨集逆推 (Phishing Macro Extraction & OLE Triage)
-- [18.2_lolbas_living_off_the_land.md](phase_4_hunting_ir/18.2_lolbas_living_off_the_land.md)：合法程式白利用特徵識別 (LOLBAS Living Off the Land Binaries & Scripts)
-- [18.3_system_persistence_scheduled_tasks.md](phase_4_hunting_ir/18.3_system_persistence_scheduled_tasks.md)：系統持久化與排程任務建立審查 (Windows Task Scheduler & System Persistence)
-- [18.4_process_injection_remote_thread.md](phase_4_hunting_ir/18.4_process_injection_remote_thread.md)：處理程序代碼注入與遠端執行緒監控 (Process Injection & CreateRemoteThread Forensics)
-- [20.2_encrypted_webshell_behinder_godzilla.md](phase_4_hunting_ir/20.2_encrypted_webshell_behinder_godzilla.md)：加密 WebShell 流量辨析與日誌還原 (Behinder & Godzilla Encrypted WebShell Forensics)
-- [21.2_infrastructure_topology_tracking.md](phase_4_hunting_ir/21.2_infrastructure_topology_tracking.md)：攻擊者基礎設施拓撲關聯追蹤 (Adversary Infrastructure Topology & Tracking)
-- [21.3_apt_profiling_hunting_hypothesis.md](phase_4_hunting_ir/21.3_apt_profiling_hunting_hypothesis.md)：APT 組織特徵畫像與獵捕假說建立 (Threat Hunting Hypothesis Formulation & APT Profiling)
+### 🚨 [phase_4_hunting_ir/](phase_4_hunting_ir/) —— 主動威脅獵捕與應變處置 SOP (16 項)
+- [10.3_phishing_macro_extraction.md](phase_4_hunting_ir/10.3_phishing_macro_extraction.md)：誘餌文件與惡意巨集程式碼萃取 (Weaponized Documents & Malicious Macro Extraction)
+- [18.2_lolbas_living_off_the_land.md](phase_4_hunting_ir/18.2_lolbas_living_off_the_land.md)：合法程式白利用 (LOLBAS) 特徵識別 (Living Off The Land Binaries & Scripts Hunting)
+- [18.3_system_persistence_scheduled_tasks.md](phase_4_hunting_ir/18.3_system_persistence_scheduled_tasks.md)：系統持久化與排程任務建立審查 (System Persistence & Scheduled Tasks Hunting)
+- [18.4_process_injection_remote_thread.md](phase_4_hunting_ir/18.4_process_injection_remote_thread.md)：處理程序代碼注入與遠端執行緒監控 (Process Code Injection & Remote Thread Forensics)
+- [20.2_encrypted_webshell_behinder_godzilla.md](phase_4_hunting_ir/20.2_encrypted_webshell_behinder_godzilla.md)：加密 WebShell 流量辨析與日誌還原 (Encrypted WebShell Traffic Analysis & Memory Shell Forensics)
+- [21.2_infrastructure_topology_tracking.md](phase_4_hunting_ir/21.2_infrastructure_topology_tracking.md)：攻擊者基礎設施拓撲關聯追蹤 (Adversary Infrastructure Topology Tracking)
+- [21.3_apt_profiling_hunting_hypothesis.md](phase_4_hunting_ir/21.3_apt_profiling_hunting_hypothesis.md)：APT 組織特徵畫像與獵捕假說建立 (APT Profiling & Threat Hunting Hypothesis)
+- [29.1_chain_of_custody_iso_27037.md](phase_4_hunting_ir/29.1_chain_of_custody_iso_27037.md)：數位證據監管鏈與 ISO/IEC 27037 (Digital Evidence Chain of Custody & ISO/IEC 27037)
+- [29.2_rfc_3227_order_of_volatility.md](phase_4_hunting_ir/29.2_rfc_3227_order_of_volatility.md)：數據揮發次序與現場應急保全 (RFC 3227 Order of Volatility & Live Triage)
+- [29.3_forensic_imaging_integrity.md](phase_4_hunting_ir/29.3_forensic_imaging_integrity.md)：證據真偽性與鑑識複製完整性驗證 (Forensic Imaging Integrity & Write Blocker Verification)
+- [30.1_cybersecurity_management_act.md](phase_4_hunting_ir/30.1_cybersecurity_management_act.md)：《資通安全管理法》體系與應變通報 (Taiwan Cyber Security Management Act & Incident Response)
+- [30.2_cybersecurity_responsibility_grading.md](phase_4_hunting_ir/30.2_cybersecurity_responsibility_grading.md)：資通安全責任等級分級辦法 (A~E 級)、專職人力與控制措施落地
+- [30.3_cybersecurity_incident_reporting_response.md](phase_4_hunting_ir/30.3_cybersecurity_incident_reporting_response.md)：資通安全事件通報及應變辦法 (1小時通報/36小時復原) 與演練實務
+- [31.1_sensitive_personal_data_protection.md](phase_4_hunting_ir/31.1_sensitive_personal_data_protection.md)：台灣《個人資料保護法》特種個資識別、遮罩脫敏與資料外洩防禦
+- [31.2_data_breach_notification_damage_caps.md](phase_4_hunting_ir/31.2_data_breach_notification_damage_caps.md)：個資外洩法定通知時限、損害賠償上限與主管機關處分因應
+- [31.3_international_cybersecurity_frameworks_iso_nist.md](phase_4_hunting_ir/31.3_international_cybersecurity_frameworks_iso_nist.md)：國際資安管理與網路安全框架 (ISO 27001:2022 / NIST CSF 2.0) 藍隊技術落實
 
 ### 🔬 [phase_5_deep_dfir/](phase_5_deep_dfir/) —— 深度取證與專精分流
 #### 💾 Track A: 記憶體與磁碟數位鑑識專精
