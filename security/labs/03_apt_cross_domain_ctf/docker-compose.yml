@@ -1,0 +1,89 @@
+version: '3.8'
+
+services:
+  # =============================================================
+  # 第一層：DMZ 邊界 Web 伺服器 (具備 RCE 診斷端點與 Source Map 洩漏)
+  # =============================================================
+  dmz-web:
+    build:
+      context: ./web_vuln
+      dockerfile: Dockerfile
+    container_name: ctf-dmz-web
+    restart: unless-stopped
+    ports:
+      - "8080:8080"   # 對外提供 Web 服務
+    networks:
+      dmz-net:
+        ipv4_address: 172.30.1.10
+      internal-net:
+        ipv4_address: 172.30.2.10
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 256M
+
+  # =============================================================
+  # 第二層：內部橫向移動跳板機 (模擬企業內部維運 Linux 主機)
+  # =============================================================
+  internal-pivot:
+    image: alpine:3.18
+    container_name: ctf-internal-pivot
+    restart: unless-stopped
+    hostname: corp-pivot-srv
+    stdin_open: true
+    tty: true
+    networks:
+      internal-net:
+        ipv4_address: 172.30.2.20
+      vault-net:
+        ipv4_address: 172.30.3.20
+    command: >
+      sh -c "apk add --no-cache curl python3 netcat-openbsd openssh-server &&
+             echo 'root:P@ssw0rd2026!' | chpasswd &&
+             echo 'Flag Step 2: pivot reached' > /opt/stage2_note.txt &&
+             tail -f /dev/null"
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 256M
+
+  # =============================================================
+  # 第三層：核心機密庫 (Vault Server - 僅限內部跳板機連入，存放終極 Flag)
+  # =============================================================
+  vault-db:
+    image: alpine:3.18
+    container_name: ctf-vault-db
+    restart: unless-stopped
+    hostname: core-vault-db
+    networks:
+      vault-net:
+        ipv4_address: 172.30.3.30
+    command: >
+      sh -c "apk add --no-cache python3 &&
+             mkdir -p /srv/vault &&
+             echo 'FLAG{apt_full_chain_pwned_7721_v4ult}' > /srv/vault/flag.txt &&
+             python3 -m http.server 9999 --directory /srv/vault"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 128M
+
+networks:
+  dmz-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.30.1.0/24
+  internal-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.30.2.0/24
+  vault-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.30.3.0/24

