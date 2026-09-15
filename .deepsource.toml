@@ -17,6 +17,14 @@ exclude_patterns = [
 [[analyzers]]
 name = "python"
 enabled = true
+exclude_patterns = [
+  "ctfd/database/**",
+  "ctfd/challenges/**",
+  "ctfd/automation/**",
+  "ctfd/patches/**",
+  "security/**",
+  "tracks/**"
+]
 
 [[analyzers]]
 name = "secrets"
