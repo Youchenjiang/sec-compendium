@@ -68,8 +68,14 @@
 - [21.1_cti_pyramid_of_pain_attck_mapping.md](phase_3_detection_eng/21.1_cti_pyramid_of_pain_attck_mapping.md)：威脅指標管理與 ATT&CK 戰術映射 (CTI Pyramid of Pain & MITRE ATT&CK Mapping)
 - [22.2_historical_cve_log4shell_deepdive.md](phase_3_detection_eng/22.2_historical_cve_log4shell_deepdive.md)：歷史重大 CVE 運作機制逆推 (Log4Shell CVE-2021-44228 Deep Dive)
 
-### 🚨 [phase_4_hunting_ir/](phase_4_hunting_ir/) —— 主動威脅獵捕與應變處置 SOP
-*(即將依修課時序編撰，深度指南請先參閱 [learning_paths/](../learning_paths/))*
+### 🚨 [phase_4_hunting_ir/](phase_4_hunting_ir/) —— 主動威脅獵捕與應變處置 SOP (7 項)
+- [10.3_phishing_macro_extraction.md](phase_4_hunting_ir/10.3_phishing_macro_extraction.md)：誘餌文件與惡意巨集逆推 (Phishing Macro Extraction & OLE Triage)
+- [18.2_lolbas_living_off_the_land.md](phase_4_hunting_ir/18.2_lolbas_living_off_the_land.md)：合法程式白利用特徵識別 (LOLBAS Living Off the Land Binaries & Scripts)
+- [18.3_system_persistence_scheduled_tasks.md](phase_4_hunting_ir/18.3_system_persistence_scheduled_tasks.md)：系統持久化與排程任務建立審查 (Windows Task Scheduler & System Persistence)
+- [18.4_process_injection_remote_thread.md](phase_4_hunting_ir/18.4_process_injection_remote_thread.md)：處理程序代碼注入與遠端執行緒監控 (Process Injection & CreateRemoteThread Forensics)
+- [20.2_encrypted_webshell_behinder_godzilla.md](phase_4_hunting_ir/20.2_encrypted_webshell_behinder_godzilla.md)：加密 WebShell 流量辨析與日誌還原 (Behinder & Godzilla Encrypted WebShell Forensics)
+- [21.2_infrastructure_topology_tracking.md](phase_4_hunting_ir/21.2_infrastructure_topology_tracking.md)：攻擊者基礎設施拓撲關聯追蹤 (Adversary Infrastructure Topology & Tracking)
+- [21.3_apt_profiling_hunting_hypothesis.md](phase_4_hunting_ir/21.3_apt_profiling_hunting_hypothesis.md)：APT 組織特徵畫像與獵捕假說建立 (Threat Hunting Hypothesis Formulation & APT Profiling)
 
 ### 🔬 [phase_5_deep_dfir/](phase_5_deep_dfir/) —— 深度取證與專精分流
 #### 💾 Track A: 記憶體與磁碟數位鑑識專精
@@ -127,6 +133,13 @@
 - [26.2_android_runtime_logs_sqlite_forensics.md](phase_5_deep_dfir/track_e_reverse_mobile/26.2_android_runtime_logs_sqlite_forensics.md)：Android 系統執行時日誌 (Logcat)、ADB 取證與沙盒 SQLite 資料庫鑑識 (Android Runtime Logs & Sandbox SQLite Forensics)
 - [26.3_ios_backup_forensics_keychain_extraction.md](phase_5_deep_dfir/track_e_reverse_mobile/26.3_ios_backup_forensics_keychain_extraction.md)：iOS 備份檔案深度取證、Manifest.db 索引逆推與鑰匙圈 (Keychain) 敏感憑證萃取 (iOS Backup Forensics & Keychain Extraction)
 
-### 👑 [phase_6_capstone/](phase_6_capstone/) —— 紫隊全真演練與畢業門檻
-*(即將依修課時序編撰)*
+### 👑 [phase_6_capstone/](phase_6_capstone/) —— 紫隊全真演練與畢業門檻 (7 項)
+- [27.1_automated_adversary_emulation_atomic_red_team.md](phase_6_capstone/27.1_automated_adversary_emulation_atomic_red_team.md)：自動化對抗測試 (Atomic Red Team)、防禦遙測評估與日誌捕獲閉環
+- [27.2_automated_adversary_emulation_platform_caldera.md](phase_6_capstone/27.2_automated_adversary_emulation_platform_caldera.md)：自動化對抗模擬平台 (MITRE Caldera) 拓撲部署與自主滲透演練
+- [27.3_purple_teaming_practice_attack_navigator.md](phase_6_capstone/27.3_purple_teaming_practice_attack_navigator.md)：紫隊協同實務 (Purple Teaming) 與 ATT&CK Navigator 防禦覆蓋熱圖閉環
+- [28.1_end_to_end_apt_attack_chain_ctf.md](phase_6_capstone/28.1_end_to_end_apt_attack_chain_ctf.md)：端到端 APT 攻擊鏈全局溯源、多階威脅取證與 CTF 奪旗閉環
+- [28.2_large_scale_enterprise_bots_dataset.md](phase_6_capstone/28.2_large_scale_enterprise_bots_dataset.md)：大規模企業級實網攻防資料集 (Splunk BOTS) 深度研判與實戰奪旗
+- [28.3_multi_host_lateral_movement_attribution.md](phase_6_capstone/28.3_multi_host_lateral_movement_attribution.md)：跨主機橫向移動鏈路拓撲重組、多源跡證融合與攻擊組織歸因
+- [28.4_taiwan_cybersecurity_competition_exam_triage.md](phase_6_capstone/28.4_taiwan_cybersecurity_competition_exam_triage.md)：台灣資安法規遵從、關鍵基礎設施通報與資安競賽實體檢定 (金盾獎)
+
 

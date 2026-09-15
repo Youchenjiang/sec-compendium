@@ -237,13 +237,13 @@ graph TD
 
 | 技術點編號與名稱 | 難度 | 核心定位 (Track) | 學習目標與驗收指標 | 對應深度指南 |
 | :--- | :---: | :---: | :--- | :--- |
-| **10.3 誘餌文件與巨集程式碼萃取** | 🟢 L1 | 🔬 Specialization | 使用 `oledump.py` 萃取 Office 文件惡意 VBA 巨集代碼 | [領域 10 手冊](learning_paths/block_2_protocols_crypto_app/10_email_phishing_defense.md) |
-| **18.2 合法程式白利用 (LOLBAS) 特徵識別** | 🔴 L3 | **🎯 Core 核心必修** | 獵捕 `certutil`, `mshta`, `regsvr32` 被濫用之下載與無檔案執行 | [領域 18 手冊](learning_paths/block_5_threat_hunting_triage/18_threat_hunting_sysmon.md) |
-| **18.3 系統持久化與排程任務建立審查** | 🔴 L3 | **🎯 Core 核心必修** | 審查登錄檔 RunKey、自啟動資料夾與 Task Scheduler 異常排程 | [領域 18 手冊](learning_paths/block_5_threat_hunting_triage/18_threat_hunting_sysmon.md) |
-| **18.4 處理程序代碼注入與遠端執行緒監控**| 🔴 L3 | 🔬 Specialization | 監控 `CreateRemoteThread` 獵捕 Process Hollowing 注入行為 | [領域 18 手冊](learning_paths/block_5_threat_hunting_triage/18_threat_hunting_sysmon.md) |
-| **20.2 加密 WebShell 流量辨析與日誌還原**| 🔴 L3 | 🔬 Specialization | 辨識冰蠍 (Behinder) 與哥斯拉 (Godzilla) 密碼學流量握手特徵 | [領域 20 手冊](learning_paths/block_5_threat_hunting_triage/20_web_fileless_defense.md) |
-| **21.2 攻擊者基礎設施拓撲關聯追蹤** | 🔴 L3 | 🔬 Specialization | 使用 Passive DNS 歷史解析與 JARM SSL 指紋拓撲溯源 | [領域 21 手冊](learning_paths/block_5_threat_hunting_triage/21_cyber_threat_intelligence.md) |
-| **21.3 APT 組織特徵畫像與獵捕假說建立** | 🔴 L3 | 🔬 Specialization | 依據威脅情資建立假說 (Hunting Hypothesis)，主動清查內網 | [領域 21 手冊](learning_paths/block_5_threat_hunting_triage/21_cyber_threat_intelligence.md) |
+| **10.3 誘餌文件與巨集程式碼萃取** | 🟢 L1 | 🔬 Specialization | 使用 `oledump.py` 萃取 Office 文件惡意 VBA 巨集代碼 | [📘 10.3 實戰手冊](playbooks/phase_4_hunting_ir/10.3_phishing_macro_extraction.md) |
+| **18.2 合法程式白利用 (LOLBAS) 特徵識別** | 🔴 L3 | **🎯 Core 核心必修** | 獵捕 `certutil`, `mshta`, `regsvr32` 被濫用之下載與無檔案執行 | [📘 18.2 實戰手冊](playbooks/phase_4_hunting_ir/18.2_lolbas_living_off_the_land.md) |
+| **18.3 系統持久化與排程任務建立審查** | 🔴 L3 | **🎯 Core 核心必修** | 審查登錄檔 RunKey、自啟動資料夾與 Task Scheduler 異常排程 | [📘 18.3 實戰手冊](playbooks/phase_4_hunting_ir/18.3_system_persistence_scheduled_tasks.md) |
+| **18.4 處理程序代碼注入與遠端執行緒監控**| 🔴 L3 | 🔬 Specialization | 監控 `CreateRemoteThread` 獵捕 Process Hollowing 注入行為 | [📘 18.4 實戰手冊](playbooks/phase_4_hunting_ir/18.4_process_injection_remote_thread.md) |
+| **20.2 加密 WebShell 流量辨析與日誌還原**| 🔴 L3 | 🔬 Specialization | 辨識冰蠍 (Behinder) 與哥斯拉 (Godzilla) 密碼學流量握手特徵 | [📘 20.2 實戰手冊](playbooks/phase_4_hunting_ir/20.2_encrypted_webshell_behinder_godzilla.md) |
+| **21.2 攻擊者基礎設施拓撲關聯追蹤** | 🔴 L3 | 🔬 Specialization | 使用 Passive DNS 歷史解析與 JARM SSL 指紋拓撲溯源 | [📘 21.2 實戰手冊](playbooks/phase_4_hunting_ir/21.2_infrastructure_topology_tracking.md) |
+| **21.3 APT 組織特徵畫像與獵捕假說建立** | 🔴 L3 | 🔬 Specialization | 依據威脅情資建立假說 (Hunting Hypothesis)，主動清查內網 | [📘 21.3 實戰手冊](playbooks/phase_4_hunting_ir/21.3_apt_profiling_hunting_hypothesis.md) |
 | **29.1 數位證據監管鏈與 ISO/IEC 27037** | 🟢 L1 | 🔬 Specialization | 掌握鑑識人員在法庭上的監管鏈 (Chain of Custody) 簽署要件 | [領域 29 手冊](learning_paths/block_8_grc_standards_custody/29_digital_evidence_chain_of_custody.md) |
 | **29.2 資安事件通報時限與 RFC 3227 揮發次序**| 🟢 L1 | **🎯 Core 核心必修** | 默背數據揮發性次序 (RAM 優先) 與嚴禁直接拔除電源原則 | [領域 29 手冊](learning_paths/block_8_grc_standards_custody/29_digital_evidence_chain_of_custody.md) |
 | **29.3 證據真偽性與鑑識複製完整性驗證** | 🟢 L1 | 🔬 Specialization | 使用防寫設備 (Write Blocker) 與雙雜湊 (MD5+SHA256) 驗證 | [領域 29 手冊](learning_paths/block_8_grc_standards_custody/29_digital_evidence_chain_of_custody.md) |
@@ -409,10 +409,11 @@ graph TD
 
 | 技術點編號與名稱 | 難度 | 核心定位 (Track) | 學習目標與驗收指標 | 對應深度指南 |
 | :--- | :---: | :---: | :--- | :--- |
-| **27.1 自動化對抗測試與遙測評估 (Atomic)**| 👑 L4 | 🚀 Advanced | 使用 Atomic Red Team 安全執行特定 TTP 並驗證日誌捕獲 | [領域 27 手冊](learning_paths/block_7_purple_team_range/27_purple_team_breach_simulation.md) |
-| **27.2 自動化攻擊模擬平台佈建 (Caldera)** | 👑 L4 | 🚀 Advanced | 佈建 MITRE Caldera 代理程式，執行自動化端到端滲透測試 | [領域 27 手冊](learning_paths/block_7_purple_team_range/27_purple_team_breach_simulation.md) |
-| **27.3 Purple Teaming 紫隊協同演練實務** | 👑 L4 | 🚀 Advanced | 協同紅隊，以 ATT&CK Navigator 繪製防禦覆蓋熱圖閉環 | [領域 27 手冊](learning_paths/block_7_purple_team_range/27_purple_team_breach_simulation.md) |
-| **28.1 端到端 APT 攻擊鏈全局溯源與奪旗** | 👑 L4 | 🚀 Advanced | 在多主機環境中還原水坑攻擊、橫向移動至資料外洩完整時間軸 | [領域 28 手冊](learning_paths/block_7_purple_team_range/28_enterprise_cyber_range.md) |
-| **28.2 大規模企業級實網攻防資料集 (BOTS)**| 👑 L4 | 🚀 Advanced | 獨立完成 Splunk BOTSv2 / BOTSv3 官方完整資料集闖關 | [領域 28 手冊](learning_paths/block_7_purple_team_range/28_enterprise_cyber_range.md) |
-| **28.3 跨主機橫向移動與多源鑑識綜合歸因**| 👑 L4 | 🚀 Advanced | 串聯 Windows EVTX、防火牆流量與記憶體映像完成歸因 | [領域 28 手冊](learning_paths/block_7_purple_team_range/28_enterprise_cyber_range.md) |
-| **28.4 台灣資安法規與實體攻防檢定真題** | 👑 L4 | **🎯 Core 核心必修** | 完整模擬演練金盾獎歷屆真題，客觀題與實體題得分率 ≥ 80% | [領域 28 手冊](learning_paths/block_7_purple_team_range/28_enterprise_cyber_range.md) |
+| **27.1 自動化對抗測試與遙測評估 (Atomic)**| 👑 L4 | 🚀 Advanced | 使用 Atomic Red Team 安全執行特定 TTP 並驗證日誌捕獲 | [📘 27.1 實戰手冊](playbooks/phase_6_capstone/27.1_automated_adversary_emulation_atomic_red_team.md) |
+| **27.2 自動化攻擊模擬平台佈建 (Caldera)** | 👑 L4 | 🚀 Advanced | 佈建 MITRE Caldera 代理程式，執行自動化端到端滲透測試 | [📘 27.2 實戰手冊](playbooks/phase_6_capstone/27.2_automated_adversary_emulation_platform_caldera.md) |
+| **27.3 Purple Teaming 紫隊協同演練實務** | 👑 L4 | 🚀 Advanced | 協同紅隊，以 ATT&CK Navigator 繪製防禦覆蓋熱圖閉環 | [📘 27.3 實戰手冊](playbooks/phase_6_capstone/27.3_purple_teaming_practice_attack_navigator.md) |
+| **28.1 端到端 APT 攻擊鏈全局溯源與奪旗** | 👑 L4 | 🚀 Advanced | 在多主機環境中還原水坑攻擊、橫向移動至資料外洩完整時間軸 | [📘 28.1 實戰手冊](playbooks/phase_6_capstone/28.1_end_to_end_apt_attack_chain_ctf.md) |
+| **28.2 大規模企業級實網攻防資料集 (BOTS)**| 👑 L4 | 🚀 Advanced | 獨立完成 Splunk BOTSv2 / BOTSv3 官方完整資料集闖關 | [📘 28.2 實戰手冊](playbooks/phase_6_capstone/28.2_large_scale_enterprise_bots_dataset.md) |
+| **28.3 跨主機橫向移動與多源鑑識綜合歸因**| 👑 L4 | 🚀 Advanced | 串聯 Windows EVTX、防火牆流量與記憶體映像完成歸因 | [📘 28.3 實戰手冊](playbooks/phase_6_capstone/28.3_multi_host_lateral_movement_attribution.md) |
+| **28.4 台灣資安法規與實體攻防檢定真題** | 👑 L4 | **🎯 Core 核心必修** | 完整模擬演練金盾獎歷屆真題，客觀題與實體題得分率 ≥ 80% | [📘 28.4 實戰手冊](playbooks/phase_6_capstone/28.4_taiwan_cybersecurity_competition_exam_triage.md) |
+
