@@ -68,8 +68,14 @@
 - [21.1_cti_pyramid_of_pain_attck_mapping.md](phase_3_detection_eng/21.1_cti_pyramid_of_pain_attck_mapping.md)：威脅指標管理與 ATT&CK 戰術映射 (CTI Pyramid of Pain & MITRE ATT&CK Mapping)
 - [22.2_historical_cve_log4shell_deepdive.md](phase_3_detection_eng/22.2_historical_cve_log4shell_deepdive.md)：歷史重大 CVE 運作機制逆推 (Log4Shell CVE-2021-44228 Deep Dive)
 
-### 🚨 [phase_4_hunting_ir/](phase_4_hunting_ir/) —— 主動威脅獵捕與應變處置 SOP
-*(即將依修課時序編撰，深度指南請先參閱 [learning_paths/](../learning_paths/))*
+### 🚨 [phase_4_hunting_ir/](phase_4_hunting_ir/) —— 主動威脅獵捕與應變處置 SOP (7 項)
+- [10.3_phishing_macro_extraction.md](phase_4_hunting_ir/10.3_phishing_macro_extraction.md)：誘餌文件與惡意巨集逆推 (Phishing Macro Extraction & OLE Triage)
+- [18.2_lolbas_living_off_the_land.md](phase_4_hunting_ir/18.2_lolbas_living_off_the_land.md)：合法程式白利用特徵識別 (LOLBAS Living Off the Land Binaries & Scripts)
+- [18.3_system_persistence_scheduled_tasks.md](phase_4_hunting_ir/18.3_system_persistence_scheduled_tasks.md)：系統持久化與排程任務建立審查 (Windows Task Scheduler & System Persistence)
+- [18.4_process_injection_remote_thread.md](phase_4_hunting_ir/18.4_process_injection_remote_thread.md)：處理程序代碼注入與遠端執行緒監控 (Process Injection & CreateRemoteThread Forensics)
+- [20.2_encrypted_webshell_behinder_godzilla.md](phase_4_hunting_ir/20.2_encrypted_webshell_behinder_godzilla.md)：加密 WebShell 流量辨析與日誌還原 (Behinder & Godzilla Encrypted WebShell Forensics)
+- [21.2_infrastructure_topology_tracking.md](phase_4_hunting_ir/21.2_infrastructure_topology_tracking.md)：攻擊者基礎設施拓撲關聯追蹤 (Adversary Infrastructure Topology & Tracking)
+- [21.3_apt_profiling_hunting_hypothesis.md](phase_4_hunting_ir/21.3_apt_profiling_hunting_hypothesis.md)：APT 組織特徵畫像與獵捕假說建立 (Threat Hunting Hypothesis Formulation & APT Profiling)
 
 ### 🔬 [phase_5_deep_dfir/](phase_5_deep_dfir/) —— 深度取證與專精分流
 #### 💾 Track A: 記憶體與磁碟數位鑑識專精
