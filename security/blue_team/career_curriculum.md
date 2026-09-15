@@ -296,27 +296,28 @@ graph TD
 
 | 技術點編號與名稱 | 難度 | 核心定位 (Track) | 學習目標與驗收指標 | 對應深度指南 |
 | :--- | :---: | :---: | :--- | :--- |
-| **23.1 隱藏進程與 DKOM 斷鏈破譯 (Volatility)**| 🟡 L2 | 🔬 Specialization | 比對 `pslist` 與 `psscan` 差異找出遭斷鏈隱藏之惡意進程 | [領域 23 手冊](learning_paths/block_6_dfir_memory_disk/23_memory_forensics.md) |
-| **23.2 代碼注入與 VAD 記憶體屬性排查** | 🟡 L2 | 🔬 Specialization | 使用 `malfind` 找出 PAGE_EXECUTE_READWRITE 注入段與 MZ 頭 | [領域 23 手冊](learning_paths/block_6_dfir_memory_disk/23_memory_forensics.md) |
-| **23.3 核心網路連線還原與二進位導出** | 🟡 L2 | 🔬 Specialization | 以 `netscan` 還原已斷線 Socket，並導出內存可執行檔 | [領域 23 手冊](learning_paths/block_6_dfir_memory_disk/23_memory_forensics.md) |
-| **23.4 記憶體憑證抓取與暫存區取證** | 🟡 L2 | 🔬 Specialization | 從 `lsass.exe` 記憶體導出 NTLM Hash 並排查剪貼簿暫存 | [領域 23 手冊](learning_paths/block_6_dfir_memory_disk/23_memory_forensics.md) |
-| **24.1 NTFS 主檔案表與時間戳偽造 ($MFT)**| 🟡 L2 | 🔬 Specialization | 比對 `$SI` 與 `$FN` 時間戳，識破 Timestomping 惡意竄改 | [領域 24 手冊](learning_paths/block_6_dfir_memory_disk/24_disk_filesystem_forensics.md) |
-| **24.2 程式執行三大鐵證深度鑑識 (Prefetch)**| 🟡 L2 | **🎯 Core 核心必修** | 使用 PECmd 解析 Prefetch 執行次數、時間戳與載入 DLL | [領域 24 手冊](learning_paths/block_6_dfir_memory_disk/24_disk_filesystem_forensics.md) |
-| **24.3 使用者活動軌跡與登錄檔鑑識 (RunKey)**| 🟡 L2 | 🔬 Specialization | 解析 USBSTOR, Shellbags 與 UserAssist 還原使用者軌跡 | [領域 24 手冊](learning_paths/block_6_dfir_memory_disk/24_disk_filesystem_forensics.md) |
-| **24.4 系統更新日誌與陰影複製取證 (VSS)**| 🟡 L2 | 🔬 Specialization | 掛載 Volume Shadow Copy 提取被刪除檔案之歷史副本 | [領域 24 手冊](learning_paths/block_6_dfir_memory_disk/24_disk_filesystem_forensics.md) |
+| **23.1 隱藏進程與 DKOM 斷鏈破譯 (Volatility)**| 🟡 L2 | 🔬 Specialization | 比對 `pslist` 與 `psscan` 差異找出遭斷鏈隱藏之惡意進程 | [📘 23.1 實戰手冊](playbooks/phase_5_deep_dfir/track_a_memory_disk/23.1_volatility_hidden_process_dkom.md) |
+| **23.2 代碼注入與 VAD 記憶體屬性排查** | 🟡 L2 | 🔬 Specialization | 使用 `malfind` 找出 PAGE_EXECUTE_READWRITE 注入段與 MZ 頭 | [📘 23.2 實戰手冊](playbooks/phase_5_deep_dfir/track_a_memory_disk/23.2_vad_tree_code_injection_malfind.md) |
+| **23.3 核心網路連線還原與二進位導出** | 🟡 L2 | 🔬 Specialization | 以 `netscan` 還原已斷線 Socket，並導出內存可執行檔 | [📘 23.3 實戰手冊](playbooks/phase_5_deep_dfir/track_a_memory_disk/23.3_memory_netscan_binary_dump.md) |
+| **23.4 記憶體憑證抓取與暫存區取證** | 🟡 L2 | 🔬 Specialization | 從 `lsass.exe` 記憶體導出 NTLM Hash 並排查剪貼簿暫存 | [📘 23.4 實戰手冊](playbooks/phase_5_deep_dfir/track_a_memory_disk/23.4_lsass_memory_credential_extraction.md) |
+| **24.1 NTFS 主檔案表與時間戳偽造 ($MFT)**| 🟡 L2 | 🔬 Specialization | 比對 `$SI` 與 `$FN` 時間戳，識破 Timestomping 惡意竄改 | [📘 24.1 實戰手冊](playbooks/phase_5_deep_dfir/track_a_memory_disk/24.1_ntfs_mft_timestomping_analysis.md) |
+| **24.2 程式執行三大鐵證深度鑑識 (Prefetch)**| 🟡 L2 | **🎯 Core 核心必修** | 使用 PECmd 解析 Prefetch 執行次數、時間戳與載入 DLL | [📘 24.2 實戰手冊](playbooks/phase_5_deep_dfir/track_a_memory_disk/24.2_windows_execution_prefetch_amcache.md) |
+| **24.3 使用者活動軌跡與登錄檔鑑識 (RunKey)**| 🟡 L2 | 🔬 Specialization | 解析 USBSTOR, Shellbags 與 UserAssist 還原使用者軌跡 | [📘 24.3 實戰手冊](playbooks/phase_5_deep_dfir/track_a_memory_disk/24.3_userassist_shellbags_registry_forensics.md) |
+| **24.4 系統更新日誌與陰影複製取證 (VSS)**| 🟡 L2 | 🔬 Specialization | 掛載 Volume Shadow Copy 提取被刪除檔案之歷史副本 | [📘 24.4 實戰手冊](playbooks/phase_5_deep_dfir/track_a_memory_disk/24.4_vss_volume_shadow_copy_forensics.md) |
 
 #### 🏰 Track B: AD 網域攻防與身分治理專精 (8 項)
 
 | 技術點編號與名稱 | 難度 | 核心定位 (Track) | 學習目標與驗收指標 | 對應深度指南 |
 | :--- | :---: | :---: | :--- | :--- |
-| **12.1 Kerberos 預驗證弱點與 AS-REP Roasting**| 🔴 L3 | 🔬 Specialization | 識別 Event ID 4768 預認證類型為 0x0 之 TGT 索取行為 | [領域 12 手冊](learning_paths/block_3_identity_directory/12_active_directory_defense.md) |
-| **12.2 SPN 服務票據請求與 Kerberoasting** | 🔴 L3 | 🔬 Specialization | 監控 Event ID 4769 異常高頻 RC4-HMAC 服務票據請求 | [領域 12 手冊](learning_paths/block_3_identity_directory/12_active_directory_defense.md) |
-| **12.3 偽造票據攻擊與全域特權維持 (Golden)**| 🔴 L3 | 🔬 Specialization | 掌握黃金票據 (krbtgt Hash) 與白銀票據之偵測與雙重輪換重設 | [領域 12 手冊](learning_paths/block_3_identity_directory/12_active_directory_defense.md) |
-| **12.4 NTDS.dit 憑證導出與 DCSync 偵測** | 🔴 L3 | 🔬 Specialization | 偵測非 DC 主機發起之目錄複製服務 (DRSUAPI / RPC 呼叫) | [領域 12 手冊](learning_paths/block_3_identity_directory/12_active_directory_defense.md) |
-| **12.5 AD 存取控制路徑與特權提升分析** | 🔴 L3 | 🚀 Advanced | 使用 BloodHound 分析最短提權 ACL 路徑與危險委託 (Delegation) | [領域 12 手冊](learning_paths/block_3_identity_directory/12_active_directory_defense.md) |
-| **13.1 OAuth 2.0 / SAML 權杖竊取與重放** | 🔴 L3 | 🔬 Specialization | 審查回呼網址 (Redirect URI) 寬鬆匹配與 JWT 竄改漏洞 | [領域 13 手冊](learning_paths/block_3_identity_directory/13_identity_access_management.md) |
-| **13.2 MFA 疲勞轟炸與繞過攻擊防衛** | 🔴 L3 | 🔬 Specialization | 配置數字匹配 (Number Matching) 與條件式存取阻斷濫用 | [領域 13 手冊](learning_paths/block_3_identity_directory/13_identity_access_management.md) |
-| **13.3 服務帳戶特權濫用與 Session 劫持** | 🔴 L3 | 🔬 Specialization | 審計無輪換過期金鑰，防範 Pass-the-PRT 憑證竊取 | [領域 13 手冊](learning_paths/block_3_identity_directory/13_identity_access_management.md) |
+| **12.1 Kerberos 預驗證弱點與 AS-REP Roasting**| 🔴 L3 | 🔬 Specialization | 識別 Event ID 4768 預認證類型為 0x0 之 TGT 索取行為 | [📘 12.1 實戰手冊](playbooks/phase_5_deep_dfir/track_b_active_directory/12.1_kerberos_preauth_asrep_roasting.md) |
+| **12.2 SPN 服務票據請求與 Kerberoasting** | 🔴 L3 | 🔬 Specialization | 監控 Event ID 4769 異常高頻 RC4-HMAC 服務票據請求 | [📘 12.2 實戰手冊](playbooks/phase_5_deep_dfir/track_b_active_directory/12.2_spn_kerberoasting_detection.md) |
+| **12.3 偽造票據攻擊與全域特權維持 (Golden)**| 🔴 L3 | 🔬 Specialization | 掌握黃金票據 (krbtgt Hash) 與白銀票據之偵測與雙重輪換重設 | [📘 12.3 實戰手冊](playbooks/phase_5_deep_dfir/track_b_active_directory/12.3_golden_silver_ticket_forgery.md) |
+| **12.4 NTDS.dit 憑證導出與 DCSync 偵測** | 🔴 L3 | 🔬 Specialization | 偵測非 DC 主機發起之目錄複製服務 (DRSUAPI / RPC 呼叫) | [📘 12.4 實戰手冊](playbooks/phase_5_deep_dfir/track_b_active_directory/12.4_dcsync_ntds_credential_dumping.md) |
+| **12.5 AD 存取控制路徑與特權提升分析** | 🔴 L3 | 🚀 Advanced | 使用 BloodHound 分析最短提權 ACL 路徑與危險委託 (Delegation) | [📘 12.5 實戰手冊](playbooks/phase_5_deep_dfir/track_b_active_directory/12.5_bloodhound_acl_attack_paths.md) |
+| **13.1 OAuth 2.0 / SAML 權杖竊取與重放** | 🔴 L3 | 🔬 Specialization | 審查回呼網址 (Redirect URI) 寬鬆匹配與 JWT 竄改漏洞 | [📘 13.1 實戰手冊](playbooks/phase_5_deep_dfir/track_b_active_directory/13.1_oauth2_saml_token_abuse.md) |
+| **13.2 MFA 疲勞轟炸與繞過攻擊防衛** | 🔴 L3 | 🔬 Specialization | 配置數字匹配 (Number Matching) 與條件式存取阻斷濫用 | [📘 13.2 實戰手冊](playbooks/phase_5_deep_dfir/track_b_active_directory/13.2_mfa_fatigue_bypass_defense.md) |
+| **13.3 服務帳戶特權濫用與 Session 劫持** | 🔴 L3 | 🔬 Specialization | 審計無輪換過期金鑰，防範 Pass-the-PRT 憑證竊取 | [📘 13.3 實戰手冊](playbooks/phase_5_deep_dfir/track_b_active_directory/13.3_service_account_prt_abuse.md) |
+
 
 #### ☁️ Track C: 雲原生、供應鏈與無檔案專精 (12 項)
 
