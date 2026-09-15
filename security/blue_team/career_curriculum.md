@@ -323,45 +323,46 @@ graph TD
 
 | 技術點編號與名稱 | 難度 | 核心定位 (Track) | 學習目標與驗收指標 | 對應深度指南 |
 | :--- | :---: | :---: | :--- | :--- |
-| **2.2 內部網路微隔離與 VLAN 存取控制** | 🟡 L2 | 🚀 Advanced | 設計零信任微隔離策略，嚴禁 DMZ 主動直連內部資料庫 | [領域 02 手冊](learning_paths/block_1_hardening/02_network_segmentation_firewall.md) |
-| **4.1 開源依賴投毒與相依性混淆** | 🔴 L3 | 🔬 Specialization | 識別 npm/PyPI 錯字搶注與私有套件高版本投毒行為 | [領域 04 手冊](learning_paths/block_1_hardening/04_devsecops_supply_chain.md) |
-| **4.2 軟體物料清單 (SBOM) 審查與弱點追蹤**| 🔴 L3 | 🔬 Specialization | 使用 Syft 產生 CycloneDX/SPDX，並以 Grype 自動比對 CVE | [領域 04 手冊](learning_paths/block_1_hardening/04_devsecops_supply_chain.md) |
-| **4.3 CI/CD 管道審計與密鑰外洩防範** | 🔴 L3 | 🚀 Advanced | 使用 Gitleaks 掃描全 Git 歷史並加固 GitHub Actions 權限 | [領域 04 手冊](learning_paths/block_1_hardening/04_devsecops_supply_chain.md) |
-| **5.1 雲端運算共同責任模型** | 🟡 L2 | 🔬 Specialization | 精確畫出 IaaS/PaaS/SaaS 各層責任歸屬（身分與資料永不脫責）| [領域 05 手冊](learning_paths/block_1_hardening/05_cloud_security_shared_responsibility.md) |
-| **5.2 雲端多租戶 IAM 提權與審計日誌研判**| 👑 L4 | 🚀 Advanced | 分析 AWS CloudTrail 日誌，還原 AssumeRole 越權操作 | [領域 05 手冊](learning_paths/block_1_hardening/05_cloud_security_shared_responsibility.md) |
-| **5.3 容器逃逸與 K8s 叢集運行時安全** | 👑 L4 | 🚀 Advanced | 識別 Privileged 特權容器掛載與 Docker Socket 逃逸 | [領域 05 手冊](learning_paths/block_1_hardening/05_cloud_security_shared_responsibility.md) |
-| **5.4 雲端儲存桶外洩與中繼資料劫持** | 👑 L4 | 🔬 Specialization | 防範 169.254.169.254 SSRF 劫持，全面推動 IMDSv2 Token | [領域 05 手冊](learning_paths/block_1_hardening/05_cloud_security_shared_responsibility.md) |
-| **16.4 協定走私與反向代理混淆鑑識** | 🟡 L2 | 🚀 Advanced | 解析 HTTP Request Smuggling (CL.TE / TE.CL) 走私封包 | [領域 16 手冊](learning_paths/block_4_detection_siem_soc/16_malicious_traffic_covert_comm.md) |
-| **20.1 Java Filter/Servlet 內存馬清剿** | 🔴 L3 | 🚀 Advanced | 使用 Arthas 動態反編譯 JVM 內存類別，定位無檔案後門 | [領域 20 手冊](learning_paths/block_5_threat_hunting_triage/20_web_fileless_defense.md) |
-| **20.3 .NET 與 PHP 內存馬無檔案後門排查**| 🔴 L3 | 🚀 Advanced | 排查 IIS HTTP 模組注入與 PHP 內存執行碼特徵 | [領域 20 手冊](learning_paths/block_5_threat_hunting_triage/20_web_fileless_defense.md) |
+| **2.2 內部網路微隔離與 VLAN 存取控制** | 🟡 L2 | 🚀 Advanced | 設計零信任微隔離策略，嚴禁 DMZ 主動直連內部資料庫 | [📘 02.2 實戰手冊](playbooks/phase_5_deep_dfir/track_c_cloud_supplychain/02.2_internal_network_microsegmentation.md) |
+| **4.1 開源依賴投毒與相依性混淆** | 🔴 L3 | 🔬 Specialization | 識別 npm/PyPI 錯字搶注與私有套件高版本投毒行為 | [📘 04.1 實戰手冊](playbooks/phase_5_deep_dfir/track_c_cloud_supplychain/04.1_supply_chain_dependency_confusion.md) |
+| **4.2 軟體物料清單 (SBOM) 審查與弱點追蹤**| 🔴 L3 | 🔬 Specialization | 使用 Syft 產生 CycloneDX/SPDX，並以 Grype 自動比對 CVE | [📘 04.2 實戰手冊](playbooks/phase_5_deep_dfir/track_c_cloud_supplychain/04.2_sbom_vulnerability_management.md) |
+| **4.3 CI/CD 管道審計與密鑰外洩防範** | 🔴 L3 | 🚀 Advanced | 使用 Gitleaks 掃描全 Git 歷史並加固 GitHub Actions 權限 | [📘 04.3 實戰手冊](playbooks/phase_5_deep_dfir/track_c_cloud_supplychain/04.3_cicd_pipeline_secret_protection.md) |
+| **5.1 雲端運算共同責任模型** | 🟡 L2 | 🔬 Specialization | 精確畫出 IaaS/PaaS/SaaS 各層責任歸屬（身分與資料永不脫責）| [📘 05.1 實戰手冊](playbooks/phase_5_deep_dfir/track_c_cloud_supplychain/05.1_cloud_shared_responsibility_matrix.md) |
+| **5.2 雲端多租戶 IAM 提權與審計日誌研判**| 👑 L4 | 🚀 Advanced | 分析 AWS CloudTrail 日誌，還原 AssumeRole 越權操作 | [📘 05.2 實戰手冊](playbooks/phase_5_deep_dfir/track_c_cloud_supplychain/05.2_cloud_iam_privilege_escalation.md) |
+| **5.3 容器逃逸與 K8s 叢集運行時安全** | 👑 L4 | 🚀 Advanced | 識別 Privileged 特權容器掛載與 Docker Socket 逃逸 | [📘 05.3 實戰手冊](playbooks/phase_5_deep_dfir/track_c_cloud_supplychain/05.3_container_escape_k8s_runtime_defense.md) |
+| **5.4 雲端儲存桶外洩與中繼資料劫持** | 👑 L4 | 🔬 Specialization | 防範 169.254.169.254 SSRF 劫持，全面推動 IMDSv2 Token | [📘 05.4 實戰手冊](playbooks/phase_5_deep_dfir/track_c_cloud_supplychain/05.4_s3_bucket_leak_imds_ssrf_defense.md) |
+| **16.4 協定走私與反向代理混淆鑑識** | 🟡 L2 | 🚀 Advanced | 解析 HTTP Request Smuggling (CL.TE / TE.CL) 走私封包 | [📘 16.4 實戰手冊](playbooks/phase_5_deep_dfir/track_c_cloud_supplychain/16.4_http_request_smuggling_defense.md) |
+| **20.1 Java Filter/Servlet 內存馬清剿** | 🔴 L3 | 🚀 Advanced | 使用 Arthas 動態反編譯 JVM 內存類別，定位無檔案後門 | [📘 20.1 實戰手冊](playbooks/phase_5_deep_dfir/track_c_cloud_supplychain/20.1_java_memshell_filter_servlet_forensics.md) |
+| **20.3 .NET 與 PHP 內存馬無檔案後門排查**| 🔴 L3 | 🚀 Advanced | 排查 IIS HTTP 模組注入與 PHP 內存執行碼特徵 | [📘 20.3 實戰手冊](playbooks/phase_5_deep_dfir/track_c_cloud_supplychain/20.3_dotnet_php_fileless_memshell.md) |
 
-#### 🔌 Track D: 網路通訊設備與硬體安全專精 (6 項)
+
+#### 🔌 Track D: 網路通訊設備與硬體安全專精 (8 項)
 
 | 技術點編號與名稱 | 難度 | 核心定位 (Track) | 學習目標與驗收指標 | 對應深度指南 |
 | :--- | :---: | :---: | :--- | :--- |
-| **3.1 Switch Port-Security 違規處理模式** | 🟢 L1 | 🔬 Specialization | 精通 Protect / Restrict / Shutdown 進入 err-disable 處置 | [領域 03 手冊](learning_paths/block_1_hardening/03_switching_port_security.md) |
-| **3.2 IEEE 802.1Q VLAN Tag 結構與 Trunk** | 🟢 L1 | 🔬 Specialization | 掌握 4-Byte Tag、12-bit VID 與 Native VLAN 跳躍防禦 | [領域 03 手冊](learning_paths/block_1_hardening/03_switching_port_security.md) |
-| **3.3 交換機鏈路防護與生成樹安全** | 🟢 L1 | 🔬 Specialization | 配置 BPDU Guard、Root Guard 與 DHCP Snooping 防惡意交換機 | [領域 03 手冊](learning_paths/block_1_hardening/03_switching_port_security.md) |
-| **7.1 SNMP 版本演進與安全等級** | 🟢 L1 | 🔬 Specialization | 辨識 v1/v2c 明文弱點，掌握 v3 authPriv 認證與加密 | [領域 07 手冊](learning_paths/block_2_protocols_crypto_app/07_snmp_vpn_security.md) |
-| **7.2 四大 VPN 協定深度對決與安全性** | 🟢 L1 | 🔬 Specialization | 掌握 IPsec AH vs ESP (ESP具備加密) 與 WireGuard 架構 | [領域 07 手冊](learning_paths/block_2_protocols_crypto_app/07_snmp_vpn_security.md) |
-| **8.1 802.11 四向握手與 EAPOL 認證流程** | 🟢 L1 | 🔬 Specialization | 掌握 ANonce, SNonce, PTK 5大運算元素與交握過程 | [領域 08 手冊](learning_paths/block_2_protocols_crypto_app/08_wireless_security_wpa.md) |
-| **8.2 WPA2 離線字典攻擊與 WPA3 SAE 防禦** | 🟢 L1 | 🔬 Specialization | 剖析 KRACK 金鑰重放漏洞，理解 WPA3 Dragonfly 前向保密 | [領域 08 手冊](learning_paths/block_2_protocols_crypto_app/08_wireless_security_wpa.md) |
-| **11.3 密碼套件協商與弱加密協定降級防範** | 🟢 L1 | 🔬 Specialization | 停用 SSLv3/TLS 1.0，強制採用具備 PFS 前向保密之 ECDHE | [領域 11 手冊](learning_paths/block_2_protocols_crypto_app/11_cryptography_certificates.md) |
+| **3.1 Switch Port-Security 違規處理模式** | 🟢 L1 | 🔬 Specialization | 精通 Protect / Restrict / Shutdown 進入 err-disable 處置 | [📘 03.1 實戰手冊](playbooks/phase_5_deep_dfir/track_d_network_hardware/03.1_switch_port_security_errdisable.md) |
+| **3.2 IEEE 802.1Q VLAN Tag 結構與 Trunk** | 🟢 L1 | 🔬 Specialization | 掌握 4-Byte Tag、12-bit VID 與 Native VLAN 跳躍防禦 | [📘 03.2 實戰手冊](playbooks/phase_5_deep_dfir/track_d_network_hardware/03.2_vlan_tagging_trunk_hopping_defense.md) |
+| **3.3 交換機鏈路防護與生成樹安全** | 🟢 L1 | 🔬 Specialization | 配置 BPDU Guard、Root Guard 與 DHCP Snooping 防惡意交換機 | [📘 03.3 實戰手冊](playbooks/phase_5_deep_dfir/track_d_network_hardware/03.3_stp_bpdu_guard_dhcp_snooping.md) |
+| **7.1 SNMP 版本演進與安全等級** | 🟢 L1 | 🔬 Specialization | 辨識 v1/v2c 明文弱點，掌握 v3 authPriv 認證與加密 | [📘 07.1 實戰手冊](playbooks/phase_5_deep_dfir/track_d_network_hardware/07.1_snmpv3_security_authpriv_hardening.md) |
+| **7.2 四大 VPN 協定深度對決與安全性** | 🟢 L1 | 🔬 Specialization | 掌握 IPsec AH vs ESP (ESP具備加密) 與 WireGuard 架構 | [📘 07.2 實戰手冊](playbooks/phase_5_deep_dfir/track_d_network_hardware/07.2_vpn_ipsec_wireguard_security_showdown.md) |
+| **8.1 802.11 四向握手與 EAPOL 認證流程** | 🟢 L1 | 🔬 Specialization | 掌握 ANonce, SNonce, PTK 5大運算元素與交握過程 | [📘 08.1 實戰手冊](playbooks/phase_5_deep_dfir/track_d_network_hardware/08.1_wifi_80211_four_way_handshake_analysis.md) |
+| **8.2 WPA2 離線字典攻擊與 WPA3 SAE 防禦** | 🟢 L1 | 🔬 Specialization | 剖析 KRACK 金鑰重放漏洞，理解 WPA3 Dragonfly 前向保密 | [📘 08.2 實戰手冊](playbooks/phase_5_deep_dfir/track_d_network_hardware/08.2_wifi_wpa3_sae_dragonfly_defense.md) |
+| **11.3 密碼套件協商與弱加密協定降級防範** | 🟢 L1 | 🔬 Specialization | 停用 SSLv3/TLS 1.0，強制採用具備 PFS 前向保密之 ECDHE | [📘 11.3 實戰手冊](playbooks/phase_5_deep_dfir/track_d_network_hardware/11.3_crypto_ciphersuite_downgrade_pfs.md) |
 
 #### 🔬 Track E: 逆向、核心與行動鑑識專精 (10 項)
 
 | 技術點編號與名稱 | 難度 | 核心定位 (Track) | 學習目標與驗收指標 | 對應深度指南 |
 | :--- | :---: | :---: | :--- | :--- |
-| **19.1 PE 結構、區段屬性與雜湊特徵** | 🔴 L3 | 🔬 Specialization | 解析 DOS MZ 標頭、PE 區段表，以 Shannon 資訊熵辨識加殼 | [領域 19 手冊](learning_paths/block_5_threat_hunting_triage/19_malware_static_triage.md) |
-| **19.2 程式碼混淆還原與字串解密** | 🔴 L3 | 🔬 Specialization | 使用 FLOSS / x64dbg 提取經 XOR / 混淆之 C2 域名與字串 | [領域 19 手冊](learning_paths/block_5_threat_hunting_triage/19_malware_static_triage.md) |
-| **19.3 文件型惡意巨集與內嵌物件萃取** | 🔴 L3 | 🔬 Specialization | 靜態萃取 Office 文件中的 AutoOpen / Shellcode 載荷 | [領域 19 手冊](learning_paths/block_5_threat_hunting_triage/19_malware_static_triage.md) |
-| **25.1 Linux 核心模組 Rootkit 與隱蔽技術**| 🔴 L3 | 🚀 Advanced | 偵測 LKM Syscall Hooking 與斷鏈繞過 `lsmod` 之隱藏模組 | [領域 25 手冊](learning_paths/block_6_dfir_memory_disk/25_linux_kernel_forensics.md) |
-| **25.2 用戶態動態庫劫持與防禦 (LD_PRELOAD)**| 🔴 L3 | 🚀 Advanced | 排查 `/etc/ld.so.preload` 劫持 `readdir()` 之用戶態後門 | [領域 25 手冊](learning_paths/block_6_dfir_memory_disk/25_linux_kernel_forensics.md) |
-| **25.3 雲原生 eBPF 核心級威脅偵測 (Falco)**| 🔴 L3 | 🚀 Advanced | 編寫 Falco 規則，在核心層攔截敏感檔案讀取與越權呼叫 | [領域 25 手冊](learning_paths/block_6_dfir_memory_disk/25_linux_kernel_forensics.md) |
-| **25.4 Linux 記憶體採集與符號表還原 (LiME)**| 🔴 L3 | 🚀 Advanced | 編譯 LiME 核心模組採集實體 RAM 映像並產出 ISF 符號表 | [領域 25 手冊](learning_paths/block_6_dfir_memory_disk/25_linux_kernel_forensics.md) |
-| **26.1 Android APK 惡意行為與靜態解包** | 🔴 L3 | 🚀 Advanced | 使用 JADX 反編譯 `classes.dex`，審查危險廣播與權限 | [領域 26 手冊](learning_paths/block_6_dfir_memory_disk/26_mobile_device_forensics.md) |
-| **26.2 Android 系統執行時日誌與暫存提取**| 🔴 L3 | 🚀 Advanced | 解析通訊軟體 SQLite 資料庫快取與未加密敏感資料 | [領域 26 手冊](learning_paths/block_6_dfir_memory_disk/26_mobile_device_forensics.md) |
-| **26.3 iOS 備份檔案與鑰匙圈取證分析** | 🔴 L3 | 🚀 Advanced | 提取並解析 iTunes 加密備份中的 Keychain 敏感憑證 | [領域 26 手冊](learning_paths/block_6_dfir_memory_disk/26_mobile_device_forensics.md) |
+| **19.1 PE 結構、區段屬性與雜湊特徵** | 🔴 L3 | 🔬 Specialization | 解析 DOS MZ 標頭、PE 區段表，以 Shannon 資訊熵辨識加殼 | [📘 19.1 實戰手冊](playbooks/phase_5_deep_dfir/track_e_reverse_mobile/19.1_pe_structure_entropy_packer_analysis.md) |
+| **19.2 程式碼混淆還原與字串解密** | 🔴 L3 | 🔬 Specialization | 使用 FLOSS / x64dbg 提取經 XOR / 混淆之 C2 域名與字串 | [📘 19.2 實戰手冊](playbooks/phase_5_deep_dfir/track_e_reverse_mobile/19.2_code_deobfuscation_string_decryption.md) |
+| **19.3 文件型惡意巨集與內嵌物件萃取** | 🔴 L3 | 🔬 Specialization | 靜態萃取 Office 文件中的 AutoOpen / Shellcode 載荷 | [📘 19.3 實戰手冊](playbooks/phase_5_deep_dfir/track_e_reverse_mobile/19.3_malicious_office_macro_ole_extraction.md) |
+| **25.1 Linux 核心模組 Rootkit 與隱蔽技術**| 🔴 L3 | 🚀 Advanced | 偵測 LKM Syscall Hooking 與斷鏈繞過 `lsmod` 之隱藏模組 | [📘 25.1 實戰手冊](playbooks/phase_5_deep_dfir/track_e_reverse_mobile/25.1_linux_kernel_lkm_rootkit_forensics.md) |
+| **25.2 用戶態動態庫劫持與防禦 (LD_PRELOAD)**| 🔴 L3 | 🚀 Advanced | 排查 `/etc/ld.so.preload` 劫持 `readdir()` 之用戶態後門 | [📘 25.2 實戰手冊](playbooks/phase_5_deep_dfir/track_e_reverse_mobile/25.2_user_space_shared_library_preload_hijacking.md) |
+| **25.3 雲原生 eBPF 核心級威脅偵測 (Falco)**| 🔴 L3 | 🚀 Advanced | 編寫 Falco 規則，在核心層攔截敏感檔案讀取與越權呼叫 | [📘 25.3 實戰手冊](playbooks/phase_5_deep_dfir/track_e_reverse_mobile/25.3_cloud_native_ebpf_threat_detection_falco.md) |
+| **25.4 Linux 記憶體採集與符號表還原 (LiME)**| 🔴 L3 | 🚀 Advanced | 編譯 LiME 核心模組採集實體 RAM 映像並產出 ISF 符號表 | [📘 25.4 實戰手冊](playbooks/phase_5_deep_dfir/track_e_reverse_mobile/25.4_linux_memory_acquisition_lime_volatility.md) |
+| **26.1 Android APK 惡意行為與靜態解包** | 🔴 L3 | 🚀 Advanced | 使用 JADX 反編譯 `classes.dex`，審查危險廣播與權限 | [📘 26.1 實戰手冊](playbooks/phase_5_deep_dfir/track_e_reverse_mobile/26.1_android_apk_malware_static_decompilation.md) |
+| **26.2 Android 系統執行時日誌與暫存提取**| 🔴 L3 | 🚀 Advanced | 解析通訊軟體 SQLite 資料庫快取與未加密敏感資料 | [📘 26.2 實戰手冊](playbooks/phase_5_deep_dfir/track_e_reverse_mobile/26.2_android_runtime_logs_sqlite_forensics.md) |
+| **26.3 iOS 備份檔案與鑰匙圈取證分析** | 🔴 L3 | 🚀 Advanced | 提取並解析 iTunes 加密備份中的 Keychain 敏感憑證 | [📘 26.3 實戰手冊](playbooks/phase_5_deep_dfir/track_e_reverse_mobile/26.3_ios_backup_forensics_keychain_extraction.md) |
 
 ---
 
