@@ -38,6 +38,9 @@ GOLDEN_KEYWORDS = [
     "過關驗收"
 ]
 
+MIN_PLAYBOOK_LINES = 200
+RECOMMENDED_PLAYBOOK_LINES = 350
+
 def check_playbook_file(fpath):
     issues = []
     safe_fpath = os.path.realpath(fpath)
@@ -57,8 +60,10 @@ def check_playbook_file(fpath):
         issues.append("代碼圍欄未閉合 (Unbalanced code fences)")
 
     # 2. 行數檢查
-    if len(lines) < 200:
-        issues.append(f"行數過少 ({len(lines)} 行, 建議 >= 350 行)")
+    if len(lines) < MIN_PLAYBOOK_LINES:
+        issues.append(
+            f"未達最低行數門檻 ({len(lines)}/{MIN_PLAYBOOK_LINES} 行, 建議完整度 >= {RECOMMENDED_PLAYBOOK_LINES} 行)"
+        )
 
     # 3. 七大規格關鍵字檢查
     missing_kw = []
