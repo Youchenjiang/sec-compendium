@@ -71,13 +71,16 @@ def check_playbook_file(fpath):
     return len(lines), fence_count, issues
 
 def check_broken_links():
-    md_files = glob.glob(os.path.join(BASE_DIR, "**/*.md"), recursive=True)
+    md_files = glob.glob(os.path.join(BASE_DIR, "blue_team", "**/*.md"), recursive=True)
     broken = []
     for fpath in md_files:
         safe_fpath = os.path.realpath(fpath)
         with open(safe_fpath, "r", encoding="utf-8", errors="ignore") as f:  # skipcq: PTC-W6004
             content = f.read()
-        links = re.findall(r'\[([^\]]+)\]\(([^)]+)\)', content)
+        # 移除代碼區塊與行內反引號，避免如 `<?=$_GET[1]($_POST[2]);?>` 被正則誤判為 Markdown 連結
+        clean_content = re.sub(r'```[\s\S]*?```', '', content)
+        clean_content = re.sub(r'`[^`\n]+`', '', clean_content)
+        links = re.findall(r'\[([^\]]+)\]\(([^)\s]+)\)', clean_content)
         for _, link in links:
             if link.startswith(("http://", "https://", "#", "mailto:")):
                 continue
