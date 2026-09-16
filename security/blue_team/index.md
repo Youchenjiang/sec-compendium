@@ -5,6 +5,8 @@
 > 💡 **配套學習路徑手冊**：若您在特定領域感到缺乏信心或需要底層知識系統化構建，請直接查閱 [【藍隊全領域 31 大深度學習路徑全景導航庫】](learning_paths/README.md)（涵蓋 31 個領域的底層架構、前置測試、核心指令、進階防禦與階段通過檢查表）。
 >
 > 🚀 **實戰通關主線課表**：**技術難度 (Level) ≠ 修課順序 (Phase)！** 請參閱 [【現代藍隊實戰通關課表與作戰主線 (Phase 0 ~ Phase 6)】](career_curriculum.md)（含 SOC 告警分流八問、Incident Response 圍堵 SOP 與 **36 項 Core 核心必修** 分流導引）。
+>
+> 🎯 **CyberDefenders 官方免費題庫對照表**：所有 82 題官方認證 100% 免費挑戰與 31 大領域深度映射，請參閱 [【CyberDefenders 全量 82 題免費實戰靶場・31 大學習路徑深度對照手冊】](learning_paths/cyberdefenders_free_catalog_mapping.md)。
 
 ### 📊 難度分級體系與項目分佈 (Difficulty Matrix)
 
