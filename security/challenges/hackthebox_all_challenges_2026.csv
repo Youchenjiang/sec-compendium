@@ -1,0 +1,292 @@
+﻿Title,Tier,Difficulty,OS,Category,URL,Scenario
+Meow,🟢 FREE,Very Easy,Linux,Starting Point (Machine),https://app.hackthebox.com/machines/Meow,Telnet 服務探測、無密碼 root 登入直接獲取 Flag
+Fawn,🟢 FREE,Very Easy,Linux,Starting Point (Machine),https://app.hackthebox.com/machines/Fawn,FTP 服務枚舉、匿名訪客存取 (Anonymous Login) 下載機密檔案
+Dancing,🟢 FREE,Very Easy,Windows,Starting Point (Machine),https://app.hackthebox.com/machines/Dancing,SMB 共享資源枚舉、無密碼訪客存取與管理員備份洩漏
+Explosion,🔴 VIP+,Very Easy,Windows,Starting Point (Machine),https://app.hackthebox.com/machines/Explosion,RDP 服務枚舉 (被標註為 VIP+)
+Crocodile,🟢 FREE,Easy,Linux,Starting Point (Machine),https://app.hackthebox.com/machines/Crocodile,FTP 服務洩漏憑證、Web 管理後台預設帳密突破
+Responder,🟢 FREE,Easy,Windows,Starting Point (Machine),https://app.hackthebox.com/machines/Responder,Web LFI 本地檔案包含、LLMNR/NBT-NS 毒化、NTLM 雜湊捕捉提權
+Three,🟢 FREE,Easy,Linux,Starting Point (Machine),https://app.hackthebox.com/machines/Three,子域名探勘、AWS S3 儲存貯體未授權寫入與 PHP WebShell
+Bike,🔴 VIP+,Easy,Linux,Starting Point (Machine),https://app.hackthebox.com/machines/Bike,Node.js SSTI 模板注入 (被標註為 VIP+)
+Vaccine,🟢 FREE,Easy,Linux,Starting Point (Machine),https://app.hackthebox.com/machines/Vaccine,SQL 注入攻擊 (SQLi)、資料庫密碼雜湊破解與 Sudo 提權
+Archetype,🟢 FREE,Easy,Windows,Starting Point (Machine),https://app.hackthebox.com/machines/Archetype,MSSQL 滲透、xp_cmdshell 遠端指令執行、Windows 登錄檔密碼提權
+Oopsie,🟢 FREE,Easy,Linux,Starting Point (Machine),https://app.hackthebox.com/machines/Oopsie,Web 權限繞過、IDOR 不安全直接物件參考、SUID 二進位提權
+Markup,🔴 VIP+,Easy,Windows,Starting Point (Machine),https://app.hackthebox.com/machines/Markup,XXE 實體注入攻擊 (被標註為 VIP+)
+Included,🔴 VIP+,Easy,Linux,Starting Point (Machine),https://app.hackthebox.com/machines/Included,TFTP 服務利用與 UDP 滲透 (被標註為 VIP+)
+Unified,🟢 FREE,Medium,Linux,Starting Point (Machine),https://app.hackthebox.com/machines/Unified,Log4j (CVE-2021-44228) 漏洞利用、UniFi 平台無檔案反彈 Shell
+Management,🟢 FREE,Easy,Linux,Active Machine (Full Pentest),https://app.hackthebox.com/machines/Management,當期線上常規主機攻堅演練 (20 pts) ｜ 發布日期: 2026-09-12
+Scaffold,🟢 FREE,Hard,Windows,Active Machine (Full Pentest),https://app.hackthebox.com/machines/Scaffold,當期線上常規主機攻堅演練 (40 pts) ｜ 發布日期: 2026-09-05
+BlockSynergy,🟢 FREE,Insane,Linux,Active Machine (Full Pentest),https://app.hackthebox.com/machines/BlockSynergy,當期線上常規主機攻堅演練 (50 pts) ｜ 發布日期: 2026-08-29
+TrustFall,🟢 FREE,Insane,Windows,Active Machine (Full Pentest),https://app.hackthebox.com/machines/TrustFall,當期線上常規主機攻堅演練 (50 pts) ｜ 發布日期: 2026-09-11
+DanglingTree,🟢 FREE,Medium,Windows,Active Machine (Full Pentest),https://app.hackthebox.com/machines/DanglingTree,當期線上常規主機攻堅演練 (30 pts) ｜ 發布日期: 2026-08-08
+Cohort,🟢 FREE,Easy,Linux,Active Machine (Full Pentest),https://app.hackthebox.com/machines/Cohort,當期線上常規主機攻堅演練 (20 pts) ｜ 發布日期: 2026-08-01
+DarkZeroReturns,🟢 FREE,Hard,Windows,Active Machine (Full Pentest),https://app.hackthebox.com/machines/DarkZeroReturns,當期線上常規主機攻堅演練 (40 pts) ｜ 發布日期: 2026-07-25
+Bedside,🟢 FREE,Medium,Linux,Active Machine (Full Pentest),https://app.hackthebox.com/machines/Bedside,當期線上常規主機攻堅演練 (30 pts) ｜ 發布日期: 2026-07-18
+Paperwork,🟢 FREE,Easy,Linux,Active Machine (Full Pentest),https://app.hackthebox.com/machines/Paperwork,當期線上常規主機攻堅演練 (20 pts) ｜ 發布日期: 2026-07-11
+MakeSense,🟢 FREE,Medium,Linux,Active Machine (Full Pentest),https://app.hackthebox.com/machines/MakeSense,當期線上常規主機攻堅演練 (30 pts) ｜ 發布日期: 2026-07-04
+Enigma,🟢 FREE,Easy,Linux,Active Machine (Full Pentest),https://app.hackthebox.com/machines/Enigma,當期線上常規主機攻堅演練 (20 pts) ｜ 發布日期: 2026-06-27
+Nimbus,🟢 FREE,Hard,Linux,Active Machine (Full Pentest),https://app.hackthebox.com/machines/Nimbus,當期線上常規主機攻堅演練 (40 pts) ｜ 發布日期: 2026-06-20
+Checkpoint,🟢 FREE,Medium,Windows,Active Machine (Full Pentest),https://app.hackthebox.com/machines/Checkpoint,當期線上常規主機攻堅演練 (30 pts) ｜ 發布日期: 2026-06-13
+Connected,🟢 FREE,Easy,Linux,Active Machine (Full Pentest),https://app.hackthebox.com/machines/Connected,當期線上常規主機攻堅演練 (20 pts) ｜ 發布日期: 2026-06-06
+DevHub,🟢 FREE,Medium,Linux,Active Machine (Full Pentest),https://app.hackthebox.com/machines/DevHub,當期線上常規主機攻堅演練 (30 pts) ｜ 發布日期: 2026-05-30
+Reactor,🟢 FREE,Easy,Linux,Active Machine (Full Pentest),https://app.hackthebox.com/machines/Reactor,當期線上常規主機攻堅演練 (20 pts) ｜ 發布日期: 2026-05-23
+SmartHire,🟢 FREE,Medium,Linux,Active Machine (Full Pentest),https://app.hackthebox.com/machines/SmartHire,當期線上常規主機攻堅演練 (30 pts) ｜ 發布日期: 2026-05-16
+PingPong,🟢 FREE,Insane,Windows,Active Machine (Full Pentest),https://app.hackthebox.com/machines/PingPong,當期線上常規主機攻堅演練 (50 pts) ｜ 發布日期: 2026-04-25
+Garfield,🟢 FREE,Hard,Windows,Active Machine (Full Pentest),https://app.hackthebox.com/machines/Garfield,當期線上常規主機攻堅演練 (40 pts) ｜ 發布日期: 2026-04-04
+Eloquia,🟢 FREE,Insane,Windows,Active Machine (Full Pentest),https://app.hackthebox.com/machines/Eloquia,當期線上常規主機攻堅演練 (50 pts) ｜ 發布日期: 2025-12-13
+Brutus,🟢 FREE,Very easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Brutus,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Baggage,🟢 FREE,Very easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Baggage,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+PhantomRing,🟢 FREE,Very easy,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/PhantomRing,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Phishing_Email,🟢 FREE,Very easy,Multi/Forensics,Sherlock (SOC),https://app.hackthebox.com/sherlocks/Phishing_Email,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+FortySeven-1,🔴 VIP,Very easy,Multi/Forensics,Sherlock (Threat Intelligence),https://app.hackthebox.com/sherlocks/FortySeven-1,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Vantage,🔴 VIP,Very easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Vantage,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Telly,🔴 VIP,Very easy,Multi/Forensics,Sherlock (SOC),https://app.hackthebox.com/sherlocks/Telly,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+MangoBleed,🟢 FREE,Very easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/MangoBleed,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Dream Job-2,🔴 VIP,Very easy,Multi/Forensics,Sherlock (Threat Intelligence),https://app.hackthebox.com/sherlocks/Dream Job-2,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+RomCom,🟢 FREE,Very easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/RomCom,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+PhishNet,🔴 VIP,Very easy,Multi/Forensics,Sherlock (SOC),https://app.hackthebox.com/sherlocks/PhishNet,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+SalineBreeze-1,🔴 VIP,Very easy,Multi/Forensics,Sherlock (Threat Intelligence),https://app.hackthebox.com/sherlocks/SalineBreeze-1,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Operation Blackout 2025: Phantom Check,🟢 FREE,Very easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Operation Blackout 2025: Phantom Check,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Operation Blackout 2025: Smoke & Mirrors,🟢 FREE,Very easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Operation Blackout 2025: Smoke & Mirrors,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+ElectricBreeze-1,🔴 VIP,Very easy,Multi/Forensics,Sherlock (Threat Intelligence),https://app.hackthebox.com/sherlocks/ElectricBreeze-1,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Origins,🔴 VIP,Very easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Origins,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Dream Job-1,🟢 FREE,Very easy,Multi/Forensics,Sherlock (Threat Intelligence),https://app.hackthebox.com/sherlocks/Dream Job-1,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+SmartyPants,🟢 FREE,Very easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/SmartyPants,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+UFO-1,🟢 FREE,Very easy,Multi/Forensics,Sherlock (Threat Intelligence),https://app.hackthebox.com/sherlocks/UFO-1,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+CrownJewel-2,🟢 FREE,Very easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/CrownJewel-2,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+CrownJewel-1,🟢 FREE,Very easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/CrownJewel-1,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Reaper,🟢 FREE,Very easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Reaper,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Noxious,🟢 FREE,Very easy,Multi/Forensics,Sherlock (SOC),https://app.hackthebox.com/sherlocks/Noxious,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Campfire-2,🟢 FREE,Very easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Campfire-2,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Campfire-1,🟢 FREE,Very easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Campfire-1,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Unit42,🟢 FREE,Very easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Unit42,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+BFT,🟢 FREE,Very easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/BFT,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Stagecomp,🟢 FREE,Easy,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/Stagecomp,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+PhantomValidation,🟢 FREE,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/PhantomValidation,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Phantom,🟢 FREE,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Phantom,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+TaskForce,🟢 FREE,Easy,Multi/Forensics,Sherlock (Threat Hunting),https://app.hackthebox.com/sherlocks/TaskForce,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Upstyle_Backdoor,🟢 FREE,Easy,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/Upstyle_Backdoor,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+VoIP,🟢 FREE,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/VoIP,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Samba_Spy,🟢 FREE,Easy,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/Samba_Spy,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Malicious_Doc,🟢 FREE,Easy,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/Malicious_Doc,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Port_Scan_Activity,🟢 FREE,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Port_Scan_Activity,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+PHP-CGI_(CVE-2024-4577),🟢 FREE,Easy,Multi/Forensics,Sherlock (SOC),https://app.hackthebox.com/sherlocks/PHP-CGI_(CVE-2024-4577),藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Obfuscated_HTA,🟢 FREE,Easy,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/Obfuscated_HTA,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Malicious_VBA,🟢 FREE,Easy,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/Malicious_VBA,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Kernel_Exploit,🟢 FREE,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Kernel_Exploit,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Investigate_Web_Attack,🟢 FREE,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Investigate_Web_Attack,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+IcedID_Malware_Family,🟢 FREE,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/IcedID_Malware_Family,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Http_Basic_Auth,🟢 FREE,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Http_Basic_Auth,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+KitsuneHook,🟢 FREE,Easy,Multi/Forensics,Sherlock (Threat Intelligence),https://app.hackthebox.com/sherlocks/KitsuneHook,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+CAMouflage,🟢 FREE,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/CAMouflage,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Fruitzy,🟢 FREE,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Fruitzy,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+ShadowBait,🔴 VIP,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/ShadowBait,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+CrashDump,🔴 VIP,Easy,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/CrashDump,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+LuckyShot,🔴 VIP,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/LuckyShot,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+AoTR 4: A Drone in the Snow,🟢 FREE,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/AoTR 4: A Drone in the Snow,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+AoTR 1: A Call from the Museum,🔴 VIP,Easy,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/AoTR 1: A Call from the Museum,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+AoTR 2: Operation Winter Blackout,🟢 FREE,Easy,Multi/Forensics,Sherlock (Threat Intelligence),https://app.hackthebox.com/sherlocks/AoTR 2: Operation Winter Blackout,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+GhostTrace,🔴 VIP,Easy,Multi/Forensics,Sherlock (SOC),https://app.hackthebox.com/sherlocks/GhostTrace,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Holmes 2025 3: The Enduring Echo,🟢 FREE,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Holmes 2025 3: The Enduring Echo,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Holmes 2025 1: The Card,🔴 VIP,Easy,Multi/Forensics,Sherlock (Threat Intelligence),https://app.hackthebox.com/sherlocks/Holmes 2025 1: The Card,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+SecretPictures,🔴 VIP,Easy,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/SecretPictures,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Packet Puzzle,🔴 VIP,Easy,Multi/Forensics,Sherlock (SOC),https://app.hackthebox.com/sherlocks/Packet Puzzle,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Whisper,🔴 VIP,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Whisper,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+SalineBreeze-2,🔴 VIP,Easy,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/SalineBreeze-2,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+WhyFind,🔴 VIP,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/WhyFind,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Interceptor,🔴 VIP,Easy,Multi/Forensics,Sherlock (SOC),https://app.hackthebox.com/sherlocks/Interceptor,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Cuidado,🔴 VIP,Easy,Multi/Forensics,Sherlock (SOC),https://app.hackthebox.com/sherlocks/Cuidado,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+PercyPay,🔴 VIP,Easy,Multi/Forensics,Sherlock (Cloud),https://app.hackthebox.com/sherlocks/PercyPay,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+ElectricBreeze-2,🔴 VIP,Easy,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/ElectricBreeze-2,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Zenith,🔴 VIP,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Zenith,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Operation Blackout 2025: Ghost Thread,🟢 FREE,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Operation Blackout 2025: Ghost Thread,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Payload,🔴 VIP,Easy,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/Payload,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Trojan,🔴 VIP,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Trojan,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+DroidPhish,🔴 VIP,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/DroidPhish,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+TeamWork,🔴 VIP,Easy,Multi/Forensics,Sherlock (Threat Intelligence),https://app.hackthebox.com/sherlocks/TeamWork,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+NeuroSync-D,🟢 FREE,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/NeuroSync-D,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+TrainingDay,🔴 VIP,Easy,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/TrainingDay,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Kuber,🔴 VIP,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Kuber,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Loggy,🔴 VIP,Easy,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/Loggy,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Psittaciformes,🔴 VIP,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Psittaciformes,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+OpTinselTrace24-4: Neural Noel,🔴 VIP,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/OpTinselTrace24-4: Neural Noel,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+OpTinselTrace24-2: Cookie Consumption,🔴 VIP,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/OpTinselTrace24-2: Cookie Consumption,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Compromised,🔴 VIP,Easy,Multi/Forensics,Sherlock (SOC),https://app.hackthebox.com/sherlocks/Compromised,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Takedown,🔴 VIP,Easy,Multi/Forensics,Sherlock (SOC),https://app.hackthebox.com/sherlocks/Takedown,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+OpSalwarKameez24-5: Bling-Bling,🔴 VIP,Easy,Multi/Forensics,Sherlock (SOC),https://app.hackthebox.com/sherlocks/OpSalwarKameez24-5: Bling-Bling,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+OpSalwarKameez24-1: Super-Star,🔴 VIP,Easy,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/OpSalwarKameez24-1: Super-Star,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Pikaptcha,🟢 FREE,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Pikaptcha,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Heartbreaker-Denouement,🔴 VIP,Easy,Multi/Forensics,Sherlock (Cloud),https://app.hackthebox.com/sherlocks/Heartbreaker-Denouement,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Heartbreaker-Continuum,🔴 VIP,Easy,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/Heartbreaker-Continuum,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Fragility,🔴 VIP,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Fragility,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Ultimatum,🔴 VIP,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Ultimatum,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Jingle Bell,🔴 VIP,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Jingle Bell,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Recollection,🔴 VIP,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Recollection,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Noted,🔴 VIP,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Noted,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Nubilum2,🔴 VIP,Easy,Multi/Forensics,Sherlock (Cloud),https://app.hackthebox.com/sherlocks/Nubilum2,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+OpTinselTrace-4,🔴 VIP,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/OpTinselTrace-4,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+OpTinselTrace-2,🔴 VIP,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/OpTinselTrace-2,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+OpTinselTrace-1,🟢 FREE,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/OpTinselTrace-1,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+RogueOne,🔴 VIP,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/RogueOne,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Meerkat,🔴 VIP,Easy,Multi/Forensics,Sherlock (SOC),https://app.hackthebox.com/sherlocks/Meerkat,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+i-like-to,🔴 VIP,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/i-like-to,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Bumblebee,🟢 FREE,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Bumblebee,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Litter,🔴 VIP,Easy,Multi/Forensics,Sherlock (SOC),https://app.hackthebox.com/sherlocks/Litter,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Lockpick,🔴 VIP,Easy,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/Lockpick,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+LogJammer,🟢 FREE,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/LogJammer,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Tracer,🔴 VIP,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Tracer,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Hyperfiletable,🔴 VIP,Easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Hyperfiletable,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Yggdrasil,🟢 FREE,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Yggdrasil,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+PhantomLoader,🟢 FREE,Medium,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/PhantomLoader,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+SupportBot,🟢 FREE,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/SupportBot,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+OdysseyStealer,🟢 FREE,Medium,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/OdysseyStealer,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Windows_Memory_Dump,🟢 FREE,Medium,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/Windows_Memory_Dump,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+WhaleSecret,🟢 FREE,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/WhaleSecret,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Print-Nightmare,🟢 FREE,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Print-Nightmare,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Adobe_ColdFusion_RCE,🟢 FREE,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Adobe_ColdFusion_RCE,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+AgnianeStealer,🟢 FREE,Medium,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/AgnianeStealer,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Windows_Registry,🟢 FREE,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Windows_Registry,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Ransomware_Attack,🟢 FREE,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Ransomware_Attack,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Risen_Ransomware,🟢 FREE,Medium,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/Risen_Ransomware,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Royal_Ransomware,🟢 FREE,Medium,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/Royal_Ransomware,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+WannaCry_Ransomware,🟢 FREE,Medium,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/WannaCry_Ransomware,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Serpent_Stealer,🟢 FREE,Medium,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/Serpent_Stealer,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Revenge_RAT,🟢 FREE,Medium,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/Revenge_RAT,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+RanDev,🟢 FREE,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/RanDev,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+macOS_Malware,🟢 FREE,Medium,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/macOS_Malware,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Malicious_NuGet_Package,🟢 FREE,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Malicious_NuGet_Package,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+PDFURI,🟢 FREE,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/PDFURI,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Malicious_Chrome_Extension,🟢 FREE,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Malicious_Chrome_Extension,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+HeartBeat_Backdoor,🟢 FREE,Medium,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/HeartBeat_Backdoor,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Interlock_Ransomware,🟢 FREE,Medium,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/Interlock_Ransomware,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Excel_4.0_Macros,🟢 FREE,Medium,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/Excel_4.0_Macros,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Helldown_Ransomware,🟢 FREE,Medium,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/Helldown_Ransomware,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Infection_with_Cobalt_Strike,🟢 FREE,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Infection_with_Cobalt_Strike,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+LDAP_Enumeration,🟢 FREE,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/LDAP_Enumeration,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Android_Forensics,🟢 FREE,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Android_Forensics,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Brute_Force_Attacks,🟢 FREE,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Brute_Force_Attacks,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+AS-REP_Challenge,🟢 FREE,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/AS-REP_Challenge,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+AWS_CloudTrail,🟢 FREE,Medium,Multi/Forensics,Sherlock (Cloud),https://app.hackthebox.com/sherlocks/AWS_CloudTrail,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+AI-Powered_Ransomware,🟢 FREE,Medium,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/AI-Powered_Ransomware,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Opportunist,🟢 FREE,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Opportunist,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Kraken,🟢 FREE,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Kraken,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+LogForge,🟢 FREE,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/LogForge,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+CorpDown-1,🟢 FREE,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/CorpDown-1,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Midnight Crash,🔴 VIP,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Midnight Crash,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Antarctica,🔴 VIP,Medium,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/Antarctica,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Liberty,🔴 VIP,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Liberty,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+JustSomePages,🔴 VIP,Medium,Multi/Forensics,Sherlock (SOC),https://app.hackthebox.com/sherlocks/JustSomePages,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Lupin,🔴 VIP,Medium,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/Lupin,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+SneakyKeys,🔴 VIP,Medium,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/SneakyKeys,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Holmes 2025 2: The Watchman's Residue,🟢 FREE,Medium,Multi/Forensics,Sherlock (SOC),https://app.hackthebox.com/sherlocks/Holmes 2025 2: The Watchman's Residue,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Easy Money,🔴 VIP,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Easy Money,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+WorkFromHome,🔴 VIP,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/WorkFromHome,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+HookFlare,🔴 VIP,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/HookFlare,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+CafePoisoning,🔴 VIP,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/CafePoisoning,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Malevolent ModMaker,🔴 VIP,Medium,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/Malevolent ModMaker,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Hijacked,🔴 VIP,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Hijacked,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Allegretto,🔴 VIP,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Allegretto,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+ReachKart,🟢 FREE,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/ReachKart,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+CrewCrow,🔴 VIP,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/CrewCrow,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Unsupervised,🔴 VIP,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Unsupervised,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Anpu,🔴 VIP,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Anpu,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+ReliableThreat,🔴 VIP,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/ReliableThreat,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Trent,🔴 VIP,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Trent,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+OpTinselTrace24-3: Blizzard Breakdown,🔴 VIP,Medium,Multi/Forensics,Sherlock (Cloud),https://app.hackthebox.com/sherlocks/OpTinselTrace24-3: Blizzard Breakdown,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+OpSalwarKameez24-4: Salsa-Dance,🔴 VIP,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/OpSalwarKameez24-4: Salsa-Dance,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+OpSalwarKameez24-2: Magic-Show,🔴 VIP,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/OpSalwarKameez24-2: Magic-Show,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+MisCloud,🔴 VIP,Medium,Multi/Forensics,Sherlock (Cloud),https://app.hackthebox.com/sherlocks/MisCloud,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Nuts,🟢 FREE,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Nuts,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Heartbreaker,🔴 VIP,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Heartbreaker,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Mellitus,🔴 VIP,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Mellitus,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Subatomic,🟢 FREE,Medium,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/Subatomic,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+APTNightmare,🔴 VIP,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/APTNightmare,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Jugglin,🔴 VIP,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Jugglin,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Jinkies,🔴 VIP,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Jinkies,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+OpTinselTrace-3,🔴 VIP,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/OpTinselTrace-3,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Constellation,🔴 VIP,Medium,Multi/Forensics,Sherlock (Threat Intelligence),https://app.hackthebox.com/sherlocks/Constellation,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Nubilum-1,🔴 VIP,Medium,Multi/Forensics,Sherlock (Cloud),https://app.hackthebox.com/sherlocks/Nubilum-1,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Knock Knock,🔴 VIP,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Knock Knock,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Ore,🔴 VIP,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Ore,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+TickTock,🔴 VIP,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/TickTock,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Einladen,🔴 VIP,Medium,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Einladen,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+NoSignal,🟢 FREE,Hard,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/NoSignal,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+TabFlowPro,🟢 FREE,Hard,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/TabFlowPro,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Google_Cloud_Incident,🟢 FREE,Hard,Multi/Forensics,Sherlock (Cloud),https://app.hackthebox.com/sherlocks/Google_Cloud_Incident,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+OrbitBreach,🟢 FREE,Hard,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/OrbitBreach,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Overlord,🟢 FREE,Hard,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/Overlord,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+VelvetThrone,🟢 FREE,Hard,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/VelvetThrone,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Oldie,🟢 FREE,Hard,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Oldie,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Windows_Theme_Spoofing,🟢 FREE,Hard,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Windows_Theme_Spoofing,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Alternate_Data_Stream,🟢 FREE,Hard,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Alternate_Data_Stream,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+WinRAR_0-Day,🟢 FREE,Hard,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/WinRAR_0-Day,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Windows_Forensics,🟢 FREE,Hard,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Windows_Forensics,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+USB_Forensics,🟢 FREE,Hard,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/USB_Forensics,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+MacForensics,🟢 FREE,Hard,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/MacForensics,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Linux_Memory_Forensics,🟢 FREE,Hard,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Linux_Memory_Forensics,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Linux_Disk_Forensics,🟢 FREE,Hard,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Linux_Disk_Forensics,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Anti-Analysis_TyphonLogger,🟢 FREE,Hard,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/Anti-Analysis_TyphonLogger,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+BingoMod,🟢 FREE,Hard,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/BingoMod,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+BlackStore,🟢 FREE,Hard,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/BlackStore,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Compromised_ICS_Device,🟢 FREE,Hard,Multi/Forensics,Sherlock (ICS/OT),https://app.hackthebox.com/sherlocks/Compromised_ICS_Device,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+AWS_Stacked,🟢 FREE,Hard,Multi/Forensics,Sherlock (Cloud),https://app.hackthebox.com/sherlocks/AWS_Stacked,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+AWS_Bucketware,🟢 FREE,Hard,Multi/Forensics,Sherlock (Cloud),https://app.hackthebox.com/sherlocks/AWS_Bucketware,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+CorpDown-2,🟢 FREE,Hard,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/CorpDown-2,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+ShadowMonarch,🟢 FREE,Hard,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/ShadowMonarch,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+JobApplicant,🟢 FREE,Hard,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/JobApplicant,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Foreigner,🔴 VIP,Hard,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/Foreigner,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Ruse,🔴 VIP,Hard,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Ruse,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+AoTR 3: The Abandoned Farmhouse,🔴 VIP,Hard,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/AoTR 3: The Abandoned Farmhouse,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Holmes 2025 4: The Tunnel Without Walls,🟢 FREE,Hard,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Holmes 2025 4: The Tunnel Without Walls,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Holmes 2025 5: The Payload,🟢 FREE,Hard,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/Holmes 2025 5: The Payload,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+SillyEli,🔴 VIP,Hard,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/SillyEli,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Caught,🔴 VIP,Hard,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Caught,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+GateKeeper,🔴 VIP,Hard,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/GateKeeper,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Streamer,🔴 VIP,Hard,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Streamer,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+GroundWorm,🔴 VIP,Hard,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/GroundWorm,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+APTNightmare-2,🔴 VIP,Hard,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/APTNightmare-2,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+OpTinselTrace24-6: Sleigh Slayer,🟢 FREE,Hard,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/OpTinselTrace24-6: Sleigh Slayer,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+OpTinselTrace24-5: Tale of Maple Syrup,🔴 VIP,Hard,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/OpTinselTrace24-5: Tale of Maple Syrup,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+OpTinselTrace24-1: Sneaky Cookies,🔴 VIP,Hard,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/OpTinselTrace24-1: Sneaky Cookies,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+OpSalwarKameez24-3: Snake-Pill,🔴 VIP,Hard,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/OpSalwarKameez24-3: Snake-Pill,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Latus,🔴 VIP,Hard,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Latus,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Detroit Becomes Human,🔴 VIP,Hard,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Detroit Becomes Human,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Lockpick3.0,🟢 FREE,Hard,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/Lockpick3.0,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Heist,🔴 VIP,Hard,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Heist,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+BOughT,🔴 VIP,Hard,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/BOughT,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+OpTinselTrace-5,🔴 VIP,Hard,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/OpTinselTrace-5,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Lockpick2.0,🔴 VIP,Hard,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/Lockpick2.0,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+ProcNet,🔴 VIP,Hard,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/ProcNet,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Kawmikaze,🟢 FREE,Insane,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/Kawmikaze,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Stonks,🟢 FREE,Insane,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Stonks,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+ShadowStream,🔴 VIP,Insane,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/ShadowStream,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Novitas,🔴 VIP,Insane,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/Novitas,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Lovely Malware,🔴 VIP,Insane,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/Lovely Malware,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Lockpick4.0,🟢 FREE,Insane,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/Lockpick4.0,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Hunter,🔴 VIP,Insane,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Hunter,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+Safecracker,🟢 FREE,Insane,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/Safecracker,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
+SpookyPass,🟢 FREE,Very easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/SpookyPass,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Flag Command,🟢 FREE,Very easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Flag Command,獨立專題 CTF 解題挑戰（Web 領域實戰）
+First Contact,🟢 FREE,Very easy,CTF Challenge,Challenge (Satellite),https://app.hackthebox.com/challenges/First Contact,獨立專題 CTF 解題挑戰（Satellite 領域實戰）
+Scalped Platform,🟢 FREE,Very easy,CTF Challenge,Challenge (Satellite),https://app.hackthebox.com/challenges/Scalped Platform,獨立專題 CTF 解題挑戰（Satellite 領域實戰）
+Space Explorer,🟢 FREE,Very easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Space Explorer,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Baby Frame,🟢 FREE,Very easy,CTF Challenge,Challenge (Satellite),https://app.hackthebox.com/challenges/Baby Frame,獨立專題 CTF 解題挑戰（Satellite 領域實戰）
+Espresso,🟢 FREE,Very easy,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/Espresso,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+Lucky Dice,🟢 FREE,Very easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Lucky Dice,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+OpenSecret,🟢 FREE,Very easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/OpenSecret,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Ether Tag,🟢 FREE,Very easy,CTF Challenge,Challenge (ICS),https://app.hackthebox.com/challenges/Ether Tag,獨立專題 CTF 解題挑戰（ICS 領域實戰）
+ReactOOPS,🟢 FREE,Very easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/ReactOOPS,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Global Hyperlink Zone,🟢 FREE,Very easy,CTF Challenge,Challenge (Quantum),https://app.hackthebox.com/challenges/Global Hyperlink Zone,獨立專題 CTF 解題挑戰（Quantum 領域實戰）
+Flagportation,🟢 FREE,Very easy,CTF Challenge,Challenge (Quantum),https://app.hackthebox.com/challenges/Flagportation,獨立專題 CTF 解題挑戰（Quantum 領域實戰）
+The Puppet Master,🟢 FREE,Very easy,CTF Challenge,Challenge (OSINT),https://app.hackthebox.com/challenges/The Puppet Master,獨立專題 CTF 解題挑戰（OSINT 領域實戰）
+Social Media Investigation Hub,🟢 FREE,Very easy,CTF Challenge,Challenge (OSINT),https://app.hackthebox.com/challenges/Social Media Investigation Hub,獨立專題 CTF 解題挑戰（OSINT 領域實戰）
+The Suspicious Domain,🟢 FREE,Very easy,CTF Challenge,Challenge (OSINT),https://app.hackthebox.com/challenges/The Suspicious Domain,獨立專題 CTF 解題挑戰（OSINT 領域實戰）
+NeoVault,🟢 FREE,Very easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/NeoVault,獨立專題 CTF 解題挑戰（Web 領域實戰）
+JinjaCare,🟢 FREE,Very easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/JinjaCare,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Criticalops,🟢 FREE,Very easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Criticalops,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Low Logic,🟢 FREE,Very easy,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/Low Logic,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+Distract and Destroy,🟢 FREE,Very easy,CTF Challenge,Challenge (Blockchain),https://app.hackthebox.com/challenges/Distract and Destroy,獨立專題 CTF 解題挑戰（Blockchain 領域實戰）
+Spookifier,🟢 FREE,Very easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Spookifier,獨立專題 CTF 解題挑戰（Web 領域實戰）
+The Last Dance,🟢 FREE,Very easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/The Last Dance,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Simple Encryptor,🟢 FREE,Very easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Simple Encryptor,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Baby Time Capsule,🟢 FREE,Very easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Baby Time Capsule,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+CubeMadness1,🟢 FREE,Very easy,CTF Challenge,Challenge (GamePwn),https://app.hackthebox.com/challenges/CubeMadness1,獨立專題 CTF 解題挑戰（GamePwn 領域實戰）
