@@ -294,7 +294,7 @@ vol -f memory.raw windows.modscan   # 掃描 pool
 
 | 題目 | 難度 | 連結 | 練習重點 |
 |------|------|------|---------|
-| **HTB Sherlocks: Brutus** | ⭐⭐⭐ | [HTB Sherlocks](https://app.hackthebox.com/sherlocks) | 混合 EVTX + 記憶體分析 |
+| **HTB Sherlocks: Brutus** | ⭐⭐⭐ | [HTB Sherlocks](https://app.hackthebox.com/sherlocks/Brutus) | 混合 EVTX + 記憶體分析 |
 | **DFRWS 2005 Challenge** | ⭐⭐⭐⭐ | [DFRWS](https://dfrws.org/forensic-challenges/) | 經典 rootkit 案例，業界標準 |
 | **Digital Corpora: Scenario M57** | ⭐⭐⭐⭐ | [Digital Corpora](https://digitalcorpora.org/) | 企業級完整調查場景 |
 
