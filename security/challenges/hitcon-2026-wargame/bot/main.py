@@ -48,6 +48,52 @@ class WargameBot:
             "successful_submissions": []
         }
 
+    @staticmethod
+    def _resolve_offline_package(local_dir: str, target_package: str = None) -> Optional[List[Dict[str, Any]]]:
+        """Resolve package metadata from local directory."""
+        if not local_dir:
+            print("[-] Offline mode specified without --local-dir or target source. Exiting.")
+            return None
+        p = Path(local_dir).resolve()
+        if not p.exists():
+            print(f"[-] Specified local directory does not exist: {p}")
+            return None
+        pkg_name = target_package or p.name
+        composer_json = p / "composer.json"
+        if composer_json.exists():
+            try:
+                cdata = json.loads(composer_json.read_text(encoding="utf-8"))
+                pkg_name = cdata.get("name", pkg_name)
+            except Exception:
+                pass
+        return [{
+            "id": "local",
+            "name": pkg_name,
+            "version": "local",
+            "php_version": "8.4",
+            "source_path": str(p),
+        }]
+
+    def _fetch_online_packages(self, target_package: str = None) -> Optional[List[Dict[str, Any]]]:
+        """Authenticate and fetch online packages."""
+        print("\n[Phase 1] Authentication")
+        if not self.client.login():
+            print("[-] Failed to authenticate. Exiting.")
+            return None
+
+        print("\n[Phase 2] Fetching packages")
+        packages = self.client.get_packages()
+        if not packages:
+            print("[-] No packages found. Exiting.")
+            return None
+
+        if target_package:
+            packages = [p for p in packages if target_package in p.get("name", "")]
+            if not packages:
+                print(f"[-] Package '{target_package}' not found. Exiting.")
+                return None
+        return packages
+
     def run(
         self,
         target_package: str = None,
@@ -56,60 +102,20 @@ class WargameBot:
         no_submit: bool = False,
         offline: bool = False,
     ):
-        """Main execution flow."""
+        """Main execution flow."""  # skipcq: PYL-R0912
         print("=" * 60)
         print("HITCON 2026 Wargame Bot")
         print("=" * 60)
 
         is_offline = offline or bool(local_dir)
-        packages = []
-
         if is_offline:
             print("\n[Phase 1] Offline Mode (skipping platform login)")
-            if local_dir:
-                p = Path(local_dir).resolve()
-                if not p.exists():
-                    print(f"[-] Specified local directory does not exist: {p}")
-                    return
-                # Check if it has composer.json to extract package name
-                pkg_name = target_package or p.name
-                composer_json = p / "composer.json"
-                if composer_json.exists():
-                    try:
-                        cdata = json.loads(composer_json.read_text(encoding="utf-8"))
-                        pkg_name = cdata.get("name", pkg_name)
-                    except Exception:
-                        pass
-                packages = [{
-                    "id": "local",
-                    "name": pkg_name,
-                    "version": "local",
-                    "php_version": "8.4",
-                    "source_path": str(p),
-                }]
-            else:
-                print("[-] Offline mode specified without --local-dir or target source. Exiting.")
-                return
+            packages = self._resolve_offline_package(local_dir, target_package)
         else:
-            # Step 1: Login to wargame platform
-            print("\n[Phase 1] Authentication")
-            if not self.client.login():
-                print("[-] Failed to authenticate. Exiting.")
-                return
+            packages = self._fetch_online_packages(target_package)
 
-            # Step 2: Get package list
-            print("\n[Phase 2] Fetching packages")
-            packages = self.client.get_packages()
-            if not packages:
-                print("[-] No packages found. Exiting.")
-                return
-
-        # Filter to specific package if specified
-        if target_package and not is_offline:
-            packages = [p for p in packages if target_package in p.get("name", "")]
-            if not packages:
-                print(f"[-] Package '{target_package}' not found. Exiting.")
-                return
+        if not packages:
+            return
 
         print(f"[*] Processing {len(packages)} packages")
 

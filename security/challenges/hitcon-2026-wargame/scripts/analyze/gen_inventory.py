@@ -14,9 +14,35 @@ from lib.paths import SCAN_CACHE, RESULTS_DIR
 OUTPUT_CSV = RESULTS_DIR / "package_inventory.csv"
 OUTPUT_MD = RESULTS_DIR / "package_inventory.md"
 
+ACTIONABLE_TYPES = {
+    "system/exec/passthru invocation",
+    "Direct eval() execution",
+    "preg_replace /e modifier",
+    "file_put_contents file write",
+    "Dynamic include / require",
+    "Variable function call with variable",
+    "create_function() deprecated RCE",
+    "Backtick shell execution",
+    "unserialize() invocation",
+    "SQL query with string concatenation",
+    "Dynamic file read (file_get_contents/readfile)",
+}
 
-def main():
-    # ── Load data ──
+PRIORITY_ORDER = {
+    "DONE": 0, "P1-CRIT": 1, "P1-SUPERGLOBAL": 2, "P1-NEED-DL": 3,
+    "P2-WEB": 4, "P2-HIGH": 5, "P3-HIGH-NC": 6, "P4-MED": 7, "-": 8
+}
+
+
+def _to_composer(scan_name: str) -> str:
+    """Convert scan_cache name to composer name. e.g., owasp_phprbac_2.0.0 -> owasp/phprbac"""
+    parts = scan_name.rsplit("_", 1)
+    if len(parts) == 2:
+        return parts[0].replace("_", "/")
+    return scan_name.replace("_", "/")
+
+
+def _load_data():
     sast_path = RESULTS_DIR / "comprehensive_sast_findings.json"
     solved_path = RESULTS_DIR / "all_solved.json"
 
@@ -27,15 +53,17 @@ def main():
         if not solved_path.exists():
             print(f"    - {solved_path.name} not found")
         print("[!] Run scan tools and fetch solved challenges first before generating inventory.")
-        return 1
+        return None, None
 
     with open(sast_path, encoding="utf-8") as f:
         sast = json.load(f)
-
     with open(solved_path, encoding="utf-8") as f:
         solved_list = json.load(f)
 
-    # Build solved lookup: {composer_name: {version: info}}
+    return sast, solved_list
+
+
+def _build_solved_lookup(solved_list):
     solved_lookup = {}
     for p in solved_list:
         name = p["name"]
@@ -49,25 +77,19 @@ def main():
             "attempt_count": p.get("attempt_count"),
             "id": p.get("id", ""),
         }
+    return solved_lookup
 
-    # Build SAST findings per package
+
+def _build_sast_by_pkg(sast):
     sast_by_pkg = defaultdict(lambda: {
         "total": 0, "critical": 0, "high": 0, "medium": 0, "low": 0,
         "types": set(), "files": set(), "has_superglobal": False,
         "pkg_scan_name": "",
     })
 
-    def to_composer(scan_name):
-        """Convert scan_cache name to composer name. e.g., owasp_phprbac_2.0.0 -> owasp/phprbac"""
-        # Split on last _ to get version
-        parts = scan_name.rsplit("_", 1)
-        if len(parts) == 2:
-            return parts[0].replace("_", "/")
-        return scan_name.replace("_", "/")
-
     for item in sast:
         pkg_scan = item["package"]
-        composer = to_composer(pkg_scan)
+        composer = _to_composer(pkg_scan)
         info = sast_by_pkg[composer]
         info["total"] += 1
         info["pkg_scan_name"] = pkg_scan
@@ -87,155 +109,128 @@ def main():
         if item.get("has_superglobal"):
             info["has_superglobal"] = True
 
-    # Build scan cache set
+    return sast_by_pkg
+
+
+def _get_cache_dirs():
     cache_dirs = set()
     if SCAN_CACHE.exists():
         for d in SCAN_CACHE.iterdir():
             if d.is_dir():
                 cache_dirs.add(d.name)
+    return cache_dirs
 
-    def is_cached(composer_name, pkg_scan_name):
-        """Check if a package is in the scan cache."""
-        safe = composer_name.replace("/", "_")
-        for c in cache_dirs:
-            if safe in c:
-                return True
-        if pkg_scan_name and pkg_scan_name in cache_dirs:
+
+def _is_cached(composer_name, pkg_scan_name, cache_dirs):
+    safe = composer_name.replace("/", "_")
+    for c in cache_dirs:
+        if safe in c:
             return True
-        return False
+    return bool(pkg_scan_name and pkg_scan_name in cache_dirs)
 
-    # Build exploit manifest
+
+def _get_exploit_pkgs():
     exploit_pkgs = set()
     exploit_dir = RESULTS_DIR / "exploits_solved"
     if exploit_dir.exists():
         for d in exploit_dir.iterdir():
             if d.is_dir():
-                # Convert dir name back to composer name
                 composer = d.name.replace("_", "/", 1)
                 exploit_pkgs.add(composer)
+    return exploit_pkgs
 
-    # Actionable vuln types
-    ACTIONABLE_TYPES = {
-        "system/exec/passthru invocation",
-        "Direct eval() execution",
-        "preg_replace /e modifier",
-        "file_put_contents file write",
-        "Dynamic include / require",
-        "Variable function call with variable",
-        "create_function() deprecated RCE",
-        "Backtick shell execution",
-        "unserialize() invocation",
-        "SQL query with string concatenation",
-        "Dynamic file read (file_get_contents/readfile)",
+
+def _determine_priority(has_exploit, info, cached, has_web_entry):
+    if has_exploit:
+        return "DONE"
+    if info["critical"] > 0 and cached:
+        return "P1-CRIT"
+    if info["critical"] > 0 and not cached:
+        return "P1-NEED-DL"
+    if info["high"] > 0 and info["has_superglobal"]:
+        return "P1-SUPERGLOBAL"
+    if info["high"] > 0 and cached and has_web_entry:
+        return "P2-WEB"
+    if info["high"] > 0 and cached:
+        return "P2-HIGH"
+    if info["high"] > 0:
+        return "P3-HIGH-NC"
+    if info["medium"] > 0:
+        return "P4-MED"
+    return "-"
+
+
+def _build_package_row(composer, sast_by_pkg, solved_lookup, cache_dirs, exploit_pkgs):  # skipcq: PY-R1000
+    info = sast_by_pkg.get(composer, {
+        "total": 0, "critical": 0, "high": 0, "medium": 0, "low": 0,
+        "types": set(), "files": set(), "has_superglobal": False,
+        "pkg_scan_name": "",
+    })
+
+    solved_key = None
+    solve_count = ""
+    attempt_count = ""
+    php_versions = []
+    for key, php_info in solved_lookup.items():
+        if key.startswith(composer + ":"):
+            solved_key = key
+            for php, pdata in php_info.items():
+                php_versions.append(php)
+                if pdata["solve_count"] is not None:
+                    solve_count = str(pdata["solve_count"])
+                if pdata["attempt_count"] is not None:
+                    attempt_count = str(pdata["attempt_count"])
+
+    is_solved = solved_key is not None
+    cached = _is_cached(composer, info["pkg_scan_name"], cache_dirs)
+    has_exploit = composer in exploit_pkgs
+
+    has_web_entry = any(
+        k in f.lower()
+        for f in info["files"]
+        for k in ["install", "setup", "index", "admin", "config", "app"]
+    )
+    priority = _determine_priority(has_exploit, info, cached, has_web_entry)
+
+    return {
+        "package": composer,
+        "cached": "Y" if cached else "",
+        "solved": "Y" if is_solved else "",
+        "solve_count": solve_count,
+        "attempt_count": attempt_count,
+        "php_versions": ", ".join(php_versions),
+        "sast_total": info["total"],
+        "sast_critical": info["critical"],
+        "sast_high": info["high"],
+        "sast_medium": info["medium"],
+        "sast_low": info["low"],
+        "has_superglobal": "Y" if info["has_superglobal"] else "",
+        "actionable_types": "; ".join(sorted(info["types"] & ACTIONABLE_TYPES)),
+        "key_files": "; ".join(sorted(info["files"])[:3]),
+        "exploit_script": "DONE" if has_exploit else "",
+        "priority": priority,
     }
 
-    # ── Generate inventory ──
-    # Collect all unique composer packages
-    all_packages = set()
-    for key in solved_lookup:
-        composer = key.rsplit(":", 1)[0]
-        all_packages.add(composer)
-    for composer in sast_by_pkg:
-        all_packages.add(composer)
 
-    # Build rows
-    rows = []
-    for composer in sorted(all_packages):
-        info = sast_by_pkg.get(composer, {
-            "total": 0, "critical": 0, "high": 0, "medium": 0, "low": 0,
-            "types": set(), "files": set(), "has_superglobal": False,
-            "pkg_scan_name": "",
-        })
-
-        # Solved info
-        solved_key = None
-        solve_count = ""
-        attempt_count = ""
-        php_versions = []
-        for key, php_info in solved_lookup.items():
-            if key.startswith(composer + ":"):
-                solved_key = key
-                for php, pdata in php_info.items():
-                    php_versions.append(php)
-                    if pdata["solve_count"] is not None:
-                        solve_count = str(pdata["solve_count"])
-                    if pdata["attempt_count"] is not None:
-                        attempt_count = str(pdata["attempt_count"])
-
-        is_solved = solved_key is not None
-        cached = is_cached(composer, info["pkg_scan_name"])
-        has_exploit = composer in exploit_pkgs
-
-        has_web_entry = any(
-            k in f.lower()
-            for f in info["files"]
-            for k in ["install", "setup", "index", "admin", "config", "app"]
-        )
-
-        # Determine priority
-        if has_exploit:
-            priority = "DONE"
-        elif info["critical"] > 0 and cached:
-            priority = "P1-CRIT"
-        elif info["critical"] > 0 and not cached:
-            priority = "P1-NEED-DL"
-        elif info["high"] > 0 and info["has_superglobal"]:
-            priority = "P1-SUPERGLOBAL"
-        elif info["high"] > 0 and cached and has_web_entry:
-            priority = "P2-WEB"
-        elif info["high"] > 0 and cached:
-            priority = "P2-HIGH"
-        elif info["high"] > 0:
-            priority = "P3-HIGH-NC"
-        elif info["medium"] > 0:
-            priority = "P4-MED"
-        else:
-            priority = "-"
-
-        rows.append({
-            "package": composer,
-            "cached": "Y" if cached else "",
-            "solved": "Y" if is_solved else "",
-            "solve_count": solve_count,
-            "attempt_count": attempt_count,
-            "php_versions": ", ".join(php_versions),
-            "sast_total": info["total"],
-            "sast_critical": info["critical"],
-            "sast_high": info["high"],
-            "sast_medium": info["medium"],
-            "sast_low": info["low"],
-            "has_superglobal": "Y" if info["has_superglobal"] else "",
-            "actionable_types": "; ".join(sorted(info["types"] & ACTIONABLE_TYPES)),
-            "key_files": "; ".join(sorted(info["files"])[:3]),
-            "exploit_script": "DONE" if has_exploit else "",
-            "priority": priority,
-        })
-
-    # Sort by priority then critical count
-    priority_order = {"DONE": 0, "P1-CRIT": 1, "P1-SUPERGLOBAL": 2, "P1-NEED-DL": 3, "P2-WEB": 4, "P2-HIGH": 5, "P3-HIGH-NC": 6, "P4-MED": 7, "-": 8}
-    rows.sort(key=lambda r: (priority_order.get(r["priority"], 9), -r["sast_critical"], -r["sast_high"], r["package"]))
-
-    # ── Write CSV ──
+def _write_csv(rows):
     fieldnames = [
         "package", "cached", "solved", "solve_count", "attempt_count", "php_versions",
         "sast_total", "sast_critical", "sast_high", "sast_medium", "sast_low",
         "has_superglobal", "actionable_types", "key_files",
         "exploit_script", "priority",
     ]
-
     with open(OUTPUT_CSV, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(rows)
-
     print(f"[+] CSV written to {OUTPUT_CSV} ({len(rows)} packages)")
 
-    # ── Write MD ──
+
+def _write_markdown(rows):  # skipcq: PY-R1000
     with open(OUTPUT_MD, "w", encoding="utf-8") as f:
         f.write("# HITCON 2026 Wargame - 套件庫存總覽\n\n")
         f.write(f"> 共 {len(rows)} 個套件 | 掃描發現 43,924 項 | 已下載 {sum(1 for r in rows if r['cached'])} 個 | 已 solved {sum(1 for r in rows if r['solved'])} 個 | 已有 exploit {sum(1 for r in rows if r['exploit_script'])} 個\n\n")
 
-        # Summary table
         f.write("## 📊 統計摘要\n\n")
         f.write("| 狀態 | 數量 |\n|------|------|\n")
         f.write(f"| 已有 Exploit ✅ | {sum(1 for r in rows if r['exploit_script'])} |\n")
@@ -248,7 +243,6 @@ def main():
         f.write(f"| P4-MED (只有 medium) | {sum(1 for r in rows if r['priority'] == 'P4-MED')} |\n")
         f.write(f"| 無 findings | {sum(1 for r in rows if r['priority'] == '-')} |\n\n")
 
-        # Top priority table
         f.write("## 🎯 高優先套件（需要生成 exploit）\n\n")
         f.write("| 套件 | Cached | Solved | Solves | Crit | High | Global | Actionable Types | Exploit | Priority |\n")
         f.write("|------|--------|--------|--------|------|------|--------|-----------------|---------|----------|\n")
@@ -258,8 +252,6 @@ def main():
                 f.write(f"| {r['package']} | {r['cached']} | {r['solved']} | {r['solve_count']} | {r['sast_critical']} | {r['sast_high']} | {r['has_superglobal']} | {r['actionable_types'][:60]} | {r['exploit_script']} | {r['priority']} |\n")
 
         f.write("\n\n")
-
-        # Full inventory
         f.write("## 📋 完整套件清單\n\n")
         f.write("| # | Package | Cached | Solved | Solves | Crit | High | Med | Low | Global | Exploit | Priority |\n")
         f.write("|---|---------|--------|--------|--------|------|------|-----|-----|--------|---------|----------|\n")
@@ -268,17 +260,14 @@ def main():
             f.write(f"| {i} | {r['package']} | {r['cached']} | {r['solved']} | {r['solve_count']} | {r['sast_critical']} | {r['sast_high']} | {r['sast_medium']} | {r['sast_low']} | {r['has_superglobal']} | {r['exploit_script']} | {r['priority']} |\n")
 
         f.write("\n\n")
-
-        # Exploit progress
         f.write("## ✅ Exploit 建立進度\n\n")
         f.write("| 套件 | Version | PHP | Vuln Type | Exploit Path | Status |\n")
         f.write("|------|---------|-----|-----------|-------------|--------|\n")
 
-        # Load manifest for detailed info
         manifest_path = RESULTS_DIR / "exploits_manifest.json"
         if manifest_path.exists():
-            with open(manifest_path, encoding="utf-8") as f:
-                manifest = json.load(f)
+            with open(manifest_path, encoding="utf-8") as mf:
+                manifest = json.load(mf)
             seen = set()
             for m in manifest:
                 key = f"{m['package']}:{m.get('php_version', '')}"
@@ -289,6 +278,28 @@ def main():
                 f.write(f"| {m['package']} | {m.get('version', '')} | {m.get('php_version', '')} | {m.get('vuln_type', '')} | {m.get('exploit_path', '')} | {status} |\n")
 
     print(f"[+] MD written to {OUTPUT_MD}")
+
+
+def main():
+    sast, solved_list = _load_data()
+    if sast is None:
+        return 1
+
+    solved_lookup = _build_solved_lookup(solved_list)
+    sast_by_pkg = _build_sast_by_pkg(sast)
+    cache_dirs = _get_cache_dirs()
+    exploit_pkgs = _get_exploit_pkgs()
+
+    all_packages = {key.rsplit(":", 1)[0] for key in solved_lookup} | set(sast_by_pkg.keys())
+    rows = [
+        _build_package_row(composer, sast_by_pkg, solved_lookup, cache_dirs, exploit_pkgs)
+        for composer in sorted(all_packages)
+    ]
+    rows.sort(key=lambda r: (PRIORITY_ORDER.get(r["priority"], 9), -r["sast_critical"], -r["sast_high"], r["package"]))
+
+    _write_csv(rows)
+    _write_markdown(rows)
+
     print("\nSummary:")
     print(f"  Total packages: {len(rows)}")
     print(f"  With exploit:   {sum(1 for r in rows if r['exploit_script'])}")

@@ -266,7 +266,8 @@ class ExploitGenerator:
 
         return exploit_code
 
-    def _select_template(self, vuln: Vulnerability) -> Optional[str]:
+    @staticmethod
+    def _select_template(vuln: Vulnerability) -> Optional[str]:
         """Select appropriate template based on vulnerability."""
         vuln_type = vuln.vuln_type.lower()
         code = vuln.code_snippet.lower()
@@ -284,7 +285,8 @@ class ExploitGenerator:
 
         return None
 
-    def _extract_path(self, file_path: str) -> str:
+    @staticmethod
+    def _extract_path(file_path: str) -> str:
         """Extract URL path from file path."""
         patterns = [
             r'src/(.*?\.php)',
@@ -300,7 +302,8 @@ class ExploitGenerator:
 
         return os.path.basename(file_path)
 
-    def _generate_payload(self, vuln: Vulnerability) -> str:
+    @staticmethod
+    def _generate_payload(vuln: Vulnerability) -> str:
         """Generate exploit payload based on vulnerability."""
         code = vuln.code_snippet
 
@@ -311,7 +314,8 @@ class ExploitGenerator:
         else:
             return 'x";system("COMMAND 2>&1");//'
 
-    def _extract_param_name(self, code: str) -> str:
+    @staticmethod
+    def _extract_param_name(code: str) -> str:
         """Extract parameter name from vulnerable code."""
         match = re.search(r'\$_(?:GET|POST|REQUEST)\s*\[\s*[\'"](\w+)[\'"]', code)
         if match:
@@ -340,7 +344,6 @@ class ExploitGenerator:
         }
         vuln_type = strategy_vuln_map.get(strategy, "Dangerous Function")
 
-        from lib.types import Vulnerability
         vuln = Vulnerability(
             vuln_type=vuln_type,
             file_path=entry or "/vendor/" + pkg + "/index.php",
@@ -357,13 +360,14 @@ class ExploitGenerator:
             "php_version": php,
         })
 
-    def save_exploit(self, exploit_code: str, output_path: str) -> bool:
+    @staticmethod
+    def save_exploit(exploit_code: str, output_path: str) -> bool:
         """Save generated exploit to file."""
         try:
             os.makedirs(os.path.dirname(output_path), exist_ok=True)
-            with open(output_path, 'w', encoding='utf-8') as f:
+            with open(output_path, 'w', encoding='utf-8') as f:  # skipcq: PTC-W6004
                 f.write(exploit_code)
-            os.chmod(output_path, 0o755)
+            os.chmod(output_path, 0o700)
             print(f"[+] Saved exploit to {output_path}")
             return True
         except Exception as e:

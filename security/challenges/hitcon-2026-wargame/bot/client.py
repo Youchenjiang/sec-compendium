@@ -105,9 +105,8 @@ class WargameClient:
 
     def get_packages(self) -> List[Dict[str, Any]]:
         """Get list of available packages."""
-        if not self.authenticated:
-            if not self.login():
-                return []
+        if not self.authenticated and not self.login():
+            return []
 
         resp = self.session.get(
             f"{API_URL}/packages",
@@ -125,9 +124,8 @@ class WargameClient:
 
     def submit_exploit(self, package_id: str, exploit_content: str) -> Dict[str, Any]:
         """Submit an exploit for a package."""
-        if not self.authenticated:
-            if not self.login():
-                return {"error": "Not authenticated"}
+        if not self.authenticated and not self.login():
+            return {"error": "Not authenticated"}
 
         csrf_token = self._get_csrf_token()
 
@@ -141,7 +139,7 @@ class WargameClient:
             timeout=REQUEST_TIMEOUT
         )
 
-        if resp.status_code == 200 or resp.status_code == 201:
+        if resp.status_code in {200, 201}:
             result = resp.json()
             print(f"[+] Submitted exploit for package {package_id}")
             return result

