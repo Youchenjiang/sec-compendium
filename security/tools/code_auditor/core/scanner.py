@@ -10,7 +10,7 @@ from pathlib import Path
 from .scanner_rules import CORE_RULES, BROAD_RULES, ALL_RULES
 from .types import Vulnerability
 from .scanner_utils import (
-    read_php_file, is_comment, has_superglobal,
+    read_php_file, strip_comments, has_superglobal,
     SUPERGLOBALS,
 )
 
@@ -68,9 +68,10 @@ class Scanner:
         lines = content.split("\n")
 
         # Single-line pattern matching
+        in_block = False
         for line_num, line in enumerate(lines, 1):
-            stripped = line.strip()
-            if not stripped or is_comment(stripped):
+            stripped, in_block = strip_comments(line, in_block)
+            if not stripped:
                 continue
             for rule in self.rules:
                 if rule.search(stripped):

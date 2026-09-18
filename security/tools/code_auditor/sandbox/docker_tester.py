@@ -3,6 +3,7 @@ Code Auditor - Docker Sandbox Tester
 Tests exploits against local challenge containers.
 """
 import os
+import re
 import subprocess
 import time
 from typing import Dict, Tuple
@@ -88,11 +89,12 @@ class DockerTester:
 
             output = result.stdout + result.stderr
 
-            # Check for flags or command execution in output
-            output_lower = output.lower()
-            has_flag = any(k in output_lower for k in ["flag", "hitcon", "ctf{", "flag{", "local_test"]) or "root:" in output or "uid=0" in output
-            has_flag1 = "LOCAL_TEST_FLAG1" in output or "flag1" in output_lower or "hitcon" in output_lower
-            has_flag2 = "LOCAL_TEST_FLAG2" in output or "flag2" in output_lower
+            # Check for authentic captured flags or command execution evidence
+            # Must match actual captured value patterns rather than command strings
+            has_flag1 = bool(re.search(r'LOCAL_TEST_FLAG1[:=_\s\{][^\r\n]+|(?:hitcon|ctf|flag)\{[^\}\s]+\}', output, re.IGNORECASE))
+            has_flag2 = bool(re.search(r'LOCAL_TEST_FLAG2[:=_\s\{][^\r\n]+', output, re.IGNORECASE))
+            has_rce = "root:x:0:0" in output or "uid=0(" in output or "uid=0 " in output
+            has_flag = has_flag1 or has_flag2 or has_rce
 
             if has_flag or has_flag1 or has_flag2:
                 print("[+] Exploit successful!")
