@@ -47,7 +47,7 @@ class DockerTester:
 
         return True
 
-    def test_exploit(
+    def test_exploit(  # skipcq: PY-R1000
         self,
         exploit_path: str,
         php_version: str,

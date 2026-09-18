@@ -166,7 +166,7 @@ class CodeAuditor:
             print("\n[Phase 5] Docker Sandbox Dynamic Verification")
             for exp in exploits:
                 self.stats["exploits_tested"] += 1
-                success, output, analysis = self.tester.test_exploit(
+                success, _, analysis = self.tester.test_exploit(
                     exp, php_ver, pkg_name, pkg_ver, storage=self.storage
                 )
                 exploit_results[exp] = {"success": success, "analysis": analysis}

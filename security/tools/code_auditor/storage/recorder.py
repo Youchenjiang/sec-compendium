@@ -119,7 +119,7 @@ Status: {status}
         return report_file
 
     @staticmethod
-    def save_failure_analysis(_package_name: str, _exploit_path: str, output: str) -> str:
+    def save_failure_analysis(_package_name: str, _exploit_path: str, output: str) -> str:  # skipcq: PY-R1000
         """Analyze failure output and return a diagnosis string."""
         analysis_lines = []
         output_lower = output.lower()
