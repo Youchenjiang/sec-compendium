@@ -20,7 +20,7 @@ DANGEROUS_SINKS = ["file_put_contents", "eval", "system", "exec", "shell_exec",
                    "passthru", "include", "require", "unserialize", "assert"]
 
 
-def find_web_entries():
+def find_web_entries():  # skipcq: PY-R1000
     """Find standalone index/install/setup files with HTTP input."""
     standalone_entries = []
     for p_dir in SCAN_CACHE.iterdir():
@@ -63,7 +63,7 @@ def find_web_entries():
         print(f"  {se['pkg_dir']:40} -> {se['file']} [{','.join(inputs) or 'NONE'}]")
 
 
-def find_core_endpoints():
+def find_core_endpoints():  # skipcq: PY-R1000
     """Find files with HTTP input AND dangerous sinks in non-dev dirs."""
     results = []
     excluded = {"tests", "test", "examples", "docs", "spec", "features", ".git"}
@@ -108,7 +108,7 @@ def find_core_endpoints():
         print(f"  [{','.join(sinks):20}] {r['pkg_dir']} -> {r['file']}")
 
 
-def find_entrypoints():
+def find_entrypoints():  # skipcq: PY-R1000
     """Find true procedural entry points with HTTP input and critical sinks."""
     all_entrypoints = []
 

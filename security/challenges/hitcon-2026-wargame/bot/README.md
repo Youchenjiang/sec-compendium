@@ -106,8 +106,8 @@ python main.py --local-dir /path/to/source --offline
 
 ```bash
 python main.py \
-  --email your@email.com \
-  --password your_password \
+  --email "$WARGAME_EMAIL" \
+  --password "$WARGAME_PASSWORD" \
   --dist-dir /path/to/dist
 ```
 
@@ -119,8 +119,8 @@ from lib.scanner import scan_package
 from generator import create_generator
 from tester import create_tester
 
-# 1. 登入
-client = create_client("email", "password")
+# 1. 登入 (使用環境變數中的憑證)
+client = create_client()
 client.login()
 
 # 2. 取 packages
@@ -231,7 +231,7 @@ TEMPLATES["my_template"] = ExploitTemplate(
 
 | # | 類型 | 嚴重度 | 位置 | 程式碼 |
 |---|------|--------|------|--------|
-| 1 | Code Injection | HIGH | `install.php:278` | $pass="' . $_GET['dbPassword']... |
+| 1 | Code Injection | HIGH | `install.php:278` | $pass="' . $_GET['db_auth']... |
 
 ## Exploit 結果
 

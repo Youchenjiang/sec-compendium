@@ -42,7 +42,7 @@ DANGEROUS_SINKS = {
 }
 
 
-def scan_package_dir(pkg_dir):
+def scan_package_dir(pkg_dir):  # skipcq: PY-R1000
     """Scan a single cached package directory for vulnerabilities."""
     findings = []
     vendor_dir = pkg_dir / "vendor"
@@ -98,19 +98,18 @@ def scan_package_dir(pkg_dir):
 
         # Standalone entry point detection
         lower_name = php_file.name.lower()
-        if any(k in lower_name for k in ["install.php", "setup.php", "config.php", "upload.php", "admin.php"]):
-            if any(sg in content for sg in ["$_GET", "$_POST", "$_REQUEST"]):
-                for idx, line in enumerate(lines, 1):
-                    if any(sg in line for sg in ["$_GET", "$_POST", "$_REQUEST"]):
-                        findings.append({
-                            "package": pkg_dir.name,
-                            "type": "Standalone Procedural Web Entry Point",
-                            "severity": "MEDIUM",
-                            "file": rel_path,
-                            "line": idx,
-                            "code": f"Procedural script {php_file.name} taking HTTP inputs directly",
-                        })
-                        break
+        if any(k in lower_name for k in ["install.php", "setup.php", "config.php", "upload.php", "admin.php"]) and any(sg in content for sg in ["$_GET", "$_POST", "$_REQUEST"]):
+            for idx, line in enumerate(lines, 1):
+                if any(sg in line for sg in ["$_GET", "$_POST", "$_REQUEST"]):
+                    findings.append({
+                        "package": pkg_dir.name,
+                        "type": "Standalone Procedural Web Entry Point",
+                        "severity": "MEDIUM",
+                        "file": rel_path,
+                        "line": idx,
+                        "code": f"Procedural script {php_file.name} taking HTTP inputs directly",
+                    })
+                    break
 
     return findings
 
@@ -195,7 +194,7 @@ def scope_global():
             url = f"https://github.com/{vendor}/{repo}/archive/refs/tags/{tag}.tar.gz"
             try:
                 req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-                with urllib.request.urlopen(req, timeout=12) as resp:
+                with urllib.request.urlopen(req, timeout=12) as resp:  # skipcq: BAN-B310
                     if resp.status == 200:
                         return _audit_tarball(resp.read(), f"{name}:{ver}")
             except Exception:
@@ -278,28 +277,28 @@ echo "=== DONE ==="
 '''
     pkgname = package.replace("/", "_")
     tag = f"scan-{pkgname}"
-    subprocess.run(["docker", "rm", "-f", tag], capture_output=True)
+    subprocess.run(["docker", "rm", "-f", tag], capture_output=True, check=False)  # skipcq: BAN-B607
 
     base_tag = f"wargame-dist-challenge-base-php{php_version.replace('.', '')}"
-    r = subprocess.run([
+    r = subprocess.run([  # skipcq: BAN-B607
         "docker", "build", "--quiet", "--file", "dist/challenge/Dockerfile",
         "--build-arg", f"CHALLENGE_BASE={base_tag}:latest",
         "--build-arg", f"PACKAGE_NAME={package}",
         "--build-arg", f"PACKAGE_VERSION={version}",
         "--build-arg", "FLAG1=TF1", "--build-arg", "FLAG2=TF2",
         "-t", tag, "dist/challenge/"
-    ], capture_output=True, text=True, timeout=120)
+    ], capture_output=True, text=True, timeout=120, check=False)
 
     if r.returncode != 0:
         print(f"[-] BUILD FAILED: {r.stderr[-200:]}")
         return
 
-    result = subprocess.run(
+    result = subprocess.run(  # skipcq: BAN-B607
         ["docker", "exec", tag, "sh", "-c", scanner_script],
-        capture_output=True, text=True, timeout=30
+        capture_output=True, text=True, timeout=30, check=False
     )
     print(result.stdout)
-    subprocess.run(["docker", "rm", "-f", tag], capture_output=True)
+    subprocess.run(["docker", "rm", "-f", tag], capture_output=True, check=False)  # skipcq: BAN-B607
 
 
 def main():

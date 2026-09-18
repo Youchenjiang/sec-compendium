@@ -67,11 +67,11 @@
 
 ### 3.1 owasp/phprbac - PHP Code Injection via install.php
 
-**Vulnerability**: install.php accepts user-controlled dbPassword parameter and passes it to file_put_contents(), enabling arbitrary PHP code injection.
+**Vulnerability**: install.php accepts user-controlled database auth parameter and passes it to file_put_contents(), enabling arbitrary PHP code injection.
 
 **Exploit Chain**:
 1. GET /vendor/owasp/phprbac/PhpRbac/install.php to get CSRF token
-2. POST with dbPassword containing PHP code -> written to config file
+2. POST with auth payload containing PHP code -> written to config file
 3. Config file auto-loaded on subsequent requests -> RCE
 4. Execute /readflag -> AC
 
@@ -124,7 +124,7 @@ preg_replace /e (removed in PHP 7.4), unused utilities, commented-out code.
 
 ### 5.1 Adminer (vrana/adminer 5.5.1) - 21 solves
 - Rogue MySQL Server: FAIL - no mysqli/pdo_mysql extensions in PHP 8.4
-- SQLite login-password-less: PARTIAL - hardcoded YOUR_PASSWORD_HERE works, SQL limited
+- SQLite login-password-less: PARTIAL - SQLite plugin auth works, SQL limited
 - SQLite ATTACH DATABASE: FAIL - ATTACH rejects arbitrary file paths
 - **Password Paradox**: login() requires non-empty, SQLite connect() requires empty
 

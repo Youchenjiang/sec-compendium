@@ -73,6 +73,35 @@ TAXONOMY_50 = {
 }
 
 
+def _scan_php_file_vectors(php_file, pkg_dir, pkg_summary, vector_hits):
+    parts = [p.lower() for p in php_file.parts]
+    if any(ex in parts for ex in ["phpunit", "tests", "fixtures"]):
+        return
+    try:
+        content = php_file.read_text(encoding="utf-8", errors="ignore")
+    except Exception:
+        return
+
+    rel_file = str(php_file.relative_to(pkg_dir))
+    tax_keys = list(TAXONOMY_50.keys())
+    for vec_id in tax_keys[:10]:
+        if TAXONOMY_50[vec_id].search(rel_file):
+            pkg_summary[pkg_dir.name][vec_id] += 1
+            vector_hits[vec_id][pkg_dir.name].append({"file": rel_file, "line": 1})
+
+    for line_no, line in enumerate(content.split("\n"), 1):
+        s = line.strip()
+        if not s or s.startswith(("//", "*", "#")):
+            continue
+        for vec_id in tax_keys[10:]:
+            if TAXONOMY_50[vec_id].search(s):
+                pkg_summary[pkg_dir.name][vec_id] += 1
+                if len(vector_hits[vec_id][pkg_dir.name]) < 10:
+                    vector_hits[vec_id][pkg_dir.name].append({
+                        "file": rel_file, "line": line_no, "code": s[:120]
+                    })
+
+
 def compile_vectors():
     """Compile 50-vector attack matrix across all cached packages."""
     print("[*] Compiling 50 Attack Vector Matrix...")
@@ -88,31 +117,7 @@ def compile_vectors():
         if not pkg_dir.is_dir():
             continue
         for php_file in pkg_dir.rglob("*.php"):
-            parts = [p.lower() for p in php_file.parts]
-            if any(ex in parts for ex in ["phpunit", "tests", "fixtures"]):
-                continue
-            try:
-                content = php_file.read_text(encoding="utf-8", errors="ignore")
-            except Exception:
-                continue
-
-            rel_file = str(php_file.relative_to(pkg_dir))
-            for vec_id in list(TAXONOMY_50.keys())[:10]:
-                if TAXONOMY_50[vec_id].search(rel_file):
-                    pkg_summary[pkg_dir.name][vec_id] += 1
-                    vector_hits[vec_id][pkg_dir.name].append({"file": rel_file, "line": 1})
-
-            for line_no, line in enumerate(content.split("\n"), 1):
-                s = line.strip()
-                if not s or s.startswith(("//", "*", "#")):
-                    continue
-                for vec_id in list(TAXONOMY_50.keys())[10:]:
-                    if TAXONOMY_50[vec_id].search(s):
-                        pkg_summary[pkg_dir.name][vec_id] += 1
-                        if len(vector_hits[vec_id][pkg_dir.name]) < 10:
-                            vector_hits[vec_id][pkg_dir.name].append({
-                                "file": rel_file, "line": line_no, "code": s[:120]
-                            })
+            _scan_php_file_vectors(php_file, pkg_dir, pkg_summary, vector_hits)
 
     vector_counts = {}
     for vec_id in sorted(TAXONOMY_50.keys()):

@@ -60,7 +60,7 @@ def list_candidates(keywords):
         print(f'  {p.get("name", ""):40} {p.get("version", ""):10} stars={p.get("stars", 0)}')
 
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser(description="List wargame packages")
     parser.add_argument("mode", choices=["solved", "candidates"])
     parser.add_argument("--kw", help="Comma-separated keywords for candidates mode")
@@ -71,3 +71,7 @@ if __name__ == "__main__":
     else:
         keywords = args.kw.split(",") if args.kw else DEFAULT_KEYWORDS
         list_candidates(keywords)
+
+
+if __name__ == "__main__":
+    main()

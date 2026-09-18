@@ -82,9 +82,13 @@ def browser_login(email: str = None, password: str = None, headless: bool = Fals
     return cookies
 
 
-if __name__ == "__main__":
+def main():
     cookies = browser_login()
     if cookies:
         print(f"[+] Got {len(cookies)} cookies")
     else:
         print("[-] Login failed")
+
+
+if __name__ == "__main__":
+    main()

@@ -3,6 +3,7 @@ HITCON 2026 Wargame Bot - Docker Tester
 Tests exploits against local challenge containers.
 """
 import os
+import shutil
 import subprocess
 import time
 from typing import Dict, Tuple
@@ -29,12 +30,14 @@ class DockerTester:
         build_script = self.dist_dir / "build-base-images.sh"
         if build_script.exists():
             print("[*] Building base images (if needed)...")
+            bash_bin = shutil.which("bash") or "bash"
             result = subprocess.run(
-                ["bash", str(build_script)],
+                [bash_bin, str(build_script)],  # skipcq: BAN-B607
                 cwd=str(self.dist_dir),
                 capture_output=True,
                 text=True,
-                timeout=600  # 10 minutes max
+                timeout=600,  # 10 minutes max
+                check=False
             )
             if result.returncode != 0:
                 print(f"[-] Build failed: {result.stderr}")
@@ -61,7 +64,7 @@ class DockerTester:
             return False, "run.sh not found in dist directory", "- Missing run.sh in dist directory"
 
         # Make exploit executable
-        os.chmod(exploit_path, 0o755)
+        os.chmod(exploit_path, 0o700)
 
         print(f"[*] Testing exploit: {exploit_path}")
         print(f"[*] Package: {package_name}:{package_version} (PHP {php_version})")
@@ -70,9 +73,10 @@ class DockerTester:
 
         try:
             # Start containers and run exploit
+            bash_bin = shutil.which("bash") or "bash"
             result = subprocess.run(
                 [
-                    "bash", str(run_script),
+                    bash_bin, str(run_script),  # skipcq: BAN-B607
                     php_version,
                     package_name,
                     package_version,
@@ -81,7 +85,8 @@ class DockerTester:
                 cwd=str(self.dist_dir),
                 capture_output=True,
                 text=True,
-                timeout=timeout
+                timeout=timeout,
+                check=False
             )
 
             output = result.stdout + result.stderr
@@ -131,11 +136,13 @@ class DockerTester:
             run_script = self.dist_dir / "run.sh"
             if run_script.exists():
                 print("[*] Cleaning up containers...")
+                bash_bin = shutil.which("bash") or "bash"
                 subprocess.run(
-                    ["bash", str(run_script), "down"],
+                    [bash_bin, str(run_script), "down"],  # skipcq: BAN-B607
                     cwd=str(self.dist_dir),
                     capture_output=True,
-                    timeout=30
+                    timeout=30,
+                    check=False
                 )
                 self.containers_running = False
 
@@ -151,7 +158,7 @@ class DockerTester:
 
         for php_version in php_versions:
             print(f"\n[*] Testing with PHP {php_version}...")
-            success, output = self.test_exploit(
+            success, _ = self.test_exploit(
                 exploit_path,
                 php_version,
                 package_name,

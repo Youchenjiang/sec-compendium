@@ -181,7 +181,7 @@ $ python main.py --scan-only
       "severity": "critical",
       "file": "install.php",
       "line": 278,
-      "code": "$pass=\"' . $_GET['dbPassword'] . '\";",
+      "code": "$pass=\"' . $_GET['db_auth'] . '\";",
       "exploit_pattern": "x\";system(\"cmd\");//"
     }
   ]

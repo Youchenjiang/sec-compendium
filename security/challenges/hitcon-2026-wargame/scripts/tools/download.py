@@ -48,10 +48,15 @@ def download_package(pkg: dict, timeout: int = 90) -> tuple:
     }
     (pkg_dir / "composer.json").write_text(json.dumps(composer_json), encoding="utf-8")
 
-    cmd = "composer update --ignore-platform-reqs --no-plugins --no-dev --no-interaction --prefer-dist --quiet"
+    cmd = [
+        "composer", "update", "--ignore-platform-reqs",
+        "--no-plugins", "--no-dev", "--no-interaction", "--prefer-dist", "--quiet"
+    ]
     try:
-        res = subprocess.run(cmd, cwd=str(pkg_dir), shell=True,
-                             capture_output=True, text=True, timeout=timeout)
+        res = subprocess.run(
+            cmd, cwd=str(pkg_dir), check=False,  # skipcq: BAN-B607
+            capture_output=True, text=True, timeout=timeout
+        )
         if (pkg_dir / "vendor").exists():
             return (pkg, True, "downloaded")
         stderr_short = (res.stderr or "").strip()[:200]

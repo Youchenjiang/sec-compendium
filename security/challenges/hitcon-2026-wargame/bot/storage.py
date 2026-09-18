@@ -121,35 +121,28 @@ Status: {status}
         print(f"[+] Report saved: {report_file}")
         return report_file
 
-    def save_failure_analysis(self, package_name: str, exploit_path: str, output: str) -> str:
+    @staticmethod
+    def save_failure_analysis(package_name: str, exploit_path: str, output: str) -> str:
         """Analyze failure output and return a diagnosis string."""
         analysis_lines = []
         output_lower = output.lower()
 
-        if 'timeout' in output_lower or 'timed out' in output_lower:
-            analysis_lines.append("- Timeout: 靶機可能沒啟動或連線失敗")
+        rules = [
+            (('timeout', 'timed out'), "- Timeout: 靶機可能沒啟動或連線失敗"),
+            (('connection refused', 'connectionreset'), "- Connection refused: Apache 沒跑或 port 不對"),
+            (('404', 'not found'), "- 404 Not Found: URL 路徑不對，確認 install.php 是否可存取"),
+            (('permission denied',), "- Permission denied: 檔案權限不足"),
+            (('syntax error', 'parse error'), "- PHP syntax error: payload 格式有問題"),
+            (('call to undefined function',), "- Function not found: PHP 版本不支援該函數"),
+            (('stack trace', 'fatal error'), "- PHP error occurred, 但 exploit 可能已部分執行"),
+        ]
+        for keywords, msg in rules:
+            if any(k in output_lower for k in keywords):
+                analysis_lines.append(msg)
 
-        if 'connection refused' in output_lower or 'connectionreset' in output_lower:
-            analysis_lines.append("- Connection refused: Apache 沒跑或 port 不對")
-
-        if '404' in output or 'not found' in output_lower:
-            analysis_lines.append("- 404 Not Found: URL 路徑不對，確認 install.php 是否可存取")
-
-        if 'permission denied' in output_lower:
-            analysis_lines.append("- Permission denied: 檔案權限不足")
-
-        if 'flag' not in output_lower and 'hitcon' not in output_lower and 'local_test' not in output_lower:
+        if not any(k in output_lower for k in ('flag', 'hitcon', 'local_test')):
             analysis_lines.append("- No flag in output: exploit payload 沒有觸發 RCE")
             analysis_lines.append("  可能原因: install.php 不存在、process 參數不對、或 payload 格式錯誤")
-
-        if 'syntax error' in output_lower or 'parse error' in output_lower:
-            analysis_lines.append("- PHP syntax error: payload 格式有問題")
-
-        if 'call to undefined function' in output_lower:
-            analysis_lines.append("- Function not found: PHP 版本不支援該函數")
-
-        if 'stack trace' in output_lower or 'fatal error' in output_lower:
-            analysis_lines.append("- PHP error occurred, 但 exploit 可能已部分執行")
 
         if not analysis_lines:
             analysis_lines.append("- 無法自動診斷，需人工檢查 output")
@@ -171,6 +164,29 @@ Status: {status}
                     records.append(RunRecord(**json.loads(line)))
         return records
 
+    @staticmethod
+    def _format_vuln_rows(vulnerabilities: list) -> str:
+        return "".join(
+            f"| {i} | {v['type']} | {v['severity']} | `{v['file']}:{v['line']}` | {v['code'][:60]}... |\n"
+            for i, v in enumerate(vulnerabilities, 1)
+        )
+
+    @staticmethod
+    def _format_exploit_section(exploit_results: dict) -> str:
+        sections = []
+        for path, result in exploit_results.items():
+            status = "✅ 成功" if result.get("success") else "❌ 失敗"
+            sec = f"### `{os.path.basename(path)}`\n\n**狀態**: {status}\n\n"
+            if result.get("output"):
+                flag_lines = [
+                    line.strip() for line in result["output"].split("\n")
+                    if line.strip() and ("flag" in line.lower() or "HITCON" in line or "LOCAL_TEST" in line)
+                ]
+                if flag_lines:
+                    sec += "```\n" + "\n".join(flag_lines) + "\n```\n\n"
+            sections.append(sec)
+        return "".join(sections)
+
     def generate_writeup(self, record: RunRecord) -> Path:
         """Auto-generate a writeup markdown file for a completed run."""
         safe_name = record.package_name.replace("/", "_")
@@ -182,22 +198,8 @@ Status: {status}
         exploits_working = sum(1 for r in record.exploit_results.values() if r.get("success"))
         submitted = record.submission_result is not None
 
-        vuln_rows = ""
-        for i, v in enumerate(record.vulnerabilities, 1):
-            vuln_rows += f"| {i} | {v['type']} | {v['severity']} | `{v['file']}:{v['line']}` | {v['code'][:60]}... |\n"
-
-        exploit_section = ""
-        for path, result in record.exploit_results.items():
-            status = "✅ 成功" if result.get("success") else "❌ 失敗"
-            exploit_section += f"### `{os.path.basename(path)}`\n\n"
-            exploit_section += f"**狀態**: {status}\n\n"
-            if result.get("output"):
-                flag_lines = [
-                    line.strip() for line in result["output"].split("\n")
-                    if line.strip() and ("flag" in line.lower() or "HITCON" in line or "LOCAL_TEST" in line)
-                ]
-                if flag_lines:
-                    exploit_section += "```\n" + "\n".join(flag_lines) + "\n```\n\n"
+        vuln_rows = self._format_vuln_rows(record.vulnerabilities)
+        exploit_section = self._format_exploit_section(record.exploit_results)
 
         writeup = f"""# {record.package_name} {record.package_version} (PHP {record.php_version})
 

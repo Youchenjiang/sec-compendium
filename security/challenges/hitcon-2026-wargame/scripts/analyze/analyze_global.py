@@ -18,7 +18,7 @@ def main():
         data = json.load(f)
 
     print('Total Findings:', len(data))
-    pkgs = set(d['package'] for d in data)
+    pkgs = {d['package'] for d in data}
     print('Total Distinct Packages with Findings:', len(pkgs))
 
     sev_counts = Counter(d['severity'] for d in data)

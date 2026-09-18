@@ -56,7 +56,7 @@ CATEGORIES = {
 
 
 # ── Mode: triage ──
-def run_triage():
+def run_triage():  # skipcq: PY-R1000
     """Full autonomous deep-triage across all packages."""
     queue_dir = DATA_DIR / "queue"
     queue_dir.mkdir(parents=True, exist_ok=True)
