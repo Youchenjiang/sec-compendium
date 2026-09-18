@@ -41,6 +41,29 @@ def get_cookies(
     return browser_login(base_url=target_url, email=email, password=password, headless=headless)
 
 
+def _save_cookies(cookies: dict, target_url: str, email: str) -> None:
+    """Save extracted cookies to persistent local cache file."""
+    if not cookies:
+        return
+    cache = {}
+    if COOKIES_FILE.exists():
+        try:
+            loaded = json.loads(COOKIES_FILE.read_text(encoding="utf-8"))
+            if isinstance(loaded, dict):
+                cache = loaded
+        except Exception:
+            cache = {}
+
+    cache_key = _normalize_key(target_url, email)
+    cache[cache_key] = cookies
+    COOKIES_FILE.write_text(json.dumps(cache, indent=2), encoding="utf-8")
+    try:
+        os.chmod(COOKIES_FILE, 0o600)  # skipcq: PTC-W6004
+    except Exception:
+        pass
+    print(f"[+] Cookies saved for {cache_key} to {COOKIES_FILE}")
+
+
 def browser_login(
     base_url: str = None,
     email: str = None,
@@ -82,25 +105,7 @@ def browser_login(
         finally:
             browser.close()
 
-    if cookies:
-        cache = {}
-        if COOKIES_FILE.exists():
-            try:
-                loaded = json.loads(COOKIES_FILE.read_text(encoding="utf-8"))
-                if isinstance(loaded, dict):
-                    cache = loaded
-            except Exception:
-                cache = {}
-
-        cache_key = _normalize_key(target_url, email)
-        cache[cache_key] = cookies
-        COOKIES_FILE.write_text(json.dumps(cache, indent=2), encoding="utf-8")
-        try:
-            os.chmod(COOKIES_FILE, 0o600)  # skipcq: PTC-W6004
-        except Exception:
-            pass
-        print(f"[+] Cookies saved for {cache_key} to {COOKIES_FILE}")
-
+    _save_cookies(cookies, target_url, email)
     return cookies
 
 

@@ -233,7 +233,7 @@ class CodeAuditor:
 
         # Step 3.1: Scan Source
         print("\n[Phase 3] Static Analysis & AST Taint Tracking")
-        vulnerabilities = self._scan_source(pkg_name, pkg_ver, source_override)
+        vulnerabilities = self._scan_source(pkg_name, source_override)
         self.stats["targets_scanned"] += 1
 
         if vulnerabilities:
@@ -264,7 +264,7 @@ class CodeAuditor:
             target, vulnerabilities, exploits, exploit_results, submission_result
         )
 
-    def _scan_source(self, name: str, version: str, source_override: Optional[str]) -> List[Vulnerability]:
+    def _scan_source(self, name: str, source_override: Optional[str]) -> List[Vulnerability]:
         if source_override and Path(source_override).exists():
             override_path = Path(source_override).resolve()
             if override_path.is_file():

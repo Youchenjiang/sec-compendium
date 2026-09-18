@@ -10,6 +10,9 @@ from typing import Dict, Tuple
 from pathlib import Path
 
 
+BASH_EXECUTABLE = "/bin/bash"
+
+
 class DockerTester:
     """Tests exploits using Docker containers."""
 
@@ -31,7 +34,7 @@ class DockerTester:
         if build_script.exists():
             print("[*] Building base images (if needed)...")
             result = subprocess.run(  # skipcq: BAN-B607, PTC-W0044, PTC-W6004
-                ["/bin/bash", str(build_script)],
+                [BASH_EXECUTABLE, str(build_script)],
                 cwd=str(self.dist_dir),
                 capture_output=True,
                 text=True,
@@ -45,6 +48,43 @@ class DockerTester:
 
         return True
 
+    @staticmethod
+    def _evaluate_output(output: str) -> Tuple[bool, bool, bool]:
+        """Check for authentic captured flags or command execution evidence."""
+        has_flag1 = bool(re.search(r'LOCAL_TEST_FLAG1[:=_\s\{][^\r\n]+|(?:hitcon|ctf|flag)\{[^\}\s]+\}', output, re.IGNORECASE))
+        has_flag2 = bool(re.search(r'LOCAL_TEST_FLAG2[:=_\s\{][^\r\n]+', output, re.IGNORECASE))
+        has_rce = "root:x:0:0" in output or "uid=0(" in output or "uid=0 " in output
+        return (has_flag1 or has_flag2 or has_rce), has_flag1, has_flag2
+
+    @staticmethod
+    def _handle_test_result(
+        success: bool,
+        has_flag1: bool,
+        has_flag2: bool,
+        package_name: str,
+        exploit_path: str,
+        output: str,
+        storage=None
+    ) -> Tuple[bool, str]:
+        """Log test outcome, diagnose failures, and persist to storage."""
+        if success:
+            print("[+] Exploit successful!")
+            print(f"    Flag 1: {'Found' if has_flag1 else 'Not found'}")
+            print(f"    Flag 2: {'Found' if has_flag2 else 'Not found'}")
+            if storage:
+                storage.save_test_log(package_name, exploit_path, output, True)
+            return True, ""
+
+        print("[-] Exploit did not capture flags")
+        analysis = ""
+        if storage:
+            analysis = storage.save_failure_analysis(package_name, exploit_path, output)
+            storage.save_test_log(package_name, exploit_path, output, False, analysis)
+            print("    Diagnosis:")
+            for line in analysis.split("\n"):
+                print(f"      {line}")
+        return False, analysis
+
     def test_exploit(  # skipcq: PY-R1000
         self,
         exploit_path: str,
@@ -56,7 +96,7 @@ class DockerTester:
     ) -> Tuple[bool, str, str]:
         """
         Test an exploit against a local challenge container.
-        Returns: (success, output)
+        Returns: (success, output, analysis)
         """
         run_script = self.dist_dir / "run.sh"
         if not run_script.exists():
@@ -68,13 +108,11 @@ class DockerTester:
         print(f"[*] Testing exploit: {exploit_path}")
         print(f"[*] Package: {package_name}:{package_version} (PHP {php_version})")
 
-        analysis = ""
-
         try:
             # Start containers and run exploit
             result = subprocess.run(  # skipcq: BAN-B607, PTC-W0044, PTC-W6004
                 [
-                    "/bin/bash", str(run_script),
+                    BASH_EXECUTABLE, str(run_script),
                     php_version,
                     package_name,
                     package_version,
@@ -88,32 +126,11 @@ class DockerTester:
             )
 
             output = result.stdout + result.stderr
-
-            # Check for authentic captured flags or command execution evidence
-            # Must match actual captured value patterns rather than command strings
-            has_flag1 = bool(re.search(r'LOCAL_TEST_FLAG1[:=_\s\{][^\r\n]+|(?:hitcon|ctf|flag)\{[^\}\s]+\}', output, re.IGNORECASE))
-            has_flag2 = bool(re.search(r'LOCAL_TEST_FLAG2[:=_\s\{][^\r\n]+', output, re.IGNORECASE))
-            has_rce = "root:x:0:0" in output or "uid=0(" in output or "uid=0 " in output
-            has_flag = has_flag1 or has_flag2 or has_rce
-
-            if has_flag or has_flag1 or has_flag2:
-                print("[+] Exploit successful!")
-                print(f"    Flag 1: {'Found' if has_flag1 else 'Not found'}")
-                print(f"    Flag 2: {'Found' if has_flag2 else 'Not found'}")
-                # Save success log
-                if storage:
-                    storage.save_test_log(package_name, exploit_path, output, True)
-                return True, output, ""
-            else:
-                print("[-] Exploit did not capture flags")
-                # Auto-analyze failure
-                if storage:
-                    analysis = storage.save_failure_analysis(package_name, exploit_path, output)
-                    storage.save_test_log(package_name, exploit_path, output, False, analysis)
-                    print("    Diagnosis:")
-                    for line in analysis.split("\n"):
-                        print(f"      {line}")
-                return False, output, analysis
+            success, has_flag1, has_flag2 = self._evaluate_output(output)
+            is_success, analysis = self._handle_test_result(
+                success, has_flag1, has_flag2, package_name, exploit_path, output, storage
+            )
+            return is_success, output, analysis
 
         except subprocess.TimeoutExpired:
             print(f"[-] Test timed out after {timeout} seconds")
@@ -138,7 +155,7 @@ class DockerTester:
             if run_script.exists():
                 print("[*] Cleaning up containers...")
                 subprocess.run(  # skipcq: BAN-B607, PTC-W0044, PTC-W6004
-                    ["/bin/bash", str(run_script), "down"],
+                    [BASH_EXECUTABLE, str(run_script), "down"],
                     cwd=str(self.dist_dir),
                     capture_output=True,
                     timeout=30,
