@@ -1,6 +1,7 @@
 """
 Browser automation helper for Cloudflare Turnstile bypass and submission.
 """
+import os
 import json
 import time
 from pathlib import Path
@@ -10,6 +11,13 @@ from ..config import PLATFORM_BASE_URL
 COOKIES_FILE = Path(__file__).parent / ".cookies.json"
 
 
+def _normalize_key(url: str, email: str = None) -> str:
+    parsed = urlparse(url)
+    domain = parsed.netloc.split(":")[0].lower() if parsed.netloc else "default"
+    account = email.strip().lower() if email else "anonymous"
+    return f"{domain}#{account}"
+
+
 def get_cookies(
     base_url: str = None,
     email: str = None,
@@ -17,13 +25,16 @@ def get_cookies(
     headless: bool = False,
     refresh: bool = False,
 ) -> dict:
-    """Get session cookies from cache or via browser login."""
+    """Get session cookies from domain-scoped cache or via browser login."""
     target_url = base_url or PLATFORM_BASE_URL
+    cache_key = _normalize_key(target_url, email)
     if not refresh and COOKIES_FILE.exists():
         try:
-            cached = json.loads(COOKIES_FILE.read_text(encoding="utf-8"))
-            if cached and isinstance(cached, dict):
-                return cached
+            cache = json.loads(COOKIES_FILE.read_text(encoding="utf-8"))
+            if isinstance(cache, dict) and cache_key in cache:
+                cached = cache[cache_key]
+                if isinstance(cached, dict):
+                    return cached
         except Exception:
             pass
 
@@ -72,8 +83,23 @@ def browser_login(
             browser.close()
 
     if cookies:
-        COOKIES_FILE.write_text(json.dumps(cookies, indent=2), encoding="utf-8")
-        print(f"[+] Cookies saved to {COOKIES_FILE}")
+        cache = {}
+        if COOKIES_FILE.exists():
+            try:
+                loaded = json.loads(COOKIES_FILE.read_text(encoding="utf-8"))
+                if isinstance(loaded, dict):
+                    cache = loaded
+            except Exception:
+                cache = {}
+
+        cache_key = _normalize_key(target_url, email)
+        cache[cache_key] = cookies
+        COOKIES_FILE.write_text(json.dumps(cache, indent=2), encoding="utf-8")
+        try:
+            os.chmod(COOKIES_FILE, 0o600)  # skipcq: PTC-W6004
+        except Exception:
+            pass
+        print(f"[+] Cookies saved for {cache_key} to {COOKIES_FILE}")
 
     return cookies
 
