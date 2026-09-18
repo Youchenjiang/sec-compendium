@@ -50,7 +50,7 @@ class Storage:
     def save_exploit(self, package_name: str, vuln_type: str, exploit_code: str) -> Path:
         """Save exploit script with metadata."""
         safe_name = package_name.replace("/", "_")
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
         filename = f"{safe_name}_{vuln_type}_{timestamp}.py"
 
         package_dir = self.exploits_dir / safe_name
@@ -68,7 +68,7 @@ class Storage:
         log_dir = self.logs_dir / safe_name
         log_dir.mkdir(exist_ok=True)
 
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
         status = "SUCCESS" if success else "FAILED"
         log_file = log_dir / f"{status}_{timestamp}.log"
 

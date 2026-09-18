@@ -172,6 +172,9 @@ class CodeAuditor:
                 exploit_results[exp] = {"success": success, "analysis": analysis}
                 if success:
                     working_exploits.append(exp)
+        elif verify and not self.tester:
+            print("[-] Dynamic verification was requested (--verify), but no docker tester is available (dist_dir not configured). Skipping submission.")
+            working_exploits = []
         else:
             working_exploits = exploits
 
