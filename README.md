@@ -38,7 +38,7 @@ ctfd-kit/
 │   ├── framework/         # 全域架構地圖、檔案索引、文檔命名與貢獻規範
 │   ├── blue_team/         # 🔵 藍隊體系 (Phase 0~6 階段課表、31 大學習路徑、41 本原子手冊)
 │   ├── red_team/          # 🔴 紅隊體系 (攻防手法、武器庫索引、對稱學習路徑與劇本)
-│   ├── challenges/        # 🎯 靶場與實戰題庫清單 (picoCTF, PortSwigger, CyLab)
+│   ├── challenges/        # 🎯 靶場與實戰題庫 (picoCTF, PortSwigger, CyLab, HITCON Wargame)
 │   ├── exams/             # 📝 全真模擬考卷 (金盾/技能競賽 A/B 卷題本與解析、速記卡)
 │   └── notes/             # ⚡ 基礎考點名詞速查、網路安全指令速查
 │
@@ -76,3 +76,4 @@ ctfd-kit/
 - **命名規範**：所有目錄與檔案均採用小寫蛇形命名法 (`lower_snake_case`)，嚴禁使用舊版 `A0_`~`A3_` 等無語意前綴與空白字元。
 - **路徑可移植性**：嚴格禁止硬編碼本機絕對路徑（如 `f:\...` 或 `file:///...`），所有內部文檔交互參照一律使用**相對路徑**。
 - **原子化提交 (Atomic Commits)**：提交遵循 Conventional Commits 規範，範圍限定於 `sec`、`tracks`、`ctfd`、`docs`、`chore` 等合法 scope。
+
