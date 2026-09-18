@@ -31,6 +31,17 @@ class TestDockerTester(unittest.TestCase):
         self.assertIn("run.sh not found", output)
         self.assertIn("Missing run.sh", analysis)
 
+    def test_test_all_php_versions_unpacks_safely(self):
+        res = self.tester.test_all_php_versions(
+            exploit_path="dummy.py",
+            package_name="test/pkg",
+            package_version="1.0.0",
+        )
+        self.assertIn("7.4.33", res)
+        self.assertIn("8.4", res)
+        self.assertFalse(res["7.4.33"])
+        self.assertFalse(res["8.4"])
+
 
 if __name__ == "__main__":
     unittest.main()

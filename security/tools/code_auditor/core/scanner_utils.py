@@ -4,6 +4,7 @@ Shared PHP file scanning utilities.
 Uses unified rules from lib.scanner_rules.
 """
 import re
+import time
 from pathlib import Path
 from typing import List
 
@@ -57,10 +58,14 @@ def iter_php_files(pkg_dir, skip_tests=True, skip_vendor=True):
 
 
 def read_php_file(path):
-    try:
-        return Path(path).read_text(encoding="utf-8", errors="ignore")
-    except Exception:
-        return None
+    for _ in range(3):
+        try:
+            return Path(path).read_text(encoding="utf-8", errors="ignore")
+        except PermissionError:
+            time.sleep(0.05)
+        except Exception:
+            return None
+    return None
 
 
 def is_comment(line):

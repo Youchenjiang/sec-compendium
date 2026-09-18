@@ -118,7 +118,8 @@ Status: {status}
         print(f"[+] Report saved: {report_file}")
         return report_file
 
-    def save_failure_analysis(self, package_name: str, exploit_path: str, output: str) -> str:
+    @staticmethod
+    def save_failure_analysis(_package_name: str, _exploit_path: str, output: str) -> str:
         """Analyze failure output and return a diagnosis string."""
         analysis_lines = []
         output_lower = output.lower()
