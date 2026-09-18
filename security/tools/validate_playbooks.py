@@ -14,6 +14,13 @@ import re
 import sys
 import glob
 
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
 BASE_DIR = os.path.normpath(os.path.join(os.path.dirname(__file__), ".."))
 PLAYBOOKS_DIR = os.path.join(BASE_DIR, "blue_team", "playbooks")
 
