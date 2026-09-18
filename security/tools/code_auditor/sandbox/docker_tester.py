@@ -3,10 +3,13 @@ Code Auditor - Docker Sandbox Tester
 Tests exploits against local challenge containers.
 """
 import os
+import shutil
 import subprocess
 import time
 from typing import Dict, Tuple
 from pathlib import Path
+
+BASH_BIN = shutil.which("bash") or "bash"
 
 
 class DockerTester:
@@ -30,11 +33,12 @@ class DockerTester:
         if build_script.exists():
             print("[*] Building base images (if needed)...")
             result = subprocess.run(
-                ["bash", str(build_script)],
+                [BASH_BIN, str(build_script)],
                 cwd=str(self.dist_dir),
                 capture_output=True,
                 text=True,
-                timeout=600  # 10 minutes max
+                timeout=600,  # 10 minutes max
+                check=False,
             )
             if result.returncode != 0:
                 print(f"[-] Build failed: {result.stderr}")
@@ -61,7 +65,7 @@ class DockerTester:
             return False, "run.sh not found in dist directory", "- Missing run.sh in dist directory"
 
         # Make exploit executable
-        os.chmod(exploit_path, 0o755)
+        os.chmod(exploit_path, 0o700)  # skipcq: PTC-W6004
 
         print(f"[*] Testing exploit: {exploit_path}")
         print(f"[*] Package: {package_name}:{package_version} (PHP {php_version})")
@@ -72,7 +76,7 @@ class DockerTester:
             # Start containers and run exploit
             result = subprocess.run(
                 [
-                    "bash", str(run_script),
+                    BASH_BIN, str(run_script),
                     php_version,
                     package_name,
                     package_version,
@@ -81,7 +85,8 @@ class DockerTester:
                 cwd=str(self.dist_dir),
                 capture_output=True,
                 text=True,
-                timeout=timeout
+                timeout=timeout,
+                check=False,
             )
 
             output = result.stdout + result.stderr
@@ -134,10 +139,11 @@ class DockerTester:
             if run_script.exists():
                 print("[*] Cleaning up containers...")
                 subprocess.run(
-                    ["bash", str(run_script), "down"],
+                    [BASH_BIN, str(run_script), "down"],
                     cwd=str(self.dist_dir),
                     capture_output=True,
-                    timeout=30
+                    timeout=30,
+                    check=False,
                 )
                 self.containers_running = False
 
@@ -153,7 +159,7 @@ class DockerTester:
 
         for php_version in php_versions:
             print(f"\n[*] Testing with PHP {php_version}...")
-            success, output = self.test_exploit(
+            success, _, _ = self.test_exploit(
                 exploit_path,
                 php_version,
                 package_name,
