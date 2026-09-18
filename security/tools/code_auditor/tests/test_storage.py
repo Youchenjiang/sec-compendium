@@ -37,7 +37,7 @@ class TestStorage(unittest.TestCase):
         ]
         self.storage.save_vulnerability_report("sample/pkg", vulns)
         report_files = list((Path(self.temp_dir) / "reports").glob("*.json"))
-        self.assertTrue(len(report_files) >= 1)
+        self.assertGreaterEqual(len(report_files), 1)
 
     def test_record_run_and_generate_writeup(self):
         record = RunRecord(

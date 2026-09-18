@@ -5,21 +5,27 @@ import os
 from pathlib import Path
 
 
+def _parse_env_line(line: str):
+    line = line.strip()
+    if not line or line.startswith("#") or "=" not in line:
+        return
+    key, _, value = line.partition("=")
+    key = key.strip()
+    value = value.strip().strip('"').strip("'")
+    if key and value:
+        os.environ.setdefault(key, value)
+
+
 def _load_env():
     candidates = [
         Path(__file__).parent / ".env",
         Path(__file__).parent.parent.parent.parent / ".env",
     ]
     for env_path in candidates:
-        if env_path.exists():
-            for line in env_path.read_text(encoding="utf-8").splitlines():
-                line = line.strip()
-                if line and not line.startswith("#") and "=" in line:
-                    key, _, value = line.partition("=")
-                    key = key.strip()
-                    value = value.strip().strip('"').strip("'")
-                    if key and value:
-                        os.environ.setdefault(key, value)
+        if not env_path.exists():
+            continue
+        for line in env_path.read_text(encoding="utf-8").splitlines():
+            _parse_env_line(line)
 
 
 _load_env()

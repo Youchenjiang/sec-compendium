@@ -21,7 +21,7 @@ class WargamePlatformClient(BasePlatformClient):
     ):
         self.base_url = (base_url or PLATFORM_BASE_URL).rstrip("/")
         api_prefix = api_base or f"{self.base_url}/api/v1"
-        if api_prefix.startswith("http://") or api_prefix.startswith("https://"):
+        if api_prefix.startswith(("http://", "https://")):
             self.api_url = api_prefix.rstrip("/")
         else:
             self.api_url = f"{self.base_url}/{api_prefix.lstrip('/')}"

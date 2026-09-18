@@ -32,7 +32,7 @@ class TestCodeAuditorEngine(unittest.TestCase):
         auditor.audit_directory(self.temp_dir, scan_only=True)
 
         self.assertEqual(auditor.stats["targets_scanned"], 1)
-        self.assertTrue(auditor.stats["vulnerabilities_found"] >= 1)
+        self.assertGreaterEqual(auditor.stats["vulnerabilities_found"], 1)
         self.assertEqual(auditor.stats["exploits_generated"], 0)
 
 

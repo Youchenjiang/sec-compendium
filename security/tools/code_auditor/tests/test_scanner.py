@@ -23,7 +23,7 @@ class TestScanner(unittest.TestCase):
         test_file.write_text("<?php\neval($_GET['payload']);\n", encoding="utf-8")
 
         findings = self.scanner.scan_file(str(test_file))
-        self.assertTrue(len(findings) >= 1)
+        self.assertGreaterEqual(len(findings), 1)
         self.assertTrue(any("eval" in f.vuln_type.lower() or f.category == "code_execution" for f in findings))
         self.assertEqual(findings[0].severity, "CRITICAL")
 
@@ -32,7 +32,7 @@ class TestScanner(unittest.TestCase):
         test_file.write_text("<?php\nsystem($_POST['target']);\n", encoding="utf-8")
 
         findings = self.scanner.scan_file(str(test_file))
-        self.assertTrue(len(findings) >= 1)
+        self.assertGreaterEqual(len(findings), 1)
         self.assertTrue(any("command" in f.vuln_type.lower() or "exec" in f.vuln_type.lower() for f in findings))
 
     def test_ignore_commented_code(self):
@@ -49,7 +49,7 @@ class TestScanner(unittest.TestCase):
         (d / "clean.php").write_text("<?php\necho 'hello world';\n", encoding="utf-8")
 
         findings = self.scanner.scan_directory(str(d))
-        self.assertTrue(len(findings) >= 1)
+        self.assertGreaterEqual(len(findings), 1)
         self.assertEqual(self.scanner.scanned_files, 2)
 
 
