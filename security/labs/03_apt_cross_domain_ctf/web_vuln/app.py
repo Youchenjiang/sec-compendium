@@ -9,6 +9,7 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
+
 @app.route('/', methods=['GET'])
 def index():
     return '''
@@ -17,6 +18,7 @@ def index():
     <p>API Endpoint: /api/v1/admin/diagnostics?host=127.0.0.1</p>
     <!-- Source map debug info: devtools sourcemap loaded -->
     '''
+
 
 @app.route('/api/v1/admin/diagnostics', methods=['GET'])
 def diagnostics():
@@ -31,6 +33,7 @@ def diagnostics():
         return jsonify({"status": "error", "output": e.output.decode('utf-8', errors='ignore')}), 400
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
+
 
 if __name__ == '__main__':
     # NOSONAR - Binding to 0.0.0.0 is required for Docker container networking
