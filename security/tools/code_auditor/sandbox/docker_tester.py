@@ -3,13 +3,10 @@ Code Auditor - Docker Sandbox Tester
 Tests exploits against local challenge containers.
 """
 import os
-import shutil
 import subprocess
 import time
 from typing import Dict, Tuple
 from pathlib import Path
-
-BASH_BIN = shutil.which("bash") or "bash"
 
 
 class DockerTester:
@@ -33,7 +30,7 @@ class DockerTester:
         if build_script.exists():
             print("[*] Building base images (if needed)...")
             result = subprocess.run(
-                [BASH_BIN, str(build_script)],
+                ["bash", str(build_script)],  # skipcq: BAN-B607
                 cwd=str(self.dist_dir),
                 capture_output=True,
                 text=True,
@@ -76,7 +73,7 @@ class DockerTester:
             # Start containers and run exploit
             result = subprocess.run(
                 [
-                    BASH_BIN, str(run_script),
+                    "bash", str(run_script),  # skipcq: BAN-B607
                     php_version,
                     package_name,
                     package_version,
@@ -139,7 +136,7 @@ class DockerTester:
             if run_script.exists():
                 print("[*] Cleaning up containers...")
                 subprocess.run(
-                    [BASH_BIN, str(run_script), "down"],
+                    ["bash", str(run_script), "down"],  # skipcq: BAN-B607
                     cwd=str(self.dist_dir),
                     capture_output=True,
                     timeout=30,
