@@ -5,7 +5,7 @@ Unified orchestrator for white-box static analysis, PoC generation, sandbox veri
 import sys
 from datetime import datetime
 from pathlib import Path
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any, Optional, Tuple
 
 from .core.scanner import Scanner
 from .core.types import Vulnerability
@@ -120,7 +120,106 @@ class CodeAuditor:
         # 4. Summary & Report Storage
         self._print_summary()
 
-    def _process_target(
+    def _generate_exploits(
+        self, pkg_name: str, vulnerabilities: List[Vulnerability], target: Dict[str, Any]
+    ) -> List[str]:
+        """Generate exploits for discovered vulnerabilities."""
+        print("\n[Phase 4] Automated PoC / Exploit Synthesis")
+        exploits = []
+        for vuln in vulnerabilities[:5]:
+            code = self.generator.generate_exploit(vuln, target)
+            if code:
+                vtype = vuln.vuln_type.lower().replace(" ", "_").replace("/", "_")
+                saved = self.storage.save_exploit(pkg_name, vtype, code)
+                exploits.append(str(saved))
+                self.stats["exploits_generated"] += 1
+        return exploits
+
+    def _verify_exploits(
+        self,
+        exploits: List[str],
+        php_ver: str,
+        pkg_name: str,
+        pkg_ver: str,
+        verify: bool,
+    ) -> Tuple[List[str], Dict[str, Any]]:
+        """Verify generated exploits dynamically using Docker tester."""
+        working_exploits = []
+        exploit_results = {}
+        if verify and self.tester:
+            print("\n[Phase 5] Docker Sandbox Dynamic Verification")
+            for exp in exploits:
+                self.stats["exploits_tested"] += 1
+                success, _, analysis = self.tester.test_exploit(
+                    exp, php_ver, pkg_name, pkg_ver, storage=self.storage
+                )
+                exploit_results[exp] = {"success": success, "analysis": analysis}
+                if success:
+                    working_exploits.append(exp)
+        elif verify and not self.tester:
+            print(
+                "[-] Dynamic verification was requested (--verify), "
+                "but no docker tester is available (dist_dir not configured). Skipping submission."
+            )
+            working_exploits = []
+        else:
+            working_exploits = exploits
+        return working_exploits, exploit_results
+
+    def _submit_exploits(
+        self, working_exploits: List[str], target_id: str, no_submit: bool
+    ) -> Any:
+        """Submit validated exploits to the target platform."""
+        submission_result = None
+        if working_exploits and not no_submit:
+            print("\n[Phase 6] Submitting Validated Exploit to Platform")
+            for exp in working_exploits:
+                try:
+                    with open(exp, "r", encoding="utf-8") as f:  # skipcq: PTC-W6004
+                        payload = f.read()
+                    submission_result = self.client.submit(target_id, payload)
+                    self.stats["submissions_completed"] += 1
+                except Exception as e:
+                    print(f"[-] Submission failed: {e}")
+        return submission_result
+
+    def _record_and_writeup(
+        self,
+        target: Dict[str, Any],
+        vulnerabilities: List[Vulnerability],
+        exploits: List[str],
+        exploit_results: Dict[str, Any],
+        submission_result: Any,
+    ):
+        """Record the audit run and generate writeup."""
+        pkg_name = target.get("name")
+        pkg_ver = target.get("version")
+        php_ver = target.get("php_version", "8.4")
+        record = RunRecord(
+            timestamp=datetime.now().isoformat(),
+            package_name=pkg_name,
+            package_version=pkg_ver,
+            php_version=php_ver,
+            vulnerabilities=[
+                {
+                    "type": v.vuln_type,
+                    "file": v.file_path,
+                    "line": v.line_number,
+                    "code": v.code_snippet,
+                    "severity": v.severity,
+                    "description": v.description,
+                    "exploit_hint": v.exploit_hint,
+                }
+                for v in vulnerabilities
+            ],
+            exploits_generated=exploits,
+            exploit_results=exploit_results,
+            submission_result=submission_result,
+        )
+        self.storage.record_run(record)
+        self.storage.generate_writeup(record)
+
+    def _process_target(  # skipcq: PY-R1000
         self,
         target: Dict[str, Any],
         scan_only: bool = False,
@@ -149,73 +248,21 @@ class CodeAuditor:
             return
 
         # Step 3.2: PoC / Exploit Generation
-        print("\n[Phase 4] Automated PoC / Exploit Synthesis")
-        exploits = []
-        for vuln in vulnerabilities[:5]:
-            code = self.generator.generate_exploit(vuln, target)
-            if code:
-                vtype = vuln.vuln_type.lower().replace(" ", "_").replace("/", "_")
-                saved = self.storage.save_exploit(pkg_name, vtype, code)
-                exploits.append(str(saved))
-                self.stats["exploits_generated"] += 1
+        exploits = self._generate_exploits(pkg_name, vulnerabilities, target)
 
         # Step 3.3: Dynamic Verification (Docker)
-        working_exploits = []
-        exploit_results = {}
-        if verify and self.tester:
-            print("\n[Phase 5] Docker Sandbox Dynamic Verification")
-            for exp in exploits:
-                self.stats["exploits_tested"] += 1
-                success, _, analysis = self.tester.test_exploit(
-                    exp, php_ver, pkg_name, pkg_ver, storage=self.storage
-                )
-                exploit_results[exp] = {"success": success, "analysis": analysis}
-                if success:
-                    working_exploits.append(exp)
-        elif verify and not self.tester:
-            print("[-] Dynamic verification was requested (--verify), but no docker tester is available (dist_dir not configured). Skipping submission.")
-            working_exploits = []
-        else:
-            working_exploits = exploits
+        working_exploits, exploit_results = self._verify_exploits(
+            exploits, php_ver, pkg_name, pkg_ver, verify
+        )
 
         # Step 3.4: Submission or Output
-        submission_result = None
-        if working_exploits and not no_submit:
-            print("\n[Phase 6] Submitting Validated Exploit to Platform")
-            target_id = target.get("id", pkg_name)
-            for exp in working_exploits:
-                try:
-                    with open(exp, "r", encoding="utf-8") as f:
-                        payload = f.read()
-                    submission_result = self.client.submit(target_id, payload)
-                    self.stats["submissions_completed"] += 1
-                except Exception as e:
-                    print(f"[-] Submission failed: {e}")
+        target_id = target.get("id", pkg_name)
+        submission_result = self._submit_exploits(working_exploits, target_id, no_submit)
 
         # Step 3.5: Generate Report / Writeup
-        record = RunRecord(
-            timestamp=datetime.now().isoformat(),
-            package_name=pkg_name,
-            package_version=pkg_ver,
-            php_version=php_ver,
-            vulnerabilities=[
-                {
-                    "type": v.vuln_type,
-                    "file": v.file_path,
-                    "line": v.line_number,
-                    "code": v.code_snippet,
-                    "severity": v.severity,
-                    "description": v.description,
-                    "exploit_hint": v.exploit_hint,
-                }
-                for v in vulnerabilities
-            ],
-            exploits_generated=exploits,
-            exploit_results=exploit_results,
-            submission_result=submission_result,
+        self._record_and_writeup(
+            target, vulnerabilities, exploits, exploit_results, submission_result
         )
-        self.storage.record_run(record)
-        self.storage.generate_writeup(record)
 
     def _scan_source(self, name: str, version: str, source_override: Optional[str]) -> List[Vulnerability]:
         if source_override and Path(source_override).exists():
