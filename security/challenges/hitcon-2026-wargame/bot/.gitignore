@@ -1,0 +1,6 @@
+.env
+__pycache__/
+*.pyc
+.cookies.json
+*.png
+scan_cache/
