@@ -1,0 +1,5 @@
+# Code Auditor Core Dependencies
+requests>=2.28.0
+
+# Optional: Browser automation for Cloudflare Turnstile bypass and submission
+playwright>=1.40.0
