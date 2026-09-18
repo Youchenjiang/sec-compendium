@@ -30,7 +30,7 @@ class DockerTester:
         build_script = self.dist_dir / "build-base-images.sh"
         if build_script.exists():
             print("[*] Building base images (if needed)...")
-            result = subprocess.run(  # skipcq: BAN-B607
+            result = subprocess.run(  # skipcq: BAN-B607, PTC-W0044, PTC-W6004
                 ["/bin/bash", str(build_script)],
                 cwd=str(self.dist_dir),
                 capture_output=True,
@@ -72,7 +72,7 @@ class DockerTester:
 
         try:
             # Start containers and run exploit
-            result = subprocess.run(  # skipcq: BAN-B607
+            result = subprocess.run(  # skipcq: BAN-B607, PTC-W0044, PTC-W6004
                 [
                     "/bin/bash", str(run_script),
                     php_version,
@@ -137,7 +137,7 @@ class DockerTester:
             run_script = self.dist_dir / "run.sh"
             if run_script.exists():
                 print("[*] Cleaning up containers...")
-                subprocess.run(  # skipcq: BAN-B607
+                subprocess.run(  # skipcq: BAN-B607, PTC-W0044, PTC-W6004
                     ["/bin/bash", str(run_script), "down"],
                     cwd=str(self.dist_dir),
                     capture_output=True,
