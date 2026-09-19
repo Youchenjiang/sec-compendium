@@ -22,7 +22,8 @@ class TryHackMeAdapter(BaseChallengeAdapter):
 
     SITEMAP_URL = "https://tryhackme.com/sitemaps/rooms.xml"
 
-    def _infer_category(self, code: str) -> str:
+    @staticmethod
+    def _infer_category(code: str) -> str:
         """Infer high-level domain category based on room code keywords."""
         code_lower = code.lower()
         if any(k in code_lower for k in ["ad", "activedirectory", "kerberos", "domain", "windows", "gpo", "privesc"]):

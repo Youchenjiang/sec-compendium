@@ -92,15 +92,17 @@ def main():
     print("\n========================================================")
     print("CHALLENGE SYNCHRONIZATION SUMMARY REPORT")
     print("========================================================")
-    print(f"{'Platform':<22} | {'Total':<8} | {'Free Tier':<10} | {'Status'}")
+    print(f"{'Platform':22} | {'Total':8} | {'Free Tier':10} | Status")
     print("-" * 56)
     for r in results:
         if "error" in r:
-            print(f"{r['display_name']:<22} | {'-':<8} | {'-':<10} | [FAILED] {r['error']}")
+            name = str(r['display_name'])[:22]
+            print(f"{name:22} | {'-':8} | {'-':10} | [FAILED] {r['error']}")
         else:
-            print(
-                f"{r['display_name']:<22} | {r['total']:<8} | {r['free_count']:<10} | [OK]"
-            )
+            name = str(r['display_name'])[:22]
+            total_str = str(r['total'])
+            free_str = str(r['free_count'])
+            print(f"{name:22} | {total_str:8} | {free_str:10} | [OK]")
     print("========================================================\n")
 
 

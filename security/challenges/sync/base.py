@@ -34,9 +34,9 @@ class BaseChallengeAdapter(ABC):
 
     def sync(self) -> Dict[str, Any]:
         """Execute full synchronization pipeline for this platform."""
-        print(f"\n========================================================")
+        print("\n========================================================")
         print(f"[*] Syncing [{self.display_name}] (ID: {self.platform_id})")
-        print(f"========================================================")
+        print("========================================================")
 
         self.target_dir.mkdir(parents=True, exist_ok=True)
         challenges = self.fetch_challenges()

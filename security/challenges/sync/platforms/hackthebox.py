@@ -10,7 +10,6 @@ import csv
 import json
 import os
 import time
-import urllib.error
 import urllib.request
 from pathlib import Path
 from typing import Any, Dict, List, Optional
@@ -43,7 +42,8 @@ class HackTheBoxAdapter(BaseChallengeAdapter):
                 pass
         return None
 
-    def _fetch_json(self, url: str, token: Optional[str]) -> Optional[Dict[str, Any]]:
+    @staticmethod
+    def _fetch_json(url: str, token: Optional[str]) -> Optional[Dict[str, Any]]:
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
             "Accept": "application/json",
@@ -56,7 +56,7 @@ class HackTheBoxAdapter(BaseChallengeAdapter):
         try:
             with urllib.request.urlopen(req, timeout=15) as resp:
                 return json.loads(resp.read().decode("utf-8"))
-        except Exception as e:
+        except Exception:
             # Silently log error or debug
             return None
 
