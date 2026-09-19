@@ -12,7 +12,6 @@ import json
 import os
 import re
 import time
-import urllib.error
 import urllib.request
 from pathlib import Path
 from typing import Any, Dict, List, Optional

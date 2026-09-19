@@ -39,7 +39,8 @@ class CryptoHackAdapter(BaseChallengeAdapter):
         ("ctf-archive", "CTF Archive", "Past CryptoHack CTF and wargame challenge archive"),
     ]
 
-    def _determine_difficulty(self, points: int) -> str:
+    @staticmethod
+    def _determine_difficulty(points: int) -> str:
         """Map CryptoHack challenge point values to standard difficulty tiers."""
         if points <= 15:
             return "Easy"
@@ -176,7 +177,7 @@ class CryptoHackAdapter(BaseChallengeAdapter):
 
         cat_summary_headers = ["主題領域 (Category)", "題目數量", "難度分佈", "代表知識點"]
         cat_summary_rows = []
-        for cat_slug, cat_title, cat_desc in self.CATEGORIES:
+        for _cat_slug, cat_title, cat_desc in self.CATEGORIES:
             ch_list = cat_stats.get(cat_title, [])
             count = len(ch_list)
             if count == 0:

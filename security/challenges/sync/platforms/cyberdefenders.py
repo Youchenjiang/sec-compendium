@@ -7,7 +7,6 @@ https://cyberdefenders.org/api/blueteam-ctf-challenges/
 
 import json
 import time
-import urllib.error
 import urllib.request
 from pathlib import Path
 from typing import Any, Dict, List
@@ -52,7 +51,7 @@ class CyberDefendersAdapter(BaseChallengeAdapter):
             try:
                 with urllib.request.urlopen(req, timeout=20) as resp:
                     return json.loads(resp.read().decode("utf-8"))
-            except Exception as e:
+            except Exception:
                 if attempt == retries - 1:
                     raise
                 time.sleep(1.0 * (attempt + 1))
