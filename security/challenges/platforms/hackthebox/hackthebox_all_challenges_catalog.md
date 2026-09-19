@@ -1,9 +1,15 @@
-# 📦 Hack The Box 官方全量挑戰與 Free/VIP 目錄清單 (2026)
+# 📦 Hack The Box (HTB) 官方題庫目錄與 Free 實戰清單
 
-> 來源依據：Hack The Box 官方即時 API 全庫提取 ｜ 統計：全平台收錄共 **1650** 題（包含 Machines、Sherlocks、Challenges），其中 **359 題完全免費可用 (Non-VIP)**，1291 題標註為 VIP/VIP+ 需付費訂閱。
+版本：2026 全量版 ｜ 題目總數：**1650 題**（🟢 **359 題完全免費** ｜ 🔒 **1291 題需 VIP/VIP+**）
 
-| 序號 | 挑戰名稱 (Lab Title) | 存取權限 (Tier) | 難度 (Difficulty) | 作業系統 / 類型 | 領域分類 (Category) | 核心情境與技術概要 (Scenario) |
-| :---: | :--- | :---: | :---: | :---: | :--- | :--- |
+與 CyberDefenders 對齊，本目錄產出同構 CSV 數據：[`hackthebox_all_challenges_2026.csv`](hackthebox_all_challenges_2026.csv)。
+
+---
+
+## 🟢 359 題完全免費實戰題庫目錄
+
+| 序號 | 挑戰名稱 (Title) | 類型 | 難度 | 作業系統 | 分類 | 說明 |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | 1 | **[Meow](https://app.hackthebox.com/machines/Meow)** | 🟢 FREE | `Very Easy` | Linux | Starting Point (Machine) | Telnet 服務探測、無密碼 root 登入直接獲取 Flag |
 | 2 | **[Fawn](https://app.hackthebox.com/machines/Fawn)** | 🟢 FREE | `Very Easy` | Linux | Starting Point (Machine) | FTP 服務枚舉、匿名訪客存取 (Anonymous Login) 下載機密檔案 |
 | 3 | **[Dancing](https://app.hackthebox.com/machines/Dancing)** | 🟢 FREE | `Very Easy` | Windows | Starting Point (Machine) | SMB 共享資源枚舉、無密碼訪客存取與管理員備份洩漏 |
