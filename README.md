@@ -64,7 +64,7 @@ ctfd-kit/
 | **藍隊實戰與防禦應變** | [`security/blue_team/`](security/blue_team/) | 涵蓋 SOC、威脅獵捕、數位鑑識 (DFIR) 等 41 本手冊與 7 階段課表 |
 | **紅隊攻擊與武器庫** | [`security/red_team/`](security/red_team/) | 包含 Web 滲透、內網橫向移動、紅隊劇本與學習路徑 |
 | **全真模擬考與金盾準備** | [`security/exams/`](security/exams/) | 包含模擬試卷 A/B 卷全解析、速記卡與命題大綱 |
-| **靶場實戰題目演練** | [`security/challenges/`](security/challenges/) | 匯整 PicoCTF、PortSwigger 與 CyLab 實作靶題 |
+| **靶場實戰題目演練** | [`security/challenges/`](security/challenges/UNIFIED_FREE_CHALLENGES_INDEX.md) | 匯整 CyberDefenders、HTB、MTA、PicoCTF 與 PortSwigger 五大平台免費題庫索引 |
 | **實驗室深耕成長** | [`tracks/lab/90_runs/`](tracks/lab/90_runs/) | 180 天 90-Runs 課表、HITCON Range 靶場與金盾奪標計畫 |
 | **資安社週五讀書會** | [`tracks/club/`](tracks/club/) | 每週主題實作課表、CTF 入門與讀書會計畫 |
 | **CTFd 部署與維運** | [`ctfd/`](ctfd/) | 包含自動化結算、動態 Flag 外掛、繁中補丁與一鍵部署腳本 |
