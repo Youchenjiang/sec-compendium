@@ -53,7 +53,7 @@ ctfd-kit/security/
 ## 3. 五大實施階段詳細規劃 (Work Breakdown Structure)
 
 ### 階段一：離線攻防跡證資料集與生成工具（Phase 1: Evidence Datasets）
-* **產出成果**：`security/challenges/evidence/`
+* **產出成果**：`security/exams/evidence/`
 * **核心內容**：
   1. **PCAP 流量包**：
      - `c2_beaconing.pcap`：模擬 Cobalt Strike HTTP/HTTPS 心跳與 Jitter 抖動。
