@@ -20,6 +20,7 @@
 | [**`platforms/hackthebox/`**](platforms/hackthebox/) | 📦 滲透與調查靶場 | Hack The Box 全量 1600+ 題與 359 題免費機器/調查 (Sherlocks) 目錄與 CSV 數據庫 |
 | [**`platforms/mta/`**](platforms/mta/) | 🦈 流量分析靶場 | Malware-Traffic-Analysis 113 套真實惡意封包分析實戰題目目錄與 CSV 數據庫 |
 | [**`platforms/cylab_picoctf/`**](platforms/cylab_picoctf/) | 🏛️ CTF 競賽題庫 | CyLab / picoCTF 官方題庫快照數據庫與學習路徑對照目錄 |
+| [**`platforms/portswigger/`**](platforms/portswigger/) | 🌐 Web 滲透實戰 | PortSwigger Web Security Academy 官方 274 個實戰靶場實驗目錄與 CSV 數據庫 |
 | [**`sync/`**](sync/) | 🔄 自動同步框架 | 多平台實戰題庫通用同步器、API 爬蟲與標準化匯出 CLI |
 
 ---
