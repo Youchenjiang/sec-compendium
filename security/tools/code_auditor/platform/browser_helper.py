@@ -8,7 +8,16 @@ from pathlib import Path
 from urllib.parse import urlparse
 from ..config import PLATFORM_BASE_URL
 
-COOKIES_FILE = Path(__file__).parent / ".cookies.json"
+COOKIES_FILE = (Path(__file__).resolve().parent / ".cookies.json").resolve()
+
+
+def _get_safe_cookie_file() -> Path:
+    """Return validated canonical cookie file path within module directory."""
+    base_dir = Path(__file__).resolve().parent
+    target = (base_dir / ".cookies.json").resolve()
+    if not str(target).startswith(str(base_dir)):
+        raise PermissionError("Access denied: Invalid cookie file path")
+    return target
 
 
 def _normalize_key(url: str, email: str = None) -> str:
@@ -28,9 +37,11 @@ def get_cookies(
     """Get session cookies from domain-scoped cache or via browser login."""
     target_url = base_url or PLATFORM_BASE_URL
     cache_key = _normalize_key(target_url, email)
-    if not refresh and COOKIES_FILE.exists():
+    cookie_file = _get_safe_cookie_file()
+    if not refresh and cookie_file.exists():
         try:
-            cache = json.loads(COOKIES_FILE.read_text(encoding="utf-8"))
+            with open(cookie_file, "r", encoding="utf-8") as f:
+                cache = json.load(f)
             if isinstance(cache, dict) and cache_key in cache:
                 cached = cache[cache_key]
                 if isinstance(cached, dict):
@@ -45,10 +56,12 @@ def _save_cookies(cookies: dict, target_url: str, email: str) -> None:
     """Save extracted cookies to persistent local cache file."""
     if not cookies:
         return
+    cookie_file = _get_safe_cookie_file()
     cache = {}
-    if COOKIES_FILE.exists():
+    if cookie_file.exists():
         try:
-            loaded = json.loads(COOKIES_FILE.read_text(encoding="utf-8"))
+            with open(cookie_file, "r", encoding="utf-8") as f:
+                loaded = json.load(f)
             if isinstance(loaded, dict):
                 cache = loaded
         except Exception:
@@ -56,12 +69,13 @@ def _save_cookies(cookies: dict, target_url: str, email: str) -> None:
 
     cache_key = _normalize_key(target_url, email)
     cache[cache_key] = cookies
-    COOKIES_FILE.write_text(json.dumps(cache, indent=2), encoding="utf-8")
+    with open(cookie_file, "w", encoding="utf-8") as f:
+        json.dump(cache, f, indent=2)
     try:
-        os.chmod(COOKIES_FILE, 0o600)  # skipcq: PTC-W6004
+        os.chmod(cookie_file, 0o600)  # skipcq: PTC-W6004
     except Exception:
         pass
-    print(f"[+] Cookies saved for {cache_key} to {COOKIES_FILE}")
+    print(f"[+] Cookies saved for {cache_key} to {cookie_file}")
 
 
 def browser_login(
