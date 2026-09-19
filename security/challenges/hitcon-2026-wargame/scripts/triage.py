@@ -189,8 +189,72 @@ def run_triage():  # skipcq: PY-R1000
     print(f"[+] Published {len(unique_dossiers)} dossiers and queued tasks")
 
 
+def _scan_procedural_entries(filename: str, content: str, rel_path: str) -> list:
+    """Scan for procedural entry point sinks."""
+    matches = []
+    if ENTRY_NAMES_RE.search(filename):
+        for line_no, line in enumerate(content.split("\n"), 1):
+            if SINKS_RE.search(line) and not line.strip().startswith(("//", "*", "#")):
+                matches.append({
+                    "file": rel_path, "line": line_no, "code": line.strip()[:120],
+                })
+    return matches
+
+
+def _scan_pop_gadgets(content: str, rel_path: str) -> list:
+    """Scan for POP gadget chains (magic methods leading to sinks)."""
+    matches = []
+    if MAGIC_METHODS.search(content) and SINKS_RE.search(content):
+        in_magic = False
+        for line_no, line in enumerate(content.split("\n"), 1):
+            if MAGIC_METHODS.search(line):
+                in_magic = True
+            if in_magic and SINKS_RE.search(line) and not line.strip().startswith(("//", "*", "#")):
+                matches.append({
+                    "file": rel_path, "line": line_no, "code": line.strip()[:120],
+                })
+                in_magic = False
+    return matches
+
+
+def _scan_controller_actions(rel_path: str, content: str) -> list:
+    """Scan for controller / action sinks."""
+    matches = []
+    if any(k in rel_path.lower() for k in ["controller", "command", "handler", "action", "model"]):
+        for line_no, line in enumerate(content.split("\n"), 1):
+            if SINKS_RE.search(line) and not line.strip().startswith(("//", "*", "#")):
+                matches.append({
+                    "file": rel_path, "line": line_no, "code": line.strip()[:120],
+                })
+    return matches
+
+
+def _analyze_php_file(php_file: Path, pkg_dir: Path, pkg_name: str, results_by_pkg: dict) -> None:
+    """Analyze a single PHP file for entry points, gadgets, and controller sinks."""
+    parts = [p.lower() for p in php_file.parts]
+    if any(k in parts for k in ["fixtures", "tests", "test"]):
+        return
+    try:
+        content = php_file.read_text(encoding="utf-8", errors="ignore")
+    except Exception:
+        return
+
+    rel_path = str(php_file.relative_to(pkg_dir))
+    entries = _scan_procedural_entries(php_file.name, content, rel_path)
+    if entries:
+        results_by_pkg[pkg_name]["Direct Procedural Web Entry"].extend(entries)
+
+    gadgets = _scan_pop_gadgets(content, rel_path)
+    if gadgets:
+        results_by_pkg[pkg_name]["POP Gadget Chains (Deserialization)"].extend(gadgets)
+
+    controllers = _scan_controller_actions(rel_path, content)
+    if controllers:
+        results_by_pkg[pkg_name]["Controller / Action Vulnerability"].extend(controllers)
+
+
 # ── Mode: categorize ──
-def run_categorize():
+def run_categorize():  # skipcq: PY-R1000
     """Categorize vulnerabilities by type across all packages."""
     results_by_pkg = defaultdict(lambda: defaultdict(list))
 
@@ -204,43 +268,7 @@ def run_categorize():
         pkg_name = pkg_dir.name
 
         for php_file in pkg_dir.rglob("*.php"):
-            parts = [p.lower() for p in php_file.parts]
-            if any(k in parts for k in ["fixtures", "tests", "test"]):
-                continue
-            try:
-                content = php_file.read_text(encoding="utf-8", errors="ignore")
-            except Exception:
-                continue
-
-            rel_path = str(php_file.relative_to(pkg_dir))
-
-            # Procedural Entry Point with Sinks
-            if ENTRY_NAMES_RE.search(php_file.name):
-                for line_no, line in enumerate(content.split("\n"), 1):
-                    if SINKS_RE.search(line) and not line.strip().startswith(("//", "*", "#")):
-                        results_by_pkg[pkg_name]["Direct Procedural Web Entry"].append({
-                            "file": rel_path, "line": line_no, "code": line.strip()[:120],
-                        })
-
-            # POP Gadget Chains
-            if MAGIC_METHODS.search(content) and SINKS_RE.search(content):
-                in_magic = False
-                for line_no, line in enumerate(content.split("\n"), 1):
-                    if MAGIC_METHODS.search(line):
-                        in_magic = True
-                    if in_magic and SINKS_RE.search(line) and not line.strip().startswith(("//", "*", "#")):
-                        results_by_pkg[pkg_name]["POP Gadget Chains (Deserialization)"].append({
-                            "file": rel_path, "line": line_no, "code": line.strip()[:120],
-                        })
-                        in_magic = False
-
-            # Controller / Action Vulnerability
-            if any(k in rel_path.lower() for k in ["controller", "command", "handler", "action", "model"]):
-                for line_no, line in enumerate(content.split("\n"), 1):
-                    if SINKS_RE.search(line) and not line.strip().startswith(("//", "*", "#")):
-                        results_by_pkg[pkg_name]["Controller / Action Vulnerability"].append({
-                            "file": rel_path, "line": line_no, "code": line.strip()[:120],
-                        })
+            _analyze_php_file(php_file, pkg_dir, pkg_name, results_by_pkg)
 
     # Summary
     summary_list = []
