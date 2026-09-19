@@ -60,9 +60,9 @@ def generate_dynamic_flag(base_flag_text, team_name):
         chars_to_insert = list(clean_team)
 
     else:
-        front_cnt = rng.randint(1, min(2, n - 1))  # NOSONAR: intentional CTF flag shuffle logic
+        front_cnt = rng.randint(1, min(2, n - 1))
 
-        back_cnt = rng.randint(1, min(2, n - front_cnt))  # NOSONAR: intentional CTF flag shuffle logic
+        back_cnt = rng.randint(1, min(2, n - front_cnt))
 
         front_chars = list(clean_team[:front_cnt])
 
@@ -70,12 +70,12 @@ def generate_dynamic_flag(base_flag_text, team_name):
 
         chars_to_insert = front_chars + back_chars
 
-    rng.shuffle(chars_to_insert)  # NOSONAR: intentional CTF flag shuffle logic
+    rng.shuffle(chars_to_insert)
 
     flag_chars = list(inner)
 
     for ch in chars_to_insert:
-        pos = rng.randint(0, len(flag_chars))  # NOSONAR: intentional CTF flag shuffle logic
+        pos = rng.randint(0, len(flag_chars))
 
         flag_chars.insert(pos, ch)
 
@@ -798,7 +798,7 @@ def lab_f12():
 
     resp = make_response(html)
 
-    resp.set_cookie("flag_part2", part2, path="/")  # NOSONAR: CTF lab challenge mechanism requiring browser devtools inspection
+    resp.set_cookie("flag_part2", part2, path="/")
 
     return resp
 
