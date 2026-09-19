@@ -285,7 +285,7 @@ vol -f memory.raw windows.modscan   # 掃描 pool
 
 | 題目 | 難度 | 連結 | 練習重點 |
 |------|------|------|---------|
-| **CyberDefenders: MemorySearch** | ⭐⭐ | [CyberDefenders](https://cyberdefenders.org/blueteam-ctf-challenges/memorysearch/) | 綜合進程、網路、DLL 分析 |
+| **CyberDefenders: RedLine** | ⭐⭐ | [CyberDefenders](https://cyberdefenders.org/blueteam-ctf-challenges/redline/) | 綜合進程、網路、DLL 分析 |
 | **CyberDefenders: Lespion** | ⭐⭐⭐ | [CyberDefenders](https://cyberdefenders.org/blueteam-ctf-challenges/lespion/) | 進程樹異常、憑證提取 |
 | **CyberDefenders: BlackEnergy** | ⭐⭐⭐ | [CyberDefenders](https://cyberdefenders.org/blueteam-ctf-challenges/blackenergy/) | 真實 APT Rootkit 樣本分析 |
 | **Blue Team Labs Online: Memory Analysis** | ⭐⭐ | [BTLO](https://blueteamlabs.online/) | 引導式記憶體調查 |
@@ -294,7 +294,7 @@ vol -f memory.raw windows.modscan   # 掃描 pool
 
 | 題目 | 難度 | 連結 | 練習重點 |
 |------|------|------|---------|
-| **HTB Sherlocks: Brutus** | ⭐⭐⭐ | [HTB Sherlocks](https://app.hackthebox.com/sherlocks) | 混合 EVTX + 記憶體分析 |
+| **HTB Sherlocks: Brutus** | ⭐⭐⭐ | [HTB Sherlocks](https://app.hackthebox.com/sherlocks/Brutus) | 混合 EVTX + 記憶體分析 |
 | **DFRWS 2005 Challenge** | ⭐⭐⭐⭐ | [DFRWS](https://dfrws.org/forensic-challenges/) | 經典 rootkit 案例，業界標準 |
 | **Digital Corpora: Scenario M57** | ⭐⭐⭐⭐ | [Digital Corpora](https://digitalcorpora.org/) | 企業級完整調查場景 |
 
