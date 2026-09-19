@@ -2,37 +2,569 @@
 Meow,🟢 FREE,Very Easy,Linux,Starting Point (Machine),https://app.hackthebox.com/machines/Meow,Telnet 服務探測、無密碼 root 登入直接獲取 Flag
 Fawn,🟢 FREE,Very Easy,Linux,Starting Point (Machine),https://app.hackthebox.com/machines/Fawn,FTP 服務枚舉、匿名訪客存取 (Anonymous Login) 下載機密檔案
 Dancing,🟢 FREE,Very Easy,Windows,Starting Point (Machine),https://app.hackthebox.com/machines/Dancing,SMB 共享資源枚舉、無密碼訪客存取與管理員備份洩漏
-Explosion,🔴 VIP+,Very Easy,Windows,Starting Point (Machine),https://app.hackthebox.com/machines/Explosion,RDP 服務枚舉 (被標註為 VIP+)
+Explosion,🔴 VIP+,Very Easy,Windows,Starting Point (Machine),https://app.hackthebox.com/machines/Explosion,RDP 服務枚舉 (官方標註為 VIP+)
 Crocodile,🟢 FREE,Easy,Linux,Starting Point (Machine),https://app.hackthebox.com/machines/Crocodile,FTP 服務洩漏憑證、Web 管理後台預設帳密突破
 Responder,🟢 FREE,Easy,Windows,Starting Point (Machine),https://app.hackthebox.com/machines/Responder,Web LFI 本地檔案包含、LLMNR/NBT-NS 毒化、NTLM 雜湊捕捉提權
 Three,🟢 FREE,Easy,Linux,Starting Point (Machine),https://app.hackthebox.com/machines/Three,子域名探勘、AWS S3 儲存貯體未授權寫入與 PHP WebShell
-Bike,🔴 VIP+,Easy,Linux,Starting Point (Machine),https://app.hackthebox.com/machines/Bike,Node.js SSTI 模板注入 (被標註為 VIP+)
+Bike,🔴 VIP+,Easy,Linux,Starting Point (Machine),https://app.hackthebox.com/machines/Bike,Node.js SSTI 模板注入 (官方標註為 VIP+)
 Vaccine,🟢 FREE,Easy,Linux,Starting Point (Machine),https://app.hackthebox.com/machines/Vaccine,SQL 注入攻擊 (SQLi)、資料庫密碼雜湊破解與 Sudo 提權
 Archetype,🟢 FREE,Easy,Windows,Starting Point (Machine),https://app.hackthebox.com/machines/Archetype,MSSQL 滲透、xp_cmdshell 遠端指令執行、Windows 登錄檔密碼提權
 Oopsie,🟢 FREE,Easy,Linux,Starting Point (Machine),https://app.hackthebox.com/machines/Oopsie,Web 權限繞過、IDOR 不安全直接物件參考、SUID 二進位提權
-Markup,🔴 VIP+,Easy,Windows,Starting Point (Machine),https://app.hackthebox.com/machines/Markup,XXE 實體注入攻擊 (被標註為 VIP+)
-Included,🔴 VIP+,Easy,Linux,Starting Point (Machine),https://app.hackthebox.com/machines/Included,TFTP 服務利用與 UDP 滲透 (被標註為 VIP+)
+Markup,🔴 VIP+,Easy,Windows,Starting Point (Machine),https://app.hackthebox.com/machines/Markup,XXE 實體注入攻擊 (官方標註為 VIP+)
+Included,🔴 VIP+,Easy,Linux,Starting Point (Machine),https://app.hackthebox.com/machines/Included,TFTP 服務利用與 UDP 滲透 (官方標註為 VIP+)
 Unified,🟢 FREE,Medium,Linux,Starting Point (Machine),https://app.hackthebox.com/machines/Unified,Log4j (CVE-2021-44228) 漏洞利用、UniFi 平台無檔案反彈 Shell
-Management,🟢 FREE,Easy,Linux,Active Machine (Full Pentest),https://app.hackthebox.com/machines/Management,當期線上常規主機攻堅演練 (20 pts) ｜ 發布日期: 2026-09-12
-Scaffold,🟢 FREE,Hard,Windows,Active Machine (Full Pentest),https://app.hackthebox.com/machines/Scaffold,當期線上常規主機攻堅演練 (40 pts) ｜ 發布日期: 2026-09-05
-BlockSynergy,🟢 FREE,Insane,Linux,Active Machine (Full Pentest),https://app.hackthebox.com/machines/BlockSynergy,當期線上常規主機攻堅演練 (50 pts) ｜ 發布日期: 2026-08-29
-TrustFall,🟢 FREE,Insane,Windows,Active Machine (Full Pentest),https://app.hackthebox.com/machines/TrustFall,當期線上常規主機攻堅演練 (50 pts) ｜ 發布日期: 2026-09-11
-DanglingTree,🟢 FREE,Medium,Windows,Active Machine (Full Pentest),https://app.hackthebox.com/machines/DanglingTree,當期線上常規主機攻堅演練 (30 pts) ｜ 發布日期: 2026-08-08
-Cohort,🟢 FREE,Easy,Linux,Active Machine (Full Pentest),https://app.hackthebox.com/machines/Cohort,當期線上常規主機攻堅演練 (20 pts) ｜ 發布日期: 2026-08-01
-DarkZeroReturns,🟢 FREE,Hard,Windows,Active Machine (Full Pentest),https://app.hackthebox.com/machines/DarkZeroReturns,當期線上常規主機攻堅演練 (40 pts) ｜ 發布日期: 2026-07-25
-Bedside,🟢 FREE,Medium,Linux,Active Machine (Full Pentest),https://app.hackthebox.com/machines/Bedside,當期線上常規主機攻堅演練 (30 pts) ｜ 發布日期: 2026-07-18
-Paperwork,🟢 FREE,Easy,Linux,Active Machine (Full Pentest),https://app.hackthebox.com/machines/Paperwork,當期線上常規主機攻堅演練 (20 pts) ｜ 發布日期: 2026-07-11
-MakeSense,🟢 FREE,Medium,Linux,Active Machine (Full Pentest),https://app.hackthebox.com/machines/MakeSense,當期線上常規主機攻堅演練 (30 pts) ｜ 發布日期: 2026-07-04
-Enigma,🟢 FREE,Easy,Linux,Active Machine (Full Pentest),https://app.hackthebox.com/machines/Enigma,當期線上常規主機攻堅演練 (20 pts) ｜ 發布日期: 2026-06-27
-Nimbus,🟢 FREE,Hard,Linux,Active Machine (Full Pentest),https://app.hackthebox.com/machines/Nimbus,當期線上常規主機攻堅演練 (40 pts) ｜ 發布日期: 2026-06-20
-Checkpoint,🟢 FREE,Medium,Windows,Active Machine (Full Pentest),https://app.hackthebox.com/machines/Checkpoint,當期線上常規主機攻堅演練 (30 pts) ｜ 發布日期: 2026-06-13
-Connected,🟢 FREE,Easy,Linux,Active Machine (Full Pentest),https://app.hackthebox.com/machines/Connected,當期線上常規主機攻堅演練 (20 pts) ｜ 發布日期: 2026-06-06
-DevHub,🟢 FREE,Medium,Linux,Active Machine (Full Pentest),https://app.hackthebox.com/machines/DevHub,當期線上常規主機攻堅演練 (30 pts) ｜ 發布日期: 2026-05-30
-Reactor,🟢 FREE,Easy,Linux,Active Machine (Full Pentest),https://app.hackthebox.com/machines/Reactor,當期線上常規主機攻堅演練 (20 pts) ｜ 發布日期: 2026-05-23
-SmartHire,🟢 FREE,Medium,Linux,Active Machine (Full Pentest),https://app.hackthebox.com/machines/SmartHire,當期線上常規主機攻堅演練 (30 pts) ｜ 發布日期: 2026-05-16
-PingPong,🟢 FREE,Insane,Windows,Active Machine (Full Pentest),https://app.hackthebox.com/machines/PingPong,當期線上常規主機攻堅演練 (50 pts) ｜ 發布日期: 2026-04-25
-Garfield,🟢 FREE,Hard,Windows,Active Machine (Full Pentest),https://app.hackthebox.com/machines/Garfield,當期線上常規主機攻堅演練 (40 pts) ｜ 發布日期: 2026-04-04
-Eloquia,🟢 FREE,Insane,Windows,Active Machine (Full Pentest),https://app.hackthebox.com/machines/Eloquia,當期線上常規主機攻堅演練 (50 pts) ｜ 發布日期: 2025-12-13
+Management,🟢 FREE,Easy,Linux,Machine (Active Pentest),https://app.hackthebox.com/machines/Management,當期線上常規主機攻堅演練 (20 pts) ｜ 發布日期: 2026-09-12
+Scaffold,🟢 FREE,Hard,Windows,Machine (Active Pentest),https://app.hackthebox.com/machines/Scaffold,當期線上常規主機攻堅演練 (40 pts) ｜ 發布日期: 2026-09-05
+BlockSynergy,🟢 FREE,Insane,Linux,Machine (Active Pentest),https://app.hackthebox.com/machines/BlockSynergy,當期線上常規主機攻堅演練 (50 pts) ｜ 發布日期: 2026-08-29
+TrustFall,🟢 FREE,Insane,Windows,Machine (Active Pentest),https://app.hackthebox.com/machines/TrustFall,當期線上常規主機攻堅演練 (50 pts) ｜ 發布日期: 2026-09-11
+DanglingTree,🟢 FREE,Medium,Windows,Machine (Active Pentest),https://app.hackthebox.com/machines/DanglingTree,當期線上常規主機攻堅演練 (30 pts) ｜ 發布日期: 2026-08-08
+Cohort,🟢 FREE,Easy,Linux,Machine (Active Pentest),https://app.hackthebox.com/machines/Cohort,當期線上常規主機攻堅演練 (20 pts) ｜ 發布日期: 2026-08-01
+DarkZeroReturns,🟢 FREE,Hard,Windows,Machine (Active Pentest),https://app.hackthebox.com/machines/DarkZeroReturns,當期線上常規主機攻堅演練 (40 pts) ｜ 發布日期: 2026-07-25
+Bedside,🟢 FREE,Medium,Linux,Machine (Active Pentest),https://app.hackthebox.com/machines/Bedside,當期線上常規主機攻堅演練 (30 pts) ｜ 發布日期: 2026-07-18
+Paperwork,🟢 FREE,Easy,Linux,Machine (Active Pentest),https://app.hackthebox.com/machines/Paperwork,當期線上常規主機攻堅演練 (20 pts) ｜ 發布日期: 2026-07-11
+MakeSense,🟢 FREE,Medium,Linux,Machine (Active Pentest),https://app.hackthebox.com/machines/MakeSense,當期線上常規主機攻堅演練 (30 pts) ｜ 發布日期: 2026-07-04
+Enigma,🟢 FREE,Easy,Linux,Machine (Active Pentest),https://app.hackthebox.com/machines/Enigma,當期線上常規主機攻堅演練 (20 pts) ｜ 發布日期: 2026-06-27
+Nimbus,🟢 FREE,Hard,Linux,Machine (Active Pentest),https://app.hackthebox.com/machines/Nimbus,當期線上常規主機攻堅演練 (40 pts) ｜ 發布日期: 2026-06-20
+Checkpoint,🟢 FREE,Medium,Windows,Machine (Active Pentest),https://app.hackthebox.com/machines/Checkpoint,當期線上常規主機攻堅演練 (30 pts) ｜ 發布日期: 2026-06-13
+Connected,🟢 FREE,Easy,Linux,Machine (Active Pentest),https://app.hackthebox.com/machines/Connected,當期線上常規主機攻堅演練 (20 pts) ｜ 發布日期: 2026-06-06
+DevHub,🟢 FREE,Medium,Linux,Machine (Active Pentest),https://app.hackthebox.com/machines/DevHub,當期線上常規主機攻堅演練 (30 pts) ｜ 發布日期: 2026-05-30
+Reactor,🟢 FREE,Easy,Linux,Machine (Active Pentest),https://app.hackthebox.com/machines/Reactor,當期線上常規主機攻堅演練 (20 pts) ｜ 發布日期: 2026-05-23
+SmartHire,🟢 FREE,Medium,Linux,Machine (Active Pentest),https://app.hackthebox.com/machines/SmartHire,當期線上常規主機攻堅演練 (30 pts) ｜ 發布日期: 2026-05-16
+PingPong,🟢 FREE,Insane,Windows,Machine (Active Pentest),https://app.hackthebox.com/machines/PingPong,當期線上常規主機攻堅演練 (50 pts) ｜ 發布日期: 2026-04-25
+Garfield,🟢 FREE,Hard,Windows,Machine (Active Pentest),https://app.hackthebox.com/machines/Garfield,當期線上常規主機攻堅演練 (40 pts) ｜ 發布日期: 2026-04-04
+Eloquia,🟢 FREE,Insane,Windows,Machine (Active Pentest),https://app.hackthebox.com/machines/Eloquia,當期線上常規主機攻堅演練 (50 pts) ｜ 發布日期: 2025-12-13
+Cap,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Cap,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-06-05
+Fireflow,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Fireflow,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2026-06-23
+Odyssey,🔴 VIP+,Insane,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Odyssey,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2026-06-23
+Ghostlink,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Ghostlink,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2026-06-23
+Nexus,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Nexus,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2026-06-23
+Orion,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Orion,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2026-06-23
+Abducted,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Abducted,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2026-06-05
+Silentium,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Silentium,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2026-04-11
+Snapped,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Snapped,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2026-03-23
+Principal,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Principal,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2026-03-12
+Hercules,🔴 VIP+,Insane,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Hercules,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-10-18
+TwoMillion,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/TwoMillion,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-06-07
+Support,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Support,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-07-30
+Helix,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Helix,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2026-05-09
+Logging,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Logging,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2026-04-18
+DevArea,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/DevArea,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2026-03-28
+Kobold,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Kobold,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2026-03-21
+VariaType,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/VariaType,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2026-03-14
+CCTV,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/CCTV,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2026-03-07
+Pirate,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Pirate,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2026-02-28
+Interpreter,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Interpreter,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2026-02-21
+Barrier,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Barrier,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2026-02-12
+WingData,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/WingData,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2026-02-14
+Pterodactyl,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Pterodactyl,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2026-02-07
+Facts,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Facts,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2026-01-31
+Overwatch,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Overwatch,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2026-01-24
+AirTouch,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/AirTouch,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2026-01-17
+Browsed,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Browsed,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2026-01-10
+MonitorsFour,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/MonitorsFour,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-12-06
+Gavel,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Gavel,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-11-29
+Fries,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Fries,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-11-22
+Eighteen,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Eighteen,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-11-15
+NanoCorp,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/NanoCorp,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-11-08
+JobTwo,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/JobTwo,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-11-06
+Giveback,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Giveback,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-11-01
+Dump,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Dump,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-10-30
+Store,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Store,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-10-28
+Conversor,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Conversor,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-10-25
+Atlas,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Atlas,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-10-23
+Bruno,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Bruno,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-10-21
+Signed,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Signed,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-10-11
+ReaperTwo,🔴 VIP+,Insane,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/ReaperTwo,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-10-16
+Slonik,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Slonik,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-10-14
+Breach,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Breach,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-10-09
+Bamboo,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Bamboo,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-10-07
+Watcher,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Watcher,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-10-02
+Job,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Job,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-09-30
+DarkZero,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/DarkZero,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-10-04
+Imagery,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Imagery,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-09-27
+BabyTwo,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/BabyTwo,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-09-25
+RainbowTwo,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/RainbowTwo,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-09-23
+Baby,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Baby,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-09-18
+Expressway,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Expressway,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-09-20
+Forgotten,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Forgotten,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-09-16
+HackNet,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/HackNet,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-09-13
+Delegate,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Delegate,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-09-11
+Soulmate,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Soulmate,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-09-06
+Media,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Media,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-09-04
+Race,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Race,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-09-02
+Sendai,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Sendai,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-08-28
+Reaper,🔴 VIP+,Insane,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Reaper,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-08-26
+Guardian,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Guardian,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-08-30
+Previous,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Previous,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-08-23
+Lock,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Lock,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-08-21
+Phantom,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Phantom,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-08-19
+Sweep,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Sweep,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-08-14
+Zero,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Zero,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-08-12
+CodePartTwo,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/CodePartTwo,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-08-16
+Cobblestone,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Cobblestone,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-08-09
+Rainbow,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Rainbow,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-08-07
+Build,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Build,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-08-05
+LustrousTwo,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/LustrousTwo,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-07-31
+Manage,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Manage,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-07-29
+Ten,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Ten,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-07-24
+RetroTwo,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/RetroTwo,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-07-22
+Editor,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Editor,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-08-02
+Era,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Era,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-07-26
+Mirage,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Mirage,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-07-19
+Redelegate,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Redelegate,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-07-17
+Reset,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Reset,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-07-15
+VulnEscape,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/VulnEscape,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-07-08
+VulnCicada,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/VulnCicada,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-07-03
+Data,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Data,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-07-01
+Outbound,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Outbound,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-07-12
+Retro,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Retro,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-06-24
+Voleur,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Voleur,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-07-05
+RustyKey,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/RustyKey,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-06-28
+Artificial,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Artificial,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-06-21
+Shibuya,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Shibuya,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-06-19
+Down,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Down,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-06-17
+Sorcery,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Sorcery,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-06-14
+TombWatcher,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/TombWatcher,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-06-07
+Certificate,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Certificate,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-05-31
+Fluffy,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Fluffy,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-05-24
+Puppy,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Puppy,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-05-17
+Planning,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Planning,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-05-10
+Environment,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Environment,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-05-03
+Eureka,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Eureka,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-04-26
+Scepter,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Scepter,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-04-19
+Nocturnal,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Nocturnal,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-04-12
+WhiteRabbit,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/WhiteRabbit,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-04-05
+Haze,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Haze,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-03-29
+Code,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Code,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-03-22
+TheFrizz,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/TheFrizz,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-03-15
+Dog,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Dog,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-03-08
+Cypher,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Cypher,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-03-01
+Checker,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Checker,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-02-22
+Titanic,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Titanic,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-02-15
+DarkCorp,🔴 VIP+,Insane,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/DarkCorp,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-02-08
+Cat,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Cat,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-02-01
+BigBang,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/BigBang,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-01-25
+Strutted,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Strutted,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-01-23
+Backfire,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Backfire,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-01-18
+EscapeTwo,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/EscapeTwo,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2025-01-11
+UnderPass,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/UnderPass,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-12-21
+Heal,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Heal,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-12-14
+Unrested,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Unrested,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-12-05
+LinkVortex,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/LinkVortex,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-12-07
+Vintage,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Vintage,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-11-30
+Alert,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Alert,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-11-23
+BlockBlock,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/BlockBlock,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-11-16
+Administrator,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Administrator,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-11-09
+Certified,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Certified,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-11-02
+University,🔴 VIP+,Insane,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/University,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-10-26
+Chemistry,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Chemistry,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-10-19
+Instant,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Instant,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-10-12
+EvilCUPS,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/EvilCUPS,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-10-02
+Yummy,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Yummy,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-10-05
+Cicada,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Cicada,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-09-28
+Trickster,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Trickster,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-09-21
+Caption,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Caption,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-09-14
+Sightless,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Sightless,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-09-07
+Infiltrator,🔴 VIP+,Insane,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Infiltrator,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-08-31
+MonitorsThree,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/MonitorsThree,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-08-24
+Lantern,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Lantern,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-08-17
+Sea,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Sea,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-08-10
+Resource,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Resource,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-08-03
+Compiled,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Compiled,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-07-27
+GreenHorn,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/GreenHorn,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-07-20
+Ghost,🔴 VIP+,Insane,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Ghost,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-07-13
+Blazorized,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Blazorized,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-06-29
+PermX,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/PermX,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-07-06
+Axlle,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Axlle,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-06-22
+Editorial,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Editorial,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-06-15
+Blurry,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Blurry,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-06-08
+Freelancer,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Freelancer,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-06-01
+BoardLight,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/BoardLight,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-05-25
+MagicGardens,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/MagicGardens,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-05-18
+SolarLab,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/SolarLab,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-05-11
+Mailing,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Mailing,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-05-04
+Intuition,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Intuition,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-04-27
+Runner,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Runner,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-04-20
+Usage,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Usage,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-04-13
+IClean,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/IClean,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-04-06
+Mist,🔴 VIP+,Insane,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Mist,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-03-30
+Headless,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Headless,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-03-23
+WifineticTwo,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/WifineticTwo,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-03-16
+FormulaX,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/FormulaX,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-03-09
+Builder,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Builder,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-02-12
+Perfection,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Perfection,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-03-02
+Jab,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Jab,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-02-24
+Office,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Office,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-02-17
+Crafty,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Crafty,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-02-10
+Skyfall,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Skyfall,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-02-03
+Pov,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Pov,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-01-27
+Analysis,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Analysis,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-01-20
+Monitored,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Monitored,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-01-13
+Bizness,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Bizness,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2024-01-06
+Corporate,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Corporate,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-12-16
+Surveillance,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Surveillance,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-12-09
+Ouija,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Ouija,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-12-02
+Broker,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Broker,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-11-09
+Devvortex,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Devvortex,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-11-25
+Hospital,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Hospital,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-11-18
+Napper,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Napper,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-11-11
+Codify,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Codify,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-11-04
+Appsanity,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Appsanity,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-10-28
+Manager,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Manager,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-10-21
+Aero,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Aero,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-09-28
+Drive,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Drive,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-10-14
+Analytics,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Analytics,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-10-07
+Visual,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Visual,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-09-30
+Clicker,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Clicker,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-09-23
+Wifinetic,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Wifinetic,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-09-13
+Rebound,🔴 VIP+,Insane,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Rebound,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-09-09
+CozyHosting,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/CozyHosting,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-09-02
+Zipping,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Zipping,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-08-26
+Cybermonday,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Cybermonday,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-08-19
+Keeper,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Keeper,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-08-12
+Download,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Download,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-08-05
+Gofer,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Gofer,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-07-29
+Authority,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Authority,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-07-15
+RegistryTwo,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/RegistryTwo,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-07-22
+Sau,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Sau,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-07-08
+Intentions,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Intentions,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-07-01
+Pilgrimage,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Pilgrimage,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-06-24
+Sandworm,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Sandworm,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-06-17
+Topology,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Topology,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-06-10
+Jupiter,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Jupiter,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-06-03
+Bookworm,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Bookworm,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-05-27
+PC,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/PC,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-05-20
+Format,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Format,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-05-13
+Snoopy,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Snoopy,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-05-06
+OnlyForYou,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/OnlyForYou,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-04-22
+MonitorsTwo,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/MonitorsTwo,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-04-29
+Mailroom,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Mailroom,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-04-15
+Busqueda,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Busqueda,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-04-08
+Coder,🔴 VIP+,Insane,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Coder,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-04-01
+Socket,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Socket,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-03-25
+Cerberus,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Cerberus,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-03-18
+Inject,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Inject,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-03-11
+Agile,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Agile,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-03-04
+Escape,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Escape,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-02-25
+Bagel,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Bagel,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-02-18
+PikaTwoo,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/PikaTwoo,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-02-04
+Interface,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Interface,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-02-11
+Encoding,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Encoding,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-01-28
+Investigation,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Investigation,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-01-21
+Stocker,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Stocker,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-01-14
+BroScience,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/BroScience,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2023-01-07
+Soccer,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Soccer,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-12-17
+Mentor,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Mentor,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-12-10
+Pollution,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Pollution,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-12-03
+Squashed,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Squashed,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-11-10
+Precious,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Precious,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-11-26
+Derailed,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Derailed,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-11-19
+Forgot,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Forgot,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-11-12
+Flight,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Flight,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-11-05
+MetaTwo,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/MetaTwo,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-10-29
+Awkward,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Awkward,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-10-22
+RainyDay,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/RainyDay,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-10-15
+Photobomb,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Photobomb,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-10-08
+Ambassador,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Ambassador,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-10-01
+Absolute,🔴 VIP+,Insane,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Absolute,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-09-24
+Shoppy,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Shoppy,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-09-17
+Sekhmet,🔴 VIP+,Insane,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Sekhmet,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-09-10
+UpDown,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/UpDown,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-09-03
+Vessel,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Vessel,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-08-27
+Health,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Health,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-08-20
+Outdated,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Outdated,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-08-13
+Moderators,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Moderators,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-08-06
+Shared,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Shared,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-07-23
+Extension,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Extension,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-07-16
+RedPanda,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/RedPanda,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-07-09
+Faculty,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Faculty,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-07-02
+Carpediem,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Carpediem,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-06-25
+Trick,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Trick,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-06-18
+Scrambled,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Scrambled,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-06-11
+StreamIO,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/StreamIO,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-06-04
+Seventeen,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Seventeen,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-05-28
+OpenSource,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/OpenSource,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-05-21
+BackendTwo,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/BackendTwo,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-05-02
+Response,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Response,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-05-14
+Noter,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Noter,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-05-07
+OverGraph,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/OverGraph,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-04-30
+Late,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Late,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-04-23
+Backend,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Backend,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-04-12
+Altered,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Altered,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-03-30
+Hathor,🔴 VIP+,Insane,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Hathor,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-04-16
+Talkative,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Talkative,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-04-09
+Ransom,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Ransom,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-03-15
+Retired,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Retired,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-04-02
+Timelapse,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Timelapse,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-03-26
+Perspective,🔴 VIP+,Insane,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Perspective,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-03-19
+Catch,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Catch,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-03-12
+Phoenix,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Phoenix,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-03-05
+Object,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Object,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-02-28
+GoodGames,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/GoodGames,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-02-21
+RouterSpace,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/RouterSpace,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-02-26
+SteamCloud,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/SteamCloud,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-02-14
+Epsilon,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Epsilon,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-02-07
+Pressed,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Pressed,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-02-03
+Undetected,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Undetected,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-02-19
+Acute,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Acute,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-02-12
+Flustered,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Flustered,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-01-31
+Paper,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Paper,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-02-05
+Scanned,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Scanned,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-01-29
+NodeBlog,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/NodeBlog,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-01-10
+Meta,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Meta,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-01-22
+LogForge,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/LogForge,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-12-23
+AdmirerToo,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/AdmirerToo,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-01-15
+Pandora,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Pandora,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2022-01-08
+Search,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Search,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-12-18
+Timing,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Timing,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-12-11
+Union,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Union,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-11-22
+Fingerprint,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Fingerprint,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-12-04
+Backdoor,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Backdoor,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-11-20
+Unicode,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Unicode,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-11-27
+Nunchucks,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Nunchucks,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-11-02
+Spooktrol,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Spooktrol,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-10-26
+Shibboleth,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Shibboleth,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-11-13
+Toby,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Toby,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-11-06
+Secret,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Secret,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-10-30
+Return,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Return,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-09-27
+Antique,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Antique,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-09-27
+Overflow,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Overflow,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-10-23
+Devzat,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Devzat,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-10-16
+Jarmis,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Jarmis,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-09-27
+Hancliffe,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Hancliffe,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-10-09
+Driver,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Driver,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-10-02
+Bolt,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Bolt,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-09-25
+Validation,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Validation,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-09-13
+Stacked,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Stacked,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-09-18
+Gobox,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Gobox,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-08-23
+Forge,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Forge,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-09-11
+EarlyAccess,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/EarlyAccess,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-09-04
+Horizontall,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Horizontall,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-08-28
+Previse,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Previse,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-08-07
+Developer,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Developer,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-08-21
+Anubis,🔴 VIP+,Insane,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Anubis,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-08-14
+Writer,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Writer,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-07-31
+Pikaboo,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Pikaboo,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-07-17
+BountyHunter,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/BountyHunter,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-07-24
+Seal,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Seal,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-07-10
+Intelligence,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Intelligence,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-07-03
+Explore,🔴 VIP+,Easy,Android,Machine (Retired Archive),https://app.hackthebox.com/machines/Explore,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-06-26
+Static,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Static,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-06-19
+Dynstr,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Dynstr,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-06-12
+Spider,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Spider,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-05-29
+Knife,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Knife,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-05-22
+Pit,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Pit,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-05-15
+PivotAPI,🔴 VIP+,Insane,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/PivotAPI,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-05-08
+Love,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Love,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-05-01
+Monitors,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Monitors,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-04-24
+Atom,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Atom,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-04-17
+Toolbox,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Toolbox,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-03-12
+Unobtainium,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Unobtainium,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-04-10
+Schooled,🔴 VIP+,Medium,FreeBSD,Machine (Retired Archive),https://app.hackthebox.com/machines/Schooled,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-04-03
+Armageddon,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Armageddon,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-03-27
+CrossFitTwo,🔴 VIP+,Insane,OpenBSD,Machine (Retired Archive),https://app.hackthebox.com/machines/CrossFitTwo,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-03-20
+Proper,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Proper,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-03-13
+TheNotebook,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/TheNotebook,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-03-06
+Spectra,🔴 VIP+,Easy,Other,Machine (Retired Archive),https://app.hackthebox.com/machines/Spectra,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-02-27
+Breadcrumbs,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Breadcrumbs,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-02-20
+Ophiuchi,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Ophiuchi,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-02-13
+ScriptKiddie,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/ScriptKiddie,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-02-06
+Sink,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Sink,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-01-30
+Tentacle,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Tentacle,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-01-23
+Tenet,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Tenet,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-01-16
+Delivery,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Delivery,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2021-01-09
+Attended,🔴 VIP+,Insane,OpenBSD,Machine (Retired Archive),https://app.hackthebox.com/machines/Attended,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-12-19
+Ready,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Ready,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-12-12
+Sharp,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Sharp,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-12-05
+Luanne,🔴 VIP+,Easy,Other,Machine (Retired Archive),https://app.hackthebox.com/machines/Luanne,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-11-28
+Cereal,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Cereal,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-11-21
+Laboratory,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Laboratory,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-11-14
+Academy,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Academy,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-11-07
+APT,🔴 VIP+,Insane,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/APT,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-10-31
+Time,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Time,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-10-24
+Bucket,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Bucket,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-10-17
+Jewel,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Jewel,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-10-10
+Reel2,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Reel2,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-10-03
+Doctor,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Doctor,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-09-26
+CrossFit,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/CrossFit,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-09-19
+Compromised,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Compromised,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-09-12
+Passage,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Passage,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-09-05
+Feline,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Feline,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-08-29
+Omni,🔴 VIP+,Easy,Other,Machine (Retired Archive),https://app.hackthebox.com/machines/Omni,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-08-22
+Worker,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Worker,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-08-15
+Laser,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Laser,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-08-08
+Unbalanced,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Unbalanced,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-08-01
+OpenKeyS,🔴 VIP+,Medium,OpenBSD,Machine (Retired Archive),https://app.hackthebox.com/machines/OpenKeyS,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-07-25
+Buff,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Buff,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-07-18
+SneakyMailer,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/SneakyMailer,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-07-11
+Intense,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Intense,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-07-04
+RopeTwo,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/RopeTwo,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-06-27
+Tabby,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Tabby,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-06-20
+Fuse,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Fuse,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-06-13
+Blackfield,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Blackfield,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-06-06
+Blunder,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Blunder,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-05-30
+Dyplesher,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Dyplesher,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-05-23
+Travel,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Travel,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-05-16
+Cache,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Cache,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-05-09
+Admirer,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Admirer,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-05-02
+Quick,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Quick,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-04-25
+Magic,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Magic,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-04-18
+ServMon,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/ServMon,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-04-11
+ForwardSlash,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/ForwardSlash,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-04-04
+Cascade,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Cascade,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-03-28
+Remote,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Remote,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-03-21
+TraceBack,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/TraceBack,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-03-14
+Multimaster,🔴 VIP+,Insane,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Multimaster,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-03-07
+Oouch,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Oouch,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-02-29
+Book,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Book,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-02-22
+Sauna,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Sauna,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-02-15
+Fatty,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Fatty,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-02-08
+Nest,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Nest,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-01-25
+Patents,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Patents,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-01-18
+Monteverde,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Monteverde,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-01-11
+OpenAdmin,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/OpenAdmin,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2020-01-04
+PlayerTwo,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/PlayerTwo,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-12-14
+Resolute,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Resolute,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-12-07
+Obscurity,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Obscurity,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-11-30
+Control,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Control,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-11-23
+Traverxec,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Traverxec,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-11-16
+AI,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/AI,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-11-09
+Postman,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Postman,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-11-02
+Mango,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Mango,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-10-26
+Registry,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Registry,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-10-19
+Forest,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Forest,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-10-12
+Sniper,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Sniper,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-10-05
+Json,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Json,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-09-28
+Bankrobber,🔴 VIP+,Insane,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Bankrobber,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-09-21
+Wall,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Wall,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-09-14
+Bitlab,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Bitlab,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-09-07
+Zetta,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Zetta,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-08-31
+Networked,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Networked,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-08-24
+Scavenger,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Scavenger,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-08-17
+Heist,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Heist,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-08-10
+Rope,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Rope,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-08-03
+Safe,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Safe,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-07-27
+RE,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/RE,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-07-20
+Craft,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Craft,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-07-13
+Player,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Player,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-07-06
+Haystack,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Haystack,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-06-29
+Jarvis,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Jarvis,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-06-22
+Chainsaw,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Chainsaw,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-06-15
+Writeup,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Writeup,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-06-08
+Smasher2,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Smasher2,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-06-01
+Luke,🔴 VIP+,Medium,FreeBSD,Machine (Retired Archive),https://app.hackthebox.com/machines/Luke,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-05-25
+Ellingson,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Ellingson,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-05-18
+SwagShop,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/SwagShop,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-05-11
+Ghoul,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Ghoul,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-05-04
+Bastion,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Bastion,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-04-27
+OneTwoSeven,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/OneTwoSeven,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-04-20
+Unattended,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Unattended,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-04-13
+Kryptos,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Kryptos,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-04-06
+LaCasaDePapel,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/LaCasaDePapel,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-03-30
+Helpline,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Helpline,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-03-23
+Arkham,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Arkham,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-03-16
+Fortune,🔴 VIP+,Insane,Other,Machine (Retired Archive),https://app.hackthebox.com/machines/Fortune,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-03-09
+Netmon,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Netmon,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-03-02
+Hackback,🔴 VIP+,Insane,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Hackback,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-02-23
+Querier,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Querier,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-02-16
+FriendZone,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/FriendZone,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-02-09
+CTF,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/CTF,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-02-02
+FluJab,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/FluJab,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-01-26
+Help,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Help,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-01-19
+Sizzle,🔴 VIP+,Insane,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Sizzle,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-01-12
+Conceal,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Conceal,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2019-01-05
+Chaos,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Chaos,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-12-15
+Lightweight,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Lightweight,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-12-08
+Teacher,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Teacher,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-12-01
+BigHead,🔴 VIP+,Insane,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/BigHead,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-11-24
+Irked,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Irked,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-11-17
+RedCross,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/RedCross,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-11-10
+Vault,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Vault,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-11-03
+Curling,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Curling,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-10-27
+Zipper,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Zipper,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-10-20
+Frolic,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Frolic,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-10-13
+Ethereal,🔴 VIP+,Insane,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Ethereal,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-10-06
+Access,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Access,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-09-29
+Carrier,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Carrier,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-09-22
+YPuffy,🔴 VIP+,Medium,OpenBSD,Machine (Retired Archive),https://app.hackthebox.com/machines/YPuffy,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-09-15
+Giddy,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Giddy,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-09-08
+Oz,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Oz,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-09-01
+SecNotes,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/SecNotes,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-08-25
+Dab,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Dab,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-08-18
+Waldo,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Waldo,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-08-04
+Active,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Active,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-07-28
+Reddish,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Reddish,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-07-21
+Hawk,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Hawk,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-07-14
+Mischief,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Mischief,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-07-07
+Jerry,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Jerry,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-06-30
+Reel,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Reel,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-06-23
+Bounty,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Bounty,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-06-16
+Smasher,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Smasher,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-06-09
+DevOops,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/DevOops,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-06-02
+Dropzone,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Dropzone,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-05-19
+TartarSauce,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/TartarSauce,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-05-12
+Fighter,🔴 VIP+,Insane,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Fighter,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-05-05
+Sunday,🔴 VIP+,Easy,Solaris,Machine (Retired Archive),https://app.hackthebox.com/machines/Sunday,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-04-28
+Olympus,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Olympus,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-04-21
+Canape,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Canape,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-04-14
+Rabbit,🔴 VIP+,Insane,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Rabbit,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-03-31
+Poison,🔴 VIP+,Medium,FreeBSD,Machine (Retired Archive),https://app.hackthebox.com/machines/Poison,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-03-24
+Silo,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Silo,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-03-17
+Celestial,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Celestial,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-03-10
+Stratosphere,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Stratosphere,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-03-03
+Bart,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Bart,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-02-24
+Valentine,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Valentine,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-02-17
+Aragog,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Aragog,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-02-10
+Falafel,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Falafel,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-02-03
+Chatterbox,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Chatterbox,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-01-27
+Nightmare,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Nightmare,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-01-20
+Nibbles,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Nibbles,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-01-13
+CrimeStoppers,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/CrimeStoppers,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2018-01-06
+FluxCapacitor,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/FluxCapacitor,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-12-16
+Bashed,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Bashed,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-12-09
+Inception,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Inception,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-12-02
+Fulcrum,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Fulcrum,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-11-25
+Ariekei,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Ariekei,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-11-18
+Jeeves,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Jeeves,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-11-11
+Tally,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Tally,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-11-04
+Enterprise,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Enterprise,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-10-28
+Sense,🔴 VIP+,Easy,OpenBSD,Machine (Retired Archive),https://app.hackthebox.com/machines/Sense,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-10-21
+Node,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Node,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-10-14
+Minion,🔴 VIP+,Insane,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Minion,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-10-07
+Shocker,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Shocker,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-09-30
+Kotarak,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Kotarak,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-09-23
+Mantis,🔴 VIP+,Hard,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Mantis,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-09-16
+SolidState,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/SolidState,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-09-08
+Mirai,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Mirai,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-09-01
+Shrek,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Shrek,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-08-25
+Apocalyst,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Apocalyst,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-08-18
+Nineveh,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Nineveh,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-08-04
+Blue,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Blue,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-07-28
+Blocky,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Blocky,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-07-21
+Jail,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Jail,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-07-14
+Charon,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Charon,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-07-07
+Calamity,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Calamity,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-06-30
+Europa,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Europa,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-06-23
+Bank,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Bank,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-06-16
+Holiday,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Holiday,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-06-02
+Haircut,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Haircut,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-05-26
+Joker,🔴 VIP+,Hard,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Joker,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-05-19
+Sneaky,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Sneaky,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-05-14
+Lazy,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Lazy,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-05-03
+Brainfuck,🔴 VIP+,Insane,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Brainfuck,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-04-29
+October,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/October,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-04-20
+Granny,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Granny,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-04-12
+Grandpa,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Grandpa,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-04-12
+Cronos,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Cronos,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-03-22
+Arctic,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Arctic,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-03-22
+Tenten,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Tenten,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-03-22
+Bastard,🔴 VIP+,Medium,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Bastard,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-03-18
+Optimum,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Optimum,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-03-18
+Beep,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Beep,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-03-15
+Popcorn,🔴 VIP+,Medium,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Popcorn,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-03-15
+Devel,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Devel,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-03-15
+Legacy,🔴 VIP+,Easy,Windows,Machine (Retired Archive),https://app.hackthebox.com/machines/Legacy,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-03-15
+Lame,🔴 VIP+,Easy,Linux,Machine (Retired Archive),https://app.hackthebox.com/machines/Lame,歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: 2017-03-14
 Brutus,🟢 FREE,Very easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Brutus,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
 Baggage,🟢 FREE,Very easy,Multi/Forensics,Sherlock (DFIR),https://app.hackthebox.com/sherlocks/Baggage,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
 PhantomRing,🟢 FREE,Very easy,Multi/Forensics,Sherlock (Malware Analysis),https://app.hackthebox.com/sherlocks/PhantomRing,藍隊事件響應與取證分析實戰（包含日誌、封包流量或記憶體映像檔分析，開放線上提交答案）
@@ -275,18 +807,845 @@ Lucky Dice,🟢 FREE,Very easy,CTF Challenge,Challenge (Misc),https://app.hackth
 OpenSecret,🟢 FREE,Very easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/OpenSecret,獨立專題 CTF 解題挑戰（Web 領域實戰）
 Ether Tag,🟢 FREE,Very easy,CTF Challenge,Challenge (ICS),https://app.hackthebox.com/challenges/Ether Tag,獨立專題 CTF 解題挑戰（ICS 領域實戰）
 ReactOOPS,🟢 FREE,Very easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/ReactOOPS,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Magical Palindrome,🔴 VIP,Very easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Magical Palindrome,獨立專題 CTF 解題挑戰（Web 領域實戰）
 Global Hyperlink Zone,🟢 FREE,Very easy,CTF Challenge,Challenge (Quantum),https://app.hackthebox.com/challenges/Global Hyperlink Zone,獨立專題 CTF 解題挑戰（Quantum 領域實戰）
 Flagportation,🟢 FREE,Very easy,CTF Challenge,Challenge (Quantum),https://app.hackthebox.com/challenges/Flagportation,獨立專題 CTF 解題挑戰（Quantum 領域實戰）
 The Puppet Master,🟢 FREE,Very easy,CTF Challenge,Challenge (OSINT),https://app.hackthebox.com/challenges/The Puppet Master,獨立專題 CTF 解題挑戰（OSINT 領域實戰）
 Social Media Investigation Hub,🟢 FREE,Very easy,CTF Challenge,Challenge (OSINT),https://app.hackthebox.com/challenges/Social Media Investigation Hub,獨立專題 CTF 解題挑戰（OSINT 領域實戰）
 The Suspicious Domain,🟢 FREE,Very easy,CTF Challenge,Challenge (OSINT),https://app.hackthebox.com/challenges/The Suspicious Domain,獨立專題 CTF 解題挑戰（OSINT 領域實戰）
+The Suspicious Reviewer,🔴 VIP,Very easy,CTF Challenge,Challenge (OSINT),https://app.hackthebox.com/challenges/The Suspicious Reviewer,獨立專題 CTF 解題挑戰（OSINT 領域實戰）
 NeoVault,🟢 FREE,Very easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/NeoVault,獨立專題 CTF 解題挑戰（Web 領域實戰）
 JinjaCare,🟢 FREE,Very easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/JinjaCare,獨立專題 CTF 解題挑戰（Web 領域實戰）
 Criticalops,🟢 FREE,Very easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Criticalops,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Uplink Artifact,🔴 VIP,Very easy,CTF Challenge,Challenge (AI/ML),https://app.hackthebox.com/challenges/Uplink Artifact,獨立專題 CTF 解題挑戰（AI/ML 領域實戰）
+Hidden Handshake,🔴 VIP,Very easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Hidden Handshake,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Power Greed,🔴 VIP,Very easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Power Greed,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Threat Index,🔴 VIP,Very easy,CTF Challenge,Challenge (Coding),https://app.hackthebox.com/challenges/Threat Index,獨立專題 CTF 解題挑戰（Coding 領域實戰）
+Scrambled Payload,🔴 VIP,Very easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Scrambled Payload,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Quack Quack,🔴 VIP,Very easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Quack Quack,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Blessing,🔴 VIP,Very easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Blessing,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Kewiri,🔴 VIP,Very easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Kewiri,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Evaluative,🔴 VIP,Very easy,CTF Challenge,Challenge (Coding),https://app.hackthebox.com/challenges/Evaluative,獨立專題 CTF 解題挑戰（Coding 領域實戰）
+Primed for Action,🔴 VIP,Very easy,CTF Challenge,Challenge (Coding),https://app.hackthebox.com/challenges/Primed for Action,獨立專題 CTF 解題挑戰（Coding 領域實戰）
+OnlyHacks,🔴 VIP,Very easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/OnlyHacks,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Armaxis,🔴 VIP,Very easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Armaxis,獨立專題 CTF 解題挑戰（Web 領域實戰）
+alphascii clashing,🔴 VIP,Very easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/alphascii clashing,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
 Low Logic,🟢 FREE,Very easy,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/Low Logic,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+brevi moduli,🔴 VIP,Very easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/brevi moduli,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+sekur julius,🔴 VIP,Very easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/sekur julius,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+sugar free candies,🔴 VIP,Very easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/sugar free candies,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Sp00ky Theme,🔴 VIP,Very easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Sp00ky Theme,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Graverobber,🔴 VIP,Very easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Graverobber,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+CryptOfTheUndead,🔴 VIP,Very easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/CryptOfTheUndead,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+WayWitch,🔴 VIP,Very easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/WayWitch,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Void Whispers,🔴 VIP,Very easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Void Whispers,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Unholy Union,🔴 VIP,Very easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Unholy Union,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Phantom Script,🔴 VIP,Very easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Phantom Script,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Oddly Even,🔴 VIP,Very easy,CTF Challenge,Challenge (Coding),https://app.hackthebox.com/challenges/Oddly Even,獨立專題 CTF 解題挑戰（Coding 領域實戰）
+Reversal,🔴 VIP,Very easy,CTF Challenge,Challenge (Coding),https://app.hackthebox.com/challenges/Reversal,獨立專題 CTF 解題挑戰（Coding 領域實戰）
+Addition,🔴 VIP,Very easy,CTF Challenge,Challenge (Coding),https://app.hackthebox.com/challenges/Addition,獨立專題 CTF 解題挑戰（Coding 領域實戰）
+El Teteo,🔴 VIP,Very easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/El Teteo,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Mathematricks,🔴 VIP,Very easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Mathematricks,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+El Pipo,🔴 VIP,Very easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/El Pipo,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Que onda,🔴 VIP,Very easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Que onda,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Digital Safety Annex,🔴 VIP,Very easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Digital Safety Annex,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Regularity,🔴 VIP,Very easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Regularity,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Computational Recruiting,🔴 VIP,Very easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Computational Recruiting,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Locked Away,🔴 VIP,Very easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Locked Away,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+KORP Terminal,🔴 VIP,Very easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/KORP Terminal,獨立專題 CTF 解題挑戰（Web 領域實戰）
+TimeKORP,🔴 VIP,Very easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/TimeKORP,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Writing on the Wall,🔴 VIP,Very easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Writing on the Wall,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+An unusual sighting,🔴 VIP,Very easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/An unusual sighting,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Urgent,🔴 VIP,Very easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Urgent,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+FlagCasino,🔴 VIP,Very easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/FlagCasino,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Lesson,🔴 VIP,Very easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Lesson,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+SPG,🔴 VIP,Very easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/SPG,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+SpookTastic,🔴 VIP,Very easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/SpookTastic,獨立專題 CTF 解題挑戰（Web 領域實戰）
+CandyVault,🔴 VIP,Very easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/CandyVault,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Photon Lockdown,🔴 VIP,Very easy,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/Photon Lockdown,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+Red Miners,🔴 VIP,Very easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Red Miners,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Initialization,🔴 VIP,Very easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Initialization,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Watch Tower,🔴 VIP,Very easy,CTF Challenge,Challenge (ICS),https://app.hackthebox.com/challenges/Watch Tower,獨立專題 CTF 解題挑戰（ICS 領域實戰）
 Distract and Destroy,🟢 FREE,Very easy,CTF Challenge,Challenge (Blockchain),https://app.hackthebox.com/challenges/Distract and Destroy,獨立專題 CTF 解題挑戰（Blockchain 領域實戰）
+Survival of the Fittest,🔴 VIP,Very easy,CTF Challenge,Challenge (Blockchain),https://app.hackthebox.com/challenges/Survival of the Fittest,獨立專題 CTF 解題挑戰（Blockchain 領域實戰）
+Trapped Source,🔴 VIP,Very easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Trapped Source,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Alien Cradle,🔴 VIP,Very easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Alien Cradle,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Extraterrestrial Persistence,🔴 VIP,Very easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Extraterrestrial Persistence,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Ancient Encodings,🔴 VIP,Very easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Ancient Encodings,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Perfect Synchronization,🔴 VIP,Very easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Perfect Synchronization,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Hunting License,🔴 VIP,Very easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Hunting License,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Shattered Tablet,🔴 VIP,Very easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Shattered Tablet,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Questionnaire,🔴 VIP,Very easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Questionnaire,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Getting Started,🔴 VIP,Very easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Getting Started,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Sacred Scrolls: Revenge,🔴 VIP,Very easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Sacred Scrolls: Revenge,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Entity,🔴 VIP,Very easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Entity,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Cursed Secret Party,🔴 VIP,Very easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Cursed Secret Party,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Juggling facts,🔴 VIP,Very easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Juggling facts,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Fast Carmichael,🔴 VIP,Very easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Fast Carmichael,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Gonna-Lift-Em-All,🔴 VIP,Very easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Gonna-Lift-Em-All,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Wrong Spooky Season,🔴 VIP,Very easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Wrong Spooky Season,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
 Spookifier,🟢 FREE,Very easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Spookifier,獨立專題 CTF 解題挑戰（Web 領域實戰）
 The Last Dance,🟢 FREE,Very easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/The Last Dance,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
 Simple Encryptor,🟢 FREE,Very easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Simple Encryptor,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
 Baby Time Capsule,🟢 FREE,Very easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Baby Time Capsule,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Space pirate: Going Deeper,🔴 VIP,Very easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Space pirate: Going Deeper,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Space pirate: Entrypoint,🔴 VIP,Very easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Space pirate: Entrypoint,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Space pirate: Retribution,🔴 VIP,Very easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Space pirate: Retribution,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Vault-breaker,🔴 VIP,Very easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Vault-breaker,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Android-in-the-Middle,🔴 VIP,Very easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Android-in-the-Middle,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+WIDE,🔴 VIP,Very easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/WIDE,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Compressor,🔴 VIP,Very easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Compressor,獨立專題 CTF 解題挑戰（Misc 領域實戰）
 CubeMadness1,🟢 FREE,Very easy,CTF Challenge,Challenge (GamePwn),https://app.hackthebox.com/challenges/CubeMadness1,獨立專題 CTF 解題挑戰（GamePwn 領域實戰）
+Behind the Scenes,🟢 FREE,Very easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Behind the Scenes,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Don't Overreact,🔴 VIP,Very easy,CTF Challenge,Challenge (Mobile),https://app.hackthebox.com/challenges/Don't Overreact,獨立專題 CTF 解題挑戰（Mobile 領域實戰）
+Gawk,🔴 VIP,Very easy,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/Gawk,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+racecar,🔴 VIP,Very easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/racecar,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Gunship,🔴 VIP,Very easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Gunship,獨立專題 CTF 解題挑戰（Web 領域實戰）
+BabyEncryption,🟢 FREE,Very easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/BabyEncryption,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+The Needle,🟢 FREE,Very easy,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/The Needle,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+Unique,🔴 VIP,Very easy,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/Unique,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+Secure Digital,🔴 VIP,Very easy,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/Secure Digital,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+Walkie Hackie,🔴 VIP,Very easy,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/Walkie Hackie,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+Debugging Interface,🟢 FREE,Very easy,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/Debugging Interface,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+Noise Codex,🟢 FREE,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Noise Codex,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Antenna Pointing,🟢 FREE,Easy,CTF Challenge,Challenge (Satellite),https://app.hackthebox.com/challenges/Antenna Pointing,獨立專題 CTF 解題挑戰（Satellite 領域實戰）
+Echoes in Orbit,🟢 FREE,Easy,CTF Challenge,Challenge (Satellite),https://app.hackthebox.com/challenges/Echoes in Orbit,獨立專題 CTF 解題挑戰（Satellite 領域實戰）
+No Errors,🟢 FREE,Easy,CTF Challenge,Challenge (Satellite),https://app.hackthebox.com/challenges/No Errors,獨立專題 CTF 解題挑戰（Satellite 領域實戰）
+Forklifts R Us,🟢 FREE,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Forklifts R Us,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Noisy Vault,🟢 FREE,Easy,CTF Challenge,Challenge (Quantum),https://app.hackthebox.com/challenges/Noisy Vault,獨立專題 CTF 解題挑戰（Quantum 領域實戰）
+Secure Notes,🟢 FREE,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Secure Notes,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Offlinea,🟢 FREE,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Offlinea,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Arno,🟢 FREE,Easy,CTF Challenge,Challenge (Mobile),https://app.hackthebox.com/challenges/Arno,獨立專題 CTF 解題挑戰（Mobile 領域實戰）
+QLotto,🟢 FREE,Easy,CTF Challenge,Challenge (Quantum),https://app.hackthebox.com/challenges/QLotto,獨立專題 CTF 解題挑戰（Quantum 領域實戰）
+SokobanHTB,🟢 FREE,Easy,CTF Challenge,Challenge (GamePwn),https://app.hackthebox.com/challenges/SokobanHTB,獨立專題 CTF 解題挑戰（GamePwn 領域實戰）
+Phase Madness,🔴 VIP,Easy,CTF Challenge,Challenge (Quantum),https://app.hackthebox.com/challenges/Phase Madness,獨立專題 CTF 解題挑戰（Quantum 領域實戰）
+Follow The Money,🟢 FREE,Easy,CTF Challenge,Challenge (OSINT),https://app.hackthebox.com/challenges/Follow The Money,獨立專題 CTF 解題挑戰（OSINT 領域實戰）
+WebVault Time Machine Investigation,🟢 FREE,Easy,CTF Challenge,Challenge (OSINT),https://app.hackthebox.com/challenges/WebVault Time Machine Investigation,獨立專題 CTF 解題挑戰（OSINT 領域實戰）
+Powergrid,🟢 FREE,Easy,CTF Challenge,Challenge (Secure Coding),https://app.hackthebox.com/challenges/Powergrid,獨立專題 CTF 解題挑戰（Secure Coding 領域實戰）
+Hydroadmin,🔴 VIP,Easy,CTF Challenge,Challenge (Secure Coding),https://app.hackthebox.com/challenges/Hydroadmin,獨立專題 CTF 解題挑戰（Secure Coding 領域實戰）
+Resourcehub Core,🔴 VIP,Easy,CTF Challenge,Challenge (Secure Coding),https://app.hackthebox.com/challenges/Resourcehub Core,獨立專題 CTF 解題挑戰（Secure Coding 領域實戰）
+Agriweb,🟢 FREE,Easy,CTF Challenge,Challenge (Secure Coding),https://app.hackthebox.com/challenges/Agriweb,獨立專題 CTF 解題挑戰（Secure Coding 領域實戰）
+Commnet,🔴 VIP,Easy,CTF Challenge,Challenge (Secure Coding),https://app.hackthebox.com/challenges/Commnet,獨立專題 CTF 解題挑戰（Secure Coding 領域實戰）
+SpeedNet,🟢 FREE,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/SpeedNet,獨立專題 CTF 解題挑戰（Web 領域實戰）
+CitiSmart,🟢 FREE,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/CitiSmart,獨立專題 CTF 解題挑戰（Web 領域實戰）
+NovaEnergy,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/NovaEnergy,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Not Posixtive,🟢 FREE,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Not Posixtive,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Pivot Chain,🟢 FREE,Easy,CTF Challenge,Challenge (Coding),https://app.hackthebox.com/challenges/Pivot Chain,獨立專題 CTF 解題挑戰（Coding 領域實戰）
+PINsmith,🟢 FREE,Easy,CTF Challenge,Challenge (Coding),https://app.hackthebox.com/challenges/PINsmith,獨立專題 CTF 解題挑戰（Coding 領域實戰）
+Cred Hunter,🔴 VIP,Easy,CTF Challenge,Challenge (Coding),https://app.hackthebox.com/challenges/Cred Hunter,獨立專題 CTF 解題挑戰（Coding 領域實戰）
+External Affairs,🔴 VIP,Easy,CTF Challenge,Challenge (AI/ML),https://app.hackthebox.com/challenges/External Affairs,獨立專題 CTF 解題挑戰（AI/ML 領域實戰）
+Loyalty Survey,🔴 VIP,Easy,CTF Challenge,Challenge (AI/ML),https://app.hackthebox.com/challenges/Loyalty Survey,獨立專題 CTF 解題挑戰（AI/ML 領域實戰）
+TrynaSob Ransomware,🔴 VIP,Easy,CTF Challenge,Challenge (AI/ML),https://app.hackthebox.com/challenges/TrynaSob Ransomware,獨立專題 CTF 解題挑戰（AI/ML 領域實戰）
+Jigsaw,🟢 FREE,Easy,CTF Challenge,Challenge (Mobile),https://app.hackthebox.com/challenges/Jigsaw,獨立專題 CTF 解題挑戰（Mobile 領域實戰）
+Phoenix Zero Trust,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Phoenix Zero Trust,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+LiteServe,🔴 VIP,Easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/LiteServe,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Triple Knock,🔴 VIP,Easy,CTF Challenge,Challenge (Coding),https://app.hackthebox.com/challenges/Triple Knock,獨立專題 CTF 解題挑戰（Coding 領域實戰）
+TinyPlatformer,🔴 VIP,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/TinyPlatformer,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Industry Secret,🔴 VIP,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Industry Secret,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Blackout Ops,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Blackout Ops,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Volnaya Forums,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Volnaya Forums,獨立專題 CTF 解題挑戰（Web 領域實戰）
+NexusSeven,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/NexusSeven,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Broken Shell,🟢 FREE,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Broken Shell,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Crossbow,🔴 VIP,Easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Crossbow,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Laconic,🔴 VIP,Easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Laconic,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Traces,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Traces,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Hourcle,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Hourcle,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Hubbub,🔴 VIP,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Hubbub,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Quantum Engine,🔴 VIP,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Quantum Engine,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Quantum Artifact,🔴 VIP,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Quantum Artifact,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Desires,🟢 FREE,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Desires,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Dark Runes,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Dark Runes,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Rids,🔴 VIP,Easy,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/Rids,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+r0bob1rd,🟢 FREE,Easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/r0bob1rd,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Reconstruction,🔴 VIP,Easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Reconstruction,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Wanted Alive,🔴 VIP,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Wanted Alive,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Breaking Bank,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Breaking Bank,獨立專題 CTF 解題挑戰（Web 領域實戰）
+ColossalBreach,🔴 VIP,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/ColossalBreach,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Sudoking,🔴 VIP,Easy,CTF Challenge,Challenge (Coding),https://app.hackthebox.com/challenges/Sudoking,獨立專題 CTF 解題挑戰（Coding 領域實戰）
+CDNio,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/CDNio,獨立專題 CTF 解題挑戰（Web 領域實戰）
+binary basis,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/binary basis,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+hybrid unifier,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/hybrid unifier,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Foggy Intrusion,🔴 VIP,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Foggy Intrusion,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+LinkHands,🔴 VIP,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/LinkHands,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Terrorfryer,🔴 VIP,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Terrorfryer,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Cursed Stale Policy,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Cursed Stale Policy,獨立專題 CTF 解題挑戰（Web 領域實戰）
+MinMax,🔴 VIP,Easy,CTF Challenge,Challenge (Coding),https://app.hackthebox.com/challenges/MinMax,獨立專題 CTF 解題挑戰（Coding 領域實戰）
+Replacement,🔴 VIP,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Replacement,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+El Mundo,🔴 VIP,Easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/El Mundo,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+FF Jump Street,🔴 VIP,Easy,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/FF Jump Street,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+yoU ART,🔴 VIP,Easy,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/yoU ART,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+Assemblers Avenge,🔴 VIP,Easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Assemblers Avenge,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Feedback Flux,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Feedback Flux,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Endpoint,🔴 VIP,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Endpoint,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Armed Terminal,🔴 VIP,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Armed Terminal,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+read before you sign,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/read before you sign,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Pentest Notes,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Pentest Notes,獨立專題 CTF 解題挑戰（Web 領域實戰）
+POP Restaurant,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/POP Restaurant,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Secure Server,🟢 FREE,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Secure Server,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Breathtaking View,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Breathtaking View,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Like a Glove,🟢 FREE,Easy,CTF Challenge,Challenge (AI/ML),https://app.hackthebox.com/challenges/Like a Glove,獨立專題 CTF 解題挑戰（AI/ML 領域實戰）
+Suspicious Threat,🟢 FREE,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Suspicious Threat,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+FastJson and Furious,🔴 VIP,Easy,CTF Challenge,Challenge (Mobile),https://app.hackthebox.com/challenges/FastJson and Furious,獨立專題 CTF 解題挑戰（Mobile 領域實戰）
+AI SPACE,🟢 FREE,Easy,CTF Challenge,Challenge (AI/ML),https://app.hackthebox.com/challenges/AI SPACE,獨立專題 CTF 解題挑戰（AI/ML 領域實戰）
+Fuel Crisis,🔴 VIP,Easy,CTF Challenge,Challenge (AI/ML),https://app.hackthebox.com/challenges/Fuel Crisis,獨立專題 CTF 解題挑戰（AI/ML 領域實戰）
+Don't Panic,🔴 VIP,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Don't Panic,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+ShinyHunter,🟢 FREE,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/ShinyHunter,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Living with Elegance,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Living with Elegance,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Bloom Bloom,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Bloom Bloom,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Abyss,🔴 VIP,Easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Abyss,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Dynamic Paths,🔴 VIP,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Dynamic Paths,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Bag Secured,🔴 VIP,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Bag Secured,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Chrono Mind,🔴 VIP,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Chrono Mind,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Hidden Path,🔴 VIP,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Hidden Path,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Tangled Heist,🔴 VIP,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Tangled Heist,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Silicon Data Sleuthing,🔴 VIP,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Silicon Data Sleuthing,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Say Cheese!,🔴 VIP,Easy,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/Say Cheese!,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+Sneak peek,🔴 VIP,Easy,CTF Challenge,Challenge (ICS),https://app.hackthebox.com/challenges/Sneak peek,獨立專題 CTF 解題挑戰（ICS 領域實戰）
+NotADemocraticElection,🔴 VIP,Easy,CTF Challenge,Challenge (Blockchain),https://app.hackthebox.com/challenges/NotADemocraticElection,獨立專題 CTF 解題挑戰（Blockchain 領域實戰）
+MetaVault,🔴 VIP,Easy,CTF Challenge,Challenge (Blockchain),https://app.hackthebox.com/challenges/MetaVault,獨立專題 CTF 解題挑戰（Blockchain 領域實戰）
+Jailbreak,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Jailbreak,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Blueprint Heist,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Blueprint Heist,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Labyrinth Linguist,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Labyrinth Linguist,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Testimonial,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Testimonial,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Iced Tea,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Iced Tea,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Arranged,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Arranged,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Rocket Blaster XXX,🔴 VIP,Easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Rocket Blaster XXX,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Pursue the Tracks,🔴 VIP,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Pursue the Tracks,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Fake Boost,🔴 VIP,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Fake Boost,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Lucky Faucet,🔴 VIP,Easy,CTF Challenge,Challenge (Blockchain),https://app.hackthebox.com/challenges/Lucky Faucet,獨立專題 CTF 解題挑戰（Blockchain 領域實戰）
+Recovery,🔴 VIP,Easy,CTF Challenge,Challenge (Blockchain),https://app.hackthebox.com/challenges/Recovery,獨立專題 CTF 解題挑戰（Blockchain 領域實戰）
+Cubicle Riddle,🔴 VIP,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Cubicle Riddle,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Crushing,🔴 VIP,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Crushing,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+QuickScan,🔴 VIP,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/QuickScan,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Fishy HTTP,🟢 FREE,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Fishy HTTP,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Execute,🟢 FREE,Easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Execute,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+PDFy,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/PDFy,獨立專題 CTF 解題挑戰（Web 領域實戰）
+SpellBrewery,🔴 VIP,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/SpellBrewery,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Symbols,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Symbols,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Valhalloween,🔴 VIP,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Valhalloween,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+HauntMart,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/HauntMart,獨立專題 CTF 解題挑戰（Web 領域實戰）
+PumpkinSpice,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/PumpkinSpice,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Spellbound Servants,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Spellbound Servants,獨立專題 CTF 解題挑戰（Web 領域實戰）
+GhostlyTemplates,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/GhostlyTemplates,獨立專題 CTF 解題挑戰（Web 領域實戰）
+MSS,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/MSS,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Insomnia,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Insomnia,獨立專題 CTF 解題挑戰（Web 領域實戰）
+GateCrash,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/GateCrash,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Getting Closer,🔴 VIP,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Getting Closer,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Great Old Talisman,🔴 VIP,Easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Great Old Talisman,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+ARMs Race,🟢 FREE,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/ARMs Race,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+0xBOverchunked,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/0xBOverchunked,獨立專題 CTF 解題挑戰（Web 領域實戰）
+HTBank,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/HTBank,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Fentastic Moves,🔴 VIP,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Fentastic Moves,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Saturn,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Saturn,獨立專題 CTF 解題挑戰（Web 領域實戰）
+jscalc,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/jscalc,獨立專題 CTF 解題挑戰（Web 領域實戰）
+ProxyAsAService,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/ProxyAsAService,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Wild Goose Hunt,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Wild Goose Hunt,獨立專題 CTF 解題挑戰（Web 領域實戰）
+emoji voting,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/emoji voting,獨立專題 CTF 解題挑戰（Web 領域實戰）
+E.Tree,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/E.Tree,獨立專題 CTF 解題挑戰（Web 領域實戰）
+CurlAsAService,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/CurlAsAService,獨立專題 CTF 解題挑戰（Web 領域實戰）
+ApacheBlaze,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/ApacheBlaze,獨立專題 CTF 解題挑戰（Web 領域實戰）
+RenderQuest,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/RenderQuest,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Cyberpsychosis,🟢 FREE,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Cyberpsychosis,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Watersnake,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Watersnake,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Lazy Ballot,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Lazy Ballot,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Scripts and Formulas,🔴 VIP,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Scripts and Formulas,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+I'm gRoot,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/I'm gRoot,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Intrusion,🔴 VIP,Easy,CTF Challenge,Challenge (ICS),https://app.hackthebox.com/challenges/Intrusion,獨立專題 CTF 解題挑戰（ICS 領域實戰）
+Funds Secured,🔴 VIP,Easy,CTF Challenge,Challenge (Blockchain),https://app.hackthebox.com/challenges/Funds Secured,獨立專題 CTF 解題挑戰（Blockchain 領域實戰）
+Snow Scan,🔴 VIP,Easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Snow Scan,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Honor Among Thieves,🟢 FREE,Easy,CTF Challenge,Challenge (Blockchain),https://app.hackthebox.com/challenges/Honor Among Thieves,獨立專題 CTF 解題挑戰（Blockchain 領域實戰）
+Token to Wonderland,🟢 FREE,Easy,CTF Challenge,Challenge (Blockchain),https://app.hackthebox.com/challenges/Token to Wonderland,獨立專題 CTF 解題挑戰（Blockchain 領域實戰）
+Secure Signing,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Secure Signing,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Magic Vault,🟢 FREE,Easy,CTF Challenge,Challenge (Blockchain),https://app.hackthebox.com/challenges/Magic Vault,獨立專題 CTF 解題挑戰（Blockchain 領域實戰）
+Passman,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Passman,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Orbital,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Orbital,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Rhome,🟢 FREE,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Rhome,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+VHDLock,🔴 VIP,Easy,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/VHDLock,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+Packet Cyclone,🔴 VIP,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Packet Cyclone,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Artifact Of Dangerous Sighting,🔴 VIP,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Artifact Of Dangerous Sighting,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Multipage Recyclings,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Multipage Recyclings,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Inside the Matrix,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Inside the Matrix,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Void,🔴 VIP,Easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Void,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Oxidized ROP,🔴 VIP,Easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Oxidized ROP,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Encryption Bot,🔴 VIP,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Encryption Bot,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+NoRadar,🟢 FREE,Easy,CTF Challenge,Challenge (GamePwn),https://app.hackthebox.com/challenges/NoRadar,獨立專題 CTF 解題挑戰（GamePwn 領域實戰）
+RFlag,🟢 FREE,Easy,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/RFlag,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+TrueSecrets,🟢 FREE,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/TrueSecrets,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+A Nightmare On Math Street,🔴 VIP,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/A Nightmare On Math Street,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Potion Master,🔴 VIP,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Potion Master,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Bank-er-smith,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Bank-er-smith,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Fake News,🔴 VIP,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Fake News,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+The Magic Informer,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/The Magic Informer,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Man In The Middle,🔴 VIP,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Man In The Middle,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Secured Transfer,🔴 VIP,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Secured Transfer,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Finale,🔴 VIP,Easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Finale,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Spooky Time,🔴 VIP,Easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Spooky Time,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Inside Scoop,🔴 VIP,Easy,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/Inside Scoop,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+Spooky License,🔴 VIP,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Spooky License,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Ouija,🔴 VIP,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Ouija,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Horror Feeds,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Horror Feeds,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Whole Lotta Candy,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Whole Lotta Candy,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+AHS512,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/AHS512,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Spooky RSA,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Spooky RSA,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Downgrade,🔴 VIP,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Downgrade,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+POOF,🔴 VIP,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/POOF,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Halloween Invitation,🔴 VIP,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Halloween Invitation,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+ChromeMiner,🔴 VIP,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/ChromeMiner,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+C.O.P,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/C.O.P,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Up a Stream,🔴 VIP,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Up a Stream,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+ElElGamal,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/ElElGamal,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+BBGun06,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/BBGun06,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Superfast,🔴 VIP,Easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Superfast,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Pivotman,🔴 VIP,Easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Pivotman,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Touch,🔴 VIP,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Touch,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Golfer - Part 1,🔴 VIP,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Golfer - Part 1,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Perseverance,🔴 VIP,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Perseverance,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Debugger Unchained,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Debugger Unchained,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Letter Dispair,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Letter Dispair,獨立專題 CTF 解題挑戰（Web 領域實戰）
+PhishTale,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/PhishTale,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Felonious Forums,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Felonious Forums,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Embryonic Plant,🟢 FREE,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Embryonic Plant,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Bashic Calculator,🔴 VIP,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Bashic Calculator,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Diagnostic,🟢 FREE,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Diagnostic,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+baby quick maffs,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/baby quick maffs,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Intergalactic Recovery,🔴 VIP,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Intergalactic Recovery,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Free Services,🔴 VIP,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Free Services,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Automation,🔴 VIP,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Automation,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Spiky Tamagotchi,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Spiky Tamagotchi,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Amidst Us,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Amidst Us,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Kryptos Support,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Kryptos Support,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Intergalactic Post,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Intergalactic Post,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Fleet Management,🔴 VIP,Easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Fleet Management,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Jenny From The Block,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Jenny From The Block,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+The Three-Eyed Oracle,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/The Three-Eyed Oracle,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+How The Columns Have Turned,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/How The Columns Have Turned,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+BlinkerFluids,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/BlinkerFluids,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Rebuilding,🔴 VIP,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Rebuilding,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Snakecode,🔴 VIP,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Snakecode,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+SecretRezipe,🔴 VIP,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/SecretRezipe,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+EasterBunny,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/EasterBunny,獨立專題 CTF 解題挑戰（Web 領域實戰）
+CubeMadness2,🟢 FREE,Easy,CTF Challenge,Challenge (GamePwn),https://app.hackthebox.com/challenges/CubeMadness2,獨立專題 CTF 解題挑戰（GamePwn 領域實戰）
+Partial Encryption,🟢 FREE,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Partial Encryption,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Neonify,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Neonify,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Quantum-Safe,🟢 FREE,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Quantum-Safe,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Diogenes' Rage,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Diogenes' Rage,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Pinned,🔴 VIP,Easy,CTF Challenge,Challenge (Mobile),https://app.hackthebox.com/challenges/Pinned,獨立專題 CTF 解題挑戰（Mobile 領域實戰）
+Manager,🔴 VIP,Easy,CTF Challenge,Challenge (Mobile),https://app.hackthebox.com/challenges/Manager,獨立專題 CTF 解題挑戰（Mobile 領域實戰）
+Anchored,🔴 VIP,Easy,CTF Challenge,Challenge (Mobile),https://app.hackthebox.com/challenges/Anchored,獨立專題 CTF 解題挑戰（Mobile 領域實戰）
+APKrypt,🔴 VIP,Easy,CTF Challenge,Challenge (Mobile),https://app.hackthebox.com/challenges/APKrypt,獨立專題 CTF 解題挑戰（Mobile 領域實戰）
+Slippy,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Slippy,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Space Pirates,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Space Pirates,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Peel Back The Layers,🔴 VIP,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Peel Back The Layers,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Out of Time,🔴 VIP,Easy,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/Out of Time,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+AbuseHumanDB,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/AbuseHumanDB,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Micro Storage,🟢 FREE,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Micro Storage,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Protein Cookies,🟢 FREE,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Protein Cookies,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Line,🔴 VIP,Easy,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/Line,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+baby CachedView,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/baby CachedView,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Wander,🟢 FREE,Easy,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/Wander,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+APKey,🟢 FREE,Easy,CTF Challenge,Challenge (Mobile),https://app.hackthebox.com/challenges/APKey,獨立專題 CTF 解題挑戰（Mobile 領域實戰）
+RSAisEasy,🟢 FREE,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/RSAisEasy,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+LunaCrypt,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/LunaCrypt,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Signals,🔴 VIP,Easy,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/Signals,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+Lost Modulus,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Lost Modulus,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+RAuth,🟢 FREE,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/RAuth,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+petpet rcbee,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/petpet rcbee,獨立專題 CTF 解題挑戰（Web 領域實戰）
+RLotto,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/RLotto,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Nuclear Sale,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Nuclear Sale,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Toxic,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Toxic,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Factory,🟢 FREE,Easy,CTF Challenge,Challenge (ICS),https://app.hackthebox.com/challenges/Factory,獨立專題 CTF 解題挑戰（ICS 領域實戰）
+You Cant C Me,🔴 VIP,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/You Cant C Me,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Baby Crypt,🔴 VIP,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Baby Crypt,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Anti Flag,🔴 VIP,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Anti Flag,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+IRCWare,🔴 VIP,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/IRCWare,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Sekure Decrypt,🔴 VIP,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Sekure Decrypt,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Hissss,🔴 VIP,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Hissss,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Chop Shop,🔴 VIP,Easy,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/Chop Shop,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+Mini Line,🔴 VIP,Easy,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/Mini Line,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+Bad grades,🔴 VIP,Easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Bad grades,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Restaurant,🟢 FREE,Easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Restaurant,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+LoveTok,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/LoveTok,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Weather App,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Weather App,獨立專題 CTF 解題挑戰（Web 領域實戰）
+HackyBird,🔴 VIP,Easy,CTF Challenge,Challenge (GamePwn),https://app.hackthebox.com/challenges/HackyBird,獨立專題 CTF 解題挑戰（GamePwn 領域實戰）
+xorxorxor,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/xorxorxor,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+TwoForOne,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/TwoForOne,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+emo,🟢 FREE,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/emo,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Chase,🔴 VIP,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Chase,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Event Horizon,🔴 VIP,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Event Horizon,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Export,🔴 VIP,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Export,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Insider,🔴 VIP,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Insider,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Logger,🔴 VIP,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Logger,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Lure,🔴 VIP,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Lure,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+No Place To Hide,🔴 VIP,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/No Place To Hide,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Ransom,🔴 VIP,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Ransom,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Jeeves,🔴 VIP,Easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Jeeves,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Bat Computer,🔴 VIP,Easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Bat Computer,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Optimistic,🔴 VIP,Easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Optimistic,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Reg,🔴 VIP,Easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Reg,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+HTB Console,🔴 VIP,Easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/HTB Console,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+PwnShop,🔴 VIP,Easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/PwnShop,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Leet Test,🔴 VIP,Easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Leet Test,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Nightmare,🔴 VIP,Easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Nightmare,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Blacksmith,🔴 VIP,Easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Blacksmith,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Shooting star,🔴 VIP,Easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Shooting star,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+looking glass,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/looking glass,獨立專題 CTF 解題挑戰（Web 領域實戰）
+sanitize,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/sanitize,獨立專題 CTF 解題挑戰（Web 領域實戰）
+baby auth,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/baby auth,獨立專題 CTF 解題挑戰（Web 領域實戰）
+baby nginxatsu,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/baby nginxatsu,獨立專題 CTF 解題挑戰（Web 領域實戰）
+baby WAFfles order,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/baby WAFfles order,獨立專題 CTF 解題挑戰（Web 領域實戰）
+baby todo or not todo,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/baby todo or not todo,獨立專題 CTF 解題挑戰（Web 領域實戰）
+baby BoneChewerCon,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/baby BoneChewerCon,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Full Stack Conf,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Full Stack Conf,獨立專題 CTF 解題挑戰（Web 領域實戰）
+baby website rick,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/baby website rick,獨立專題 CTF 解題挑戰（Web 領域實戰）
+baby breaking grad,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/baby breaking grad,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Persistence,🔴 VIP,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Persistence,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Canvas,🔴 VIP,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Canvas,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Phonebook,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Phonebook,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Templated,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Templated,獨立專題 CTF 解題挑戰（Web 領域實戰）
+baby interdimensional internet,🔴 VIP,Easy,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/baby interdimensional internet,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Hunting,🔴 VIP,Easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Hunting,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Format,🔴 VIP,Easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Format,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Deterministic,🔴 VIP,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Deterministic,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Sick ROP,🔴 VIP,Easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Sick ROP,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+The secret of a Queen,🔴 VIP,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/The secret of a Queen,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Mission Pinpossible,🟢 FREE,Easy,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/Mission Pinpossible,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+Flippin Bank,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Flippin Bank,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Money Flowz,🔴 VIP,Easy,CTF Challenge,Challenge (OSINT),https://app.hackthebox.com/challenges/Money Flowz,獨立專題 CTF 解題挑戰（OSINT 領域實戰）
+Exatlon,🟢 FREE,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Exatlon,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+QuickR,🔴 VIP,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/QuickR,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Cat,🟢 FREE,Easy,CTF Challenge,Challenge (Mobile),https://app.hackthebox.com/challenges/Cat,獨立專題 CTF 解題挑戰（Mobile 領域實戰）
+Bypass,🟢 FREE,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Bypass,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+RsaCtfTool,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/RsaCtfTool,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+You know 0xDiablos,🟢 FREE,Easy,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/You know 0xDiablos,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+M0rsarchive,🔴 VIP,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/M0rsarchive,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Baby RE,🔴 VIP,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Baby RE,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Optimus Prime,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Optimus Prime,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+ExploitedStream,🔴 VIP,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/ExploitedStream,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Illumination,🔴 VIP,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Illumination,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Obscure,🟢 FREE,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Obscure,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Infiltration,🔴 VIP,Easy,CTF Challenge,Challenge (OSINT),https://app.hackthebox.com/challenges/Infiltration,獨立專題 CTF 解題挑戰（OSINT 領域實戰）
+Easy Phish,🔴 VIP,Easy,CTF Challenge,Challenge (OSINT),https://app.hackthebox.com/challenges/Easy Phish,獨立專題 CTF 解題挑戰（OSINT 領域實戰）
+Emdee five for life,🔴 VIP,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Emdee five for life,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+MarketDump,🔴 VIP,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/MarketDump,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+misDIRection,🔴 VIP,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/misDIRection,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Eternal Loop,🔴 VIP,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Eternal Loop,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Pusheen Loves Graphs,🔴 VIP,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Pusheen Loves Graphs,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Art,🔴 VIP,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Art,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Brainy's Cipher,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Brainy's Cipher,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Reminiscent,🔴 VIP,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Reminiscent,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Da Vinci,🔴 VIP,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Da Vinci,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+0ld is g0ld,🔴 VIP,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/0ld is g0ld,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Impossible Password,🔴 VIP,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Impossible Password,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Marshal in the Middle,🔴 VIP,Easy,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Marshal in the Middle,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+"Classic, yet complicated!",🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),"https://app.hackthebox.com/challenges/Classic, yet complicated!",獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Milkshake,🔴 VIP,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Milkshake,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+fs0ciety,🔴 VIP,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/fs0ciety,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+BitsNBytes,🔴 VIP,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/BitsNBytes,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Hackerman,🔴 VIP,Easy,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Hackerman,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Eat the Cake!,🔴 VIP,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Eat the Cake!,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+I know Mag1k,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/I know Mag1k,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Find The Easy Pass,🔴 VIP,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Find The Easy Pass,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Weak RSA,🔴 VIP,Easy,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Weak RSA,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+The Art of Reversing,🔴 VIP,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/The Art of Reversing,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Tear Or Dear,🔴 VIP,Easy,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Tear Or Dear,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Phosphor Ghost,🟢 FREE,Medium,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Phosphor Ghost,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Groundstation Breach,🟢 FREE,Medium,CTF Challenge,Challenge (Satellite),https://app.hackthebox.com/challenges/Groundstation Breach,獨立專題 CTF 解題挑戰（Satellite 領域實戰）
+Signal from Space,🟢 FREE,Medium,CTF Challenge,Challenge (Satellite),https://app.hackthebox.com/challenges/Signal from Space,獨立專題 CTF 解題挑戰（Satellite 領域實戰）
+Nomad Notes,🟢 FREE,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Nomad Notes,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Zigzag,🟢 FREE,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Zigzag,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+HILLarious,🟢 FREE,Medium,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/HILLarious,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Bobby's Bistro,🟢 FREE,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Bobby's Bistro,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Notebook Converter Pro,🟢 FREE,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Notebook Converter Pro,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Utterly Broken Shell,🟢 FREE,Medium,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Utterly Broken Shell,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Plug & Pray,🟢 FREE,Medium,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/Plug & Pray,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+Funkynator,🟢 FREE,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Funkynator,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+GameLoader,🟢 FREE,Medium,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/GameLoader,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+PyDome,🟢 FREE,Medium,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/PyDome,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+SSOS,🟢 FREE,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/SSOS,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Steel Mountain,🟢 FREE,Medium,CTF Challenge,Challenge (ICS),https://app.hackthebox.com/challenges/Steel Mountain,獨立專題 CTF 解題挑戰（ICS 領域實戰）
+Flow Override,🟢 FREE,Medium,CTF Challenge,Challenge (ICS),https://app.hackthebox.com/challenges/Flow Override,獨立專題 CTF 解題挑戰（ICS 領域實戰）
+Protected,🟢 FREE,Medium,CTF Challenge,Challenge (Mobile),https://app.hackthebox.com/challenges/Protected,獨立專題 CTF 解題挑戰（Mobile 領域實戰）
+Untrusted Node,🟢 FREE,Medium,CTF Challenge,Challenge (Quantum),https://app.hackthebox.com/challenges/Untrusted Node,獨立專題 CTF 解題挑戰（Quantum 領域實戰）
+Noncesense Encryption,🟢 FREE,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Noncesense Encryption,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Celestial Scribe,🟢 FREE,Medium,CTF Challenge,Challenge (Mobile),https://app.hackthebox.com/challenges/Celestial Scribe,獨立專題 CTF 解題挑戰（Mobile 領域實戰）
+FlappyFlopper,🟢 FREE,Medium,CTF Challenge,Challenge (GamePwn),https://app.hackthebox.com/challenges/FlappyFlopper,獨立專題 CTF 解題挑戰（GamePwn 領域實戰）
+Phoenix Pipeline,🟢 FREE,Medium,CTF Challenge,Challenge (Secure Coding),https://app.hackthebox.com/challenges/Phoenix Pipeline,獨立專題 CTF 解題挑戰（Secure Coding 領域實戰）
+Sattrack,🟢 FREE,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Sattrack,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Decision Gate,🔴 VIP,Medium,CTF Challenge,Challenge (AI/ML),https://app.hackthebox.com/challenges/Decision Gate,獨立專題 CTF 解題挑戰（AI/ML 領域實戰）
+Doctrine Studio,🔴 VIP,Medium,CTF Challenge,Challenge (AI/ML),https://app.hackthebox.com/challenges/Doctrine Studio,獨立專題 CTF 解題挑戰（AI/ML 領域實戰）
+Power Supply,🔴 VIP,Medium,CTF Challenge,Challenge (AI/ML),https://app.hackthebox.com/challenges/Power Supply,獨立專題 CTF 解題挑戰（AI/ML 領域實戰）
+Early Bird,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Early Bird,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Cyber Bankrupt,🔴 VIP,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Cyber Bankrupt,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Null Assembler,🔴 VIP,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Null Assembler,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Honeypot,🔴 VIP,Medium,CTF Challenge,Challenge (Coding),https://app.hackthebox.com/challenges/Honeypot,獨立專題 CTF 解題挑戰（Coding 領域實戰）
+Blackwire,🔴 VIP,Medium,CTF Challenge,Challenge (Coding),https://app.hackthebox.com/challenges/Blackwire,獨立專題 CTF 解題挑戰（Coding 領域實戰）
+EvilBox,🔴 VIP,Medium,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/EvilBox,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Neon Core,🟢 FREE,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Neon Core,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Defusal,🟢 FREE,Medium,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/Defusal,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+Contractor,🔴 VIP,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Contractor,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Verilicious,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Verilicious,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Copperbox,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Copperbox,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+TicTacToed,🟢 FREE,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/TicTacToed,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Dusty Alleys,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Dusty Alleys,獨立專題 CTF 解題挑戰（Web 領域實戰）
+portaloo,🟢 FREE,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/portaloo,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+BinCrypt Breaker,🔴 VIP,Medium,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/BinCrypt Breaker,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Prison Break,🔴 VIP,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Prison Break,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+EncoDecept,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/EncoDecept,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Intergalatic Bounty,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Intergalatic Bounty,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Binary Badresources,🔴 VIP,Medium,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Binary Badresources,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Interstellar,🟢 FREE,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Interstellar,獨立專題 CTF 解題挑戰（Web 領域實戰）
+ReplaceMe,🔴 VIP,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/ReplaceMe,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Rega's Town,🟢 FREE,Medium,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Rega's Town,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Shambles,🟢 FREE,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Shambles,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Under the web,🟢 FREE,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Under the web,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Wayback,🟢 FREE,Medium,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Wayback,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+NextPath,🟢 FREE,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/NextPath,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Override,🔴 VIP,Medium,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/Override,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+DLLAMA,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/DLLAMA,獨立專題 CTF 解題挑戰（Web 領域實戰）
+gb3000,🔴 VIP,Medium,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/gb3000,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Complaint Conglomerate,🔴 VIP,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Complaint Conglomerate,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+secure source,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/secure source,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+infosekurus query,🟢 FREE,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/infosekurus query,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Forks and Knives,🟢 FREE,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Forks and Knives,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+TornadoService,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/TornadoService,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Prometheon,🟢 FREE,Medium,CTF Challenge,Challenge (AI/ML),https://app.hackthebox.com/challenges/Prometheon,獨立專題 CTF 解題挑戰（AI/ML 領域實戰）
+Lost in Hyperspace,🟢 FREE,Medium,CTF Challenge,Challenge (AI/ML),https://app.hackthebox.com/challenges/Lost in Hyperspace,獨立專題 CTF 解題挑戰（AI/ML 領域實戰）
+Death's Glance,🔴 VIP,Medium,CTF Challenge,Challenge (AI/ML),https://app.hackthebox.com/challenges/Death's Glance,獨立專題 CTF 解題挑戰（AI/ML 領域實戰）
+Battle in OrIOn,🔴 VIP,Medium,CTF Challenge,Challenge (AI/ML),https://app.hackthebox.com/challenges/Battle in OrIOn,獨立專題 CTF 解題挑戰（AI/ML 領域實戰）
+KHP Protocol,🟢 FREE,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/KHP Protocol,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+SatelliteHijack,🔴 VIP,Medium,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/SatelliteHijack,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+TunnelMadness,🔴 VIP,Medium,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/TunnelMadness,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Not that random,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Not that random,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+No Gadgets,🔴 VIP,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/No Gadgets,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Nothing Without A Cost,🔴 VIP,Medium,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Nothing Without A Cost,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Branching Tactics,🔴 VIP,Medium,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Branching Tactics,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Prison Pipeline,🔴 VIP,Medium,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Prison Pipeline,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Six Five O Two,🔴 VIP,Medium,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/Six Five O Two,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+Brokenswap,🔴 VIP,Medium,CTF Challenge,Challenge (Blockchain),https://app.hackthebox.com/challenges/Brokenswap,獨立專題 CTF 解題挑戰（Blockchain 領域實戰）
+Knock Knock?,🔴 VIP,Medium,CTF Challenge,Challenge (ICS),https://app.hackthebox.com/challenges/Knock Knock?,獨立專題 CTF 解題挑戰（ICS 領域實戰）
+HTB Proxy,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/HTB Proxy,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Magicom,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Magicom,獨立專題 CTF 解題挑戰（Web 領域實戰）
+DoxPit,🟢 FREE,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/DoxPit,獨立專題 CTF 解題挑戰（Web 領域實戰）
+LockTalk,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/LockTalk,獨立專題 CTF 解題挑戰（Web 領域實戰）
+SerialFlow,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/SerialFlow,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Partial Tenacity,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Partial Tenacity,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Permuted,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Permuted,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Deathnote,🔴 VIP,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Deathnote,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Sound of Silence,🔴 VIP,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Sound of Silence,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Oracle,🔴 VIP,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Oracle,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Maze of Mist,🔴 VIP,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Maze of Mist,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Quantum Conundrum,🔴 VIP,Medium,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Quantum Conundrum,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Path of Survival,🔴 VIP,Medium,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Path of Survival,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+MultiDigilingual,🔴 VIP,Medium,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/MultiDigilingual,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Phreaky,🔴 VIP,Medium,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Phreaky,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Data Siege,🔴 VIP,Medium,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Data Siege,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+The PROM,🔴 VIP,Medium,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/The PROM,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+HM74,🔴 VIP,Medium,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/HM74,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+Metagaming,🔴 VIP,Medium,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Metagaming,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+ScreenCrack,🟢 FREE,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/ScreenCrack,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Signing Factory,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Signing Factory,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+POPO,🟢 FREE,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/POPO,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+JerryTok,🟢 FREE,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/JerryTok,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Stylish,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Stylish,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Virtually Mad,🟢 FREE,Medium,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Virtually Mad,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Mayday Mayday,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Mayday Mayday,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Nexus Void,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Nexus Void,獨立專題 CTF 解題挑戰（Web 領域實戰）
+BioBundle,🔴 VIP,Medium,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/BioBundle,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+RiseFromTheDead,🔴 VIP,Medium,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/RiseFromTheDead,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+ZombieNet,🔴 VIP,Medium,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/ZombieNet,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Zombienator,🔴 VIP,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Zombienator,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Pixel Audio,🔴 VIP,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Pixel Audio,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Maze,🔴 VIP,Medium,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Maze,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Evil Corp,🟢 FREE,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Evil Corp,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+ReMeeting the Wheel,🟢 FREE,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/ReMeeting the Wheel,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+No-Threshold,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/No-Threshold,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Quadratic Points,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Quadratic Points,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+RedTrails,🟢 FREE,Medium,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/RedTrails,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+pcalc,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/pcalc,獨立專題 CTF 解題挑戰（Web 領域實戰）
+The Galactic Times,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/The Galactic Times,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Alien Complaint Form,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Alien Complaint Form,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Scanner,🟢 FREE,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Scanner,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+AliEnS,🟢 FREE,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/AliEnS,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Locked and Loaded,🟢 FREE,Medium,CTF Challenge,Challenge (Blockchain),https://app.hackthebox.com/challenges/Locked and Loaded,獨立專題 CTF 解題挑戰（Blockchain 領域實戰）
+DeSynth Recruit,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/DeSynth Recruit,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Portal Noncense,🟢 FREE,Medium,CTF Challenge,Challenge (Blockchain),https://app.hackthebox.com/challenges/Portal Noncense,獨立專題 CTF 解題挑戰（Blockchain 領域實戰）
+Hypercraft,🔴 VIP,Medium,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Hypercraft,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+No Start Where,🔴 VIP,Medium,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/No Start Where,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+PRaNsomG,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/PRaNsomG,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Interception,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Interception,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Breach,🔴 VIP,Medium,CTF Challenge,Challenge (ICS),https://app.hackthebox.com/challenges/Breach,獨立專題 CTF 解題挑戰（ICS 領域實戰）
+Confidentiality,🔴 VIP,Medium,CTF Challenge,Challenge (Blockchain),https://app.hackthebox.com/challenges/Confidentiality,獨立專題 CTF 解題挑戰（Blockchain 領域實戰）
+SEPC,🟢 FREE,Medium,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/SEPC,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+False Bidding,🟢 FREE,Medium,CTF Challenge,Challenge (Blockchain),https://app.hackthebox.com/challenges/False Bidding,獨立專題 CTF 解題挑戰（Blockchain 領域實戰）
+Device Control,🔴 VIP,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Device Control,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+CachedWeb,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/CachedWeb,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Angler,🔴 VIP,Medium,CTF Challenge,Challenge (Mobile),https://app.hackthebox.com/challenges/Angler,獨立專題 CTF 解題挑戰（Mobile 領域實戰）
+Didactic Octo Paddles,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Didactic Octo Paddles,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Spybug,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Spybug,獨立專題 CTF 解題挑戰（Web 領域實戰）
+TrapTrack,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/TrapTrack,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Ancient Interface,🔴 VIP,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Ancient Interface,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Pickle Panic,🔴 VIP,Medium,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Pickle Panic,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Relic Maps,🔴 VIP,Medium,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Relic Maps,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Interstellar C2,🔴 VIP,Medium,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Interstellar C2,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Colliding Heritage,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Colliding Heritage,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Elliptic Labyrinth,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Elliptic Labyrinth,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Alien Saboteur,🔴 VIP,Medium,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Alien Saboteur,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Prying Eyes,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Prying Eyes,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Control Room,🔴 VIP,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Control Room,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Protein Cookies 2,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Protein Cookies 2,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+CryptoConundrum,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/CryptoConundrum,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Dragon Army,🔴 VIP,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Dragon Army,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Waiting,🔴 VIP,Medium,CTF Challenge,Challenge (Mobile),https://app.hackthebox.com/challenges/Waiting,獨立專題 CTF 解題挑戰（Mobile 領域實戰）
+Noisy,🟢 FREE,Medium,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Noisy,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+YALM,🟢 FREE,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/YALM,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+RetoRetro,🔴 VIP,Medium,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/RetoRetro,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Spellbook,🔴 VIP,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Spellbook,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Curse Breaker,🔴 VIP,Medium,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Curse Breaker,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+AbraCryptabra,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/AbraCryptabra,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+AESWCM,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/AESWCM,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+One Of Us,🔴 VIP,Medium,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/One Of Us,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+BatchCraft Potions,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/BatchCraft Potions,獨立專題 CTF 解題挑戰（Web 領域實戰）
+NoClip,🟢 FREE,Medium,CTF Challenge,Challenge (GamePwn),https://app.hackthebox.com/challenges/NoClip,獨立專題 CTF 解題挑戰（GamePwn 領域實戰）
+Type Exception,🔴 VIP,Medium,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Type Exception,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+WS-Todo,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/WS-Todo,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Investigator,🔴 VIP,Medium,CTF Challenge,Challenge (Mobile),https://app.hackthebox.com/challenges/Investigator,獨立專題 CTF 解題挑戰（Mobile 領域實戰）
+FFModule,🟢 FREE,Medium,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/FFModule,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+TurboCipher,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/TurboCipher,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Taking down the Hive,🔴 VIP,Medium,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/Taking down the Hive,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+Space Heist,🔴 VIP,Medium,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/Space Heist,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+Supermarket,🔴 VIP,Medium,CTF Challenge,Challenge (Mobile),https://app.hackthebox.com/challenges/Supermarket,獨立專題 CTF 解題挑戰（Mobile 領域實戰）
+NoMap3D,🟢 FREE,Medium,CTF Challenge,Challenge (GamePwn),https://app.hackthebox.com/challenges/NoMap3D,獨立專題 CTF 解題挑戰（GamePwn 領域實戰）
+Thief,🔴 VIP,Medium,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Thief,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Infinite Knapsack,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Infinite Knapsack,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Twisted Entanglement,🟢 FREE,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Twisted Entanglement,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Homomurphy's Law,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Homomurphy's Law,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Breakin,🔴 VIP,Medium,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Breakin,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+State of Emergency,🔴 VIP,Medium,CTF Challenge,Challenge (ICS),https://app.hackthebox.com/challenges/State of Emergency,獨立專題 CTF 解題挑戰（ICS 領域實戰）
+Mr. Abilgate,🔴 VIP,Medium,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Mr. Abilgate,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+400Curves,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/400Curves,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+MBCoin,🔴 VIP,Medium,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/MBCoin,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Rogue,🔴 VIP,Medium,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Rogue,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+GrandMonty,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/GrandMonty,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Triangles,🔴 VIP,Medium,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Triangles,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Chainsmoker,🔴 VIP,Medium,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Chainsmoker,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Reflection,🔴 VIP,Medium,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Reflection,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Precious Guidance,🔴 VIP,Medium,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Precious Guidance,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Seized,🔴 VIP,Medium,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Seized,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Red Island,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Red Island,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Mutation Lab,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Mutation Lab,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Acnologia Portal,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Acnologia Portal,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Trick or Deal,🔴 VIP,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Trick or Deal,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Bon-nie-appetit,🔴 VIP,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Bon-nie-appetit,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Sabotage,🔴 VIP,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Sabotage,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Hellhound,🔴 VIP,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Hellhound,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+MOVs Like Jagger,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/MOVs Like Jagger,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Find Marher's Secret,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Find Marher's Secret,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Down the Rabinhole,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Down the Rabinhole,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+One Step Closer,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/One Step Closer,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Teleport,🔴 VIP,Medium,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Teleport,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Indefinite,🔴 VIP,Medium,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Indefinite,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+LightningFast,🟢 FREE,Medium,CTF Challenge,Challenge (GamePwn),https://app.hackthebox.com/challenges/LightningFast,獨立專題 CTF 解題挑戰（GamePwn 領域實戰）
+PTRACE_NOPEEKING,🔴 VIP,Medium,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/PTRACE_NOPEEKING,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+CubeBreaker,🔴 VIP,Medium,CTF Challenge,Challenge (GamePwn),https://app.hackthebox.com/challenges/CubeBreaker,獨立專題 CTF 解題挑戰（GamePwn 領域實戰）
+Coffee Invocation,🟢 FREE,Medium,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Coffee Invocation,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Malception,🔴 VIP,Medium,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Malception,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Userland City,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Userland City,獨立專題 CTF 解題挑戰（Web 領域實戰）
+InfiniteDoge,🟢 FREE,Medium,CTF Challenge,Challenge (GamePwn),https://app.hackthebox.com/challenges/InfiniteDoge,獨立專題 CTF 解題挑戰（GamePwn 領域實戰）
+Iterative Virus,🔴 VIP,Medium,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Iterative Virus,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Fancy names,🔴 VIP,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Fancy names,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Shamir's Secret,🟢 FREE,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Shamir's Secret,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+ExpressionalRebel,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/ExpressionalRebel,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Red Failure,🟢 FREE,Medium,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Red Failure,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Birds of randomness,🟢 FREE,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Birds of randomness,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Login Simulator,🔴 VIP,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Login Simulator,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+SAW,🟢 FREE,Medium,CTF Challenge,Challenge (Mobile),https://app.hackthebox.com/challenges/SAW,獨立專題 CTF 解題挑戰（Mobile 領域實戰）
+Arms roped,🟢 FREE,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Arms roped,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Insane Bolt,🔴 VIP,Medium,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Insane Bolt,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Sigma Technology,🔴 VIP,Medium,CTF Challenge,Challenge (AI/ML),https://app.hackthebox.com/challenges/Sigma Technology,獨立專題 CTF 解題挑戰（AI/ML 領域實戰）
+SteamCoin,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/SteamCoin,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Tree of Danger,🔴 VIP,Medium,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Tree of Danger,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+The Vault,🔴 VIP,Medium,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/The Vault,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Oracle Leaks,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Oracle Leaks,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Robot Factory,🔴 VIP,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Robot Factory,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Strike Back,🔴 VIP,Medium,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Strike Back,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+knote,🔴 VIP,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/knote,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Kernel Adventures: Part 2,🔴 VIP,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Kernel Adventures: Part 2,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+BFD56,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/BFD56,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Vipère,🔴 VIP,Medium,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Vipère,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Auth-or-out,🔴 VIP,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Auth-or-out,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+TwoDots Horror,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/TwoDots Horror,獨立專題 CTF 解題挑戰（Web 領域實戰）
+mysterybox,🟢 FREE,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/mysterybox,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+WAFfle-y Order,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/WAFfle-y Order,獨立專題 CTF 解題挑戰（Web 領域實戰）
+SeeTheSharpFlag,🔴 VIP,Medium,CTF Challenge,Challenge (Mobile),https://app.hackthebox.com/challenges/SeeTheSharpFlag,獨立專題 CTF 解題挑戰（Mobile 領域實戰）
+Lost Modulus Again,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Lost Modulus Again,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+signup,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/signup,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+PersistenceIsFutile,🟢 FREE,Medium,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/PersistenceIsFutile,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Project Power,🟢 FREE,Medium,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/Project Power,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+Trace,🟢 FREE,Medium,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/Trace,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+Composition,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Composition,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+echoland,🔴 VIP,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/echoland,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Secret Treasures,🟢 FREE,Medium,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/Secret Treasures,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+Broken Decryptor,🟢 FREE,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Broken Decryptor,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Bare Metal,🟢 FREE,Medium,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/Bare Metal,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+Toxin,🔴 VIP,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Toxin,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Antidote,🔴 VIP,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Antidote,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Query,🔴 VIP,Medium,CTF Challenge,Challenge (Misc),https://app.hackthebox.com/challenges/Query,獨立專題 CTF 解題挑戰（Misc 領域實戰）
+Rookie Mistake,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Rookie Mistake,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Fibopadcci,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Fibopadcci,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Prison Escape,🟢 FREE,Medium,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/Prison Escape,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+baby sql,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/baby sql,獨立專題 CTF 解題挑戰（Web 領域實戰）
+nginxatsu,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/nginxatsu,獨立專題 CTF 解題挑戰（Web 領域實戰）
+LostKey,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/LostKey,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+What does the f say?,🔴 VIP,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/What does the f say?,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Mr. Burns,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Mr. Burns,獨立專題 CTF 解題挑戰（Web 領域實戰）
+breaking grad,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/breaking grad,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Bounty Head,🟢 FREE,Medium,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/Bounty Head,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+Outrun,🟢 FREE,Medium,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/Outrun,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+baby ninja jinja,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/baby ninja jinja,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Space,🔴 VIP,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Space,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Nostalgia,🟢 FREE,Medium,CTF Challenge,Challenge (GamePwn),https://app.hackthebox.com/challenges/Nostalgia,獨立專題 CTF 解題挑戰（GamePwn 領域實戰）
+Missing in Action,🔴 VIP,Medium,CTF Challenge,Challenge (OSINT),https://app.hackthebox.com/challenges/Missing in Action,獨立專題 CTF 解題挑戰（OSINT 領域實戰）
+wafwaf,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/wafwaf,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Console,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Console,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Under Construction,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Under Construction,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Kernel Adventures: Part 1,🔴 VIP,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Kernel Adventures: Part 1,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+interdimensional internet,🔴 VIP,Medium,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/interdimensional internet,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Headache,🔴 VIP,Medium,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Headache,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Debugme,🟢 FREE,Medium,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Debugme,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Cryptohorrific,🔴 VIP,Medium,CTF Challenge,Challenge (Mobile),https://app.hackthebox.com/challenges/Cryptohorrific,獨立專題 CTF 解題挑戰（Mobile 領域實戰）
+Keep Tryin',🔴 VIP,Medium,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Keep Tryin',獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Dream Diary: Chapter 1,🔴 VIP,Medium,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Dream Diary: Chapter 1,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Deadly Arthropod,🔴 VIP,Medium,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Deadly Arthropod,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Ebola Virus,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Ebola Virus,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Infinite Descent,🔴 VIP,Medium,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Infinite Descent,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Pseudo,🔴 VIP,Medium,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Pseudo,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Monstrosity,🔴 VIP,Medium,CTF Challenge,Challenge (OSINT),https://app.hackthebox.com/challenges/Monstrosity,獨立專題 CTF 解題挑戰（OSINT 領域實戰）
+Bombs Landed,🔴 VIP,Medium,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Bombs Landed,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+ZaZamarin,🟢 FREE,Hard,CTF Challenge,Challenge (Mobile),https://app.hackthebox.com/challenges/ZaZamarin,獨立專題 CTF 解題挑戰（Mobile 領域實戰）
+Conga Curse,🟢 FREE,Hard,CTF Challenge,Challenge (Coding),https://app.hackthebox.com/challenges/Conga Curse,獨立專題 CTF 解題挑戰（Coding 領域實戰）
+Lazarus - Rewind 2,🟢 FREE,Hard,CTF Challenge,Challenge (Quantum),https://app.hackthebox.com/challenges/Lazarus - Rewind 2,獨立專題 CTF 解題挑戰（Quantum 領域實戰）
+Lazarus - Rewind 1,🟢 FREE,Hard,CTF Challenge,Challenge (Blockchain),https://app.hackthebox.com/challenges/Lazarus - Rewind 1,獨立專題 CTF 解題挑戰（Blockchain 領域實戰）
+Space Ops,🟢 FREE,Hard,CTF Challenge,Challenge (Satellite),https://app.hackthebox.com/challenges/Space Ops,獨立專題 CTF 解題挑戰（Satellite 領域實戰）
+Chaogen,🟢 FREE,Hard,CTF Challenge,Challenge (Coding),https://app.hackthebox.com/challenges/Chaogen,獨立專題 CTF 解題挑戰（Coding 領域實戰）
+Surprise Factor,🟢 FREE,Hard,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Surprise Factor,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Invisible Theft,🟢 FREE,Hard,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Invisible Theft,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Threadweaver,🟢 FREE,Hard,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Threadweaver,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Kernel Monarch,🟢 FREE,Hard,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Kernel Monarch,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Resizer,🟢 FREE,Hard,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Resizer,獨立專題 CTF 解題挑戰（Web 領域實戰）
+MadMath,🟢 FREE,Hard,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/MadMath,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Infinity Bank,🟢 FREE,Hard,CTF Challenge,Challenge (Mobile),https://app.hackthebox.com/challenges/Infinity Bank,獨立專題 CTF 解題挑戰（Mobile 領域實戰）
+dudidudida,🟢 FREE,Hard,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/dudidudida,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Dressrosa Reactor,🟢 FREE,Hard,CTF Challenge,Challenge (ICS),https://app.hackthebox.com/challenges/Dressrosa Reactor,獨立專題 CTF 解題挑戰（ICS 領域實戰）
+Hexecution,🔴 VIP,Hard,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Hexecution,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Neural Detonator,🔴 VIP,Hard,CTF Challenge,Challenge (AI/ML),https://app.hackthebox.com/challenges/Neural Detonator,獨立專題 CTF 解題挑戰（AI/ML 領域實戰）
+Curveware,🔴 VIP,Hard,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Curveware,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+NeonCGI,🔴 VIP,Hard,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/NeonCGI,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Ghost Path,🔴 VIP,Hard,CTF Challenge,Challenge (Coding),https://app.hackthebox.com/challenges/Ghost Path,獨立專題 CTF 解題挑戰（Coding 領域實戰）
+ShadowLabyrinth,🔴 VIP,Hard,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/ShadowLabyrinth,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+QuickBlog,🔴 VIP,Hard,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/QuickBlog,獨立專題 CTF 解題挑戰（Web 領域實戰）
+SocratesPanel,🟢 FREE,Hard,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/SocratesPanel,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Twin Oracles,🔴 VIP,Hard,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Twin Oracles,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+NeuroSync,🔴 VIP,Hard,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/NeuroSync,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Raining Primes,🟢 FREE,Hard,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Raining Primes,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Dead or Alive,🔴 VIP,Hard,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Dead or Alive,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+GravitometerGambit,🔴 VIP,Hard,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/GravitometerGambit,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Last Resort,🟢 FREE,Hard,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Last Resort,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+The Last Frontier,🔴 VIP,Hard,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/The Last Frontier,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+Memento,🔴 VIP,Hard,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Memento,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+The Art of Capture,🟢 FREE,Hard,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/The Art of Capture,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Full of Stars,🟢 FREE,Hard,CTF Challenge,Challenge (AI/ML),https://app.hackthebox.com/challenges/Full of Stars,獨立專題 CTF 解題挑戰（AI/ML 領域實戰）
+Spin Glass Brain,🟢 FREE,Hard,CTF Challenge,Challenge (AI/ML),https://app.hackthebox.com/challenges/Spin Glass Brain,獨立專題 CTF 解題挑戰（AI/ML 領域實戰）
+vvm,🟢 FREE,Hard,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/vvm,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Blessed,🔴 VIP,Hard,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Blessed,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+OmniWatch,🔴 VIP,Hard,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/OmniWatch,獨立專題 CTF 解題挑戰（Web 領域實戰）
+SOS or SSO?,🔴 VIP,Hard,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/SOS or SSO?,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Percetron,🔴 VIP,Hard,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Percetron,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Tsayaki,🔴 VIP,Hard,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Tsayaki,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Game Invitation,🔴 VIP,Hard,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Game Invitation,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Flash-ing Logs,🔴 VIP,Hard,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/Flash-ing Logs,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+Ledger Heist,🔴 VIP,Hard,CTF Challenge,Challenge (Blockchain),https://app.hackthebox.com/challenges/Ledger Heist,獨立專題 CTF 解題挑戰（Blockchain 領域實戰）
+MazeOfPower,🔴 VIP,Hard,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/MazeOfPower,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Magic Scrolls,🟢 FREE,Hard,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Magic Scrolls,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Zombie Rolled,🔴 VIP,Hard,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Zombie Rolled,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+WonderSMS,🔴 VIP,Hard,CTF Challenge,Challenge (Mobile),https://app.hackthebox.com/challenges/WonderSMS,獨立專題 CTF 解題挑戰（Mobile 領域實戰）
+PhantomFeed,🔴 VIP,Hard,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/PhantomFeed,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Shadow of the Undead,🔴 VIP,Hard,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Shadow of the Undead,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Zombiedote,🔴 VIP,Hard,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Zombiedote,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Picture Magic,🔴 VIP,Hard,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Picture Magic,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+StayInTheBoxCorp,🟢 FREE,Hard,CTF Challenge,Challenge (GamePwn),https://app.hackthebox.com/challenges/StayInTheBoxCorp,獨立專題 CTF 解題挑戰（GamePwn 領域實戰）
+Why Lambda,🟢 FREE,Hard,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Why Lambda,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Unsighted,🔴 VIP,Hard,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Unsighted,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Pedometer,🔴 VIP,Hard,CTF Challenge,Challenge (Mobile),https://app.hackthebox.com/challenges/Pedometer,獨立專題 CTF 解題挑戰（Mobile 領域實戰）
+Vitrium Stash,🔴 VIP,Hard,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Vitrium Stash,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+LicenseGenerator,🔴 VIP,Hard,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/LicenseGenerator,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+PAC breaker,🔴 VIP,Hard,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/PAC breaker,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+ReRop,🔴 VIP,Hard,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/ReRop,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+UnEarthly Shop,🔴 VIP,Hard,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/UnEarthly Shop,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Pod Diagnostics,🔴 VIP,Hard,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Pod Diagnostics,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Biased Heritage,🔴 VIP,Hard,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Biased Heritage,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Converging Visions,🔴 VIP,Hard,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Converging Visions,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Vessel Cartographer,🔴 VIP,Hard,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Vessel Cartographer,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Fake Snake,🔴 VIP,Hard,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Fake Snake,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Kana,🔴 VIP,Hard,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Kana,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Math Door,🔴 VIP,Hard,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Math Door,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Runic,🔴 VIP,Hard,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Runic,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Joker,🔴 VIP,Hard,CTF Challenge,Challenge (Mobile),https://app.hackthebox.com/challenges/Joker,獨立專題 CTF 解題挑戰（Mobile 領域實戰）
+Wizard's Diary,🔴 VIP,Hard,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Wizard's Diary,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Spell Weaving Exam,🔴 VIP,Hard,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Spell Weaving Exam,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Spell Orsterra,🔴 VIP,Hard,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Spell Orsterra,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Open sesame,🔴 VIP,Hard,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/Open sesame,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+FileStorage,🔴 VIP,Hard,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/FileStorage,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Convoluted Boot,🔴 VIP,Hard,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Convoluted Boot,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Midenios,🔴 VIP,Hard,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Midenios,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Hash the Filesystem,🔴 VIP,Hard,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Hash the Filesystem,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+SquatBot,🔴 VIP,Hard,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/SquatBot,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+CFI++,🟢 FREE,Hard,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/CFI++,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Once and for all,🔴 VIP,Hard,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Once and for all,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Memory Acceleration,🔴 VIP,Hard,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Memory Acceleration,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Mind In The Clouds,🔴 VIP,Hard,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Mind In The Clouds,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Freaky Forum Interception,🔴 VIP,Hard,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Freaky Forum Interception,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Shuffleme,🔴 VIP,Hard,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Shuffleme,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Masks Off,🟢 FREE,Hard,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Masks Off,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Acknowledge the corn,🟢 FREE,Hard,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Acknowledge the corn,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+CRSid,🔴 VIP,Hard,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/CRSid,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Pneumatic Validator,🔴 VIP,Hard,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Pneumatic Validator,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+AnalyticalEngine,🔴 VIP,Hard,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/AnalyticalEngine,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Waiting List,🔴 VIP,Hard,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Waiting List,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Steam Driver,🔴 VIP,Hard,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Steam Driver,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Keep the steam going,🔴 VIP,Hard,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Keep the steam going,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Mechanical Madness,🔴 VIP,Hard,CTF Challenge,Challenge (Hardware),https://app.hackthebox.com/challenges/Mechanical Madness,獨立專題 CTF 解題挑戰（Hardware 領域實戰）
+Always Has Been,🟢 FREE,Hard,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Always Has Been,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+BoneChewerCon,🔴 VIP,Hard,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/BoneChewerCon,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Nowhere to go,🔴 VIP,Hard,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Nowhere to go,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+quick maffs,🔴 VIP,Hard,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/quick maffs,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+TicTacPwn,🔴 VIP,Hard,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/TicTacPwn,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Modern Typer,🔴 VIP,Hard,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Modern Typer,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Window's Infinity Edge,🟢 FREE,Hard,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/Window's Infinity Edge,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+vmcrack,🔴 VIP,Hard,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/vmcrack,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+ImageTok,🔴 VIP,Hard,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/ImageTok,獨立專題 CTF 解題挑戰（Web 領域實戰）
+oBfsC4t10n2,🟢 FREE,Hard,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/oBfsC4t10n2,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+No Return,🔴 VIP,Hard,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/No Return,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Dream Diary: Chapter 3,🔴 VIP,Hard,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Dream Diary: Chapter 3,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+oBfsC4t10n,🟢 FREE,Hard,CTF Challenge,Challenge (Forensics),https://app.hackthebox.com/challenges/oBfsC4t10n,獨立專題 CTF 解題挑戰（Forensics 領域實戰）
+Old Bridge,🔴 VIP,Hard,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Old Bridge,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Dream Diary: Chapter 2,🔴 VIP,Hard,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Dream Diary: Chapter 2,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Uplink,🟢 FREE,Insane,CTF Challenge,Challenge (Coding),https://app.hackthebox.com/challenges/Uplink,獨立專題 CTF 解題挑戰（Coding 領域實戰）
+Sandcastle,🟢 FREE,Insane,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Sandcastle,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Callfuscated,🟢 FREE,Insane,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Callfuscated,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Novacore,🔴 VIP,Insane,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/Novacore,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Blinded,🟢 FREE,Insane,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Blinded,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Clutch,🔴 VIP,Insane,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Clutch,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+ArtificialUniversity,🟢 FREE,Insane,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/ArtificialUniversity,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Pyrrhus,🔴 VIP,Insane,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Pyrrhus,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+ApexSurvive,🔴 VIP,Insane,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/ApexSurvive,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Heapify,🟢 FREE,Insane,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Heapify,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Wonky AES,🟢 FREE,Insane,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Wonky AES,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Kryptor 2,🟢 FREE,Insane,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Kryptor 2,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+NFTDRM,🟢 FREE,Insane,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/NFTDRM,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Quantum Memory Manager,🔴 VIP,Insane,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Quantum Memory Manager,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+OOPArtDB,🔴 VIP,Insane,CTF Challenge,Challenge (Web),https://app.hackthebox.com/challenges/OOPArtDB,獨立專題 CTF 解題挑戰（Web 領域實戰）
+Substandard Optimization,🔴 VIP,Insane,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Substandard Optimization,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
+Dream Diary: Chapter 4,🔴 VIP,Insane,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Dream Diary: Chapter 4,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Kryptor,🔴 VIP,Insane,CTF Challenge,Challenge (Pwn),https://app.hackthebox.com/challenges/Kryptor,獨立專題 CTF 解題挑戰（Pwn 領域實戰）
+Roulette,🔴 VIP,Insane,CTF Challenge,Challenge (Crypto),https://app.hackthebox.com/challenges/Roulette,獨立專題 CTF 解題挑戰（Crypto 領域實戰）
+Poly,🟢 FREE,Insane,CTF Challenge,Challenge (Reversing),https://app.hackthebox.com/challenges/Poly,獨立專題 CTF 解題挑戰（Reversing 領域實戰）
