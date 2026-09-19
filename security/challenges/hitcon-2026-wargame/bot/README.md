@@ -1,0 +1,271 @@
+# HITCON 2026 Wargame Bot
+
+自動化漏洞掃描、exploit 生成、測試和提交框架。
+
+## 架構
+
+```
+bot/
+├── config.py         # 設定檔
+├── client.py         # Wargame API client（登入、取 packages、提交）
+├── generator.py      # Exploit 自動生成器
+├── tester.py         # Docker 本地測試
+├── storage.py        # 持久化儲存 + 自動 writeup
+├── main.py           # 主控 orchestrator
+├── requirements.txt  # 依賴套件
+└── submit/           # 已提交的 exploit 腳本
+
+lib/                  # 共用模組（scanner 已整合到此）
+├── scanner.py        #   統一 PHP 漏洞掃描器
+├── scanner_rules.py  #   掃描規則
+└── types.py          #   型別定義
+```
+
+## 輸出目錄結構
+
+所有結果自動儲存在 `bot/results/`：
+
+```
+results/
+├── exploits/           # 所有產生的 exploit 腳本
+│   ├── owasp_phprbac/
+│   │   ├── code_injection_20260820_143022.py
+│   │   └── sql_injection_20260820_143045.py
+│   └── monolog_monolog/
+├── logs/               # 測試日誌（成功/失敗）
+│   ├── owasp_phprbac/
+│   │   ├── SUCCESS_20260820_143100.log
+│   │   └── FAILED_20260820_143120.log
+│   └── monolog_monolog/
+├── reports/            # 漏洞掃描報告 (JSON)
+│   ├── owasp_phprbac_20260820_143000.json
+│   └── monolog_monolog_20260820_143200.json
+├── writeups/           # 自動產生的 writeup (Markdown)
+│   ├── owasp_phprbac_20260820_143200.md
+│   └── monolog_monolog_20260820_143300.md
+└── history.jsonl       # 所有執行記錄
+```
+
+## 快速開始與新賽事接入手冊 (Turnkey Onboarding)
+
+當新一屆 HITCON Wargame 或類似的自動化 CTF / 原始碼供應鏈競賽開始時，僅需 3 步驟即可立即上線運作：
+
+### 1. 安裝依賴
+
+```bash
+pip install -r requirements.txt
+
+# 若需啟用 Cloudflare Turnstile 自動瀏覽器繞過：
+pip install playwright && playwright install chromium
+```
+
+### 2. 設定環境變數 (.env)
+
+複製 `.env.example` 為 `.env` 並根據當前活動平台填寫：
+
+```bash
+cp .env.example .env
+```
+
+| 變數名稱 | 預設值 / 說明 | 必填 |
+|---|---|---|
+| `WARGAME_BASE_URL` | `https://wargame.d3vc0r3.tw`（新活動填入主網址） | 否 |
+| `WARGAME_API_BASE` | `${WARGAME_BASE_URL}/api/v1`（新活動 API 前綴） | 否 |
+| `WARGAME_SUBMIT_URL` | `${WARGAME_BASE_URL}/submit`（新活動前端提交頁） | 否 |
+| `WARGAME_EMAIL` | 平台登入帳號 Email | 連網模式必填 |
+| `WARGAME_PASSWORD` | 平台登入密碼 | 連網模式必填 |
+| `WARGAME_DIST_DIR` | 解壓縮後的題目原始碼目錄（含 `vendor/`） | 是 |
+| `WARGAME_EXPLOIT_DIR`| Exploit 產出存放路徑（預設 `bot/results`） | 否 |
+
+### 3. 執行模式
+
+#### 模式 A：線上聯網全自動競賽（登入 -> 抓題 -> 掃描 -> Exploit -> Docker 驗證 -> 提交）
+
+```bash
+# 全自動執行所有題目
+python main.py
+
+# 指定單一 Package
+python main.py --package owasp/phprbac
+
+# 產生並本機 Docker 測試，但暫不向遠端提交
+python main.py --package monolog/monolog --no-submit
+```
+
+#### 模式 B：離線 / 本地原始碼獨立審計（平台關閉或尚未開賽時）
+
+可在完全不連線任何外部平台的情況下，對任意本地目錄或解壓包進行靜態審計與 Docker Exploit 驗證：
+
+```bash
+# 離線純靜態審計本地目錄（輸出 JSON 報告與 Markdown writeup）
+python main.py --local-dir /path/to/source --scan-only
+
+# 離線完整生成 Exploit 並於本機 Docker 驗證（不連線遠端平台）
+python main.py --local-dir /path/to/source --offline
+```
+
+```bash
+python main.py \
+  --email "$WARGAME_EMAIL" \
+  --password "$WARGAME_PASSWORD" \
+  --dist-dir /path/to/dist
+```
+
+### 手動步驟
+
+```python
+from client import create_client
+from lib.scanner import scan_package
+from generator import create_generator
+from tester import create_tester
+
+# 1. 登入 (使用環境變數中的憑證)
+client = create_client()
+client.login()
+
+# 2. 取 packages
+packages = client.get_packages()
+
+# 3. 掃描漏洞
+vulns = scan_package("/path/to/package/src")
+
+# 4. 生成 exploit
+generator = create_generator()
+exploit = generator.generate_exploit(vulns[0])
+generator.save_exploit(exploit, "exploit.py")
+
+# 5. 測試
+tester = create_tester("/path/to/dist")
+success, output = tester.test_exploit("exploit.py", "7.4.33", "vendor/package", "1.0.0")
+
+# 6. 提交
+client.submit_exploit(package_id, exploit_code)
+```
+
+## 漏洞掃描模式
+
+Scanner 會檢測以下漏洞模式：
+
+| 類型 | 嚴重度 | 說明 |
+|------|--------|------|
+| SQL Injection | HIGH | SQL 注入 |
+| Code Injection | HIGH | 代碼注入（eval, file_put_contents 等）|
+| File Inclusion | HIGH | 文件包含（LFI/RFI）|
+| Deserialization | HIGH | 反序列化漏洞 |
+| Path Traversal | MEDIUM | 路徑穿越 |
+| Dangerous Function | HIGH | 危險函數 + 用戶輸入 |
+
+## Exploit 生成模板
+
+Generator 內建以下模板：
+
+1. **file_put_contents_code_injection** - 針對 file_put_contents 代碼注入
+2. **sql_injection_file_write** - SQL 注入寫文件
+3. **file_inclusion_rce** - 文件包含 RCE
+4. **generic_rce** - 通用 RCE 模板
+
+## Docker 測試
+
+本地測試需要 `dist/` 目錄（從 wargame 平台下載）。
+
+```bash
+# 先 build base images
+cd dist && ./build-base-images.sh
+
+# 測試 exploit
+./run.sh 7.4.33 vendor/package 1.0.0 exploit.py
+```
+
+## 自定義擴展
+
+### 新增掃描模式
+
+在 `lib/scanner.py` 的 `Scanner` 類別中新增規則：
+
+```python
+# 在 lib/scanner_rules.py 中新增規則
+new_rule = VulnRule(
+    id="CUSTOM-001",
+    name="Custom Pattern",
+    pattern=r'your_pattern_here',
+    severity="HIGH",
+    category="code_execution",
+    description="Description",
+    fix="Fix suggestion",
+)
+```
+
+### 新增 Exploit 模板
+
+在 `generator.py` 的 `TEMPLATES` 字典中新增：
+
+```python
+TEMPLATES["my_template"] = ExploitTemplate(
+    name="My Template",
+    vulnerability_type="Custom",
+    template='''your template here''',
+    description="Description"
+)
+```
+
+## 自動 Writeup 產生
+
+每次處理完一個 package，bot 會自動產生 Markdown writeup：
+
+```markdown
+# owasp/phprbac 2.0.0 (PHP 7.4.33)
+
+> Auto-generated by Wargame Bot — 2026-08-20 14:32
+
+## 概覽
+
+| 項目 | 數值 |
+|------|------|
+| 漏洞總數 | 5 |
+| 高危漏洞 | 3 |
+| 產生 exploit | 3 |
+| 成功 exploit | 2 |
+| 已提交 | ✅ 是 |
+
+## 漏洞掃描結果
+
+| # | 類型 | 嚴重度 | 位置 | 程式碼 |
+|---|------|--------|------|--------|
+| 1 | Code Injection | HIGH | `install.php:278` | $pass="' . $_GET['db_auth']... |
+
+## Exploit 結果
+
+### exploit_1.py
+
+**狀態**: ✅ 成功
+
+```
+LOCAL_TEST_FLAG1
+LOCAL_TEST_FLAG2
+```
+```
+
+## 查詢歷史
+
+```python
+from storage import Storage
+
+storage = Storage()
+
+# 查看所有執行歷史
+history = storage.get_history()
+for record in history:
+    print(f"{record.package_name}: {len(record.vulnerabilities)} vulns")
+
+# 查看統計
+stats = storage.get_stats()
+print(f"Total packages: {stats['total_packages']}")
+print(f"Total submissions: {stats['total_submissions']}")
+```
+
+## 注意事項
+
+1. **提交冷卻**：每次提交後會等待 60 秒
+2. **Docker 資源**：每個測試會佔用 256MB 記憶體
+3. **API 限流**：避免短時間大量請求
+4. **合法使用**：僅用於 wargame 學習目的
