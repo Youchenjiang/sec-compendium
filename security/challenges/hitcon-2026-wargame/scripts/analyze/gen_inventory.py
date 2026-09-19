@@ -6,7 +6,7 @@ Cross-references: SAST scan results, platform solved packages, exploit scripts, 
 import json
 import csv
 from pathlib import Path
-from collections import defaultdict
+from collections import defaultdict, Counter
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
@@ -280,7 +280,26 @@ def _write_markdown(rows):  # skipcq: PY-R1000
     print(f"[+] MD written to {OUTPUT_MD}")
 
 
-def main():
+def _print_inventory_summary(rows: list) -> None:
+    """Print summary breakdown of package inventory."""
+    p_counts = Counter(r["priority"] for r in rows)
+    with_exploit = sum(1 for r in rows if r["exploit_script"])
+    cached = sum(1 for r in rows if r["cached"])
+    solved = sum(1 for r in rows if r["solved"])
+
+    print("\nSummary:")
+    print(f"  Total packages: {len(rows)}")
+    print(f"  With exploit:   {with_exploit}")
+    print(f"  P1-CRIT:        {p_counts['P1-CRIT']}")
+    print(f"  P1-SUPERGLOBAL: {p_counts['P1-SUPERGLOBAL']}")
+    print(f"  P1-NEED-DL:     {p_counts['P1-NEED-DL']}")
+    print(f"  P2-WEB:         {p_counts['P2-WEB']}")
+    print(f"  P2-HIGH:        {p_counts['P2-HIGH']}")
+    print(f"  Cached:         {cached}")
+    print(f"  Solved:         {solved}")
+
+
+def main():  # skipcq: PY-R1000
     sast, solved_list = _load_data()
     if sast is None:
         return 1
@@ -299,17 +318,7 @@ def main():
 
     _write_csv(rows)
     _write_markdown(rows)
-
-    print("\nSummary:")
-    print(f"  Total packages: {len(rows)}")
-    print(f"  With exploit:   {sum(1 for r in rows if r['exploit_script'])}")
-    print(f"  P1-CRIT:        {sum(1 for r in rows if r['priority'] == 'P1-CRIT')}")
-    print(f"  P1-SUPERGLOBAL: {sum(1 for r in rows if r['priority'] == 'P1-SUPERGLOBAL')}")
-    print(f"  P1-NEED-DL:     {sum(1 for r in rows if r['priority'] == 'P1-NEED-DL')}")
-    print(f"  P2-WEB:         {sum(1 for r in rows if r['priority'] == 'P2-WEB')}")
-    print(f"  P2-HIGH:        {sum(1 for r in rows if r['priority'] == 'P2-HIGH')}")
-    print(f"  Cached:         {sum(1 for r in rows if r['cached'])}")
-    print(f"  Solved:         {sum(1 for r in rows if r['solved'])}")
+    _print_inventory_summary(rows)
     return 0
 
 
