@@ -3,7 +3,7 @@
 > **教練與覆盤使用指引**：  
 > 1. 本手冊對應 `mock_exam_b_lab_questions.md` 全部 93 道實體推演題。  
 > 2. 包含官方標準解答、Flag、Wireshark 過濾語法、Volatility 指令、Python 解碼腳本與實戰思路。  
-> 3. **實體機台實作驗證支援**：可配合 [`../challenges/evidence/README.md`](../challenges/evidence/README.md) 中收錄之實體封包、事件日誌與 [`../labs/`](../labs/README.md) 靶機進行指令還原。  
+> 3. **實體機台實作驗證支援**：可配合 [`evidence/README.md`](evidence/README.md) 中收錄之實體封包、事件日誌與 [`../labs/`](../labs/README.md) 靶機進行指令還原。  
 > 4. 建議隊伍在完成 180 分鐘實體演練後，全體隊員集中覆盤，逐題校正推演盲點！
 
 ---
