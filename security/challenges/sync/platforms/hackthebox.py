@@ -50,6 +50,8 @@ class HackTheBoxAdapter(BaseChallengeAdapter):
         }
         if token:
             headers["Authorization"] = f"Bearer {token}"
+        if not url.lower().startswith(("http://", "https://")):
+            raise ValueError(f"Insecure URL scheme: {url}")
         req = urllib.request.Request(url, headers=headers)
         try:
             with urllib.request.urlopen(req, timeout=15) as resp:

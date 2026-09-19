@@ -88,6 +88,8 @@ class RootMeAdapter(BaseChallengeAdapter):
 
         try:
             while current_url:
+                if not current_url.lower().startswith(("http://", "https://")):
+                    raise ValueError(f"Insecure URL scheme: {current_url}")
                 req = urllib.request.Request(current_url, headers=headers)
                 with urllib.request.urlopen(req, timeout=15) as r:
                     data = json.loads(r.read().decode("utf-8"))

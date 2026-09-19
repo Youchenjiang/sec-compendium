@@ -39,6 +39,8 @@ class CyberDefendersAdapter(BaseChallengeAdapter):
 
     def _fetch_page(self, page: int, retries: int = 3) -> dict:
         url = self.API_URL_TEMPLATE.format(page=page, size=self.PAGE_SIZE)
+        if not url.lower().startswith(("http://", "https://")):
+            raise ValueError(f"Insecure URL scheme: {url}")
         req = urllib.request.Request(
             url,
             headers={

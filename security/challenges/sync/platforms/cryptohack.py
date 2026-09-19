@@ -58,6 +58,8 @@ class CryptoHackAdapter(BaseChallengeAdapter):
             url = f"https://cryptohack.org/challenges/{cat_slug}/"
             print(f"  [CryptoHack] Scraping category: {cat_title} ({url})...")
             try:
+                if not url.lower().startswith(("http://", "https://")):
+                    raise ValueError(f"Insecure URL scheme: {url}")
                 req = urllib.request.Request(url, headers={"User-Agent": user_agent})
                 with urllib.request.urlopen(req, timeout=15) as resp:
                     html = resp.read().decode("utf-8", "ignore")
