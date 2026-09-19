@@ -62,7 +62,7 @@ class CryptoHackAdapter(BaseChallengeAdapter):
                 if not url.lower().startswith(("http://", "https://")):
                     raise ValueError(f"Insecure URL scheme: {url}")
                 req = urllib.request.Request(url, headers={"User-Agent": user_agent})
-                with urllib.request.urlopen(req, timeout=15) as resp:
+                with urllib.request.urlopen(req, timeout=15) as resp:  # skipcq: BAN-B310
                     html = resp.read().decode("utf-8", "ignore")
 
                 # Match each challenge block within the list
@@ -196,7 +196,7 @@ class CryptoHackAdapter(BaseChallengeAdapter):
         lines.append("## 📚 二、 各分類題庫詳細清單")
         lines.append("")
 
-        for cat_slug, cat_title, cat_desc in self.CATEGORIES:
+        for _cat_slug, cat_title, cat_desc in self.CATEGORIES:
             ch_list = cat_stats.get(cat_title, [])
             if not ch_list:
                 continue

@@ -54,7 +54,7 @@ class HackTheBoxAdapter(BaseChallengeAdapter):
             raise ValueError(f"Insecure URL scheme: {url}")
         req = urllib.request.Request(url, headers=headers)
         try:
-            with urllib.request.urlopen(req, timeout=15) as resp:
+            with urllib.request.urlopen(req, timeout=15) as resp:  # skipcq: BAN-B310
                 return json.loads(resp.read().decode("utf-8"))
         except Exception:
             # Silently log error or debug

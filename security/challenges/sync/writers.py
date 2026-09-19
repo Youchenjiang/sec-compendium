@@ -7,8 +7,7 @@ CSV and formatted Markdown catalog files.
 
 import csv
 from pathlib import Path
-from typing import Any, Callable, List, Optional
-from security.challenges.sync.models import ChallengeItem
+from typing import Any, List, Optional
 
 
 def write_csv(
@@ -20,7 +19,7 @@ def write_csv(
     """Write tabular rows to a CSV file."""
     output_path.parent.mkdir(parents=True, exist_ok=True)
     encoding = "utf-8-sig" if utf8_sig else "utf-8"
-    with open(output_path, "w", encoding=encoding, newline="") as f:
+    with open(output_path, "w", encoding=encoding, newline="") as f:  # skipcq: PTC-W6004
         writer = csv.writer(f)
         writer.writerow(headers)
         writer.writerows(rows)
@@ -30,7 +29,7 @@ def write_csv(
 def write_markdown_file(output_path: Path, content: str) -> None:
     """Write text content to a Markdown file."""
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(output_path, "w", encoding="utf-8") as f:
+    with open(output_path, "w", encoding="utf-8") as f:  # skipcq: PTC-W6004
         f.write(content)
     print(f"  [Markdown] Saved catalog -> {output_path}")
 
