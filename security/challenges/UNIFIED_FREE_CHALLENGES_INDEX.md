@@ -18,8 +18,8 @@
 | **🚩 picoCTF / CyLab Academy** | CTF 競賽打底、基礎技能、二進位 PWN、逆向與密碼學 | **525 題** | [CyLab 全題目目錄](platforms/cylab_picoctf/cylab_all_challenges_catalog.md)（[學習路徑](platforms/cylab_picoctf/cylab_learning_paths_catalog.md)） | [`cylab_all_challenges_2026-08-08.csv`](platforms/cylab_picoctf/cylab_all_challenges_2026-08-08.csv) |
 | **🔐 CryptoHack** | 現代密碼學（AES, RSA, ECC, Diffie-Hellman, Post-Quantum） | **308 題** | [CryptoHack 全目錄](platforms/cryptohack/cryptohack_all_challenges_catalog.md) | [`cryptohack_all_challenges_2026.csv`](platforms/cryptohack/cryptohack_all_challenges_2026.csv) |
 | **🎯 TryHackMe (THM)** | 引導式學習與雲端 VM、Active Directory 內網、SOC 防禦全房間 | **992 間** | [TryHackMe 全量房間目錄](platforms/tryhackme/tryhackme_free_rooms_catalog.md) | [`tryhackme_all_rooms_2026.csv`](platforms/tryhackme/tryhackme_all_rooms_2026.csv) |
-| **🚩 Root-Me** | 歐洲經典攻防靶場（官方即時 Sitemap 動態抓取 11 大領域關卡） | **212 題** | [Root-Me 全分類目錄](platforms/rootme/rootme_all_challenges_catalog.md) | [`rootme_all_challenges_2026.csv`](platforms/rootme/rootme_all_challenges_2026.csv) |
-| **總計 (Total Verified Free Tier)** | **橫跨紅隊滲透、藍隊防禦、CTF 競賽與密碼學之全自動即時同步題庫** | **2,865 題** | **8 大平台官方直連** | **全格式支援 CSV / Markdown** |
+| **🚩 Root-Me** | 歐洲經典攻防靶場（官方 REST API 動態同步 11 大領域官方題庫） | **608 題** | [Root-Me 全分類目錄](platforms/rootme/rootme_all_challenges_catalog.md) | [`rootme_all_challenges_2026.csv`](platforms/rootme/rootme_all_challenges_2026.csv) |
+| **總計 (Total Verified Free Tier)** | **橫跨紅隊滲透、藍隊防禦、CTF 競賽與密碼學之全自動即時同步題庫** | **3,261 題** | **8 大平台官方直連** | **全格式支援 CSV / Markdown** |
 
 
 ---
