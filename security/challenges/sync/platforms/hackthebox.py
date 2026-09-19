@@ -72,6 +72,7 @@ class HackTheBoxAdapter(BaseChallengeAdapter):
             ("Fawn", "Linux", "Very Easy", "FTP 服務枚舉、匿名訪客存取 (Anonymous Login) 下載機密檔案"),
             ("Dancing", "Windows", "Very Easy", "SMB 共享資源枚舉、無密碼訪客存取與管理員備份洩漏"),
             ("Explosion", "Windows", "Very Easy", "RDP 服務枚舉 (官方標註為 VIP+)"),
+            ("Appointment", "Linux", "Very Easy", "Web 登入介面 SQL 注入攻擊 (SQLi) 繞過驗證"),
             ("Crocodile", "Linux", "Easy", "FTP 服務洩漏憑證、Web 管理後台預設帳密突破"),
             ("Responder", "Windows", "Easy", "Web LFI 本地檔案包含、LLMNR/NBT-NS 毒化、NTLM 雜湊捕捉提權"),
             ("Three", "Linux", "Easy", "子域名探勘、AWS S3 儲存貯體未授權寫入與 PHP WebShell"),
@@ -98,7 +99,7 @@ class HackTheBoxAdapter(BaseChallengeAdapter):
                     tier="🟢 FREE" if is_free else "🔴 VIP+",
                     difficulty=diff,
                     category="Starting Point (Machine)",
-                    url=f"https://app.hackthebox.com/machines/{name}",
+                    url=f"https://app.hackthebox.com/machines/{name.replace(' ', '%20')}",
                     description=desc,
                     extra={"os": os_type, "type": "starting_point"},
                 )
@@ -117,7 +118,7 @@ class HackTheBoxAdapter(BaseChallengeAdapter):
                     tier="🟢 FREE",
                     difficulty=m.get("difficultyText", "Unknown"),
                     category="Machine (Active Pentest)",
-                    url=f"https://app.hackthebox.com/machines/{name}",
+                    url=f"https://app.hackthebox.com/machines/{name.replace(' ', '%20')}",
                     description=f"當期線上常規主機攻堅演練 ({m.get('points')} pts) ｜ 發布日期: {str(m.get('release', ''))[:10]}",
                     extra={"os": m.get("os", "Linux"), "type": "active_machine"},
                 )
@@ -142,7 +143,7 @@ class HackTheBoxAdapter(BaseChallengeAdapter):
                         tier="🔴 VIP+",
                         difficulty=m.get("difficultyText", "Unknown"),
                         category="Machine (Retired Archive)",
-                        url=f"https://app.hackthebox.com/machines/{name}",
+                        url=f"https://app.hackthebox.com/machines/{name.replace(' ', '%20')}",
                         description=f"歷史經典滲透主機歸檔（需 VIP+ 訂閱啟動）｜ 發布日期: {str(m.get('release', ''))[:10]}",
                         extra={"os": m.get("os", "Linux"), "type": "retired_machine"},
                     )
@@ -238,7 +239,7 @@ class HackTheBoxAdapter(BaseChallengeAdapter):
                         tier=row.get("Tier", ""),
                         difficulty=row.get("Difficulty", ""),
                         category=row.get("Category", ""),
-                        url=row.get("URL", ""),
+                        url=row.get("URL", "").replace(" ", "%20"),
                         description=row.get("Scenario", ""),
                         extra={"os": row.get("OS", "N/A")},
                     )
@@ -262,7 +263,7 @@ class HackTheBoxAdapter(BaseChallengeAdapter):
                 c.difficulty,
                 c.extra.get("os", "N/A"),
                 c.category,
-                c.url,
+                c.url.replace(" ", "%20"),
                 c.clean_description,
             ]
             for c in challenges
