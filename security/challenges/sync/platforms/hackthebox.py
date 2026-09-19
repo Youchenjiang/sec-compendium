@@ -60,7 +60,7 @@ class HackTheBoxAdapter(BaseChallengeAdapter):
             # Silently log error or debug
             return None
 
-    def fetch_challenges(self) -> List[ChallengeItem]:
+    def fetch_challenges(self) -> List[ChallengeItem]:  # skipcq: PY-R1000
         token = self.load_token()
         if not token:
             print("  [Notice] HTB_API_TOKEN not set or available.")
