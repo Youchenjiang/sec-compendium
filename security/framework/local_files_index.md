@@ -16,9 +16,9 @@
 
 ## ⚔️ 平台專屬速查與雙軌分層列表 (Platform Classroom Lists & Dual-Tier Labs)
 
-- ⚔️ [`03_COMBINED_90_RUNS_pico_PortSwigger.md`](../challenges/combined_90_runs_challenges.md) — **【雙平台雙軌綜合對照表】** 結合 picoCTF ＋ PortSwigger 保底/延伸關卡
-- 🚩 [`04_CLASSROOM_picoCTF_90_Runs.md`](../challenges/picoctf_90_runs.md) — **【picoCTF 專屬對照表】** 20 大 Learning Paths 與關卡搜尋
-- 🌐 [`05_CLASSROOM_PortSwigger_90_Runs.md`](../challenges/portswigger_90_runs.md) — **【PortSwigger 專屬對照表】** Web Security 專題與實務 Lab 關卡
+- ⚔️ [`03_COMBINED_90_RUNS_pico_PortSwigger.md`](../../tracks/lab/90_runs/checklists/combined_90_runs_challenges.md) — **【雙平台雙軌綜合對照表】** 結合 picoCTF ＋ PortSwigger 保底/延伸關卡
+- 🚩 [`04_CLASSROOM_picoCTF_90_Runs.md`](../../tracks/lab/90_runs/checklists/picoctf_90_runs.md) — **【picoCTF 專屬對照表】** 20 大 Learning Paths 與關卡搜尋
+- 🌐 [`05_CLASSROOM_PortSwigger_90_Runs.md`](../../tracks/lab/90_runs/checklists/portswigger_90_runs.md) — **【PortSwigger 專屬對照表】** Web Security 專題與實務 Lab 關卡
 
 ---
 
