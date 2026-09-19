@@ -3,6 +3,9 @@
 [config]
 max_model_tokens = 16000
 custom_model_max_tokens = 16000
+ai_timeout = 90
+retry_same_model_on_timeout = false
+fallback_models = []
 ignore_glob = [
     "ctfd/database/**",
     "**/*.sql",
@@ -11,6 +14,11 @@ ignore_glob = [
     "**/*.c",
     "**/*.h"
 ]
+
+[github_action_config]
+auto_describe = true
+auto_review = true
+auto_improve = false
 
 [pr_code_suggestions]
 # 限制 Chunk 數量與建議數量
