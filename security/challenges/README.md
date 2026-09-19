@@ -20,6 +20,25 @@
 | [**`platforms/hackthebox/`**](platforms/hackthebox/) | 📦 滲透與調查靶場 | Hack The Box 全量 1600+ 題與 359 題免費機器/調查 (Sherlocks) 目錄與 CSV 數據庫 |
 | [**`platforms/mta/`**](platforms/mta/) | 🦈 流量分析靶場 | Malware-Traffic-Analysis 113 套真實惡意封包分析實戰題目目錄與 CSV 數據庫 |
 | [**`platforms/cylab_picoctf/`**](platforms/cylab_picoctf/) | 🏛️ CTF 競賽題庫 | CyLab / picoCTF 官方題庫快照數據庫與學習路徑對照目錄 |
+| [**`sync/`**](sync/) | 🔄 自動同步框架 | 多平台實戰題庫通用同步器、API 爬蟲與標準化匯出 CLI |
+
+---
+
+## 🔄 題庫自動同步框架 (Challenge Sync Framework)
+
+本目錄內建通用題庫同步框架，支援自動對接各平台官方 API / 網頁爬取最新題目，並自動生成統一規格之 CSV 與 Markdown Catalog：
+
+```bash
+# 1. 查看支援之平台適配器
+python -m security.challenges.sync.main --list
+
+# 2. 同步單一平台 (例如 MTA 或 CyberDefenders)
+python -m security.challenges.sync.main --platform mta
+python -m security.challenges.sync.main --platform cyberdefenders
+
+# 3. 一鍵同步所有平台
+python -m security.challenges.sync.main --all
+```
 
 ---
 
