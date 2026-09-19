@@ -96,3 +96,12 @@ or
 
 ### 3. Safety Rules
 - **NEVER** run `git push` or `git push --force` automatically. Only commit locally unless explicit push authorization is granted.
+
+
+## 🛡️ Integrated Security Frameworks & Offensive-Defensive Standards
+
+- **Unified Security Analysis Framework**:
+  Refer to [`security/framework/unified_security_audit_framework.md`](../security/framework/unified_security_audit_framework.md) for full-spectrum vulnerability audit methodologies:
+  - Comprehensive SAST & Data Flow Taint Analysis
+  - Insecure Defaults & Dangerous Pattern Auditing
+  - CTF Web, Pwn, Crypto, Forensics, and Reverse Engineering Playbooks

@@ -1,0 +1,46 @@
+# Dependencies
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.eggs/
+dist/
+build/
+*.whl
+venv/
+.venv/
+
+# Environment & secrets
+.env
+.env.local
+.env.*.local
+*.cookies.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Images / screenshots
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# Large generated data (keep on disk, not in git)
+bot/scan_cache/
+bot/packages/
+bot/probe_results.json
+bot/results/
+data/
+
+# Archives & skills
+archives/
+skills/
+local-challenges/
