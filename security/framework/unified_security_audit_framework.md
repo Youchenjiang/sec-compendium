@@ -387,11 +387,10 @@ unsigned_jwt = f"{header}.{payload}."  # 空簽名
 ```
 
 **Algorithm Confusion (RS256 → HS256)：**
-```text
-// 伺服器接受 RS256 和 HS256，用 public key 進行 HS256 簽名
-const jwt = require('jsonwebtoken');
-const pubKeyStr = ['-----BEGIN', 'PUBLIC', 'KEY-----'].join(' ') + '\n...\n' + ['-----END', 'PUBLIC', 'KEY-----'].join(' ');
-const forgedToken = jwt.sign({ username: 'admin' }, pubKeyStr, { algorithm: 'HS256' });
+- **攻擊原理**：伺服器若同時接受非對稱（RS256）與對稱（HS256）演算法，攻擊者可取得伺服器公開公鑰字串，將 JWT 標頭演算法欄位切換為 `HS256`，並以該公鑰內容作為 HMAC 對稱金鑰重新計算雜湊簽章完成偽造。
+- **自動化驗證**：
+```bash
+python3 -m jwt_tool <TARGET_TOKEN> -X a -pk public.pem
 ```
 
 **Weak Secret Brute-Force：**
@@ -758,12 +757,10 @@ def verify_signature(sig, data, key):
 ## 🔍 Phase 6: Insecure Defaults Audit（不安全預設值審計）
 
 ### 6.1 — Fallback Secrets
-```text
-# ❌ 危險
-SIGNING_KEY = os.environ.get('SIGNING_KEY') or ('insecure_' + 'local_seed')
-
-# ✅ 安全
-SIGNING_KEY = os.environ['SIGNING_KEY']  # 缺少時崩潰
+- **❌ 危險**：使用非空預設回退值替代遺失的環境變數，導致生產環境金鑰缺失時靜默降級至已知固定字串。
+- **✅ 安全**：核心安全參數必須在啟動階段進行嚴格校驗，缺少時立即引發異常並終止進程：
+```python
+APP_KEY = os.environ["APP_SIGNING_KEY"]  # 缺失時直接引發 KeyError 中斷啟動
 ```
 
 ### 6.2 — Fail-Open Switches
