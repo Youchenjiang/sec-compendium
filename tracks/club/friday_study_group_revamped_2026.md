@@ -1,76 +1,70 @@
-# NCtfU 資安社｜週五線上藍隊探案茶館（100% 官方非 Premium 免費題庫認證版）
+# NCtfU 資安社｜週五線上雙軌自適應讀書會（基礎引導 101 ✕ 進階自習 201）
 
-版本：v1.2｜校驗日期：2026-09-15｜狀態：已比對官方全量清單，100% 非 Premium、免付費、免複雜環境
-
----
-
-## 1. 核心定位與設計原則（三大解綁）
-
-1. **解綁週三社課通識**：
-   * **週三社課**為全校普及與入門漏斗（Top of Funnel），講授環境安裝、基礎指令與科普。
-   * **週五讀書會**正名為 **「獨立純藍隊實戰／威脅獵捕／事件調查專題班（Blue Team Studio）」**，不重複教基礎指令，直接進入真實 Log、pcap、取證調查。
-2. **解綁金盾單選刷題**：
-   * 金盾初賽 100 題單選死背法規與標準，僅供 3 人參賽戰隊於實驗室專班（`tracks/lab/golden_shield_sprint/`）自律衝刺。
-   * 週五讀書會專注於動手調查，維持一氣呵成的攻擊調查與威脅獵捕鏈（Kill Chain），不讓非參賽社員枯燥陪跑。
-3. **解綁課外作業與報告壓力**：
-   * 取消會前 2～3 小時課外刷題要求。
-   * 120 分鐘現場自閉環（Live Investigation），當場玩、當場解、解完即下課，零課外作業。
+版本：v2.0｜制定日期：2026-09-19｜狀態：100% 免費非 Premium 實機認證、動態分流自適應機制
 
 ---
 
-## 2. 目標受眾畫像
+## 1. 核心理念：自適應雙軌並行機制
 
-* **一句話定位**：「給那群**『想稍微認真動手玩資安，但不想有上課與報告壓力』**的社員，一個週五晚上能動動手、有同伴能問問題的線上黑客咖啡廳。」
-* **三類核心組成**：
-  1. **主力基本盤（約 60%）**：想動手但有拖延症，需要固定時段和同伴氛圍一起摸索的社員。
-  2. **提問探索者（約 25%）**：看得懂社課，但面對龐大封包/日誌不知如何下手，需要隨時能在文字區丟截圖求救的環境。
-  3. **潛水技術宅（約 15%）**：不想社交、不愛開麥，題目一出默默飆完，文字區丟一句 Flag 享受破關成就感（潛在比賽種子）。
+社團讀書會過去最大的困境在於**「難度單一化」**：排太深嚇跑新生，排太淺勸退老手；每次來的人程度不一，導致課表無法推行。
 
----
-
-## 3. Discord 運作機制（超 Chill 線上茶館模式）
-
-* **頻道型態**：全體掛在**同一個大語音房**（週五藍隊自習室），開麥打屁隨意、閉麥當聽眾也完全 OK。
-* **主持人角色**：**「開房管理員」**（不開螢幕畫面，零台上表演壓力）。
-* **現場 120 分鐘時間流**：
-  * **19:30（文字區丟包）**：主持人貼出題目下載連結、當晚要找的 3 個線索 (Flag)、對應知識庫手冊路徑。開麥交代背景 2 分鐘後閉麥自由行動。
-  * **19:35 ~ 20:45（自主摸索與文字截圖交流）**：各自下載 log 或 pcap 檔案摸索。卡關或發現異常直接截圖丟文字頻道，文字區形成「偵探線索板」。
-  * **20:45 ~ 21:00（隨緣收尾）**：解出者貼出答案，沒解完者參考官方題解或知識庫手冊，準時下課放假。
+本學期週五讀書會全面採用**「同主題、雙難度、動態分流」**的自適應機制：
+* **看今天來的是誰，動態決定今晚怎麼跑**。
+* **零基礎同學**：不強迫讀生硬手冊，由幹部手把手以「教學引導（Track 101）」帶做，保證拿 Flag 獲取成就感。
+* **有基礎同學**：發放「進階實戰包（Track 201）」，各憑本事自習挑戰，卡關在文字區互丟線索，最後 15 分鐘合流分享。
 
 ---
 
-## 4. 採用平台與本機環境準備（100% 實機驗證非 Premium）
+## 2. 雙軌道定位與模式
 
-平台挑選鐵則：**「絕無付費鎖、免信用卡、下載單一檔案即開工」**。
-
-1. **CyberDefenders（非 Premium 免費題）**：比對官方全量題庫，全部挑選 `Locked: False` 之免費題，註冊一般帳號即可免費下載封包。
-2. **Malware-Traffic-Analysis - MTA**：Brad 頂尖真實流量 pcap，公開免登入，解壓密碼固定 `infected`。
-3. **SEED Labs 2.0 (Docker)**：技能競賽實體加固體驗，官方開源 Docker 一鍵啟動。
-
-> **社員本機自備工具**：
-> 1. **Wireshark**（分析封包）
-> 2. **VS Code 或任何文字編輯器**（分析文字日誌）
-> 3. **Volatility 3**（記憶體取證週使用，免安裝解壓即可）
+| 軌道 | 目標受眾 | 運作型態 | 題目特徵 | 幹部/主持人心態 |
+| :--- | :--- | :--- | :--- | :--- |
+| **🟢 Track 101<br>基礎引導班** | 零基礎、大一新生、社課跟不上想動手摸索者 | **開螢幕 Demo、手把手教學**<br>(現場一起踩坑、講解核心觀念) | • 瀏覽器 / DevTools 即可操作<br>• picoCTF / 基礎 PortSwigger<br>• 乾淨的 Wireshark 封包抓明文 | **帶路教練**：確保零基礎同學當晚一定能親手拿到 Flag，建立信心。 |
+| **🔴 Track 201<br>進階研習室** | 有基礎、想備戰金盾/技能競賽/CTF 的老手 | **各自自習、文字區交流**<br>(最後 15 分鐘全體合流成果 Demo) | • CyberDefenders 真實日誌與取證<br>• HackTheBox 靶機滲透 (Starting Point)<br>• MTA 惡意流量分析 | **同儕交流**：不講課，各顯神通破關，互相切磋 Payload 與調查思維。 |
 
 ---
 
-## 5. 秋季 14 週純線上實戰課表（全數經實機驗證非 Premium、無付費鎖）
+## 3. 當晚 120 分鐘 Discord 動態時間流
 
-時間：每週五 19:30～21:00（Discord 線上語音房）
+```text
+19:30 ~ 19:40 【點名與動態分流（10 分鐘）】
+  主持人看今晚出席名單：
+  • 若全都是零基礎：全體跑 Track 101，幹部開螢幕帶做，邊做邊講觀念。
+  • 若全都是老手：直接發布 Track 201 題目包，全體進入自主挑戰與文字區交流。
+  • 若新舊混雜（常態分流）：
+      - 語音房 A【新手引導房】：幹部開螢幕帶零基礎同學做 Track 101。
+      - 語音房 B【進階研究室】：老手各自開工打 Track 201，卡關在文字區丟截圖。
 
-| 週次與日期 | 當晚調查主題 (案件背景) | 使用平台與精確題目連結 (100% 實測免費非 Premium) | 難度 | 所需工具 | 當晚要找的 3 個線索 (Flag) | 對應知識庫手冊 |
-| :--- | :--- | :--- | :---: | :--- | :--- | :--- |
-| **W1 (9/18)** | **【Web 邊界獵捕】**<br>伺服器異常告警！網站入侵與 Webshell 追兇 | CyberDefenders<br>👉 [Lab: Web Investigation](https://cyberdefenders.org/blueteam-ctf-challenges/web-investigation/) | Easy | Wireshark | 1. 攻擊者最初掃描與注入的 IP 為何？<br>2. 攻擊者上傳的 Webshell 檔名為何？<br>3. 攻擊者從後台偷走的資料庫表單名稱？ | `security/blue_team/playbooks/phase_2_traffic_analysis/09_web_application_firewall_traffic.md` |
-| **W2 (9/25)** | **【系統日誌調查】**<br>Linux 伺服器遭受暴力攻擊與入侵跡證分析 | CyberDefenders<br>👉 [Lab: Hammered](https://cyberdefenders.org/blueteam-ctf-challenges/hammered/) | Medium | VS Code / grep | 1. 哪一個 IP 發起了密碼爆破攻擊？<br>2. 攻擊者成功登入的時間戳記？<br>3. 攻擊者登入後新增的後門帳號名稱？ | `security/blue_team/playbooks/phase_1_log_triage/01_linux_auth_logons.md` |
-| **W3 (10/2)** | **【鑑識工具神技】**<br>Windows 事件與系統行為深度分析 | CyberDefenders<br>👉 [Lab: Sysinternals](https://cyberdefenders.org/blueteam-ctf-challenges/sysinternals/) | Medium | Event Viewer / VS Code | 1. 惡意程式修改了哪一個登錄檔機碼？<br>2. 攻擊者留下的排程任務名稱與路徑？<br>3. 惡意行程觸發的網路外聯目的地？ | `security/blue_team/playbooks/phase_1_log_triage/04_windows_security_logons.md` |
-| **W4 (10/9)** | **【內網橫向獵捕】**<br>黑客在內網跳舞！抓出 PsExec 橫向移動與 SMB 跡證 | CyberDefenders<br>👉 [Lab: PsExec Hunt](https://cyberdefenders.org/blueteam-ctf-challenges/psexec-hunt/) | Easy | Wireshark | 1. 攻擊者使用哪台主機發起 PsExec 橫向移動？<br>2. 目標主機建立的服務名稱與執行檔檔名？<br>3. 橫向移動時利用的 SMB 共享管道名稱？ | `security/blue_team/playbooks/phase_2_traffic_analysis/10_lateral_movement_traffic.md` |
-| **W5 (10/16)** | **【真實流量實戰】**<br>員工電腦中木馬！AsyncRAT / XWorm 感染流量分析 | Malware-Traffic-Analysis (MTA)<br>👉 [2024-03-14 Traffic Analysis](https://www.malware-traffic-analysis.net/2024/03/14/index.html) | — | Wireshark | 1. 中毒受害者的內網 IP 與主機名稱？<br>2. 攻擊者連回的 C2 惡意域名與 IP？<br>3. 封包中下載的惡意 exe 之 SHA256？ | `security/blue_team/playbooks/phase_2_traffic_analysis/08_c2_beacon_detection.md` |
-| **W6 (10/23)** | **【封包迷宮】**<br>多元協定流量還原與異常通道偵測 | CyberDefenders<br>👉 [Lab: PacketMaze](https://cyberdefenders.org/blueteam-ctf-challenges/packetmaze/) | Medium | Wireshark | 1. 哪一個內網主機在進行 ARP 欺騙？<br>2. 異常 FTP/TFTP 傳輸中提取的機密檔案？<br>3. 攻擊者利用哪種隧道技術回連？ | `security/blue_team/playbooks/phase_2_traffic_analysis/07_dns_tunneling_hunting.md` |
-| **W7 (10/30)** | 🛑 **【期中段考週】** | 全體暫停休息 | — | — | 安心準備期中考 | — |
-| **W8 (11/6)** | **【HTTPS 解密與流量深潛】**<br>利用私鑰解密 TLS 流量，揪出隱蔽傳輸內容 | CyberDefenders<br>👉 [Lab: WireDive](https://cyberdefenders.org/blueteam-ctf-challenges/wiredive/) | Medium | Wireshark | 1. 匯入 SSLKEYLOG 成功解密的 HTTP 請求網址？<br>2. 隱藏在加密流量中的帳號密碼？<br>3. 攻擊者下載的第二階段惡意檔案 Hash？ | `security/blue_team/playbooks/phase_2_traffic_analysis/06_wireshark_packet_fundamentals.md` |
-| **W9 (11/13)** | **【記憶體取證進階】**<br>真實 Windows 記憶體 Dump 獵捕惡意進程樹 | CyberDefenders<br>👉 [Lab: Brave](https://cyberdefenders.org/blueteam-ctf-challenges/brave/) | Medium | Volatility 3 | 1. 哪一個合法進程被注入了惡意代碼？<br>2. 被隱藏的真正惡意 PID 為何？<br>3. 從 RAM Dump 挖出的 C2 控制端網址？ | `security/blue_team/playbooks/phase_5_deep_dfir/23_volatility3_memory_triage.md` |
-| **W10 (11/20)** | **【釣魚套件拆解】**<br>釣魚網站原始碼與憑證竊取後門溯源 | CyberDefenders<br>👉 [Lab: GrabThePhisher](https://cyberdefenders.org/blueteam-ctf-challenges/grabthephisher/) | Easy | VS Code / 記事本 | 1. 釣魚網站將偷得的帳密外傳至哪一個 Telegram Chat ID？<br>2. 攻擊者使用的釣魚套件版本？<br>3. 攻擊者接收憑證的 API 伺服器網址？ | `security/blue_team/playbooks/phase_4_hunting_intel/18_threat_intel_enrichment.md` |
-| **W11 (11/27)** | **【雲端蜜罐與 Linux 漏洞】**<br>分析 Apache Path Traversal (CVE-2021-41773) 攻擊 | CyberDefenders<br>👉 [Lab: AzurePot](https://cyberdefenders.org/blueteam-ctf-challenges/azurepot/) | Medium | VS Code / 終端機 | 1. 攻擊者利用路徑遍歷讀取的系統檔案名稱？<br>2. 攻擊者在伺服器上執行的 RCE 挖礦指令？<br>3. 部署於蜜罐中的防禦告警特徵？ | `security/blue_team/playbooks/phase_4_hunting_intel/17_sigma_detection_rule_authoring.md` |
-| **W12 (12/4)** | **【行動與端點鑑識】**<br>真實 Android 映像檔分析與通訊鑑識 | CyberDefenders<br>👉 [Lab: LGDroid](https://cyberdefenders.org/blueteam-ctf-challenges/lgdroid/) | Medium | SQLite 檢視器 / ALEAPP | 1. 嫌疑人通話紀錄中最後撥出的電話號碼？<br>2. 嫌疑人在通訊軟體中發送的敏感訊息？<br>3. 裝置最後連線的 Wi-Fi SSID？ | `security/blue_team/playbooks/phase_5_deep_dfir/21_disk_filesystem_evidence_collection.md` |
-| **W13 (12/11)** | **【硬派實務】**<br>技能競賽好玩嗎？玩玩 Linux 防火牆 iptables 擋黑客 | SEED Labs 官方開源<br>👉 [Firewall Exploration Lab](https://seedsecuritylabs.org/Labs_20.04/Networking/Firewall/) | — | Docker | 1. 寫一條 iptables 阻斷某台主機的 Ping<br>2. 寫一條白名單只允許 80 Port 存取<br>3. 驗證服務有沒有被自己不小心配壞！ | `security/blue_team/playbooks/phase_3_containment_hardening/14_linux_iptables_nftables_isolation.md` |
-| **W14 (12/18)** | ☕ **【期末茶會 / 自由閒聊】** | Discord 語音純聊天 | — | 麥克風與零食 | 聊聊本學期大家解過最爽的一題、評估寒假與下學期是否組隊參賽。 | — |
+19:40 ~ 20:45 【分軌實作與現場自閉環（65 分鐘）】
+  • 零基礎房：步步拆解題目背景、觀察點與驗證方法，當場解完當場懂。
+  • 進階房：獨立下載 log/pcap 或開啟雲端實驗室，文字區形成「偵探線索板」。
+
+20:45 ~ 21:00 【大合流與成果展示（15 分鐘）】
+  • 全體回到大語音房。
+  • 進階同學或幹部花 5~10 分鐘展示今晚 Track 201 最有趣的發現（如記憶體注入點、漏洞觸發點）。
+  • 新手開眼界看進階實戰視野，老手獲得分享成就感，零課外作業準時下課放假！
+```
+
+---
+
+## 4. 秋季 14 週「雙軌自適應」完整實戰課表
+
+時間：每週五 19:30～21:00（Discord 線上語音房）  
+*全數選用經實機驗證非 Premium、免付費、免複雜設定之標準環境。*
+
+| 週次 / 日期 | 當晚核心主題 | 🟢 Track 101 基礎引導班<br>(幹部教學帶做・零環境門檻) | 🔴 Track 201 進階研習室<br>(各自自習挑戰・硬核實戰分享) |
+| :---: | :--- | :--- | :--- |
+| **W1 (9/18)** | **【Web 邊界攻擊與輸入驗證】** | **picoCTF: Web Gauntlet (ID: 88)**<br>👉 [題目連結](https://learn.cylabacademy.org/library?search=Web%20Gauntlet)<br>• 工具：瀏覽器 DevTools<br>• 任務：理解 SQL 註解語法與前端過濾繞過 | **PortSwigger: OS Command Injection Simple**<br>👉 [題目連結](https://portswigger.net/web-security/os-command-injection/lab-simple)<br>• 工具：Burp Suite / 瀏覽器<br>• 任務：利用命令注入拼接 `whoami` 讀取系統檔案 |
+| **W2 (9/25)** | **【Web 伺服器異常與入侵痕跡】** | **Wireshark 基礎流量入門**<br>👉 [picoCTF: GET aHEAD (ID: 132)](https://learn.cylabacademy.org/library?search=GET%20aHEAD)<br>• 工具：瀏覽器 / curl<br>• 任務：認識 HTTP 請求方法（GET/POST/HEAD）與封包結構 | **CyberDefenders: Web Investigation**<br>👉 [Lab: Web Investigation](https://cyberdefenders.org/blueteam-ctf-challenges/web-investigation/)<br>• 工具：Wireshark<br>• 任務：還原 Webshell 上傳歷程、揪出注入攻擊 IP 與脫庫痕跡 |
+| **W3 (10/2)** | **【主機系統指令與權限基礎】** | **OverTheWire: Bandit (Level 0~5)**<br>👉 [Bandit 入門關卡](https://overthewire.org/wargames/bandit/)<br>• 工具：SSH 終端機<br>• 任務：學習基礎 Linux 檔案操作、隱藏檔排查與 grep 搜尋 | **OverTheWire: Bandit (Level 19~20 SUID 提權)**<br>👉 [Bandit: SUID 關卡](https://overthewire.org/wargames/bandit/bandit20.html)<br>• 工具：SSH 終端機 / GTFOBins<br>• 任務：找出配置不當的特權二進位，實施 SUID 提權突破 |
+| **W4 (10/9)** | **【端點行為與系統事件分析】** | **Windows 基礎日誌觀察**<br>👉 本地 Event Viewer 實作<br>• 工具：Event Viewer / 記事本<br>• 任務：學會查看 Event ID 4624（成功登入）與 4625（登入失敗） | **CyberDefenders: Sysinternals**<br>👉 [Lab: Sysinternals](https://cyberdefenders.org/blueteam-ctf-challenges/sysinternals/)<br>• 工具：Event Viewer / VS Code<br>• 任務：分析登錄檔機碼惡意修改、惡意排程任務與外聯網路連線 |
+| **W5 (10/16)** | **【內網服務枚舉與共享存取】** | **密碼學與雜湊基礎概念**<br>👉 [picoCTF: Mod 26 (ID: 144)](https://learn.cylabacademy.org/library?search=Mod%2026)<br>• 工具：CyberChef<br>• 任務：理解編碼 (Base64/ROT13) 與加密的差異，學會常用解碼鏈 | **Hack The Box: Dancing (Tier 0 實戰)**<br>👉 [HTB: Dancing](https://app.hackthebox.com/machines/Dancing)<br>• 工具：smbclient<br>• 任務：枚舉無密碼 SMB 共享資料夾，定位機密憑證獲取雙 Flag |
+| **W6 (10/23)** | **【內網橫向移動與封包鑑識】** | **基礎封包擷取與明文帳密追查**<br>👉 [picoCTF: Wireshark doo dooo do doo (ID: 115)](https://learn.cylabacademy.org/library?search=Wireshark)<br>• 工具：Wireshark<br>• 任務：跟隨 TCP 串流 (Follow Stream)，從明文通訊中提取帳密 | **CyberDefenders: PsExec Hunt**<br>👉 [Lab: PsExec Hunt](https://cyberdefenders.org/blueteam-ctf-challenges/psexec-hunt/)<br>• 工具：Wireshark<br>• 任務：捕捉 PsExec 遠端呼叫、分析具體服務名稱與橫向移動管道 |
+| **W7 (10/30)** | 🛑 **【期中段考週】** | 全體暫停休息 | 安心準備期中考 |
+| **W8 (11/6)** | **【真實惡意程式與流量獵捕】** | **VirusTotal 惡意樣本初探**<br>👉 VirusTotal 線上平台<br>• 工具：瀏覽器<br>• 任務：學會看檔案 Hash、防毒引擎檢測率與靜態特徵提取 | **Malware-Traffic-Analysis (MTA) 流量實戰**<br>👉 [MTA 2024-03-14 Traffic Analysis](https://www.malware-traffic-analysis.net/2024/03/14/index.html)<br>• 工具：Wireshark<br>• 任務：分析 AsyncRAT 感染封包，還原受害者 IP、C2 域名與惡意載荷 |
+| **W9 (11/13)** | **【身份憑證安全與服務爆破】** | **認證機制弱點實測**<br>👉 [PortSwigger: Username Enumeration](https://portswigger.net/web-security/authentication/password-based/lab-username-enumeration-via-subtly-different-responses)<br>• 工具：Burp Suite<br>• 任務：觀察回傳訊息差異（細微文字/反應時間）判斷帳號是否存在 | **CyberDefenders: Hammered**<br>👉 [Lab: Hammered](https://cyberdefenders.org/blueteam-ctf-challenges/hammered/)<br>• 工具：VS Code / grep<br>• 任務：深入 Linux auth.log，分析暴力破譯時間軸與攻擊者新建的後門 |
+| **W10 (11/20)** | **【釣魚套件拆解與進階 Web】** | **基礎 Cookie 偽造與 Session**<br>👉 [picoCTF: Most Cookies (ID: 209)](https://learn.cylabacademy.org/library?search=Most%20Cookies)<br>• 工具：瀏覽器 DevTools / Python<br>• 任務：解讀 Flask Session Cookie 結構，理解客戶端 Cookie 安全性 | **CyberDefenders: GrabThePhisher**<br>👉 [Lab: GrabThePhisher](https://cyberdefenders.org/blueteam-ctf-challenges/grabthephisher/)<br>• 工具：VS Code / 記事本<br>• 任務：拆解釣魚網站原始碼，逆向追查惡意回傳的 Telegram Chat ID |
+| **W11 (11/27)** | **【主機記憶體分析與取證】** | **基礎進程排查與工作管理員**<br>👉 本地 Windows / Linux 實習<br>• 工具：工作管理員 / Process Explorer<br>• 任務：學會觀察合法系統進程路徑（如 svchost, explorer）與異常特徵 | **CyberDefenders: Brave**<br>👉 [Lab: Brave](https://cyberdefenders.org/blueteam-ctf-challenges/brave/)<br>• 工具：Volatility 3<br>• 任務：使用 Volatility 3 獵捕遭注入的合法進程、揪出隱藏 PID 與 C2 網址 |
+| **W12 (12/4)** | **【綜合滲透與漏洞利用】** | **SQL 注入基礎原理**<br>👉 [PortSwigger: SQLi UNION Attack](https://portswigger.net/web-security/sql-injection/union-attacks)<br>• 工具：瀏覽器 / Burp Suite<br>• 任務：理解 UNION 注入欄位對齊原理，提取資料庫文字資訊 | **Hack The Box: Responder (Tier 1 實戰)**<br>👉 [HTB: Responder](https://app.hackthebox.com/machines/Responder)<br>• 工具：Responder / Hashcat<br>• 任務：識別 Web LFI 漏洞，攔截 NTLMv2 雜湊並破解，透過 WinRM 奪得管理權限 |
+| **W13 (12/11)** | **【系統硬化與防火牆防禦】** | **基礎防火牆規則體驗**<br>👉 本地 Windows Defender 防火牆 / UFW<br>• 工具：Windows Defender 防火牆介面<br>• 任務：手動配置一條入站封鎖規則，親自驗證連接埠阻斷效果 | **SEED Labs: Firewall Exploration Lab**<br>👉 [SEED Labs 官方開源](https://seedsecuritylabs.org/Labs_20.04/Networking/Firewall/)<br>• 工具：Docker / iptables<br>• 任務：在 Linux 環境撰寫 iptables 防火牆白名單規則，實施主機隔離加固 |
+| **W14 (12/18)** | ☕ **【期末茶會 / 成果總結】** | **期末自由交流**<br>• 盤點學期所學工具鏈與技能點<br>• 自由提問社課與讀書會疑惑 | **競賽轉向與成果分享**<br>• 評估寒假/下學期組隊（金盾獎 / 技能競賽 / CTF）<br>• 各自分享本學期解過最過癮的一道題 |
