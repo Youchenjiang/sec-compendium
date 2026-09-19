@@ -57,8 +57,8 @@
 > **藍隊防禦**：Wireshark / Zeek 封包剖析、Suricata 簽名撰寫、異常連線頻率統計。
 
 - 🦈 **Malware-Traffic-Analysis (MTA)**:
-  - [2026-02-18: Traffic Analysis Exercise](https://www.malware-traffic-analysis.net/2026/02/18/index.html) (最新惡意流量分析)
-  - [2025-05-23: Traffic Analysis Exercise](https://www.malware-traffic-analysis.net/2025/05/23/index.html) (企業感染鏈封包)
+  - [2026-09-11: Kongtuke rebuke!](https://www.malware-traffic-analysis.net/2026/09/11/index.html) (最新惡意流量分析)
+  - [2024-11-26: Traffic Analysis Exercise](https://www.malware-traffic-analysis.net/2024/11/26/index.html) (企業感染鏈封包)
   - 完整 113 套年份封包挑戰索引請見 [MTA 全量目錄](platforms/mta/mta_all_exercises_catalog.md)。
 - 🛡️ **CyberDefenders (Free Labs)**:
   - [Lockdown](https://cyberdefenders.org/blueteam-ctf-challenges/lockdown/) (Easy / 多階段網路入侵與記憶體關聯)
@@ -138,10 +138,10 @@
   - [Dancing](https://app.hackthebox.com/machines/Dancing) (Windows / SMB 共享資源枚舉)
 - 🎯 **TryHackMe (Free Rooms - AD & Defense)**:
   - [Attacktive Directory](https://tryhackme.com/room/attacktivedirectory) (Medium / Kerbrute, AS-REP Roasting, DCSync)
-  - [Active Directory Basics](https://tryhackme.com/room/activedirectorybasics) (Easy / AD 核心架構、DC、LDAP)
+  - [AD Basic Enumeration](https://tryhackme.com/room/adbasicenumeration) (Easy / AD 核心架構、DC、LDAP)
   - [Windows Event Logs](https://tryhackme.com/room/windowseventlogs) (Easy / Security Event ID 4624/4625 鑑識)
-  - [Sysmon](https://tryhackme.com/room/sysmon) (Medium / 行程建立 Event 1 與網路 Event 3 偵測)
-  - [VulnNet: Active Directory](https://tryhackme.com/room/vulnnetactivedirectory) (Hard / 企業多層網域橫向滲透)
+  - [Windows Logging for SOC](https://tryhackme.com/room/windowsloggingforsoc) (Medium / 行程建立與網路連線日誌偵測)
+  - [VulnNet: Active](https://tryhackme.com/room/vulnnetactive) (Hard / 企業多層網域橫向滲透)
 
 ---
 
@@ -158,7 +158,7 @@
   - [Post-Quantum & Isogenies](platforms/cryptohack/cryptohack_all_challenges_catalog.md#📌-post-quantum18-challenges) (格密碼學基礎、SIDH 密鑰交換)
 - 🚩 **Root-Me (Cryptography Track)**:
   - [RSA - Factorisation](https://www.root-me.org/en/Challenges/Cryptanalysis/RSA-Factorisation) (RSA 模數分解)
-  - [RSA - Wiener attack](https://www.root-me.org/en/Challenges/Cryptanalysis/RSA-Wiener) (Wiener 脆弱私鑰攻擊)
+  - [RSA - Continued fractions](https://www.root-me.org/en/Challenges/Cryptanalysis/RSA-Continued-fractions) (Wiener 脆弱私鑰連分數攻擊)
   - [Hash - Message Digest 5](https://www.root-me.org/en/Challenges/Cryptanalysis/Hash-Message-Digest-5) (彩虹表與字典破解)
 - 🚩 **picoCTF**:
   - [Mod 26 (ID: 144)](https://learn.cylabacademy.org/library?search=Mod%2026) (ROT13 對稱置換)
