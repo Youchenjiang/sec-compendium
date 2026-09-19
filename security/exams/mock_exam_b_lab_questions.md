@@ -5,9 +5,9 @@
 > 2. **雙軌支援（實體環境＋紙上推演）**：
 >    - **紙上速查**：所有鑑識記憶體輸出、事件日誌、DNS 隱寫查詢字串、HTTP 攻擊封包均已原汁原味印製於各題情境中。
 >    - **實體揮刀**：本卷所有標本已同步納入專案實體資料庫，可直接使用以下標本實作分析：
->      - 實體日誌：[`windows_ir_security_sample.json`](../challenges/evidence/evtx/windows_ir_security_sample.json)
->      - 實體流量：[`dns_exfil_Topic1.pcap`](../challenges/evidence/pcap/dns_exfil_Topic1.pcap)、[`web_attack_traffic.pcap`](../challenges/evidence/pcap/web_attack_traffic.pcap)
->      - 實體記憶體：[`patientportal.hprof.gz`](../challenges/evidence/memory/patientportal.hprof.gz)
+>      - 實體日誌：[`windows_ir_security_sample.json`](evidence/evtx/windows_ir_security_sample.json)
+>      - 實體流量：[`dns_exfil_Topic1.pcap`](evidence/pcap/dns_exfil_Topic1.pcap)、[`web_attack_traffic.pcap`](evidence/pcap/web_attack_traffic.pcap)
+>      - 實體記憶體：[`patientportal.hprof.gz`](evidence/memory/patientportal.hprof.gz)
 >      - 實體靶場：[`01_atomic_purple_range`](../labs/01_atomic_purple_range/README.md)、[`02_splunk_bots_range`](../labs/02_splunk_bots_range/README.md)、[`03_apt_cross_domain_ctf`](../labs/03_apt_cross_domain_ctf/README.md)
 > 3. 測驗時間：**180 分鐘**（3 小時）。請考生依據題目給定的客觀證據進行推理分析，並於作答區填入具體數值、路徑、指令或 Flag。
 
