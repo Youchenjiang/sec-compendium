@@ -155,7 +155,7 @@ class CryptoHackAdapter(BaseChallengeAdapter):
 
         return [csv_path, md_path]
 
-    def _generate_catalog_markdown(self, challenges: List[ChallengeItem]) -> str:
+    def _generate_catalog_markdown(self, challenges: List[ChallengeItem]) -> str:  # skipcq: PY-R1000
         lines = [
             "# 🔐 CryptoHack 現代密碼學全挑戰題庫目錄 (CryptoHack Challenge Catalog)",
             "",
