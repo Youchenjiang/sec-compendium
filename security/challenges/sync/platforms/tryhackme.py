@@ -53,7 +53,7 @@ class TryHackMeAdapter(BaseChallengeAdapter):
         req = urllib.request.Request(self.SITEMAP_URL, headers={"User-Agent": user_agent})
 
         try:
-            with urllib.request.urlopen(req, timeout=20) as resp:
+            with urllib.request.urlopen(req, timeout=20) as resp:  # skipcq: BAN-B310
                 raw_xml = resp.read().decode("utf-8", "ignore")
         except Exception as e:
             print(f"  [Error] Failed to fetch TryHackMe rooms sitemap: {e}")
@@ -122,7 +122,8 @@ class TryHackMeAdapter(BaseChallengeAdapter):
 
         return [csv_path, md_path]
 
-    def _generate_catalog_markdown(self, challenges: List[ChallengeItem]) -> str:
+    @staticmethod
+    def _generate_catalog_markdown(challenges: List[ChallengeItem]) -> str:
         lines = [
             "# 🎯 TryHackMe 全量實戰房間目錄 (TryHackMe Live Rooms Catalog)",
             "",

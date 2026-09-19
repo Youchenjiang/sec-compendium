@@ -30,7 +30,7 @@ class MTAAdapter(BaseChallengeAdapter):
         if not self.INDEX_URL.lower().startswith(("http://", "https://")):
             raise ValueError(f"Insecure URL scheme: {self.INDEX_URL}")
         req = urllib.request.Request(self.INDEX_URL, headers=headers)
-        with urllib.request.urlopen(req, timeout=15) as resp:
+        with urllib.request.urlopen(req, timeout=15) as resp:  # skipcq: BAN-B310
             html = resp.read().decode("utf-8", errors="ignore")
 
         lines = html.splitlines()

@@ -64,7 +64,8 @@ class RootMeAdapter(BaseChallengeAdapter):
         # 3. No session provided
         return None
 
-    def _clean_slug(self, title: str) -> str:
+    @staticmethod
+    def _clean_slug(title: str) -> str:
         """Convert title into Root-Me canonical URL slug."""
         s = html.unescape(title).strip()
         s = s.replace("&amp;", "and").replace("&", "and")
@@ -90,14 +91,14 @@ class RootMeAdapter(BaseChallengeAdapter):
                 if not current_url.lower().startswith(("http://", "https://")):
                     raise ValueError(f"Insecure URL scheme: {current_url}")
                 req = urllib.request.Request(current_url, headers=headers)
-                with urllib.request.urlopen(req, timeout=15) as r:
+                with urllib.request.urlopen(req, timeout=15) as r:  # skipcq: BAN-B310
                     data = json.loads(r.read().decode("utf-8"))
 
                 if not data or not isinstance(data, list) or len(data) == 0:
                     break
 
                 items_dict = data[0]
-                for idx, item in items_dict.items():
+                for _idx, item in items_dict.items():
                     raw_items.append(item)
 
                 next_url = None
@@ -198,7 +199,8 @@ class RootMeAdapter(BaseChallengeAdapter):
 
         return [csv_path, md_path]
 
-    def _generate_catalog_markdown(self, challenges: List[ChallengeItem]) -> str:
+    @staticmethod
+    def _generate_catalog_markdown(challenges: List[ChallengeItem]) -> str:
         lines = [
             "# 🚩 Root-Me 官方全量挑戰題庫目錄 (Root-Me Live Challenge Catalog)",
             "",

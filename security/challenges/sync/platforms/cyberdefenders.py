@@ -49,7 +49,7 @@ class CyberDefendersAdapter(BaseChallengeAdapter):
         )
         for attempt in range(retries):
             try:
-                with urllib.request.urlopen(req, timeout=20) as resp:
+                with urllib.request.urlopen(req, timeout=20) as resp:  # skipcq: BAN-B310
                     return json.loads(resp.read().decode("utf-8"))
             except Exception:
                 if attempt == retries - 1:
