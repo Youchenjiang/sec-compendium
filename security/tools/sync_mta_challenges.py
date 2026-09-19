@@ -6,8 +6,8 @@ Fetches all traffic analysis training exercises directly from:
 https://www.malware-traffic-analysis.net/training-exercises.html
 
 Generates:
-1. security/challenges/mta_all_exercises_2026.csv
-2. security/challenges/mta_all_exercises_catalog.md
+1. security/challenges/platforms/mta/mta_all_exercises_2026.csv
+2. security/challenges/platforms/mta/mta_all_exercises_catalog.md
 """
 
 import csv
@@ -96,7 +96,7 @@ def save_markdown(exercises, output_path: Path):
 
 def main():
     repo_root = Path(__file__).resolve().parent.parent.parent
-    challenges_dir = repo_root / "security" / "challenges"
+    challenges_dir = repo_root / "security" / "challenges" / "platforms" / "mta"
     challenges_dir.mkdir(parents=True, exist_ok=True)
 
     exercises = fetch_mta_exercises()

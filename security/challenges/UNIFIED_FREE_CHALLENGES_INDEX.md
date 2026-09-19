@@ -11,11 +11,11 @@
 
 | 平台名稱 (Platform) | 題庫定位與核心特色 | 驗證免費題數 (Free Tier) | 平台目錄導航 (Catalog) | 原始資料檔案 (Data / CSV) |
 | :--- | :--- | :---: | :--- | :--- |
-| **🛡️ CyberDefenders** | 藍隊藍隊實戰、端點鑑識 (DFIR)、記憶體與威脅情資 | **82 題** | [CyberDefenders 全目錄](cyberdefenders_all_challenges_catalog.md) | [`cyberdefenders_all_challenges_2026.csv`](cyberdefenders_all_challenges_2026.csv) |
-| **📦 Hack The Box (HTB)** | 滲透測試主機攻堅 (Machines) 與藍隊調查 (Sherlocks) | **359 題** | [HackTheBox 全目錄](hackthebox_all_challenges_catalog.md) | [`hackthebox_all_challenges_2026.csv`](hackthebox_all_challenges_2026.csv) |
-| **🦈 Malware-Traffic-Analysis (MTA)** | 真實惡意流量 PCAP、資安事件流量分析與攻擊溯源 | **113 套** | [MTA 流量分析目錄](mta_all_exercises_catalog.md) | [`mta_all_exercises_2026.csv`](mta_all_exercises_2026.csv) |
-| **🌐 PortSwigger Web Academy** | Web 滲透深度實驗、漏洞利用與程式碼審計 | **200+ 題** | [PortSwigger 90 Runs 追蹤](portswigger_90_runs.md) | [進度追蹤表](lab_progress_tracker.md) |
-| **🚩 picoCTF / CyLab Academy** | CTF 競賽打底、基礎技能、二進位 PWN、逆向與密碼學 | **250+ 題** | [CyLab 學習路徑目錄](cylab_learning_paths_catalog.md) | [`cylab_all_challenges_2026-08-08.csv`](cylab_all_challenges_2026-08-08.csv) |
+| **🛡️ CyberDefenders** | 藍隊藍隊實戰、端點鑑識 (DFIR)、記憶體與威脅情資 | **82 題** | [CyberDefenders 全目錄](platforms/cyberdefenders/cyberdefenders_all_challenges_catalog.md) | [`cyberdefenders_all_challenges_2026.csv`](platforms/cyberdefenders/cyberdefenders_all_challenges_2026.csv) |
+| **📦 Hack The Box (HTB)** | 滲透測試主機攻堅 (Machines) 與藍隊調查 (Sherlocks) | **359 題** | [HackTheBox 全目錄](platforms/hackthebox/hackthebox_all_challenges_catalog.md) | [`hackthebox_all_challenges_2026.csv`](platforms/hackthebox/hackthebox_all_challenges_2026.csv) |
+| **🦈 Malware-Traffic-Analysis (MTA)** | 真實惡意流量 PCAP、資安事件流量分析與攻擊溯源 | **113 套** | [MTA 流量分析目錄](platforms/mta/mta_all_exercises_catalog.md) | [`mta_all_exercises_2026.csv`](platforms/mta/mta_all_exercises_2026.csv) |
+| **🌐 PortSwigger Web Academy** | Web 滲透深度實驗、漏洞利用與程式碼審計 | **200+ 題** | [PortSwigger 90 Runs 追蹤](../../tracks/lab/90_runs/checklists/portswigger_90_runs.md) | [進度追蹤表](../../tracks/lab/90_runs/checklists/lab_progress_tracker.md) |
+| **🚩 picoCTF / CyLab Academy** | CTF 競賽打底、基礎技能、二進位 PWN、逆向與密碼學 | **250+ 題** | [CyLab 學習路徑目錄](platforms/cylab_picoctf/cylab_learning_paths_catalog.md) | [`cylab_all_challenges_2026-08-08.csv`](platforms/cylab_picoctf/cylab_all_challenges_2026-08-08.csv) |
 
 ---
 
@@ -26,7 +26,7 @@
 > **藍隊防禦**：Web 日誌還原、Webshell 捕獲、WAF 阻斷規則、流量取證分析。
 
 - 🌐 **PortSwigger Academy**:
-  - [SQL Injection (SQLi) 18 關實戰](https://portswigger.net/web-security/sql-injection)（[追蹤清單](portswigger_90_runs.md#m2-w1伺服器端基礎)）
+  - [SQL Injection (SQLi) 18 關實戰](https://portswigger.net/web-security/sql-injection)（[追蹤清單](../../tracks/lab/90_runs/checklists/portswigger_90_runs.md#m2-w1伺服器端基礎)）
   - [OS Command Injection 5 關實戰](https://portswigger.net/web-security/os-command-injection)
   - [File Upload 任意檔案上傳繞過](https://portswigger.net/web-security/file-upload)
   - [SSRF 伺服器端請求偽造](https://portswigger.net/web-security/ssrf)
@@ -54,7 +54,7 @@
 - 🦈 **Malware-Traffic-Analysis (MTA)**:
   - [2026-02-18: Traffic Analysis Exercise](https://www.malware-traffic-analysis.net/2026/02/18/index.html) (最新惡意流量分析)
   - [2025-05-23: Traffic Analysis Exercise](https://www.malware-traffic-analysis.net/2025/05/23/index.html) (企業感染鏈封包)
-  - 完整 113 套年份封包挑戰索引請見 [MTA 全量目錄](mta_all_exercises_catalog.md)。
+  - 完整 113 套年份封包挑戰索引請見 [MTA 全量目錄](platforms/mta/mta_all_exercises_catalog.md)。
 - 🛡️ **CyberDefenders (Free Labs)**:
   - [Lockdown](https://cyberdefenders.org/blueteam-ctf-challenges/lockdown/) (Easy / 多階段網路入侵與記憶體關聯)
   - [XLM-Rat](https://cyberdefenders.org/blueteam-ctf-challenges/xlmrat/) (Easy / 惡意交付流量與反混淆)
