@@ -47,6 +47,8 @@ class TryHackMeAdapter(BaseChallengeAdapter):
             "AppleWebKit/537.36 (KHTML, like Gecko) "
             "Chrome/120.0.0.0 Safari/537.36"
         )
+        if not self.SITEMAP_URL.lower().startswith(("http://", "https://")):
+            raise ValueError(f"Insecure URL scheme: {self.SITEMAP_URL}")
         req = urllib.request.Request(self.SITEMAP_URL, headers={"User-Agent": user_agent})
 
         try:
