@@ -1,0 +1,993 @@
+﻿Category,Title,Room Code,Tier,Difficulty,URL
+Active Directory & Windows,Adenumeration,adenumeration,🟢 FREE,Practitioner,https://tryhackme.com/room/adenumeration
+Security Labs & CTF,Bandit,bandit,🟢 FREE,Practitioner,https://tryhackme.com/room/bandit
+Active Directory & Windows,Breachingad,breachingad,🟢 FREE,Practitioner,https://tryhackme.com/room/breachingad
+Security Labs & CTF,Cicdandbuildsecurity,cicdandbuildsecurity,🟢 FREE,Practitioner,https://tryhackme.com/room/cicdandbuildsecurity
+Active Directory & Windows,Exploitingad,exploitingad,🟢 FREE,Practitioner,https://tryhackme.com/room/exploitingad
+Security Labs & CTF,Ho Aoc2025 Ybomopbnex,ho-aoc2025-yboMoPbnEX,🟢 FREE,Practitioner,https://tryhackme.com/room/ho-aoc2025-yboMoPbnEX
+Security Labs & CTF,Hololive,hololive,🟢 FREE,Practitioner,https://tryhackme.com/room/hololive
+Security Labs & CTF,Lateralmovementandpivoting,lateralmovementandpivoting,🟢 FREE,Practitioner,https://tryhackme.com/room/lateralmovementandpivoting
+Active Directory & Windows,Persistingad,persistingad,🟢 FREE,Practitioner,https://tryhackme.com/room/persistingad
+Security Labs & CTF,Redteamcapstonechallenge,redteamcapstonechallenge,🟢 FREE,Practitioner,https://tryhackme.com/room/redteamcapstonechallenge
+Security Labs & CTF,Wreath,wreath,🟢 FREE,Practitioner,https://tryhackme.com/room/wreath
+Security Labs & CTF,Allsignspoint2Pwnage,allsignspoint2pwnage,🟢 FREE,Practitioner,https://tryhackme.com/room/allsignspoint2pwnage
+SOC & Detection,Amazonec2Attackdefense,amazonec2attackdefense,🟢 FREE,Practitioner,https://tryhackme.com/room/amazonec2attackdefense
+Security Labs & CTF,Apt28Inceptiontheory,apt28inceptiontheory,🟢 FREE,Practitioner,https://tryhackme.com/room/apt28inceptiontheory
+Security Labs & CTF,Attackingdefendingvpcs,attackingdefendingvpcs,🟢 FREE,Practitioner,https://tryhackme.com/room/attackingdefendingvpcs
+Security Labs & CTF,Avenger,avenger,🟢 FREE,Practitioner,https://tryhackme.com/room/avenger
+Security Labs & CTF,Azhoppityhop,azhoppityhop,🟢 FREE,Practitioner,https://tryhackme.com/room/azhoppityhop
+Security Labs & CTF,Azuresentinel Aoc2025 A7D3H9K0P2,azuresentinel-aoc2025-a7d3h9k0p2,🟢 FREE,Practitioner,https://tryhackme.com/room/azuresentinel-aoc2025-a7d3h9k0p2
+Security Labs & CTF,Biblioteca,biblioteca,🟢 FREE,Practitioner,https://tryhackme.com/room/biblioteca
+Security Labs & CTF,Binaryheaven,binaryheaven,🟢 FREE,Practitioner,https://tryhackme.com/room/binaryheaven
+Security Labs & CTF,Burg3Rbytes,burg3rbytes,🟢 FREE,Practitioner,https://tryhackme.com/room/burg3rbytes
+Security Labs & CTF,Busyvimfrosteau,busyvimfrosteau,🟢 FREE,Practitioner,https://tryhackme.com/room/busyvimfrosteau
+Security Labs & CTF,Capturereturns,capturereturns,🟢 FREE,Practitioner,https://tryhackme.com/room/capturereturns
+Security Labs & CTF,Carpediem1,carpediem1,🟢 FREE,Practitioner,https://tryhackme.com/room/carpediem1
+Security Labs & CTF,Containment,containment,🟢 FREE,Practitioner,https://tryhackme.com/room/containment
+Security Labs & CTF,Crocccrew,crocccrew,🟢 FREE,Practitioner,https://tryhackme.com/room/crocccrew
+Security Labs & CTF,Ctfonepiece65,ctfonepiece65,🟢 FREE,Practitioner,https://tryhackme.com/room/ctfonepiece65
+Security Labs & CTF,Davesblog,davesblog,🟢 FREE,Practitioner,https://tryhackme.com/room/davesblog
+Active Directory & Windows,Deadend,deadend,🟢 FREE,Practitioner,https://tryhackme.com/room/deadend
+Security Labs & CTF,Dockmagic,dockmagic,🟢 FREE,Practitioner,https://tryhackme.com/room/dockmagic
+Security Labs & CTF,Dx1Libertyislandplde,dx1libertyislandplde,🟢 FREE,Practitioner,https://tryhackme.com/room/dx1libertyislandplde
+Security Labs & CTF,Dx2Hellskitchen,dx2hellskitchen,🟢 FREE,Practitioner,https://tryhackme.com/room/dx2hellskitchen
+Security Labs & CTF,Epoch,epoch,🟢 FREE,Practitioner,https://tryhackme.com/room/epoch
+Active Directory & Windows,Eradicationandremediation,eradicationandremediation,🟢 FREE,Practitioner,https://tryhackme.com/room/eradicationandremediation
+Security Labs & CTF,Ettubrute,ettubrute,🟢 FREE,Practitioner,https://tryhackme.com/room/ettubrute
+Security Labs & CTF,Eventhorizonroom,eventhorizonroom,🟢 FREE,Practitioner,https://tryhackme.com/room/eventhorizonroom
+Security Labs & CTF,Exfilnode,exfilnode,🟢 FREE,Practitioner,https://tryhackme.com/room/exfilnode
+Security Labs & CTF,Eyeswideshut,eyeswideshut,🟢 FREE,Practitioner,https://tryhackme.com/room/eyeswideshut
+Security Labs & CTF,Fearsecond,fearsecond,🟢 FREE,Practitioner,https://tryhackme.com/room/fearsecond
+Security Labs & CTF,Frankandherby,frankandherby,🟢 FREE,Practitioner,https://tryhackme.com/room/frankandherby
+Security Labs & CTF,Gamebuzz,gamebuzz,🟢 FREE,Practitioner,https://tryhackme.com/room/gamebuzz
+Security Labs & CTF,Goldeneye,goldeneye,🟢 FREE,Practitioner,https://tryhackme.com/room/goldeneye
+Security Labs & CTF,Hackernote,hackernote,🟢 FREE,Practitioner,https://tryhackme.com/room/hackernote
+Active Directory & Windows,Hackinghadoop,hackinghadoop,🟢 FREE,Practitioner,https://tryhackme.com/room/hackinghadoop
+Security Labs & CTF,Hamlet,hamlet,🟢 FREE,Practitioner,https://tryhackme.com/room/hamlet
+Security Labs & CTF,Hc0Nchristmasctf,hc0nchristmasctf,🟢 FREE,Practitioner,https://tryhackme.com/room/hc0nchristmasctf
+Security Labs & CTF,Hfb1Precision,hfb1precision,🟢 FREE,Practitioner,https://tryhackme.com/room/hfb1precision
+Security Labs & CTF,Hfb1Thegamev2,hfb1thegamev2,🟢 FREE,Practitioner,https://tryhackme.com/room/hfb1thegamev2
+Security Labs & CTF,Hfb1Voidexecution,hfb1voidexecution,🟢 FREE,Practitioner,https://tryhackme.com/room/hfb1voidexecution
+Security Labs & CTF,Iampermissions,iampermissions,🟢 FREE,Practitioner,https://tryhackme.com/room/iampermissions
+Systems & Fundamentals,Introtopwntools,introtopwntools,🟢 FREE,Practitioner,https://tryhackme.com/room/introtopwntools
+Security Labs & CTF,Jack,jack,🟢 FREE,Practitioner,https://tryhackme.com/room/jack
+Security Labs & CTF,Keldagrim,keldagrim,🟢 FREE,Practitioner,https://tryhackme.com/room/keldagrim
+Security Labs & CTF,Kothhackers,kothhackers,🟢 FREE,Practitioner,https://tryhackme.com/room/kothhackers
+Security Labs & CTF,Labyrinth8Llv,labyrinth8llv,🟢 FREE,Practitioner,https://tryhackme.com/room/labyrinth8llv
+Active Directory & Windows,Lambdadataexfiltration,lambdadataexfiltration,🟢 FREE,Practitioner,https://tryhackme.com/room/lambdadataexfiltration
+Security Labs & CTF,Lumberjackturtle,lumberjackturtle,🟢 FREE,Practitioner,https://tryhackme.com/room/lumberjackturtle
+Security Labs & CTF,Marketplace,marketplace,🟢 FREE,Practitioner,https://tryhackme.com/room/marketplace
+DFIR & Forensics,Memoryacquisition,memoryacquisition,🟢 FREE,Practitioner,https://tryhackme.com/room/memoryacquisition
+Security Labs & CTF,Mindgames,mindgames,🟢 FREE,Practitioner,https://tryhackme.com/room/mindgames
+Security Labs & CTF,Misguidedghosts,misguidedghosts,🟢 FREE,Practitioner,https://tryhackme.com/room/misguidedghosts
+Security Labs & CTF,Mnemonic,mnemonic,🟢 FREE,Practitioner,https://tryhackme.com/room/mnemonic
+Security Labs & CTF,Motunui,motunui,🟢 FREE,Practitioner,https://tryhackme.com/room/motunui
+Security Labs & CTF,Nextjscve202529927,nextjscve202529927,🟢 FREE,Practitioner,https://tryhackme.com/room/nextjscve202529927
+Security Labs & CTF,Nonamectf,nonamectf,🟢 FREE,Practitioner,https://tryhackme.com/room/nonamectf
+Security Labs & CTF,Osiris,osiris,🟢 FREE,Practitioner,https://tryhackme.com/room/osiris
+Active Directory & Windows,Padelify,padelify,🟢 FREE,Practitioner,https://tryhackme.com/room/padelify
+Security Labs & CTF,Passwordattacks,passwordattacks,🟢 FREE,Practitioner,https://tryhackme.com/room/passwordattacks
+Security Labs & CTF,Plottedemr,plottedemr,🟢 FREE,Practitioner,https://tryhackme.com/room/plottedemr
+Security Labs & CTF,Plottedlms,plottedlms,🟢 FREE,Practitioner,https://tryhackme.com/room/plottedlms
+Security Labs & CTF,Pressedroom,pressedroom,🟢 FREE,Practitioner,https://tryhackme.com/room/pressedroom
+Security Labs & CTF,Printnightmarec3Kj,printnightmarec3kj,🟢 FREE,Practitioner,https://tryhackme.com/room/printnightmarec3kj
+Security Labs & CTF,Printnightmarehpzqlp8,printnightmarehpzqlp8,🟢 FREE,Practitioner,https://tryhackme.com/room/printnightmarehpzqlp8
+Security Labs & CTF,Publickeyinfrastructure,publickeyinfrastructure,🟢 FREE,Practitioner,https://tryhackme.com/room/publickeyinfrastructure
+Security Labs & CTF,Pythonplayground,pythonplayground,🟢 FREE,Practitioner,https://tryhackme.com/room/pythonplayground
+Security Labs & CTF,Raceconditions,raceconditions,🟢 FREE,Practitioner,https://tryhackme.com/room/raceconditions
+Security Labs & CTF,Redstoneonecarat,redstoneonecarat,🟢 FREE,Practitioner,https://tryhackme.com/room/redstoneonecarat
+Active Directory & Windows,Reloaded,reloaded,🟢 FREE,Practitioner,https://tryhackme.com/room/reloaded
+Security Labs & CTF,Rocket,rocket,🟢 FREE,Practitioner,https://tryhackme.com/room/rocket
+Security Labs & CTF,Safezone,safezone,🟢 FREE,Practitioner,https://tryhackme.com/room/safezone
+Security Labs & CTF,Scripting,scripting,🟢 FREE,Practitioner,https://tryhackme.com/room/scripting
+Security Labs & CTF,Sequence,sequence,🟢 FREE,Practitioner,https://tryhackme.com/room/sequence
+Security Labs & CTF,Services,services,🟢 FREE,Practitioner,https://tryhackme.com/room/services
+Security Labs & CTF,Sighunt,sighunt,🟢 FREE,Practitioner,https://tryhackme.com/room/sighunt
+Security Labs & CTF,Stscredentialslab,stscredentialslab,🟢 FREE,Practitioner,https://tryhackme.com/room/stscredentialslab
+Security Labs & CTF,Subscribe,subscribe,🟢 FREE,Practitioner,https://tryhackme.com/room/subscribe
+Security Labs & CTF,Supersecrettip,supersecrettip,🟢 FREE,Practitioner,https://tryhackme.com/room/supersecrettip
+Security Labs & CTF,Surfingyetiiscomingtotown,surfingyetiiscomingtotown,🟢 FREE,Practitioner,https://tryhackme.com/room/surfingyetiiscomingtotown
+Security Labs & CTF,Tempusfugitdurius,tempusfugitdurius,🟢 FREE,Practitioner,https://tryhackme.com/room/tempusfugitdurius
+Security Labs & CTF,Thequestforleastprivilege,thequestforleastprivilege,🟢 FREE,Practitioner,https://tryhackme.com/room/thequestforleastprivilege
+Security Labs & CTF,Tryhack3Mencryptionchallenge,tryhack3mencryptionchallenge,🟢 FREE,Practitioner,https://tryhackme.com/room/tryhack3mencryptionchallenge
+Security Labs & CTF,Trypwnmetwo,trypwnmetwo,🟢 FREE,Practitioner,https://tryhackme.com/room/trypwnmetwo
+Security Labs & CTF,Unbakedpie,unbakedpie,🟢 FREE,Practitioner,https://tryhackme.com/room/unbakedpie
+Security Labs & CTF,Uranium,uranium,🟢 FREE,Practitioner,https://tryhackme.com/room/uranium
+Security Labs & CTF,Volttyphoon,volttyphoon,🟢 FREE,Practitioner,https://tryhackme.com/room/volttyphoon
+Security Labs & CTF,Voyage,voyage,🟢 FREE,Practitioner,https://tryhackme.com/room/voyage
+Security Labs & CTF,Vulnnetdotjar,vulnnetdotjar,🟢 FREE,Practitioner,https://tryhackme.com/room/vulnnetdotjar
+Security Labs & CTF,Vulnnetdotpy,vulnnetdotpy,🟢 FREE,Practitioner,https://tryhackme.com/room/vulnnetdotpy
+Security Labs & CTF,Willow,willow,🟢 FREE,Practitioner,https://tryhackme.com/room/willow
+Security Labs & CTF,Win64Assembly,win64assembly,🟢 FREE,Practitioner,https://tryhackme.com/room/win64assembly
+Active Directory & Windows,Windowsnetworkanalysis,windowsnetworkanalysis,🟢 FREE,Practitioner,https://tryhackme.com/room/windowsnetworkanalysis
+Active Directory & Windows,Windowsreversingintro,windowsreversingintro,🟢 FREE,Practitioner,https://tryhackme.com/room/windowsreversingintro
+Active Directory & Windows,Windowsuseractivity,windowsuseractivity,🟢 FREE,Practitioner,https://tryhackme.com/room/windowsuseractivity
+Security Labs & CTF,Yearofthedog,yearofthedog,🟢 FREE,Practitioner,https://tryhackme.com/room/yearofthedog
+Security Labs & CTF,Yearofthejellyfish,yearofthejellyfish,🟢 FREE,Practitioner,https://tryhackme.com/room/yearofthejellyfish
+Active Directory & Windows,Abusingwindowsinternals,abusingwindowsinternals,🟢 FREE,Practitioner,https://tryhackme.com/room/abusingwindowsinternals
+Active Directory & Windows,Adbadsuccessor,adbadsuccessor,🟢 FREE,Practitioner,https://tryhackme.com/room/adbadsuccessor
+Active Directory & Windows,Adventofcyber2023,adventofcyber2023,🟢 FREE,Practitioner,https://tryhackme.com/room/adventofcyber2023
+Security Labs & CTF,Airplane,airplane,🟢 FREE,Practitioner,https://tryhackme.com/room/airplane
+Security Labs & CTF,Antireverseengineering,antireverseengineering,🟢 FREE,Practitioner,https://tryhackme.com/room/antireverseengineering
+Security Labs & CTF,Aster,aster,🟢 FREE,Practitioner,https://tryhackme.com/room/aster
+Security Labs & CTF,Attackerkb,attackerkb,🟢 FREE,Practitioner,https://tryhackme.com/room/attackerkb
+Security Labs & CTF,Attackingics1,attackingics1,🟢 FREE,Practitioner,https://tryhackme.com/room/attackingics1
+Security Labs & CTF,Awsvpcdataexfiltration,awsvpcdataexfiltration,🟢 FREE,Practitioner,https://tryhackme.com/room/awsvpcdataexfiltration
+Security Labs & CTF,Azuredevsecops,azuredevsecops,🟢 FREE,Practitioner,https://tryhackme.com/room/azuredevsecops
+Security Labs & CTF,Bebop,bebop,🟢 FREE,Practitioner,https://tryhackme.com/room/bebop
+Security Labs & CTF,Brainpan,brainpan,🟢 FREE,Practitioner,https://tryhackme.com/room/brainpan
+Security Labs & CTF,Breakit,breakit,🟢 FREE,Practitioner,https://tryhackme.com/room/breakit
+Cryptography,Breakrsa,breakrsa,🟢 FREE,Practitioner,https://tryhackme.com/room/breakrsa
+Security Labs & CTF,Bsidesgtdevelpy,bsidesgtdevelpy,🟢 FREE,Practitioner,https://tryhackme.com/room/bsidesgtdevelpy
+Security Labs & CTF,Btsysinternalssg,btsysinternalssg,🟢 FREE,Practitioner,https://tryhackme.com/room/btsysinternalssg
+Security Labs & CTF,Bypassdisablefunctions,bypassdisablefunctions,🟢 FREE,Practitioner,https://tryhackme.com/room/bypassdisablefunctions
+Security Labs & CTF,Bypassinguac,bypassinguac,🟢 FREE,Practitioner,https://tryhackme.com/room/bypassinguac
+Security Labs & CTF,Catpictures2,catpictures2,🟢 FREE,Practitioner,https://tryhackme.com/room/catpictures2
+Security Labs & CTF,Classicpasswd,classicpasswd,🟢 FREE,Practitioner,https://tryhackme.com/room/classicpasswd
+Security Labs & CTF,Cmess,cmess,🟢 FREE,Practitioner,https://tryhackme.com/room/cmess
+Security Labs & CTF,Cmspit,cmspit,🟢 FREE,Practitioner,https://tryhackme.com/room/cmspit
+Security Labs & CTF,Coldvvars,coldvvars,🟢 FREE,Practitioner,https://tryhackme.com/room/coldvvars
+Security Labs & CTF,Containme1,containme1,🟢 FREE,Practitioner,https://tryhackme.com/room/containme1
+Security Labs & CTF,Contrabando,contrabando,🟢 FREE,Practitioner,https://tryhackme.com/room/contrabando
+Security Labs & CTF,Csp,csp,🟢 FREE,Practitioner,https://tryhackme.com/room/csp
+Security Labs & CTF,Cve202226923,cve202226923,🟢 FREE,Practitioner,https://tryhackme.com/room/cve202226923
+Security Labs & CTF,Cve202338408,cve202338408,🟢 FREE,Practitioner,https://tryhackme.com/room/cve202338408
+Security Labs & CTF,Cyberkillchain,cyberkillchain,🟢 FREE,Practitioner,https://tryhackme.com/room/cyberkillchain
+Security Labs & CTF,Cyberlensp6,cyberlensp6,🟢 FREE,Practitioner,https://tryhackme.com/room/cyberlensp6
+Security Labs & CTF,Cyberweek2021,cyberweek2021,🟢 FREE,Practitioner,https://tryhackme.com/room/cyberweek2021
+Security Labs & CTF,Dailybugle,dailybugle,🟢 FREE,Practitioner,https://tryhackme.com/room/dailybugle
+Active Directory & Windows,Defadversarialattacks,defadversarialattacks,🟢 FREE,Practitioner,https://tryhackme.com/room/defadversarialattacks
+Security Labs & CTF,Dirtypipe,dirtypipe,🟢 FREE,Practitioner,https://tryhackme.com/room/dirtypipe
+Security Labs & CTF,Diskfiltration,diskfiltration,🟢 FREE,Practitioner,https://tryhackme.com/room/diskfiltration
+Security Labs & CTF,Djangocve202564459,djangocve202564459,🟢 FREE,Practitioner,https://tryhackme.com/room/djangocve202564459
+Security Labs & CTF,Dodge,dodge,🟢 FREE,Practitioner,https://tryhackme.com/room/dodge
+Security Labs & CTF,Dogcat,dogcat,🟢 FREE,Practitioner,https://tryhackme.com/room/dogcat
+Security Labs & CTF,Empline,empline,🟢 FREE,Practitioner,https://tryhackme.com/room/empline
+Security Labs & CTF,Enterprise,enterprise,🟢 FREE,Practitioner,https://tryhackme.com/room/enterprise
+Security Labs & CTF,Enterprize,enterprize,🟢 FREE,Practitioner,https://tryhackme.com/room/enterprize
+Security Labs & CTF,Envizon,envizon,🟢 FREE,Practitioner,https://tryhackme.com/room/envizon
+Security Labs & CTF,Eritsecurusi,eritsecurusi,🟢 FREE,Practitioner,https://tryhackme.com/room/eritsecurusi
+Security Labs & CTF,Farewell,farewell,🟢 FREE,Practitioner,https://tryhackme.com/room/farewell
+Security Labs & CTF,Filecarving,filecarving,🟢 FREE,Practitioner,https://tryhackme.com/room/filecarving
+Security Labs & CTF,Forbusinessreasons,forbusinessreasons,🟢 FREE,Practitioner,https://tryhackme.com/room/forbusinessreasons
+Security Labs & CTF,Forgottenimplant,forgottenimplant,🟢 FREE,Practitioner,https://tryhackme.com/room/forgottenimplant
+Security Labs & CTF,Fortress,fortress,🟢 FREE,Practitioner,https://tryhackme.com/room/fortress
+Security Labs & CTF,Greprtp,greprtp,🟢 FREE,Practitioner,https://tryhackme.com/room/greprtp
+Security Labs & CTF,Harder,harder,🟢 FREE,Practitioner,https://tryhackme.com/room/harder
+Security Labs & CTF,Haskhell,haskhell,🟢 FREE,Practitioner,https://tryhackme.com/room/haskhell
+Security Labs & CTF,Hfb1Abucketofphish,hfb1abucketofphish,🟢 FREE,Practitioner,https://tryhackme.com/room/hfb1abucketofphish
+Cryptography,Hfb1Cipherssecretmessage,hfb1cipherssecretmessage,🟢 FREE,Practitioner,https://tryhackme.com/room/hfb1cipherssecretmessage
+Security Labs & CTF,Ics Modbus Aoc2025 G3M6N9B1V4,ICS-modbus-aoc2025-g3m6n9b1v4,🟢 FREE,Practitioner,https://tryhackme.com/room/ICS-modbus-aoc2025-g3m6n9b1v4
+Active Directory & Windows,Idadversarialattacks,idadversarialattacks,🟢 FREE,Practitioner,https://tryhackme.com/room/idadversarialattacks
+Security Labs & CTF,Inacave,inacave,🟢 FREE,Practitioner,https://tryhackme.com/room/inacave
+Systems & Fundamentals,Introtoendpointsecurity,introtoendpointsecurity,🟢 FREE,Practitioner,https://tryhackme.com/room/introtoendpointsecurity
+Security Labs & CTF,Ironcorp,ironcorp,🟢 FREE,Practitioner,https://tryhackme.com/room/ironcorp
+Security Labs & CTF,Irplaybooks,irplaybooks,🟢 FREE,Practitioner,https://tryhackme.com/room/irplaybooks
+Security Labs & CTF,Jokerctf,jokerctf,🟢 FREE,Practitioner,https://tryhackme.com/room/jokerctf
+Security Labs & CTF,Joomify,joomify,🟢 FREE,Practitioner,https://tryhackme.com/room/joomify
+Systems & Fundamentals,Linuxbackdoors,linuxbackdoors,🟢 FREE,Practitioner,https://tryhackme.com/room/linuxbackdoors
+Security Labs & CTF,Lookingglass,lookingglass,🟢 FREE,Practitioner,https://tryhackme.com/room/lookingglass
+Security Labs & CTF,Looneytunes,looneytunes,🟢 FREE,Practitioner,https://tryhackme.com/room/looneytunes
+Security Labs & CTF,Lunizzctfnd,lunizzctfnd,🟢 FREE,Practitioner,https://tryhackme.com/room/lunizzctfnd
+Security Labs & CTF,M4Tr1Xexitdenied,m4tr1xexitdenied,🟢 FREE,Practitioner,https://tryhackme.com/room/m4tr1xexitdenied
+Active Directory & Windows,Madeyescastle,madeyescastle,🟢 FREE,Practitioner,https://tryhackme.com/room/madeyescastle
+Security Labs & CTF,Messagetogarcia,messagetogarcia,🟢 FREE,Practitioner,https://tryhackme.com/room/messagetogarcia
+Security Labs & CTF,Mma,mma,🟢 FREE,Practitioner,https://tryhackme.com/room/mma
+Security Labs & CTF,Nanocherryctf,nanocherryctf,🟢 FREE,Practitioner,https://tryhackme.com/room/nanocherryctf
+Security Labs & CTF,Nappingis1337,nappingis1337,🟢 FREE,Practitioner,https://tryhackme.com/room/nappingis1337
+Security Labs & CTF,Ollie,ollie,🟢 FREE,Practitioner,https://tryhackme.com/room/ollie
+Security Labs & CTF,Paymentcollectors,paymentcollectors,🟢 FREE,Practitioner,https://tryhackme.com/room/paymentcollectors
+Security Labs & CTF,Polkit,polkit,🟢 FREE,Practitioner,https://tryhackme.com/room/polkit
+Security Labs & CTF,Printnightmarec2Bn7L,printnightmarec2bn7l,🟢 FREE,Practitioner,https://tryhackme.com/room/printnightmarec2bn7l
+Security Labs & CTF,Prioritise,prioritise,🟢 FREE,Practitioner,https://tryhackme.com/room/prioritise
+Security Labs & CTF,Probe,probe,🟢 FREE,Practitioner,https://tryhackme.com/room/probe
+Web Exploitation,Promptinjection Aoc2025 Sxumnckvlo,promptinjection-aoc2025-sxUMnCkvLO,🟢 FREE,Practitioner,https://tryhackme.com/room/promptinjection-aoc2025-sxUMnCkvLO
+Security Labs & CTF,Pwn101,pwn101,🟢 FREE,Practitioner,https://tryhackme.com/room/pwn101
+Security Labs & CTF,Pylonzf,pylonzf,🟢 FREE,Practitioner,https://tryhackme.com/room/pylonzf
+Security Labs & CTF,Ra2,ra2,🟢 FREE,Practitioner,https://tryhackme.com/room/ra2
+Security Labs & CTF,Raz0Rblack,raz0rblack,🟢 FREE,Practitioner,https://tryhackme.com/room/raz0rblack
+Security Labs & CTF,Res,res,🟢 FREE,Practitioner,https://tryhackme.com/room/res
+Security Labs & CTF,Resetui,resetui,🟢 FREE,Practitioner,https://tryhackme.com/room/resetui
+SOC & Detection,Runtimedetectionevasion,runtimedetectionevasion,🟢 FREE,Practitioner,https://tryhackme.com/room/runtimedetectionevasion
+Security Labs & CTF,Set,set,🟢 FREE,Practitioner,https://tryhackme.com/room/set
+Security Labs & CTF,Snykopensource,snykopensource,🟢 FREE,Practitioner,https://tryhackme.com/room/snykopensource
+Security Labs & CTF,Sq1 Aoc2025 Fzpnrt2Sau,sq1-aoc2025-FzPnrt2SAu,🟢 FREE,Practitioner,https://tryhackme.com/room/sq1-aoc2025-FzPnrt2SAu
+Security Labs & CTF,Sq2 Aoc2025 Jxiokusd9R,sq2-aoc2025-JxiOKUSD9R,🟢 FREE,Practitioner,https://tryhackme.com/room/sq2-aoc2025-JxiOKUSD9R
+Security Labs & CTF,Stuxctf,stuxctf,🟢 FREE,Practitioner,https://tryhackme.com/room/stuxctf
+Security Labs & CTF,Templates,templates,🟢 FREE,Practitioner,https://tryhackme.com/room/templates
+Security Labs & CTF,Temple,temple,🟢 FREE,Practitioner,https://tryhackme.com/room/temple
+Security Labs & CTF,Theimpossiblechallenge,theimpossiblechallenge,🟢 FREE,Practitioner,https://tryhackme.com/room/theimpossiblechallenge
+Security Labs & CTF,Tmuxremux,tmuxremux,🟢 FREE,Practitioner,https://tryhackme.com/room/tmuxremux
+Security Labs & CTF,Toolsrus,toolsrus,🟢 FREE,Practitioner,https://tryhackme.com/room/toolsrus
+Security Labs & CTF,Vulnnet1,vulnnet1,🟢 FREE,Practitioner,https://tryhackme.com/room/vulnnet1
+Security Labs & CTF,Vulnnetendgame,vulnnetendgame,🟢 FREE,Practitioner,https://tryhackme.com/room/vulnnetendgame
+Security Labs & CTF,Weaponizingvulnerabilities,weaponizingvulnerabilities,🟢 FREE,Practitioner,https://tryhackme.com/room/weaponizingvulnerabilities
+Security Labs & CTF,Yearofthepig,yearofthepig,🟢 FREE,Practitioner,https://tryhackme.com/room/yearofthepig
+SOC & Detection,Zeekbro,zeekbro,🟢 FREE,Practitioner,https://tryhackme.com/room/zeekbro
+Security Labs & CTF,25Daysofchristmas,25daysofchristmas,🟢 FREE,Practitioner,https://tryhackme.com/room/25daysofchristmas
+Active Directory & Windows,Activedirectoryhardening,activedirectoryhardening,🟢 FREE,Practitioner,https://tryhackme.com/room/activedirectoryhardening
+Active Directory & Windows,Adventofcyber23Sidequest,adventofcyber23sidequest,🟢 FREE,Practitioner,https://tryhackme.com/room/adventofcyber23sidequest
+Security Labs & CTF,Androidhacking101,androidhacking101,🟢 FREE,Practitioner,https://tryhackme.com/room/androidhacking101
+Security Labs & CTF,Androidmalwareanalysis,androidmalwareanalysis,🟢 FREE,Practitioner,https://tryhackme.com/room/androidmalwareanalysis
+Security Labs & CTF,Anonymousplayground,anonymousplayground,🟢 FREE,Practitioner,https://tryhackme.com/room/anonymousplayground
+Security Labs & CTF,Apt28Inthesnare,apt28inthesnare,🟢 FREE,Practitioner,https://tryhackme.com/room/apt28inthesnare
+Security Labs & CTF,Atomicbirdtwo,atomicbirdtwo,🟢 FREE,Practitioner,https://tryhackme.com/room/atomicbirdtwo
+Security Labs & CTF,Attackingics2,attackingics2,🟢 FREE,Practitioner,https://tryhackme.com/room/attackingics2
+Security Labs & CTF,Awsapigateway,awsapigateway,🟢 FREE,Practitioner,https://tryhackme.com/room/awsapigateway
+Security Labs & CTF,Awslambda,awslambda,🟢 FREE,Practitioner,https://tryhackme.com/room/awslambda
+Security Labs & CTF,Basicdynamicanalysis,basicdynamicanalysis,🟢 FREE,Practitioner,https://tryhackme.com/room/basicdynamicanalysis
+Security Labs & CTF,Biteme,biteme,🟢 FREE,Practitioner,https://tryhackme.com/room/biteme
+Security Labs & CTF,Blog,blog,🟢 FREE,Practitioner,https://tryhackme.com/room/blog
+Security Labs & CTF,Breakoutthecage1,breakoutthecage1,🟢 FREE,Practitioner,https://tryhackme.com/room/breakoutthecage1
+Security Labs & CTF,Broker,broker,🟢 FREE,Practitioner,https://tryhackme.com/room/broker
+Security Labs & CTF,Bsidesgtdav,bsidesgtdav,🟢 FREE,Practitioner,https://tryhackme.com/room/bsidesgtdav
+Security Labs & CTF,Cactus,cactus,🟢 FREE,Practitioner,https://tryhackme.com/room/cactus
+Security Labs & CTF,Chillhack,chillhack,🟢 FREE,Practitioner,https://tryhackme.com/room/chillhack
+Security Labs & CTF,Chronicle,chronicle,🟢 FREE,Practitioner,https://tryhackme.com/room/chronicle
+Security Labs & CTF,Cloudbasediac,cloudbasediac,🟢 FREE,Practitioner,https://tryhackme.com/room/cloudbasediac
+Security Labs & CTF,Cloudenum Aoc2025 Y4U7I0O3P6,cloudenum-aoc2025-y4u7i0o3p6,🟢 FREE,Practitioner,https://tryhackme.com/room/cloudenum-aoc2025-y4u7i0o3p6
+Security Labs & CTF,Committed,committed,🟢 FREE,Practitioner,https://tryhackme.com/room/committed
+Security Labs & CTF,Contiransomwarehgh,contiransomwarehgh,🟢 FREE,Practitioner,https://tryhackme.com/room/contiransomwarehgh
+Active Directory & Windows,Cooctusadventures,cooctusadventures,🟢 FREE,Practitioner,https://tryhackme.com/room/cooctusadventures
+Security Labs & CTF,Credharvesting,credharvesting,🟢 FREE,Practitioner,https://tryhackme.com/room/credharvesting
+Security Labs & CTF,Customtoolingviabrowserautomation,customtoolingviabrowserautomation,🟢 FREE,Practitioner,https://tryhackme.com/room/customtoolingviabrowserautomation
+Security Labs & CTF,Cybercrafted,cybercrafted,🟢 FREE,Practitioner,https://tryhackme.com/room/cybercrafted
+Security Labs & CTF,Cybercrisismanagement,cybercrisismanagement,🟢 FREE,Practitioner,https://tryhackme.com/room/cybercrisismanagement
+Security Labs & CTF,Debug,debug,🟢 FREE,Practitioner,https://tryhackme.com/room/debug
+Security Labs & CTF,Dejavu,dejavu,🟢 FREE,Practitioner,https://tryhackme.com/room/dejavu
+Security Labs & CTF,Devie,devie,🟢 FREE,Practitioner,https://tryhackme.com/room/devie
+Security Labs & CTF,Dfirtimelineanalysis,dfirtimelineanalysis,🟢 FREE,Practitioner,https://tryhackme.com/room/dfirtimelineanalysis
+Security Labs & CTF,Dreaming,dreaming,🟢 FREE,Practitioner,https://tryhackme.com/room/dreaming
+Security Labs & CTF,Dunklematerieptxc9,dunklematerieptxc9,🟢 FREE,Practitioner,https://tryhackme.com/room/dunklematerieptxc9
+Security Labs & CTF,Erlangotpsshcve202532433,erlangotpsshcve202532433,🟢 FREE,Practitioner,https://tryhackme.com/room/erlangotpsshcve202532433
+Security Labs & CTF,Exfilibur,exfilibur,🟢 FREE,Practitioner,https://tryhackme.com/room/exfilibur
+Security Labs & CTF,Extract,extract,🟢 FREE,Practitioner,https://tryhackme.com/room/extract
+Security Labs & CTF,Fixit,fixit,🟢 FREE,Practitioner,https://tryhackme.com/room/fixit
+Security Labs & CTF,Frankandherbytryagain,frankandherbytryagain,🟢 FREE,Practitioner,https://tryhackme.com/room/frankandherbytryagain
+Security Labs & CTF,Fusioncorp,fusioncorp,🟢 FREE,Practitioner,https://tryhackme.com/room/fusioncorp
+Security Labs & CTF,Gitlabcve20237028,gitlabcve20237028,🟢 FREE,Practitioner,https://tryhackme.com/room/gitlabcve20237028
+Security Labs & CTF,Hackpark,hackpark,🟢 FREE,Practitioner,https://tryhackme.com/room/hackpark
+Cryptography,Hfb1Cryptosystem,hfb1cryptosystem,🟢 FREE,Practitioner,https://tryhackme.com/room/hfb1cryptosystem
+Security Labs & CTF,Hfb1Flagvault,hfb1flagvault,🟢 FREE,Practitioner,https://tryhackme.com/room/hfb1flagvault
+Security Labs & CTF,Hfb1Flagvault2,hfb1flagvault2,🟢 FREE,Practitioner,https://tryhackme.com/room/hfb1flagvault2
+Systems & Fundamentals,Hfb1Infinityshell,hfb1infinityshell,🟢 FREE,Practitioner,https://tryhackme.com/room/hfb1infinityshell
+Security Labs & CTF,Hfb1Order,hfb1order,🟢 FREE,Practitioner,https://tryhackme.com/room/hfb1order
+Security Labs & CTF,Hfb1Passcode,hfb1passcode,🟢 FREE,Practitioner,https://tryhackme.com/room/hfb1passcode
+Security Labs & CTF,Hfb1Royalrouter,hfb1royalrouter,🟢 FREE,Practitioner,https://tryhackme.com/room/hfb1royalrouter
+Security Labs & CTF,Hijack,hijack,🟢 FREE,Practitioner,https://tryhackme.com/room/hijack
+Security Labs & CTF,Injectics,injectics,🟢 FREE,Practitioner,https://tryhackme.com/room/injectics
+Security Labs & CTF,Jpgchat,jpgchat,🟢 FREE,Practitioner,https://tryhackme.com/room/jpgchat
+Security Labs & CTF,K2Room,k2room,🟢 FREE,Practitioner,https://tryhackme.com/room/k2room
+Security Labs & CTF,Kape,kape,🟢 FREE,Practitioner,https://tryhackme.com/room/kape
+Security Labs & CTF,Kitty,kitty,🟢 FREE,Practitioner,https://tryhackme.com/room/kitty
+Security Labs & CTF,Kubernetesforyouly,kubernetesforyouly,🟢 FREE,Practitioner,https://tryhackme.com/room/kubernetesforyouly
+Security Labs & CTF,Lafb2026E1,lafb2026e1,🟢 FREE,Practitioner,https://tryhackme.com/room/lafb2026e1
+Active Directory & Windows,Lafbctf2026 Advanced,lafbctf2026-advanced,🟢 FREE,Practitioner,https://tryhackme.com/room/lafbctf2026-advanced
+Security Labs & CTF,Lianyu,lianyu,🟢 FREE,Practitioner,https://tryhackme.com/room/lianyu
+DFIR & Forensics,Linuxforensics,linuxforensics,🟢 FREE,Practitioner,https://tryhackme.com/room/linuxforensics
+DFIR & Forensics,Linuxserverforensics,linuxserverforensics,🟢 FREE,Practitioner,https://tryhackme.com/room/linuxserverforensics
+Security Labs & CTF,Malbuster,malbuster,🟢 FREE,Practitioner,https://tryhackme.com/room/malbuster
+Security Labs & CTF,Maldoc,maldoc,🟢 FREE,Practitioner,https://tryhackme.com/room/maldoc
+Security Labs & CTF,Malware Sandbox Aoc2025 Sd1Zn4Fzqt,malware-sandbox-aoc2025-SD1zn4fZQt,🟢 FREE,Practitioner,https://tryhackme.com/room/malware-sandbox-aoc2025-SD1zn4fZQt
+DFIR & Forensics,Memoryanalysisintroduction,memoryanalysisintroduction,🟢 FREE,Practitioner,https://tryhackme.com/room/memoryanalysisintroduction
+Security Labs & CTF,Monitoringawslogins,monitoringawslogins,🟢 FREE,Practitioner,https://tryhackme.com/room/monitoringawslogins
+Security Labs & CTF,Nerdherd,nerdherd,🟢 FREE,Practitioner,https://tryhackme.com/room/nerdherd
+Security Labs & CTF,Newhireoldartifacts,newhireoldartifacts,🟢 FREE,Practitioner,https://tryhackme.com/room/newhireoldartifacts
+Web Exploitation,Ohmyweb,ohmyweb,🟢 FREE,Practitioner,https://tryhackme.com/room/ohmyweb
+Security Labs & CTF,Operationendgame,operationendgame,🟢 FREE,Practitioner,https://tryhackme.com/room/operationendgame
+Security Labs & CTF,Opsec,opsec,🟢 FREE,Practitioner,https://tryhackme.com/room/opsec
+Web Exploitation,Orminjection,orminjection,🟢 FREE,Practitioner,https://tryhackme.com/room/orminjection
+Security Labs & CTF,Outlookntlmleak,outlookntlmleak,🟢 FREE,Practitioner,https://tryhackme.com/room/outlookntlmleak
+Security Labs & CTF,Overpass2Hacked,overpass2hacked,🟢 FREE,Practitioner,https://tryhackme.com/room/overpass2hacked
+Security Labs & CTF,Palsforlife,palsforlife,🟢 FREE,Practitioner,https://tryhackme.com/room/palsforlife
+Active Directory & Windows,Phishingpond,phishingpond,🟢 FREE,Practitioner,https://tryhackme.com/room/phishingpond
+Security Labs & CTF,Printerhacking101,printerhacking101,🟢 FREE,Practitioner,https://tryhackme.com/room/printerhacking101
+DFIR & Forensics,Registry Forensics Aoc2025 H6K9J2L5P8,registry-forensics-aoc2025-h6k9j2l5p8,🟢 FREE,Practitioner,https://tryhackme.com/room/registry-forensics-aoc2025-h6k9j2l5p8
+Security Labs & CTF,Ret2Libc,ret2libc,🟢 FREE,Practitioner,https://tryhackme.com/room/ret2libc
+Security Labs & CTF,Retro,retro,🟢 FREE,Practitioner,https://tryhackme.com/room/retro
+Security Labs & CTF,Simplehelpcve202457727,simplehelpcve202457727,🟢 FREE,Practitioner,https://tryhackme.com/room/simplehelpcve202457727
+Security Labs & CTF,Snykcode,snykcode,🟢 FREE,Practitioner,https://tryhackme.com/room/snykcode
+Security Labs & CTF,Stealth,stealth,🟢 FREE,Practitioner,https://tryhackme.com/room/stealth
+Security Labs & CTF,Thatstheticket,thatstheticket,🟢 FREE,Practitioner,https://tryhackme.com/room/thatstheticket
+Security Labs & CTF,Theblobblog,theblobblog,🟢 FREE,Practitioner,https://tryhackme.com/room/theblobblog
+Security Labs & CTF,Theserverfromhell,theserverfromhell,🟢 FREE,Practitioner,https://tryhackme.com/room/theserverfromhell
+Security Labs & CTF,Theseus,theseus,🟢 FREE,Practitioner,https://tryhackme.com/room/theseus
+Security Labs & CTF,Tomcatcve202450379,tomcatcve202450379,🟢 FREE,Practitioner,https://tryhackme.com/room/tomcatcve202450379
+Security Labs & CTF,Traverse,traverse,🟢 FREE,Practitioner,https://tryhackme.com/room/traverse
+Security Labs & CTF,Trypwnmeone,trypwnmeone,🟢 FREE,Practitioner,https://tryhackme.com/room/trypwnmeone
+Security Labs & CTF,Umbrella,umbrella,🟢 FREE,Practitioner,https://tryhackme.com/room/umbrella
+Security Labs & CTF,Vulnnetactive,vulnnetactive,🟢 FREE,Practitioner,https://tryhackme.com/room/vulnnetactive
+Security Labs & CTF,Vulnnetinternal,vulnnetinternal,🟢 FREE,Practitioner,https://tryhackme.com/room/vulnnetinternal
+Security Labs & CTF,Warzonetwo,warzonetwo,🟢 FREE,Practitioner,https://tryhackme.com/room/warzonetwo
+Security Labs & CTF,Whyhackme,whyhackme,🟢 FREE,Practitioner,https://tryhackme.com/room/whyhackme
+Active Directory & Windows,Windowsapplications,windowsapplications,🟢 FREE,Practitioner,https://tryhackme.com/room/windowsapplications
+Security Labs & CTF,Yearoftheowl,yearoftheowl,🟢 FREE,Practitioner,https://tryhackme.com/room/yearoftheowl
+Security Labs & CTF,Yotf,yotf,🟢 FREE,Practitioner,https://tryhackme.com/room/yotf
+Security Labs & CTF,Zeno,zeno,🟢 FREE,Practitioner,https://tryhackme.com/room/zeno
+Security Labs & CTF,4Th3N4,4th3n4,🟢 FREE,Practitioner,https://tryhackme.com/room/4th3n4
+Active Directory & Windows,Advancedelkqueries,advancedelkqueries,🟢 FREE,Practitioner,https://tryhackme.com/room/advancedelkqueries
+Active Directory & Windows,Adventofcyber2,adventofcyber2,🟢 FREE,Practitioner,https://tryhackme.com/room/adventofcyber2
+Active Directory & Windows,Adventuretime,adventuretime,🟢 FREE,Practitioner,https://tryhackme.com/room/adventuretime
+DFIR & Forensics,Analysingvolatilememory,analysingvolatilememory,🟢 FREE,Practitioner,https://tryhackme.com/room/analysingvolatilememory
+Security Labs & CTF,Anonymous,anonymous,🟢 FREE,Practitioner,https://tryhackme.com/room/anonymous
+Security Labs & CTF,Awss3Service,awss3service,🟢 FREE,Practitioner,https://tryhackme.com/room/awss3service
+Security Labs & CTF,Backtrack,backtrack,🟢 FREE,Practitioner,https://tryhackme.com/room/backtrack
+Security Labs & CTF,Battery,battery,🟢 FREE,Practitioner,https://tryhackme.com/room/battery
+Security Labs & CTF,Bookstoreoc,bookstoreoc,🟢 FREE,Practitioner,https://tryhackme.com/room/bookstoreoc
+Security Labs & CTF,Borderlands,borderlands,🟢 FREE,Practitioner,https://tryhackme.com/room/borderlands
+Security Labs & CTF,Brainstorm,brainstorm,🟢 FREE,Practitioner,https://tryhackme.com/room/brainstorm
+Security Labs & CTF,Breakmenu,breakmenu,🟢 FREE,Practitioner,https://tryhackme.com/room/breakmenu
+Security Labs & CTF,Brim,brim,🟢 FREE,Practitioner,https://tryhackme.com/room/brim
+Security Labs & CTF,Bruteit,bruteit,🟢 FREE,Practitioner,https://tryhackme.com/room/bruteit
+DFIR & Forensics,Btautopsye0,btautopsye0,🟢 FREE,Practitioner,https://tryhackme.com/room/btautopsye0
+Security Labs & CTF,Cherryblossom,cherryblossom,🟢 FREE,Practitioner,https://tryhackme.com/room/cherryblossom
+Security Labs & CTF,Chocolatefactory,chocolatefactory,🟢 FREE,Practitioner,https://tryhackme.com/room/chocolatefactory
+Security Labs & CTF,Commonattacks,commonattacks,🟢 FREE,Practitioner,https://tryhackme.com/room/commonattacks
+Active Directory & Windows,Compromisedwindowsanalysis,compromisedwindowsanalysis,🟢 FREE,Practitioner,https://tryhackme.com/room/compromisedwindowsanalysis
+Security Labs & CTF,Convertmyvideo,convertmyvideo,🟢 FREE,Practitioner,https://tryhackme.com/room/convertmyvideo
+Security Labs & CTF,Customalertrulesinwazuh,customalertrulesinwazuh,🟢 FREE,Practitioner,https://tryhackme.com/room/customalertrulesinwazuh
+Web Exploitation,Customtoolingviaburp,customtoolingviaburp,🟢 FREE,Practitioner,https://tryhackme.com/room/customtoolingviaburp
+Security Labs & CTF,Cyborgt8,cyborgt8,🟢 FREE,Practitioner,https://tryhackme.com/room/cyborgt8
+Security Labs & CTF,Dfirprocesslegalconsiderations,dfirprocesslegalconsiderations,🟢 FREE,Practitioner,https://tryhackme.com/room/dfirprocesslegalconsiderations
+Security Labs & CTF,Dockerrodeo,dockerrodeo,🟢 FREE,Practitioner,https://tryhackme.com/room/dockerrodeo
+Security Labs & CTF,Eavesdropper,eavesdropper,🟢 FREE,Practitioner,https://tryhackme.com/room/eavesdropper
+Security Labs & CTF,Enumerationpe,enumerationpe,🟢 FREE,Practitioner,https://tryhackme.com/room/enumerationpe
+Security Labs & CTF,Flatline,flatline,🟢 FREE,Practitioner,https://tryhackme.com/room/flatline
+Security Labs & CTF,Flip,flip,🟢 FREE,Practitioner,https://tryhackme.com/room/flip
+DFIR & Forensics,Forensicimaging,forensicimaging,🟢 FREE,Practitioner,https://tryhackme.com/room/forensicimaging
+Security Labs & CTF,Fridayovertime,fridayovertime,🟢 FREE,Practitioner,https://tryhackme.com/room/fridayovertime
+Security Labs & CTF,Gallery666,gallery666,🟢 FREE,Practitioner,https://tryhackme.com/room/gallery666
+Security Labs & CTF,Gamingserver,gamingserver,🟢 FREE,Practitioner,https://tryhackme.com/room/gamingserver
+Security Labs & CTF,Geolocatingimages,geolocatingimages,🟢 FREE,Practitioner,https://tryhackme.com/room/geolocatingimages
+Security Labs & CTF,Ghizerctf,ghizerctf,🟢 FREE,Practitioner,https://tryhackme.com/room/ghizerctf
+Security Labs & CTF,H4Cked,h4cked,🟢 FREE,Practitioner,https://tryhackme.com/room/h4cked
+Security Labs & CTF,Hack2Win,hack2win,🟢 FREE,Practitioner,https://tryhackme.com/room/hack2win
+Security Labs & CTF,Iamcredentials,iamcredentials,🟢 FREE,Practitioner,https://tryhackme.com/room/iamcredentials
+Security Labs & CTF,Incidentresponseprocess,incidentresponseprocess,🟢 FREE,Practitioner,https://tryhackme.com/room/incidentresponseprocess
+Security Labs & CTF,Insekube,insekube,🟢 FREE,Practitioner,https://tryhackme.com/room/insekube
+Systems & Fundamentals,Introductiontohoneypots,introductiontohoneypots,🟢 FREE,Practitioner,https://tryhackme.com/room/introductiontohoneypots
+Systems & Fundamentals,Intropocscripting,intropocscripting,🟢 FREE,Practitioner,https://tryhackme.com/room/intropocscripting
+Active Directory & Windows,Investigatingwindows3,investigatingwindows3,🟢 FREE,Practitioner,https://tryhackme.com/room/investigatingwindows3
+Systems & Fundamentals,Iotintro,iotintro,🟢 FREE,Practitioner,https://tryhackme.com/room/iotintro
+Security Labs & CTF,Jacobtheboss,jacobtheboss,🟢 FREE,Practitioner,https://tryhackme.com/room/jacobtheboss
+Security Labs & CTF,Kothfoodctf,kothfoodctf,🟢 FREE,Practitioner,https://tryhackme.com/room/kothfoodctf
+Security Labs & CTF,Ledger,ledger,🟢 FREE,Practitioner,https://tryhackme.com/room/ledger
+Security Labs & CTF,Lightroom,lightroom,🟢 FREE,Practitioner,https://tryhackme.com/room/lightroom
+Security Labs & CTF,Lle,lle,🟢 FREE,Practitioner,https://tryhackme.com/room/lle
+Security Labs & CTF,Lockdown,lockdown,🟢 FREE,Practitioner,https://tryhackme.com/room/lockdown
+Active Directory & Windows,Madness,madness,🟢 FREE,Practitioner,https://tryhackme.com/room/madness
+Security Labs & CTF,Malremnuxv2,malremnuxv2,🟢 FREE,Practitioner,https://tryhackme.com/room/malremnuxv2
+Security Labs & CTF,Malstrings,malstrings,🟢 FREE,Practitioner,https://tryhackme.com/room/malstrings
+Security Labs & CTF,Metamorphosis,metamorphosis,🟢 FREE,Practitioner,https://tryhackme.com/room/metamorphosis
+Security Labs & CTF,Misp,misp,🟢 FREE,Practitioner,https://tryhackme.com/room/misp
+Security Labs & CTF,Mkingdom,mkingdom,🟢 FREE,Practitioner,https://tryhackme.com/room/mkingdom
+Security Labs & CTF,Moebius,moebius,🟢 FREE,Practitioner,https://tryhackme.com/room/moebius
+Systems & Fundamentals,Mountaineerlinux,mountaineerlinux,🟢 FREE,Practitioner,https://tryhackme.com/room/mountaineerlinux
+Security Labs & CTF,Mrphisher,mrphisher,🟢 FREE,Practitioner,https://tryhackme.com/room/mrphisher
+Security Labs & CTF,Mustacchio,mustacchio,🟢 FREE,Practitioner,https://tryhackme.com/room/mustacchio
+Systems & Fundamentals,Networkservices2,networkservices2,🟢 FREE,Practitioner,https://tryhackme.com/room/networkservices2
+Security Labs & CTF,Obscured,obscured,🟢 FREE,Practitioner,https://tryhackme.com/room/obscured
+Security Labs & CTF,Opacity,opacity,🟢 FREE,Practitioner,https://tryhackme.com/room/opacity
+Security Labs & CTF,Opencti,opencti,🟢 FREE,Practitioner,https://tryhackme.com/room/opencti
+Security Labs & CTF,Overpass,overpass,🟢 FREE,Practitioner,https://tryhackme.com/room/overpass
+Security Labs & CTF,Pwnkit,pwnkit,🟢 FREE,Practitioner,https://tryhackme.com/room/pwnkit
+Security Labs & CTF,Racetrackbank,racetrackbank,🟢 FREE,Practitioner,https://tryhackme.com/room/racetrackbank
+Security Labs & CTF,Revilcorp,revilcorp,🟢 FREE,Practitioner,https://tryhackme.com/room/revilcorp
+Security Labs & CTF,Rppsempire,rppsempire,🟢 FREE,Practitioner,https://tryhackme.com/room/rppsempire
+Security Labs & CTF,Rustscan,rustscan,🟢 FREE,Practitioner,https://tryhackme.com/room/rustscan
+Security Labs & CTF,Sandboxevasion,sandboxevasion,🟢 FREE,Practitioner,https://tryhackme.com/room/sandboxevasion
+Security Labs & CTF,Seasurfer,seasurfer,🟢 FREE,Practitioner,https://tryhackme.com/room/seasurfer
+Security Labs & CTF,Securesdlc,securesdlc,🟢 FREE,Practitioner,https://tryhackme.com/room/securesdlc
+Security Labs & CTF,Securityfootage,securityfootage,🟢 FREE,Practitioner,https://tryhackme.com/room/securityfootage
+Active Directory & Windows,Shadowtrace,shadowtrace,🟢 FREE,Practitioner,https://tryhackme.com/room/shadowtrace
+Security Labs & CTF,Source,source,🟢 FREE,Practitioner,https://tryhackme.com/room/source
+Security Labs & CTF,Spring,spring,🟢 FREE,Practitioner,https://tryhackme.com/room/spring
+Security Labs & CTF,Sudovulnssamedit,sudovulnssamedit,🟢 FREE,Practitioner,https://tryhackme.com/room/sudovulnssamedit
+Security Labs & CTF,Surfer,surfer,🟢 FREE,Practitioner,https://tryhackme.com/room/surfer
+Security Labs & CTF,Sustah,sustah,🟢 FREE,Practitioner,https://tryhackme.com/room/sustah
+SOC & Detection,Tacticaldetection,tacticaldetection,🟢 FREE,Practitioner,https://tryhackme.com/room/tacticaldetection
+Security Labs & CTF,Tapper,tapper,🟢 FREE,Practitioner,https://tryhackme.com/room/tapper
+Security Labs & CTF,Teamcw,teamcw,🟢 FREE,Practitioner,https://tryhackme.com/room/teamcw
+Security Labs & CTF,Techsupp0Rt1,techsupp0rt1,🟢 FREE,Practitioner,https://tryhackme.com/room/techsupp0rt1
+Security Labs & CTF,Thecasesevenminutesontheseine,thecasesevenminutesontheseine,🟢 FREE,Practitioner,https://tryhackme.com/room/thecasesevenminutesontheseine
+Security Labs & CTF,Thelondonbridge,thelondonbridge,🟢 FREE,Practitioner,https://tryhackme.com/room/thelondonbridge
+Security Labs & CTF,Threathuntingpivoting,threathuntingpivoting,🟢 FREE,Practitioner,https://tryhackme.com/room/threathuntingpivoting
+Security Labs & CTF,Threathuntingwithyara,threathuntingwithyara,🟢 FREE,Practitioner,https://tryhackme.com/room/threathuntingwithyara
+Security Labs & CTF,Toc2,toc2,🟢 FREE,Practitioner,https://tryhackme.com/room/toc2
+Security Labs & CTF,Tokyoghoul666,tokyoghoul666,🟢 FREE,Practitioner,https://tryhackme.com/room/tokyoghoul666
+Security Labs & CTF,Typosquatters,typosquatters,🟢 FREE,Practitioner,https://tryhackme.com/room/typosquatters
+Security Labs & CTF,Undiscoveredup,undiscoveredup,🟢 FREE,Practitioner,https://tryhackme.com/room/undiscoveredup
+Security Labs & CTF,Warzoneone,warzoneone,🟢 FREE,Practitioner,https://tryhackme.com/room/warzoneone
+Security Labs & CTF,Watcher,watcher,🟢 FREE,Practitioner,https://tryhackme.com/room/watcher
+Security Labs & CTF,Wekorra,wekorra,🟢 FREE,Practitioner,https://tryhackme.com/room/wekorra
+Active Directory & Windows,Windowslocalpersistence,windowslocalpersistence,🟢 FREE,Practitioner,https://tryhackme.com/room/windowslocalpersistence
+Security Labs & CTF,Yara,yara,🟢 FREE,Practitioner,https://tryhackme.com/room/yara
+SOC & Detection,Zeekbroexercises,zeekbroexercises,🟢 FREE,Practitioner,https://tryhackme.com/room/zeekbroexercises
+Security Labs & CTF,0Day,0day,🟢 FREE,Practitioner,https://tryhackme.com/room/0day
+Active Directory & Windows,Adventofcyber2024,adventofcyber2024,🟢 FREE,Practitioner,https://tryhackme.com/room/adventofcyber2024
+Active Directory & Windows,Adventofcyber4,adventofcyber4,🟢 FREE,Practitioner,https://tryhackme.com/room/adventofcyber4
+Security Labs & CTF,Apiwizardsbreach,apiwizardsbreach,🟢 FREE,Practitioner,https://tryhackme.com/room/apiwizardsbreach
+Security Labs & CTF,Armageddon2R,armageddon2r,🟢 FREE,Practitioner,https://tryhackme.com/room/armageddon2r
+Security Labs & CTF,Atlas,atlas,🟢 FREE,Practitioner,https://tryhackme.com/room/atlas
+Security Labs & CTF,Atomicbirdone,atomicbirdone,🟢 FREE,Practitioner,https://tryhackme.com/room/atomicbirdone
+Security Labs & CTF,Awsiamenumeration,awsiamenumeration,🟢 FREE,Practitioner,https://tryhackme.com/room/awsiamenumeration
+Security Labs & CTF,Awsiaminitialaccess,awsiaminitialaccess,🟢 FREE,Practitioner,https://tryhackme.com/room/awsiaminitialaccess
+Security Labs & CTF,Bankgpt,bankgpt,🟢 FREE,Practitioner,https://tryhackme.com/room/bankgpt
+Security Labs & CTF,Boilerctf2,boilerctf2,🟢 FREE,Practitioner,https://tryhackme.com/room/boilerctf2
+Security Labs & CTF,Bppenguin,bppenguin,🟢 FREE,Practitioner,https://tryhackme.com/room/bppenguin
+Active Directory & Windows,Btwindowsinternals,btwindowsinternals,🟢 FREE,Practitioner,https://tryhackme.com/room/btwindowsinternals
+Security Labs & CTF,Bypassreallysimplesecurity,bypassreallysimplesecurity,🟢 FREE,Practitioner,https://tryhackme.com/room/bypassreallysimplesecurity
+Security Labs & CTF,C2Carnage,c2carnage,🟢 FREE,Practitioner,https://tryhackme.com/room/c2carnage
+Security Labs & CTF,Catpictures,catpictures,🟢 FREE,Practitioner,https://tryhackme.com/room/catpictures
+Security Labs & CTF,Cloudsecuritypitfalls,cloudsecuritypitfalls,🟢 FREE,Practitioner,https://tryhackme.com/room/cloudsecuritypitfalls
+Security Labs & CTF,Clusterhardening,clusterhardening,🟢 FREE,Practitioner,https://tryhackme.com/room/clusterhardening
+Cryptography,Cryptofailures,cryptofailures,🟢 FREE,Practitioner,https://tryhackme.com/room/cryptofailures
+Security Labs & CTF,Dearqa,dearqa,🟢 FREE,Practitioner,https://tryhackme.com/room/dearqa
+Active Directory & Windows,Detectingadinitialaccess,detectingadinitialaccess,🟢 FREE,Practitioner,https://tryhackme.com/room/detectingadinitialaccess
+Security Labs & CTF,Expose,expose,🟢 FREE,Practitioner,https://tryhackme.com/room/expose
+Security Labs & CTF,Extanalysis,extanalysis,🟢 FREE,Practitioner,https://tryhackme.com/room/extanalysis
+Security Labs & CTF,Fat32Analysis,fat32analysis,🟢 FREE,Practitioner,https://tryhackme.com/room/fat32analysis
+Security Labs & CTF,Flask,flask,🟢 FREE,Practitioner,https://tryhackme.com/room/flask
+DFIR & Forensics,Forensics,forensics,🟢 FREE,Practitioner,https://tryhackme.com/room/forensics
+Security Labs & CTF,Gamezone,gamezone,🟢 FREE,Practitioner,https://tryhackme.com/room/gamezone
+Security Labs & CTF,Geoservercve202558360,geoservercve202558360,🟢 FREE,Practitioner,https://tryhackme.com/room/geoservercve202558360
+Security Labs & CTF,Hackervshacker,hackervshacker,🟢 FREE,Practitioner,https://tryhackme.com/room/hackervshacker
+Security Labs & CTF,Heartbleed,heartbleed,🟢 FREE,Practitioner,https://tryhackme.com/room/heartbleed
+Security Labs & CTF,Hfb1Evilgptv2,hfb1evilgptv2,🟢 FREE,Practitioner,https://tryhackme.com/room/hfb1evilgptv2
+Security Labs & CTF,Hfb1Stolenmount,hfb1stolenmount,🟢 FREE,Practitioner,https://tryhackme.com/room/hfb1stolenmount
+Security Labs & CTF,Httprequestsmuggling,httprequestsmuggling,🟢 FREE,Practitioner,https://tryhackme.com/room/httprequestsmuggling
+Security Labs & CTF,Iamprincipals,iamprincipals,🟢 FREE,Practitioner,https://tryhackme.com/room/iamprincipals
+Security Labs & CTF,Idor Aoc2025 Zl6Mywqid9,idor-aoc2025-zl6MywQid9,🟢 FREE,Practitioner,https://tryhackme.com/room/idor-aoc2025-zl6MywQid9
+Security Labs & CTF,Include,include,🟢 FREE,Practitioner,https://tryhackme.com/room/include
+Security Labs & CTF,Inferno,inferno,🟢 FREE,Practitioner,https://tryhackme.com/room/inferno
+Security Labs & CTF,Insecuredeserialisation,insecuredeserialisation,🟢 FREE,Practitioner,https://tryhackme.com/room/insecuredeserialisation
+Systems & Fundamentals,Introductiontoawsiam,introductiontoawsiam,🟢 FREE,Practitioner,https://tryhackme.com/room/introductiontoawsiam
+Systems & Fundamentals,Introductiontothreathunting,introductiontothreathunting,🟢 FREE,Practitioner,https://tryhackme.com/room/introductiontothreathunting
+DFIR & Forensics,Introtocoldsystemforensics,introtocoldsystemforensics,🟢 FREE,Practitioner,https://tryhackme.com/room/introtocoldsystemforensics
+Systems & Fundamentals,Introtoresearch,introtoresearch,🟢 FREE,Practitioner,https://tryhackme.com/room/introtoresearch
+Active Directory & Windows,Investigatingwindows2,investigatingwindows2,🟢 FREE,Practitioner,https://tryhackme.com/room/investigatingwindows2
+Active Directory & Windows,Ironshade,ironshade,🟢 FREE,Practitioner,https://tryhackme.com/room/ironshade
+Security Labs & CTF,Lafb2026E7,lafb2026e7,🟢 FREE,Practitioner,https://tryhackme.com/room/lafb2026e7
+Security Labs & CTF,Lafb2026E8,lafb2026e8,🟢 FREE,Practitioner,https://tryhackme.com/room/lafb2026e8
+Web Exploitation,Learnowaspzap,learnowaspzap,🟢 FREE,Practitioner,https://tryhackme.com/room/learnowaspzap
+Systems & Fundamentals,Linuxagency,linuxagency,🟢 FREE,Practitioner,https://tryhackme.com/room/linuxagency
+Systems & Fundamentals,Linuxfilesystemanalysis,linuxfilesystemanalysis,🟢 FREE,Practitioner,https://tryhackme.com/room/linuxfilesystemanalysis
+Systems & Fundamentals,Linuxincidentsurface,linuxincidentsurface,🟢 FREE,Practitioner,https://tryhackme.com/room/linuxincidentsurface
+Systems & Fundamentals,Linuxlogsinvestigations,linuxlogsinvestigations,🟢 FREE,Practitioner,https://tryhackme.com/room/linuxlogsinvestigations
+DFIR & Forensics,Linuxmemoryanalysis,linuxmemoryanalysis,🟢 FREE,Practitioner,https://tryhackme.com/room/linuxmemoryanalysis
+Systems & Fundamentals,Linuxmodules,linuxmodules,🟢 FREE,Practitioner,https://tryhackme.com/room/linuxmodules
+Security Labs & CTF,Localpotato,localpotato,🟢 FREE,Practitioner,https://tryhackme.com/room/localpotato
+Security Labs & CTF,Loglesshunt,loglesshunt,🟢 FREE,Practitioner,https://tryhackme.com/room/loglesshunt
+Security Labs & CTF,Lookback,lookback,🟢 FREE,Practitioner,https://tryhackme.com/room/lookback
+DFIR & Forensics,Macosforensicsartefacts,macosforensicsartefacts,🟢 FREE,Practitioner,https://tryhackme.com/room/macosforensicsartefacts
+Security Labs & CTF,Magician,magician,🟢 FREE,Practitioner,https://tryhackme.com/room/magician
+Security Labs & CTF,Malresearching,malresearching,🟢 FREE,Practitioner,https://tryhackme.com/room/malresearching
+Security Labs & CTF,Modelpoisoning,modelpoisoning,🟢 FREE,Practitioner,https://tryhackme.com/room/modelpoisoning
+Security Labs & CTF,Monitoringawsservices,monitoringawsservices,🟢 FREE,Practitioner,https://tryhackme.com/room/monitoringawsservices
+Security Labs & CTF,Mousetrap,mousetrap,🟢 FREE,Practitioner,https://tryhackme.com/room/mousetrap
+Systems & Fundamentals,Nislinuxone,nislinuxone,🟢 FREE,Practitioner,https://tryhackme.com/room/nislinuxone
+Security Labs & CTF,Operationslitheriu,operationslitherIU,🟢 FREE,Practitioner,https://tryhackme.com/room/operationslitherIU
+Security Labs & CTF,Osqueryf8,osqueryf8,🟢 FREE,Practitioner,https://tryhackme.com/room/osqueryf8
+Security Labs & CTF,Phishingyl,phishingyl,🟢 FREE,Practitioner,https://tryhackme.com/room/phishingyl
+Security Labs & CTF,Poster,poster,🟢 FREE,Practitioner,https://tryhackme.com/room/poster
+Security Labs & CTF,Rabbitholeqq,rabbitholeqq,🟢 FREE,Practitioner,https://tryhackme.com/room/rabbitholeqq
+Systems & Fundamentals,React2Shellcve202555182,react2shellcve202555182,🟢 FREE,Practitioner,https://tryhackme.com/room/react2shellcve202555182
+Security Labs & CTF,Redisl33T,redisl33t,🟢 FREE,Practitioner,https://tryhackme.com/room/redisl33t
+Security Labs & CTF,Rfirmware,rfirmware,🟢 FREE,Practitioner,https://tryhackme.com/room/rfirmware
+Security Labs & CTF,Securegitops,securegitops,🟢 FREE,Practitioner,https://tryhackme.com/room/securegitops
+Security Labs & CTF,Seetworoom,seetworoom,🟢 FREE,Practitioner,https://tryhackme.com/room/seetworoom
+Security Labs & CTF,Signatureevasion,signatureevasion,🟢 FREE,Practitioner,https://tryhackme.com/room/signatureevasion
+SOC & Detection,Splunkforloganalysis Aoc2025 X8Fj2K4Rqp,splunkforloganalysis-aoc2025-x8fj2k4rqp,🟢 FREE,Practitioner,https://tryhackme.com/room/splunkforloganalysis-aoc2025-x8fj2k4rqp
+Security Labs & CTF,Spottingphishing Aoc2025 R2G4F6S8L0,spottingphishing-aoc2025-r2g4f6s8l0,🟢 FREE,Practitioner,https://tryhackme.com/room/spottingphishing-aoc2025-r2g4f6s8l0
+Security Labs & CTF,Sqlmap,sqlmap,🟢 FREE,Practitioner,https://tryhackme.com/room/sqlmap
+Security Labs & CTF,Supplychainattacks,supplychainattacks,🟢 FREE,Practitioner,https://tryhackme.com/room/supplychainattacks
+Active Directory & Windows,Tardigrade,tardigrade,🟢 FREE,Practitioner,https://tryhackme.com/room/tardigrade
+Security Labs & CTF,Thenewyorkflankees,thenewyorkflankees,🟢 FREE,Practitioner,https://tryhackme.com/room/thenewyorkflankees
+Security Labs & CTF,Thestickershop,thestickershop,🟢 FREE,Practitioner,https://tryhackme.com/room/thestickershop
+Security Labs & CTF,Tonythetiger,tonythetiger,🟢 FREE,Practitioner,https://tryhackme.com/room/tonythetiger
+DFIR & Forensics,Tsharkcliwiresharkfeatures,tsharkcliwiresharkfeatures,🟢 FREE,Practitioner,https://tryhackme.com/room/tsharkcliwiresharkfeatures
+Security Labs & CTF,Tsharkthebasics,tsharkthebasics,🟢 FREE,Practitioner,https://tryhackme.com/room/tsharkthebasics
+Security Labs & CTF,Virtualizationandcontainers,virtualizationandcontainers,🟢 FREE,Practitioner,https://tryhackme.com/room/virtualizationandcontainers
+Security Labs & CTF,Vulnnetroasted,vulnnetroasted,🟢 FREE,Practitioner,https://tryhackme.com/room/vulnnetroasted
+Security Labs & CTF,Wazuhct,wazuhct,🟢 FREE,Practitioner,https://tryhackme.com/room/wazuhct
+Security Labs & CTF,Weaponization,weaponization,🟢 FREE,Practitioner,https://tryhackme.com/room/weaponization
+DFIR & Forensics,Webattackforensics Aoc2025 B4T7C1D5F8,webattackforensics-aoc2025-b4t7c1d5f8,🟢 FREE,Practitioner,https://tryhackme.com/room/webattackforensics-aoc2025-b4t7c1d5f8
+Web Exploitation,Webenumerationv2,webenumerationv2,🟢 FREE,Practitioner,https://tryhackme.com/room/webenumerationv2
+Security Labs & CTF,Wgelctf,wgelctf,🟢 FREE,Practitioner,https://tryhackme.com/room/wgelctf
+Active Directory & Windows,Windowsapi,windowsapi,🟢 FREE,Practitioner,https://tryhackme.com/room/windowsapi
+Active Directory & Windows,Windowsmemoryandnetwork,windowsmemoryandnetwork,🟢 FREE,Practitioner,https://tryhackme.com/room/windowsmemoryandnetwork
+Active Directory & Windows,Windowsmemoryanduseractivity,windowsmemoryanduseractivity,🟢 FREE,Practitioner,https://tryhackme.com/room/windowsmemoryanduseractivity
+Active Directory & Windows,Windowsthreatdetection3,windowsthreatdetection3,🟢 FREE,Practitioner,https://tryhackme.com/room/windowsthreatdetection3
+Active Directory & Windows,Windowsuseraccountforensics,windowsuseraccountforensics,🟢 FREE,Practitioner,https://tryhackme.com/room/windowsuseraccountforensics
+Security Labs & CTF,Writingpentestreports,writingpentestreports,🟢 FREE,Practitioner,https://tryhackme.com/room/writingpentestreports
+Security Labs & CTF,Xdrcredentialaccess,xdrcredentialaccess,🟢 FREE,Practitioner,https://tryhackme.com/room/xdrcredentialaccess
+Security Labs & CTF,Yougotmail,yougotmail,🟢 FREE,Practitioner,https://tryhackme.com/room/yougotmail
+Security Labs & CTF,Androidanalysis,androidanalysis,🟢 FREE,Practitioner,https://tryhackme.com/room/androidanalysis
+Security Labs & CTF,Annie,annie,🟢 FREE,Practitioner,https://tryhackme.com/room/annie
+Security Labs & CTF,Attacktivedirectory,attacktivedirectory,🟢 FREE,Practitioner,https://tryhackme.com/room/attacktivedirectory
+Security Labs & CTF,B3Dr0Ck,b3dr0ck,🟢 FREE,Practitioner,https://tryhackme.com/room/b3dr0ck
+Security Labs & CTF,Becomingafirstresponder,becomingafirstresponder,🟢 FREE,Practitioner,https://tryhackme.com/room/becomingafirstresponder
+Systems & Fundamentals,Beginnerpathintro,beginnerpathintro,🟢 FREE,Practitioner,https://tryhackme.com/room/beginnerpathintro
+Security Labs & CTF,Biohazard,biohazard,🟢 FREE,Practitioner,https://tryhackme.com/room/biohazard
+Security Labs & CTF,Blizzard,blizzard,🟢 FREE,Practitioner,https://tryhackme.com/room/blizzard
+Security Labs & CTF,Blueprint,blueprint,🟢 FREE,Practitioner,https://tryhackme.com/room/blueprint
+Security Labs & CTF,Boogeyman2,boogeyman2,🟢 FREE,Practitioner,https://tryhackme.com/room/boogeyman2
+Security Labs & CTF,Cauldron,cauldron,🟢 FREE,Practitioner,https://tryhackme.com/room/cauldron
+Security Labs & CTF,Cloud101Aws,cloud101aws,🟢 FREE,Practitioner,https://tryhackme.com/room/cloud101aws
+Security Labs & CTF,Confluence202322515,confluence202322515,🟢 FREE,Practitioner,https://tryhackme.com/room/confluence202322515
+Cryptography,Crackthehashlevel2,crackthehashlevel2,🟢 FREE,Practitioner,https://tryhackme.com/room/crackthehashlevel2
+Security Labs & CTF,Ctf,ctf,🟢 FREE,Practitioner,https://tryhackme.com/room/ctf
+Security Labs & CTF,Customtoolingpython,customtoolingpython,🟢 FREE,Practitioner,https://tryhackme.com/room/customtoolingpython
+Security Labs & CTF,Cve202226134,cve202226134,🟢 FREE,Practitioner,https://tryhackme.com/room/cve202226134
+Security Labs & CTF,Exploitingavulnerabilityv2,exploitingavulnerabilityv2,🟢 FREE,Practitioner,https://tryhackme.com/room/exploitingavulnerabilityv2
+Security Labs & CTF,Googledorking,googledorking,🟢 FREE,Practitioner,https://tryhackme.com/room/googledorking
+Security Labs & CTF,Healthgpt,healthgpt,🟢 FREE,Practitioner,https://tryhackme.com/room/healthgpt
+Security Labs & CTF,Hfb1Sequeldump,hfb1sequeldump,🟢 FREE,Practitioner,https://tryhackme.com/room/hfb1sequeldump
+Security Labs & CTF,Hostedhypervisors,hostedhypervisors,🟢 FREE,Practitioner,https://tryhackme.com/room/hostedhypervisors
+Security Labs & CTF,Howtousetryhackme,howtousetryhackme,🟢 FREE,Practitioner,https://tryhackme.com/room/howtousetryhackme
+Systems & Fundamentals,Htapowershell Aoc2025 P2L5K8J1H4,htapowershell-aoc2025-p2l5k8j1h4,🟢 FREE,Practitioner,https://tryhackme.com/room/htapowershell-aoc2025-p2l5k8j1h4
+Security Labs & CTF,Iaaaidm,iaaaidm,🟢 FREE,Practitioner,https://tryhackme.com/room/iaaaidm
+Security Labs & CTF,Ice,ice,🟢 FREE,Practitioner,https://tryhackme.com/room/ice
+Security Labs & CTF,Idsevasion,idsevasion,🟢 FREE,Practitioner,https://tryhackme.com/room/idsevasion
+Systems & Fundamentals,Introductiontocryptops,introductiontocryptops,🟢 FREE,Practitioner,https://tryhackme.com/room/introductiontocryptops
+Systems & Fundamentals,Introtoav,introtoav,🟢 FREE,Practitioner,https://tryhackme.com/room/introtoav
+Active Directory & Windows,Investigatingwindows,investigatingwindows,🟢 FREE,Practitioner,https://tryhackme.com/room/investigatingwindows
+Security Labs & CTF,Iosanalysis,iosanalysis,🟢 FREE,Practitioner,https://tryhackme.com/room/iosanalysis
+DFIR & Forensics,Iosforensics,iosforensics,🟢 FREE,Practitioner,https://tryhackme.com/room/iosforensics
+Security Labs & CTF,Irphilosophyethics,irphilosophyethics,🟢 FREE,Practitioner,https://tryhackme.com/room/irphilosophyethics
+Active Directory & Windows,Jackofalltrades,jackofalltrades,🟢 FREE,Practitioner,https://tryhackme.com/room/jackofalltrades
+Security Labs & CTF,Juicy,juicy,🟢 FREE,Practitioner,https://tryhackme.com/room/juicy
+Security Labs & CTF,Jurassicpark,jurassicpark,🟢 FREE,Practitioner,https://tryhackme.com/room/jurassicpark
+Security Labs & CTF,K8Sbestsecuritypractices,k8sbestsecuritypractices,🟢 FREE,Practitioner,https://tryhackme.com/room/k8sbestsecuritypractices
+Security Labs & CTF,K8Sruntimesecurity,k8sruntimesecurity,🟢 FREE,Practitioner,https://tryhackme.com/room/k8sruntimesecurity
+Security Labs & CTF,Lafb2026E2,lafb2026e2,🟢 FREE,Practitioner,https://tryhackme.com/room/lafb2026e2
+Systems & Fundamentals,Linuxfunctionhooking,linuxfunctionhooking,🟢 FREE,Practitioner,https://tryhackme.com/room/linuxfunctionhooking
+Systems & Fundamentals,Linuxprocessanalysis,linuxprocessanalysis,🟢 FREE,Practitioner,https://tryhackme.com/room/linuxprocessanalysis
+SOC & Detection,Linuxthreatdetection1,linuxthreatdetection1,🟢 FREE,Practitioner,https://tryhackme.com/room/linuxthreatdetection1
+DFIR & Forensics,Macosforensicsapplications,macosforensicsapplications,🟢 FREE,Practitioner,https://tryhackme.com/room/macosforensicsapplications
+Security Labs & CTF,Microservicearchitectures,microservicearchitectures,🟢 FREE,Practitioner,https://tryhackme.com/room/microservicearchitectures
+Security Labs & CTF,Monitoringevasion,monitoringevasion,🟢 FREE,Practitioner,https://tryhackme.com/room/monitoringevasion
+Security Labs & CTF,Ninjaskills,ninjaskills,🟢 FREE,Practitioner,https://tryhackme.com/room/ninjaskills
+Security Labs & CTF,Ntfsanalysis,ntfsanalysis,🟢 FREE,Practitioner,https://tryhackme.com/room/ntfsanalysis
+Web Exploitation,Owaspapisecuritytop10D0,owaspapisecuritytop10d0,🟢 FREE,Practitioner,https://tryhackme.com/room/owaspapisecuritytop10d0
+Systems & Fundamentals,Physicalsecurityintro,physicalsecurityintro,🟢 FREE,Practitioner,https://tryhackme.com/room/physicalsecurityintro
+SOC & Detection,Registrypersistencedetection,registrypersistencedetection,🟢 FREE,Practitioner,https://tryhackme.com/room/registrypersistencedetection
+Security Labs & CTF,Retracted,retracted,🟢 FREE,Practitioner,https://tryhackme.com/room/retracted
+Security Labs & CTF,Revenge,revenge,🟢 FREE,Practitioner,https://tryhackme.com/room/revenge
+Security Labs & CTF,Rust,rust,🟢 FREE,Practitioner,https://tryhackme.com/room/rust
+Security Labs & CTF,Sast,sast,🟢 FREE,Practitioner,https://tryhackme.com/room/sast
+Active Directory & Windows,Sch3Mad3Mon,sch3mad3mon,🟢 FREE,Practitioner,https://tryhackme.com/room/sch3mad3mon
+Security Labs & CTF,Searchlightosint,searchlightosint,🟢 FREE,Practitioner,https://tryhackme.com/room/searchlightosint
+Security Labs & CTF,Skynet,skynet,🟢 FREE,Practitioner,https://tryhackme.com/room/skynet
+Security Labs & CTF,Smaggrotto,smaggrotto,🟢 FREE,Practitioner,https://tryhackme.com/room/smaggrotto
+Security Labs & CTF,Solar,solar,🟢 FREE,Practitioner,https://tryhackme.com/room/solar
+Security Labs & CTF,Somesint,somesint,🟢 FREE,Practitioner,https://tryhackme.com/room/somesint
+Security Labs & CTF,Sourcecodesecurity,sourcecodesecurity,🟢 FREE,Practitioner,https://tryhackme.com/room/sourcecodesecurity
+Security Labs & CTF,Sq4 Aoc2025 32Loz4Zepk,sq4-aoc2025-32LoZ4zePK,🟢 FREE,Practitioner,https://tryhackme.com/room/sq4-aoc2025-32LoZ4zePK
+Security Labs & CTF,Steelmountain,steelmountain,🟢 FREE,Practitioner,https://tryhackme.com/room/steelmountain
+Security Labs & CTF,Sudovulnsbypass,sudovulnsbypass,🟢 FREE,Practitioner,https://tryhackme.com/room/sudovulnsbypass
+DFIR & Forensics,Supplementalmemory,supplementalmemory,🟢 FREE,Practitioner,https://tryhackme.com/room/supplementalmemory
+Security Labs & CTF,Tomghost,tomghost,🟢 FREE,Practitioner,https://tryhackme.com/room/tomghost
+DFIR & Forensics,Volatilityessentials,volatilityessentials,🟢 FREE,Practitioner,https://tryhackme.com/room/volatilityessentials
+Security Labs & CTF,Wifihacking101,wifihacking101,🟢 FREE,Practitioner,https://tryhackme.com/room/wifihacking101
+Active Directory & Windows,Windowsinternals,windowsinternals,🟢 FREE,Practitioner,https://tryhackme.com/room/windowsinternals
+Active Directory & Windows,Windowsmemoryandprocs,windowsmemoryandprocs,🟢 FREE,Practitioner,https://tryhackme.com/room/windowsmemoryandprocs
+Active Directory & Windows,Windowsprivescarena,windowsprivescarena,🟢 FREE,Practitioner,https://tryhackme.com/room/windowsprivescarena
+Security Labs & CTF,Wwbuddy,wwbuddy,🟢 FREE,Practitioner,https://tryhackme.com/room/wwbuddy
+Web Exploitation,Xss,xss,🟢 FREE,Practitioner,https://tryhackme.com/room/xss
+Web Exploitation,Xss Aoc2025 C5J8B1M4T6,xss-aoc2025-c5j8b1m4t6,🟢 FREE,Practitioner,https://tryhackme.com/room/xss-aoc2025-c5j8b1m4t6
+Security Labs & CTF,Yara Aoc2025 Q9W1E3Y5U7,yara-aoc2025-q9w1e3y5u7,🟢 FREE,Practitioner,https://tryhackme.com/room/yara-aoc2025-q9w1e3y5u7
+Security Labs & CTF,0X41Haz,0x41haz,🟢 FREE,Practitioner,https://tryhackme.com/room/0x41haz
+Active Directory & Windows,Adauthenticatedenumeration,adauthenticatedenumeration,🟢 FREE,Practitioner,https://tryhackme.com/room/adauthenticatedenumeration
+Active Directory & Windows,Adcertificatetemplates,adcertificatetemplates,🟢 FREE,Practitioner,https://tryhackme.com/room/adcertificatetemplates
+Active Directory & Windows,Advanceddynamicanalysis,advanceddynamicanalysis,🟢 FREE,Practitioner,https://tryhackme.com/room/advanceddynamicanalysis
+Active Directory & Windows,Advancedstaticanalysis,advancedstaticanalysis,🟢 FREE,Practitioner,https://tryhackme.com/room/advancedstaticanalysis
+Security Labs & CTF,Alfred,alfred,🟢 FREE,Practitioner,https://tryhackme.com/room/alfred
+Security Labs & CTF,Anthem,anthem,🟢 FREE,Practitioner,https://tryhackme.com/room/anthem
+Security Labs & CTF,Appsecir,appsecir,🟢 FREE,Practitioner,https://tryhackme.com/room/appsecir
+Systems & Fundamentals,Avevasionshellcode,avevasionshellcode,🟢 FREE,Practitioner,https://tryhackme.com/room/avevasionshellcode
+Security Labs & CTF,Awsbasicconcepts,awsbasicconcepts,🟢 FREE,Practitioner,https://tryhackme.com/room/awsbasicconcepts
+Web Exploitation,Axss,axss,🟢 FREE,Practitioner,https://tryhackme.com/room/axss
+Security Labs & CTF,Becomeahackeroa,becomeahackeroa,🟢 FREE,Practitioner,https://tryhackme.com/room/becomeahackeroa
+Security Labs & CTF,C4Ptur3Th3Fl4G,c4ptur3th3fl4g,🟢 FREE,Practitioner,https://tryhackme.com/room/c4ptur3th3fl4g
+Security Labs & CTF,Captchapocalypse,captchapocalypse,🟢 FREE,Practitioner,https://tryhackme.com/room/captchapocalypse
+Security Labs & CTF,Cct2019,cct2019,🟢 FREE,Practitioner,https://tryhackme.com/room/cct2019
+Security Labs & CTF,Chrome,chrome,🟢 FREE,Practitioner,https://tryhackme.com/room/chrome
+Active Directory & Windows,Commonlinuxprivesc,commonlinuxprivesc,🟢 FREE,Practitioner,https://tryhackme.com/room/commonlinuxprivesc
+Cryptography,Crackthehash,crackthehash,🟢 FREE,Practitioner,https://tryhackme.com/room/crackthehash
+Security Labs & CTF,Creative,creative,🟢 FREE,Practitioner,https://tryhackme.com/room/creative
+Security Labs & CTF,Crmsnatch,crmsnatch,🟢 FREE,Practitioner,https://tryhackme.com/room/crmsnatch
+Security Labs & CTF,Crylo4A,crylo4a,🟢 FREE,Practitioner,https://tryhackme.com/room/crylo4a
+Security Labs & CTF,Cyberkillchainzmt,cyberkillchainzmt,🟢 FREE,Practitioner,https://tryhackme.com/room/cyberkillchainzmt
+Security Labs & CTF,Decryptify,decryptify,🟢 FREE,Practitioner,https://tryhackme.com/room/decryptify
+Security Labs & CTF,Detecting C2 With Rita Aoc2025 M9N2B5V8C1,detecting-c2-with-rita-aoc2025-m9n2b5v8c1,🟢 FREE,Practitioner,https://tryhackme.com/room/detecting-c2-with-rita-aoc2025-m9n2b5v8c1
+Web Exploitation,Detectingwebddos,detectingwebddos,🟢 FREE,Practitioner,https://tryhackme.com/room/detectingwebddos
+Security Labs & CTF,Diskrupt,diskrupt,🟢 FREE,Practitioner,https://tryhackme.com/room/diskrupt
+Security Labs & CTF,Dombasedattacks,dombasedattacks,🟢 FREE,Practitioner,https://tryhackme.com/room/dombasedattacks
+Security Labs & CTF,Eviction,eviction,🟢 FREE,Practitioner,https://tryhackme.com/room/eviction
+Security Labs & CTF,Hackback,hackback,🟢 FREE,Practitioner,https://tryhackme.com/room/hackback
+Security Labs & CTF,Hacksmartersecurity,hacksmartersecurity,🟢 FREE,Practitioner,https://tryhackme.com/room/hacksmartersecurity
+Security Labs & CTF,Hfb1Evilgpt,hfb1evilgpt,🟢 FREE,Practitioner,https://tryhackme.com/room/hfb1evilgpt
+Security Labs & CTF,Hipflask,hipflask,🟢 FREE,Practitioner,https://tryhackme.com/room/hipflask
+Security Labs & CTF,Http2Requestsmuggling,http2requestsmuggling,🟢 FREE,Practitioner,https://tryhackme.com/room/http2requestsmuggling
+Security Labs & CTF,Ide,ide,🟢 FREE,Practitioner,https://tryhackme.com/room/ide
+Systems & Fundamentals,Incidentresponsefundamentals,incidentresponsefundamentals,🟢 FREE,Practitioner,https://tryhackme.com/room/incidentresponsefundamentals
+Systems & Fundamentals,Introductiontocloudsecurityc6,introductiontocloudsecurityc6,🟢 FREE,Practitioner,https://tryhackme.com/room/introductiontocloudsecurityc6
+Systems & Fundamentals,Introtocredentialharvesting,introtocredentialharvesting,🟢 FREE,Practitioner,https://tryhackme.com/room/introtocredentialharvesting
+Systems & Fundamentals,Introtok8S,introtok8s,🟢 FREE,Practitioner,https://tryhackme.com/room/introtok8s
+Security Labs & CTF,Kali,kali,🟢 FREE,Practitioner,https://tryhackme.com/room/kali
+Security Labs & CTF,Layer2,layer2,🟢 FREE,Practitioner,https://tryhackme.com/room/layer2
+Web Exploitation,Ldapinjection,ldapinjection,🟢 FREE,Practitioner,https://tryhackme.com/room/ldapinjection
+Security Labs & CTF,Learncyberin25Days,learncyberin25days,🟢 FREE,Practitioner,https://tryhackme.com/room/learncyberin25days
+SOC & Detection,Linuxloggingforsoc,linuxloggingforsoc,🟢 FREE,Practitioner,https://tryhackme.com/room/linuxloggingforsoc
+Active Directory & Windows,Linuxprivescarena,linuxprivescarena,🟢 FREE,Practitioner,https://tryhackme.com/room/linuxprivescarena
+Systems & Fundamentals,Linuxsystemhardening,linuxsystemhardening,🟢 FREE,Practitioner,https://tryhackme.com/room/linuxsystemhardening
+Security Labs & CTF,Lostinramslation,lostinramslation,🟢 FREE,Practitioner,https://tryhackme.com/room/lostinramslation
+Security Labs & CTF,Multifactorauthentications,multifactorauthentications,🟢 FREE,Practitioner,https://tryhackme.com/room/multifactorauthentications
+Security Labs & CTF,Nahamstore,nahamstore,🟢 FREE,Practitioner,https://tryhackme.com/room/nahamstore
+SOC & Detection,Networkdiscoverydetection,networkdiscoverydetection,🟢 FREE,Practitioner,https://tryhackme.com/room/networkdiscoverydetection
+Web Exploitation,Nosqlinjectiontutorial,nosqlinjectiontutorial,🟢 FREE,Practitioner,https://tryhackme.com/room/nosqlinjectiontutorial
+Security Labs & CTF,Obfuscation Aoc2025 E5R8T2Y6U9,obfuscation-aoc2025-e5r8t2y6u9,🟢 FREE,Practitioner,https://tryhackme.com/room/obfuscation-aoc2025-e5r8t2y6u9
+Security Labs & CTF,Olympusroom,olympusroom,🟢 FREE,Practitioner,https://tryhackme.com/room/olympusroom
+Security Labs & CTF,Outputhandlingandprivacyrisks,outputhandlingandprivacyrisks,🟢 FREE,Practitioner,https://tryhackme.com/room/outputhandlingandprivacyrisks
+Security Labs & CTF,Overpass3Hosting,overpass3hosting,🟢 FREE,Practitioner,https://tryhackme.com/room/overpass3hosting
+Web Exploitation,Owaspbrokenaccesscontrol,owaspbrokenaccesscontrol,🟢 FREE,Practitioner,https://tryhackme.com/room/owaspbrokenaccesscontrol
+Active Directory & Windows,Paddingoracles,paddingoracles,🟢 FREE,Practitioner,https://tryhackme.com/room/paddingoracles
+Security Labs & CTF,Peakhill,peakhill,🟢 FREE,Practitioner,https://tryhackme.com/room/peakhill
+Systems & Fundamentals,Powershell,powershell,🟢 FREE,Practitioner,https://tryhackme.com/room/powershell
+Security Labs & CTF,Race Conditions Aoc2025 D7F0G3H6J9,race-conditions-aoc2025-d7f0g3h6j9,🟢 FREE,Practitioner,https://tryhackme.com/room/race-conditions-aoc2025-d7f0g3h6j9
+Active Directory & Windows,Recoveringactivedirectory,recoveringactivedirectory,🟢 FREE,Practitioner,https://tryhackme.com/room/recoveringactivedirectory
+Security Labs & CTF,Recovery,recovery,🟢 FREE,Practitioner,https://tryhackme.com/room/recovery
+Security Labs & CTF,Robots,robots,🟢 FREE,Practitioner,https://tryhackme.com/room/robots
+Security Labs & CTF,Startingoutincybersec,startingoutincybersec,🟢 FREE,Practitioner,https://tryhackme.com/room/startingoutincybersec
+Security Labs & CTF,Staticanalysis1,staticanalysis1,🟢 FREE,Practitioner,https://tryhackme.com/room/staticanalysis1
+Security Labs & CTF,Tempestincident,tempestincident,🟢 FREE,Practitioner,https://tryhackme.com/room/tempestincident
+Security Labs & CTF,Trooper,trooper,🟢 FREE,Practitioner,https://tryhackme.com/room/trooper
+Security Labs & CTF,Tsharkchallengesone,tsharkchallengesone,🟢 FREE,Practitioner,https://tryhackme.com/room/tsharkchallengesone
+Security Labs & CTF,Ultratech1,ultratech1,🟢 FREE,Practitioner,https://tryhackme.com/room/ultratech1
+Systems & Fundamentals,Wafintroduction,wafintroduction,🟢 FREE,Practitioner,https://tryhackme.com/room/wafintroduction
+Web Exploitation,Webgoat,webgoat,🟢 FREE,Practitioner,https://tryhackme.com/room/webgoat
+Security Labs & CTF,Whiterose,whiterose,🟢 FREE,Practitioner,https://tryhackme.com/room/whiterose
+Security Labs & CTF,Wsrequestsmuggling,wsrequestsmuggling,🟢 FREE,Practitioner,https://tryhackme.com/room/wsrequestsmuggling
+Web Exploitation,Xxeinjection,xxeinjection,🟢 FREE,Practitioner,https://tryhackme.com/room/xxeinjection
+Active Directory & Windows,Adbasicenumeration,adbasicenumeration,🟢 FREE,Practitioner,https://tryhackme.com/room/adbasicenumeration
+Active Directory & Windows,Advancedsqlinjection,advancedsqlinjection,🟢 FREE,Practitioner,https://tryhackme.com/room/advancedsqlinjection
+Active Directory & Windows,Adventofcyber24Sidequest,adventofcyber24sidequest,🟢 FREE,Practitioner,https://tryhackme.com/room/adventofcyber24sidequest
+Security Labs & CTF,Agentt,agentt,🟢 FREE,Practitioner,https://tryhackme.com/room/agentt
+Security Labs & CTF,Aiforcyber Aoc2025 Y9Wwq1Zrgb,AIforcyber-aoc2025-y9wWQ1zRgB,🟢 FREE,Practitioner,https://tryhackme.com/room/AIforcyber-aoc2025-y9wWQ1zRgB
+Security Labs & CTF,Archangel,archangel,🟢 FREE,Practitioner,https://tryhackme.com/room/archangel
+Active Directory & Windows,Attackingkerberos,attackingkerberos,🟢 FREE,Practitioner,https://tryhackme.com/room/attackingkerberos
+Security Labs & CTF,Auditingandmonitoringse,auditingandmonitoringse,🟢 FREE,Practitioner,https://tryhackme.com/room/auditingandmonitoringse
+Security Labs & CTF,Auroraedr,auroraedr,🟢 FREE,Practitioner,https://tryhackme.com/room/auroraedr
+Security Labs & CTF,Awssecuritylogging,awssecuritylogging,🟢 FREE,Practitioner,https://tryhackme.com/room/awssecuritylogging
+Active Directory & Windows,Badbyte,badbyte,🟢 FREE,Practitioner,https://tryhackme.com/room/badbyte
+Security Labs & CTF,Baselineanomalies,baselineanomalies,🟢 FREE,Practitioner,https://tryhackme.com/room/baselineanomalies
+Systems & Fundamentals,Bashscripting,bashscripting,🟢 FREE,Practitioner,https://tryhackme.com/room/bashscripting
+Security Labs & CTF,Benign,benign,🟢 FREE,Practitioner,https://tryhackme.com/room/benign
+Security Labs & CTF,Billing,billing,🟢 FREE,Practitioner,https://tryhackme.com/room/billing
+Security Labs & CTF,Blaster,blaster,🟢 FREE,Practitioner,https://tryhackme.com/room/blaster
+Security Labs & CTF,Blockroom,blockroom,🟢 FREE,Practitioner,https://tryhackme.com/room/blockroom
+Cryptography,Breakingcryptothesimpleway,breakingcryptothesimpleway,🟢 FREE,Practitioner,https://tryhackme.com/room/breakingcryptothesimpleway
+Security Labs & CTF,Bsidesgtanonforce,bsidesgtanonforce,🟢 FREE,Practitioner,https://tryhackme.com/room/bsidesgtanonforce
+Security Labs & CTF,Bsidesgtthompson,bsidesgtthompson,🟢 FREE,Practitioner,https://tryhackme.com/room/bsidesgtthompson
+Security Labs & CTF,Bugged,bugged,🟢 FREE,Practitioner,https://tryhackme.com/room/bugged
+Security Labs & CTF,Capabasics,capabasics,🟢 FREE,Practitioner,https://tryhackme.com/room/capabasics
+Security Labs & CTF,Catregex,catregex,🟢 FREE,Practitioner,https://tryhackme.com/room/catregex
+Security Labs & CTF,Clocky,clocky,🟢 FREE,Practitioner,https://tryhackme.com/room/clocky
+Security Labs & CTF,Containervulnerabilitiesdg,containervulnerabilitiesDG,🟢 FREE,Practitioner,https://tryhackme.com/room/containervulnerabilitiesDG
+Security Labs & CTF,Corp,corp,🟢 FREE,Practitioner,https://tryhackme.com/room/corp
+Security Labs & CTF,Corridor,corridor,🟢 FREE,Practitioner,https://tryhackme.com/room/corridor
+Security Labs & CTF,Ctfcollectionvol2,ctfcollectionvol2,🟢 FREE,Practitioner,https://tryhackme.com/room/ctfcollectionvol2
+Security Labs & CTF,Django,django,🟢 FREE,Practitioner,https://tryhackme.com/room/django
+Security Labs & CTF,Dllhijacking,dllhijacking,🟢 FREE,Practitioner,https://tryhackme.com/room/dllhijacking
+Security Labs & CTF,Easypeasyctf,easypeasyctf,🟢 FREE,Practitioner,https://tryhackme.com/room/easypeasyctf
+Security Labs & CTF,Elbandito,elbandito,🟢 FREE,Practitioner,https://tryhackme.com/room/elbandito
+Security Labs & CTF,Fileinc,fileinc,🟢 FREE,Practitioner,https://tryhackme.com/room/fileinc
+Security Labs & CTF,Gatekeeper,gatekeeper,🟢 FREE,Practitioner,https://tryhackme.com/room/gatekeeper
+Security Labs & CTF,Gettingstarted,gettingstarted,🟢 FREE,Practitioner,https://tryhackme.com/room/gettingstarted
+Security Labs & CTF,Glitch,glitch,🟢 FREE,Practitioner,https://tryhackme.com/room/glitch
+Security Labs & CTF,Hardeningbasicspart1,hardeningbasicspart1,🟢 FREE,Practitioner,https://tryhackme.com/room/hardeningbasicspart1
+Security Labs & CTF,Hardeningbasicspart2,hardeningbasicspart2,🟢 FREE,Practitioner,https://tryhackme.com/room/hardeningbasicspart2
+Security Labs & CTF,Hfb1Hideandseek,hfb1hideandseek,🟢 FREE,Practitioner,https://tryhackme.com/room/hfb1hideandseek
+Security Labs & CTF,Hfb1Sneakypatch,hfb1sneakypatch,🟢 FREE,Practitioner,https://tryhackme.com/room/hfb1sneakypatch
+Security Labs & CTF,Hfb1Thegame,hfb1thegame,🟢 FREE,Practitioner,https://tryhackme.com/room/hfb1thegame
+Security Labs & CTF,Identificationandscoping,identificationandscoping,🟢 FREE,Practitioner,https://tryhackme.com/room/identificationandscoping
+Security Labs & CTF,Initialaccesspot,initialaccesspot,🟢 FREE,Practitioner,https://tryhackme.com/room/initialaccesspot
+Systems & Fundamentals,Intromalwareanalysis,intromalwareanalysis,🟢 FREE,Practitioner,https://tryhackme.com/room/intromalwareanalysis
+Systems & Fundamentals,Intronetworksecurity,intronetworksecurity,🟢 FREE,Practitioner,https://tryhackme.com/room/intronetworksecurity
+Systems & Fundamentals,Introtographqlhacking,introtographqlhacking,🟢 FREE,Practitioner,https://tryhackme.com/room/introtographqlhacking
+Systems & Fundamentals,Introtosecurityarchitecture,introtosecurityarchitecture,🟢 FREE,Practitioner,https://tryhackme.com/room/introtosecurityarchitecture
+Web Exploitation,Introwebapplicationsecurity,introwebapplicationsecurity,🟢 FREE,Practitioner,https://tryhackme.com/room/introwebapplicationsecurity
+Active Directory & Windows,Ipanddomainthreatintel,ipanddomainthreatintel,🟢 FREE,Practitioner,https://tryhackme.com/room/ipanddomainthreatintel
+Security Labs & CTF,Jupyter101,jupyter101,🟢 FREE,Practitioner,https://tryhackme.com/room/jupyter101
+Security Labs & CTF,Kiba,kiba,🟢 FREE,Practitioner,https://tryhackme.com/room/kiba
+Security Labs & CTF,Lafb2026E10,lafb2026e10,🟢 FREE,Practitioner,https://tryhackme.com/room/lafb2026e10
+Security Labs & CTF,Learnssti,learnssti,🟢 FREE,Practitioner,https://tryhackme.com/room/learnssti
+Systems & Fundamentals,Linuxstrengthtraining,linuxstrengthtraining,🟢 FREE,Practitioner,https://tryhackme.com/room/linuxstrengthtraining
+DFIR & Forensics,Macosforensicsbasics,macosforensicsbasics,🟢 FREE,Practitioner,https://tryhackme.com/room/macosforensicsbasics
+Security Labs & CTF,Mondaymonitor,mondaymonitor,🟢 FREE,Practitioner,https://tryhackme.com/room/mondaymonitor
+Security Labs & CTF,Mrrobot,mrrobot,🟢 FREE,Practitioner,https://tryhackme.com/room/mrrobot
+Systems & Fundamentals,Networkingcoreprotocols,networkingcoreprotocols,🟢 FREE,Practitioner,https://tryhackme.com/room/networkingcoreprotocols
+Systems & Fundamentals,Networkminer,networkminer,🟢 FREE,Practitioner,https://tryhackme.com/room/networkminer
+Systems & Fundamentals,Networksecurityprotocols,networksecurityprotocols,🟢 FREE,Practitioner,https://tryhackme.com/room/networksecurityprotocols
+Systems & Fundamentals,Networkservices Aoc2025 Jnsoqbxgky,networkservices-aoc2025-jnsoqbxgky,🟢 FREE,Practitioner,https://tryhackme.com/room/networkservices-aoc2025-jnsoqbxgky
+Security Labs & CTF,Nmap01,nmap01,🟢 FREE,Practitioner,https://tryhackme.com/room/nmap01
+Security Labs & CTF,Ohsint,ohsint,🟢 FREE,Practitioner,https://tryhackme.com/room/ohsint
+Security Labs & CTF,Onpremisesiac,onpremisesiac,🟢 FREE,Practitioner,https://tryhackme.com/room/onpremisesiac
+Security Labs & CTF,Openvpn,openvpn,🟢 FREE,Practitioner,https://tryhackme.com/room/openvpn
+Web Exploitation,Oscommandinjection,oscommandinjection,🟢 FREE,Practitioner,https://tryhackme.com/room/oscommandinjection
+Security Labs & CTF,Overlayfs,overlayfs,🟢 FREE,Practitioner,https://tryhackme.com/room/overlayfs
+Security Labs & CTF,Phishing Aoc2025 H2Tkye9Fzu,phishing-aoc2025-h2tkye9fzU,🟢 FREE,Practitioner,https://tryhackme.com/room/phishing-aoc2025-h2tkye9fzU
+Security Labs & CTF,Phishingemails4Gkxh,phishingemails4gkxh,🟢 FREE,Practitioner,https://tryhackme.com/room/phishingemails4gkxh
+Security Labs & CTF,Phishingemails5Fgjlzxc,phishingemails5fgjlzxc,🟢 FREE,Practitioner,https://tryhackme.com/room/phishingemails5fgjlzxc
+Security Labs & CTF,Posheclipse,posheclipse,🟢 FREE,Practitioner,https://tryhackme.com/room/posheclipse
+Security Labs & CTF,Psychobreak,psychobreak,🟢 FREE,Practitioner,https://tryhackme.com/room/psychobreak
+Security Labs & CTF,Pythonbasics,pythonbasics,🟢 FREE,Practitioner,https://tryhackme.com/room/pythonbasics
+Security Labs & CTF,Redteamthreatintel,redteamthreatintel,🟢 FREE,Practitioner,https://tryhackme.com/room/redteamthreatintel
+Security Labs & CTF,Remnuxgettingstarted,remnuxgettingstarted,🟢 FREE,Practitioner,https://tryhackme.com/room/remnuxgettingstarted
+Security Labs & CTF,Reverselfiles,reverselfiles,🟢 FREE,Practitioner,https://tryhackme.com/room/reverselfiles
+Security Labs & CTF,Seriskmanagement,seriskmanagement,🟢 FREE,Practitioner,https://tryhackme.com/room/seriskmanagement
+DFIR & Forensics,Sessionforensics,sessionforensics,🟢 FREE,Practitioner,https://tryhackme.com/room/sessionforensics
+Security Labs & CTF,Sessionmanagement,sessionmanagement,🟢 FREE,Practitioner,https://tryhackme.com/room/sessionmanagement
+Security Labs & CTF,Shodan,shodan,🟢 FREE,Practitioner,https://tryhackme.com/room/shodan
+Security Labs & CTF,Silverplatter,silverplatter,🟢 FREE,Practitioner,https://tryhackme.com/room/silverplatter
+Security Labs & CTF,Slingshot,slingshot,🟢 FREE,Practitioner,https://tryhackme.com/room/slingshot
+SOC & Detection,Snort,snort,🟢 FREE,Practitioner,https://tryhackme.com/room/snort
+Security Labs & CTF,Sq3 Aoc2025 Bk3Vvbcgit,sq3-aoc2025-bk3vvbcgiT,🟢 FREE,Practitioner,https://tryhackme.com/room/sq3-aoc2025-bk3vvbcgiT
+Systems & Fundamentals,Sqlfundamentals,sqlfundamentals,🟢 FREE,Practitioner,https://tryhackme.com/room/sqlfundamentals
+Web Exploitation,Sqlinjectionlm,sqlinjectionlm,🟢 FREE,Practitioner,https://tryhackme.com/room/sqlinjectionlm
+Security Labs & CTF,Startup,startup,🟢 FREE,Practitioner,https://tryhackme.com/room/startup
+Security Labs & CTF,Superspamr,superspamr,🟢 FREE,Practitioner,https://tryhackme.com/room/superspamr
+Security Labs & CTF,Systemsattackvectors,systemsattackvectors,🟢 FREE,Practitioner,https://tryhackme.com/room/systemsattackvectors
+Security Labs & CTF,Thelasttrial,thelasttrial,🟢 FREE,Practitioner,https://tryhackme.com/room/thelasttrial
+Security Labs & CTF,Thelayoftheland,thelayoftheland,🟢 FREE,Practitioner,https://tryhackme.com/room/thelayoftheland
+Systems & Fundamentals,Threatemulationintro,threatemulationintro,🟢 FREE,Practitioner,https://tryhackme.com/room/threatemulationintro
+Security Labs & CTF,Tsharkchallengestwo,tsharkchallengestwo,🟢 FREE,Practitioner,https://tryhackme.com/room/tsharkchallengestwo
+Security Labs & CTF,Vulnversity,vulnversity,🟢 FREE,Practitioner,https://tryhackme.com/room/vulnversity
+Security Labs & CTF,Wafexploitationtechniques,wafexploitationtechniques,🟢 FREE,Practitioner,https://tryhackme.com/room/wafexploitationtechniques
+Active Directory & Windows,Windowsforensics2,windowsforensics2,🟢 FREE,Practitioner,https://tryhackme.com/room/windowsforensics2
+Active Directory & Windows,Windowsloggingforsoc,windowsloggingforsoc,🟢 FREE,Practitioner,https://tryhackme.com/room/windowsloggingforsoc
+Security Labs & CTF,Wonderland,wonderland,🟢 FREE,Practitioner,https://tryhackme.com/room/wonderland
+Security Labs & CTF,Yueiua,yueiua,🟢 FREE,Practitioner,https://tryhackme.com/room/yueiua
+Security Labs & CTF,Zer0Logon,zer0logon,🟢 FREE,Practitioner,https://tryhackme.com/room/zer0logon
+Security Labs & CTF,Activerecon,activerecon,🟢 FREE,Practitioner,https://tryhackme.com/room/activerecon
+Active Directory & Windows,Adana,adana,🟢 FREE,Practitioner,https://tryhackme.com/room/adana
+Security Labs & CTF,Authenticationbypass,authenticationbypass,🟢 FREE,Practitioner,https://tryhackme.com/room/authenticationbypass
+Security Labs & CTF,Basicpentestingjt,basicpentestingjt,🟢 FREE,Practitioner,https://tryhackme.com/room/basicpentestingjt
+Security Labs & CTF,Brooklynninenine,brooklynninenine,🟢 FREE,Practitioner,https://tryhackme.com/room/brooklynninenine
+Security Labs & CTF,Btredlinejoxr3D,btredlinejoxr3d,🟢 FREE,Practitioner,https://tryhackme.com/room/btredlinejoxr3d
+Web Exploitation,Burpsuiteextensions,burpsuiteextensions,🟢 FREE,Practitioner,https://tryhackme.com/room/burpsuiteextensions
+Security Labs & CTF,Codeanalysis,codeanalysis,🟢 FREE,Practitioner,https://tryhackme.com/room/codeanalysis
+Security Labs & CTF,Cyberchefbasics,cyberchefbasics,🟢 FREE,Practitioner,https://tryhackme.com/room/cyberchefbasics
+Security Labs & CTF,Cybergovernanceregulation,cybergovernanceregulation,🟢 FREE,Practitioner,https://tryhackme.com/room/cybergovernanceregulation
+Security Labs & CTF,Diamondmodelrmuwwg42,diamondmodelrmuwwg42,🟢 FREE,Practitioner,https://tryhackme.com/room/diamondmodelrmuwwg42
+Security Labs & CTF,Digdug,digdug,🟢 FREE,Practitioner,https://tryhackme.com/room/digdug
+Security Labs & CTF,Easyctf,easyctf,🟢 FREE,Practitioner,https://tryhackme.com/room/easyctf
+Cryptography,Encryptioncrypto101,encryptioncrypto101,🟢 FREE,Practitioner,https://tryhackme.com/room/encryptioncrypto101
+Security Labs & CTF,Enumerationbruteforce,enumerationbruteforce,🟢 FREE,Practitioner,https://tryhackme.com/room/enumerationbruteforce
+Security Labs & CTF,Hammer,hammer,🟢 FREE,Practitioner,https://tryhackme.com/room/hammer
+Security Labs & CTF,Intermediatenmap,intermediatenmap,🟢 FREE,Practitioner,https://tryhackme.com/room/intermediatenmap
+Systems & Fundamentals,Introductoryroomdfirmodule,introductoryroomdfirmodule,🟢 FREE,Practitioner,https://tryhackme.com/room/introductoryroomdfirmodule
+Systems & Fundamentals,Introtoc2,introtoc2,🟢 FREE,Practitioner,https://tryhackme.com/room/introtoc2
+Systems & Fundamentals,Introtocontainerisation,introtocontainerisation,🟢 FREE,Practitioner,https://tryhackme.com/room/introtocontainerisation
+Systems & Fundamentals,Introtologs,introtologs,🟢 FREE,Practitioner,https://tryhackme.com/room/introtologs
+Security Labs & CTF,Lafb2026E6,lafb2026e6,🟢 FREE,Practitioner,https://tryhackme.com/room/lafb2026e6
+SOC & Detection,Linuxthreatdetection3,linuxthreatdetection3,🟢 FREE,Practitioner,https://tryhackme.com/room/linuxthreatdetection3
+Security Labs & CTF,Livingoffthelandattacks,livingoffthelandattacks,🟢 FREE,Practitioner,https://tryhackme.com/room/livingoffthelandattacks
+Security Labs & CTF,Logoperations,logoperations,🟢 FREE,Practitioner,https://tryhackme.com/room/logoperations
+Systems & Fundamentals,Logsfundamentals,logsfundamentals,🟢 FREE,Practitioner,https://tryhackme.com/room/logsfundamentals
+Security Labs & CTF,Mobileacquisition,mobileacquisition,🟢 FREE,Practitioner,https://tryhackme.com/room/mobileacquisition
+Security Labs & CTF,Monikerlink,monikerlink,🟢 FREE,Practitioner,https://tryhackme.com/room/monikerlink
+Active Directory & Windows,Monitoringawsworkloads,monitoringawsworkloads,🟢 FREE,Practitioner,https://tryhackme.com/room/monitoringawsworkloads
+Security Labs & CTF,N8Ncve202568613,n8ncve202568613,🟢 FREE,Practitioner,https://tryhackme.com/room/n8ncve202568613
+Security Labs & CTF,Netsecchallenge,netsecchallenge,🟢 FREE,Practitioner,https://tryhackme.com/room/netsecchallenge
+Security Labs & CTF,Nmap02,nmap02,🟢 FREE,Practitioner,https://tryhackme.com/room/nmap02
+Systems & Fundamentals,Offensivesecurityintrokkx12,offensivesecurityintrokKx12,🟢 FREE,Practitioner,https://tryhackme.com/room/offensivesecurityintrokKx12
+Security Labs & CTF,Oracle9,oracle9,🟢 FREE,Practitioner,https://tryhackme.com/room/oracle9
+Security Labs & CTF,Phishingemails3Tryoe,phishingemails3tryoe,🟢 FREE,Practitioner,https://tryhackme.com/room/phishingemails3tryoe
+Security Labs & CTF,Pyramidofpainax,pyramidofpainax,🟢 FREE,Practitioner,https://tryhackme.com/room/pyramidofpainax
+Security Labs & CTF,Registry4N6,registry4n6,🟢 FREE,Practitioner,https://tryhackme.com/room/registry4n6
+Web Exploitation,Serversidetemplateinjection,serversidetemplateinjection,🟢 FREE,Practitioner,https://tryhackme.com/room/serversidetemplateinjection
+SOC & Detection,Splunk2Gcd5,splunk2gcd5,🟢 FREE,Practitioner,https://tryhackme.com/room/splunk2gcd5
+SOC & Detection,Splunk3Zs,splunk3zs,🟢 FREE,Practitioner,https://tryhackme.com/room/splunk3zs
+Security Labs & CTF,Sqhell,sqhell,🟢 FREE,Practitioner,https://tryhackme.com/room/sqhell
+Security Labs & CTF,Sqlmapthebasics,sqlmapthebasics,🟢 FREE,Practitioner,https://tryhackme.com/room/sqlmapthebasics
+Web Exploitation,Ssrfqi,ssrfqi,🟢 FREE,Practitioner,https://tryhackme.com/room/ssrfqi
+Security Labs & CTF,Threathuntingfoothold,threathuntingfoothold,🟢 FREE,Practitioner,https://tryhackme.com/room/threathuntingfoothold
+Security Labs & CTF,Threatinteltools,threatinteltools,🟢 FREE,Practitioner,https://tryhackme.com/room/threatinteltools
+Active Directory & Windows,Windowsprivesc20,windowsprivesc20,🟢 FREE,Practitioner,https://tryhackme.com/room/windowsprivesc20
+DFIR & Forensics,Wiresharkpacketoperations,wiresharkpacketoperations,🟢 FREE,Practitioner,https://tryhackme.com/room/wiresharkpacketoperations
+SOC & Detection,Alerttriagewithsplunk,alerttriagewithsplunk,🟢 FREE,Practitioner,https://tryhackme.com/room/alerttriagewithsplunk
+Security Labs & CTF,Avengers,avengers,🟢 FREE,Practitioner,https://tryhackme.com/room/avengers
+Active Directory & Windows,Becomeadefender,becomeadefender,🟢 FREE,Practitioner,https://tryhackme.com/room/becomeadefender
+Security Labs & CTF,Blue,blue,🟢 FREE,Practitioner,https://tryhackme.com/room/blue
+Security Labs & CTF,Bof1,bof1,🟢 FREE,Practitioner,https://tryhackme.com/room/bof1
+Security Labs & CTF,Bolt,bolt,🟢 FREE,Practitioner,https://tryhackme.com/room/bolt
+Security Labs & CTF,Bsidesgtlibrary,bsidesgtlibrary,🟢 FREE,Practitioner,https://tryhackme.com/room/bsidesgtlibrary
+Security Labs & CTF,Capture,capture,🟢 FREE,Practitioner,https://tryhackme.com/room/capture
+Security Labs & CTF,Clientserverbasics,clientserverbasics,🟢 FREE,Practitioner,https://tryhackme.com/room/clientserverbasics
+Systems & Fundamentals,Cloudcomputingfundamentals,cloudcomputingfundamentals,🟢 FREE,Practitioner,https://tryhackme.com/room/cloudcomputingfundamentals
+Security Labs & CTF,Colddboxeasy,colddboxeasy,🟢 FREE,Practitioner,https://tryhackme.com/room/colddboxeasy
+Cryptography,Cryptographybasics,cryptographybasics,🟢 FREE,Practitioner,https://tryhackme.com/room/cryptographybasics
+Security Labs & CTF,Ctfcollectionvol1,ctfcollectionvol1,🟢 FREE,Practitioner,https://tryhackme.com/room/ctfcollectionvol1
+Security Labs & CTF,Databasesqlbasics,databasesqlbasics,🟢 FREE,Practitioner,https://tryhackme.com/room/databasesqlbasics
+Security Labs & CTF,Dataencoding,dataencoding,🟢 FREE,Practitioner,https://tryhackme.com/room/dataencoding
+Systems & Fundamentals,Defensivesecurityintroezn39,defensivesecurityintroezn39,🟢 FREE,Practitioner,https://tryhackme.com/room/defensivesecurityintroezn39
+Web Exploitation,Detectingwebshells,detectingwebshells,🟢 FREE,Practitioner,https://tryhackme.com/room/detectingwebshells
+Security Labs & CTF,Devdiaries,devdiaries,🟢 FREE,Practitioner,https://tryhackme.com/room/devdiaries
+DFIR & Forensics,Digitalforensicsfundamentals,digitalforensicsfundamentals,🟢 FREE,Practitioner,https://tryhackme.com/room/digitalforensicsfundamentals
+Systems & Fundamentals,Extendingyournetwork,extendingyournetwork,🟢 FREE,Practitioner,https://tryhackme.com/room/extendingyournetwork
+Security Labs & CTF,Ffuf,ffuf,🟢 FREE,Practitioner,https://tryhackme.com/room/ffuf
+Cryptography,Fileandhashthreatintel,fileandhashthreatintel,🟢 FREE,Practitioner,https://tryhackme.com/room/fileandhashthreatintel
+Security Labs & CTF,Gobusterthebasics,gobusterthebasics,🟢 FREE,Practitioner,https://tryhackme.com/room/gobusterthebasics
+Cryptography,Hashingbasics,hashingbasics,🟢 FREE,Practitioner,https://tryhackme.com/room/hashingbasics
+Security Labs & CTF,Httpindetail,httpindetail,🟢 FREE,Practitioner,https://tryhackme.com/room/httpindetail
+Security Labs & CTF,Humansattackvectors,humansattackvectors,🟢 FREE,Practitioner,https://tryhackme.com/room/humansattackvectors
+SOC & Detection,Introtodetectionengineering,introtodetectionengineering,🟢 FREE,Practitioner,https://tryhackme.com/room/introtodetectionengineering
+Systems & Fundamentals,Introtodockerk8Pdqk,introtodockerk8pdqk,🟢 FREE,Practitioner,https://tryhackme.com/room/introtodockerk8pdqk
+Systems & Fundamentals,Introtoirandim,introtoirandim,🟢 FREE,Practitioner,https://tryhackme.com/room/introtoirandim
+Systems & Fundamentals,Introtonetworking,introtonetworking,🟢 FREE,Practitioner,https://tryhackme.com/room/introtonetworking
+Security Labs & CTF,Itsybitsy,itsybitsy,🟢 FREE,Practitioner,https://tryhackme.com/room/itsybitsy
+Security Labs & CTF,Kenobi,kenobi,🟢 FREE,Practitioner,https://tryhackme.com/room/kenobi
+Security Labs & CTF,Lafb2026E4,lafb2026e4,🟢 FREE,Practitioner,https://tryhackme.com/room/lafb2026e4
+Security Labs & CTF,Lessonslearned,lessonslearned,🟢 FREE,Practitioner,https://tryhackme.com/room/lessonslearned
+Systems & Fundamentals,Linuxfundamentalspart2,linuxfundamentalspart2,🟢 FREE,Practitioner,https://tryhackme.com/room/linuxfundamentalspart2
+Systems & Fundamentals,Linuxfundamentalspart3,linuxfundamentalspart3,🟢 FREE,Practitioner,https://tryhackme.com/room/linuxfundamentalspart3
+Active Directory & Windows,Linuxprivesc,linuxprivesc,🟢 FREE,Practitioner,https://tryhackme.com/room/linuxprivesc
+Systems & Fundamentals,Linuxshells,linuxshells,🟢 FREE,Practitioner,https://tryhackme.com/room/linuxshells
+Systems & Fundamentals,Malmalintroductory,malmalintroductory,🟢 FREE,Practitioner,https://tryhackme.com/room/malmalintroductory
+Security Labs & CTF,Malwareclassification,malwareclassification,🟢 FREE,Practitioner,https://tryhackme.com/room/malwareclassification
+Security Labs & CTF,Mastermindsxlq,mastermindsxlq,🟢 FREE,Practitioner,https://tryhackme.com/room/mastermindsxlq
+DFIR & Forensics,Memoryforensics,memoryforensics,🟢 FREE,Practitioner,https://tryhackme.com/room/memoryforensics
+Security Labs & CTF,Metasploitexploitation,metasploitexploitation,🟢 FREE,Practitioner,https://tryhackme.com/room/metasploitexploitation
+Systems & Fundamentals,Metasploitintro,metasploitintro,🟢 FREE,Practitioner,https://tryhackme.com/room/metasploitintro
+Security Labs & CTF,Meterpreter,meterpreter,🟢 FREE,Practitioner,https://tryhackme.com/room/meterpreter
+Systems & Fundamentals,Networkingsecureprotocols,networkingsecureprotocols,🟢 FREE,Practitioner,https://tryhackme.com/room/networkingsecureprotocols
+Security Labs & CTF,Nmap,nmap,🟢 FREE,Practitioner,https://tryhackme.com/room/nmap
+Security Labs & CTF,Nmap03,nmap03,🟢 FREE,Practitioner,https://tryhackme.com/room/nmap03
+Security Labs & CTF,Oauthvulnerabilities,oauthvulnerabilities,🟢 FREE,Practitioner,https://tryhackme.com/room/oauthvulnerabilities
+Security Labs & CTF,Osintchallengeiv,osintchallengeiv,🟢 FREE,Practitioner,https://tryhackme.com/room/osintchallengeiv
+Web Exploitation,Owaspjuiceshop,owaspjuiceshop,🟢 FREE,Practitioner,https://tryhackme.com/room/owaspjuiceshop
+Web Exploitation,Owasptopten2025Three,owasptopten2025three,🟢 FREE,Practitioner,https://tryhackme.com/room/owasptopten2025three
+Security Labs & CTF,Phishingemails2Rytmuv,phishingemails2rytmuv,🟢 FREE,Practitioner,https://tryhackme.com/room/phishingemails2rytmuv
+Security Labs & CTF,Picklerick,picklerick,🟢 FREE,Practitioner,https://tryhackme.com/room/picklerick
+Security Labs & CTF,Postexploit,postexploit,🟢 FREE,Practitioner,https://tryhackme.com/room/postexploit
+Security Labs & CTF,Preparation,preparation,🟢 FREE,Practitioner,https://tryhackme.com/room/preparation
+Cryptography,Publickeycrypto,publickeycrypto,🟢 FREE,Practitioner,https://tryhackme.com/room/publickeycrypto
+Security Labs & CTF,Publisher,publisher,🟢 FREE,Practitioner,https://tryhackme.com/room/publisher
+Security Labs & CTF,Puttingitalltogether,puttingitalltogether,🟢 FREE,Practitioner,https://tryhackme.com/room/puttingitalltogether
+Security Labs & CTF,Pythonforcybersecurity,pythonforcybersecurity,🟢 FREE,Practitioner,https://tryhackme.com/room/pythonforcybersecurity
+Security Labs & CTF,Ra,ra,🟢 FREE,Practitioner,https://tryhackme.com/room/ra
+Security Labs & CTF,Raceconditionsattacks,raceconditionsattacks,🟢 FREE,Practitioner,https://tryhackme.com/room/raceconditionsattacks
+Security Labs & CTF,Redteamengagements,redteamengagements,🟢 FREE,Practitioner,https://tryhackme.com/room/redteamengagements
+Security Labs & CTF,Relevant,relevant,🟢 FREE,Practitioner,https://tryhackme.com/room/relevant
+Security Labs & CTF,Searchskills,searchskills,🟢 FREE,Practitioner,https://tryhackme.com/room/searchskills
+Security Labs & CTF,Securityoperations,securityoperations,🟢 FREE,Practitioner,https://tryhackme.com/room/securityoperations
+Security Labs & CTF,Snappedphishingline,snappedphishingline,🟢 FREE,Practitioner,https://tryhackme.com/room/snappedphishingline
+SOC & Detection,Snortchallenges1,snortchallenges1,🟢 FREE,Practitioner,https://tryhackme.com/room/snortchallenges1
+SOC & Detection,Snortchallenges2,snortchallenges2,🟢 FREE,Practitioner,https://tryhackme.com/room/snortchallenges2
+Security Labs & CTF,Soar,soar,🟢 FREE,Practitioner,https://tryhackme.com/room/soar
+SOC & Detection,Socl1Alerttriage,socl1alerttriage,🟢 FREE,Practitioner,https://tryhackme.com/room/socl1alerttriage
+SOC & Detection,Socmetricsobjectives,socmetricsobjectives,🟢 FREE,Practitioner,https://tryhackme.com/room/socmetricsobjectives
+SOC & Detection,Splunk201,splunk201,🟢 FREE,Practitioner,https://tryhackme.com/room/splunk201
+SOC & Detection,Splunkdatamanipulation,splunkdatamanipulation,🟢 FREE,Practitioner,https://tryhackme.com/room/splunkdatamanipulation
+Web Exploitation,Ssrfhr,ssrfhr,🟢 FREE,Practitioner,https://tryhackme.com/room/ssrfhr
+Security Labs & CTF,Sudovulnsbof,sudovulnsbof,🟢 FREE,Practitioner,https://tryhackme.com/room/sudovulnsbof
+Security Labs & CTF,Tcpdump,tcpdump,🟢 FREE,Practitioner,https://tryhackme.com/room/tcpdump
+Security Labs & CTF,Tickets1,tickets1,🟢 FREE,Practitioner,https://tryhackme.com/room/tickets1
+Security Labs & CTF,Toolboxvim,toolboxvim,🟢 FREE,Practitioner,https://tryhackme.com/room/toolboxvim
+Security Labs & CTF,Torforbeginners,torforbeginners,🟢 FREE,Practitioner,https://tryhackme.com/room/torforbeginners
+Security Labs & CTF,Tryhack3Mbricksheist,tryhack3mbricksheist,🟢 FREE,Practitioner,https://tryhackme.com/room/tryhack3mbricksheist
+Security Labs & CTF,Tutorial,tutorial,🟢 FREE,Practitioner,https://tryhackme.com/room/tutorial
+Security Labs & CTF,Velociraptorhp,velociraptorhp,🟢 FREE,Practitioner,https://tryhackme.com/room/velociraptorhp
+Security Labs & CTF,Vulnerabilities101,vulnerabilities101,🟢 FREE,Practitioner,https://tryhackme.com/room/vulnerabilities101
+Security Labs & CTF,Walkinganapplication,walkinganapplication,🟢 FREE,Practitioner,https://tryhackme.com/room/walkinganapplication
+Web Exploitation,Websecurityessentials,websecurityessentials,🟢 FREE,Practitioner,https://tryhackme.com/room/websecurityessentials
+Systems & Fundamentals,Whatisnetworking,whatisnetworking,🟢 FREE,Practitioner,https://tryhackme.com/room/whatisnetworking
+Active Directory & Windows,Windows10Privesc,windows10privesc,🟢 FREE,Practitioner,https://tryhackme.com/room/windows10privesc
+Active Directory & Windows,Windowsclibasics,windowsclibasics,🟢 FREE,Practitioner,https://tryhackme.com/room/windowsclibasics
+Active Directory & Windows,Windowseventlogs,windowseventlogs,🟢 FREE,Practitioner,https://tryhackme.com/room/windowseventlogs
+Active Directory & Windows,Windowsfundamentals1Xbx,windowsfundamentals1xbx,🟢 FREE,Practitioner,https://tryhackme.com/room/windowsfundamentals1xbx
+Active Directory & Windows,Windowsfundamentals3Xzx,windowsfundamentals3xzx,🟢 FREE,Practitioner,https://tryhackme.com/room/windowsfundamentals3xzx
+Active Directory & Windows,Windowsthreatdetection2,windowsthreatdetection2,🟢 FREE,Practitioner,https://tryhackme.com/room/windowsthreatdetection2
+Security Labs & CTF,Winincidentsurface,winincidentsurface,🟢 FREE,Practitioner,https://tryhackme.com/room/winincidentsurface
+DFIR & Forensics,Wiresharkthebasics,wiresharkthebasics,🟢 FREE,Practitioner,https://tryhackme.com/room/wiresharkthebasics
+Security Labs & CTF,Wordpresscve202129447,wordpresscve202129447,🟢 FREE,Practitioner,https://tryhackme.com/room/wordpresscve202129447
+Security Labs & CTF,X8664Arch,x8664arch,🟢 FREE,Practitioner,https://tryhackme.com/room/x8664arch
+DFIR & Forensics,Aiforensics,aiforensics,🟢 FREE,Practitioner,https://tryhackme.com/room/aiforensics
+Security Labs & CTF,Alerttriagewithelastic,alerttriagewithelastic,🟢 FREE,Practitioner,https://tryhackme.com/room/alerttriagewithelastic
+Security Labs & CTF,Becomeahacker,becomeahacker,🟢 FREE,Practitioner,https://tryhackme.com/room/becomeahacker
+Security Labs & CTF,Boogeyman3,boogeyman3,🟢 FREE,Practitioner,https://tryhackme.com/room/boogeyman3
+Web Exploitation,Burpsuiteintruder,burpsuiteintruder,🟢 FREE,Practitioner,https://tryhackme.com/room/burpsuiteintruder
+Security Labs & CTF,Careersincyber,careersincyber,🟢 FREE,Practitioner,https://tryhackme.com/room/careersincyber
+Security Labs & CTF,Cheesectfv10,cheesectfv10,🟢 FREE,Practitioner,https://tryhackme.com/room/cheesectfv10
+Security Labs & CTF,Computertypes,computertypes,🟢 FREE,Practitioner,https://tryhackme.com/room/computertypes
+Cryptography,Cryptographyconcepts,cryptographyconcepts,🟢 FREE,Practitioner,https://tryhackme.com/room/cryptographyconcepts
+Security Labs & CTF,Datarepresentation,datarepresentation,🟢 FREE,Practitioner,https://tryhackme.com/room/datarepresentation
+Web Exploitation,Detectingwebattacks,detectingwebattacks,🟢 FREE,Practitioner,https://tryhackme.com/room/detectingwebattacks
+Active Directory & Windows,Dissectingpeheaders,dissectingpeheaders,🟢 FREE,Practitioner,https://tryhackme.com/room/dissectingpeheaders
+Security Labs & CTF,Entraidmonitoring,entraidmonitoring,🟢 FREE,Practitioner,https://tryhackme.com/room/entraidmonitoring
+Security Labs & CTF,Extractedroom,extractedroom,🟢 FREE,Practitioner,https://tryhackme.com/room/extractedroom
+Cryptography,Filepathtraversal,filepathtraversal,🟢 FREE,Practitioner,https://tryhackme.com/room/filepathtraversal
+Systems & Fundamentals,Firewallfundamentals,firewallfundamentals,🟢 FREE,Practitioner,https://tryhackme.com/room/firewallfundamentals
+Security Labs & CTF,Flarevmarsenaloftools,flarevmarsenaloftools,🟢 FREE,Practitioner,https://tryhackme.com/room/flarevmarsenaloftools
+Security Labs & CTF,Hfb1Darkmatter,hfb1darkmatter,🟢 FREE,Practitioner,https://tryhackme.com/room/hfb1darkmatter
+Security Labs & CTF,Hfb1Heist,hfb1heist,🟢 FREE,Practitioner,https://tryhackme.com/room/hfb1heist
+Security Labs & CTF,Idor,idor,🟢 FREE,Practitioner,https://tryhackme.com/room/idor
+Security Labs & CTF,Insideacomputer,insideacomputer,🟢 FREE,Practitioner,https://tryhackme.com/room/insideacomputer
+DFIR & Forensics,Introdigitalforensics,introdigitalforensics,🟢 FREE,Practitioner,https://tryhackme.com/room/introdigitalforensics
+Systems & Fundamentals,Introtolan,introtolan,🟢 FREE,Practitioner,https://tryhackme.com/room/introtolan
+Systems & Fundamentals,Introtologanalysis,introtologanalysis,🟢 FREE,Practitioner,https://tryhackme.com/room/introtologanalysis
+SOC & Detection,Introtosiem,introtosiem,🟢 FREE,Practitioner,https://tryhackme.com/room/introtosiem
+Security Labs & CTF,Invite Only,invite-only,🟢 FREE,Practitioner,https://tryhackme.com/room/invite-only
+Security Labs & CTF,Javascriptsimpledemo,javascriptsimpledemo,🟢 FREE,Practitioner,https://tryhackme.com/room/javascriptsimpledemo
+Security Labs & CTF,Lengthextensionattacks,lengthextensionattacks,🟢 FREE,Practitioner,https://tryhackme.com/room/lengthextensionattacks
+Systems & Fundamentals,Linuxcli Aoc2025 O1Fpqkvxti,linuxcli-aoc2025-o1fpqkvxti,🟢 FREE,Practitioner,https://tryhackme.com/room/linuxcli-aoc2025-o1fpqkvxti
+Systems & Fundamentals,Linuxclibasics,linuxclibasics,🟢 FREE,Practitioner,https://tryhackme.com/room/linuxclibasics
+Systems & Fundamentals,Linuxliveanalysis,linuxliveanalysis,🟢 FREE,Practitioner,https://tryhackme.com/room/linuxliveanalysis
+SOC & Detection,Loganalysiswithsiem,loganalysiswithsiem,🟢 FREE,Practitioner,https://tryhackme.com/room/loganalysiswithsiem
+Security Labs & CTF,Lookup,lookup,🟢 FREE,Practitioner,https://tryhackme.com/room/lookup
+Active Directory & Windows,Microsoftwindowshardening,microsoftwindowshardening,🟢 FREE,Practitioner,https://tryhackme.com/room/microsoftwindowshardening
+SOC & Detection,Mitmdetection,mitmdetection,🟢 FREE,Practitioner,https://tryhackme.com/room/mitmdetection
+Security Labs & CTF,Neighbour,neighbour,🟢 FREE,Practitioner,https://tryhackme.com/room/neighbour
+Systems & Fundamentals,Networkingconcepts,networkingconcepts,🟢 FREE,Practitioner,https://tryhackme.com/room/networkingconcepts
+Systems & Fundamentals,Networkingessentials,networkingessentials,🟢 FREE,Practitioner,https://tryhackme.com/room/networkingessentials
+Systems & Fundamentals,Networksecurityessentials,networksecurityessentials,🟢 FREE,Practitioner,https://tryhackme.com/room/networksecurityessentials
+Systems & Fundamentals,Networktrafficbasics,networktrafficbasics,🟢 FREE,Practitioner,https://tryhackme.com/room/networktrafficbasics
+Systems & Fundamentals,Offensivesecurityintrokkx12L39,offensivesecurityintrokKx12l39,🟢 FREE,Practitioner,https://tryhackme.com/room/offensivesecurityintrokKx12l39
+Web Exploitation,Owaspapisecuritytop105W,owaspapisecuritytop105w,🟢 FREE,Practitioner,https://tryhackme.com/room/owaspapisecuritytop105w
+Web Exploitation,Owasptopten2025Two,owasptopten2025two,🟢 FREE,Practitioner,https://tryhackme.com/room/owasptopten2025two
+Systems & Fundamentals,Pentestingfundamentals,pentestingfundamentals,🟢 FREE,Practitioner,https://tryhackme.com/room/pentestingfundamentals
+Security Labs & CTF,Phishingemails1Tryoe,phishingemails1tryoe,🟢 FREE,Practitioner,https://tryhackme.com/room/phishingemails1tryoe
+Systems & Fundamentals,Powershellforpentesters,powershellforpentesters,🟢 FREE,Practitioner,https://tryhackme.com/room/powershellforpentesters
+Security Labs & CTF,Protocolsandservers,protocolsandservers,🟢 FREE,Practitioner,https://tryhackme.com/room/protocolsandservers
+Security Labs & CTF,Pythonsimpledemo,pythonsimpledemo,🟢 FREE,Practitioner,https://tryhackme.com/room/pythonsimpledemo
+Security Labs & CTF,Rabbitstore,rabbitstore,🟢 FREE,Practitioner,https://tryhackme.com/room/rabbitstore
+Systems & Fundamentals,Redteamfundamentals,redteamfundamentals,🟢 FREE,Practitioner,https://tryhackme.com/room/redteamfundamentals
+Security Labs & CTF,Securesolacodersintra,securesolacodersintra,🟢 FREE,Practitioner,https://tryhackme.com/room/securesolacodersintra
+SOC & Detection,Socroleinblueteam,socroleinblueteam,🟢 FREE,Practitioner,https://tryhackme.com/room/socroleinblueteam
+SOC & Detection,Socworkbookslookups,socworkbookslookups,🟢 FREE,Practitioner,https://tryhackme.com/room/socworkbookslookups
+SOC & Detection,Splunkdashboardsandreports,splunkdashboardsandreports,🟢 FREE,Practitioner,https://tryhackme.com/room/splunkdashboardsandreports
+Security Labs & CTF,Takeover,takeover,🟢 FREE,Practitioner,https://tryhackme.com/room/takeover
+Active Directory & Windows,Theciatriad,theciatriad,🟢 FREE,Practitioner,https://tryhackme.com/room/theciatriad
+Security Labs & CTF,Threathuntingendgame,threathuntingendgame,🟢 FREE,Practitioner,https://tryhackme.com/room/threathuntingendgame
+Security Labs & CTF,Training,training,🟢 FREE,Practitioner,https://tryhackme.com/room/training
+Security Labs & CTF,Unifiedkillchain,unifiedkillchain,🟢 FREE,Practitioner,https://tryhackme.com/room/unifiedkillchain
+Security Labs & CTF,Vulnerabilityscanneroverview,vulnerabilityscanneroverview,🟢 FREE,Practitioner,https://tryhackme.com/room/vulnerabilityscanneroverview
+Web Exploitation,Webapplicationbasics,webapplicationbasics,🟢 FREE,Practitioner,https://tryhackme.com/room/webapplicationbasics
+Active Directory & Windows,Windowspowershell,windowspowershell,🟢 FREE,Practitioner,https://tryhackme.com/room/windowspowershell
+Active Directory & Windows,Windowsthreatdetection1,windowsthreatdetection1,🟢 FREE,Practitioner,https://tryhackme.com/room/windowsthreatdetection1
+DFIR & Forensics,Wiresharktrafficanalysis,wiresharktrafficanalysis,🟢 FREE,Practitioner,https://tryhackme.com/room/wiresharktrafficanalysis
+Active Directory & Windows,Adventofcyber3,adventofcyber3,🟢 FREE,Practitioner,https://tryhackme.com/room/adventofcyber3
+Security Labs & CTF,Allinonemj,allinonemj,🟢 FREE,Practitioner,https://tryhackme.com/room/allinonemj
+Security Labs & CTF,Basicmalwarere,basicmalwarere,🟢 FREE,Practitioner,https://tryhackme.com/room/basicmalwarere
+Systems & Fundamentals,Defensivesecurityintroqw,defensivesecurityintroqW,🟢 FREE,Practitioner,https://tryhackme.com/room/defensivesecurityintroqW
+Active Directory & Windows,Detectingadlateralmovement,detectingadlateralmovement,🟢 FREE,Practitioner,https://tryhackme.com/room/detectingadlateralmovement
+Security Labs & CTF,Dnsindetail,dnsindetail,🟢 FREE,Practitioner,https://tryhackme.com/room/dnsindetail
+Security Labs & CTF,Dvwa,dvwa,🟢 FREE,Practitioner,https://tryhackme.com/room/dvwa
+Security Labs & CTF,Hackermethodology,hackermethodology,🟢 FREE,Practitioner,https://tryhackme.com/room/hackermethodology
+Security Labs & CTF,Hello,hello,🟢 FREE,Practitioner,https://tryhackme.com/room/hello
+Security Labs & CTF,Historyofmalware,historyofmalware,🟢 FREE,Practitioner,https://tryhackme.com/room/historyofmalware
+Web Exploitation,Howwebsiteswork,howwebsiteswork,🟢 FREE,Practitioner,https://tryhackme.com/room/howwebsiteswork
+Security Labs & CTF,Hydra,hydra,🟢 FREE,Practitioner,https://tryhackme.com/room/hydra
+Systems & Fundamentals,Introtoshells,introtoshells,🟢 FREE,Practitioner,https://tryhackme.com/room/introtoshells
+Security Labs & CTF,Johntheripperbasics,johntheripperbasics,🟢 FREE,Practitioner,https://tryhackme.com/room/johntheripperbasics
+Systems & Fundamentals,Jrsecanalystintrouxo,jrsecanalystintrouxo,🟢 FREE,Practitioner,https://tryhackme.com/room/jrsecanalystintrouxo
+Security Labs & CTF,Lafb2026E5,lafb2026e5,🟢 FREE,Practitioner,https://tryhackme.com/room/lafb2026e5
+Systems & Fundamentals,Linuxfundamentalspart1,linuxfundamentalspart1,🟢 FREE,Practitioner,https://tryhackme.com/room/linuxfundamentalspart1
+Security Labs & CTF,Mitre,mitre,🟢 FREE,Practitioner,https://tryhackme.com/room/mitre
+Systems & Fundamentals,Networkservices,networkservices,🟢 FREE,Practitioner,https://tryhackme.com/room/networkservices
+Security Labs & CTF,Openvas,openvas,🟢 FREE,Practitioner,https://tryhackme.com/room/openvas
+Systems & Fundamentals,Operatingsystemsintroduction,operatingsystemsintroduction,🟢 FREE,Practitioner,https://tryhackme.com/room/operatingsystemsintroduction
+Web Exploitation,Owaspmutillidae,owaspmutillidae,🟢 FREE,Practitioner,https://tryhackme.com/room/owaspmutillidae
+Web Exploitation,Owasptopten2025One,owasptopten2025one,🟢 FREE,Practitioner,https://tryhackme.com/room/owasptopten2025one
+Security Labs & CTF,Packetsframes,packetsframes,🟢 FREE,Practitioner,https://tryhackme.com/room/packetsframes
+Security Labs & CTF,Protocolsandservers2,protocolsandservers2,🟢 FREE,Practitioner,https://tryhackme.com/room/protocolsandservers2
+Security Labs & CTF,Pyrat,pyrat,🟢 FREE,Practitioner,https://tryhackme.com/room/pyrat
+Active Directory & Windows,Road,road,🟢 FREE,Practitioner,https://tryhackme.com/room/road
+Security Labs & CTF,Rptmux,rptmux,🟢 FREE,Practitioner,https://tryhackme.com/room/rptmux
+Systems & Fundamentals,Securityawarenessintro,securityawarenessintro,🟢 FREE,Practitioner,https://tryhackme.com/room/securityawarenessintro
+Systems & Fundamentals,Shellsoverview,shellsoverview,🟢 FREE,Practitioner,https://tryhackme.com/room/shellsoverview
+Active Directory & Windows,Uploadvulns,uploadvulns,🟢 FREE,Practitioner,https://tryhackme.com/room/uploadvulns
+Active Directory & Windows,Windowsforensics1,windowsforensics1,🟢 FREE,Practitioner,https://tryhackme.com/room/windowsforensics1
+DFIR & Forensics,Wireshark,wireshark,🟢 FREE,Practitioner,https://tryhackme.com/room/wireshark

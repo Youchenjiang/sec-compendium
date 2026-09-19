@@ -1,0 +1,213 @@
+﻿Category,Title,Tier,Difficulty,URL,Slug
+Forensics,Trusted,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Forensic/Trusted,Trusted
+Forensics,Invocation,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Forensic/Invocation,Invocation
+Forensics,ICMP exfiltration,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Forensic/ICMP-exfiltration,ICMP-exfiltration
+Forensics,Exfiltration ICMP,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Forensic/Exfiltration-ICMP,Exfiltration-ICMP
+Forensics,Heist of the century,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Forensic/Heist-of-the-century,Heist-of-the-century
+Forensics,Casse du siecle,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Forensic/Casse-du-siecle,Casse-du-siecle
+Realist,Android Shady VPN,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Realist/Android-Shady-VPN,Android-Shady-VPN
+Realist,VPN Provider,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Realiste/VPN-Provider,VPN-Provider
+Network,Analog video,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Network/Analog-video,Analog-video
+Network,Video analogique,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Reseau/Video-analogique,Video-analogique
+Web - Server,Ruby on Rails ransack,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Server/Ruby-on-Rails-ransack,Ruby-on-Rails-ransack
+Steganography,PNG EMD,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Steganography/PNG-EMD,PNG-EMD
+Cracking,PE32 KeygenMe,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cracking/PE32-KeygenMe,PE32-KeygenMe
+Cracking,PE DotNet Memory Protect,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cracking/PE-DotNet-Memory-Protect,PE-DotNet-Memory-Protect
+Cracking,EVM Bytecode,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cracking/EVM-Bytecode,EVM-Bytecode
+Cracking,Basic crackme,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cracking/Basic-crackme,Basic-crackme
+Cryptanalysis,NTRU Multiple Transmission,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cryptanalysis/NTRU-Multiple-Transmission,NTRU-Multiple-Transmission
+Cryptanalysis,NTRU Weak Parameter,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cryptanalysis/NTRU-Weak-Parameter,NTRU-Weak-Parameter
+Cryptanalysis,Goldreich Goldwasser Halevi Weak Parameter,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cryptanalysis/Goldreich-Goldwasser-Halevi-Weak-Parameter,Goldreich-Goldwasser-Halevi-Weak-Parameter
+Cryptanalysis,ElGamal Fault attack Introduction,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cryptanalysis/ElGamal-Fault-attack-Introduction,ElGamal-Fault-attack-Introduction
+Cryptanalysis,ElGamal Attaque par fautes Introduction,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cryptanalyse/ElGamal-Attaque-par-fautes-Introduction,ElGamal-Attaque-par-fautes-Introduction
+Cryptanalysis,DSA Implementation error,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cryptanalysis/DSA-Implementation-error,DSA-Implementation-error
+Cryptanalysis,DSA Erreur d implementation,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cryptanalyse/DSA-Erreur-d-implementation,DSA-Erreur-d-implementation
+Realist,ComCyber Challenge,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Realist/ComCyber-Challenge,ComCyber-Challenge
+Forensics,Remote Support,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Forensic/Remote-Support,Remote-Support
+Cryptanalysis,File PKZIP 2,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cryptanalysis/File-PKZIP-2,File-PKZIP-2
+Forensics,MasterKee,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Forensic/MasterKee,MasterKee
+Cryptanalysis,Fichier PKZIP 2,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cryptanalyse/Fichier-PKZIP-2,Fichier-PKZIP-2
+Web - Server,Nginx Alias Misconfiguration,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Server/Nginx-Alias-Misconfiguration,Nginx-Alias-Misconfiguration
+Web - Server,Nginx Root Location Misconfiguration,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Server/Nginx-Root-Location-Misconfiguration,Nginx-Root-Location-Misconfiguration
+Web - Server,Nginx SSRF Misconfiguration,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Server/Nginx-SSRF-Misconfiguration,Nginx-SSRF-Misconfiguration
+Web - Server,Python dotenv,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Server/Python-dotenv,Python-dotenv
+Web - Client,CSPT The Ruler,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Client/CSPT-The-Ruler,CSPT-The-Ruler
+Programming,Adversarial Attack Prison Break,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Programming/Adversarial-Attack-Prison-Break,Adversarial-Attack-Prison-Break
+App - Script,Deep learning Malicious model,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/App-Script/Deep-learning-Malicious-model,Deep-learning-Malicious-model
+Programming,Adversarial Attack GAN,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Programming/Adversarial-Attack-GAN,Adversarial-Attack-GAN
+Programming,Deep Learning Captcha,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Programming/Deep-Learning-Captcha,Deep-Learning-Captcha
+Programming,Deep Learning Introduction,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Programming/Deep-Learning-Introduction,Deep-Learning-Introduction
+App - Script,Deep learning Modele malveillant,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/App-Script/Deep-learning-Modele-malveillant,Deep-learning-Modele-malveillant
+App - System,ELF x64 Advanced blind format string exploitation,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/App-Systeme/ELF-x64-Advanced-blind-format-string-exploitation,ELF-x64-Advanced-blind-format-string-exploitation
+App - System,ELF x64 Heap Hop,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/App-Systeme/ELF-x64-Heap-Hop,ELF-x64-Heap-Hop
+App - System,ELF x64 Syscall chaining,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/App-Systeme/ELF-x64-Syscall-chaining,ELF-x64-Syscall-chaining
+App - System,ELF x64 Stack buffer overflow Stack pivot,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/App-Systeme/ELF-x64-Stack-buffer-overflow-Stack-pivot,ELF-x64-Stack-buffer-overflow-Stack-pivot
+Network,ARP Spoofing L homme du milieu,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Reseau/ARP-Spoofing-L-homme-du-milieu,ARP-Spoofing-L-homme-du-milieu
+Network,WPA3 SAE,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Reseau/WPA3-SAE,WPA3-SAE
+Network,WPA2 Enterprise 4431,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Reseau/WPA2-Enterprise-4431,WPA2-Enterprise-4431
+Network,Extraction de donnees,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Reseau/Extraction-de-donnees,Extraction-de-donnees
+Network,Kerberos Authentification,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Reseau/Kerberos-Authentification,Kerberos-Authentification
+Network,NTLM Authentification,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Reseau/NTLM-Authentification,NTLM-Authentification
+Network,ARP Spoofing The man in the middle,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Network/ARP-Spoofing-The-man-in-the-middle,ARP-Spoofing-The-man-in-the-middle
+Network,WPA2 Entreprise,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Network/WPA2-Entreprise,WPA2-Entreprise
+Network,Data extraction,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Network/Data-extraction,Data-extraction
+Network,Kerberos Authentication,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Network/Kerberos-Authentication,Kerberos-Authentication
+Network,NTLM Authentication,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Network/NTLM-Authentication,NTLM-Authentication
+Realist,Mersenne with 2,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Realist/Mersenne-with-2,Mersenne-with-2
+Realist,Extractor,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Realist/Extractor,Extractor
+Realist,C for C cure,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Realist/C-for-C-cure,C-for-C-cure
+Realist,C comme C curise,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Realiste/C-comme-C-curise,C-comme-C-curise
+Programming,Ethereum Architect,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Programming/Ethereum-Architect,Ethereum-Architect
+Programming,Ethereum Bunker,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Programming/Ethereum-Bunker,Ethereum-Bunker
+Programming,Ethereum tx origin,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Programming/Ethereum-tx-origin,Ethereum-tx-origin
+Programming,Ethereum King of the EVM,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Programming/Ethereum-King-of-the-EVM,Ethereum-King-of-the-EVM
+Programming,Ethereum Architecte,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Programmation/Ethereum-Architecte,Ethereum-Architecte
+Cryptanalysis,AES ECB Copy Paste,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cryptanalysis/AES-ECB-Copy-Paste,AES-ECB-Copy-Paste
+Cryptanalysis,Shamir Secret Sharing Introduction,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cryptanalysis/Shamir-Secret-Sharing-Introduction,Shamir-Secret-Sharing-Introduction
+Cryptanalysis,Shamir Secret Sharing Irreducible,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cryptanalysis/Shamir-Secret-Sharing-Irreducible,Shamir-Secret-Sharing-Irreducible
+Cryptanalysis,Shamir Secret Sharing Irreductible,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cryptanalyse/Shamir-Secret-Sharing-Irreductible,Shamir-Secret-Sharing-Irreductible
+Cryptanalysis,Shamir Secret Sharing Reduction,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cryptanalysis/Shamir-Secret-Sharing-Reduction,Shamir-Secret-Sharing-Reduction
+Cryptanalysis,Shamir Secret Sharing Traitor,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cryptanalysis/Shamir-Secret-Sharing-Traitor,Shamir-Secret-Sharing-Traitor
+Web - Server,API Broken Access 2,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Server/API-Broken-Access-2,API-Broken-Access-2
+Web - Server,API Mass Assignment,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Server/API-Mass-Assignment,API-Mass-Assignment
+Web - Server,API Broken Access,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Server/API-Broken-Access,API-Broken-Access
+Cracking,PYC Self Modifying Byte Code,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cracking/PYC-Self-Modifying-Byte-Code,PYC-Self-Modifying-Byte-Code
+Cracking,PE x64 Tables in shambles,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cracking/PE-x64-Tables-in-shambles,PE-x64-Tables-in-shambles
+Cracking,PE x64 Bazar dans les tables,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cracking/PE-x64-Bazar-dans-les-tables,PE-x64-Bazar-dans-les-tables
+Web - Server,Java Custom gadget deserialization,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Server/Java-Custom-gadget-deserialization,Java-Custom-gadget-deserialization
+Web - Server,Java Custom gadget deserialisation,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Serveur/Java-Custom-gadget-deserialisation,Java-Custom-gadget-deserialisation
+App - System,ELF x64 Blind SROP,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/App-System/ELF-x64-Blind-SROP,ELF-x64-Blind-SROP
+App - Script,Python Eval Is Evil,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/App-Script/Python-Eval-Is-Evil,Python-Eval-Is-Evil
+Web - Server,Flask Unsecure session,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Server/Flask-Unsecure-session,Flask-Unsecure-session
+Web - Server,Elixir EEx,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Server/Elixir-EEx,Elixir-EEx
+Web - Server,Flask Development server,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Server/Flask-Development-server,Flask-Development-server
+Web - Server,SQL Injection Second Order,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Server/SQL-Injection-Second-Order,SQL-Injection-Second-Order
+Forensics,Air gap exfiltration,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Forensic/Air-gap-exfiltration,Air-gap-exfiltration
+Forensics,Capture this,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Forensic/Capture-this,Capture-this
+Forensics,Web3 Put on your mask Step 2,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Forensic/Web3-Put-on-your-mask-Step-2,Web3-Put-on-your-mask-Step-2
+Forensics,Web3 Put on your mask Step 1,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Forensic/Web3-Put-on-your-mask-Step-1,Web3-Put-on-your-mask-Step-1
+Forensics,Try again 2,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Forensic/Try-again-2,Try-again-2
+Forensics,Web3 Mets ton masque Etape 1,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Forensic/Web3-Mets-ton-masque-Etape-1,Web3-Mets-ton-masque-Etape-1
+Forensics,Web3 Mets ton masque Etape 2,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Forensic/Web3-Mets-ton-masque-Etape-2,Web3-Mets-ton-masque-Etape-2
+Forensics,Exfiltration air gap,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Forensic/Exfiltration-air-gap,Exfiltration-air-gap
+Forensics,Capture moi ca,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Forensic/Capture-moi-ca,Capture-moi-ca
+App - Script,R Code Execution,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/App-Script/R-Code-Execution,R-Code-Execution
+App - Script,R execution de code,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/App-Script/R-execution-de-code,R-execution-de-code
+App - Script,AppArmor Jail Medium,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/App-Script/AppArmor-Jail-Medium,AppArmor-Jail-Medium
+Web - Client,Self XSS DOM Secrets,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Client/Self-XSS-DOM-Secrets,Self-XSS-DOM-Secrets
+Web - Client,Self XSS Race Condition,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Client/Self-XSS-Race-Condition,Self-XSS-Race-Condition
+Web - Client,Same Origin Method Execution,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Client/Same-Origin-Method-Execution,Same-Origin-Method-Execution
+Web - Client,Browser bfcache disk cache,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Client/Browser-bfcache-disk-cache,Browser-bfcache-disk-cache
+Web - Client,Relative Path Overwrite,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Client/Relative-Path-Overwrite,Relative-Path-Overwrite
+Cracking,ELF x64 Rust backdoor,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cracking/ELF-x64-Rust-backdoor,ELF-x64-Rust-backdoor
+Cracking,NRO ARM Switch homebrew,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cracking/NRO-ARM-Switch-homebrew,NRO-ARM-Switch-homebrew
+Cracking,Voracious Nanomites,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cracking/Voracious-Nanomites,Voracious-Nanomites
+Cracking,Unity IL2CPP Basic Game Hacking,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cracking/Unity-IL2CPP-Basic-Game-Hacking,Unity-IL2CPP-Basic-Game-Hacking
+Cracking,Unity3D Save handling,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cracking/Unity3D-Save-handling,Unity3D-Save-handling
+Cracking,Gestion de sauvegarde sous Unity3D,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cracking/Gestion-de-sauvegarde-sous-Unity3D,Gestion-de-sauvegarde-sous-Unity3D
+Realist,End Droid,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Realiste/End-Droid,End-Droid
+Web - Client,CSP Bypass Nonce 2,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Client/CSP-Bypass-Nonce-2,CSP-Bypass-Nonce-2
+Web - Client,AST Deobfuscation,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Client/AST-Deobfuscation,AST-Deobfuscation
+Web - Server,XSS Server Side,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Server/XSS-Server-Side,XSS-Server-Side
+Forensics,C2 Mythic,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Forensic/C2-Mythic,C2-Mythic
+Programming,TCP Uncompress Me,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Programming/TCP-Uncompress-Me,TCP-Uncompress-Me
+Programming,TCP The Roman wheel,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Programming/TCP-The-Roman-wheel,TCP-The-Roman-wheel
+Programming,TCP La roue romaine,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Programmation/TCP-La-roue-romaine,TCP-La-roue-romaine
+Programming,TCP Encoded string,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Programming/TCP-Encoded-string,TCP-Encoded-string
+Programming,TCP Chaine encodee,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Programmation/TCP-Chaine-encodee,TCP-Chaine-encodee
+Programming,TCP Back to school,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Programming/TCP-Back-to-school,TCP-Back-to-school
+Programming,TCP Retour au college,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Programmation/TCP-Retour-au-college,TCP-Retour-au-college
+Network,ARP Spoofing Active listening,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Network/ARP-Spoofing-Active-listening,ARP-Spoofing-Active-listening
+Network,ARP Spoofing Ecoute active,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Reseau/ARP-Spoofing-Ecoute-active,ARP-Spoofing-Ecoute-active
+Network,OSPF Authentication,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Network/OSPF-Authentication,OSPF-Authentication
+Network,OPSF Authentification,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Reseau/OPSF-Authentification,OPSF-Authentification
+Forensics,Deleted file,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Forensic/Deleted-file,Deleted-file
+Forensics,Fichier supprime,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Forensic/Fichier-supprime,Fichier-supprime
+Cracking,PE x64 UEFI Secure Boot,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cracking/PE-x64-UEFI-Secure-Boot,PE-x64-UEFI-Secure-Boot
+Cracking,HackerMan,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cracking/HackerMan,HackerMan
+Steganography,Genius ID,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Steganography/Genius-ID,Genius-ID
+App - Script,AppArmor Jail Introduction,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/App-Script/AppArmor-Jail-Introduction,AppArmor-Jail-Introduction
+Web - Client,Javascript Obfuscation 6,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Client/Javascript-Obfuscation-6,Javascript-Obfuscation-6
+Realist,Bohemian RhapC2,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Realist/Bohemian-RhapC2,Bohemian-RhapC2
+Realist,Windows krbtgt history,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Realiste/Windows-krbtgt-history,Windows-krbtgt-history
+Realist,Windows sAMAccountName spoofing,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Realist/Windows-sAMAccountName-spoofing,Windows-sAMAccountName-spoofing
+Cryptanalysis,Encodage Codebook,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cryptanalyse/Encodage-Codebook,Encodage-Codebook
+Cryptanalysis,Encoding Codebook,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cryptanalysis/Encoding-Codebook,Encoding-Codebook
+Cryptanalysis,Circular Bit Shift,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cryptanalysis/Circular-Bit-Shift,Circular-Bit-Shift
+Cryptanalysis,Chiffre de Hill,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cryptanalyse/Chiffre-de-Hill,Chiffre-de-Hill
+Cryptanalysis,Hill Cipher,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cryptanalysis/Hill-Cipher,Hill-Cipher
+Cryptanalysis,RSA H rabin,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cryptanalysis/RSA-H-rabin,RSA-H-rabin
+Cryptanalysis,RSA H rabin 4154,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cryptanalyse/RSA-H-rabin-4154,RSA-H-rabin-4154
+Web - Server,JWT Unsecure Key Handling,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Server/JWT-Unsecure-Key-Handling,JWT-Unsecure-Key-Handling
+Web - Server,JWT Header Injection,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Server/JWT-Header-Injection,JWT-Header-Injection
+Web - Server,JWT Unsecure File Signature,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Server/JWT-Unsecure-File-Signature,JWT-Unsecure-File-Signature
+App - System,ELF ARM64 Multithreading,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/App-Systeme/ELF-ARM64-Multithreading,ELF-ARM64-Multithreading
+App - System,ELF RISC V Intro let s do the ROP,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/App-Systeme/ELF-RISC-V-Intro-let-s-do-the-ROP,ELF-RISC-V-Intro-let-s-do-the-ROP
+App - System,ELF x64 Basic heap overflow,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/App-Systeme/ELF-x64-Basic-heap-overflow,ELF-x64-Basic-heap-overflow
+App - System,ELF ARM64 Heap Underflow,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/App-Systeme/ELF-ARM64-Heap-Underflow,ELF-ARM64-Heap-Underflow
+Realist,I m a Bl4ck H4t,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Realist/I-m-a-Bl4ck-H4t,I-m-a-Bl4ck-H4t
+Web - Server,GraphQL Injection,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Serveur/GraphQL-Injection,GraphQL-Injection
+Web - Server,GraphQL Introspection,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Serveur/GraphQL-Introspection,GraphQL-Introspection
+Web - Server,GraphQL Backend injection,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Server/GraphQL-Backend-injection,GraphQL-Backend-injection
+Realist,Windows Group Policy Preferences Passwords,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Realist/Windows-Group-Policy-Preferences-Passwords,Windows-Group-Policy-Preferences-Passwords
+Realist,Windows KerbeRoast,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Realist/Windows-KerbeRoast,Windows-KerbeRoast
+Realist,Windows ASRepRoast,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Realist/Windows-ASRepRoast,Windows-ASRepRoast
+Realist,Windows ZeroLogon,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Realist/Windows-ZeroLogon,Windows-ZeroLogon
+Forensics,Open My Vault,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Forensic/Open-My-Vault,Open-My-Vault
+Forensics,Supply chain attack Python,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Forensic/Supply-chain-attack-Python,Supply-chain-attack-Python
+Forensics,Supply chain attack Docker,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Forensic/Supply-chain-attack-Docker,Supply-chain-attack-Docker
+Forensics,The Artist,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Forensic/The-Artist,The-Artist
+Forensics,Oh My Grub,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Forensic/Oh-My-Grub,Oh-My-Grub
+Forensics,Windows LDAP User KerbeRoastable,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Forensic/Windows-LDAP-User-KerbeRoastable,Windows-LDAP-User-KerbeRoastable
+Forensics,Windows NTDS Extraction de secrets,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Forensic/Windows-NTDS-Extraction-de-secrets,Windows-NTDS-Extraction-de-secrets
+Forensics,Windows LDAP User ASRepRoastable,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Forensic/Windows-LDAP-User-ASRepRoastable,Windows-LDAP-User-ASRepRoastable
+Forensics,Windows NTDS Secret extraction,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Forensic/Windows-NTDS-Secret-extraction,Windows-NTDS-Secret-extraction
+Cracking,Unity Mono Basic Game Hacking,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cracking/Unity-Mono-Basic-Game-Hacking,Unity-Mono-Basic-Game-Hacking
+Cracking,ELF x64 Rust Crackme,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cracking/ELF-x64-Rust-Crackme,ELF-x64-Rust-Crackme
+Cracking,APK Introduction,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cracking/APK-Introduction,APK-Introduction
+Cracking,PYC Snakeygen,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cracking/PYC-Snakeygen,PYC-Snakeygen
+Cracking,APK Insomni Droid,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cracking/APK-Insomni-Droid,APK-Insomni-Droid
+Cracking,Root My Droid,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cracking/Root-My-Droid,Root-My-Droid
+Realist,DasBox1 Rififi in the lizardmen,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Realist/DasBox1-Rififi-in-the-lizardmen,DasBox1-Rififi-in-the-lizardmen
+Realist,DasBox1 du Rififi chez les hommes lezards,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Realiste/DasBox1-du-Rififi-chez-les-hommes-lezards,DasBox1-du-Rififi-chez-les-hommes-lezards
+Realist,reQUACKier,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Realist/reQUACKier,reQUACKier
+Realist,reCOINier,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Realiste/reCOINier,reCOINier
+Realist,Matrix terminal,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Realist/Matrix-terminal,Matrix-terminal
+Programming,Apprentice Scraper,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Programming/Apprentice-Scraper,Apprentice-Scraper
+Programming,Ethereum Reentrancy,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Programming/Ethereum-Reentrancy,Ethereum-Reentrancy
+Programming,Second degree polynomial solver,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Programming/Second-degree-polynomial-solver,Second-degree-polynomial-solver
+Programming,Apprenti Scraper,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Programmation/Apprenti-Scraper,Apprenti-Scraper
+Programming,Solveur de polynomes du second degre,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Programmation/Solveur-de-polynomes-du-second-degre,Solveur-de-polynomes-du-second-degre
+Web - Server,File upload Polyglot,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Server/File-upload-Polyglot,File-upload-Polyglot
+Web - Server,PHP Eval Advanced filters bypass,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Server/PHP-Eval-Advanced-filters-bypass,PHP-Eval-Advanced-filters-bypass
+Web - Server,PHP Apache configuration,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Server/PHP-Apache-configuration,PHP-Apache-configuration
+Web - Server,PHP Configuration Apache,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Serveur/PHP-Configuration-Apache,PHP-Configuration-Apache
+Web - Server,PHP Eval Contournement de filtres avances,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Serveur/PHP-Eval-Contournement-de-filtres-avances,PHP-Eval-Contournement-de-filtres-avances
+Cracking,APK Flutter Debug,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cracking/APK-Flutter-Debug,APK-Flutter-Debug
+App - System,ELF x64 Buggy VM,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/App-System/ELF-x64-Buggy-VM,ELF-x64-Buggy-VM
+Cracking,Godot 3D model,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cracking/Godot-3D-model,Godot-3D-model
+Cracking,Godot Mono,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cracking/Godot-Mono,Godot-Mono
+Cracking,Godot Bytecode,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cracking/Godot-Bytecode,Godot-Bytecode
+Cracking,Godot 0 protection,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cracking/Godot-0-protection,Godot-0-protection
+Cracking,Godot Modele 3D,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cracking/Godot-Modele-3D,Godot-Modele-3D
+Forensics,Docker layers,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Forensic/Docker-layers,Docker-layers
+Web - Client,XS Leaks,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Client/XS-Leaks,XS-Leaks
+Web - Client,DOM Clobbering,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Client/DOM-Clobbering,DOM-Clobbering
+Web - Client,CSP Bypass Nonce,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Client/CSP-Bypass-Nonce,CSP-Bypass-Nonce
+Web - Client,CSS Exfiltration,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Web-Client/CSS-Exfiltration,CSS-Exfiltration
+Realist,Root Me for real,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Realist/Root-Me-for-real,Root-Me-for-real
+Steganography,EXIF Metadata,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Steganography/EXIF-Metadata,EXIF-Metadata
+Cryptanalysis,Side Channel AES CPA,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cryptanalysis/Side-Channel-AES-CPA,Side-Channel-AES-CPA
+Cryptanalysis,Side Channel AES first round,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cryptanalysis/Side-Channel-AES-first-round,Side-Channel-AES-first-round
+Cryptanalysis,FEAL Differential Cryptanalysis,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cryptanalysis/FEAL-Differential-Cryptanalysis,FEAL-Differential-Cryptanalysis
+Cryptanalysis,PHP mt_rand,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cryptanalysis/PHP-mt_rand,PHP-mt_rand
+Cryptanalysis,Side Channel AES premier round,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cryptanalyse/Side-Channel-AES-premier-round,Side-Channel-AES-premier-round
+Cryptanalysis,FEAL Cryptanalyse differentielle,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Cryptanalyse/FEAL-Cryptanalyse-differentielle,FEAL-Cryptanalyse-differentielle
+Network,RF L Band,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Network/RF-L-Band,RF-L-Band
+Network,RF Bande L,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Reseau/RF-Bande-L,RF-Bande-L
+App - Script,Docker Talk through me,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/App-Script/Docker-Talk-through-me,Docker-Talk-through-me
+App - Script,Docker Sys Admin s Docker,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/App-Script/Docker-Sys-Admin-s-Docker,Docker-Sys-Admin-s-Docker
+App - Script,Docker I am groot,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/App-Script/Docker-I-am-groot,Docker-I-am-groot
+Forensics,The Lost Case Mobile Investigation,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Forensic/The-Lost-Case-Mobile-Investigation,The-Lost-Case-Mobile-Investigation
+Forensics,The Lost Case Investigation Mobile,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Forensic/The-Lost-Case-Investigation-Mobile,The-Lost-Case-Investigation-Mobile
+Forensics,Find me on Android,🟢 FREE,Practitioner,https://www.root-me.org/en/Challenges/Forensic/Find-me-on-Android,Find-me-on-Android
