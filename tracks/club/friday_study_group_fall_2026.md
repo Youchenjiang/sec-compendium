@@ -6,8 +6,14 @@
 
 | 想了解的內容 | 文件 |
 |---|---|
-| 為什麼主攻金盾、社員目標、投入時間、下學期是否轉向 | [目標與規劃考量](nctfu_friday_goals.md) |
-| 每週做什麼、實際題目連結、聚會流程、驗收及準備工作 | [每週實作課表](nctfu_friday_practice.md) |
+| 【決策必讀】雙軌方案對比（純藍探案 vs 紅藍攻防）與 W1 投票指引 | [雙軌方案決策指南](friday_study_group_dual_track_decision.md) |
+| 方案 A：純線上藍隊探案茶館（100% 驗證免費、低門檻防勸退） | [方案 A 課表 (最新純藍隊版)](friday_study_group_revamped_2026.md) |
+| 方案 B：紅藍攻防對抗班（奇數週紅隊突破 ⚔️ ＋ 偶數週藍隊獵捕 🛡️） | [方案 B 課表 (全新紅藍交錯版)](friday_study_group_purple_team_2026.md) |
+| 舊版雜題參考：經典 CTF 全領域題組（Web / Pwn / Reverse / Crypto） | [舊版課表存檔](nctfu_friday_practice.md) |
+| 讀書會核心理念、投入考量與下學期競賽轉向評估 | [目標與規劃考量](nctfu_friday_goals.md) |
 
-舊混合版已保存至 [幹部工作交接筆記](friday_study_group_officer_summary.md)，不再作為現行課表。
+舊幹部混合筆記保存於 [幹部工作交接筆記](friday_study_group_officer_summary.md)。
+
+
+
 
