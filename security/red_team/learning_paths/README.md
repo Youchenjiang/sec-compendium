@@ -4,4 +4,4 @@
 
 ### 核心資源導覽
 - [紅隊整體索引與線上挑戰清單](../index.md)
-- [公共題庫對照表](../../challenges/cylab_learning_paths_catalog.md)
+- [公共題庫對照表](../../challenges/platforms/cylab_picoctf/cylab_learning_paths_catalog.md)

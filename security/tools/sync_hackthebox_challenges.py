@@ -10,8 +10,8 @@ Fetches ALL challenges, machines, and sherlocks directly from Hack The Box API:
 5. CTF Challenges (853 total: 210 FREE, 643 VIP)
 
 Generates:
-1. security/challenges/hackthebox_all_challenges_2026.csv (Full 1600+ dataset)
-2. security/challenges/hackthebox_all_challenges_catalog.md (Verified Free subset)
+1. security/challenges/platforms/hackthebox/hackthebox_all_challenges_2026.csv (Full 1600+ dataset)
+2. security/challenges/platforms/hackthebox/hackthebox_all_challenges_catalog.md (Verified Free subset)
 """
 
 import csv
@@ -195,8 +195,8 @@ def get_challenges():
     return results
 
 def main():
-    repo_root = Path("c:/Users/LabStrix/Documents/GitHub/Youchen/Security/ctfd-kit")
-    challenges_dir = repo_root / "security" / "challenges"
+    repo_root = Path(__file__).resolve().parent.parent.parent
+    challenges_dir = repo_root / "security" / "challenges" / "platforms" / "hackthebox"
     challenges_dir.mkdir(parents=True, exist_ok=True)
 
     output_csv = challenges_dir / "hackthebox_all_challenges_2026.csv"

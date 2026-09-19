@@ -6,9 +6,9 @@ Fetches all blue team challenges directly from CyberDefenders official API:
 https://cyberdefenders.org/api/blueteam-ctf-challenges/
 
 Generates:
-1. security/challenges/cyberdefenders_all_challenges_2026.csv
-2. security/challenges/cyberdefenders_learning_paths_catalog.md
-3. security/challenges/cyberdefenders_all_challenges_catalog.md
+1. security/challenges/platforms/cyberdefenders/cyberdefenders_all_challenges_2026.csv
+2. security/challenges/platforms/cyberdefenders/cyberdefenders_learning_paths_catalog.md
+3. security/challenges/platforms/cyberdefenders/cyberdefenders_all_challenges_catalog.md
 """
 
 import csv
@@ -184,7 +184,7 @@ def write_all_challenges_catalog(labs: list, output_path: Path):
 
 def main():
     repo_root = Path(__file__).resolve().parent.parent.parent
-    challenges_dir = repo_root / "security" / "challenges"
+    challenges_dir = repo_root / "security" / "challenges" / "platforms" / "cyberdefenders"
     challenges_dir.mkdir(parents=True, exist_ok=True)
 
     csv_path = challenges_dir / "cyberdefenders_all_challenges_2026.csv"
