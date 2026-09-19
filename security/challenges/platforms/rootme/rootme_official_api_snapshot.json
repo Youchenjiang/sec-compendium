@@ -1,0 +1,4866 @@
+[
+  {
+    "id_challenge": "6",
+    "id_rubrique": "154",
+    "titre": "HTML - Source code",
+    "lang": "en",
+    "date_publication": "2006-10-03 19:18:59",
+    "maj": "2019-08-15 13:55:57"
+  },
+  {
+    "id_challenge": "8",
+    "id_rubrique": "191",
+    "titre": "sudo - weak configuration",
+    "lang": "en",
+    "date_publication": "2012-02-06 23:38:12",
+    "maj": "2015-05-25 15:30:11"
+  },
+  {
+    "id_challenge": "12",
+    "id_rubrique": "191",
+    "titre": "Bash - cron",
+    "lang": "en",
+    "date_publication": "2013-05-06 23:38:00",
+    "maj": "2015-05-25 15:30:11"
+  },
+  {
+    "id_challenge": "14",
+    "id_rubrique": "154",
+    "titre": "HTTP - User-agent",
+    "lang": "en",
+    "date_publication": "2006-10-03 19:41:27",
+    "maj": "2019-05-14 09:21:54"
+  },
+  {
+    "id_challenge": "16",
+    "id_rubrique": "160",
+    "titre": "Encoding - UU",
+    "lang": "en",
+    "date_publication": "2006-10-07 14:48:10",
+    "maj": "2024-05-29 13:29:24"
+  },
+  {
+    "id_challenge": "18",
+    "id_rubrique": "159",
+    "titre": "Mathematic progression",
+    "lang": "en",
+    "date_publication": "2011-02-04 18:52:25",
+    "maj": "2023-09-14 14:49:45"
+  },
+  {
+    "id_challenge": "20",
+    "id_rubrique": "154",
+    "titre": "Weak password",
+    "lang": "en",
+    "date_publication": "2006-10-03 19:44:19",
+    "maj": "2012-08-12 16:45:44"
+  },
+  {
+    "id_challenge": "22",
+    "id_rubrique": "155",
+    "titre": "Javascript - Source",
+    "lang": "en",
+    "date_publication": "2006-10-07 14:52:54",
+    "maj": "2012-12-27 11:37:24"
+  },
+  {
+    "id_challenge": "28",
+    "id_rubrique": "155",
+    "titre": "Javascript - Obfuscation 1",
+    "lang": "en",
+    "date_publication": "2006-10-07 14:58:52",
+    "maj": "2012-12-27 11:37:56"
+  },
+  {
+    "id_challenge": "30",
+    "id_rubrique": "154",
+    "titre": "HTTP - Directory indexing",
+    "lang": "en",
+    "date_publication": "2006-10-07 14:29:18",
+    "maj": "2019-08-15 13:56:03"
+  },
+  {
+    "id_challenge": "36",
+    "id_rubrique": "154",
+    "titre": "HTTP - Headers",
+    "lang": "en",
+    "date_publication": "2015-01-11 18:30:00",
+    "maj": "2019-05-14 09:25:30"
+  },
+  {
+    "id_challenge": "40",
+    "id_rubrique": "156",
+    "titre": "WAV - Noise analysis",
+    "lang": "en",
+    "date_publication": "2006-10-07 15:36:56",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "42",
+    "id_rubrique": "158",
+    "titre": "ELF x86 - 0 protection",
+    "lang": "en",
+    "date_publication": "2006-10-07 14:39:48",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "44",
+    "id_rubrique": "158",
+    "titre": "ELF x86 - Basic",
+    "lang": "en",
+    "date_publication": "2006-10-07 14:41:13",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "48",
+    "id_rubrique": "154",
+    "titre": "Install files",
+    "lang": "en",
+    "date_publication": "2006-10-07 14:31:43",
+    "maj": "2012-08-12 16:45:45"
+  },
+  {
+    "id_challenge": "52",
+    "id_rubrique": "157",
+    "titre": "Neonazi inside",
+    "lang": "en",
+    "date_publication": "2006-10-07 15:10:04",
+    "maj": "2019-08-29 15:59:33"
+  },
+  {
+    "id_challenge": "54",
+    "id_rubrique": "155",
+    "titre": "Javascript - Obfuscation 2",
+    "lang": "en",
+    "date_publication": "2011-02-03 22:27:44",
+    "maj": "2012-12-27 11:38:41"
+  },
+  {
+    "id_challenge": "56",
+    "id_rubrique": "154",
+    "titre": "HTTP - Cookies",
+    "lang": "en",
+    "date_publication": "2006-10-07 14:36:24",
+    "maj": "2019-08-15 13:56:28"
+  },
+  {
+    "id_challenge": "58",
+    "id_rubrique": "154",
+    "titre": "SQL injection - Blind",
+    "lang": "en",
+    "date_publication": "2011-02-27 16:08:06",
+    "maj": "2019-08-15 13:57:50"
+  },
+  {
+    "id_challenge": "61",
+    "id_rubrique": "183",
+    "titre": "Global System Traffic for Mobile communication",
+    "lang": "en",
+    "date_publication": "2012-04-25 20:39:53",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "65",
+    "id_rubrique": "155",
+    "titre": "Javascript - Authentication",
+    "lang": "en",
+    "date_publication": "2006-10-08 13:55:25",
+    "maj": "2012-12-27 11:01:14"
+  },
+  {
+    "id_challenge": "69",
+    "id_rubrique": "158",
+    "titre": "ELF x86 - Ptrace",
+    "lang": "en",
+    "date_publication": "2009-11-27 00:02:03",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "71",
+    "id_rubrique": "160",
+    "titre": "Hash - Message Digest 5",
+    "lang": "en",
+    "date_publication": "2010-01-31 16:18:58",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "73",
+    "id_rubrique": "158",
+    "titre": "ELF x86 - Fake Instructions",
+    "lang": "en",
+    "date_publication": "2010-02-21 20:06:46",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "75",
+    "id_rubrique": "158",
+    "titre": "ELF x86 - Random Crackme",
+    "lang": "en",
+    "date_publication": "2011-02-03 22:03:22",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "77",
+    "id_rubrique": "160",
+    "titre": "Known plaintext - XOR",
+    "lang": "en",
+    "date_publication": "2011-02-03 22:10:32",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "79",
+    "id_rubrique": "158",
+    "titre": "ELF x86 - ExploitMe",
+    "lang": "en",
+    "date_publication": "2011-02-03 21:13:22",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "83",
+    "id_rubrique": "157",
+    "titre": "PyRat Auction",
+    "lang": "en",
+    "date_publication": "2010-03-07 20:51:51",
+    "maj": "2019-08-30 08:22:26"
+  },
+  {
+    "id_challenge": "86",
+    "id_rubrique": "160",
+    "titre": "Pixel Madness",
+    "lang": "en",
+    "date_publication": "2011-02-03 22:15:21",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "91",
+    "id_rubrique": "155",
+    "titre": "Javascript - Authentication 2",
+    "lang": "en",
+    "date_publication": "2011-02-03 22:28:13",
+    "maj": "2013-10-19 12:17:53"
+  },
+  {
+    "id_challenge": "93",
+    "id_rubrique": "157",
+    "titre": "It happens, sometimes",
+    "lang": "en",
+    "date_publication": "2012-03-03 13:24:30",
+    "maj": "2019-08-29 15:52:14"
+  },
+  {
+    "id_challenge": "95",
+    "id_rubrique": "160",
+    "titre": "File - PKZIP",
+    "lang": "en",
+    "date_publication": "2010-08-30 00:08:21",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "97",
+    "id_rubrique": "183",
+    "titre": "FTP - authentication",
+    "lang": "en",
+    "date_publication": "2010-08-30 12:06:37",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "99",
+    "id_rubrique": "183",
+    "titre": "TELNET - authentication",
+    "lang": "en",
+    "date_publication": "2010-08-30 12:13:47",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "101",
+    "id_rubrique": "183",
+    "titre": "Twitter authentication",
+    "lang": "en",
+    "date_publication": "2010-08-30 14:09:04",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "103",
+    "id_rubrique": "183",
+    "titre": "SIP - authentication",
+    "lang": "en",
+    "date_publication": "2010-08-30 15:37:00",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "105",
+    "id_rubrique": "183",
+    "titre": "SSL - HTTP exchange",
+    "lang": "en",
+    "date_publication": "2010-08-30 16:02:42",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "107",
+    "id_rubrique": "183",
+    "titre": "ICMP payload",
+    "lang": "en",
+    "date_publication": "2010-08-30 16:15:31",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "109",
+    "id_rubrique": "183",
+    "titre": "IP - Time To Live",
+    "lang": "en",
+    "date_publication": "2010-09-01 10:29:25",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "111",
+    "id_rubrique": "160",
+    "titre": "RSA - Factorisation",
+    "lang": "en",
+    "date_publication": "2010-09-12 13:47:07",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "113",
+    "id_rubrique": "158",
+    "titre": "APK - Root My Droid",
+    "lang": "en",
+    "date_publication": "2012-02-26 16:14:10",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "115",
+    "id_rubrique": "154",
+    "titre": "HTTP - Verb tampering",
+    "lang": "en",
+    "date_publication": "2011-02-03 20:03:14",
+    "maj": "2019-08-15 13:56:08"
+  },
+  {
+    "id_challenge": "117",
+    "id_rubrique": "155",
+    "titre": "Javascript - Obfuscation 3",
+    "lang": "en",
+    "date_publication": "2011-02-04 18:52:42",
+    "maj": "2017-11-24 23:18:36"
+  },
+  {
+    "id_challenge": "119",
+    "id_rubrique": "158",
+    "titre": "ELF x86 - CrackPass",
+    "lang": "en",
+    "date_publication": "2011-02-03 21:49:31",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "121",
+    "id_rubrique": "155",
+    "titre": "Javascript - Obfuscation 5",
+    "lang": "en",
+    "date_publication": "2011-02-04 18:52:29",
+    "maj": "2014-12-31 00:49:00"
+  },
+  {
+    "id_challenge": "123",
+    "id_rubrique": "158",
+    "titre": "ELF ARM - crackme 1337",
+    "lang": "en",
+    "date_publication": "2011-02-03 20:56:00",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "131",
+    "id_rubrique": "160",
+    "titre": "Shift cipher",
+    "lang": "en",
+    "date_publication": "2011-02-16 21:19:43",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "133",
+    "id_rubrique": "154",
+    "titre": "SQL injection - Authentication",
+    "lang": "en",
+    "date_publication": "2011-02-27 11:57:22",
+    "maj": "2019-08-15 13:56:46"
+  },
+  {
+    "id_challenge": "135",
+    "id_rubrique": "157",
+    "titre": "Root-We",
+    "lang": "en",
+    "date_publication": "2011-09-20 10:46:06",
+    "maj": "2019-08-30 08:34:37"
+  },
+  {
+    "id_challenge": "137",
+    "id_rubrique": "154",
+    "titre": "Backup file",
+    "lang": "en",
+    "date_publication": "2011-02-27 18:02:57",
+    "maj": "2012-08-12 20:51:59"
+  },
+  {
+    "id_challenge": "139",
+    "id_rubrique": "154",
+    "titre": "PHP - Filters",
+    "lang": "en",
+    "date_publication": "2011-02-27 18:53:17",
+    "maj": "2019-08-15 13:56:37"
+  },
+  {
+    "id_challenge": "141",
+    "id_rubrique": "160",
+    "titre": "Encoding - ASCII",
+    "lang": "en",
+    "date_publication": "2012-12-04 14:04:09",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "143",
+    "id_rubrique": "155",
+    "titre": "Javascript - Native code",
+    "lang": "en",
+    "date_publication": "2011-03-13 11:43:30",
+    "maj": "2012-12-27 12:12:45"
+  },
+  {
+    "id_challenge": "145",
+    "id_rubrique": "156",
+    "titre": "Steganomobile",
+    "lang": "en",
+    "date_publication": "2011-04-29 20:29:34",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "155",
+    "id_rubrique": "155",
+    "titre": "Javascript - Obfuscation 4",
+    "lang": "en",
+    "date_publication": "2011-07-18 15:22:35",
+    "maj": "2015-06-01 18:37:36"
+  },
+  {
+    "id_challenge": "157",
+    "id_rubrique": "158",
+    "titre": "ELF x86 - KeygenMe",
+    "lang": "en",
+    "date_publication": "2011-07-20 13:34:10",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "159",
+    "id_rubrique": "158",
+    "titre": "PE x86 - AutoPE",
+    "lang": "en",
+    "date_publication": "2011-08-05 21:27:34",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "161",
+    "id_rubrique": "154",
+    "titre": "Directory traversal",
+    "lang": "en",
+    "date_publication": "2011-07-31 15:53:23",
+    "maj": "2015-11-27 15:17:40"
+  },
+  {
+    "id_challenge": "163",
+    "id_rubrique": "154",
+    "titre": "CRLF",
+    "lang": "en",
+    "date_publication": "2011-07-31 14:30:29",
+    "maj": "2012-08-12 20:51:59"
+  },
+  {
+    "id_challenge": "167",
+    "id_rubrique": "160",
+    "titre": "Polyalphabetic substitution - Vigenère",
+    "lang": "en",
+    "date_publication": "2011-10-26 21:31:13",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "169",
+    "id_rubrique": "154",
+    "titre": "Local File Inclusion",
+    "lang": "en",
+    "date_publication": "2011-10-02 13:05:27",
+    "maj": "2014-10-19 23:23:34"
+  },
+  {
+    "id_challenge": "171",
+    "id_rubrique": "156",
+    "titre": "WAV - Spectral analysis",
+    "lang": "en",
+    "date_publication": "2011-10-02 18:24:27",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "173",
+    "id_rubrique": "154",
+    "titre": "PHP - register globals",
+    "lang": "en",
+    "date_publication": "2011-10-08 12:32:13",
+    "maj": "2019-05-14 09:31:45"
+  },
+  {
+    "id_challenge": "175",
+    "id_rubrique": "158",
+    "titre": "ELF x86 - Packed",
+    "lang": "en",
+    "date_publication": "2011-10-18 19:57:30",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "177",
+    "id_rubrique": "157",
+    "titre": "Root them",
+    "lang": "en",
+    "date_publication": "2011-10-22 10:07:48",
+    "maj": "2019-08-30 08:24:13"
+  },
+  {
+    "id_challenge": "179",
+    "id_rubrique": "160",
+    "titre": "Monoalphabetic substitution - Caesar",
+    "lang": "en",
+    "date_publication": "2011-10-22 12:13:36",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "181",
+    "id_rubrique": "160",
+    "titre": "Monoalphabetic substitution - Polybe",
+    "lang": "en",
+    "date_publication": "2011-12-06 22:44:25",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "183",
+    "id_rubrique": "156",
+    "titre": "Crypt-art",
+    "lang": "en",
+    "date_publication": "2011-12-11 12:22:25",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "185",
+    "id_rubrique": "157",
+    "titre": "P0wn3d",
+    "lang": "en",
+    "date_publication": "2011-12-27 18:27:12",
+    "maj": "2019-08-29 15:54:05"
+  },
+  {
+    "id_challenge": "187",
+    "id_rubrique": "157",
+    "titre": "The h@ckers l4b",
+    "lang": "en",
+    "date_publication": "2011-12-28 02:35:49",
+    "maj": "2019-08-29 15:56:46"
+  },
+  {
+    "id_challenge": "189",
+    "id_rubrique": "157",
+    "titre": "MALab",
+    "lang": "en",
+    "date_publication": "2011-12-28 20:18:10",
+    "maj": "2012-08-12 20:51:59"
+  },
+  {
+    "id_challenge": "191",
+    "id_rubrique": "204",
+    "titre": "ELF x86 - Hardened binary 1",
+    "lang": "en",
+    "date_publication": "2012-02-11 11:13:48",
+    "maj": "2017-03-09 15:11:19"
+  },
+  {
+    "id_challenge": "193",
+    "id_rubrique": "191",
+    "titre": "Bash - System 1",
+    "lang": "en",
+    "date_publication": "2012-02-08 21:52:23",
+    "maj": "2019-04-17 20:35:19"
+  },
+  {
+    "id_challenge": "195",
+    "id_rubrique": "157",
+    "titre": "Web TV",
+    "lang": "en",
+    "date_publication": "2012-02-04 14:14:57",
+    "maj": "2022-04-18 18:19:42"
+  },
+  {
+    "id_challenge": "197",
+    "id_rubrique": "183",
+    "titre": "XMPP - authentication",
+    "lang": "en",
+    "date_publication": "2012-02-04 11:56:35",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "199",
+    "id_rubrique": "160",
+    "titre": "File - Insecure storage 1",
+    "lang": "en",
+    "date_publication": "2012-02-06 23:37:59",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "201",
+    "id_rubrique": "204",
+    "titre": "ELF x86 - Remote Format String bug",
+    "lang": "en",
+    "date_publication": "2012-02-06 23:36:32",
+    "maj": "2017-03-09 14:56:33"
+  },
+  {
+    "id_challenge": "203",
+    "id_rubrique": "204",
+    "titre": "ELF x86 - Remote BSS buffer overflow",
+    "lang": "en",
+    "date_publication": "2012-02-06 23:36:27",
+    "maj": "2017-03-09 14:56:27"
+  },
+  {
+    "id_challenge": "205",
+    "id_rubrique": "191",
+    "titre": "Bash - System 2",
+    "lang": "en",
+    "date_publication": "2012-02-08 21:52:32",
+    "maj": "2017-04-16 19:48:59"
+  },
+  {
+    "id_challenge": "209",
+    "id_rubrique": "160",
+    "titre": "ELF64 - PID encryption",
+    "lang": "en",
+    "date_publication": "2012-02-08 21:52:51",
+    "maj": "2018-11-08 19:42:28"
+  },
+  {
+    "id_challenge": "211",
+    "id_rubrique": "204",
+    "titre": "ELF x86 - Format string bug basic 1",
+    "lang": "en",
+    "date_publication": "2012-02-08 21:53:01",
+    "maj": "2017-03-09 14:51:49"
+  },
+  {
+    "id_challenge": "215",
+    "id_rubrique": "204",
+    "titre": "ELF x86 - BSS buffer overflow",
+    "lang": "en",
+    "date_publication": "2012-02-08 21:53:18",
+    "maj": "2017-03-09 14:54:16"
+  },
+  {
+    "id_challenge": "217",
+    "id_rubrique": "204",
+    "titre": "ELF x86 - Stack buffer overflow basic 4",
+    "lang": "en",
+    "date_publication": "2012-02-08 21:53:26",
+    "maj": "2017-03-09 14:54:26"
+  },
+  {
+    "id_challenge": "221",
+    "id_rubrique": "204",
+    "titre": "ELF x86 - Stack buffer overflow basic 5",
+    "lang": "en",
+    "date_publication": "2012-02-08 21:53:41",
+    "maj": "2017-03-09 14:56:01"
+  },
+  {
+    "id_challenge": "223",
+    "id_rubrique": "204",
+    "titre": "ELF x86 - Stack buffer and integer overflow",
+    "lang": "en",
+    "date_publication": "2012-02-08 21:53:48",
+    "maj": "2017-03-09 14:55:55"
+  },
+  {
+    "id_challenge": "225",
+    "id_rubrique": "204",
+    "titre": "ELF x86 - Race condition",
+    "lang": "en",
+    "date_publication": "2012-02-08 21:53:57",
+    "maj": "2026-06-04 22:02:49"
+  },
+  {
+    "id_challenge": "227",
+    "id_rubrique": "204",
+    "titre": "ELF x86 - Hardened binary 2",
+    "lang": "en",
+    "date_publication": "2012-02-11 11:17:16",
+    "maj": "2017-03-09 15:12:07"
+  },
+  {
+    "id_challenge": "229",
+    "id_rubrique": "204",
+    "titre": "ELF x86 - Hardened binary 3",
+    "lang": "en",
+    "date_publication": "2012-02-11 11:20:49",
+    "maj": "2017-03-09 15:12:36"
+  },
+  {
+    "id_challenge": "231",
+    "id_rubrique": "204",
+    "titre": "ELF x86 - Hardened binary 4",
+    "lang": "en",
+    "date_publication": "2012-02-11 11:22:54",
+    "maj": "2017-03-09 15:07:05"
+  },
+  {
+    "id_challenge": "233",
+    "id_rubrique": "204",
+    "titre": "ELF x86 - Hardened binary 5",
+    "lang": "en",
+    "date_publication": "2012-02-11 11:29:33",
+    "maj": "2020-04-03 17:32:30"
+  },
+  {
+    "id_challenge": "235",
+    "id_rubrique": "204",
+    "titre": "ELF x86 - Hardened binary 6",
+    "lang": "en",
+    "date_publication": "2012-02-11 11:32:41",
+    "maj": "2017-03-09 15:13:11"
+  },
+  {
+    "id_challenge": "237",
+    "id_rubrique": "158",
+    "titre": "PDF - Javascript",
+    "lang": "en",
+    "date_publication": "2012-02-14 22:35:59",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "239",
+    "id_rubrique": "160",
+    "titre": "Hash - SHA-2",
+    "lang": "en",
+    "date_publication": "2012-06-03 15:12:07",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "241",
+    "id_rubrique": "159",
+    "titre": "Quick Response Code",
+    "lang": "en",
+    "date_publication": "2012-03-08 20:31:04",
+    "maj": "2019-04-18 08:05:06"
+  },
+  {
+    "id_challenge": "243",
+    "id_rubrique": "158",
+    "titre": "APK - Insomni&#8217;Droid",
+    "lang": "en",
+    "date_publication": "2012-03-04 15:53:11",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "245",
+    "id_rubrique": "155",
+    "titre": "XSS - Stored 1",
+    "lang": "en",
+    "date_publication": "2012-03-03 20:07:26",
+    "maj": "2016-02-16 19:50:22"
+  },
+  {
+    "id_challenge": "247",
+    "id_rubrique": "155",
+    "titre": "XSS - Stored 2",
+    "lang": "en",
+    "date_publication": "2012-03-04 10:03:19",
+    "maj": "2016-02-16 19:53:36"
+  },
+  {
+    "id_challenge": "249",
+    "id_rubrique": "156",
+    "titre": "PNG - Least Significant Bit",
+    "lang": "en",
+    "date_publication": "2012-03-21 00:01:20",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "251",
+    "id_rubrique": "159",
+    "titre": "CAPTCHA me if you can",
+    "lang": "en",
+    "date_publication": "2012-03-23 18:16:29",
+    "maj": "2019-04-18 08:02:44"
+  },
+  {
+    "id_challenge": "253",
+    "id_rubrique": "158",
+    "titre": "ELF x86 - Anti-debug",
+    "lang": "en",
+    "date_publication": "2012-06-03 15:26:08",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "255",
+    "id_rubrique": "155",
+    "titre": "Flash - Authentication",
+    "lang": "en",
+    "date_publication": "2012-06-18 10:59:27",
+    "maj": "2013-07-16 10:21:49"
+  },
+  {
+    "id_challenge": "258",
+    "id_rubrique": "158",
+    "titre": "ELF ARM - Crypted",
+    "lang": "en",
+    "date_publication": "2012-09-04 11:53:18",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "260",
+    "id_rubrique": "191",
+    "titre": "Python - pickle",
+    "lang": "en",
+    "date_publication": "2012-09-07 14:42:08",
+    "maj": "2015-08-12 11:02:12"
+  },
+  {
+    "id_challenge": "268",
+    "id_rubrique": "160",
+    "titre": "Service - CBC Padding",
+    "lang": "en",
+    "date_publication": "2012-10-04 21:22:57",
+    "maj": "2020-02-03 08:34:23"
+  },
+  {
+    "id_challenge": "270",
+    "id_rubrique": "160",
+    "titre": "Service - Timing attack",
+    "lang": "en",
+    "date_publication": "2012-10-28 11:48:36",
+    "maj": "2015-05-21 16:18:03"
+  },
+  {
+    "id_challenge": "272",
+    "id_rubrique": "158",
+    "titre": "PE x86 - 0 protection",
+    "lang": "en",
+    "date_publication": "2012-11-11 11:32:49",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "274",
+    "id_rubrique": "183",
+    "titre": "Wired Equivalent Privacy",
+    "lang": "en",
+    "date_publication": "2012-11-20 11:05:49",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "276",
+    "id_rubrique": "204",
+    "titre": "ELF x86 - Hardened binary 7",
+    "lang": "en",
+    "date_publication": "2013-01-21 22:17:52",
+    "maj": "2017-03-09 15:13:18"
+  },
+  {
+    "id_challenge": "279",
+    "id_rubrique": "158",
+    "titre": "APK - Anti-debug",
+    "lang": "en",
+    "date_publication": "2012-12-18 17:54:54",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "281",
+    "id_rubrique": "160",
+    "titre": "Code - Pseudo Random Number Generator",
+    "lang": "en",
+    "date_publication": "2012-12-19 21:23:43",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "287",
+    "id_rubrique": "160",
+    "titre": "System - Android lock pattern",
+    "lang": "en",
+    "date_publication": "2012-12-23 16:18:56",
+    "maj": "2025-08-03 16:27:40"
+  },
+  {
+    "id_challenge": "289",
+    "id_rubrique": "154",
+    "titre": "SQL injection - Numeric",
+    "lang": "en",
+    "date_publication": "2012-12-24 13:18:52",
+    "maj": "2019-08-15 13:57:06"
+  },
+  {
+    "id_challenge": "291",
+    "id_rubrique": "154",
+    "titre": "SQL injection - String",
+    "lang": "en",
+    "date_publication": "2012-12-24 14:17:14",
+    "maj": "2019-08-15 13:56:54"
+  },
+  {
+    "id_challenge": "293",
+    "id_rubrique": "154",
+    "titre": "File upload - Double extensions",
+    "lang": "en",
+    "date_publication": "2012-12-24 13:58:38",
+    "maj": "2019-08-15 13:56:18"
+  },
+  {
+    "id_challenge": "295",
+    "id_rubrique": "154",
+    "titre": "File upload - MIME type",
+    "lang": "en",
+    "date_publication": "2012-12-26 16:56:10",
+    "maj": "2016-11-11 15:50:27"
+  },
+  {
+    "id_challenge": "297",
+    "id_rubrique": "154",
+    "titre": "File upload - Null byte",
+    "lang": "en",
+    "date_publication": "2012-12-26 16:57:16",
+    "maj": "2019-08-15 13:56:33"
+  },
+  {
+    "id_challenge": "299",
+    "id_rubrique": "154",
+    "titre": "XPath injection - Authentication",
+    "lang": "en",
+    "date_publication": "2012-12-27 17:28:07",
+    "maj": "2019-08-15 13:57:10"
+  },
+  {
+    "id_challenge": "302",
+    "id_rubrique": "154",
+    "titre": "XPath injection - Blind",
+    "lang": "en",
+    "date_publication": "2012-12-27 18:47:53",
+    "maj": "2019-08-15 13:58:00"
+  },
+  {
+    "id_challenge": "305",
+    "id_rubrique": "157",
+    "titre": "IPBX - call me maybe",
+    "lang": "en",
+    "date_publication": "2013-01-28 19:14:31",
+    "maj": "2019-08-30 08:25:51"
+  },
+  {
+    "id_challenge": "313",
+    "id_rubrique": "209",
+    "titre": "Command &amp; Control - level 2",
+    "lang": "en",
+    "date_publication": "2013-02-16 12:00:46",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "314",
+    "id_rubrique": "209",
+    "titre": "Command &amp; Control - level 3",
+    "lang": "en",
+    "date_publication": "2013-02-16 12:01:09",
+    "maj": "2024-05-29 13:30:16"
+  },
+  {
+    "id_challenge": "315",
+    "id_rubrique": "209",
+    "titre": "Command &amp; Control - level 4",
+    "lang": "en",
+    "date_publication": "2013-02-16 12:01:42",
+    "maj": "2024-05-29 13:30:27"
+  },
+  {
+    "id_challenge": "316",
+    "id_rubrique": "209",
+    "titre": "Command &amp; Control - level 5",
+    "lang": "en",
+    "date_publication": "2013-02-16 12:02:54",
+    "maj": "2024-05-29 13:30:04"
+  },
+  {
+    "id_challenge": "317",
+    "id_rubrique": "209",
+    "titre": "Command &amp; Control - level 6",
+    "lang": "en",
+    "date_publication": "2013-02-16 12:06:05",
+    "maj": "2024-05-29 13:30:36"
+  },
+  {
+    "id_challenge": "323",
+    "id_rubrique": "158",
+    "titre": "PE x86 - SEHVEH",
+    "lang": "en",
+    "date_publication": "2013-05-04 10:33:00",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "338",
+    "id_rubrique": "183",
+    "titre": "ETHERNET - frame",
+    "lang": "en",
+    "date_publication": "2013-05-20 18:18:59",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "339",
+    "id_rubrique": "157",
+    "titre": "Red Pills",
+    "lang": "en",
+    "date_publication": "2013-06-14 18:55:49",
+    "maj": "2014-07-09 10:46:44"
+  },
+  {
+    "id_challenge": "340",
+    "id_rubrique": "183",
+    "titre": "DNS - zone transfert",
+    "lang": "en",
+    "date_publication": "2013-05-20 19:31:42",
+    "maj": "2015-05-21 16:27:15"
+  },
+  {
+    "id_challenge": "342",
+    "id_rubrique": "154",
+    "titre": "LDAP injection - Authentication",
+    "lang": "en",
+    "date_publication": "2013-05-26 15:35:26",
+    "maj": "2019-08-15 13:56:58"
+  },
+  {
+    "id_challenge": "344",
+    "id_rubrique": "154",
+    "titre": "XPath injection - String",
+    "lang": "en",
+    "date_publication": "2013-05-26 12:11:25",
+    "maj": "2019-08-15 13:57:40"
+  },
+  {
+    "id_challenge": "346",
+    "id_rubrique": "183",
+    "titre": "LDAP - null bind",
+    "lang": "en",
+    "date_publication": "2013-05-26 17:06:38",
+    "maj": "2021-07-28 00:03:15"
+  },
+  {
+    "id_challenge": "348",
+    "id_rubrique": "183",
+    "titre": "ETHERNET - Patched transmission ",
+    "lang": "en",
+    "date_publication": "2013-05-31 21:06:04",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "350",
+    "id_rubrique": "160",
+    "titre": "Polyalphabetic substitution - One Time Pad",
+    "lang": "en",
+    "date_publication": "2013-06-02 18:04:37",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "352",
+    "id_rubrique": "158",
+    "titre": "ELF x86 - VM",
+    "lang": "en",
+    "date_publication": "2013-06-16 10:35:43",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "354",
+    "id_rubrique": "154",
+    "titre": "LDAP injection - Blind",
+    "lang": "en",
+    "date_publication": "2013-06-08 11:56:10",
+    "maj": "2019-08-15 13:57:53"
+  },
+  {
+    "id_challenge": "355",
+    "id_rubrique": "156",
+    "titre": "Dot and next line",
+    "lang": "en",
+    "date_publication": "2013-06-16 17:00:29",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "358",
+    "id_rubrique": "158",
+    "titre": "PYC - ByteCode",
+    "lang": "en",
+    "date_publication": "2013-07-03 23:51:56",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "361",
+    "id_rubrique": "183",
+    "titre": "CISCO - password",
+    "lang": "en",
+    "date_publication": "2013-07-10 17:24:11",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "365",
+    "id_rubrique": "209",
+    "titre": "Find the cat",
+    "lang": "en",
+    "date_publication": "2013-07-28 10:07:49",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "373",
+    "id_rubrique": "157",
+    "titre": "Marabout",
+    "lang": "en",
+    "date_publication": "2013-09-13 22:00:50",
+    "maj": "2019-08-30 08:31:32"
+  },
+  {
+    "id_challenge": "376",
+    "id_rubrique": "158",
+    "titre": "ELF x86 - No software breakpoints",
+    "lang": "en",
+    "date_publication": "2013-10-02 17:39:46",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "381",
+    "id_rubrique": "155",
+    "titre": "HTTP Response Splitting",
+    "lang": "en",
+    "date_publication": "2013-11-07 15:04:36",
+    "maj": "2019-04-06 09:10:35"
+  },
+  {
+    "id_challenge": "385",
+    "id_rubrique": "158",
+    "titre": "PE x86 - RunPE",
+    "lang": "en",
+    "date_publication": "2013-12-16 10:18:02",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "389",
+    "id_rubrique": "154",
+    "titre": "PHP - Serialization",
+    "lang": "en",
+    "date_publication": "2014-02-03 22:22:08",
+    "maj": "2019-05-14 09:30:08"
+  },
+  {
+    "id_challenge": "402",
+    "id_rubrique": "160",
+    "titre": "Transposition - Rail Fence",
+    "lang": "en",
+    "date_publication": "2014-04-06 16:46:12",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "404",
+    "id_rubrique": "191",
+    "titre": "Python - input()",
+    "lang": "en",
+    "date_publication": "2014-05-27 11:06:13",
+    "maj": "2019-04-17 20:37:31"
+  },
+  {
+    "id_challenge": "406",
+    "id_rubrique": "160",
+    "titre": "Discrete logarithm problem",
+    "lang": "en",
+    "date_publication": "2014-06-08 14:23:19",
+    "maj": "2019-09-12 14:35:59"
+  },
+  {
+    "id_challenge": "411",
+    "id_rubrique": "154",
+    "titre": "XML External Entity",
+    "lang": "en",
+    "date_publication": "2014-10-20 16:23:13",
+    "maj": "2015-03-31 18:23:09"
+  },
+  {
+    "id_challenge": "415",
+    "id_rubrique": "154",
+    "titre": "SQL injection - Filter bypass",
+    "lang": "en",
+    "date_publication": "2014-07-21 19:25:05",
+    "maj": "2021-06-03 13:35:03"
+  },
+  {
+    "id_challenge": "422",
+    "id_rubrique": "158",
+    "titre": "PE DotNet - 0 protection",
+    "lang": "en",
+    "date_publication": "2014-09-15 13:41:50",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "424",
+    "id_rubrique": "183",
+    "titre": "SNMP - Authentification",
+    "lang": "en",
+    "date_publication": "2014-10-17 23:18:30",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "426",
+    "id_rubrique": "154",
+    "titre": "SQL injection - File reading",
+    "lang": "en",
+    "date_publication": "2014-10-19 10:42:20",
+    "maj": "2025-07-17 09:44:15"
+  },
+  {
+    "id_challenge": "428",
+    "id_rubrique": "154",
+    "titre": "Remote File Inclusion",
+    "lang": "en",
+    "date_publication": "2015-11-25 21:10:20",
+    "maj": "2015-11-25 21:10:20"
+  },
+  {
+    "id_challenge": "431",
+    "id_rubrique": "157",
+    "titre": "Crypto Secure",
+    "lang": "en",
+    "date_publication": "2014-11-04 09:21:49",
+    "maj": "2025-09-23 13:31:37"
+  },
+  {
+    "id_challenge": "436",
+    "id_rubrique": "157",
+    "titre": "Ultra Upload",
+    "lang": "en",
+    "date_publication": "2015-05-01 13:18:51",
+    "maj": "2019-09-02 11:27:50"
+  },
+  {
+    "id_challenge": "438",
+    "id_rubrique": "154",
+    "titre": "HTTP - Improper redirect",
+    "lang": "en",
+    "date_publication": "2014-11-26 23:38:52",
+    "maj": "2019-05-14 09:27:06"
+  },
+  {
+    "id_challenge": "445",
+    "id_rubrique": "156",
+    "titre": "TXT - George and Alfred",
+    "lang": "en",
+    "date_publication": "2014-12-20 12:25:46",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "447",
+    "id_rubrique": "157",
+    "titre": "SamBox v1",
+    "lang": "en",
+    "date_publication": "2014-12-20 21:30:12",
+    "maj": "2019-09-02 11:34:41"
+  },
+  {
+    "id_challenge": "449",
+    "id_rubrique": "183",
+    "titre": "Netfilter - common mistakes",
+    "lang": "en",
+    "date_publication": "2015-01-03 16:08:24",
+    "maj": "2019-04-06 09:08:44"
+  },
+  {
+    "id_challenge": "451",
+    "id_rubrique": "191",
+    "titre": "Python - PyJail 1",
+    "lang": "en",
+    "date_publication": "2015-01-03 17:03:09",
+    "maj": "2019-04-17 20:40:42"
+  },
+  {
+    "id_challenge": "634",
+    "id_rubrique": "191",
+    "titre": "Python - PyJail 2",
+    "lang": "en",
+    "date_publication": "2015-02-17 12:21:41",
+    "maj": "2019-04-17 20:46:15"
+  },
+  {
+    "id_challenge": "639",
+    "id_rubrique": "191",
+    "titre": "Python - Jail - Exec",
+    "lang": "en",
+    "date_publication": "2015-02-23 23:10:26",
+    "maj": "2019-04-17 20:46:43"
+  },
+  {
+    "id_challenge": "643",
+    "id_rubrique": "154",
+    "titre": "SQL injection - Insert",
+    "lang": "en",
+    "date_publication": "2015-02-23 20:22:25",
+    "maj": "2015-03-31 18:23:09"
+  },
+  {
+    "id_challenge": "645",
+    "id_rubrique": "157",
+    "titre": "SamBox v2",
+    "lang": "en",
+    "date_publication": "2015-02-25 16:53:06",
+    "maj": "2019-09-02 11:31:55"
+  },
+  {
+    "id_challenge": "650",
+    "id_rubrique": "154",
+    "titre": "SQL injection - Error",
+    "lang": "en",
+    "date_publication": "2015-03-04 10:20:16",
+    "maj": "2015-03-31 18:23:09"
+  },
+  {
+    "id_challenge": "832",
+    "id_rubrique": "204",
+    "titre": "ELF x86 - Stack buffer overflow basic 1",
+    "lang": "en",
+    "date_publication": "2015-03-25 18:36:14",
+    "maj": "2017-03-09 14:50:20"
+  },
+  {
+    "id_challenge": "834",
+    "id_rubrique": "154",
+    "titre": "PHP - Path Truncation",
+    "lang": "en",
+    "date_publication": "2015-03-25 20:43:29",
+    "maj": "2019-05-14 09:29:55"
+  },
+  {
+    "id_challenge": "843",
+    "id_rubrique": "204",
+    "titre": "ELF x86 - Format string bug basic 2",
+    "lang": "en",
+    "date_publication": "2015-04-08 11:54:26",
+    "maj": "2017-03-09 14:53:52"
+  },
+  {
+    "id_challenge": "845",
+    "id_rubrique": "204",
+    "titre": "ELF x86 - Stack buffer overflow basic 2\t",
+    "lang": "en",
+    "date_publication": "2015-04-10 11:45:38",
+    "maj": "2017-03-09 14:50:29"
+  },
+  {
+    "id_challenge": "848",
+    "id_rubrique": "204",
+    "titre": "ELF x86 - Stack buffer overflow basic 3\t",
+    "lang": "en",
+    "date_publication": "2015-04-10 11:45:52",
+    "maj": "2017-03-09 14:54:08"
+  },
+  {
+    "id_challenge": "850",
+    "id_rubrique": "204",
+    "titre": "ELF x86 - Format String Bug Basic 3",
+    "lang": "en",
+    "date_publication": "2015-05-27 15:43:56",
+    "maj": "2019-04-24 11:48:10"
+  },
+  {
+    "id_challenge": "856",
+    "id_rubrique": "154",
+    "titre": "SQL Truncation",
+    "lang": "en",
+    "date_publication": "2015-05-01 12:46:28",
+    "maj": "2015-05-01 12:46:28"
+  },
+  {
+    "id_challenge": "865",
+    "id_rubrique": "204",
+    "titre": "ELF x86 - Information leakage with Stack Smashing Protector",
+    "lang": "en",
+    "date_publication": "2015-05-20 23:29:09",
+    "maj": "2017-03-09 14:56:21"
+  },
+  {
+    "id_challenge": "871",
+    "id_rubrique": "204",
+    "titre": "ELF x64 - Stack buffer overflow - advanced",
+    "lang": "en",
+    "date_publication": "2015-06-05 14:20:26",
+    "maj": "2017-03-09 14:56:10"
+  },
+  {
+    "id_challenge": "875",
+    "id_rubrique": "204",
+    "titre": "ELF x64 - Stack buffer overflow - basic",
+    "lang": "en",
+    "date_publication": "2015-05-31 12:47:50",
+    "maj": "2017-03-09 14:53:14"
+  },
+  {
+    "id_challenge": "877",
+    "id_rubrique": "209",
+    "titre": "Ransomware Android",
+    "lang": "en",
+    "date_publication": "2015-05-28 10:25:09",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "879",
+    "id_rubrique": "154",
+    "titre": "NoSQL injection - Authentication",
+    "lang": "en",
+    "date_publication": "2015-05-31 11:48:07",
+    "maj": "2019-08-15 13:57:01"
+  },
+  {
+    "id_challenge": "885",
+    "id_rubrique": "204",
+    "titre": "ELF x86 - Blind remote format string bug",
+    "lang": "en",
+    "date_publication": "2015-06-08 20:23:28",
+    "maj": "2018-10-30 07:51:55"
+  },
+  {
+    "id_challenge": "887",
+    "id_rubrique": "204",
+    "titre": "ELF x64 - Remote Heap buffer overflow 1",
+    "lang": "en",
+    "date_publication": "2015-06-26 16:31:30",
+    "maj": "2017-03-09 15:01:22"
+  },
+  {
+    "id_challenge": "889",
+    "id_rubrique": "204",
+    "titre": "ELF x64 - Sigreturn Oriented Programming",
+    "lang": "en",
+    "date_publication": "2015-06-25 15:17:13",
+    "maj": "2017-03-09 14:59:47"
+  },
+  {
+    "id_challenge": "891",
+    "id_rubrique": "157",
+    "titre": "SamCMS",
+    "lang": "en",
+    "date_publication": "2015-05-31 14:43:08",
+    "maj": "2019-09-02 11:33:32"
+  },
+  {
+    "id_challenge": "894",
+    "id_rubrique": "209",
+    "titre": "Active Directory - GPO",
+    "lang": "en",
+    "date_publication": "2015-06-17 12:17:46",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "912",
+    "id_rubrique": "204",
+    "titre": "ELF x64 - Remote Heap buffer overflow 2",
+    "lang": "en",
+    "date_publication": "2015-07-01 18:16:14",
+    "maj": "2017-03-09 15:01:07"
+  },
+  {
+    "id_challenge": "917",
+    "id_rubrique": "209",
+    "titre": "Logs analysis - web attack",
+    "lang": "en",
+    "date_publication": "2015-07-05 13:17:38",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "921",
+    "id_rubrique": "204",
+    "titre": "ELF x86 - Stack buffer overflow - C++ vtables",
+    "lang": "en",
+    "date_publication": "2015-07-20 18:48:00",
+    "maj": "2017-03-09 14:55:44"
+  },
+  {
+    "id_challenge": "927",
+    "id_rubrique": "156",
+    "titre": "EXIF - Thumbnail",
+    "lang": "en",
+    "date_publication": "2015-08-12 11:34:52",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "931",
+    "id_rubrique": "191",
+    "titre": "Perl - Command injection",
+    "lang": "en",
+    "date_publication": "2015-08-11 19:34:22",
+    "maj": "2015-08-11 20:23:18"
+  },
+  {
+    "id_challenge": "933",
+    "id_rubrique": "160",
+    "titre": "Service - Hash length extension attack",
+    "lang": "en",
+    "date_publication": "2015-08-19 13:39:09",
+    "maj": "2015-08-19 17:51:17"
+  },
+  {
+    "id_challenge": "938",
+    "id_rubrique": "209",
+    "titre": "Zeus Bot",
+    "lang": "en",
+    "date_publication": "2015-08-25 21:06:53",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "939",
+    "id_rubrique": "160",
+    "titre": "Initialisation Vector",
+    "lang": "en",
+    "date_publication": "2015-08-25 19:03:06",
+    "maj": "2015-08-26 10:50:33"
+  },
+  {
+    "id_challenge": "942",
+    "id_rubrique": "160",
+    "titre": "AES128 - CTR",
+    "lang": "en",
+    "date_publication": "2015-08-28 15:01:25",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "946",
+    "id_rubrique": "160",
+    "titre": "RSA - Continued fractions",
+    "lang": "en",
+    "date_publication": "2015-09-08 10:26:44",
+    "maj": "2015-09-08 10:28:32"
+  },
+  {
+    "id_challenge": "947",
+    "id_rubrique": "159",
+    "titre": "ELF x64 - Sandbox shellcoding",
+    "lang": "en",
+    "date_publication": "2015-09-04 23:36:47",
+    "maj": "2026-06-04 22:06:03"
+  },
+  {
+    "id_challenge": "950",
+    "id_rubrique": "154",
+    "titre": "SQL injection - Time based",
+    "lang": "en",
+    "date_publication": "2015-09-11 14:38:05",
+    "maj": "2015-09-13 22:48:09"
+  },
+  {
+    "id_challenge": "956",
+    "id_rubrique": "157",
+    "titre": "Bluebox - Pentest",
+    "lang": "en",
+    "date_publication": "2015-10-08 09:42:14",
+    "maj": "2022-01-05 19:39:42"
+  },
+  {
+    "id_challenge": "967",
+    "id_rubrique": "154",
+    "titre": "Java - Server-side Template Injection",
+    "lang": "en",
+    "date_publication": "2015-11-29 19:28:42",
+    "maj": "2019-05-14 09:34:57"
+  },
+  {
+    "id_challenge": "971",
+    "id_rubrique": "160",
+    "titre": "AES - ECB",
+    "lang": "en",
+    "date_publication": "2015-11-29 22:24:47",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "973",
+    "id_rubrique": "160",
+    "titre": "RSA - Multiple recipients",
+    "lang": "en",
+    "date_publication": "2015-11-29 22:08:51",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "976",
+    "id_rubrique": "154",
+    "titre": "SQL injection - Authentication - GBK",
+    "lang": "en",
+    "date_publication": "2015-12-02 23:15:12",
+    "maj": "2019-08-15 13:56:51"
+  },
+  {
+    "id_challenge": "998",
+    "id_rubrique": "155",
+    "titre": "XSS - Stored - filter bypass",
+    "lang": "en",
+    "date_publication": "2016-01-02 19:01:31",
+    "maj": "2019-04-24 20:07:39"
+  },
+  {
+    "id_challenge": "1018",
+    "id_rubrique": "204",
+    "titre": "LinKern x86 - Buffer overflow basic 1",
+    "lang": "en",
+    "date_publication": "2016-02-16 13:28:54",
+    "maj": "2017-03-09 14:57:03"
+  },
+  {
+    "id_challenge": "1020",
+    "id_rubrique": "155",
+    "titre": "CSRF - 0 protection",
+    "lang": "en",
+    "date_publication": "2016-02-16 19:40:22",
+    "maj": "2023-01-14 16:01:21"
+  },
+  {
+    "id_challenge": "1022",
+    "id_rubrique": "155",
+    "titre": "CSRF - token bypass",
+    "lang": "en",
+    "date_publication": "2016-02-18 19:43:09",
+    "maj": "2016-02-19 05:09:52"
+  },
+  {
+    "id_challenge": "1023",
+    "id_rubrique": "204",
+    "titre": "LinKern x86 - Null pointer dereference",
+    "lang": "en",
+    "date_publication": "2016-02-16 22:50:56",
+    "maj": "2017-03-09 14:57:13"
+  },
+  {
+    "id_challenge": "1024",
+    "id_rubrique": "204",
+    "titre": "LinKern x64 - Race condition",
+    "lang": "en",
+    "date_publication": "2016-02-16 23:06:42",
+    "maj": "2017-03-09 14:57:23"
+  },
+  {
+    "id_challenge": "1031",
+    "id_rubrique": "204",
+    "titre": "LinKern x64 - reentrant code",
+    "lang": "en",
+    "date_publication": "2016-03-01 21:25:13",
+    "maj": "2017-03-09 14:59:41"
+  },
+  {
+    "id_challenge": "1033",
+    "id_rubrique": "154",
+    "titre": "PHP - preg_replace()",
+    "lang": "en",
+    "date_publication": "2016-03-02 15:11:47",
+    "maj": "2019-05-14 09:30:47"
+  },
+  {
+    "id_challenge": "1036",
+    "id_rubrique": "154",
+    "titre": "Local File Inclusion - Wrappers",
+    "lang": "en",
+    "date_publication": "2016-03-02 15:13:36",
+    "maj": "2016-03-02 15:13:36"
+  },
+  {
+    "id_challenge": "1043",
+    "id_rubrique": "154",
+    "titre": "PHP - type juggling",
+    "lang": "en",
+    "date_publication": "2016-03-10 20:51:03",
+    "maj": "2019-05-14 09:30:35"
+  },
+  {
+    "id_challenge": "1045",
+    "id_rubrique": "204",
+    "titre": "ELF x86 - Stack buffer overflow basic 6",
+    "lang": "en",
+    "date_publication": "2016-03-10 19:38:27",
+    "maj": "2017-03-09 14:54:35"
+  },
+  {
+    "id_challenge": "1054",
+    "id_rubrique": "154",
+    "titre": "Local File Inclusion - Double encoding",
+    "lang": "en",
+    "date_publication": "2016-06-13 22:25:38",
+    "maj": "2016-06-13 22:25:38"
+  },
+  {
+    "id_challenge": "1061",
+    "id_rubrique": "204",
+    "titre": "LinKern x86 - basic ROP ",
+    "lang": "en",
+    "date_publication": "2016-05-06 20:53:28",
+    "maj": "2017-03-25 22:52:15"
+  },
+  {
+    "id_challenge": "1064",
+    "id_rubrique": "204",
+    "titre": "ELF x64 - Off-by-one bug",
+    "lang": "en",
+    "date_publication": "2016-05-19 21:15:09",
+    "maj": "2019-02-10 10:05:43"
+  },
+  {
+    "id_challenge": "1067",
+    "id_rubrique": "204",
+    "titre": "LinKern x64 - Memory exploration",
+    "lang": "en",
+    "date_publication": "2016-07-27 17:26:00",
+    "maj": "2022-04-16 14:56:22"
+  },
+  {
+    "id_challenge": "1303",
+    "id_rubrique": "158",
+    "titre": "ELF x64 - Anti-debug and equations",
+    "lang": "en",
+    "date_publication": "2016-07-18 20:39:00",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "1304",
+    "id_rubrique": "158",
+    "titre": "ELF ARM - Basic Crackme",
+    "lang": "en",
+    "date_publication": "2016-07-13 20:37:25",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "1305",
+    "id_rubrique": "158",
+    "titre": "ELF C++ - 0 protection",
+    "lang": "en",
+    "date_publication": "2016-07-13 22:03:12",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "1320",
+    "id_rubrique": "204",
+    "titre": "ELF x86 - Remote stack buffer overflow - Hardened",
+    "lang": "en",
+    "date_publication": "2016-08-17 20:06:10",
+    "maj": "2021-04-26 15:28:43"
+  },
+  {
+    "id_challenge": "1326",
+    "id_rubrique": "209",
+    "titre": "Job interview",
+    "lang": "en",
+    "date_publication": "2016-08-30 20:43:12",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "1329",
+    "id_rubrique": "209",
+    "titre": "Second job interview",
+    "lang": "en",
+    "date_publication": "2016-08-31 22:57:17",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "1332",
+    "id_rubrique": "160",
+    "titre": "GEDEFU",
+    "lang": "en",
+    "date_publication": "2016-09-13 22:03:18",
+    "maj": "2016-09-16 21:19:52"
+  },
+  {
+    "id_challenge": "1334",
+    "id_rubrique": "157",
+    "titre": "SAP Pentest 007",
+    "lang": "en",
+    "date_publication": "2017-01-07 10:58:58",
+    "maj": "2020-02-29 13:02:45"
+  },
+  {
+    "id_challenge": "1338",
+    "id_rubrique": "157",
+    "titre": "SAP Pentest 000",
+    "lang": "en",
+    "date_publication": "2017-01-07 10:59:09",
+    "maj": "2019-08-30 09:19:44"
+  },
+  {
+    "id_challenge": "1344",
+    "id_rubrique": "160",
+    "titre": "RSA - Padding",
+    "lang": "en",
+    "date_publication": "2016-10-09 19:16:55",
+    "maj": "2016-10-09 19:16:55"
+  },
+  {
+    "id_challenge": "1349",
+    "id_rubrique": "204",
+    "titre": "ELF x86 - Blind ROP",
+    "lang": "en",
+    "date_publication": "2016-10-09 20:31:04",
+    "maj": "2018-03-05 20:58:27"
+  },
+  {
+    "id_challenge": "1354",
+    "id_rubrique": "160",
+    "titre": "Enigma Machine",
+    "lang": "en",
+    "date_publication": "2016-10-12 19:56:35",
+    "maj": "2019-04-30 13:25:53"
+  },
+  {
+    "id_challenge": "1357",
+    "id_rubrique": "209",
+    "titre": "Find me",
+    "lang": "en",
+    "date_publication": "2016-10-15 19:26:59",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "1358",
+    "id_rubrique": "158",
+    "titre": "MachO x64 - keygenme or not",
+    "lang": "en",
+    "date_publication": "2017-04-14 21:18:43",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "1369",
+    "id_rubrique": "160",
+    "titre": "ECDHE",
+    "lang": "en",
+    "date_publication": "2016-11-20 20:37:53",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "1371",
+    "id_rubrique": "154",
+    "titre": "PHP - assert()",
+    "lang": "en",
+    "date_publication": "2016-11-26 11:22:17",
+    "maj": "2019-05-14 09:31:51"
+  },
+  {
+    "id_challenge": "1377",
+    "id_rubrique": "154",
+    "titre": "NoSQL injection - Blind",
+    "lang": "en",
+    "date_publication": "2016-11-26 15:45:43",
+    "maj": "2019-08-15 13:57:45"
+  },
+  {
+    "id_challenge": "1383",
+    "id_rubrique": "191",
+    "titre": "Javascript - Jail",
+    "lang": "en",
+    "date_publication": "2016-12-07 19:45:51",
+    "maj": "2019-04-17 20:47:09"
+  },
+  {
+    "id_challenge": "1386",
+    "id_rubrique": "160",
+    "titre": "Hash - SHA-3",
+    "lang": "en",
+    "date_publication": "2016-12-10 19:10:54",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "1390",
+    "id_rubrique": "154",
+    "titre": "SQL Injection - Routed",
+    "lang": "en",
+    "date_publication": "2016-12-24 12:26:26",
+    "maj": "2016-12-24 12:26:26"
+  },
+  {
+    "id_challenge": "1396",
+    "id_rubrique": "154",
+    "titre": "Java - Spring Boot",
+    "lang": "en",
+    "date_publication": "2016-12-24 12:26:30",
+    "maj": "2016-12-26 22:19:17"
+  },
+  {
+    "id_challenge": "1397",
+    "id_rubrique": "156",
+    "titre": "Twitter Secret Messages",
+    "lang": "en",
+    "date_publication": "2016-12-21 16:44:03",
+    "maj": "2016-12-23 05:22:00"
+  },
+  {
+    "id_challenge": "1398",
+    "id_rubrique": "155",
+    "titre": "XSS - DOM Based",
+    "lang": "en",
+    "date_publication": "2016-12-24 12:26:32",
+    "maj": "2019-07-12 12:04:58"
+  },
+  {
+    "id_challenge": "1399",
+    "id_rubrique": "160",
+    "titre": "RSA - Common modulus",
+    "lang": "en",
+    "date_publication": "2016-12-24 12:26:21",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "1420",
+    "id_rubrique": "191",
+    "titre": "Bash - Restricted shells",
+    "lang": "en",
+    "date_publication": "2017-01-14 09:53:09",
+    "maj": "2019-05-14 08:38:08"
+  },
+  {
+    "id_challenge": "1435",
+    "id_rubrique": "204",
+    "titre": "ELF x64 - Remote heap buffer overflow - tcache",
+    "lang": "en",
+    "date_publication": "2017-02-05 14:47:53",
+    "maj": "2023-05-22 21:13:03"
+  },
+  {
+    "id_challenge": "1448",
+    "id_rubrique": "204",
+    "titre": "ELF ARM - Stack buffer overflow - basic",
+    "lang": "en",
+    "date_publication": "2017-03-09 20:05:05",
+    "maj": "2025-02-26 21:35:11"
+  },
+  {
+    "id_challenge": "1455",
+    "id_rubrique": "204",
+    "titre": "ELF ARM - Basic ROP",
+    "lang": "en",
+    "date_publication": "2017-03-11 16:18:29",
+    "maj": "2025-02-26 21:36:43"
+  },
+  {
+    "id_challenge": "1463",
+    "id_rubrique": "204",
+    "titre": "ELF ARM - Use After Free",
+    "lang": "en",
+    "date_publication": "2017-03-22 22:08:49",
+    "maj": "2025-02-26 21:40:29"
+  },
+  {
+    "id_challenge": "1464",
+    "id_rubrique": "204",
+    "titre": "ELF ARM - Heap Off-by-One",
+    "lang": "en",
+    "date_publication": "2017-03-11 20:59:32",
+    "maj": "2025-02-26 21:41:20"
+  },
+  {
+    "id_challenge": "1467",
+    "id_rubrique": "204",
+    "titre": "ELF ARM - Format String bug",
+    "lang": "en",
+    "date_publication": "2017-03-14 17:23:26",
+    "maj": "2025-02-26 21:39:49"
+  },
+  {
+    "id_challenge": "1470",
+    "id_rubrique": "204",
+    "titre": "ELF ARM - Alphanumeric shellcode",
+    "lang": "en",
+    "date_publication": "2017-03-16 13:34:35",
+    "maj": "2025-02-26 21:38:16"
+  },
+  {
+    "id_challenge": "1474",
+    "id_rubrique": "204",
+    "titre": "ELF ARM - Heap buffer overflow - Wilderness",
+    "lang": "en",
+    "date_publication": "2017-03-25 10:02:09",
+    "maj": "2025-02-26 21:42:05"
+  },
+  {
+    "id_challenge": "1477",
+    "id_rubrique": "204",
+    "titre": "LinKern ARM - vulnerable syscall",
+    "lang": "en",
+    "date_publication": "2017-03-22 21:35:25",
+    "maj": "2022-12-20 18:45:27"
+  },
+  {
+    "id_challenge": "1486",
+    "id_rubrique": "204",
+    "titre": "LinKern ARM - Stack Overflow",
+    "lang": "en",
+    "date_publication": "2017-07-24 10:41:21",
+    "maj": "2022-12-20 18:47:40"
+  },
+  {
+    "id_challenge": "1492",
+    "id_rubrique": "204",
+    "titre": "ELF ARM - Stack Spraying",
+    "lang": "en",
+    "date_publication": "2017-04-02 18:03:31",
+    "maj": "2025-02-26 21:35:50"
+  },
+  {
+    "id_challenge": "1493",
+    "id_rubrique": "204",
+    "titre": "ELF ARM - Heap Overflow",
+    "lang": "en",
+    "date_publication": "2017-04-02 18:07:24",
+    "maj": "2025-02-26 21:42:43"
+  },
+  {
+    "id_challenge": "1507",
+    "id_rubrique": "209",
+    "titre": "Ugly Duckling",
+    "lang": "en",
+    "date_publication": "2017-04-24 13:24:27",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "1515",
+    "id_rubrique": "160",
+    "titre": "RSA - Decipher Oracle",
+    "lang": "en",
+    "date_publication": "2017-05-11 11:25:32",
+    "maj": "2017-05-11 20:05:55"
+  },
+  {
+    "id_challenge": "1521",
+    "id_rubrique": "209",
+    "titre": "Find me again",
+    "lang": "en",
+    "date_publication": "2017-05-21 15:18:02",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "1523",
+    "id_rubrique": "157",
+    "titre": "Bluebox 2 - Pentest",
+    "lang": "en",
+    "date_publication": "2017-05-31 23:06:13",
+    "maj": "2019-12-19 11:43:45"
+  },
+  {
+    "id_challenge": "1528",
+    "id_rubrique": "204",
+    "titre": "ELF ARM - Race condition",
+    "lang": "en",
+    "date_publication": "2017-06-03 10:51:18",
+    "maj": "2025-02-26 21:37:21"
+  },
+  {
+    "id_challenge": "1529",
+    "id_rubrique": "204",
+    "titre": "ELF x64 - Seccomp Whitelist",
+    "lang": "en",
+    "date_publication": "2017-06-03 12:48:23",
+    "maj": "2022-10-04 23:36:13"
+  },
+  {
+    "id_challenge": "1530",
+    "id_rubrique": "204",
+    "titre": "ELF ARM - Heap format string bug",
+    "lang": "en",
+    "date_publication": "2017-06-03 12:35:06",
+    "maj": "2025-02-26 21:39:02"
+  },
+  {
+    "id_challenge": "1531",
+    "id_rubrique": "209",
+    "titre": "Malicious Word macro",
+    "lang": "en",
+    "date_publication": "2017-06-11 15:47:57",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "1539",
+    "id_rubrique": "157",
+    "titre": "SamBox v3",
+    "lang": "en",
+    "date_publication": "2017-06-19 12:33:31",
+    "maj": "2020-03-31 09:12:29"
+  },
+  {
+    "id_challenge": "1554",
+    "id_rubrique": "157",
+    "titre": "Imagick",
+    "lang": "en",
+    "date_publication": "2017-06-27 22:42:55",
+    "maj": "2019-08-30 08:42:45"
+  },
+  {
+    "id_challenge": "1566",
+    "id_rubrique": "204",
+    "titre": "ELF x64 - Logic bug",
+    "lang": "en",
+    "date_publication": "2017-07-08 19:38:36",
+    "maj": "2017-07-10 05:03:39"
+  },
+  {
+    "id_challenge": "1569",
+    "id_rubrique": "155",
+    "titre": "HTML - disabled buttons",
+    "lang": "en",
+    "date_publication": "2017-07-16 19:10:20",
+    "maj": "2017-07-18 04:59:32"
+  },
+  {
+    "id_challenge": "1571",
+    "id_rubrique": "154",
+    "titre": "XSLT - Code execution",
+    "lang": "en",
+    "date_publication": "2017-07-16 19:10:12",
+    "maj": "2017-08-14 00:09:40"
+  },
+  {
+    "id_challenge": "1584",
+    "id_rubrique": "156",
+    "titre": "PDF - Embedded",
+    "lang": "en",
+    "date_publication": "2017-07-23 21:22:05",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "1587",
+    "id_rubrique": "204",
+    "titre": "ELF x64 - Heap feng-shui",
+    "lang": "en",
+    "date_publication": "2017-08-04 23:02:14",
+    "maj": "2017-08-05 15:52:16"
+  },
+  {
+    "id_challenge": "1599",
+    "id_rubrique": "154",
+    "titre": "HTTP - Open redirect",
+    "lang": "en",
+    "date_publication": "2017-08-02 20:57:18",
+    "maj": "2017-08-03 02:10:01"
+  },
+  {
+    "id_challenge": "1603",
+    "id_rubrique": "154",
+    "titre": "File upload - ZIP",
+    "lang": "en",
+    "date_publication": "2017-08-03 21:52:47",
+    "maj": "2017-08-05 03:04:11"
+  },
+  {
+    "id_challenge": "1611",
+    "id_rubrique": "156",
+    "titre": "PNG - Pixel Indicator Technique",
+    "lang": "en",
+    "date_publication": "2017-08-07 17:01:01",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "1621",
+    "id_rubrique": "156",
+    "titre": "PNG - Pixel Value Differencing",
+    "lang": "en",
+    "date_publication": "2017-11-07 20:29:39",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "1626",
+    "id_rubrique": "191",
+    "titre": "Python - Jail - Garbage collector",
+    "lang": "en",
+    "date_publication": "2017-08-12 09:05:32",
+    "maj": "2019-04-17 20:48:09"
+  },
+  {
+    "id_challenge": "1642",
+    "id_rubrique": "157",
+    "titre": "Starbug Bounty",
+    "lang": "en",
+    "date_publication": "2017-09-07 19:57:49",
+    "maj": "2017-09-08 04:26:29"
+  },
+  {
+    "id_challenge": "1649",
+    "id_rubrique": "209",
+    "titre": "DNS exfiltration",
+    "lang": "en",
+    "date_publication": "2017-09-19 19:52:04",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "1651",
+    "id_rubrique": "154",
+    "titre": "PHP - Command injection",
+    "lang": "en",
+    "date_publication": "2017-09-20 08:26:08",
+    "maj": "2024-06-18 13:42:42"
+  },
+  {
+    "id_challenge": "1654",
+    "id_rubrique": "154",
+    "titre": "Command injection - Filter bypass",
+    "lang": "en",
+    "date_publication": "2017-09-20 08:26:36",
+    "maj": "2017-09-23 20:26:28"
+  },
+  {
+    "id_challenge": "1656",
+    "id_rubrique": "204",
+    "titre": "ELF x86 - Out of bounds attack - French Paradox",
+    "lang": "en",
+    "date_publication": "2017-09-17 10:33:22",
+    "maj": "2017-09-19 22:08:45"
+  },
+  {
+    "id_challenge": "1657",
+    "id_rubrique": "156",
+    "titre": "Angecryption",
+    "lang": "en",
+    "date_publication": "2017-09-17 11:55:04",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "1664",
+    "id_rubrique": "209",
+    "titre": "Try again",
+    "lang": "en",
+    "date_publication": "2017-10-13 08:45:18",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "1681",
+    "id_rubrique": "157",
+    "titre": "Bash/Awk - netstat parsing",
+    "lang": "en",
+    "date_publication": "2017-10-22 18:34:38",
+    "maj": "2020-10-23 10:05:48"
+  },
+  {
+    "id_challenge": "1689",
+    "id_rubrique": "157",
+    "titre": "ARM FTP Box",
+    "lang": "en",
+    "date_publication": "2017-11-12 15:27:00",
+    "maj": "2020-03-20 15:19:36"
+  },
+  {
+    "id_challenge": "1692",
+    "id_rubrique": "160",
+    "titre": "LFSR - Known plaintext",
+    "lang": "en",
+    "date_publication": "2017-11-28 11:22:50",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "1711",
+    "id_rubrique": "160",
+    "titre": "RSA - Corrupted key 1",
+    "lang": "en",
+    "date_publication": "2017-11-28 15:36:30",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "1726",
+    "id_rubrique": "154",
+    "titre": "PHP - Loose Comparison",
+    "lang": "en",
+    "date_publication": "2018-01-10 21:45:32",
+    "maj": "2018-01-12 05:39:43"
+  },
+  {
+    "id_challenge": "1729",
+    "id_rubrique": "160",
+    "titre": "RSA - Corrupted key 2",
+    "lang": "en",
+    "date_publication": "2018-01-11 21:35:34",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "1738",
+    "id_rubrique": "204",
+    "titre": "ELF x86 - Bug Hunting - Several issues",
+    "lang": "en",
+    "date_publication": "2018-01-19 20:47:03",
+    "maj": "2018-01-20 04:15:38"
+  },
+  {
+    "id_challenge": "1758",
+    "id_rubrique": "155",
+    "titre": "XSS - Reflected",
+    "lang": "en",
+    "date_publication": "2018-03-16 19:13:37",
+    "maj": "2018-03-16 20:20:39"
+  },
+  {
+    "id_challenge": "1759",
+    "id_rubrique": "156",
+    "titre": "Base Jumper",
+    "lang": "en",
+    "date_publication": "2018-03-03 14:55:14",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "1762",
+    "id_rubrique": "158",
+    "titre": "ELF x64 - Nanomites - Introduction",
+    "lang": "en",
+    "date_publication": "2018-03-04 19:01:56",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "1763",
+    "id_rubrique": "158",
+    "titre": "ELF x64 - Nanomites",
+    "lang": "en",
+    "date_publication": "2018-03-04 19:13:32",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "1769",
+    "id_rubrique": "204",
+    "titre": "ELF x64 - Blind ROP",
+    "lang": "en",
+    "date_publication": "2018-03-10 17:00:49",
+    "maj": "2018-03-10 17:00:49"
+  },
+  {
+    "id_challenge": "1775",
+    "id_rubrique": "157",
+    "titre": "Highway to shell",
+    "lang": "en",
+    "date_publication": "2018-04-05 08:05:54",
+    "maj": "2019-09-02 11:40:33"
+  },
+  {
+    "id_challenge": "1783",
+    "id_rubrique": "154",
+    "titre": "Server Side Request Forgery",
+    "lang": "en",
+    "date_publication": "2018-06-22 11:15:58",
+    "maj": "2019-05-11 12:58:13"
+  },
+  {
+    "id_challenge": "1785",
+    "id_rubrique": "157",
+    "titre": "Bozobe Hospital",
+    "lang": "en",
+    "date_publication": "2018-06-16 11:15:51",
+    "maj": "2019-09-02 11:39:08"
+  },
+  {
+    "id_challenge": "1798",
+    "id_rubrique": "160",
+    "titre": "AES - CBC - Bit-Flipping Attack",
+    "lang": "en",
+    "date_publication": "2018-06-17 14:22:56",
+    "maj": "2018-06-17 14:22:56"
+  },
+  {
+    "id_challenge": "1804",
+    "id_rubrique": "209",
+    "titre": "Multi-devices",
+    "lang": "en",
+    "date_publication": "2018-06-22 11:59:56",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "1805",
+    "id_rubrique": "156",
+    "titre": "Kitty spy",
+    "lang": "en",
+    "date_publication": "2018-07-09 16:24:55",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "1811",
+    "id_rubrique": "158",
+    "titre": "ELF MIPS - Basic Crackme",
+    "lang": "en",
+    "date_publication": "2018-07-09 15:53:45",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "1830",
+    "id_rubrique": "154",
+    "titre": "HTTP - POST",
+    "lang": "en",
+    "date_publication": "2018-08-14 16:40:57",
+    "maj": "2018-08-14 16:40:57"
+  },
+  {
+    "id_challenge": "1831",
+    "id_rubrique": "158",
+    "titre": "ELF x64 - Crackme automating",
+    "lang": "en",
+    "date_publication": "2018-08-14 16:41:04",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "1843",
+    "id_rubrique": "160",
+    "titre": "AES - Weaker variant",
+    "lang": "en",
+    "date_publication": "2018-08-29 20:51:13",
+    "maj": "2018-09-05 10:03:36"
+  },
+  {
+    "id_challenge": "1860",
+    "id_rubrique": "160",
+    "titre": "AES - 4 Rounds",
+    "lang": "en",
+    "date_publication": "2018-09-05 20:01:36",
+    "maj": "2018-09-05 20:01:36"
+  },
+  {
+    "id_challenge": "1861",
+    "id_rubrique": "209",
+    "titre": "Homemade keylogger",
+    "lang": "en",
+    "date_publication": "2018-09-09 14:18:22",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "1867",
+    "id_rubrique": "158",
+    "titre": "GB - Basic GameBoy crackme",
+    "lang": "en",
+    "date_publication": "2018-09-14 20:22:44",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "1885",
+    "id_rubrique": "160",
+    "titre": "AES - Fault attack #1",
+    "lang": "en",
+    "date_publication": "2018-09-20 16:48:10",
+    "maj": "2019-04-29 17:23:14"
+  },
+  {
+    "id_challenge": "1887",
+    "id_rubrique": "160",
+    "titre": "AES - Fault attack #2",
+    "lang": "en",
+    "date_publication": "2018-09-20 17:03:43",
+    "maj": "2018-09-21 05:39:20"
+  },
+  {
+    "id_challenge": "1896",
+    "id_rubrique": "191",
+    "titre": "SSH - Agent Hijacking",
+    "lang": "en",
+    "date_publication": "2018-10-07 12:38:30",
+    "maj": "2019-05-14 08:37:46"
+  },
+  {
+    "id_challenge": "1899",
+    "id_rubrique": "204",
+    "titre": "ELF MIPS - Stack buffer overflow - No NX",
+    "lang": "en",
+    "date_publication": "2018-09-28 16:45:15",
+    "maj": "2018-09-29 05:19:48"
+  },
+  {
+    "id_challenge": "1900",
+    "id_rubrique": "204",
+    "titre": "ELF MIPS - Basic ROP",
+    "lang": "en",
+    "date_publication": "2018-10-07 15:11:30",
+    "maj": "2018-10-07 15:11:30"
+  },
+  {
+    "id_challenge": "1905",
+    "id_rubrique": "204",
+    "titre": "ELF MIPS - URLEncoded Format String bug",
+    "lang": "en",
+    "date_publication": "2018-10-07 15:25:18",
+    "maj": "2018-10-09 05:01:01"
+  },
+  {
+    "id_challenge": "1915",
+    "id_rubrique": "204",
+    "titre": "ELF MIPS - Format String Glitch",
+    "lang": "en",
+    "date_publication": "2018-10-21 13:05:05",
+    "maj": "2018-10-21 13:05:05"
+  },
+  {
+    "id_challenge": "1916",
+    "id_rubrique": "160",
+    "titre": "White-Box Cryptography",
+    "lang": "en",
+    "date_publication": "2018-10-21 16:26:47",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "1921",
+    "id_rubrique": "204",
+    "titre": "LinKern MIPSel - Vulnerable ioctl",
+    "lang": "en",
+    "date_publication": "2018-10-23 21:11:35",
+    "maj": "2018-11-07 16:21:50"
+  },
+  {
+    "id_challenge": "1927",
+    "id_rubrique": "204",
+    "titre": "ELF x64 - Browser exploit - Intro",
+    "lang": "en",
+    "date_publication": "2018-11-02 14:00:17",
+    "maj": "2023-01-25 17:06:57"
+  },
+  {
+    "id_challenge": "1931",
+    "id_rubrique": "154",
+    "titre": "PHP - Eval",
+    "lang": "en",
+    "date_publication": "2018-11-08 21:21:10",
+    "maj": "2018-11-18 10:39:09"
+  },
+  {
+    "id_challenge": "1932",
+    "id_rubrique": "158",
+    "titre": "ELF x64 - Golang basic",
+    "lang": "en",
+    "date_publication": "2018-11-08 21:21:00",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "1941",
+    "id_rubrique": "209",
+    "titre": "Rootkit - Cold case",
+    "lang": "en",
+    "date_publication": "2018-12-01 15:37:03",
+    "maj": "2018-12-03 09:25:28"
+  },
+  {
+    "id_challenge": "1948",
+    "id_rubrique": "204",
+    "titre": "ELF x64 - Browser exploit - BitString",
+    "lang": "en",
+    "date_publication": "2018-12-15 11:17:32",
+    "maj": "2019-01-05 12:04:54"
+  },
+  {
+    "id_challenge": "1954",
+    "id_rubrique": "159",
+    "titre": "ELF x64 - Shellcoding - Sheep warmup",
+    "lang": "en",
+    "date_publication": "2019-02-10 19:00:13",
+    "maj": "2019-04-18 08:18:11"
+  },
+  {
+    "id_challenge": "1975",
+    "id_rubrique": "159",
+    "titre": "ELF x86 - Shellcoding - Alphanumeric",
+    "lang": "en",
+    "date_publication": "2019-02-10 19:12:02",
+    "maj": "2019-04-18 08:06:00"
+  },
+  {
+    "id_challenge": "1976",
+    "id_rubrique": "159",
+    "titre": "ELF x64 - Shellcoding - Polymorphism",
+    "lang": "en",
+    "date_publication": "2019-02-10 19:19:57",
+    "maj": "2026-06-04 22:07:21"
+  },
+  {
+    "id_challenge": "1985",
+    "id_rubrique": "204",
+    "titre": "ELF x86 - Stack buffer overflow - ret2dl_resolve",
+    "lang": "en",
+    "date_publication": "2019-02-28 21:02:16",
+    "maj": "2019-03-02 03:08:59"
+  },
+  {
+    "id_challenge": "1988",
+    "id_rubrique": "191",
+    "titre": "PHP - Jail",
+    "lang": "en",
+    "date_publication": "2019-03-01 20:34:51",
+    "maj": "2019-04-17 20:43:45"
+  },
+  {
+    "id_challenge": "1991",
+    "id_rubrique": "183",
+    "titre": "Bluetooth - Unknown file",
+    "lang": "en",
+    "date_publication": "2019-03-01 22:30:54",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "1992",
+    "id_rubrique": "204",
+    "titre": "ELF x86 - Use After Free - basic",
+    "lang": "en",
+    "date_publication": "2019-05-26 18:06:25",
+    "maj": "2019-07-01 17:16:37"
+  },
+  {
+    "id_challenge": "2001",
+    "id_rubrique": "204",
+    "titre": "LinKern x64 - RowHammer",
+    "lang": "en",
+    "date_publication": "2019-03-17 19:42:42",
+    "maj": "2019-03-18 03:41:56"
+  },
+  {
+    "id_challenge": "2014",
+    "id_rubrique": "157",
+    "titre": "SamBox v4",
+    "lang": "en",
+    "date_publication": "2019-04-28 11:12:22",
+    "maj": "2020-05-23 14:22:02"
+  },
+  {
+    "id_challenge": "2019",
+    "id_rubrique": "204",
+    "titre": "LinKern x64 - SLUB off-by-one",
+    "lang": "en",
+    "date_publication": "2019-05-09 21:22:35",
+    "maj": "2019-05-10 02:43:19"
+  },
+  {
+    "id_challenge": "2023",
+    "id_rubrique": "157",
+    "titre": "Django unchained",
+    "lang": "en",
+    "date_publication": "2019-05-12 15:33:25",
+    "maj": "2019-07-12 12:10:23"
+  },
+  {
+    "id_challenge": "2028",
+    "id_rubrique": "209",
+    "titre": "Find me back",
+    "lang": "en",
+    "date_publication": "2019-05-17 10:26:43",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "2033",
+    "id_rubrique": "160",
+    "titre": "AES-PMAC",
+    "lang": "en",
+    "date_publication": "2019-05-26 18:02:28",
+    "maj": "2019-05-28 02:57:12"
+  },
+  {
+    "id_challenge": "2047",
+    "id_rubrique": "157",
+    "titre": "BBQ Factory - First Flirt",
+    "lang": "en",
+    "date_publication": "2019-07-02 11:06:29",
+    "maj": "2019-07-03 04:34:36"
+  },
+  {
+    "id_challenge": "2049",
+    "id_rubrique": "157",
+    "titre": "BBQ Factory - Back To The Grill",
+    "lang": "en",
+    "date_publication": "2019-07-02 11:20:08",
+    "maj": "2019-07-03 04:34:36"
+  },
+  {
+    "id_challenge": "2056",
+    "id_rubrique": "209",
+    "titre": "macOS - Keychain",
+    "lang": "en",
+    "date_publication": "2019-07-20 14:13:14",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "2059",
+    "id_rubrique": "158",
+    "titre": "PE x86 - Xor Madness",
+    "lang": "en",
+    "date_publication": "2019-07-17 19:43:29",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "2060",
+    "id_rubrique": "158",
+    "titre": "White-Box Cryptography #2",
+    "lang": "en",
+    "date_publication": "2019-07-17 22:47:05",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "2072",
+    "id_rubrique": "154",
+    "titre": "JWT - Introduction",
+    "lang": "en",
+    "date_publication": "2019-08-21 12:57:00",
+    "maj": "2023-02-23 10:14:04"
+  },
+  {
+    "id_challenge": "2074",
+    "id_rubrique": "154",
+    "titre": "JWT - Weak secret",
+    "lang": "en",
+    "date_publication": "2019-08-21 10:59:34",
+    "maj": "2023-02-23 10:12:00"
+  },
+  {
+    "id_challenge": "2075",
+    "id_rubrique": "154",
+    "titre": "JWT - Public key",
+    "lang": "en",
+    "date_publication": "2019-08-21 10:55:27",
+    "maj": "2023-02-23 10:17:56"
+  },
+  {
+    "id_challenge": "2084",
+    "id_rubrique": "160",
+    "titre": "RSA - Corrupted key 3",
+    "lang": "en",
+    "date_publication": "2019-09-05 17:14:58",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "2090",
+    "id_rubrique": "160",
+    "titre": "ECDSA - Introduction",
+    "lang": "en",
+    "date_publication": "2019-09-22 11:46:26",
+    "maj": "2019-10-10 18:12:58"
+  },
+  {
+    "id_challenge": "2091",
+    "id_rubrique": "156",
+    "titre": "Hide and seek",
+    "lang": "en",
+    "date_publication": "2019-09-22 11:43:40",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "2092",
+    "id_rubrique": "156",
+    "titre": "Yellow dots",
+    "lang": "en",
+    "date_publication": "2019-09-29 11:29:42",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "2099",
+    "id_rubrique": "154",
+    "titre": "Insecure Code Management",
+    "lang": "en",
+    "date_publication": "2019-09-29 11:37:50",
+    "maj": "2019-10-01 04:49:41"
+  },
+  {
+    "id_challenge": "2101",
+    "id_rubrique": "160",
+    "titre": "ECDSA - Implementation error",
+    "lang": "en",
+    "date_publication": "2019-09-29 13:43:38",
+    "maj": "2019-10-01 04:49:41"
+  },
+  {
+    "id_challenge": "2108",
+    "id_rubrique": "158",
+    "titre": "Ringgit",
+    "lang": "en",
+    "date_publication": "2019-10-06 17:39:13",
+    "maj": "2019-10-06 17:39:13"
+  },
+  {
+    "id_challenge": "2127",
+    "id_rubrique": "160",
+    "titre": "RSA - Lee cooper",
+    "lang": "en",
+    "date_publication": "2019-11-07 07:57:57",
+    "maj": "2019-11-07 07:57:57"
+  },
+  {
+    "id_challenge": "2139",
+    "id_rubrique": "159",
+    "titre": "Ethereum - Tutoreum",
+    "lang": "en",
+    "date_publication": "2019-11-22 12:14:40",
+    "maj": "2025-02-01 11:47:55"
+  },
+  {
+    "id_challenge": "2140",
+    "id_rubrique": "159",
+    "titre": "Ethereum - Takeover",
+    "lang": "en",
+    "date_publication": "2019-11-22 12:19:22",
+    "maj": "2025-02-01 11:48:10"
+  },
+  {
+    "id_challenge": "2141",
+    "id_rubrique": "159",
+    "titre": "Ethereum - NotSoPriv8",
+    "lang": "en",
+    "date_publication": "2019-11-22 12:48:37",
+    "maj": "2025-02-01 11:48:22"
+  },
+  {
+    "id_challenge": "2142",
+    "id_rubrique": "159",
+    "titre": "Ethereum - BadStack",
+    "lang": "en",
+    "date_publication": "2019-11-22 12:48:48",
+    "maj": "2025-02-01 11:48:46"
+  },
+  {
+    "id_challenge": "2160",
+    "id_rubrique": "204",
+    "titre": "PE32 - Stack buffer overflow basic",
+    "lang": "en",
+    "date_publication": "2019-12-03 14:21:26",
+    "maj": "2019-12-13 09:40:06"
+  },
+  {
+    "id_challenge": "2161",
+    "id_rubrique": "204",
+    "titre": "PE32 - Advanced stack buffer overflow",
+    "lang": "en",
+    "date_publication": "2019-12-03 18:44:34",
+    "maj": "2020-01-08 22:31:25"
+  },
+  {
+    "id_challenge": "2162",
+    "id_rubrique": "204",
+    "titre": "PE32+ Format string bug",
+    "lang": "en",
+    "date_publication": "2019-12-03 18:45:29",
+    "maj": "2020-04-07 22:51:28"
+  },
+  {
+    "id_challenge": "2163",
+    "id_rubrique": "204",
+    "titre": "PE32+ Basic ROP",
+    "lang": "en",
+    "date_publication": "2019-12-06 09:26:15",
+    "maj": "2019-12-06 09:26:15"
+  },
+  {
+    "id_challenge": "2182",
+    "id_rubrique": "159",
+    "titre": "WinKern x64 - shellcoding : token stealing",
+    "lang": "en",
+    "date_publication": "2020-01-27 10:47:59",
+    "maj": "2020-01-27 10:47:59"
+  },
+  {
+    "id_challenge": "2185",
+    "id_rubrique": "204",
+    "titre": "WinKern x64 - Advanced stack buffer overflow - ROP",
+    "lang": "en",
+    "date_publication": "2020-01-27 10:48:11",
+    "maj": "2020-09-29 11:45:22"
+  },
+  {
+    "id_challenge": "2187",
+    "id_rubrique": "204",
+    "titre": "WinKern x64 - Use After Free",
+    "lang": "en",
+    "date_publication": "2020-01-27 10:48:17",
+    "maj": "2020-09-29 11:44:28"
+  },
+  {
+    "id_challenge": "2211",
+    "id_rubrique": "157",
+    "titre": "In Your Kubernetass",
+    "lang": "en",
+    "date_publication": "2020-02-17 12:29:52",
+    "maj": "2024-10-15 08:06:10"
+  },
+  {
+    "id_challenge": "2216",
+    "id_rubrique": "191",
+    "titre": "Shared Objects hijacking",
+    "lang": "en",
+    "date_publication": "2020-03-05 19:59:26",
+    "maj": "2020-03-07 05:51:43"
+  },
+  {
+    "id_challenge": "2219",
+    "id_rubrique": "160",
+    "titre": "RSA - Signature",
+    "lang": "en",
+    "date_publication": "2020-03-09 20:25:38",
+    "maj": "2020-03-11 08:11:12"
+  },
+  {
+    "id_challenge": "2224",
+    "id_rubrique": "157",
+    "titre": "Bash - System Disaster",
+    "lang": "en",
+    "date_publication": "2020-03-15 13:27:05",
+    "maj": "2020-10-23 10:07:33"
+  },
+  {
+    "id_challenge": "2227",
+    "id_rubrique": "154",
+    "titre": "PHP - Remote Xdebug",
+    "lang": "en",
+    "date_publication": "2020-03-18 11:46:59",
+    "maj": "2020-03-19 05:59:52"
+  },
+  {
+    "id_challenge": "2231",
+    "id_rubrique": "154",
+    "titre": "JWT - Revoked token",
+    "lang": "en",
+    "date_publication": "2020-03-20 17:28:04",
+    "maj": "2020-03-31 12:20:49"
+  },
+  {
+    "id_challenge": "2245",
+    "id_rubrique": "154",
+    "titre": "PHP - Unserialize overflow",
+    "lang": "en",
+    "date_publication": "2020-04-04 20:53:55",
+    "maj": "2020-04-05 04:49:47"
+  },
+  {
+    "id_challenge": "2253",
+    "id_rubrique": "159",
+    "titre": "ARM - Shellcoding - Egg hunter",
+    "lang": "en",
+    "date_publication": "2020-04-10 19:48:07",
+    "maj": "2026-06-04 22:09:07"
+  },
+  {
+    "id_challenge": "2262",
+    "id_rubrique": "157",
+    "titre": "Well-known",
+    "lang": "en",
+    "date_publication": "2020-04-21 08:43:12",
+    "maj": "2021-04-28 16:36:20"
+  },
+  {
+    "id_challenge": "2275",
+    "id_rubrique": "191",
+    "titre": "Bash - race condition",
+    "lang": "en",
+    "date_publication": "2020-05-05 16:47:13",
+    "maj": "2020-10-26 12:29:50"
+  },
+  {
+    "id_challenge": "2293",
+    "id_rubrique": "158",
+    "titre": "ELF x64 - Basic KeygenMe",
+    "lang": "en",
+    "date_publication": "2020-09-02 20:27:59",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "2294",
+    "id_rubrique": "158",
+    "titre": "ELF x64 - KeyGenMe",
+    "lang": "en",
+    "date_publication": "2020-11-12 10:45:33",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "2295",
+    "id_rubrique": "158",
+    "titre": "ELF x64 - Hidden Control Flow",
+    "lang": "en",
+    "date_publication": "2020-11-18 11:16:30",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "2296",
+    "id_rubrique": "191",
+    "titre": "Powershell - Command Injection",
+    "lang": "en",
+    "date_publication": "2020-06-19 11:35:42",
+    "maj": "2020-06-20 02:18:06"
+  },
+  {
+    "id_challenge": "2297",
+    "id_rubrique": "191",
+    "titre": "Powershell - SecureString",
+    "lang": "en",
+    "date_publication": "2020-06-19 11:35:47",
+    "maj": "2020-06-20 02:18:06"
+  },
+  {
+    "id_challenge": "2298",
+    "id_rubrique": "191",
+    "titre": "Powershell - Basic jail",
+    "lang": "en",
+    "date_publication": "2020-06-19 11:35:52",
+    "maj": "2020-06-20 02:18:06"
+  },
+  {
+    "id_challenge": "2317",
+    "id_rubrique": "160",
+    "titre": "PHP - mt_rand",
+    "lang": "en",
+    "date_publication": "2022-03-28 10:09:43",
+    "maj": "2022-04-16 00:40:25"
+  },
+  {
+    "id_challenge": "2318",
+    "id_rubrique": "156",
+    "titre": "Poem from Space",
+    "lang": "en",
+    "date_publication": "2020-07-15 18:52:23",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "2327",
+    "id_rubrique": "155",
+    "titre": "Javascript - Webpack",
+    "lang": "en",
+    "date_publication": "2020-08-11 21:52:29",
+    "maj": "2020-08-11 21:52:29"
+  },
+  {
+    "id_challenge": "2334",
+    "id_rubrique": "160",
+    "titre": "Twisted secret",
+    "lang": "en",
+    "date_publication": "2020-08-14 21:28:06",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "2348",
+    "id_rubrique": "183",
+    "titre": "HTTP - DNS Rebinding",
+    "lang": "en",
+    "date_publication": "2020-12-10 11:41:46",
+    "maj": "2021-04-20 10:47:33"
+  },
+  {
+    "id_challenge": "2351",
+    "id_rubrique": "155",
+    "titre": "CSP Bypass - Inline code",
+    "lang": "en",
+    "date_publication": "2020-10-27 10:20:11",
+    "maj": "2020-10-27 10:20:11"
+  },
+  {
+    "id_challenge": "2352",
+    "id_rubrique": "155",
+    "titre": "CSP Bypass - JSONP",
+    "lang": "en",
+    "date_publication": "2020-10-27 10:20:35",
+    "maj": "2020-10-27 10:20:35"
+  },
+  {
+    "id_challenge": "2353",
+    "id_rubrique": "155",
+    "titre": "CSP Bypass - Dangling markup",
+    "lang": "en",
+    "date_publication": "2020-10-27 10:20:51",
+    "maj": "2020-10-27 10:20:51"
+  },
+  {
+    "id_challenge": "2354",
+    "id_rubrique": "155",
+    "titre": "CSP Bypass - Dangling markup 2",
+    "lang": "en",
+    "date_publication": "2020-10-27 10:21:04",
+    "maj": "2020-10-27 10:21:04"
+  },
+  {
+    "id_challenge": "2357",
+    "id_rubrique": "154",
+    "titre": "GraphQL - Mutation",
+    "lang": "en",
+    "date_publication": "2020-10-20 10:53:16",
+    "maj": "2023-01-19 12:00:51"
+  },
+  {
+    "id_challenge": "2362",
+    "id_rubrique": "183",
+    "titre": "RIPv1 - no authentication",
+    "lang": "en",
+    "date_publication": "2020-12-15 12:00:00",
+    "maj": "2025-03-13 12:23:24"
+  },
+  {
+    "id_challenge": "2365",
+    "id_rubrique": "191",
+    "titre": "Bash - quoted expression injection",
+    "lang": "en",
+    "date_publication": "2020-10-26 11:34:15",
+    "maj": "2021-01-13 10:48:29"
+  },
+  {
+    "id_challenge": "2367",
+    "id_rubrique": "191",
+    "titre": "Bash - unquoted expression injection",
+    "lang": "en",
+    "date_publication": "2020-10-26 11:33:53",
+    "maj": "2021-01-13 10:49:35"
+  },
+  {
+    "id_challenge": "2375",
+    "id_rubrique": "183",
+    "titre": "POP - APOP",
+    "lang": "en",
+    "date_publication": "2020-11-11 09:11:24",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "2377",
+    "id_rubrique": "157",
+    "titre": "A bittersweet shellfony",
+    "lang": "en",
+    "date_publication": "2020-12-15 11:25:40",
+    "maj": "2021-01-13 10:29:54"
+  },
+  {
+    "id_challenge": "2810",
+    "id_rubrique": "183",
+    "titre": "RF - Key Fixed Code",
+    "lang": "en",
+    "date_publication": "2021-01-28 10:54:41",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "2812",
+    "id_rubrique": "183",
+    "titre": "RF - AM Transmission",
+    "lang": "en",
+    "date_publication": "2021-01-28 10:51:41",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "2813",
+    "id_rubrique": "183",
+    "titre": "RF - FM Transmission",
+    "lang": "en",
+    "date_publication": "2021-01-28 10:53:31",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "2814",
+    "id_rubrique": "183",
+    "titre": "RF - Satellite transmission ",
+    "lang": "en",
+    "date_publication": "2021-01-28 10:55:21",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "2817",
+    "id_rubrique": "157",
+    "titre": "Texode",
+    "lang": "en",
+    "date_publication": "2021-02-24 09:45:12",
+    "maj": "2021-10-09 01:11:16"
+  },
+  {
+    "id_challenge": "2822",
+    "id_rubrique": "157",
+    "titre": "SSHocker",
+    "lang": "en",
+    "date_publication": "2021-02-03 12:40:32",
+    "maj": "2021-02-03 12:52:59"
+  },
+  {
+    "id_challenge": "2823",
+    "id_rubrique": "157",
+    "titre": "Breaking Root-Me like it’s 2020",
+    "lang": "en",
+    "date_publication": "2021-01-28 13:50:25",
+    "maj": "2021-01-28 13:50:25"
+  },
+  {
+    "id_challenge": "2825",
+    "id_rubrique": "154",
+    "titre": "Node - Serialize",
+    "lang": "en",
+    "date_publication": "2021-02-24 09:44:55",
+    "maj": "2021-03-29 10:17:48"
+  },
+  {
+    "id_challenge": "2830",
+    "id_rubrique": "154",
+    "titre": "Node - Eval",
+    "lang": "en",
+    "date_publication": "2021-02-24 09:44:39",
+    "maj": "2021-04-08 09:35:49"
+  },
+  {
+    "id_challenge": "2845",
+    "id_rubrique": "191",
+    "titre": "LaTeX - Input",
+    "lang": "en",
+    "date_publication": "2021-03-17 10:07:51",
+    "maj": "2021-03-17 10:07:51"
+  },
+  {
+    "id_challenge": "2846",
+    "id_rubrique": "191",
+    "titre": "LaTeX - Command execution",
+    "lang": "en",
+    "date_publication": "2021-03-17 10:07:57",
+    "maj": "2021-03-17 10:07:57"
+  },
+  {
+    "id_challenge": "2858",
+    "id_rubrique": "160",
+    "titre": "OTP - Implementation error",
+    "lang": "en",
+    "date_publication": "2021-03-22 09:31:28",
+    "maj": "2021-04-08 13:27:54"
+  },
+  {
+    "id_challenge": "2859",
+    "id_rubrique": "157",
+    "titre": "reQUACKier",
+    "lang": "en",
+    "date_publication": "2022-09-28 20:17:30",
+    "maj": "2022-09-28 20:17:30"
+  },
+  {
+    "id_challenge": "2861",
+    "id_rubrique": "204",
+    "titre": "ELF x64 - Double free",
+    "lang": "en",
+    "date_publication": "2021-03-23 11:32:14",
+    "maj": "2021-03-23 11:32:14"
+  },
+  {
+    "id_challenge": "2862",
+    "id_rubrique": "158",
+    "titre": "PE DotNet - Basic Anti-Debug",
+    "lang": "en",
+    "date_publication": "2021-03-24 09:31:20",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "2863",
+    "id_rubrique": "154",
+    "titre": "HTTP - IP restriction bypass",
+    "lang": "en",
+    "date_publication": "2021-03-23 13:22:08",
+    "maj": "2021-04-14 18:51:23"
+  },
+  {
+    "id_challenge": "2865",
+    "id_rubrique": "204",
+    "titre": "ELF x64 - Blind SROP",
+    "lang": "en",
+    "date_publication": "2023-12-28 10:58:32",
+    "maj": "2023-12-28 10:58:32"
+  },
+  {
+    "id_challenge": "2866",
+    "id_rubrique": "158",
+    "titre": "WASM - Find the NPC",
+    "lang": "en",
+    "date_publication": "2021-03-26 07:40:34",
+    "maj": "2021-03-27 10:24:46"
+  },
+  {
+    "id_challenge": "2867",
+    "id_rubrique": "158",
+    "titre": "WASM - Introduction",
+    "lang": "en",
+    "date_publication": "2021-03-26 07:40:30",
+    "maj": "2021-04-08 14:35:58"
+  },
+  {
+    "id_challenge": "2868",
+    "id_rubrique": "191",
+    "titre": "Python - format string",
+    "lang": "en",
+    "date_publication": "2021-03-26 07:33:07",
+    "maj": "2021-03-26 07:33:07"
+  },
+  {
+    "id_challenge": "2869",
+    "id_rubrique": "158",
+    "titre": "Bash - VM",
+    "lang": "en",
+    "date_publication": "2021-03-25 10:03:53",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "2870",
+    "id_rubrique": "158",
+    "titre": "Powershell DeObfuscation",
+    "lang": "en",
+    "date_publication": "2021-04-02 09:35:47",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "2871",
+    "id_rubrique": "158",
+    "titre": "Lua - Bytecode",
+    "lang": "en",
+    "date_publication": "2021-03-25 10:04:19",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "2872",
+    "id_rubrique": "154",
+    "titre": "NodeJS - vm escape",
+    "lang": "en",
+    "date_publication": "2021-04-15 10:56:49",
+    "maj": "2021-04-16 16:24:30"
+  },
+  {
+    "id_challenge": "2874",
+    "id_rubrique": "204",
+    "titre": "ELF x64 - Stack buffer overflow - PIE",
+    "lang": "en",
+    "date_publication": "2021-03-26 07:33:03",
+    "maj": "2021-03-26 07:33:03"
+  },
+  {
+    "id_challenge": "2880",
+    "id_rubrique": "158",
+    "titre": "PE DotNet - KeygenMe",
+    "lang": "en",
+    "date_publication": "2021-04-14 11:31:11",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "2881",
+    "id_rubrique": "158",
+    "titre": "PE DotNet - Basic Crackme",
+    "lang": "en",
+    "date_publication": "2021-04-14 11:31:02",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "2886",
+    "id_rubrique": "154",
+    "titre": "PHP - Eval - Advanced filters bypass",
+    "lang": "en",
+    "date_publication": "2022-07-08 21:42:17",
+    "maj": "2022-07-08 21:42:17"
+  },
+  {
+    "id_challenge": "2889",
+    "id_rubrique": "157",
+    "titre": "Texode Back",
+    "lang": "en",
+    "date_publication": "2021-04-15 10:58:09",
+    "maj": "2021-10-08 21:46:58"
+  },
+  {
+    "id_challenge": "2892",
+    "id_rubrique": "204",
+    "titre": "ELF x64 - Advanced Heap Exploitation - Heap Leakless &amp; Fortified",
+    "lang": "en",
+    "date_publication": "2021-05-27 08:02:01",
+    "maj": "2021-05-27 08:02:01"
+  },
+  {
+    "id_challenge": "2895",
+    "id_rubrique": "157",
+    "titre": "Nodeful",
+    "lang": "en",
+    "date_publication": "2021-04-15 10:57:55",
+    "maj": "2021-04-16 05:19:05"
+  },
+  {
+    "id_challenge": "2897",
+    "id_rubrique": "154",
+    "titre": "Yaml - Deserialization",
+    "lang": "en",
+    "date_publication": "2021-04-20 10:09:28",
+    "maj": "2021-04-20 10:09:28"
+  },
+  {
+    "id_challenge": "2904",
+    "id_rubrique": "204",
+    "titre": "ELF x64 - FILE structure hijacking",
+    "lang": "en",
+    "date_publication": "2021-05-27 08:01:17",
+    "maj": "2021-05-27 08:01:17"
+  },
+  {
+    "id_challenge": "2905",
+    "id_rubrique": "204",
+    "titre": "ELF x64 - ret2dl_init",
+    "lang": "en",
+    "date_publication": "2021-05-27 08:00:49",
+    "maj": "2021-05-27 08:00:49"
+  },
+  {
+    "id_challenge": "2906",
+    "id_rubrique": "204",
+    "titre": "ELF x64 - File Structure Hacking",
+    "lang": "en",
+    "date_publication": "2021-05-27 08:01:35",
+    "maj": "2021-05-27 08:01:35"
+  },
+  {
+    "id_challenge": "2907",
+    "id_rubrique": "204",
+    "titre": "ELF x64 - Heap Filling",
+    "lang": "en",
+    "date_publication": "2021-05-27 08:01:45",
+    "maj": "2021-05-27 08:01:45"
+  },
+  {
+    "id_challenge": "2931",
+    "id_rubrique": "160",
+    "titre": "Hash - NT",
+    "lang": "en",
+    "date_publication": "2021-07-13 11:22:47",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "2933",
+    "id_rubrique": "160",
+    "titre": "Hash - LM",
+    "lang": "en",
+    "date_publication": "2021-07-13 11:22:42",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "2935",
+    "id_rubrique": "160",
+    "titre": "Hash - DCC",
+    "lang": "en",
+    "date_publication": "2021-07-13 11:22:36",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "2937",
+    "id_rubrique": "160",
+    "titre": "Hash - DCC2",
+    "lang": "en",
+    "date_publication": "2021-07-13 11:22:31",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "2943",
+    "id_rubrique": "160",
+    "titre": "CISCO - Salted Password",
+    "lang": "en",
+    "date_publication": "2021-07-13 11:22:24",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "2948",
+    "id_rubrique": "155",
+    "titre": "XSS DOM Based - Introduction",
+    "lang": "en",
+    "date_publication": "2021-08-12 10:55:21",
+    "maj": "2021-08-12 10:55:21"
+  },
+  {
+    "id_challenge": "2949",
+    "id_rubrique": "155",
+    "titre": "XSS DOM Based - Eval",
+    "lang": "en",
+    "date_publication": "2021-08-12 10:55:30",
+    "maj": "2021-08-12 10:55:30"
+  },
+  {
+    "id_challenge": "2950",
+    "id_rubrique": "155",
+    "titre": "XSS DOM Based - Filters Bypass",
+    "lang": "en",
+    "date_publication": "2021-08-12 10:55:23",
+    "maj": "2021-08-12 10:55:23"
+  },
+  {
+    "id_challenge": "2951",
+    "id_rubrique": "191",
+    "titre": "R: Code Execution",
+    "lang": "en",
+    "date_publication": "2023-09-25 12:48:03",
+    "maj": "2023-09-25 12:48:03"
+  },
+  {
+    "id_challenge": "2953",
+    "id_rubrique": "155",
+    "titre": "XSS DOM Based - AngularJS",
+    "lang": "en",
+    "date_publication": "2021-08-12 10:55:33",
+    "maj": "2021-08-12 10:55:33"
+  },
+  {
+    "id_challenge": "2958",
+    "id_rubrique": "154",
+    "titre": "PHP - Apache configuration",
+    "lang": "en",
+    "date_publication": "2022-07-08 21:42:05",
+    "maj": "2022-07-08 21:42:05"
+  },
+  {
+    "id_challenge": "2961",
+    "id_rubrique": "159",
+    "titre": "Various encodings",
+    "lang": "en",
+    "date_publication": "2021-08-12 12:22:04",
+    "maj": "2021-08-12 12:22:04"
+  },
+  {
+    "id_challenge": "2963",
+    "id_rubrique": "154",
+    "titre": "Python - Blind SSTI Filters Bypass",
+    "lang": "en",
+    "date_publication": "2021-09-07 20:31:45",
+    "maj": "2021-09-07 20:31:45"
+  },
+  {
+    "id_challenge": "2965",
+    "id_rubrique": "154",
+    "titre": "Python - Server-side Template Injection Introduction",
+    "lang": "en",
+    "date_publication": "2021-09-07 20:28:42",
+    "maj": "2021-09-07 20:28:42"
+  },
+  {
+    "id_challenge": "2967",
+    "id_rubrique": "157",
+    "titre": "Getting root Over it!",
+    "lang": "en",
+    "date_publication": "2021-08-18 11:57:46",
+    "maj": "2021-09-16 15:56:19"
+  },
+  {
+    "id_challenge": "2973",
+    "id_rubrique": "155",
+    "titre": "Web Socket - 0 protection",
+    "lang": "en",
+    "date_publication": "2021-10-22 13:56:19",
+    "maj": "2022-09-12 20:58:06"
+  },
+  {
+    "id_challenge": "2974",
+    "id_rubrique": "154",
+    "titre": "NodeJS - Prototype Pollution Bypass",
+    "lang": "en",
+    "date_publication": "2021-10-22 13:56:48",
+    "maj": "2021-10-22 13:56:48"
+  },
+  {
+    "id_challenge": "2975",
+    "id_rubrique": "154",
+    "titre": "PHP - Unserialize Pop Chain",
+    "lang": "en",
+    "date_publication": "2021-10-22 13:57:36",
+    "maj": "2021-10-22 13:57:36"
+  },
+  {
+    "id_challenge": "2982",
+    "id_rubrique": "204",
+    "titre": "ELF x64 - Heap Safe-Linking Bypass",
+    "lang": "en",
+    "date_publication": "2021-10-22 09:48:59",
+    "maj": "2022-01-23 16:32:34"
+  },
+  {
+    "id_challenge": "3004",
+    "id_rubrique": "157",
+    "titre": "DjangocatZ",
+    "lang": "en",
+    "date_publication": "2021-11-24 08:52:53",
+    "maj": "2021-11-24 14:05:10"
+  },
+  {
+    "id_challenge": "3178",
+    "id_rubrique": "156",
+    "titre": "APNG - Just A PNG",
+    "lang": "en",
+    "date_publication": "2021-11-22 09:16:22",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "3179",
+    "id_rubrique": "156",
+    "titre": "Mimic - Dummy sight",
+    "lang": "en",
+    "date_publication": "2021-11-22 09:17:36",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "3180",
+    "id_rubrique": "156",
+    "titre": "ELF x64 - Duality",
+    "lang": "en",
+    "date_publication": "2021-11-22 09:16:54",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "3647",
+    "id_rubrique": "158",
+    "titre": "APK - Flutter Debug",
+    "lang": "en",
+    "date_publication": "2022-06-19 19:28:10",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "3648",
+    "id_rubrique": "209",
+    "titre": "The Lost Case - Mobile Investigation",
+    "lang": "en",
+    "date_publication": "2021-12-21 07:50:10",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "3649",
+    "id_rubrique": "209",
+    "titre": "iOS - Introduction",
+    "lang": "en",
+    "date_publication": "2021-12-21 07:49:51",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "3650",
+    "id_rubrique": "209",
+    "titre": "Find me on Android",
+    "lang": "en",
+    "date_publication": "2021-12-21 07:50:01",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "3681",
+    "id_rubrique": "191",
+    "titre": "Docker - I am groot",
+    "lang": "en",
+    "date_publication": "2022-02-24 20:25:34",
+    "maj": "2022-02-26 04:24:18"
+  },
+  {
+    "id_challenge": "3682",
+    "id_rubrique": "191",
+    "titre": "Docker - Sys-Admin&#8217;s Docker",
+    "lang": "en",
+    "date_publication": "2022-02-24 20:25:43",
+    "maj": "2022-02-26 04:24:18"
+  },
+  {
+    "id_challenge": "3683",
+    "id_rubrique": "191",
+    "titre": "Docker - Talk through me",
+    "lang": "en",
+    "date_publication": "2022-02-24 20:25:52",
+    "maj": "2022-02-26 04:24:18"
+  },
+  {
+    "id_challenge": "3702",
+    "id_rubrique": "183",
+    "titre": "RF - L Band",
+    "lang": "en",
+    "date_publication": "2022-03-18 12:12:45",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "3707",
+    "id_rubrique": "158",
+    "titre": "Godot - 0 protection",
+    "lang": "en",
+    "date_publication": "2022-06-10 10:32:29",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "3708",
+    "id_rubrique": "158",
+    "titre": "Godot - Bytecode",
+    "lang": "en",
+    "date_publication": "2022-06-10 10:32:31",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "3709",
+    "id_rubrique": "158",
+    "titre": "Godot - Mono",
+    "lang": "en",
+    "date_publication": "2022-06-10 10:32:33",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "3710",
+    "id_rubrique": "158",
+    "titre": "Godot - 3D model",
+    "lang": "en",
+    "date_publication": "2022-06-10 10:32:35",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "3711",
+    "id_rubrique": "160",
+    "titre": "FEAL - Differential Cryptanalysis",
+    "lang": "en",
+    "date_publication": "2022-03-28 10:09:56",
+    "maj": "2022-05-07 09:45:07"
+  },
+  {
+    "id_challenge": "3712",
+    "id_rubrique": "160",
+    "titre": "Side Channel - AES : CPA",
+    "lang": "en",
+    "date_publication": "2022-03-28 10:10:10",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "3713",
+    "id_rubrique": "160",
+    "titre": "Side Channel - AES : first round",
+    "lang": "en",
+    "date_publication": "2022-03-28 10:10:02",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "3714",
+    "id_rubrique": "154",
+    "titre": "File upload - Polyglot",
+    "lang": "en",
+    "date_publication": "2022-07-08 21:42:38",
+    "maj": "2022-07-08 21:42:38"
+  },
+  {
+    "id_challenge": "3715",
+    "id_rubrique": "155",
+    "titre": "CSP Bypass - Nonce",
+    "lang": "en",
+    "date_publication": "2022-04-08 08:06:06",
+    "maj": "2022-04-08 08:06:06"
+  },
+  {
+    "id_challenge": "3716",
+    "id_rubrique": "155",
+    "titre": "CSS - Exfiltration",
+    "lang": "en",
+    "date_publication": "2022-04-08 08:05:54",
+    "maj": "2022-04-08 08:05:54"
+  },
+  {
+    "id_challenge": "3719",
+    "id_rubrique": "156",
+    "titre": "EXIF - Metadata",
+    "lang": "en",
+    "date_publication": "2022-03-28 10:29:59",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "3720",
+    "id_rubrique": "157",
+    "titre": "Root Me, for real",
+    "lang": "en",
+    "date_publication": "2022-03-31 10:39:13",
+    "maj": "2022-03-31 10:39:13"
+  },
+  {
+    "id_challenge": "3750",
+    "id_rubrique": "155",
+    "titre": "DOM Clobbering",
+    "lang": "en",
+    "date_publication": "2022-04-08 08:06:30",
+    "maj": "2022-05-29 13:40:12"
+  },
+  {
+    "id_challenge": "3751",
+    "id_rubrique": "155",
+    "titre": "XS Leaks",
+    "lang": "en",
+    "date_publication": "2022-04-08 08:06:49",
+    "maj": "2026-02-26 11:33:38"
+  },
+  {
+    "id_challenge": "3771",
+    "id_rubrique": "155",
+    "titre": "Javascript - Obfuscation 6",
+    "lang": "en",
+    "date_publication": "2023-04-27 12:34:00",
+    "maj": "2023-04-27 12:34:00"
+  },
+  {
+    "id_challenge": "3799",
+    "id_rubrique": "209",
+    "titre": "Docker layers",
+    "lang": "en",
+    "date_publication": "2022-06-07 23:37:43",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "3814",
+    "id_rubrique": "204",
+    "titre": "ELF x64 - Buggy VM",
+    "lang": "en",
+    "date_publication": "2022-06-10 16:41:44",
+    "maj": "2022-06-10 16:41:44"
+  },
+  {
+    "id_challenge": "3861",
+    "id_rubrique": "158",
+    "titre": "ELF x64 - Rust Crackme",
+    "lang": "en",
+    "date_publication": "2022-10-17 14:14:21",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "3877",
+    "id_rubrique": "158",
+    "titre": "Unity - IL2CPP - Basic Game Hacking",
+    "lang": "en",
+    "date_publication": "2023-07-21 17:01:00",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "3879",
+    "id_rubrique": "209",
+    "titre": "The Artist",
+    "lang": "en",
+    "date_publication": "2022-12-03 15:19:02",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "3881",
+    "id_rubrique": "158",
+    "titre": "PYC - Snakeygen",
+    "lang": "en",
+    "date_publication": "2022-10-17 14:13:53",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "3883",
+    "id_rubrique": "157",
+    "titre": "DasBox1: Rififi in the lizardmen",
+    "lang": "en",
+    "date_publication": "2022-09-28 20:17:40",
+    "maj": "2022-09-28 20:33:15"
+  },
+  {
+    "id_challenge": "3885",
+    "id_rubrique": "159",
+    "titre": "Second degree polynomial solver",
+    "lang": "en",
+    "date_publication": "2022-09-05 20:44:44",
+    "maj": "2022-09-05 20:44:44"
+  },
+  {
+    "id_challenge": "3887",
+    "id_rubrique": "158",
+    "titre": "Unity - Mono - Basic Game Hacking",
+    "lang": "en",
+    "date_publication": "2022-10-17 14:14:32",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "3888",
+    "id_rubrique": "154",
+    "titre": "Flask - Unsecure session",
+    "lang": "en",
+    "date_publication": "2023-11-29 12:00:46",
+    "maj": "2023-11-29 12:00:46"
+  },
+  {
+    "id_challenge": "3889",
+    "id_rubrique": "154",
+    "titre": "Flask - Development server",
+    "lang": "en",
+    "date_publication": "2023-11-29 12:00:24",
+    "maj": "2023-11-29 12:00:24"
+  },
+  {
+    "id_challenge": "3890",
+    "id_rubrique": "160",
+    "titre": "Circular Bit Shift",
+    "lang": "en",
+    "date_publication": "2023-03-21 18:19:41",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "3891",
+    "id_rubrique": "155",
+    "titre": "CSP Bypass - Nonce 2",
+    "lang": "en",
+    "date_publication": "2023-06-27 11:58:40",
+    "maj": "2023-06-27 11:58:40"
+  },
+  {
+    "id_challenge": "3893",
+    "id_rubrique": "158",
+    "titre": "APK - Introduction",
+    "lang": "en",
+    "date_publication": "2022-10-17 14:14:03",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "3897",
+    "id_rubrique": "157",
+    "titre": "Windows - KerbeRoast",
+    "lang": "en",
+    "date_publication": "2022-12-15 13:09:25",
+    "maj": "2023-01-15 13:13:03"
+  },
+  {
+    "id_challenge": "3898",
+    "id_rubrique": "157",
+    "titre": "Windows - ASRepRoast",
+    "lang": "en",
+    "date_publication": "2022-12-15 13:09:22",
+    "maj": "2023-01-13 15:56:06"
+  },
+  {
+    "id_challenge": "3899",
+    "id_rubrique": "157",
+    "titre": "Windows - Group Policy Preferences Passwords",
+    "lang": "en",
+    "date_publication": "2022-12-15 13:09:28",
+    "maj": "2024-12-24 14:12:51"
+  },
+  {
+    "id_challenge": "3900",
+    "id_rubrique": "157",
+    "titre": "Windows - ZeroLogon",
+    "lang": "en",
+    "date_publication": "2022-12-15 13:09:17",
+    "maj": "2023-01-13 15:57:40"
+  },
+  {
+    "id_challenge": "3906",
+    "id_rubrique": "159",
+    "titre": "Ethereum - Reentrancy",
+    "lang": "en",
+    "date_publication": "2022-09-05 20:44:47",
+    "maj": "2025-02-01 11:51:23"
+  },
+  {
+    "id_challenge": "3907",
+    "id_rubrique": "159",
+    "titre": "Apprentice Scraper",
+    "lang": "en",
+    "date_publication": "2022-09-05 20:44:50",
+    "maj": "2022-09-07 00:35:02"
+  },
+  {
+    "id_challenge": "3923",
+    "id_rubrique": "158",
+    "titre": "EVM - Bytecode",
+    "lang": "en",
+    "date_publication": "2025-03-14 09:49:32",
+    "maj": "2025-10-08 10:17:33"
+  },
+  {
+    "id_challenge": "3924",
+    "id_rubrique": "158",
+    "titre": "ELF x64 - Rust backdoor",
+    "lang": "en",
+    "date_publication": "2023-07-21 17:01:28",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "3925",
+    "id_rubrique": "158",
+    "titre": "NRO ARM - Switch homebrew",
+    "lang": "en",
+    "date_publication": "2023-07-21 17:01:20",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "3932",
+    "id_rubrique": "157",
+    "titre": "Matrix terminal",
+    "lang": "en",
+    "date_publication": "2022-09-28 20:17:23",
+    "maj": "2022-09-28 20:20:18"
+  },
+  {
+    "id_challenge": "3933",
+    "id_rubrique": "209",
+    "titre": "Oh My Grub",
+    "lang": "en",
+    "date_publication": "2022-12-03 15:18:56",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "3948",
+    "id_rubrique": "209",
+    "titre": "Open My Vault",
+    "lang": "en",
+    "date_publication": "2022-12-03 15:19:07",
+    "maj": "2024-10-19 16:57:58"
+  },
+  {
+    "id_challenge": "3967",
+    "id_rubrique": "160",
+    "titre": "Encoding - Codebook",
+    "lang": "en",
+    "date_publication": "2023-03-21 18:19:53",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "3978",
+    "id_rubrique": "209",
+    "titre": "Windows - LDAP User ASRepRoastable",
+    "lang": "en",
+    "date_publication": "2022-11-17 15:42:46",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "3979",
+    "id_rubrique": "209",
+    "titre": "Windows - LDAP User KerbeRoastable",
+    "lang": "en",
+    "date_publication": "2022-11-17 15:42:53",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "3980",
+    "id_rubrique": "209",
+    "titre": "Windows - NTDS Secret extraction",
+    "lang": "en",
+    "date_publication": "2022-11-17 15:42:50",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "4013",
+    "id_rubrique": "157",
+    "titre": "I&#8217;m a Bl4ck H4t",
+    "lang": "en",
+    "date_publication": "2023-01-26 11:43:43",
+    "maj": "2023-08-21 08:48:39"
+  },
+  {
+    "id_challenge": "4014",
+    "id_rubrique": "209",
+    "titre": "Supply chain attack - Python",
+    "lang": "en",
+    "date_publication": "2022-12-03 15:19:17",
+    "maj": "2024-07-04 09:12:08"
+  },
+  {
+    "id_challenge": "4015",
+    "id_rubrique": "209",
+    "titre": "Supply chain attack - Docker",
+    "lang": "en",
+    "date_publication": "2022-12-03 15:19:12",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "4018",
+    "id_rubrique": "158",
+    "titre": "Voracious Nanomites",
+    "lang": "en",
+    "date_publication": "2023-07-21 17:01:11",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "4070",
+    "id_rubrique": "157",
+    "titre": "Windows - krbtgt history",
+    "lang": "en",
+    "date_publication": "2023-03-22 18:59:57",
+    "maj": "2024-12-10 18:00:23"
+  },
+  {
+    "id_challenge": "4071",
+    "id_rubrique": "157",
+    "titre": "Windows - sAMAccountName spoofing",
+    "lang": "en",
+    "date_publication": "2023-03-22 18:59:53",
+    "maj": "2023-03-22 18:59:53"
+  },
+  {
+    "id_challenge": "4072",
+    "id_rubrique": "154",
+    "titre": "GraphQL - Backend injection",
+    "lang": "en",
+    "date_publication": "2023-01-19 15:52:03",
+    "maj": "2023-01-19 15:52:03"
+  },
+  {
+    "id_challenge": "4073",
+    "id_rubrique": "154",
+    "titre": "GraphQL - Injection",
+    "lang": "en",
+    "date_publication": "2023-01-19 15:51:53",
+    "maj": "2023-01-19 15:51:53"
+  },
+  {
+    "id_challenge": "4074",
+    "id_rubrique": "154",
+    "titre": "GraphQL - Introspection",
+    "lang": "en",
+    "date_publication": "2023-01-19 15:51:50",
+    "maj": "2023-01-19 15:51:50"
+  },
+  {
+    "id_challenge": "4088",
+    "id_rubrique": "204",
+    "titre": "ELF ARM64 - Heap Underflow",
+    "lang": "en",
+    "date_publication": "2023-02-13 15:56:43",
+    "maj": "2025-02-26 21:26:01"
+  },
+  {
+    "id_challenge": "4089",
+    "id_rubrique": "204",
+    "titre": "ELF ARM64 - Multithreading",
+    "lang": "en",
+    "date_publication": "2023-02-13 15:56:34",
+    "maj": "2025-02-26 21:24:11"
+  },
+  {
+    "id_challenge": "4115",
+    "id_rubrique": "209",
+    "titre": "Web3 - Put on your mask - Step 1",
+    "lang": "en",
+    "date_publication": "2023-10-20 11:48:53",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "4116",
+    "id_rubrique": "209",
+    "titre": "Web3 - Put on your mask - Step 2",
+    "lang": "en",
+    "date_publication": "2023-10-20 11:48:56",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "4118",
+    "id_rubrique": "204",
+    "titre": "ELF x64 - Basic heap overflow",
+    "lang": "en",
+    "date_publication": "2023-02-13 15:56:17",
+    "maj": "2023-02-13 20:07:57"
+  },
+  {
+    "id_challenge": "4120",
+    "id_rubrique": "157",
+    "titre": "Bohemian RhapC2",
+    "lang": "en",
+    "date_publication": "2023-03-23 17:31:33",
+    "maj": "2023-07-10 15:31:53"
+  },
+  {
+    "id_challenge": "4122",
+    "id_rubrique": "157",
+    "titre": "C for C-cure",
+    "lang": "en",
+    "date_publication": "2024-04-05 14:00:03",
+    "maj": "2024-04-05 14:00:03"
+  },
+  {
+    "id_challenge": "4128",
+    "id_rubrique": "204",
+    "titre": "ELF RISC-V - Intro - let&#8217;s do the ROP",
+    "lang": "en",
+    "date_publication": "2023-02-13 15:56:29",
+    "maj": "2023-02-15 23:21:49"
+  },
+  {
+    "id_challenge": "4148",
+    "id_rubrique": "154",
+    "titre": "JWT - Unsecure Key Handling",
+    "lang": "en",
+    "date_publication": "2023-02-23 12:18:34",
+    "maj": "2023-02-23 12:18:34"
+  },
+  {
+    "id_challenge": "4150",
+    "id_rubrique": "154",
+    "titre": "JWT - Header Injection",
+    "lang": "en",
+    "date_publication": "2023-02-23 12:18:27",
+    "maj": "2023-02-23 12:18:27"
+  },
+  {
+    "id_challenge": "4152",
+    "id_rubrique": "154",
+    "titre": "JWT - Unsecure File Signature",
+    "lang": "en",
+    "date_publication": "2023-02-23 12:18:18",
+    "maj": "2023-02-23 12:18:18"
+  },
+  {
+    "id_challenge": "4153",
+    "id_rubrique": "160",
+    "titre": "Hill Cipher",
+    "lang": "en",
+    "date_publication": "2023-03-21 18:19:24",
+    "maj": "2023-04-19 19:38:21"
+  },
+  {
+    "id_challenge": "4184",
+    "id_rubrique": "160",
+    "titre": "RSA - H-rabin",
+    "lang": "en",
+    "date_publication": "2023-03-21 18:19:13",
+    "maj": "2023-03-21 22:58:17"
+  },
+  {
+    "id_challenge": "4185",
+    "id_rubrique": "156",
+    "titre": "Genius ID",
+    "lang": "en",
+    "date_publication": "2023-05-10 15:01:08",
+    "maj": "2023-05-11 20:24:24"
+  },
+  {
+    "id_challenge": "4205",
+    "id_rubrique": "158",
+    "titre": "PE x64 - UEFI Secure Boot",
+    "lang": "en",
+    "date_publication": "2023-05-10 15:01:18",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "4206",
+    "id_rubrique": "158",
+    "titre": "HackerMan",
+    "lang": "en",
+    "date_publication": "2023-05-10 15:01:15",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "4227",
+    "id_rubrique": "191",
+    "titre": "AppArmor - Jail Introduction",
+    "lang": "en",
+    "date_publication": "2023-05-10 15:01:03",
+    "maj": "2025-06-17 16:12:28"
+  },
+  {
+    "id_challenge": "4258",
+    "id_rubrique": "209",
+    "titre": "Deleted file",
+    "lang": "en",
+    "date_publication": "2023-05-24 14:07:36",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "4259",
+    "id_rubrique": "183",
+    "titre": "OSPF - Authentication",
+    "lang": "en",
+    "date_publication": "2023-06-05 12:22:03",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "4260",
+    "id_rubrique": "183",
+    "titre": "ARP Spoofing - Active listening",
+    "lang": "en",
+    "date_publication": "2023-06-05 12:22:20",
+    "maj": "2023-06-05 12:22:20"
+  },
+  {
+    "id_challenge": "4261",
+    "id_rubrique": "183",
+    "titre": "ARP Spoofing - The man in the middle",
+    "lang": "en",
+    "date_publication": "2024-05-28 12:00:53",
+    "maj": "2024-05-28 12:00:53"
+  },
+  {
+    "id_challenge": "4268",
+    "id_rubrique": "155",
+    "titre": "AST - Deobfuscation",
+    "lang": "en",
+    "date_publication": "2023-06-27 11:58:02",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "4278",
+    "id_rubrique": "157",
+    "titre": "End Droid",
+    "lang": "en",
+    "date_publication": "2023-07-13 16:04:48",
+    "maj": "2023-07-13 16:07:26"
+  },
+  {
+    "id_challenge": "4283",
+    "id_rubrique": "154",
+    "titre": "Java - Custom gadget deserialization",
+    "lang": "en",
+    "date_publication": "2023-12-28 10:58:36",
+    "maj": "2024-12-10 18:00:05"
+  },
+  {
+    "id_challenge": "4285",
+    "id_rubrique": "158",
+    "titre": "Unity3D Save handling",
+    "lang": "en",
+    "date_publication": "2023-07-21 17:00:49",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "4287",
+    "id_rubrique": "209",
+    "titre": "Air-gap exfiltration",
+    "lang": "en",
+    "date_publication": "2023-10-20 11:49:03",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "4288",
+    "id_rubrique": "209",
+    "titre": "Try again 2",
+    "lang": "en",
+    "date_publication": "2023-10-20 11:48:50",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "4289",
+    "id_rubrique": "209",
+    "titre": "Capture this",
+    "lang": "en",
+    "date_publication": "2023-10-20 11:48:59",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "4296",
+    "id_rubrique": "159",
+    "titre": "TCP - Back to school",
+    "lang": "en",
+    "date_publication": "2023-06-19 17:42:22",
+    "maj": "2024-10-29 17:17:22"
+  },
+  {
+    "id_challenge": "4297",
+    "id_rubrique": "159",
+    "titre": "TCP - Encoded string",
+    "lang": "en",
+    "date_publication": "2023-06-19 17:42:29",
+    "maj": "2024-10-29 17:26:19"
+  },
+  {
+    "id_challenge": "4298",
+    "id_rubrique": "159",
+    "titre": "TCP - The Roman wheel",
+    "lang": "en",
+    "date_publication": "2023-06-19 17:42:36",
+    "maj": "2024-10-29 17:26:56"
+  },
+  {
+    "id_challenge": "4299",
+    "id_rubrique": "159",
+    "titre": "TCP - Uncompress Me",
+    "lang": "en",
+    "date_publication": "2023-06-19 17:42:43",
+    "maj": "2024-10-29 17:27:26"
+  },
+  {
+    "id_challenge": "4303",
+    "id_rubrique": "154",
+    "titre": "XSS - Server Side",
+    "lang": "en",
+    "date_publication": "2023-06-23 12:38:56",
+    "maj": "2023-06-23 12:38:56"
+  },
+  {
+    "id_challenge": "4307",
+    "id_rubrique": "209",
+    "titre": "C2 Mythic",
+    "lang": "en",
+    "date_publication": "2023-06-23 12:38:02",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "4351",
+    "id_rubrique": "155",
+    "titre": "Self XSS - DOM Secrets",
+    "lang": "en",
+    "date_publication": "2023-07-28 20:43:22",
+    "maj": "2023-07-28 20:43:22"
+  },
+  {
+    "id_challenge": "4352",
+    "id_rubrique": "155",
+    "titre": "Self XSS - Race Condition",
+    "lang": "en",
+    "date_publication": "2023-07-28 20:43:05",
+    "maj": "2023-07-28 20:43:05"
+  },
+  {
+    "id_challenge": "4353",
+    "id_rubrique": "155",
+    "titre": "Same Origin Method Execution",
+    "lang": "en",
+    "date_publication": "2023-07-28 20:42:49",
+    "maj": "2023-07-28 20:42:49"
+  },
+  {
+    "id_challenge": "4354",
+    "id_rubrique": "155",
+    "titre": "Browser - bfcache / disk cache",
+    "lang": "en",
+    "date_publication": "2023-07-28 20:42:31",
+    "maj": "2023-07-28 20:42:31"
+  },
+  {
+    "id_challenge": "4362",
+    "id_rubrique": "155",
+    "titre": "Relative Path Overwrite",
+    "lang": "en",
+    "date_publication": "2023-07-28 20:42:06",
+    "maj": "2023-09-14 08:01:28"
+  },
+  {
+    "id_challenge": "4418",
+    "id_rubrique": "191",
+    "titre": "Python - Eval Is Evil",
+    "lang": "en",
+    "date_publication": "2023-12-28 10:58:27",
+    "maj": "2023-12-28 10:58:27"
+  },
+  {
+    "id_challenge": "4419",
+    "id_rubrique": "191",
+    "titre": "AppArmor - Jail Medium",
+    "lang": "en",
+    "date_publication": "2023-09-25 12:47:07",
+    "maj": "2023-10-10 18:21:32"
+  },
+  {
+    "id_challenge": "4458",
+    "id_rubrique": "159",
+    "titre": "Ethereum - King of the EVM",
+    "lang": "en",
+    "date_publication": "2024-02-29 14:07:54",
+    "maj": "2025-01-18 18:02:34"
+  },
+  {
+    "id_challenge": "4464",
+    "id_rubrique": "154",
+    "titre": "SQL Injection - Second Order",
+    "lang": "en",
+    "date_publication": "2023-11-29 12:00:13",
+    "maj": "2024-10-31 15:29:10"
+  },
+  {
+    "id_challenge": "4465",
+    "id_rubrique": "154",
+    "titre": "Elixir - EEx",
+    "lang": "en",
+    "date_publication": "2023-11-29 12:00:38",
+    "maj": "2023-11-29 12:00:38"
+  },
+  {
+    "id_challenge": "4468",
+    "id_rubrique": "157",
+    "titre": "VPN Provider",
+    "lang": "en",
+    "date_publication": "2025-09-08 12:01:14",
+    "maj": "2025-09-08 12:01:14"
+  },
+  {
+    "id_challenge": "4469",
+    "id_rubrique": "158",
+    "titre": "PYC - Self Modifying (Byte)Code",
+    "lang": "en",
+    "date_publication": "2023-12-28 10:58:46",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "4470",
+    "id_rubrique": "158",
+    "titre": "PE x64 - Tables in shambles",
+    "lang": "en",
+    "date_publication": "2023-12-28 10:58:41",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "4472",
+    "id_rubrique": "157",
+    "titre": "Android - Shady VPN",
+    "lang": "en",
+    "date_publication": "2025-09-08 12:01:40",
+    "maj": "2025-09-08 12:03:46"
+  },
+  {
+    "id_challenge": "4537",
+    "id_rubrique": "154",
+    "titre": "API - Broken Access",
+    "lang": "en",
+    "date_publication": "2024-01-18 11:59:32",
+    "maj": "2024-01-18 11:59:32"
+  },
+  {
+    "id_challenge": "4538",
+    "id_rubrique": "154",
+    "titre": "API - Mass Assignment",
+    "lang": "en",
+    "date_publication": "2024-01-18 11:59:42",
+    "maj": "2024-01-18 11:59:42"
+  },
+  {
+    "id_challenge": "4539",
+    "id_rubrique": "154",
+    "titre": "API - Broken Access 2",
+    "lang": "en",
+    "date_publication": "2024-01-18 11:59:50",
+    "maj": "2024-01-18 19:10:01"
+  },
+  {
+    "id_challenge": "4552",
+    "id_rubrique": "160",
+    "titre": "AES - ECB - Copy Paste",
+    "lang": "en",
+    "date_publication": "2024-02-05 12:33:24",
+    "maj": "2024-02-05 12:33:24"
+  },
+  {
+    "id_challenge": "4553",
+    "id_rubrique": "160",
+    "titre": "Shamir Secret Sharing - Introduction",
+    "lang": "en",
+    "date_publication": "2024-02-05 12:33:16",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "4554",
+    "id_rubrique": "160",
+    "titre": "Shamir Secret Sharing - Traitor",
+    "lang": "en",
+    "date_publication": "2024-02-05 12:32:51",
+    "maj": "2024-02-05 12:46:42"
+  },
+  {
+    "id_challenge": "4555",
+    "id_rubrique": "160",
+    "titre": "Shamir Secret Sharing - Reduction",
+    "lang": "en",
+    "date_publication": "2024-02-05 12:33:00",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "4556",
+    "id_rubrique": "160",
+    "titre": "Shamir Secret Sharing - Irreducible ?",
+    "lang": "en",
+    "date_publication": "2024-02-05 12:33:08",
+    "maj": "2024-02-05 12:46:29"
+  },
+  {
+    "id_challenge": "4594",
+    "id_rubrique": "183",
+    "titre": "Analog video",
+    "lang": "en",
+    "date_publication": "2025-06-23 20:18:48",
+    "maj": "2025-06-23 20:18:48"
+  },
+  {
+    "id_challenge": "4595",
+    "id_rubrique": "159",
+    "titre": "Ethereum - tx.origin",
+    "lang": "en",
+    "date_publication": "2024-02-29 14:08:00",
+    "maj": "2025-02-01 11:48:04"
+  },
+  {
+    "id_challenge": "4596",
+    "id_rubrique": "159",
+    "titre": "Ethereum - Bunker",
+    "lang": "en",
+    "date_publication": "2024-02-29 14:08:06",
+    "maj": "2025-02-01 11:48:16"
+  },
+  {
+    "id_challenge": "4597",
+    "id_rubrique": "159",
+    "titre": "Ethereum - Architect",
+    "lang": "en",
+    "date_publication": "2024-02-29 14:08:10",
+    "maj": "2025-02-01 11:48:30"
+  },
+  {
+    "id_challenge": "4599",
+    "id_rubrique": "157",
+    "titre": "Mersenne with 2",
+    "lang": "en",
+    "date_publication": "2024-04-05 14:00:24",
+    "maj": "2024-04-05 14:00:24"
+  },
+  {
+    "id_challenge": "4600",
+    "id_rubrique": "157",
+    "titre": "Extractor",
+    "lang": "en",
+    "date_publication": "2024-04-05 14:00:17",
+    "maj": "2024-04-05 14:12:36"
+  },
+  {
+    "id_challenge": "4646",
+    "id_rubrique": "156",
+    "titre": "PNG - EMD",
+    "lang": "en",
+    "date_publication": "2025-06-23 20:18:13",
+    "maj": "2025-06-23 20:18:13"
+  },
+  {
+    "id_challenge": "4663",
+    "id_rubrique": "160",
+    "titre": "File - PKZIP 2",
+    "lang": "en",
+    "date_publication": "2024-11-08 12:00:37",
+    "maj": "2024-11-08 12:00:37"
+  },
+  {
+    "id_challenge": "4664",
+    "id_rubrique": "183",
+    "titre": "NTLM - Authentication",
+    "lang": "en",
+    "date_publication": "2024-05-28 12:00:34",
+    "maj": "2025-01-12 15:34:01"
+  },
+  {
+    "id_challenge": "4665",
+    "id_rubrique": "183",
+    "titre": "Kerberos - Authentication",
+    "lang": "en",
+    "date_publication": "2024-05-28 12:00:37",
+    "maj": "2025-10-24 16:12:27"
+  },
+  {
+    "id_challenge": "4666",
+    "id_rubrique": "183",
+    "titre": "Data extraction",
+    "lang": "en",
+    "date_publication": "2024-05-28 12:00:41",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "4667",
+    "id_rubrique": "183",
+    "titre": "WPA2 - Enterprise",
+    "lang": "en",
+    "date_publication": "2024-05-28 12:00:45",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "4668",
+    "id_rubrique": "183",
+    "titre": "WPA3 - SAE",
+    "lang": "en",
+    "date_publication": "2024-05-28 12:00:48",
+    "maj": "2024-05-29 13:28:56"
+  },
+  {
+    "id_challenge": "4714",
+    "id_rubrique": "204",
+    "titre": "ELF x64 - Stack buffer overflow - Stack pivot",
+    "lang": "en",
+    "date_publication": "2024-07-11 11:58:35",
+    "maj": "2024-07-11 11:58:35"
+  },
+  {
+    "id_challenge": "4715",
+    "id_rubrique": "204",
+    "titre": "ELF x64 - Syscall chaining",
+    "lang": "en",
+    "date_publication": "2024-07-11 11:58:38",
+    "maj": "2024-07-11 11:58:38"
+  },
+  {
+    "id_challenge": "4716",
+    "id_rubrique": "204",
+    "titre": "ELF x64 - Heap Hop",
+    "lang": "en",
+    "date_publication": "2024-07-11 11:58:41",
+    "maj": "2025-01-13 12:37:22"
+  },
+  {
+    "id_challenge": "4717",
+    "id_rubrique": "204",
+    "titre": "ELF x64 - Advanced blind format string exploitation",
+    "lang": "en",
+    "date_publication": "2024-07-11 11:58:45",
+    "maj": "2025-01-13 12:37:26"
+  },
+  {
+    "id_challenge": "4737",
+    "id_rubrique": "159",
+    "titre": "Deep Learning - Introduction",
+    "lang": "en",
+    "date_publication": "2024-07-26 20:33:03",
+    "maj": "2024-12-31 12:24:24"
+  },
+  {
+    "id_challenge": "4738",
+    "id_rubrique": "159",
+    "titre": "Deep Learning - Captcha",
+    "lang": "en",
+    "date_publication": "2024-07-26 20:33:07",
+    "maj": "2024-12-10 18:01:21"
+  },
+  {
+    "id_challenge": "4739",
+    "id_rubrique": "159",
+    "titre": "Adversarial Attack - GAN",
+    "lang": "en",
+    "date_publication": "2024-07-26 20:33:10",
+    "maj": "2025-02-10 15:56:10"
+  },
+  {
+    "id_challenge": "4740",
+    "id_rubrique": "191",
+    "titre": "Deep learning - Malicious model",
+    "lang": "en",
+    "date_publication": "2024-07-26 20:33:13",
+    "maj": "2025-02-10 15:48:49"
+  },
+  {
+    "id_challenge": "4741",
+    "id_rubrique": "159",
+    "titre": "Adversarial Attack - Prison Break",
+    "lang": "en",
+    "date_publication": "2024-07-26 20:33:17",
+    "maj": "2025-02-10 15:56:04"
+  },
+  {
+    "id_challenge": "4769",
+    "id_rubrique": "155",
+    "titre": "CSPT - The Ruler",
+    "lang": "en",
+    "date_publication": "2024-09-27 14:02:20",
+    "maj": "2024-09-27 14:02:20"
+  },
+  {
+    "id_challenge": "4771",
+    "id_rubrique": "154",
+    "titre": "Python - dotenv",
+    "lang": "en",
+    "date_publication": "2024-09-27 14:02:26",
+    "maj": "2024-09-27 14:02:26"
+  },
+  {
+    "id_challenge": "4772",
+    "id_rubrique": "154",
+    "titre": "Nginx - SSRF Misconfiguration",
+    "lang": "en",
+    "date_publication": "2024-09-27 14:02:29",
+    "maj": "2024-12-02 22:24:40"
+  },
+  {
+    "id_challenge": "4773",
+    "id_rubrique": "154",
+    "titre": "Nginx - Root Location Misconfiguration",
+    "lang": "en",
+    "date_publication": "2024-09-27 14:02:34",
+    "maj": "2024-09-27 20:05:54"
+  },
+  {
+    "id_challenge": "4774",
+    "id_rubrique": "154",
+    "titre": "Nginx - Alias Misconfiguration",
+    "lang": "en",
+    "date_publication": "2024-09-27 14:02:37",
+    "maj": "2024-09-27 14:02:37"
+  },
+  {
+    "id_challenge": "4802",
+    "id_rubrique": "209",
+    "titre": "Remote Support",
+    "lang": "en",
+    "date_publication": "2024-11-08 12:00:40",
+    "maj": "2024-11-08 12:00:40"
+  },
+  {
+    "id_challenge": "4803",
+    "id_rubrique": "209",
+    "titre": "MasterKee",
+    "lang": "en",
+    "date_publication": "2024-11-08 12:00:33",
+    "maj": "2024-11-21 16:45:58"
+  },
+  {
+    "id_challenge": "4824",
+    "id_rubrique": "157",
+    "titre": "ComCyber - Challenge",
+    "lang": "en",
+    "date_publication": "2024-11-19 10:03:03",
+    "maj": "2024-11-19 10:03:03"
+  },
+  {
+    "id_challenge": "4832",
+    "id_rubrique": "160",
+    "titre": "DSA - Implementation error",
+    "lang": "en",
+    "date_publication": "2024-12-13 16:00:14",
+    "maj": "2025-06-28 23:39:29"
+  },
+  {
+    "id_challenge": "4833",
+    "id_rubrique": "160",
+    "titre": "ElGamal - Fault attack (Introduction)",
+    "lang": "en",
+    "date_publication": "2024-12-13 16:00:21",
+    "maj": "2024-12-17 09:36:49"
+  },
+  {
+    "id_challenge": "4834",
+    "id_rubrique": "160",
+    "titre": "Goldreich Goldwasser Halevi | Weak Parameter",
+    "lang": "en",
+    "date_publication": "2024-12-13 16:00:29",
+    "maj": "2024-12-13 16:00:29"
+  },
+  {
+    "id_challenge": "4835",
+    "id_rubrique": "160",
+    "titre": "NTRU | Weak Parameter",
+    "lang": "en",
+    "date_publication": "2024-12-13 16:00:37",
+    "maj": "2024-12-17 09:57:37"
+  },
+  {
+    "id_challenge": "4836",
+    "id_rubrique": "160",
+    "titre": "NTRU | Multiple Transmission",
+    "lang": "en",
+    "date_publication": "2024-12-13 16:00:56",
+    "maj": "2024-12-17 09:58:10"
+  },
+  {
+    "id_challenge": "4863",
+    "id_rubrique": "158",
+    "titre": "Basic ? crackme",
+    "lang": "en",
+    "date_publication": "2025-03-14 09:49:26",
+    "maj": "2025-03-14 09:49:26"
+  },
+  {
+    "id_challenge": "4864",
+    "id_rubrique": "158",
+    "titre": "PE DotNet - Memory Protect",
+    "lang": "en",
+    "date_publication": "2025-03-14 09:49:38",
+    "maj": "2025-03-14 09:49:38"
+  },
+  {
+    "id_challenge": "4866",
+    "id_rubrique": "158",
+    "titre": "PE32+ - KeygenMe",
+    "lang": "en",
+    "date_publication": "2025-03-14 09:49:46",
+    "maj": "2025-03-14 09:49:46"
+  },
+  {
+    "id_challenge": "4889",
+    "id_rubrique": "154",
+    "titre": "Ruby on Rails - ransack",
+    "lang": "en",
+    "date_publication": "2025-06-23 20:18:28",
+    "maj": "2025-06-23 20:18:28"
+  },
+  {
+    "id_challenge": "4964",
+    "id_rubrique": "209",
+    "titre": "ICMP exfiltration",
+    "lang": "en",
+    "date_publication": "2026-04-21 12:11:43",
+    "maj": "2026-04-21 12:14:01"
+  },
+  {
+    "id_challenge": "4975",
+    "id_rubrique": "209",
+    "titre": "Invocation",
+    "lang": "en",
+    "date_publication": "2026-04-21 12:11:48",
+    "maj": "2026-04-21 12:14:10"
+  },
+  {
+    "id_challenge": "4976",
+    "id_rubrique": "209",
+    "titre": "Trusted",
+    "lang": "en",
+    "date_publication": "2026-04-21 12:11:53",
+    "maj": "2026-04-21 12:14:20"
+  },
+  {
+    "id_challenge": "4977",
+    "id_rubrique": "209",
+    "titre": "Heist of the century",
+    "lang": "en",
+    "date_publication": "2026-04-21 12:11:33",
+    "maj": "2026-04-21 12:30:27"
+  }
+]
