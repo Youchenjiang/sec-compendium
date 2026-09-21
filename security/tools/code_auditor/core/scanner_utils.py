@@ -58,10 +58,10 @@ def iter_php_files(pkg_dir, skip_tests=True, skip_vendor=True):
 
 
 def read_php_file(path):
-    for _ in range(3):
+    for _ in range(5):
         try:
             return Path(path).read_text(encoding="utf-8", errors="ignore")
-        except PermissionError:
+        except (PermissionError, OSError):
             time.sleep(0.05)
         except Exception:
             return None
