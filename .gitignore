@@ -3,8 +3,26 @@ __pycache__/
 *.py[codz]
 *$py.class
 
-# C extensions
+# C/C++ & Zig build artifacts & extensions
 *.so
+*.obj
+*.o
+*.pdb
+*.ilk
+*.exp
+.zig-cache/
+zig-out/
+
+# Operating System & Desktop metadata
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+desktop.ini
 
 # Distribution / packaging
 .Python
@@ -227,3 +245,6 @@ security/projects/
 # Environment Variables & Secrets
 .env
 secrets.env
+
+# Scratch & Temporary Workspace
+/scratch/
