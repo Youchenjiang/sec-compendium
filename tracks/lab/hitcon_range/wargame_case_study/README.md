@@ -1,7 +1,7 @@
 # HITCON 2026 Wargame — PHP Composer Security Challenge
 
 > 📦 **知識庫整併說明**：本專案原為獨立倉庫 wargame-bot，已完整保留所有 16 個 Git 提交歷史與攻防框架合併入 sec-compendium，作為核心實戰題庫、自動化漏洞挖掘框架與賽後技術覆盤資產。  
-> 🛠️ **通用引擎提升說明**：本賽事實戰中所提煉之通用靜態代碼分析、Exploit 自動合成與 Docker 沙箱驗證引擎，已正式解耦並提升為獨立通用武器庫：[**Code Auditor (`security/tools/code_auditor`)**](../../tools/code_auditor/README.md)。本目錄保留作為 HITCON 2026 實戰案例庫、提交腳本與覆盤戰報。
+> 🛠️ **通用引擎提升說明**：本賽事實戰中所提煉之通用靜態代碼分析、Exploit 自動合成與 Docker 沙箱驗證引擎，已正式解耦並提升為獨立通用武器庫：[**Code Auditor (`security/tools/code_auditor`)**](../../../../security/tools/code_auditor/README.md)。本目錄保留作為 HITCON 2026 實戰案例庫、提交腳本與覆盤戰報。
 
 Automated vulnerability auditing, exploit development, and verification workspace for the HITCON 2026 Wargame PHP Composer Security Challenge.
 
