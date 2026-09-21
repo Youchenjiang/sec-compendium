@@ -1,8 +1,8 @@
 # 🏰 APT 跨網段全鏈條奪旗靶場 (APT Cross-Domain CTF Range)
 
 > **對接手冊**:
-> - [28.1 端到端 APT 攻擊鏈奪旗實戰：從邊界突破到核心資料庫竊取](../../blue_team/playbooks/phase_6_capstone/28.1_end_to_end_apt_attack_chain_ctf.md)
-> - [28.3 多主機橫向移動日誌關聯與攻擊路徑歸因](../../blue_team/playbooks/phase_6_capstone/28.3_multi_host_lateral_movement_attribution.md)
+> - [28.1 端到端 APT 攻擊鏈奪旗實戰：從邊界突破到核心資料庫竊取](../../28.1_end_to_end_apt_attack_chain_ctf.md)
+> - [28.3 多主機橫向移動日誌關聯與攻擊路徑歸因](../../28.3_multi_host_lateral_movement_attribution.md)
 
 ---
 

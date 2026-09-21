@@ -1,6 +1,6 @@
 # 🔍 BOTS 威脅獵捕查詢劇本 (BOTS Threat Hunting Playbook)
 
-> **對接手冊**: [28.2 企業級實戰資料集：Splunk BOTS (Boss of the SOC) 深度研判](../../../blue_team/playbooks/phase_6_capstone/28.2_large_scale_enterprise_bots_dataset.md)
+> **對接手冊**: [28.2 企業級實戰資料集：Splunk BOTS (Boss of the SOC) 深度研判](../../../28.2_large_scale_enterprise_bots_dataset.md)
 
 本劇本提供在 OpenSearch Dashboards (http://localhost:5601) 與 Splunk 中進行關聯分析之標準語法。
 

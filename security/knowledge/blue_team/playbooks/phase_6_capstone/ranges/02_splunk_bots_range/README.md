@@ -1,6 +1,6 @@
 # 📊 Splunk / Elastic BOTS 威脅獵捕靶場 (BOTS Hunting Range)
 
-> **對接手冊**: [28.2 企業級實戰資料集：Splunk BOTS (Boss of the SOC) 深度研判](../../blue_team/playbooks/phase_6_capstone/28.2_large_scale_enterprise_bots_dataset.md)
+> **對接手冊**: [28.2 企業級實戰資料集：Splunk BOTS (Boss of the SOC) 深度研判](../../28.2_large_scale_enterprise_bots_dataset.md)
 
 ---
 
