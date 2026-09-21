@@ -1,8 +1,8 @@
 # 🟣 紫隊自動化對抗模擬靶場 (Atomic Purple Range)
 
 > **對接手冊**:
-> - [27.1 模組化攻擊模擬：Atomic Red Team 原子測試手冊](../../blue_team/playbooks/phase_6_capstone/27.1_automated_adversary_emulation_atomic_red_team.md)
-> - [27.2 自動化對抗演練平台：MITRE Caldera 實戰指南](../../blue_team/playbooks/phase_6_capstone/27.2_automated_adversary_emulation_platform_caldera.md)
+> - [27.1 模組化攻擊模擬：Atomic Red Team 原子測試手冊](../../27.1_automated_adversary_emulation_atomic_red_team.md)
+> - [27.2 自動化對抗演練平台：MITRE Caldera 實戰指南](../../27.2_automated_adversary_emulation_platform_caldera.md)
 
 ---
 
