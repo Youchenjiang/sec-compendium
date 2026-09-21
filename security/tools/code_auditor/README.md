@@ -8,6 +8,7 @@ Code Auditor 是一套通用的開源白箱代碼審計、自動化 PoC / Exploi
 
 ```
 code_auditor/
+├── audit_methodology.md # 📐 全方位安全審計、漏洞驗證與 CTF 攻防方法論 (Freebuff Framework)
 ├── core/                # 🔍 核心靜態分析引擎 (AST 語法樹 + 污點分析 + 38 條安全 Sink 規則)
 ├── generator/           # ⚡ 自動化 PoC / Exploit 產生器 (SQLi, RCE, SSTI, Unserialize, 任意讀寫)
 ├── sandbox/             # 🐳 Docker 隔離沙箱動態驗證器 (支援 PHP 7.4 / 8.x)
@@ -16,6 +17,9 @@ code_auditor/
 ├── config.py            # ⚙️ 全域環境變數與平台設定
 └── main.py              # 🚀 統一 CLI 入口
 ```
+
+> 📖 **審計方法論手冊**：關於完整靜態分析規則、動態驗證原則、CTF 攻防技巧（Web/Pwn/Crypto/Forensics/Reverse），請參閱 👉 [`audit_methodology.md`](audit_methodology.md)。
+
 
 ---
 
