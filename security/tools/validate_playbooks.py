@@ -22,7 +22,7 @@ if sys.platform == "win32":
         pass
 
 BASE_DIR = os.path.normpath(os.path.join(os.path.dirname(__file__), ".."))
-PLAYBOOKS_DIR = os.path.join(BASE_DIR, "blue_team", "playbooks")
+PLAYBOOKS_DIR = os.path.join(BASE_DIR, "knowledge", "blue_team", "playbooks")
 
 PHASES = [
     "phase_0_foundation",
@@ -59,14 +59,15 @@ def check_playbook_file(fpath):
     in_code = False
     fence_count = 0
     for line in lines:
-        s = line.strip()
-        if s.startswith("```"):
-            in_code = not in_code
+        stripped = line.strip()
+        if stripped.startswith("```"):
             fence_count += 1
-    if in_code:
-        issues.append("代碼圍欄未閉合 (Unbalanced code fences)")
+            in_code = not in_code
 
-    # 2. 行數檢查
+    if in_code:
+        issues.append("程式碼圍欄 (```) 未正常閉合 (奇數個圍欄標記)")
+
+    # 2. 篇幅行數檢查
     if len(lines) < MIN_PLAYBOOK_LINES:
         issues.append(
             f"未達最低行數門檻 ({len(lines)}/{MIN_PLAYBOOK_LINES} 行, 建議完整度 >= {RECOMMENDED_PLAYBOOK_LINES} 行)"
@@ -82,8 +83,15 @@ def check_playbook_file(fpath):
 
     return len(lines), fence_count, issues
 
+REPO_ROOT = os.path.normpath(os.path.join(BASE_DIR, ".."))
+
 def check_broken_links():
-    md_files = glob.glob(os.path.join(BASE_DIR, "blue_team", "**/*.md"), recursive=True)
+    raw_files = glob.glob(os.path.join(REPO_ROOT, "**", "*.md"), recursive=True)
+    excluded_markers = [os.sep + ".git", os.path.join("security", "knowledge", "red_team")]
+    md_files = [
+        f for f in raw_files
+        if not any(marker in os.path.normpath(f) for marker in excluded_markers)
+    ]
     broken = []
     for fpath in md_files:
         safe_fpath = os.path.realpath(fpath)
@@ -101,9 +109,9 @@ def check_broken_links():
                 continue
             abs_target = os.path.normpath(os.path.join(os.path.dirname(fpath), target_path))
             if not os.path.exists(abs_target):
-                rel_source = os.path.relpath(fpath, BASE_DIR)
+                rel_source = os.path.relpath(fpath, REPO_ROOT)
                 broken.append((rel_source, link))
-    return broken
+    return broken, len(md_files)
 
 def audit_phase(phase):
     pdir = os.path.join(PLAYBOOKS_DIR, phase)
@@ -111,7 +119,11 @@ def audit_phase(phase):
         return 0, 0, True
 
     files = sorted(glob.glob(os.path.join(pdir, "**", "*.md"), recursive=True))
-    active_files = [f for f in files if os.path.basename(f).lower() != "readme.md"]
+    # 排除 README.md 以及 ranges 靶場環境配置文檔（如查詢清單或 Flag 清單）
+    active_files = [
+        f for f in files 
+        if os.path.basename(f).lower() != "readme.md" and "ranges" not in os.path.normpath(f).split(os.sep)
+    ]
     phase_lines = 0
     phase_passed = True
 
@@ -131,16 +143,16 @@ def audit_phase(phase):
 
 def audit_link_integrity():
     print("\n" + "=" * 75)
-    print("🔗 全庫超連結完整性檢查 (Link Integrity Audit)")
+    print("🔗 全專案超連結完整性檢查 (Repository Link Integrity Audit)")
     print("=" * 75)
-    broken_links = check_broken_links()
+    broken_links, file_count = check_broken_links()
     if broken_links:
         print(f"❌ 發現 {len(broken_links)} 處死鏈 (Broken Links):")
         for src, lnk in broken_links:
             print(f"   來源: {src} -> 目標: {lnk}")
         return False
 
-    print("✅ 全庫所有內部超連結 100% 暢通，無任何死鏈！")
+    print(f"✅ 全專案 {file_count} 份 Markdown 文檔的所有內部超連結 100% 暢通，無任何死鏈！")
     return True
 
 def main():
