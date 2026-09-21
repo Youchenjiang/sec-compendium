@@ -121,7 +121,7 @@ def audit_phase(phase):
     files = sorted(glob.glob(os.path.join(pdir, "**", "*.md"), recursive=True))
     # 排除 README.md 以及 ranges 靶場環境配置文檔（如查詢清單或 Flag 清單）
     active_files = [
-        f for f in files 
+        f for f in files
         if os.path.basename(f).lower() != "readme.md" and "ranges" not in os.path.normpath(f).split(os.sep)
     ]
     phase_lines = 0

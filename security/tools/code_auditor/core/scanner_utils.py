@@ -61,7 +61,7 @@ def read_php_file(path):
     for _ in range(5):
         try:
             return Path(path).read_text(encoding="utf-8", errors="ignore")
-        except (PermissionError, OSError):
+        except OSError:
             time.sleep(0.05)
         except Exception:
             return None
