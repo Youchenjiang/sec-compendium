@@ -6,12 +6,12 @@
 
 ## 📋 目錄
 
-1. [🛠️ 網路掃描與探測 (Nmap)](#️-網路掃描與探測-nmap)
-2. [🦈 封包擷取與流量分析 (tcpdump & Wireshark)](#-封包擷取與流量分析-tcpdump--wireshark)
-3. [🔒 SSL / TLS 憑證與連線排查 (OpenSSL)](#-ssl--tls-憑證與連線排查-openssl)
-4. [🛡️ 防火牆與網路邊界硬化 (IPTables / UFW / Nginx)](#️-防火牆與網路邊界硬化-iptables--ufw--nginx)
-5. [🔑 SSH 安全硬化與隧道 (SSH Security & Tunnels)](#-ssh-安全硬化與隧道-ssh-security--tunnels)
-6. [🌐 Web 網路表頭與連線測試 (curl & Security Headers)](#-web-網路表頭與連線測試-curl--security-headers)
+1. [🛠️ 1. 網路掃描與探測 (Nmap)](#1-網路掃描與探測-nmap)
+2. [🦈 2. 封包擷取與流量分析 (tcpdump & Wireshark)](#2-封包擷取與流量分析-tcpdump--wireshark)
+3. [🔒 3. SSL / TLS 憑證與連線排查 (OpenSSL)](#3-ssl--tls-憑證與連線排查-openssl)
+4. [🛡️ 4. 防火牆與網路邊界硬化 (IPTables / UFW / Nginx)](#4-防火牆與網路邊界硬化-iptables--ufw--nginx)
+5. [🔑 5. SSH 安全硬化與隧道 (SSH Security & Tunnels)](#5-ssh-安全硬化與隧道-ssh-security--tunnels)
+6. [🌐 6. Web 網路表頭與連線測試 (curl & Security Headers)](#6-web-網路表頭與連線測試-curl--security-headers)
 
 ---
 
