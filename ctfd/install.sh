@@ -41,5 +41,5 @@ docker compose restart ctfd || docker-compose restart ctfd
 echo "=================================================="
 echo "🎉 部署完成！"
 echo "- 動態 Flag 路由與下載功能已就緒。"
-echo "- 競賽自動維運腳本位於 automation/sync_challenges.py 與 send_final_top10.py"
+echo "- 競賽自動維運腳本位於 automation/sync_challenges.py 與 automation/send_final_top10.py"
 echo "=================================================="
