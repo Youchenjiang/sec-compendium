@@ -5,7 +5,7 @@
 >
 > 圖例：`[ ]` 未完成　`[x]` 已完成　`[/]` 進行中
 >
-> 建議配合 [Week 計劃](../../../../security/blue_team/learning_paths/full_learning_path.md) 逐週核對進度
+> 建議配合 [Week 計劃](../../../../security/knowledge/blue_team/learning_paths/full_learning_path.md) 逐週核對進度
 
 ---
 
@@ -537,16 +537,16 @@
 
 ## 🏰 實體靶場與離線鑑識標本演練追蹤 (Cyber Range & Forensic Evidence Labs)
 
-> 配套環境目錄：[`../labs/README.md`](../labs/README.md) ｜ 跡證標本目錄：[`evidence/README.md`](evidence/README.md)
+> 配套環境目錄：[`security/knowledge/blue_team/playbooks/phase_6_capstone/ranges/README.md`](../../../../security/knowledge/blue_team/playbooks/phase_6_capstone/ranges/README.md) ｜ 跡證標本目錄：[`security/practice/exams/evidence/README.md`](../../../../security/practice/exams/evidence/README.md)
 
 ### 📌 實體靶場環境 (Live Cyber Ranges)
-- [ ] [01_atomic_purple_range: Caldera C2 + Linux Victim (T1059, T1003, T1021)](../labs/01_atomic_purple_range/README.md)
-- [ ] [02_splunk_bots_range: OpenSearch SIEM + BOTS 企業實戰日誌檢索](../labs/02_splunk_bots_range/README.md)
-- [ ] [03_apt_cross_domain_ctf: DMZ Web RCE -> 內網跳板 -> 核心機密資料庫](../labs/03_apt_cross_domain_ctf/README.md)
+- [ ] [01_atomic_purple_range: Caldera C2 + Linux Victim (T1059, T1003, T1021)](../../../../security/knowledge/blue_team/playbooks/phase_6_capstone/ranges/01_atomic_purple_range/README.md)
+- [ ] [02_splunk_bots_range: OpenSearch SIEM + BOTS 企業實戰日誌檢索](../../../../security/knowledge/blue_team/playbooks/phase_6_capstone/ranges/02_splunk_bots_range/README.md)
+- [ ] [03_apt_cross_domain_ctf: DMZ Web RCE -> 內網跳板 -> 核心機密資料庫](../../../../security/knowledge/blue_team/playbooks/phase_6_capstone/ranges/03_apt_cross_domain_ctf/README.md)
 
 ### 📌 實體跡證分析標本 (Forensic Evidence Datasets)
-- [ ] [DNS 隱寫外帶分析 (Topic1.pcap) — Flag: skill54{sl0w_l34k_thru_dns53}](evidence/README.md#1-dns-隱寫外帶分析-pcapdns_exfil_topic1pcap)
-- [ ] [Web 入侵全鏈條分析 (traffic.pcap) — Flag: skill54{s0urc3m4p_j50n_un10n_2_rc3}](evidence/README.md#2-web-入侵與橫向移動流量分析-pcapweb_attack_trafficpcap)
-- [ ] [Java Heap Dump 記憶體取證 (patientportal.hprof.gz) — Flag: skill54{h34p_dump_sp1lls_th3_s3cr3ts}](evidence/README.md#3-java-記憶體-dump-分析-memorypatientportalhprofgz)
-- [ ] [Windows 安全事件日誌獵捕 (windows_ir_security_sample.json)](evidence/README.md#4-windows-安全事件獵捕-evtxwindows_ir_security_samplejson)
+- [ ] [DNS 隱寫外帶分析 (Topic1.pcap) — Flag: skill54{sl0w_l34k_thru_dns53}](../../../../security/practice/exams/evidence/README.md#1-dns-隱寫外帶分析-pcapdns_exfil_topic1pcap)
+- [ ] [Web 入侵全鏈條分析 (traffic.pcap) — Flag: skill54{s0urc3m4p_j50n_un10n_2_rc3}](../../../../security/practice/exams/evidence/README.md#2-web-入侵與橫向移動流量分析-pcapweb_attack_trafficpcap)
+- [ ] [Java Heap Dump 記憶體取證 (patientportal.hprof.gz) — Flag: skill54{h34p_dump_sp1lls_th3_s3cr3ts}](../../../../security/practice/exams/evidence/README.md#3-java-記憶體-dump-分析-memorypatientportalhprofgz)
+- [ ] [Windows 安全事件日誌獵捕 (windows_ir_security_sample.json)](../../../../security/practice/exams/evidence/README.md#4-windows-安全事件獵捕-evtxwindows_ir_security_samplejson)
 

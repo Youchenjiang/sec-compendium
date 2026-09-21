@@ -31,17 +31,17 @@ HITCON 藍隊 Cyber Range 通常模擬大型跨國企業或高科技園區的真
 
 ## 🗺️ 全棧藍隊攻防戰力全景圖 (7 大核心階段修煉手冊)
 
-本表彙整藍隊在真實企業攻防與 Cyber Range 靶場中的 **7 大核心能力鏈**，完全對接開源工具、本機現成文件與免費用戶可直接造訪的實操資源：
+本表彙整藍隊在真實企業攻防與 Cyber Range 靶場中的 **7 大核心能力鏈**，完全對接開源工具、內部離線教材庫（完整索引詳見 [sources_index.md](../90_runs/sources_index.md)）與免費用戶可直接造訪的實操資源：
 
 | 階段 (Stage) | 核心學習主題與研判思維 | 必修實戰命令與排查語法 | 實作與教材對應資源 |
 | :--- | :--- | :--- | :--- |
-| **階段 1**<br>🌐 **網路流量與通訊研判** | • TCP 三向交握狀態機與異常重傳/RST 分析<br>• HTTP 串流重組（Follow Stream）與惡意檔案提取<br>• DNS 隱蔽隧道（dnscat2/iodine）特徵識別<br>• C2 心跳連線模式（Cobalt Strike Beacon/Jitter 抖動） | `tshark -r net.pcap -Y "http.request" -T fields -e ip.src -e http.host -e http.request.uri`<br>`tshark -r net.pcap -q -z conv,ip`<br>`tshark -r net.pcap --export-objects "http,./dump"` | 📁 **本機**：`06_網路安全與數位取證/03_流量分析PCAP/Wireshark專題/`<br>📁 **本機真題**：`../../../security/exams/mock_exam_b_lab_questions.md`（第 52~81 題）<br>🌐 **線上練習**：[Malware Traffic Analysis (MTA)](https://www.malware-traffic-analysis.net/) |
-| **階段 2**<br>🧠 **記憶體與無檔案取證** | • Windows 核心進程親緣樹（`System` ➔ `smss` ➔ `services` ➔ `svchost`）<br>• `pslist` 雙向鏈表 vs `psscan` 核心特徵碼（破除 DKOM 隱藏）<br>• `malfind` 辨識 `PAGE_EXECUTE_READWRITE` (RWX) 注入代碼<br>• 導出記憶體 Payload 並逆向提取 C2 配置資訊 | `python3 vol.py -f mem.raw windows.pstree`<br>`python3 vol.py -f mem.raw windows.malfind`<br>`python3 vol.py -f mem.raw windows.netscan`<br>`strings -e l dump.dmp \| grep -iE "http://\|https://"` | 📁 **本機**：`06_網路安全與數位取證/04_數位取證DFIR/PDF元數據數位取證/`<br>📁 **本機真題**：`../../../security/exams/mock_exam_b_lab_questions.md`（第 1~5 題）<br>🌐 **線上練習**：[CyberDefenders - RedLine](https://cyberdefenders.org/blueteam-ctf-challenges/redline/)<br>📖 **手冊**：[SANS Memory Forensics Cheat Sheet (PDF)](https://www.sans.org/posters/memory-forensics-cheat-sheet/) |
-| **階段 3**<br>📑 **主機日誌與端點遙測** | • Windows Security 日誌：4624 (登入類型 3/10)、4625 (爆破)、7045 (新服務)<br>• Sysmon 驅動級遙測：EID 1 (進程/命令列)、EID 3 (網路連線)、EID 8 (遠端線程)<br>• 識破合法程式白利用（LOLBAS：`powershell -enc`, `certutil`, `rundll32`） | `Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4625} -MaxEvents 100`<br>`Get-WinEvent -FilterHashtable @{LogName='System'; Id=7045}`<br>`Get-WinEvent -FilterHashtable @{LogName='Microsoft-Windows-Sysmon/Operational'; Id=1}` | 📁 **本機**：`07_藍隊防禦與護網營運/04_護網專案營運/藍隊日誌/HW16-告警日志分析技术-v1.1.pdf`<br>📁 **本機真題**：`../../../security/exams/mock_exam_b_lab_questions.md`（第 6~11 題）<br>🌐 **開源工具**：[DeepBlueCLI (PowerShell 官方開源腳本)](https://github.com/sans-blue-team/DeepBlueCLI) |
-| **階段 4**<br>🗄️ **磁碟工件與時間線** | • NTFS 雙時間戳：`$STANDARD_INFORMATION` (0x10) vs `$FILE_NAME` (0x30)<br>• 識破攻擊者 Timestomping（時間戳偽造）<br>• 程式執行三大證據：Prefetch (.pf 執行次數與DLL)、Amcache (SHA1 Hash)、Shimcache | `MFTECmd.exe -f "C:\C\$MFT" --csv "C:\Analysis"`<br>`PECmd.exe -d "C:\Windows\Prefetch" --csv "C:\Analysis\Prefetch"`<br>`AmcacheParser.exe -f "Amcache.hve" --csv "C:\Analysis"` | 📁 **本機**：`07_藍隊防禦與護網營運/04_護網專案營運/藍隊日誌/HW17-快速应急响应技术-v1.0.pdf`<br>🌐 **開源神器**：[Eric Zimmerman's Tools 官方套件](https://ericzimmerman.github.io/)<br>📖 **手冊**：[SANS Windows Forensic Analysis Poster](https://www.sans.org/posters/windows-forensic-analysis/) |
-| **階段 5**<br>🕷️ **Web 攻擊排查與內存馬** | • Web 存取日誌四步研判法：請求 Payload ➔ 狀態碼 ➔ 回應長度 ➔ 主機外聯<br>• 一句話木馬排查（`eval($_POST[...])`）與冰蠍/哥斯拉流量解密<br>• 無檔案 Java 內存馬（Filter/Servlet 內存馬）原理<br>• 使用 Alibaba Arthas 現場逆向反編譯（`jad`）記憶體類別 | `awk '{print $1}' access.log \| sort \| uniq -c \| sort -nr`<br>`grep -iE "(\$\{jndi\|bash%20-i\|eval\()" access.log`<br>`find /var/www/html -name "*.php" -mtime -2`<br>`java -jar arthas-boot.jar` ➔ `sc *.Filter` ➔ `jad <FilterName>` | 📁 **本機**：`07_藍隊防禦與護網營運/03_日誌與告警研判/Web日誌分析與逃逸檢測/Web日志安全分析工具 v2.0.zip`<br>🌐 **開源神器**：[Alibaba Arthas 官方開源工具](https://arthas.aliyun.com/)<br>🌐 **開源排查工具**：[Loki (IOC / Webshell 掃描器)](https://github.com/Neo23x0/Loki) |
-| **階段 6**<br>🚧 **圍堵阻斷與系統加固** | • Cyber Range 賽事 SLA 保障：嚴禁拔網線/停用網卡，實施微創單點阻斷<br>• Linux 後門清剿：Crontab、`/etc/rc.local`、SUID 提權檔、SSH 公鑰<br>• Windows 後門根除：排程任務（Task Scheduler）、註冊表 RunKey、隱藏帳號 | `ss -antup \| grep ESTAB`<br>`iptables -I INPUT -s <C2_IP> -j DROP`<br>`iptables -I OUTPUT -d <C2_IP> -j DROP`<br>`find / -perm -4000 2>/dev/null`<br>`Get-ScheduledTask \| Where-Object { $_.State -ne 'Disabled' }` | 📁 **本機**：`07_藍隊防禦與護網營運/01_系統與資料庫加固/Linux系統安全加固/`<br>📁 **本機**：`07_藍隊防禦與護網營運/02_存取控制與防火牆/Linux存取控制與防火牆/防火牆練習-實驗-2024.docx`<br>📁 **本機手冊**：`HW09-安全加固实施标准-v1.0.pdf` |
-| **階段 7**<br>📐 **偵測工程與規則撰寫** | • 威脅特徵化（Detection as Code）<br>• YARA 規則撰寫：Strings, Hex, Condition 條件限制（避開性能雪崩）<br>• Sigma 規則撰寫：YAML 日誌特徵定義，並用 `sigmac` 轉譯為 Splunk SPL / Elastic 語法 | `yara -r my_rule.yar /var/www/html/`<br>`sigmac -t splunk -c win_sysmon rule.yml`<br>`sigmac -t es-qs rule.yml` | 📁 **本機**：`07_藍隊防禦與護網營運/04_護網專案營運/藍隊日誌/HW18-安全事件闭环流程管理-v1.0.pdf`<br>🌐 **開源規則庫**：[SigmaHQ 官方開源規則庫](https://github.com/SigmaHQ/sigma)<br>🌐 **在線轉換工具**：[Sigma Converter Online](https://sigmaconverter.com/) |
+| **階段 1**<br>🌐 **網路流量與通訊研判** | • TCP 三向交握狀態機與異常重傳/RST 分析<br>• HTTP 串流重組（Follow Stream）與惡意檔案提取<br>• DNS 隱蔽隧道（dnscat2/iodine）特徵識別<br>• C2 心跳連線模式（Cobalt Strike Beacon/Jitter 抖動） | `tshark -r net.pcap -Y "http.request" -T fields -e ip.src -e http.host -e http.request.uri`<br>`tshark -r net.pcap -q -z conv,ip`<br>`tshark -r net.pcap --export-objects "http,./dump"` | 📁 **[內部離線教材]**（詳見 [sources_index.md](../90_runs/sources_index.md)）：`06_網路安全與數位取證/03_流量分析PCAP/Wireshark專題/`<br>📁 **本機真題**：`../../../security/practice/exams/mock_exam_b_lab_questions.md`（第 52~81 題）<br>🌐 **線上練習**：[Malware Traffic Analysis (MTA)](https://www.malware-traffic-analysis.net/) |
+| **階段 2**<br>🧠 **記憶體與無檔案取證** | • Windows 核心進程親緣樹（`System` ➔ `smss` ➔ `services` ➔ `svchost`）<br>• `pslist` 雙向鏈表 vs `psscan` 核心特徵碼（破除 DKOM 隱藏）<br>• `malfind` 辨識 `PAGE_EXECUTE_READWRITE` (RWX) 注入代碼<br>• 導出記憶體 Payload 並逆向提取 C2 配置資訊 | `python3 vol.py -f mem.raw windows.pstree`<br>`python3 vol.py -f mem.raw windows.malfind`<br>`python3 vol.py -f mem.raw windows.netscan`<br>`strings -e l dump.dmp \| grep -iE "http://\|https://"` | 📁 **[內部離線教材]**（詳見 [sources_index.md](../90_runs/sources_index.md)）：`06_網路安全與數位取證/04_數位取證DFIR/PDF元數據數位取證/`<br>📁 **本機真題**：`../../../security/practice/exams/mock_exam_b_lab_questions.md`（第 1~5 題）<br>🌐 **線上練習**：[CyberDefenders - RedLine](https://cyberdefenders.org/blueteam-ctf-challenges/redline/)<br>📖 **手冊**：[SANS Memory Forensics Cheat Sheet (PDF)](https://www.sans.org/posters/memory-forensics-cheat-sheet/) |
+| **階段 3**<br>📑 **主機日誌與端點遙測** | • Windows Security 日誌：4624 (登入類型 3/10)、4625 (爆破)、7045 (新服務)<br>• Sysmon 驅動級遙測：EID 1 (進程/命令列)、EID 3 (網路連線)、EID 8 (遠端線程)<br>• 識破合法程式白利用（LOLBAS：`powershell -enc`, `certutil`, `rundll32`） | `Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4625} -MaxEvents 100`<br>`Get-WinEvent -FilterHashtable @{LogName='System'; Id=7045}`<br>`Get-WinEvent -FilterHashtable @{LogName='Microsoft-Windows-Sysmon/Operational'; Id=1}` | 📁 **[內部離線教材]**（詳見 [sources_index.md](../90_runs/sources_index.md)）：`07_藍隊防禦與護網營運/04_護網專案營運/藍隊日誌/HW16-告警日志分析技术-v1.1.pdf`<br>📁 **本機真題**：`../../../security/practice/exams/mock_exam_b_lab_questions.md`（第 6~11 題）<br>🌐 **開源工具**：[DeepBlueCLI (PowerShell 官方開源腳本)](https://github.com/sans-blue-team/DeepBlueCLI) |
+| **階段 4**<br>🗄️ **磁碟工件與時間線** | • NTFS 雙時間戳：`$STANDARD_INFORMATION` (0x10) vs `$FILE_NAME` (0x30)<br>• 識破攻擊者 Timestomping（時間戳偽造）<br>• 程式執行三大證據：Prefetch (.pf 執行次數與DLL)、Amcache (SHA1 Hash)、Shimcache | `MFTECmd.exe -f "C:\C\$MFT" --csv "C:\Analysis"`<br>`PECmd.exe -d "C:\Windows\Prefetch" --csv "C:\Analysis\Prefetch"`<br>`AmcacheParser.exe -f "Amcache.hve" --csv "C:\Analysis"` | 📁 **[內部離線教材]**（詳見 [sources_index.md](../90_runs/sources_index.md)）：`07_藍隊防禦與護網營運/04_護網專案營運/藍隊日誌/HW17-快速应急响应技术-v1.0.pdf`<br>🌐 **開源神器**：[Eric Zimmerman's Tools 官方套件](https://ericzimmerman.github.io/)<br>📖 **手冊**：[SANS Windows Forensic Analysis Poster](https://www.sans.org/posters/windows-forensic-analysis/) |
+| **階段 5**<br>🕷️ **Web 攻擊排查與內存馬** | • Web 存取日誌四步研判法：請求 Payload ➔ 狀態碼 ➔ 回應長度 ➔ 主機外聯<br>• 一句話木馬排查（`eval($_POST[...])`）與冰蠍/哥斯拉流量解密<br>• 無檔案 Java 內存馬（Filter/Servlet 內存馬）原理<br>• 使用 Alibaba Arthas 現場逆向反編譯（`jad`）記憶體類別 | `awk '{print $1}' access.log \| sort \| uniq -c \| sort -nr`<br>`grep -iE "(\$\{jndi\|bash%20-i\|eval\()" access.log`<br>`find /var/www/html -name "*.php" -mtime -2`<br>`java -jar arthas-boot.jar` ➔ `sc *.Filter` ➔ `jad <FilterName>` | 📁 **[內部離線教材]**（詳見 [sources_index.md](../90_runs/sources_index.md)）：`07_藍隊防禦與護網營運/03_日誌與告警研判/Web日誌分析與逃逸檢測/Web日志安全分析工具 v2.0.zip`<br>🌐 **開源神器**：[Alibaba Arthas 官方開源工具](https://arthas.aliyun.com/)<br>🌐 **開源排查工具**：[Loki (IOC / Webshell 掃描器)](https://github.com/Neo23x0/Loki) |
+| **階段 6**<br>🚧 **圍堵阻斷與系統加固** | • Cyber Range 賽事 SLA 保障：嚴禁拔網線/停用網卡，實施微創單點阻斷<br>• Linux 後門清剿：Crontab、`/etc/rc.local`、SUID 提權檔、SSH 公鑰<br>• Windows 後門根除：排程任務（Task Scheduler）、註冊表 RunKey、隱藏帳號 | `ss -antup \| grep ESTAB`<br>`iptables -I INPUT -s <C2_IP> -j DROP`<br>`iptables -I OUTPUT -d <C2_IP> -j DROP`<br>`find / -perm -4000 2>/dev/null`<br>`Get-ScheduledTask \| Where-Object { $_.State -ne 'Disabled' }` | 📁 **[內部離線教材]**（詳見 [sources_index.md](../90_runs/sources_index.md)）：`07_藍隊防禦與護網營運/01_系統與資料庫加固/Linux系統安全加固/`<br>📁 **[內部離線教材]**：`07_藍隊防禦與護網營運/02_存取控制與防火牆/Linux存取控制與防火牆/防火牆練習-實驗-2024.docx`<br>📁 **[內部離線手冊]**：`HW09-安全加固实施标准-v1.0.pdf` |
+| **階段 7**<br>📐 **偵測工程與規則撰寫** | • 威脅特徵化（Detection as Code）<br>• YARA 規則撰寫：Strings, Hex, Condition 條件限制（避開性能雪崩）<br>• Sigma 規則撰寫：YAML 日誌特徵定義，並用 `sigmac` 轉譯為 Splunk SPL / Elastic 語法 | `yara -r my_rule.yar /var/www/html/`<br>`sigmac -t splunk -c win_sysmon rule.yml`<br>`sigmac -t es-qs rule.yml` | 📁 **[內部離線教材]**（詳見 [sources_index.md](../90_runs/sources_index.md)）：`07_藍隊防禦與護網營運/04_護網專案營運/藍隊日誌/HW18-安全事件闭环流程管理-v1.0.pdf`<br>🌐 **開源規則庫**：[SigmaHQ 官方開源規則庫](https://github.com/SigmaHQ/sigma)<br>🌐 **在線轉換工具**：[Sigma Converter Online](https://sigmaconverter.com/) |
 
 ---
 
@@ -194,7 +194,7 @@ gantt
     *   **核心觀念 2：TCP 串流追蹤 (Follow TCP Stream) 與檔案還原**  
         單個 TCP 封包最大通常僅約 1460 bytes（MTU 1500），攻擊者傳輸的 WebShell、二進位木馬或外洩機密檔案會被切成數十甚至數千個封包。利用「Follow TCP Stream」可重組雙向通訊；透過「File ➔ Export Objects ➔ HTTP」可一鍵抽取還原傳輸檔案。
     *   **推薦對照教材與參考講義**：
-        - 本地精選：`06_網路安全與數位取證/03_流量分析PCAP/Wireshark專題_流量監聽與分析/` 影片 1~8 及講義。
+        - 內部離線精選（詳見 [sources_index.md](../90_runs/sources_index.md)）：`06_網路安全與數位取證/03_流量分析PCAP/Wireshark專題_流量監聽與分析/` 影片 1~8 及講義。
         - 實戰文章：[Wireshark Display Filter Reference 官方手冊](https://www.wireshark.org/docs/dfref/)。
 
 *   **🧪 全員同步必修實作關卡（全員 13:30 - 18:00 實機）**：
@@ -292,7 +292,7 @@ gantt
         - `System (PID 4)` ➔ 啟動 `smss.exe` ➔ 啟動 `wininit.exe` ➔ 啟動 `services.exe` ➔ 啟動所有 `svchost.exe`。
         - 任何不是由 `services.exe` 啟動的 `svchost.exe`（例如 PPID 指向 `explorer.exe` 或 `cmd.exe`），100% 是偽裝後門！
     *   **推薦對照教材與參考講義**：
-        - 本地精選：`06_網路安全與數位取證/04_數位取證DFIR/PDF元數據數位取證/教主Kali与Python黑客.9.调查取证.pdf`。
+        - 內部離線精選（詳見 [sources_index.md](../90_runs/sources_index.md)）：`06_網路安全與數位取證/04_數位取證DFIR/PDF元數據數位取證/教主Kali与Python黑客.9.调查取证.pdf`。
         - 官方手冊：[Volatility 3 官方命令手冊與外掛清單](https://volatility3.readthedocs.io/en/stable/)。
 
 *   **🧪 全員同步必修實作關卡（全員 13:30 - 18:00 實機）**：
@@ -471,7 +471,7 @@ gantt
         3. **回應位元組大小（`body_bytes_sent`）是否異常突增？**（若平時 200 響應僅 500 bytes，某筆請求突然變 15000 bytes，通常代表資料庫或原始碼被 Dump 回傳）
         4. **後續是否有主機外聯？**（對照 Sysmon EID 3 或防火牆日誌，確認 Java 進程是否向外部 IP 發起 LDAP 389 或反彈 Shell）
     *   **推薦對照教材與參考講義**：
-        - 本地參考：`07_藍隊防禦與護網營運/03_日誌與告警研判/Web日誌分析與逃逸檢測/Web日志安全分析工具 v2.0.zip`。
+        - 內部離線參考（詳見 [sources_index.md](../90_runs/sources_index.md)）：`07_藍隊防禦與護網營運/03_日誌與告警研判/Web日誌分析與逃逸檢測/Web日志安全分析工具 v2.0.zip`。
         - 實戰文章：`HW16-告警日志分析技术-v1.1.pdf`。
 
 *   **🧪 全員同步必修實作關卡（全員 13:30 - 18:00 實機）**：
@@ -563,8 +563,8 @@ gantt
         - **Linux 排程與權限**：檢查 `/var/spool/cron/*`、`/etc/cron.*`、`/etc/rc.local`，以及 `find / -perm -4000 2>/dev/null`（排查被偷偷賦予 SUID 的 root 後門二進位檔案）。
         - **Windows 核心自啟**：除了 `Run` 鍵值外，重點排查 `Winlogon\Userinit`、`Services`（EID 7045）、WMI 事件訂閱（`CommandLineEventConsumer`）。
     *   **推薦對照教材與參考講義**：
-        - 本地精選：`HW09-安全加固实施标准-v1.0.pdf` 與 `HW17-快速应急响应技术-v1.0.pdf`。
-        - 實操參考：`07_藍隊防禦與護網營運/02_存取控制與防火牆/Linux存取控制與防火牆/防火牆練習-實驗-2024.docx`。
+        - 內部離線精選（詳見 [sources_index.md](../90_runs/sources_index.md)）：`HW09-安全加固实施标准-v1.0.pdf` 與 `HW17-快速应急响应技术-v1.0.pdf`。
+        - 內部離線實操（詳見 [sources_index.md](../90_runs/sources_index.md)）：`07_藍隊防禦與護網營運/02_存取控制與防火牆/Linux存取控制與防火牆/防火牆練習-實驗-2024.docx`。
 
 *   **🧪 全員同步必修實作關卡（全員 13:30 - 18:00 實機）**：
     *   **實機環境**：本地 Linux (Ubuntu) + Windows Server 2022 雙系統應急演練靶機。
@@ -682,7 +682,7 @@ gantt
     3. 全員在高壓時間倒數下，完成從發現告警到提交 Flag、編寫 Incident Report 的全流程。
 
 *   **🧪 全員同步必修實作關卡**：
-    *   **實機環境**：`../../../security/exams/mock_exam_b_lab_questions.md`（全員限時 180 分鐘閉卷實操對戰）或 CyberDefenders 社群公開靶場（如 "PacketDetective" / "RedLine"）。
+    *   **實機環境**：`../../../security/practice/exams/mock_exam_b_lab_questions.md`（全員限時 180 分鐘閉卷實操對戰）或 CyberDefenders 社群公開靶場（如 "PacketDetective" / "RedLine"）。
     *   **演練情境設定**：
         *   **09:00 - 10:30**：DMZ Web 伺服器遭受 0-day / RCE 漏洞打點，外聯下載 Dropper。
         *   **10:30 - 12:00**：攻擊者在內部執行 Mimikatz 抓取本機 Hash，並透過 Pass-the-Hash (PtH) 橫向滲透至內部跳板機。
