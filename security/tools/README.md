@@ -14,10 +14,11 @@
   - ⚡ **PoC 產生器**：自動根據 Sinks 與資料流合成漏洞利用代碼。
   - 🐳 **Docker 沙箱驗證**：在乾淨的隔離容器中即時動態驗證 Exploit 是否有效。
   - 🔌 **模組化平台介面**：支援本機離線審計與 CTF/Wargame 遠端競賽自動化。
+  - 📐 **方法論指導**：👉 [全方位安全審計與攻防方法論 (audit_methodology.md)](code_auditor/audit_methodology.md)
 
 ### 2. [Playbook Validator](validate_playbooks.py) (原子手冊結構規範檢驗工具)
 - **路徑**：`security/tools/validate_playbooks.py`
-- **定位**：自動化檢查 `blue_team/playbooks` 41 本實戰手冊的結構規範、YAML metadata 與必備章節。
+- **定位**：自動化檢查 `blue_team/playbooks` 107 本實戰手冊的結構規範、YAML metadata 與必備章節。
 
 ---
 
