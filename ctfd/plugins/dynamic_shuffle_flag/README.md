@@ -14,7 +14,7 @@
    - **圖片 EXIF 標籤**：透過 `piexif` 即時寫入 UserComment / Artist 欄位。
    - **ZIP 註釋與尾部資料**：即時打包專屬題檔提供下載。
 3. **安全隔離**：
-   - 伺服端 Salt 透過環境變數 `CTFD_FLAG_SALT` 注入，預設值與競賽生產密鑰分離。
+   - 伺服端 Salt 透過環境變數 `CTFD_FLAG_SALT` 注入。**正式競賽與生產環境必須明確設置專屬 Salt**，嚴禁使用預設測試值，以確保各隊伍動態 Flag 之唯一性與不可逆性。
 
 ---
 
@@ -23,6 +23,10 @@
 由根目錄執行一鍵套用腳本，或將本目錄軟連結/複製至 CTFd 的 `CTFd/plugins/` 目錄下重啟即可：
 
 ```bash
+# 1. 設置生產環境專屬密鑰 Salt
+export CTFD_FLAG_SALT="$(openssl rand -hex 32)"
+
+# 2. 部署外掛並重啟 CTFd 容器
 cp -r ctfd/plugins/dynamic_shuffle_flag /path/to/CTFd/CTFd/plugins/
 docker compose restart
 ```
