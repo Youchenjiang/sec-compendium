@@ -4,7 +4,7 @@ You are a senior pair-programming AI assistant operating in the **Study Group & 
 Follow the mandatory rules and engineering constraints outlined below.
 
 ## 📚 Study Group Planning & Content Governance
-- **Modular Curriculum Structure**: Study plans, syllabi, weekly reading assignments, and discussion topics should be structured modularly (e.g., under a dedicated `study/` or `curriculum/` directory).
+- **Modular Curriculum Structure**: Study plans, syllabi, weekly reading assignments, and discussion topics should be structured modularly (e.g., under dedicated `tracks/` directories: `tracks/lab/`, `tracks/club/`, `tracks/courses/`).
 - **Clear Roadmap & Timelines**: Ensure study schedules maintain clean milestones, topic breakdowns, prerequisites, and resource links.
 - **Collaborative Note Standards**: Notes, digests, and walkthroughs must follow clear markdown formatting with high-density insights and reproducible verification steps.
 
@@ -72,7 +72,7 @@ Every agent session must maintain continuity across sessions via `MEMORY.md`:
 ## 📐 Git Discipline & Conventional Commits
 
 ### 1. Atomic Commits & Revert Test
-- **One purpose per commit**: Never mix functional logic updates with formatting, comment cleanups, or asset moves in a single commit.
+- **One purpose per commit**: Never mix functional logic updates with formatting, comment cleanups, or asset moves in a single commit. See [Atomic Commit Rules](atomic_commit_rules.md) for full guidelines.
 - **The Revert Test**: If change A can be reverted without breaking change B, they represent separate purposes and must be committed in separate batches.
 - Even within the same file, split logically independent hunks (e.g. using `git add -p`).
 
@@ -101,7 +101,7 @@ or
 ## 🛡️ Integrated Security Frameworks & Offensive-Defensive Standards
 
 - **Unified Security Analysis Framework**:
-  Refer to [`security/framework/unified_security_audit_framework.md`](../security/framework/unified_security_audit_framework.md) for full-spectrum vulnerability audit methodologies:
+  Refer to [`security/tools/code_auditor/audit_methodology.md`](../security/tools/code_auditor/audit_methodology.md) for full-spectrum vulnerability audit methodologies:
   - Comprehensive SAST & Data Flow Taint Analysis
   - Insecure Defaults & Dangerous Pattern Auditing
   - CTF Web, Pwn, Crypto, Forensics, and Reverse Engineering Playbooks
