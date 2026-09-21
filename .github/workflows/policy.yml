@@ -49,6 +49,12 @@ jobs:
               "release",
               "governance",
               "tracks",
+              "practice",
+              "tools",
+              "knowledge",
+              "memory",
+              "deepsource",
+              "links",
             ];
             const typePattern = allowedTypes.join("|");
             const scopePattern = allowedScopes.join("|");

@@ -67,8 +67,8 @@ jobs:
           GITHUB_ACTION_CONFIG__AUTO_REVIEW: "true"
           GITHUB_ACTION_CONFIG__AUTO_IMPROVE: "false"
           CONFIG__PR_ACTIONS: '["opened", "reopened", "ready_for_review", "synchronize"]'
-          IGNORE__GLOB: '["**/*.json", "**/*.md", "**/*.csv", "**/*.sql", "security/challenges/evidence/**", "security/labs/**/datasets/**"]'
-          CONFIG__IGNORE__GLOB: '["**/*.json", "**/*.md", "**/*.csv", "**/*.sql", "security/challenges/evidence/**", "security/labs/**/datasets/**"]'
+          IGNORE__GLOB: '["**/*.json", "**/*.md", "**/*.csv", "**/*.sql", "security/practice/exams/evidence/**", "tracks/lab/**/datasets/**", "security/practice/challenges/**"]'
+          CONFIG__IGNORE__GLOB: '["**/*.json", "**/*.md", "**/*.csv", "**/*.sql", "security/practice/exams/evidence/**", "tracks/lab/**/datasets/**", "security/practice/challenges/**"]'
           PR_CODE_SUGGESTIONS__MAX_NUMBER_OF_CALLS: "2"
           PR_CODE_SUGGESTIONS__NUM_CODE_SUGGESTIONS_PER_CHUNK: "3"
           PR_CODE_SUGGESTIONS__MAX_SUGGESTIONS_PER_FILE: "2"

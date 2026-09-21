@@ -1,17 +1,21 @@
-name: Validate Blue Team Playbooks
+name: Validate Documentation & Playbooks
 
 on:
   push:
     branches: [main]
     paths:
-      - 'security/blue_team/**'
-      - 'security/tools/**'
+      - 'security/**'
+      - 'tracks/**'
+      - 'docs/**'
+      - '*.md'
       - '.github/workflows/validate-playbooks.yml'
   pull_request:
     branches: [main]
     paths:
-      - 'security/blue_team/**'
-      - 'security/tools/**'
+      - 'security/**'
+      - 'tracks/**'
+      - 'docs/**'
+      - '*.md'
       - '.github/workflows/validate-playbooks.yml'
   workflow_dispatch:
 
@@ -20,7 +24,7 @@ permissions:
 
 jobs:
   validate-playbooks:
-    name: Blue Team Playbooks Quality & Link Audit
+    name: Documentation & Playbooks Quality Audit
     runs-on: ubuntu-latest
 
     steps:

@@ -12,7 +12,10 @@ ignore_glob = [
     "**/*.json",
     "**/migrations/**",
     "**/*.c",
-    "**/*.h"
+    "**/*.h",
+    "security/practice/exams/evidence/**",
+    "tracks/lab/**/datasets/**",
+    "security/practice/challenges/**"
 ]
 
 [github_action_config]
