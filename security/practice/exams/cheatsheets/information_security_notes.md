@@ -6,11 +6,11 @@
 
 ## 📋 分類快速導覽
 
-1. [🔐 身分驗證與存取控制 (IAM & Authentication)](#-身分驗證與存取控制-iam--authentication)
-2. [🌐 網路與通訊安全 (Network & Communication Security)](#-網路與通訊安全-network--communication-security)
-3. [🛡️ 風險、合規與營運連續性 (GRC & Business Continuity)](#-風險合規與營運連續性-grc--business-continuity)
-4. [💻 應用程式與密碼學 (AppSec & Cryptography)](#-應用程式與密碼學-appsec--cryptography)
-5. [⚔️ 安全評估與攻防術語 (Assessment & Operations)](#-安全評估與攻防術語-assessment--operations)
+1. [🔐 1. 身分驗證與存取控制 (IAM & Authentication)](#1-身分驗證與存取控制-iam--authentication)
+2. [🌐 2. 網路與通訊安全 (Network & Communication Security)](#2-網路與通訊安全-network--communication-security)
+3. [🛡️ 3. 風險、合規與營運連續性 (GRC & Business Continuity)](#3-風險合規與營運連續性-grc--business-continuity)
+4. [💻 4. 應用程式與密碼學 (AppSec & Cryptography)](#4-應用程式與密碼學-appsec--cryptography)
+5. [⚔️ 5. 安全評估與攻防術語 (Assessment & Operations)](#5-安全評估與攻防術語-assessment--operations)
 
 ---
 
