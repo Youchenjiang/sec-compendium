@@ -13,9 +13,12 @@ import collab_watch
 
 TASK_BODY = """# TASK: test
 
+- **所屬大題**：`C01_Test`
+- **關聯小題**：`Q01`
 - **任務類型**：`{task_type}`
 - **Target Role**：`ROLE_01_TRIAGE_HUNTER`
 - **Assignee Session**：`{session}`
+- **發起 Session**：`Session-Lead`
 - **Task ID**：`{task_id}`
 """
 
