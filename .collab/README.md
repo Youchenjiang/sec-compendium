@@ -39,6 +39,28 @@ flowchart TD
 | **Independent Reviewer** | 獨立驗證、反例與 false-positive 排除 | REVIEW 任務；檢查證據、因果、格式與替代解釋 | 只寫自己對應的 `reviews/` |
 | **人類選手** | 平台互動與最終裁決 | 實際提交答案，將平台 ACCEPTED / REJECTED 結果回報 Main | 不直接改協作狀態檔，避免多 writer |
 
+### Reasoning Effort Policy（Canonical）
+
+子 Agent / Worker 的推理強度由 Case Lead 依任務性質指定；**不得把最高推理強度當作預設值**。預設配置如下：
+
+| 角色 / 任務 | 預設 reasoning effort | 使用原則 |
+| :--- | :--- | :--- |
+| **Mechanical checker / metadata / 格式檢查** | `low` 或 `medium` | 規則明確、輸入輸出 deterministic；避免不必要的長推理。 |
+| **Triage Hunter** | `medium` | 大量篩選、IOC 比對、候選縮小；優先速度與 evidence coverage。 |
+| **Reverse Engineer** | `high` | 去混淆、程式邏輯、資料流、跨工件推理需要較深 reasoning。 |
+| **Independent Reviewer** | `high` | 必須主動尋找反例、替代解釋與 evidence gap，不可只重述 finding。 |
+| **Case Lead** | `high` | 負責拆題、跨 finding/review 整合與 `VERIFIED` gate。 |
+
+升級規則：
+
+1. `xhigh` **不是預設值**；只有在 `high` 已回報具體 blocker，且 blocker 明確屬於推理深度問題（例如複雜逆向、證據彼此矛盾、需要跨多條因果鏈消歧）時，才針對**單一 atomic task** 升級。
+2. `max` / `ultra` **預設禁止自動使用**；只有人類明確要求，或 Case Lead 已有可稽核理由且人類同意時才啟用。
+3. 不得因為 Worker「回答不合預期」就直接提高 reasoning effort；先判斷是 **evidence 缺失、task scope 不清、工具不可用、還是真的推理不足**。
+4. 同一 task 若需重跑，必須記錄重跑原因；不得用不同強度反覆生成答案直到出現想要的結論。
+5. Reasoning effort 只影響投入深度，**不能取代 evidence contract、review gate 或平台 ACCEPTED 結果**。
+
+實務預設：`Triage=medium`、`Reverse=high`、`Reviewer=high`、`Case Lead=high`。若只是格式、metadata 或 deterministic validation，優先降到 `low/medium`。
+
 ---
 
 ## 3. 任務與答案生命週期
