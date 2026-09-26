@@ -3,10 +3,13 @@
 ## 1. 任務基本資訊
 - **所屬大題**：`C00_Template`
 - **關聯小題**：例如 `Q03, Q04`
-- **發起 Session**：`Session-Antigravity`
+- **任務類型**：`DISCOVERY` / `TRIAGE` / `VERIFY` / `REVERSE` / `REVIEW`
+- **Target Role**：`ROLE_01_TRIAGE_HUNTER` / `ROLE_02_REVERSE_ENGINEER` / `ROLE_03_DEVILS_ADVOCATE`
+- **Assignee Session**：`Session-...`（必填且唯一）
+- **發起 Session**：`Session-Main`
 - **發起時間**：`YYYY-MM-DD HH:MM:SS UTC`
 - **期望技能**：`[代碼逆向 / 去混淆]` / `[海量日誌過濾]` / `[封包解構]` / `[第二意見審查]`
-- **當前狀態**：`⚪ 待接單` / `🟢 處理中` / `✅ 已完成`
+- **Task ID**：`T000`
 
 ---
 
@@ -27,5 +30,7 @@ powershell.exe -enc JABjAGwAaQBlAG4AdAAgAD0AIABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAUwB5
 
 ## 4. 接單 Session 輸出規範
 請支援 Session 在完成後：
-1. 將本任務檔案狀態改為 `✅ 已完成`。
-2. 在 `findings/` 目錄建立對應的 `FINDING_[任務代號].md`，格式參照 `FINDING_TEMPLATE.md`。
+1. **不得修改本 task 檔案**；發布後 task 為 immutable，由 Main 保有唯一寫入權。
+2. `DISCOVERY` / `TRIAGE` / `VERIFY` / `REVERSE` 在 `findings/` 新增對應 `FINDING_[任務代號].md`。
+3. `REVIEW` 在 `reviews/` 新增對應 `REVIEW_[任務代號].md`。
+4. 若為 `VERIFY` 且既有候選皆不成立，必須明確回報「皆非」並附上反證，不可為了符合題目而硬選 A/B/C。

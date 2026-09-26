@@ -2,7 +2,7 @@
 
 ## 1. 代理人權責與狀態
 - **大題代號**：`C00_Template`
-- **主導代理人 (Lead Session)**：*(填入認領之 Session 名稱，例: Session-Antigravity)*
+- **主導代理人 (Lead Session)**：*(填入由 Main 指派之 Session 名稱，例: Session-CaseLead)*
 - **當前攻堅狀態**：`⚪ 待認領` / `🟢 攻堅中` / `🏁 已結案`
 - **開始時間**：`YYYY-MM-DD HH:MM:SS UTC`
 
@@ -15,8 +15,8 @@
 
 ---
 
-## 3. 已確認之核心事實 (Confirmed Facts - Level 3)
-> 只有經過日誌明文證實、不可推翻的事實才記錄於此。任何 Session 均可依此為基準向下推演。
+## 3. 已確認之核心事實 (Evidence-backed Facts)
+> 只有已有可追溯 finding/review、可重現且由 Main 接受的事實才記錄於此；每項事實應附來源工件 ID，避免「高信心」取代證據。
 
 - [ ] **受害主機名**：
 - [ ] **受害主機 IP**：
@@ -27,7 +27,7 @@
 
 ---
 
-## 4. 進行中之作戰假說 (Active Hypotheses - Level 2)
+## 4. 進行中之作戰假說 (Active Hypotheses)
 > 記錄當前正在驗證但尚未完全閉環的推論，避免不同 Session 重複走冤枉路。
 
 - **假說 1**：

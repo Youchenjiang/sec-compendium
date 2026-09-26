@@ -258,3 +258,5 @@ Handout/
 
 # Third-party slide skill installed locally (73 MB, not part of this repo)
 .agents/skills/ppt-master/
+# Runtime-only collaboration data (credentials, tokens, ephemeral shared state)
+/.collab/runtime/
