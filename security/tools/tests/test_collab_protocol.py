@@ -123,6 +123,23 @@ class CollabProtocolTests(unittest.TestCase):
                 protocol.latest_task_state("C01_Test", "T001", events), "START"
             )
 
+    def test_latest_task_state_reports_dispatch_failed(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            events = Path(tmp) / "events"
+            for kind in ("DISPATCHED", "NOTE", "DISPATCH_FAILED"):
+                protocol.emit_event(
+                    kind=kind,
+                    case_id="C01_Test",
+                    task_id="T001",
+                    from_session="Session-Lead",
+                    to_session="Session-A",
+                    events_dir=events,
+                )
+            self.assertEqual(
+                protocol.latest_task_state("C01_Test", "T001", events),
+                "DISPATCH_FAILED",
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -135,6 +135,63 @@ class CollabBusTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, "不是 C01_Test 的 Case Lead"):
                     collab_bus.ensure_actor_is_case_lead("C01_Test", "Session-Intruder")
 
+    def test_dispatch_failed_is_lead_only_and_pre_ack(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            cases, task = self.build_case(root)
+            events = root / ".collab" / "runtime" / "events"
+            with (
+                patch.object(protocol, "REPO_ROOT", root),
+                patch.object(protocol, "CASES_DIR", cases),
+                patch.object(protocol, "EVENTS_DIR", events),
+            ):
+                protocol.emit_event(
+                    kind="DISPATCHED",
+                    case_id="C01_Test",
+                    task_id="T001",
+                    from_session="Session-Lead",
+                    to_session="Session-Worker",
+                    task_path=task,
+                )
+                intruder = argparse.Namespace(
+                    case="C01_Test",
+                    task_id="T001",
+                    session="Session-Intruder",
+                    message="bootstrap failed",
+                )
+                with self.assertRaisesRegex(ValueError, "不是 C01_Test 的 Case Lead"):
+                    collab_bus.command_dispatch_failed(intruder)
+
+                lead = argparse.Namespace(
+                    case="C01_Test",
+                    task_id="T001",
+                    session="Session-Lead",
+                    message="bootstrap failed",
+                )
+                self.assertEqual(collab_bus.command_dispatch_failed(lead), 0)
+                self.assertEqual(
+                    protocol.latest_task_state("C01_Test", "T001"),
+                    "DISPATCH_FAILED",
+                )
+
+                protocol.emit_event(
+                    kind="ACK",
+                    case_id="C01_Test",
+                    task_id="T001",
+                    from_session="Session-Worker",
+                    to_session="Session-Lead",
+                    task_path=task,
+                )
+                with self.assertRaisesRegex(ValueError, "已有 ACK"):
+                    collab_bus.command_dispatch_failed(
+                        argparse.Namespace(
+                            case="C01_Test",
+                            task_id="T001",
+                            session="Session-Lead",
+                            message="late failure",
+                        )
+                    )
+
     def test_done_rejects_mutated_immutable_task(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
