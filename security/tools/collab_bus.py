@@ -243,6 +243,27 @@ def command_send(args: argparse.Namespace) -> int:
     return 0
 
 
+def command_dispatch_failed(args: argparse.Namespace) -> int:
+    lead = ensure_actor_is_case_lead(args.case, args.session)
+    task_path, metadata = protocol.find_task(args.case, args.task_id)
+    prior_events = [payload for _, payload in protocol.events_for_task(args.case, args.task_id)]
+    if any(payload.get("kind") == "ACK" for payload in prior_events):
+        raise ValueError("已有 ACK 的 task 不可標記為 DISPATCH_FAILED；請使用 worker ERROR")
+    if any(payload.get("kind") == "DISPATCH_FAILED" for payload in prior_events):
+        raise ValueError("task 已存在 DISPATCH_FAILED event")
+    protocol.emit_event(
+        kind="DISPATCH_FAILED",
+        case_id=args.case,
+        task_id=args.task_id,
+        from_session=lead,
+        to_session=metadata["assignee_session"],
+        message=args.message,
+        task_path=task_path,
+    )
+    print(f"DISPATCH_FAILED {args.case}/{args.task_id} -> {metadata['assignee_session']}")
+    return 0
+
+
 def command_list(args: argparse.Namespace) -> int:
     case_filters = set(args.case) if args.case else None
     found = protocol.discover_assigned_tasks(protocol.CASES_DIR, args.session, case_filters)
@@ -414,6 +435,16 @@ def build_parser() -> argparse.ArgumentParser:
     send.add_argument("--kind", required=True, choices=["QUESTION", "REPLY", "NOTE"])
     send.add_argument("--message", required=True)
     send.set_defaults(func=command_send)
+
+    dispatch_failed = sub.add_parser(
+        "dispatch-failed",
+        help="Case Lead records a pre-ACK worker transport/bootstrap failure",
+    )
+    dispatch_failed.add_argument("--case", required=True)
+    dispatch_failed.add_argument("--task-id", required=True)
+    dispatch_failed.add_argument("--session", required=True)
+    dispatch_failed.add_argument("--message", required=True)
+    dispatch_failed.set_defaults(func=command_dispatch_failed)
 
     listing = sub.add_parser("list", help="List tasks assigned to one session")
     listing.add_argument("--session", required=True)

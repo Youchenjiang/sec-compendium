@@ -30,6 +30,7 @@ CASE_LEAD_RE = re.compile(
 VALID_TASK_TYPES = {"DISCOVERY", "TRIAGE", "VERIFY", "REVERSE", "REVIEW"}
 VALID_EVENT_KINDS = {
     "DISPATCHED",
+    "DISPATCH_FAILED",
     "ACK",
     "START",
     "DONE",
@@ -410,7 +411,14 @@ def latest_task_state(
     lifecycle = [
         payload.get("kind")
         for _, payload in events
-        if payload.get("kind") in {"DISPATCHED", "ACK", "START", "DONE", "ERROR"}
+        if payload.get("kind") in {
+            "DISPATCHED",
+            "DISPATCH_FAILED",
+            "ACK",
+            "START",
+            "DONE",
+            "ERROR",
+        }
     ]
     return lifecycle[-1] if lifecycle else "DISPATCHED"
 
