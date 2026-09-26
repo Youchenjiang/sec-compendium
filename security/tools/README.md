@@ -40,6 +40,15 @@
   - `lint`：校驗 PR Body 三大章節、標題長度與 Conventional Commits。
   - `create`：本地全套驗證通過後，一鍵建立帶有標籤之 GitHub Pull Request。
 
+### 7. Governed Collab Bus (`collab_bus.py` / `collab_watch.py` / `collab_protocol.py`)
+- **定位**：HITCON / CTF 多 Session 協作通訊層；tracked Markdown 保存正式 task/evidence，Git-ignored `.collab/runtime/` 保存 ephemeral communication events。
+- **核心保證**：
+  - task 只有 Case Lead 能建立，且只有一個 `Assignee Session`。
+  - watcher 只接 exact-assignee task，收到後自動送 `ACK`。
+  - 支援 `START / DONE / ERROR / QUESTION / REPLY / NOTE` immutable events。
+  - `DONE` 會驗 task hash 與 finding/review output contract，禁止空模板或被改寫 task 假結案。
+  - `doctor` 可檢查 task metadata、duplicate ID、runtime ignore 與 immutable hash。
+
 ---
 
 ## 🚀 常用指令速查
@@ -75,4 +84,10 @@ python security/tools/pr_helper.py generate --base origin/main -o PR_BODY.md
 
 # 9. 本地全套驗證並一鍵安全提交 PR (附帶必備標籤)
 python security/tools/pr_helper.py create --title "feat(tools): add pr helper and validator" --label "documentation"
+# 4. Collab bus 自我檢查
+python security/tools/collab_bus.py doctor
+# 5. 查看指定 Session 的 task
+python security/tools/collab_bus.py list --session Session-C01-Triage
+# 6. 啟動指定 Session watcher
+python security/tools/collab_watch.py --session Session-C01-Triage --case C01_BottleOut
 ```
