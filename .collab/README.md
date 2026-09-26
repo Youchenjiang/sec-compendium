@@ -66,6 +66,74 @@ flowchart TD
 - `ACCEPTED`：平台明確判定正確；只有此狀態計入 scoreboard 已解題數。
 - `REJECTED`：平台明確判定錯誤；保留歷史 evidence，回到新一輪調查。
 
+### Runtime communication lifecycle
+
+正式 evidence 仍以 tracked `task / finding / review / questions` 為準；`.collab/runtime/` 只承載 Git-ignored、可跨同步目錄傳遞的 ephemeral event：
+
+`DISPATCHED → ACK → START → DONE | ERROR`
+
+另可在 Case Lead 與唯一 Assignee Session 間交換 `QUESTION / REPLY / NOTE`。Runtime event **不是答案證據，也不能直接把 question 升為 VERIFIED/ACCEPTED**。
+
+```text
+Case Lead       Worker / Reviewer
+   |  DISPATCHED      |
+   |----------------->|
+   |       ACK        |
+   |<-----------------|
+   |      START       |
+   |<-----------------|
+   |  QUESTION/REPLY  |
+   |<---------------->|
+   |       DONE       |
+   |<-----------------|
+```
+
+統一使用：
+
+```bash
+# Case Lead 建立 immutable task（actor 必須等於 CASE_STATE 的 Lead Session）
+python security/tools/collab_bus.py new-task \
+  --case C01_BottleOut \
+  --actor-session Session-Antigravity \
+  --task-id T001 \
+  --type TRIAGE \
+  --target-role ROLE_01_TRIAGE_HUNTER \
+  --assignee-session Session-C01-Triage \
+  --question Q01 \
+  --title "OpenVPN endpoint triage" \
+  --objective "Find the exact remote OpenVPN IP:Port from the supplied evidence."
+
+# Worker 啟動 watcher；看到新 task 時 watcher 自動回 ACK
+python security/tools/collab_watch.py \
+  --session Session-C01-Triage \
+  --case C01_BottleOut
+
+# Worker 正式開始
+python security/tools/collab_bus.py start \
+  --case C01_BottleOut --task-id T001 --session Session-C01-Triage
+
+# 需要澄清時，走 task-scoped QUESTION / REPLY
+python security/tools/collab_bus.py send \
+  --case C01_BottleOut --task-id T001 \
+  --from-session Session-C01-Triage --to-session Session-Antigravity \
+  --kind QUESTION --message "Should the answer include protocol prefix?"
+
+# 建立正確 finding/review 骨架，填完後再送 DONE
+python security/tools/collab_bus.py init-output \
+  --case C01_BottleOut --task-id T001 --session Session-C01-Triage
+
+python security/tools/collab_bus.py done \
+  --case C01_BottleOut --task-id T001 --session Session-C01-Triage \
+  --message "Finding ready for Lead review"
+
+# Lead / Worker 隨時回看狀態與 event history
+python security/tools/collab_bus.py status --case C01_BottleOut
+python security/tools/collab_bus.py events --session Session-Antigravity --case C01_BottleOut
+python security/tools/collab_bus.py doctor
+```
+
+`DONE` 有三道硬門檻：task hash 不可自 DISPATCHED/ACK 後改變、governed output 必須存在、output contract 必須填完整。只建立空模板不能宣告 DONE。
+
 ---
 
 ## 4. 協作安全與證據鐵律
@@ -86,9 +154,10 @@ flowchart TD
    - 真實密碼、token、session secret、private key 不得寫入 tracked `.collab` 檔案。
    - 需要跨 Session 暫存時只使用 Git 忽略的 `.collab/runtime/`，並在 tracked finding/questions 中以 `[REDACTED: runtime ref]` 指向。
    - CTF 公開 flag 或題目專用、賽後失效的 credential 是否公開，仍由人類選手決定；預設視為 secret。
-5. **鐵律 5：極簡通用指令（One-Liner Execution）**：
-   - 人類在切換子代理視窗時，不需要敲打長篇大論，永遠使用同一句標準咒語：
-   > **`@.collab/ 讀取指派給本 Session 的 task ID，分析並輸出至對應 findings/ 或 reviews/`**
+5. **鐵律 5：以 watcher + bus CLI 取代口頭猜測**：
+   - Session 以 `collab_watch.py --session <SessionName>` 收件；不要用「最新 task」猜測工作。
+   - ACK / START / DONE / ERROR / QUESTION / REPLY / NOTE 一律透過 `collab_bus.py` 留下 immutable runtime event。
+   - 若 watcher 通知漏掉，可用 `collab_bus.py events` 回看，不需要重新派 task。
 
 ---
 
@@ -118,6 +187,6 @@ flowchart LR
    - 傳送提示詞：`請閱讀 .collab/roles/ROLE_02_REVERSE_ENGINEER.md，擔任代碼逆向專家。回覆確認就緒。`
    - 子代理 2 回覆：「子代理 2 就緒，待命接單」，原地待命。
 4. **開跑作戰**：
-   - 主引擎一在 `tasks/` 產出任務，你只要在子代理視窗輸入：
-   > **`@.collab/ 讀取指派給本 Session 的 task ID，分析並輸出至對應 findings/ 或 reviews/`**
+   - 每個 Session 啟動自己的 watcher，例如：`python security/tools/collab_watch.py --session Session-C01-Triage --case C01_BottleOut`。
+   - Case Lead 使用 `collab_bus.py new-task` 派工；watcher 偵測 exact assignee 後自動 ACK。
    - Session 只能處理 `assignee_session` 明確指向自己的 task；不要以「未認領」或「最新檔案」自行搶單，避免重複分析與同步競態。
