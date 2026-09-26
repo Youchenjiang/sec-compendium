@@ -94,6 +94,17 @@ flowchart TD
 
 `DISPATCHED → ACK → START → DONE | ERROR`
 
+若 worker 在 **ACK 前** 即因 orchestrator / browser / transport bootstrap 失敗，Case Lead 必須記錄 `DISPATCH_FAILED`，不可讓 task 永遠停留在模糊的 `DISPATCHED`：
+
+```bash
+python security/tools/collab_bus.py dispatch-failed \
+  --case C03_MemoryDump --task-id T900 \
+  --session Session-Antigravity \
+  --message "Worker bootstrap failed before ACK"
+```
+
+`DISPATCH_FAILED` 只允許 Case Lead 在尚無任何 ACK 時寫入；已有 ACK 後的執行失敗應由 Worker 使用 `ERROR`。
+
 另可在 Case Lead 與唯一 Assignee Session 間交換 `QUESTION / REPLY / NOTE`。Runtime event **不是答案證據，也不能直接把 question 升為 VERIFIED/ACCEPTED**。
 
 ```text
