@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "description": "Registry of MCP servers wired into the hitcon-range-sprint agent framework. Source of truth; see README.md for the wiring policy.",
+  "policy": {
+    "mount_point": ".agent/mcp",
+    "import_mode": "reference external snapshot (Security-LabData/external-mcp-tools/<name>) and pin upstream commit, release version, and any submodule commit; do not vendor server source",
+    "default_transport": "stdio",
+    "holder_node": "Primary Analysis Gateway (host LabStrix), in a dedicated version-pinned runtime; never the host default interpreter when deps pin an older Python",
+    "fallback_holders": ["Kali analysis VM", "FLARE-VM", "container image"],
+    "secrets": "environment variables only; never committed; registry records variable names, not values",
+    "commit_split": [
+      "wiring/registration (this policy + registry skeleton)",
+      "single server introduction (registry entry + servers/<name>.md)",
+      "runnable verification evidence (servers/<name>.verification.md)"
+    ]
+  },
+  "servers": []
+}
