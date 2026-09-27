@@ -46,6 +46,41 @@
       "deprecation": "Upstream deprecates semgrep-mcp 0.9.0 in favor of the `semgrep mcp` subcommand in newer semgrep (>=1.178.0, which ships cp314 wheels). See servers/semgrep-mcp.md section 7.",
       "docs": "servers/semgrep-mcp.md",
       "evidence": "servers/semgrep-mcp.verification.md"
+    },
+    {
+      "name": "semgrep",
+      "status": "wired",
+      "purpose": "Current Semgrep MCP server (OSS engine) exposed via the `semgrep mcp` subcommand for code-security scanning.",
+      "source": {
+        "kind": "pypi",
+        "package": "semgrep==1.178.0",
+        "upstream": "https://github.com/semgrep/semgrep",
+        "license": "LGPL-2.1",
+        "note": "server code is bundled in the semgrep package at semgrep/mcp/server.py; no external snapshot or submodule"
+      },
+      "runtime": {
+        "holder_node": "Primary Analysis Gateway (host LabStrix)",
+        "requires_python": ">=3.10",
+        "verified_runtime": "host python 3.14.7 (.agent/mcp/.verify/semgrep178, gitignored)",
+        "entrypoint": "semgrep mcp",
+        "transport": "stdio",
+        "tools": [
+          "semgrep_rule_schema",
+          "get_supported_languages",
+          "semgrep_findings",
+          "semgrep_scan_with_custom_rule",
+          "semgrep_scan",
+          "get_abstract_syntax_tree",
+          "semgrep_scan_supply_chain"
+        ]
+      },
+      "secrets": {
+        "required": false,
+        "env": ["SEMGREP_APP_TOKEN (optional; for platform findings, remote, and Pro features)"]
+      },
+      "pinned_by": "semgrep 1.178.0 ships cp314 wheels, so the host default interpreter runs it natively",
+      "docs": "servers/semgrep.md",
+      "evidence": "servers/semgrep.verification.md"
     }
   ]
 }
