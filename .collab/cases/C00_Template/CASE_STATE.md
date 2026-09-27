@@ -11,12 +11,12 @@
 ## 2. 標本與環境資訊 (本機路徑，不進雲端！)
 - **受害作業系統**：Windows 10 / Server 2019 / Ubuntu 22.04
 - **標本本地路徑**：`D:\LabData\Challenges\sample.E01` (僅供本機讀取)
-- **分析建議節點**：Host / FLARE-VM / Kali
+- **分析建議執行環境**：`host_local_gateway` / `portable_text_any`
 
 ---
 
 ## 3. 已確認之核心事實 (Evidence-backed Facts)
-> 只有已有可追溯 finding/review、可重現且由 Main 接受的事實才記錄於此；每項事實應附來源工件 ID，避免「高信心」取代證據。
+> 只有已有可追溯 finding/review、可重現且由 Case Lead 接受的事實才記錄於此；每項事實應附來源工件 ID，避免「高信心」取代證據。
 
 - [ ] **受害主機名**：
 - [ ] **受害主機 IP**：

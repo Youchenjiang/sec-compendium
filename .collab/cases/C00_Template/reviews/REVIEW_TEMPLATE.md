@@ -1,8 +1,10 @@
-# REVIEW: [任務代號_簡短名稱] 獨立審查
+# REVIEW: <REVIEW_TASK_ID> 獨立審查
+
+> **檔名**：`REVIEW_<REVIEW_TASK_ID>.md`。`<REVIEW_TASK_ID>` 必須與 REVIEW task 的 `Task ID` 完全一致；被審查的 finding 由 task 的 `Review Target Finding` 指定，兩個 ID 不要求相同。
 
 ## 1. 審查資訊
-- **對應 Task**：`TASK_[任務代號]`
-- **對應 Finding**：`FINDING_[任務代號]`
+- **對應 Task**：`<REVIEW_TASK_ID>`
+- **對應 Finding**：`<TARGET_FINDING_ID>`
 - **Reviewer Session**：`Session-Reviewer`
 - **完成時間**：`YYYY-MM-DD HH:MM:SS UTC`
 

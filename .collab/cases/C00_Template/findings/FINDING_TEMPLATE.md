@@ -1,7 +1,9 @@
-# FINDING: [任務代號_簡短名稱] 成果回報
+# FINDING: T000 成果回報
+
+> **檔名**：`FINDING_T000.md`。其中 `T000` 必須與 task 的 `Task ID` 完全一致。
 
 ## 1. 成果回報資訊
-- **對應任務**：`TASK_[任務代號]`
+- **對應任務**：`T000`
 - **解決小題**：`Q03, Q04`
 - **解答 Session**：`Session-Worker`
 - **完成時間**：`YYYY-MM-DD HH:MM:SS UTC`

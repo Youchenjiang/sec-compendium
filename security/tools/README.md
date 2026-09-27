@@ -41,13 +41,19 @@
   - `create`：本地全套驗證通過後，一鍵建立帶有標籤之 GitHub Pull Request。
 
 ### 7. Governed Collab Bus (`collab_bus.py` / `collab_watch.py` / `collab_protocol.py`)
-- **定位**：HITCON / CTF 多 Session 協作通訊層；tracked Markdown 保存正式 task/evidence，Git-ignored `.collab/runtime/` 保存 ephemeral communication events。
+- **定位**：HITCON / CTF 多 Session 協作通訊層；tracked Markdown 保存正式 task/evidence，Git-ignored `.collab/runtime/` 保存 ephemeral events/handoffs。runtime 目前仍由 Google Drive 跨機同步，因此它**不是 secret store**。
 - **核心保證**：
   - task 只有 Case Lead 能建立，且只有一個 `Assignee Session`。
-  - watcher 只接 exact-assignee task，收到後自動送 `ACK`。
+  - `Target Role` 只描述能力；只有 `Assignee Session` 精確相符的 Session 能 ACK / START / 產出 output。
+  - 新 task 必須含 `execution_environment`（Markdown: `Execution Environment`），合法值只有 `host_local_gateway` / `portable_text_any`；缺漏或未知值必須視為不合法 task。
+  - watcher 只接 exact-assignee task，收到後自動送 `ACK`；`ACK` 只代表 delivery 已被 watcher 接受，只有 `START` 才代表 worker 真正開始執行。
   - 支援 `START / DONE / ERROR / QUESTION / REPLY / NOTE` immutable events。
   - `DONE` 會驗 task hash 與 finding/review output contract，禁止空模板或被改寫 task 假結案。
   - `doctor` 可檢查 task metadata、duplicate ID、runtime ignore 與 immutable hash。
+  - **傳輸 fallback（browser-free）**：watcher 於 ACK 後確保可重放 handoff 封包存在於 Git-ignored `.collab/runtime/inbox/<Session>/<CaseID>/<TaskID>.json`；若寫入失敗，下輪會從 `ACK` 狀態重試。`--transport {auto,agent,file}` 可選互動式 agent（預設）或純檔案/CLI，`--exec-timeout` 逾時即自動退回封包。
+  - **跨機同步韌性**：runtime 目錄實際靠雲端硬碟跨機同步（Drive 不遵守 `.gitignore`）；讀取器以 `is_sync_artifact()` 忽略驅動器產生的衝突副本／暫存碎片，`doctor` 會將其列為 WARN，確保同步競態不會被誤讀成正式 event/handoff。
+  - **Secret boundary**：plaintext password/token/session secret/private key 不得進 tracked `.collab`，也不得進 `.collab/runtime/`；只傳遞 `[REDACTED: local secret ref]` 類型的 host-local reference。
+  - **Canonical naming / review linkage**：task=`Txxx_TYPE.md`、finding=`FINDING_Txxx.md`、review=`REVIEW_Txxx.md`；`REVIEW` task 必須以 `--review-target-finding FINDING_Txxx` 綁定既有 finding，且 review output 的 `對應 Finding` 必須完全一致。
   - **MCP bridge（`mcp` 子命令）**：以 `collab_bus.py mcp {list,tools,call}` 作為協作執行路徑的 MCP 入口；服務端清單、金鑰變數名與 runner 均登載於 `.agent/mcp/registry.json`，可由 session 直接呼叫（例：`semgrep` 掃碼、`cve-mcp-server` 查 CVE/EPSS/KEV）。實作見 `collab_mcp.py`。
 
 ---
@@ -92,6 +98,10 @@ python security/tools/collab_bus.py list --session Session-C01-Triage
 # 6. 啟動指定 Session watcher
 python security/tools/collab_watch.py --session Session-C01-Triage --case C01_BottleOut
 
+# 7. 無 browser 環境：純檔案/CLI 派工並消費 handoff inbox
+python security/tools/collab_watch.py --session Session-C01-Triage --case C01_BottleOut --transport file
+python security/tools/collab_bus.py inbox --session Session-C01-Triage --show
+
 # 8. MCP：列出已註冊伺服器（離線）
 python security/tools/collab_bus.py mcp list
 
@@ -99,6 +109,42 @@ python security/tools/collab_bus.py mcp list
 python security/tools/collab_bus.py mcp tools --server semgrep
 
 # 10. MCP：呼叫單一工具（註冊表見 .agent/mcp/registry.json）
-python security/tools/collab_bus.py mcp call --server cve-mcp-server \n  --tool lookup_cve --args '{"cve_id": "CVE-2021-44228"}'
-python security/tools/collab_bus.py mcp call --server semgrep \n  --tool get_supported_languages
+python security/tools/collab_bus.py mcp call --server cve-mcp-server \
+  --tool lookup_cve --args '{"cve_id": "CVE-2021-44228"}'
+python security/tools/collab_bus.py mcp call --server semgrep \
+  --tool get_supported_languages
 ```
+
+---
+
+## 🌐 跨機對手演練 (Cross-Host Two-Way Rehearsal)
+
+驗證「主機一（Lead）派工 → 主機二（worker）接收、ACK 並完成 → 主機一收到回報」雙向暢通。前提：兩機共享同一雲端同步工作區（Drive 不遵守 `.gitignore`，故 `.collab/runtime/` 會跨機）。
+
+> 單機腳本無法代替此演練：派工必須由主機一發出，回程必須由主機一確認；切勿把同機 loopback 冒充為跨機驗證。
+
+```bash
+# [主機一 · Lead] 派工（actor 必須是該 case 的 Lead Session）
+python security/tools/collab_bus.py new-task \
+  --case C03_MemoryDump --actor-session Session-Antigravity \
+  --task-id T901 --type TRIAGE --target-role ROLE_01_TRIAGE_HUNTER \
+  --assignee-session Session-C03-Triage \
+  --execution-environment portable_text_any \
+  --title "Cross-host bus rehearsal" \
+  --objective "Confirm host1->host2 dispatch syncs in and host2 ACKs+completes." \
+  --context "Rehearsal only; do not touch Q01-Q10."
+
+# [主機二 · worker] 等 Drive 同步後接收（file transport 確保 browser 無關）
+python security/tools/collab_watch.py --session Session-C03-Triage --case C03_MemoryDump --transport file --once
+python security/tools/collab_bus.py inbox --session Session-C03-Triage --show
+python security/tools/collab_bus.py start     --case C03_MemoryDump --task-id T901 --session Session-C03-Triage
+python security/tools/collab_bus.py init-output --case C03_MemoryDump --task-id T901 --session Session-C03-Triage
+# …填完 FINDING_T901.md 後…
+python security/tools/collab_bus.py done --case C03_MemoryDump --task-id T901 --session Session-C03-Triage --message "rehearsal done"
+
+# [主機一] 等回程同步後驗證
+python security/tools/collab_bus.py events --session Session-Antigravity --case C03_MemoryDump --task-id T901
+python security/tools/collab_bus.py status --case C03_MemoryDump
+```
+
+**通過判準**：主機一在 `events` 中看到 `ACK → START → DONE`，且 `status` 顯示 `DONE`；三方 event 的 `task_sha256` 一致，證明 immutable task 跨機未被改寫。

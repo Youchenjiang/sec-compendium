@@ -1,9 +1,9 @@
 # 答題卡：[大題名稱] (總題數: 0 / ACCEPTED: 0)
 
 > **操作說明**：
-> - **人類選手**：只有 `VERIFIED` 才建議提交；提交後回報平台結果，由 Main 更新為 `ACCEPTED` 或 `REJECTED`。
-> - **Main / Lead Session**：本檔唯一 writer；負責答案、狀態、evidence reference 與平台結果。
-> - **Secret hygiene**：密碼、token、session secret、private key 不得原文寫入本 tracked 檔案。
+> - **人類選手**：只有 `VERIFIED` 才建議提交；提交後回報平台結果，由 Case Lead 更新為 `ACCEPTED` 或 `REJECTED`。
+> - **Case Lead Session**：本檔唯一 writer；負責答案、狀態、evidence reference 與平台結果。
+> - **Secret hygiene**：密碼、token、session secret、private key 不得原文寫入本 tracked 檔案或 cloud-synced `.collab/runtime/`；只記錄 host-local redacted reference。
 
 ---
 
