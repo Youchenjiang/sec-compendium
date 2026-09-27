@@ -48,6 +48,7 @@
   - 支援 `START / DONE / ERROR / QUESTION / REPLY / NOTE` immutable events。
   - `DONE` 會驗 task hash 與 finding/review output contract，禁止空模板或被改寫 task 假結案。
   - `doctor` 可檢查 task metadata、duplicate ID、runtime ignore 與 immutable hash。
+  - **MCP bridge（`mcp` 子命令）**：以 `collab_bus.py mcp {list,tools,call}` 作為協作執行路徑的 MCP 入口；服務端清單、金鑰變數名與 runner 均登載於 `.agent/mcp/registry.json`，可由 session 直接呼叫（例：`semgrep` 掃碼、`cve-mcp-server` 查 CVE/EPSS/KEV）。實作見 `collab_mcp.py`。
 
 ---
 
@@ -90,4 +91,14 @@ python security/tools/collab_bus.py doctor
 python security/tools/collab_bus.py list --session Session-C01-Triage
 # 6. 啟動指定 Session watcher
 python security/tools/collab_watch.py --session Session-C01-Triage --case C01_BottleOut
+
+# 8. MCP：列出已註冊伺服器（離線）
+python security/tools/collab_bus.py mcp list
+
+# 9. MCP：活體 session 列出伺服器真的暴露的工具
+python security/tools/collab_bus.py mcp tools --server semgrep
+
+# 10. MCP：呼叫單一工具（註冊表見 .agent/mcp/registry.json）
+python security/tools/collab_bus.py mcp call --server cve-mcp-server \n  --tool lookup_cve --args '{"cve_id": "CVE-2021-44228"}'
+python security/tools/collab_bus.py mcp call --server semgrep \n  --tool get_supported_languages
 ```

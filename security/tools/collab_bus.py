@@ -7,6 +7,7 @@ import argparse
 import sys
 from pathlib import Path
 
+import collab_mcp
 import collab_protocol as protocol
 
 
@@ -466,6 +467,12 @@ def build_parser() -> argparse.ArgumentParser:
     doctor = sub.add_parser("doctor", help="Validate the communication contract")
     doctor.add_argument("--case")
     doctor.set_defaults(func=command_doctor)
+
+    mcp = sub.add_parser(
+        "mcp",
+        help="Drive registered MCP servers as collab-tool calls (.agent/mcp/registry.json)",
+    )
+    collab_mcp.add_subcommands(mcp)
     return parser
 
 
