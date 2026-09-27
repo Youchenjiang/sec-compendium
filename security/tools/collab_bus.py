@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Command-line communication layer for the v2.2 Governed Case Bus."""
+"""Command-line communication layer for the v2.3 Governed Case Bus."""
 
 from __future__ import annotations
 
@@ -15,17 +15,25 @@ def render_task_markdown(args: argparse.Namespace) -> str:
     questions = args.question or "None"
     skills = args.skills or "unspecified"
     context = args.context or "None provided."
+    review_target = getattr(args, "review_target_finding", "") or ""
+    review_target_line = (
+        f"- **Review Target Finding**：`{review_target}`\n"
+        if args.task_type == "REVIEW"
+        else ""
+    )
     return f"""# TASK: {args.task_id} - {args.title}
 
 ## 1. 任務基本資訊
 - **所屬大題**：`{args.case}`
 - **關聯小題**：`{questions}`
 - **任務類型**：`{args.task_type}`
+- **Protocol Contract**：`{protocol.CURRENT_TASK_CONTRACT}`
 - **Target Role**：`{args.target_role}`
 - **Assignee Session**：`{args.assignee_session}`
 - **發起 Session**：`{args.actor_session}`
 - **發起時間**：`{protocol.utc_timestamp()}`
-- **期望技能**：`{skills}`
+- **Execution Environment**：`{args.execution_environment}`
+{review_target_line}- **期望技能**：`{skills}`
 - **Task ID**：`{args.task_id}`
 
 ---
@@ -75,10 +83,24 @@ def command_new_task(args: argparse.Namespace) -> int:
     protocol.validate_task_id(args.task_id)
     if args.task_type not in protocol.VALID_TASK_TYPES:
         raise ValueError(f"invalid task type: {args.task_type}")
+    if args.execution_environment not in protocol.VALID_EXECUTION_ENVIRONMENTS:
+        raise ValueError(f"invalid execution environment: {args.execution_environment}")
     if args.task_id in find_case_task_ids(args.case):
         raise ValueError(f"duplicate Task ID in {args.case}: {args.task_id}")
 
     current_case = protocol.case_dir(args.case)
+    review_target = getattr(args, "review_target_finding", "") or ""
+    if args.task_type == "REVIEW":
+        if not review_target:
+            raise ValueError("REVIEW task 必須指定 --review-target-finding")
+        if not protocol.FINDING_ID_RE.fullmatch(review_target):
+            raise ValueError(f"invalid review target finding: {review_target}")
+        finding_path = current_case / "findings" / f"{review_target}.md"
+        if not finding_path.is_file():
+            raise ValueError(f"review target finding does not exist: {review_target}")
+    elif review_target:
+        raise ValueError("--review-target-finding 只能用於 REVIEW task")
+
     task_path = current_case / "tasks" / f"{args.task_id}_{args.task_type}.md"
     if task_path.exists():
         raise ValueError(f"task already exists: {task_path}")
@@ -119,6 +141,11 @@ def emit_worker_event(args: argparse.Namespace, kind: str) -> int:
 
     output_path = protocol.output_path_for_task(task_path, metadata)
     prior_events = [payload for _, payload in protocol.events_for_task(args.case, args.task_id)]
+    current_state = protocol.task_state_from_event_payloads(prior_events)
+    transition_error = protocol.lifecycle_transition_error(current_state, kind)
+    if transition_error:
+        raise ValueError(transition_error)
+
     if kind == "START" and not any(
         payload.get("kind") == "ACK" and payload.get("from_session") == args.session
         for payload in prior_events
@@ -137,10 +164,8 @@ def emit_worker_event(args: argparse.Namespace, kind: str) -> int:
             raise ValueError("DONE 前缺少同一 Assignee Session 的 START")
         if not output_path.exists():
             raise ValueError(f"DONE 前 governed output 必須存在: {output_path}")
-        original_hash = protocol.first_task_hash_from_events(args.case, args.task_id)
-        current_hash = protocol.sha256_file(task_path)
-        if original_hash and current_hash != original_hash:
-            raise ValueError("immutable task hash 已改變；拒絕送出 DONE")
+    protocol.require_task_dispatch_anchor(task_path, metadata)
+    if kind == "DONE":
         output_errors = protocol.validate_governed_output(task_path, metadata, output_path)
         if output_errors:
             raise ValueError("DONE output contract 未通過: " + "; ".join(output_errors))
@@ -155,12 +180,20 @@ def emit_worker_event(args: argparse.Namespace, kind: str) -> int:
         task_path=task_path,
         output_path=output_path if output_path.exists() else None,
     )
+    if kind in protocol.TERMINAL_TASK_STATES:
+        protocol.consume_handoff(
+            protocol.handoff_path_for_task(args.session, args.case, args.task_id)
+        )
     print(f"{kind} {args.case}/{args.task_id} -> {lead}")
     return 0
 
 
 def command_init_output(args: argparse.Namespace) -> int:
     task_path, metadata = task_and_assignee(args.case, args.task_id, args.session)
+    protocol.require_task_dispatch_anchor(task_path, metadata)
+    state = protocol.latest_task_state(args.case, args.task_id)
+    if state in protocol.TERMINAL_TASK_STATES:
+        raise ValueError(f"task 已是 terminal state {state}，不可重新建立 output")
     output_path = protocol.output_path_for_task(task_path, metadata)
     if output_path.exists():
         raise ValueError(f"output already exists: {output_path}")
@@ -171,6 +204,7 @@ def command_init_output(args: argparse.Namespace) -> int:
 
 ## 1. 審查資訊
 - **對應 Task**：`{metadata['task_id']}`
+- **對應 Finding**：`{metadata['review_target_finding']}`
 - **Reviewer Session**：`{args.session}`
 - **完成時間**：`{protocol.utc_timestamp()}`
 
@@ -231,6 +265,7 @@ def command_send(args: argparse.Namespace) -> int:
         raise ValueError("task-scoped message 只能在 Case Lead 與唯一 assignee 之間傳遞")
     if args.from_session == args.to_session:
         raise ValueError("from-session 與 to-session 不可相同")
+    protocol.require_task_dispatch_anchor(task_path, metadata)
     protocol.emit_event(
         kind=args.kind,
         case_id=args.case,
@@ -247,6 +282,7 @@ def command_send(args: argparse.Namespace) -> int:
 def command_dispatch_failed(args: argparse.Namespace) -> int:
     lead = ensure_actor_is_case_lead(args.case, args.session)
     task_path, metadata = protocol.find_task(args.case, args.task_id)
+    protocol.require_task_dispatch_anchor(task_path, metadata)
     prior_events = [payload for _, payload in protocol.events_for_task(args.case, args.task_id)]
     if any(payload.get("kind") == "ACK" for payload in prior_events):
         raise ValueError("已有 ACK 的 task 不可標記為 DISPATCH_FAILED；請使用 worker ERROR")
@@ -282,12 +318,50 @@ def command_list(args: argparse.Namespace) -> int:
     return 0
 
 
+def command_inbox(args: argparse.Namespace) -> int:
+    """List durable file/CLI handoff packets queued for one worker session."""
+    protocol.validate_session(args.session)
+    rows = []
+    for handoff_path, payload in protocol.iter_handoffs(args.session) or []:
+        if args.case and payload.get("case_id") != args.case:
+            continue
+        if args.task_id and payload.get("task_id") != args.task_id:
+            continue
+        state = protocol.latest_task_state(
+            payload.get("case_id", ""), payload.get("task_id", "")
+        )
+        if state in protocol.TERMINAL_TASK_STATES and not args.all:
+            continue
+        rows.append((handoff_path, payload, state))
+
+    if not rows:
+        print("Inbox empty.")
+        return 0
+    for handoff_path, payload, state in rows:
+        print(
+            f"{payload.get('created_utc')} {payload.get('case_id')}/{payload.get('task_id')} "
+            f"{payload.get('task_type')} transport={payload.get('transport')} "
+            f"state={state} env={payload.get('execution_environment') or 'legacy'} "
+            f"path={protocol.relative_posix(handoff_path)}"
+        )
+        if args.show:
+            print(f"    instruction: {payload.get('instruction')}")
+            for command in payload.get("required_commands", []):
+                print(f"    $ {command}")
+    return 0
+
+
 def command_status(args: argparse.Namespace) -> int:
     case_filters = {args.case} if args.case else None
     rows = []
     for task_path in protocol.iter_tasks(protocol.CASES_DIR, case_filters) or []:
         metadata = protocol.parse_task_metadata(task_path)
-        errors = protocol.validate_task_metadata(task_path, metadata)
+        anchor_errors = protocol.validate_task_dispatch_anchor(task_path, metadata)
+        allow_legacy = not metadata.get("protocol_contract") and not anchor_errors
+        errors = protocol.validate_task_metadata(
+            task_path, metadata, allow_legacy=allow_legacy
+        )
+        errors.extend(anchor_errors)
         state = "INVALID" if errors else protocol.latest_task_state(
             metadata["case_id"], metadata["task_id"]
         )
@@ -300,6 +374,7 @@ def command_status(args: argparse.Namespace) -> int:
                 metadata.get("task_id", "?"),
                 metadata.get("task_type", "?"),
                 metadata.get("assignee_session", "?"),
+                metadata.get("execution_environment") or "legacy",
                 state,
                 "yes" if output and output.exists() else "no",
             )
@@ -307,7 +382,7 @@ def command_status(args: argparse.Namespace) -> int:
     if not rows:
         print("No tasks.")
         return 0
-    print("CASE TASK TYPE ASSIGNEE STATE OUTPUT")
+    print("CASE TASK TYPE ASSIGNEE ENV STATE OUTPUT")
     for row in rows:
         print(" ".join(row))
     return 0
@@ -358,8 +433,14 @@ def command_doctor(args: argparse.Namespace) -> int:
     case_filters = {args.case} if args.case else None
     for task_path in protocol.iter_tasks(protocol.CASES_DIR, case_filters) or []:
         metadata = protocol.parse_task_metadata(task_path)
-        task_errors = protocol.validate_task_metadata(task_path, metadata)
+        anchor_errors = protocol.validate_task_dispatch_anchor(task_path, metadata)
+        allow_legacy = not metadata.get("protocol_contract") and not anchor_errors
+        task_errors = protocol.validate_task_metadata(
+            task_path, metadata, allow_legacy=allow_legacy
+        )
         for error in task_errors:
+            errors.append(f"{protocol.relative_posix(task_path)}: {error}")
+        for error in anchor_errors:
             errors.append(f"{protocol.relative_posix(task_path)}: {error}")
 
         key = (metadata.get("case_id", ""), metadata.get("task_id", ""))
@@ -371,18 +452,46 @@ def command_doctor(args: argparse.Namespace) -> int:
                 )
             seen_ids[key] = task_path
 
-        if not task_errors:
+        if not task_errors and not anchor_errors:
             lead = protocol.get_case_lead(metadata["case_id"])
             if lead is None:
                 warnings.append(f"{metadata['case_id']}: no valid Case Lead")
 
-            first_hash = protocol.first_task_hash_from_events(
-                metadata["case_id"], metadata["task_id"]
-            )
-            if first_hash and protocol.sha256_file(task_path) != first_hash:
-                errors.append(
-                    f"immutable task changed: {metadata['case_id']}/{metadata['task_id']}"
+            lifecycle_payloads = [
+                payload
+                for _, payload in protocol.events_for_task(
+                    metadata["case_id"], metadata["task_id"]
                 )
+            ]
+            for lifecycle_error in protocol.validate_lifecycle_events(lifecycle_payloads):
+                errors.append(
+                    f"{metadata['case_id']}/{metadata['task_id']}: {lifecycle_error}"
+                )
+            if not metadata.get("execution_environment"):
+                warnings.append(
+                    f"legacy task missing execution environment: "
+                    f"{metadata['case_id']}/{metadata['task_id']}"
+                )
+
+    for session_dir in sorted(protocol.INBOX_DIR.iterdir()) if protocol.INBOX_DIR.exists() else []:
+        if not session_dir.is_dir():
+            continue
+        for handoff_path, payload in protocol.iter_handoffs(session_dir.name) or []:
+            state = protocol.latest_task_state(
+                payload.get("case_id", ""), payload.get("task_id", "")
+            )
+            if state in protocol.TERMINAL_TASK_STATES:
+                warnings.append(
+                    f"stale terminal handoff: {protocol.relative_posix(handoff_path)}"
+                )
+
+    for artifact in protocol.iter_sync_artifacts(
+        protocol.EVENTS_DIR, protocol.INBOX_DIR, protocol.RUNTIME_DIR / "watchers"
+    ):
+        warnings.append(
+            f"cloud-sync artifact ignored by readers: "
+            f"{protocol.relative_posix(artifact)}"
+        )
 
     for warning in sorted(set(warnings)):
         print(f"WARN {warning}")
@@ -407,6 +516,16 @@ def build_parser() -> argparse.ArgumentParser:
     new_task.add_argument("--type", dest="task_type", required=True, choices=sorted(protocol.VALID_TASK_TYPES))
     new_task.add_argument("--target-role", required=True)
     new_task.add_argument("--assignee-session", required=True)
+    new_task.add_argument(
+        "--execution-environment",
+        required=True,
+        choices=sorted(protocol.VALID_EXECUTION_ENVIRONMENTS),
+    )
+    new_task.add_argument(
+        "--review-target-finding",
+        default="",
+        help="REVIEW only: exact governed finding id, e.g. FINDING_T001",
+    )
     new_task.add_argument("--question", default="")
     new_task.add_argument("--title", required=True)
     new_task.add_argument("--objective", required=True)
@@ -451,6 +570,17 @@ def build_parser() -> argparse.ArgumentParser:
     listing.add_argument("--session", required=True)
     listing.add_argument("--case", action="append", default=[])
     listing.set_defaults(func=command_list)
+
+    inbox = sub.add_parser(
+        "inbox",
+        help="List durable file/CLI handoff packets for one worker session",
+    )
+    inbox.add_argument("--session", required=True)
+    inbox.add_argument("--case")
+    inbox.add_argument("--task-id")
+    inbox.add_argument("--show", action="store_true", help="Also print the replayable commands")
+    inbox.add_argument("--all", action="store_true", help="Also show terminal/stale handoffs")
+    inbox.set_defaults(func=command_inbox)
 
     status = sub.add_parser("status", help="Summarize task communication state")
     status.add_argument("--case")

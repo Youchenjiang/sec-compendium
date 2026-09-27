@@ -18,16 +18,26 @@ COLLAB_DIR = REPO_ROOT / ".collab"
 CASES_DIR = COLLAB_DIR / "cases"
 RUNTIME_DIR = COLLAB_DIR / "runtime"
 EVENTS_DIR = RUNTIME_DIR / "events"
+INBOX_DIR = RUNTIME_DIR / "inbox"
 
 SESSION_RE = re.compile(r"^[A-Za-z0-9._-]+$")
 TASK_ID_RE = re.compile(r"^T\d{3,}$")
+FINDING_ID_RE = re.compile(r"^FINDING_T\d{3,}$")
 FIELD_RE = re.compile(r"^- \*\*(?P<label>[^*]+)\*\*[：:]\s*`(?P<value>[^`]+)`")
 VALUE_FIELD_RE = re.compile(r"^- \*\*(?P<label>[^*]+)\*\*[：:]\s*(?P<value>.*)$")
 CASE_LEAD_RE = re.compile(
     r"^- \*\*主導代理人 \(Lead Session\)\*\*[：:]\s*`(?P<value>[^`]+)`"
 )
 
+# Cloud-sync engines (Google Drive / Dropbox / OneDrive) create sibling copies when
+# the same path is written from two hosts. Those copies are never governed artifacts.
+SYNC_CONFLICT_RE = re.compile(r"\s+\([^)]*conflicted copy[^)]*\)(?=(?:\.[^.]+)?$)", re.IGNORECASE)
+
 VALID_TASK_TYPES = {"DISCOVERY", "TRIAGE", "VERIFY", "REVERSE", "REVIEW"}
+VALID_EXECUTION_ENVIRONMENTS = {"host_local_gateway", "portable_text_any"}
+LEGACY_EXECUTION_ENVIRONMENT = "legacy_unspecified"
+CURRENT_TASK_CONTRACT = "v2.3"
+TERMINAL_TASK_STATES = {"DONE", "ERROR"}
 VALID_EVENT_KINDS = {
     "DISPATCHED",
     "DISPATCH_FAILED",
@@ -98,14 +108,22 @@ def parse_task_metadata(task_path: Path) -> dict[str, str]:
         "case_id": fields.get("所屬大題", ""),
         "questions": fields.get("關聯小題", ""),
         "task_type": task_type or "",
+        "protocol_contract": fields.get("Protocol Contract", ""),
         "target_role": fields.get("Target Role", ""),
         "assignee_session": fields.get("Assignee Session", ""),
         "issuer_session": fields.get("發起 Session", ""),
+        "execution_environment": fields.get("執行環境", "") or fields.get("Execution Environment", ""),
+        "review_target_finding": fields.get("Review Target Finding", ""),
         "task_id": fields.get("Task ID", ""),
     }
 
 
-def validate_task_metadata(task_path: Path, metadata: dict[str, str] | None = None) -> list[str]:
+def validate_task_metadata(
+    task_path: Path,
+    metadata: dict[str, str] | None = None,
+    *,
+    allow_legacy: bool = False,
+) -> list[str]:
     metadata = metadata or parse_task_metadata(task_path)
     errors: list[str] = []
 
@@ -123,6 +141,28 @@ def validate_task_metadata(task_path: Path, metadata: dict[str, str] | None = No
 
     if metadata.get("task_type") and metadata["task_type"] not in VALID_TASK_TYPES:
         errors.append(f"invalid task type: {metadata['task_type']}")
+    contract = metadata.get("protocol_contract", "")
+    execution_environment = metadata.get("execution_environment", "")
+    review_target_finding = metadata.get("review_target_finding", "")
+    if not contract and not allow_legacy:
+        errors.append("missing Protocol Contract")
+    if contract and contract != CURRENT_TASK_CONTRACT:
+        errors.append(f"unsupported Protocol Contract: {contract}")
+    if contract == CURRENT_TASK_CONTRACT and not execution_environment:
+        errors.append("missing 執行環境")
+    if execution_environment and execution_environment not in VALID_EXECUTION_ENVIRONMENTS:
+        errors.append(f"invalid execution environment: {execution_environment}")
+    if metadata.get("task_type") == "REVIEW":
+        if contract == CURRENT_TASK_CONTRACT and not review_target_finding:
+            errors.append("missing Review Target Finding")
+        if review_target_finding and not FINDING_ID_RE.fullmatch(review_target_finding):
+            errors.append(f"invalid Review Target Finding: {review_target_finding}")
+        if review_target_finding:
+            finding_path = task_path.parent.parent / "findings" / f"{review_target_finding}.md"
+            if not finding_path.is_file():
+                errors.append(f"review target finding does not exist: {review_target_finding}")
+    elif review_target_finding:
+        errors.append("Review Target Finding is only valid for REVIEW tasks")
     if metadata.get("task_id") and not TASK_ID_RE.fullmatch(metadata["task_id"]):
         errors.append(f"invalid Task ID: {metadata['task_id']}")
     for key in ("assignee_session", "issuer_session"):
@@ -180,6 +220,7 @@ def discover_assigned_tasks(
     cases_dir: Path,
     session: str,
     case_filters: set[str] | None = None,
+    events_dir: Path | None = None,
 ) -> list[tuple[Path, dict[str, str]]]:
     validate_session(session)
     assigned: list[tuple[Path, dict[str, str]]] = []
@@ -187,7 +228,14 @@ def discover_assigned_tasks(
         metadata = parse_task_metadata(task_path)
         if metadata["assignee_session"] != session:
             continue
-        errors = validate_task_metadata(task_path, metadata)
+        anchor_errors = validate_task_dispatch_anchor(
+            task_path, metadata, events_dir=events_dir
+        )
+        allow_legacy = not metadata.get("protocol_contract") and not anchor_errors
+        errors = validate_task_metadata(
+            task_path, metadata, allow_legacy=allow_legacy
+        )
+        errors.extend(anchor_errors)
         if errors:
             raise ValueError(f"invalid assigned task {task_path}: {'; '.join(errors)}")
         assigned.append((task_path, metadata))
@@ -211,7 +259,9 @@ def find_task(
     if len(matches) != 1:
         raise ValueError(f"duplicate Task ID in {case_id}: {task_id}")
     task_path, metadata = matches[0]
-    errors = validate_task_metadata(task_path, metadata)
+    # Retrieval supports already-published pre-v2.3 tasks. Mutating/dispatching
+    # callers must additionally require the canonical DISPATCHED anchor.
+    errors = validate_task_metadata(task_path, metadata, allow_legacy=True)
     if errors:
         raise ValueError(f"invalid task {task_path}: {'; '.join(errors)}")
     return task_path, metadata
@@ -257,6 +307,7 @@ def validate_governed_output(
     if metadata["task_type"] == "REVIEW":
         expected = {
             "對應 Task": metadata["task_id"],
+            "對應 Finding": metadata.get("review_target_finding", ""),
             "Reviewer Session": metadata["assignee_session"],
         }
         for label, expected_value in expected.items():
@@ -359,6 +410,8 @@ def iter_events(events_dir: Path | None = None):
     if not events_dir.exists():
         return
     for event_path in sorted(events_dir.glob("*/*/*.json")):
+        if is_sync_artifact(event_path):
+            continue
         try:
             payload = json.loads(event_path.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError):
@@ -378,6 +431,8 @@ def events_for_task(
     if not target_dir.exists():
         return results
     for event_path in sorted(target_dir.glob("*.json")):
+        if is_sync_artifact(event_path):
+            continue
         try:
             payload = json.loads(event_path.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError):
@@ -401,36 +456,261 @@ def incoming_events(
     return sorted(results, key=lambda item: int(item[1].get("created_ns", 0)))
 
 
+def is_sync_artifact(path: Path) -> bool:
+    """True when a runtime filename is a cloud-sync duplicate/partial, not real data.
+
+    The governed runtime lives under a cloud-synced tree, so the sync engine may
+    emit ``X (conflicted copy).json``, dotfile temp fragments, or editor backups.
+    Readers must never treat those as events or handoffs.
+    """
+    name = path.name
+    if name.startswith(".") or name.endswith("~"):
+        return True
+    return bool(SYNC_CONFLICT_RE.search(name))
+
+
+def iter_sync_artifacts(*roots: Path):
+    """Yield cloud-sync duplicate/partial files found below the given roots."""
+    for root in roots:
+        if not root.exists():
+            continue
+        for candidate in sorted(root.rglob("*")):
+            if candidate.is_file() and is_sync_artifact(candidate):
+                yield candidate
+
+
+def handoff_dir(session: str, inbox_dir: Path | None = None) -> Path:
+    """Return the Git-ignored inbox directory for one worker session."""
+    validate_session(session)
+    return (inbox_dir or INBOX_DIR) / session
+
+
+def write_handoff(
+    *,
+    session: str,
+    case_id: str,
+    task_id: str,
+    task_type: str,
+    execution_environment: str,
+    current_state: str,
+    task_path: Path,
+    output_path: Path,
+    instruction: str,
+    reason: str,
+    transport: str,
+    lead_session: str | None,
+    inbox_dir: Path | None = None,
+) -> Path:
+    """Persist a durable, browser-free handoff packet for one assigned task.
+
+    The packet is the pure file/CLI fallback transport: any worker (agent or
+    human) that can read the repo can pick it up without an interactive
+    composer/browser, and replay the exact governed commands to finish the task.
+    """
+    validate_session(session)
+    validate_task_id(task_id)
+    if execution_environment not in VALID_EXECUTION_ENVIRONMENTS | {LEGACY_EXECUTION_ENVIRONMENT}:
+        raise ValueError(f"invalid execution environment: {execution_environment}")
+    task_sha256 = sha256_file(task_path)
+    if current_state in TERMINAL_TASK_STATES:
+        raise ValueError(f"cannot write handoff for terminal task state: {current_state}")
+    commands: list[str] = []
+    if current_state == "ACK":
+        commands.append(
+            f"python security/tools/collab_bus.py start --case {case_id} "
+            f"--task-id {task_id} --session {session}"
+        )
+    elif current_state != "START":
+        raise ValueError(f"handoff requires ACK or START state, got: {current_state}")
+    if not output_path.exists():
+        commands.append(
+            f"python security/tools/collab_bus.py init-output --case {case_id} "
+            f"--task-id {task_id} --session {session}"
+        )
+    ready_message = "review ready" if task_type == "REVIEW" else "finding ready"
+    commands.append(
+        f"python security/tools/collab_bus.py done --case {case_id} "
+        f"--task-id {task_id} --session {session} --message \"{ready_message}\""
+    )
+    payload = {
+        "schema": "collab-handoff/v1",
+        "created_utc": utc_timestamp(),
+        "session": session,
+        "case_id": case_id,
+        "task_id": task_id,
+        "task_type": task_type,
+        "execution_environment": execution_environment,
+        "task_state": current_state,
+        "task_path": relative_posix(task_path),
+        "task_sha256": task_sha256,
+        "output_path": relative_posix(output_path),
+        "lead_session": lead_session,
+        "reason": reason,
+        "transport": transport,
+        "instruction": instruction,
+        "required_commands": commands,
+    }
+    target = handoff_dir(session, inbox_dir) / case_id / f"{task_id}.json"
+    atomic_write_text(target, json.dumps(payload, ensure_ascii=False, indent=2) + "\n")
+    return target
+
+
+def iter_handoffs(session: str, inbox_dir: Path | None = None):
+    """Yield ``(path, payload)`` for every durable handoff queued for a session."""
+    base = handoff_dir(session, inbox_dir)
+    if not base.exists():
+        return
+    for handoff_path in sorted(base.glob("*/*.json")):
+        if is_sync_artifact(handoff_path):
+            continue
+        try:
+            payload = json.loads(handoff_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        if payload.get("schema") == "collab-handoff/v1":
+            yield handoff_path, payload
+
+
+def consume_handoff(handoff_path: Path) -> None:
+    """Remove a resolved handoff packet (best effort)."""
+    handoff_path.unlink(missing_ok=True)
+
+
+def handoff_path_for_task(
+    session: str,
+    case_id: str,
+    task_id: str,
+    inbox_dir: Path | None = None,
+) -> Path:
+    validate_session(session)
+    validate_task_id(task_id)
+    return handoff_dir(session, inbox_dir) / case_id / f"{task_id}.json"
+
+
+def lifecycle_transition_error(current_state: str, next_kind: str) -> str | None:
+    """Return an error for an invalid worker lifecycle transition."""
+    next_kind = next_kind.upper()
+    if current_state in TERMINAL_TASK_STATES:
+        return f"task 已是 terminal state {current_state}，不可再送 {next_kind}"
+
+    allowed_from = {
+        "ACK": {"DISPATCHED", "DISPATCH_FAILED"},
+        "START": {"ACK"},
+        "DONE": {"START"},
+        "ERROR": {"ACK", "START"},
+    }
+    if next_kind not in allowed_from:
+        return None
+    if current_state not in allowed_from[next_kind]:
+        expected = "/".join(sorted(allowed_from[next_kind]))
+        return f"{next_kind} 前必須為 {expected}；current={current_state}"
+    return None
+
+
+def task_state_from_event_payloads(payloads: list[dict]) -> str:
+    """Resolve task lifecycle state without trusting cross-host wall-clock order."""
+    kinds = {payload.get("kind") for payload in payloads}
+    for state in ("DONE", "ERROR", "START", "ACK", "DISPATCH_FAILED", "DISPATCHED"):
+        if state in kinds:
+            return state
+    return "DISPATCHED"
+
+
+def validate_lifecycle_events(payloads: list[dict]) -> list[str]:
+    """Validate lifecycle invariants without assuming clocks are synchronized."""
+    lifecycle_kinds = ("DISPATCHED", "DISPATCH_FAILED", "ACK", "START", "DONE", "ERROR")
+    counts = {
+        kind: sum(1 for payload in payloads if payload.get("kind") == kind)
+        for kind in lifecycle_kinds
+    }
+    errors: list[str] = []
+    if counts["DISPATCHED"] != 1:
+        errors.append(f"expected exactly one DISPATCHED event, got {counts['DISPATCHED']}")
+    for kind in ("DISPATCH_FAILED", "ACK", "START", "DONE", "ERROR"):
+        if counts[kind] > 1:
+            errors.append(f"duplicate {kind} events: {counts[kind]}")
+    if counts["START"] and not counts["ACK"]:
+        errors.append("START exists without ACK")
+    if counts["DONE"] and not counts["START"]:
+        errors.append("DONE exists without START")
+    if counts["ERROR"] and not counts["ACK"]:
+        errors.append("ERROR exists without ACK")
+    if counts["DONE"] and counts["ERROR"]:
+        errors.append("conflicting terminal events: DONE and ERROR")
+    return errors
+
+
 def latest_task_state(
     case_id: str,
     task_id: str,
     events_dir: Path | None = None,
 ) -> str:
     events_dir = events_dir or EVENTS_DIR
-    events = events_for_task(case_id, task_id, events_dir)
-    lifecycle = [
-        payload.get("kind")
-        for _, payload in events
-        if payload.get("kind") in {
-            "DISPATCHED",
-            "DISPATCH_FAILED",
-            "ACK",
-            "START",
-            "DONE",
-            "ERROR",
-        }
+    payloads = [
+        payload for _, payload in events_for_task(case_id, task_id, events_dir)
     ]
-    return lifecycle[-1] if lifecycle else "DISPATCHED"
+    return task_state_from_event_payloads(payloads)
 
 
 def first_task_hash_from_events(
     case_id: str,
     task_id: str,
     events_dir: Path | None = None,
+    expected_issuer: str | None = None,
 ) -> str | None:
     events_dir = events_dir or EVENTS_DIR
-    for _, payload in events_for_task(case_id, task_id, events_dir):
-        value = payload.get("task_sha256")
-        if isinstance(value, str) and value:
-            return value
-    return None
+    dispatched = [
+        payload
+        for _, payload in events_for_task(case_id, task_id, events_dir)
+        if payload.get("kind") == "DISPATCHED"
+    ]
+    if len(dispatched) > 1:
+        raise ValueError(f"multiple DISPATCHED events: {case_id}/{task_id}")
+    if not dispatched:
+        return None
+    payload = dispatched[0]
+    if expected_issuer is not None and payload.get("from_session") != expected_issuer:
+        raise ValueError(
+            f"DISPATCHED issuer mismatch: event={payload.get('from_session')} "
+            f"task={expected_issuer}"
+        )
+    value = payload.get("task_sha256")
+    return value if isinstance(value, str) and value else None
+
+
+def validate_task_dispatch_anchor(
+    task_path: Path,
+    metadata: dict[str, str],
+    events_dir: Path | None = None,
+) -> list[str]:
+    """Validate the canonical DISPATCHED event before trusting task contents."""
+    case_id = metadata.get("case_id", "")
+    task_id = metadata.get("task_id", "")
+    issuer = metadata.get("issuer_session", "")
+    if not case_id or not task_id or not issuer:
+        return ["cannot validate DISPATCHED anchor with incomplete task metadata"]
+    try:
+        anchored_hash = first_task_hash_from_events(
+            case_id,
+            task_id,
+            events_dir=events_dir,
+            expected_issuer=issuer,
+        )
+    except ValueError as exc:
+        return [str(exc)]
+    if not anchored_hash:
+        return ["missing canonical DISPATCHED anchor"]
+    current_hash = sha256_file(task_path)
+    if current_hash != anchored_hash:
+        return ["immutable task hash 已改變；與 canonical DISPATCHED anchor 不一致"]
+    return []
+
+
+def require_task_dispatch_anchor(
+    task_path: Path,
+    metadata: dict[str, str],
+    events_dir: Path | None = None,
+) -> None:
+    errors = validate_task_dispatch_anchor(task_path, metadata, events_dir)
+    if errors:
+        raise ValueError("; ".join(errors))

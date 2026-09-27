@@ -21,6 +21,7 @@ class CollabFlowIntegrationTests(unittest.TestCase):
             root = Path(tmp)
             cases = root / ".collab" / "cases"
             events = root / ".collab" / "runtime" / "events"
+            inbox = root / ".collab" / "runtime" / "inbox"
             case = cases / "C01_Test"
             for child in ("tasks", "findings", "reviews"):
                 (case / child).mkdir(parents=True, exist_ok=True)
@@ -36,6 +37,7 @@ class CollabFlowIntegrationTests(unittest.TestCase):
                 task_type="TRIAGE",
                 target_role="ROLE_01_TRIAGE_HUNTER",
                 assignee_session="Session-Worker",
+                execution_environment="portable_text_any",
                 question="Q02",
                 title="Find suspicious process",
                 objective="Identify the suspicious process from supplied evidence.",
@@ -49,6 +51,7 @@ class CollabFlowIntegrationTests(unittest.TestCase):
                 patch.object(protocol, "REPO_ROOT", root),
                 patch.object(protocol, "CASES_DIR", cases),
                 patch.object(protocol, "EVENTS_DIR", events),
+                patch.object(protocol, "INBOX_DIR", inbox),
                 patch.object(collab_watch, "CASES_DIR", cases),
                 patch.object(collab_watch, "copy_to_clipboard"),
                 patch.object(collab_watch, "beep"),
@@ -56,6 +59,8 @@ class CollabFlowIntegrationTests(unittest.TestCase):
                 self.assertEqual(collab_bus.command_new_task(new_task), 0)
                 task_path, metadata = protocol.find_task("C01_Test", "T001")
                 self.assertEqual(metadata["assignee_session"], "Session-Worker")
+                self.assertEqual(metadata["protocol_contract"], protocol.CURRENT_TASK_CONTRACT)
+                self.assertEqual(metadata["execution_environment"], "portable_text_any")
 
                 announced = collab_watch.process_assignments(
                     session="Session-Worker",
@@ -64,8 +69,20 @@ class CollabFlowIntegrationTests(unittest.TestCase):
                     state_path=state_path,
                     exec_program=None,
                     exec_args=[],
+                    transport="file",
                 )
                 self.assertEqual(announced, 1)
+
+                # The file/CLI fallback must leave a durable, replayable handoff.
+                handoffs = list(protocol.iter_handoffs("Session-Worker"))
+                self.assertEqual(len(handoffs), 1)
+                handoff_path, handoff = handoffs[0]
+                self.assertEqual(handoff["case_id"], "C01_Test")
+                self.assertEqual(handoff["task_id"], "T001")
+                self.assertEqual(handoff["transport"], "file")
+                self.assertEqual(handoff["execution_environment"], "portable_text_any")
+                self.assertTrue(handoff_path.exists())
+                self.assertTrue(any("start" in c for c in handoff["required_commands"]))
 
                 start_args = argparse.Namespace(
                     case="C01_Test",
@@ -145,6 +162,7 @@ class CollabFlowIntegrationTests(unittest.TestCase):
                 )
                 self.assertEqual(collab_bus.emit_worker_event(done_args, "DONE"), 0)
                 self.assertEqual(protocol.latest_task_state("C01_Test", "T001"), "DONE")
+                self.assertFalse(handoff_path.exists())
 
                 kinds_to_lead = [
                     payload["kind"]

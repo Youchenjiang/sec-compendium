@@ -2,6 +2,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 
 TOOLS_DIR = Path(__file__).resolve().parents[1]
@@ -16,9 +17,11 @@ TASK_BODY = """# TASK: test
 - **所屬大題**：`C01_Test`
 - **關聯小題**：`Q01`
 - **任務類型**：`{task_type}`
+- **Protocol Contract**：`v2.3`
 - **Target Role**：`ROLE_01_TRIAGE_HUNTER`
 - **Assignee Session**：`{session}`
 - **發起 Session**：`Session-Lead`
+- **Execution Environment**：`portable_text_any`
 - **Task ID**：`{task_id}`
 """
 
@@ -37,23 +40,28 @@ class CollabWatchTests(unittest.TestCase):
 
         self.assertEqual(metadata["task_type"], "TRIAGE")
         self.assertEqual(metadata["assignee_session"], "Session-C01-Triage")
+        self.assertEqual(metadata["execution_environment"], "portable_text_any")
         self.assertEqual(metadata["task_id"], "T001")
 
     def test_discover_only_exact_assignee_and_skip_template(self):
         with tempfile.TemporaryDirectory() as tmp:
-            cases = Path(tmp) / "cases"
+            root = Path(tmp)
+            cases = root / "cases"
+            events = root / "events"
             tasks = cases / "C01_Test" / "tasks"
             template_tasks = cases / "C00_Template" / "tasks"
             tasks.mkdir(parents=True)
             template_tasks.mkdir(parents=True)
 
-            (tasks / "T001.md").write_text(
+            task_a = tasks / "T001.md"
+            task_a.write_text(
                 TASK_BODY.format(
                     task_type="TRIAGE", session="Session-A", task_id="T001"
                 ),
                 encoding="utf-8",
             )
-            (tasks / "T002.md").write_text(
+            task_b = tasks / "T002.md"
+            task_b.write_text(
                 TASK_BODY.format(
                     task_type="REVERSE", session="Session-B", task_id="T002"
                 ),
@@ -67,7 +75,23 @@ class CollabWatchTests(unittest.TestCase):
                 encoding="utf-8",
             )
 
-            found = collab_watch.discover_assigned_tasks(cases, "Session-A")
+            with patch.object(collab_watch.protocol, "REPO_ROOT", root):
+                for task, task_id, assignee in (
+                    (task_a, "T001", "Session-A"),
+                    (task_b, "T002", "Session-B"),
+                ):
+                    collab_watch.protocol.emit_event(
+                        kind="DISPATCHED",
+                        case_id="C01_Test",
+                        task_id=task_id,
+                        from_session="Session-Lead",
+                        to_session=assignee,
+                        task_path=task,
+                        events_dir=events,
+                    )
+                found = collab_watch.discover_assigned_tasks(
+                    cases, "Session-A", events_dir=events
+                )
 
         self.assertEqual(len(found), 1)
         self.assertEqual(found[0][0].name, "T001.md")
