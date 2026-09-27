@@ -1,3 +1,5 @@
+> **RETIRED (2026-09-27)** — 前身伺服器的歷史驗證證據。現行伺服器見 `servers/semgrep.verification.md`。
+
 # semgrep-mcp — 可跑驗證證據
 
 > 本檔為**實跑**證據，非推測。所有輸出皆取自實際指令；握手結果重跑兩次一致（`EXIT 0`）。

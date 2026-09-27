@@ -1,3 +1,5 @@
+> **RETIRED (2026-09-27)** — 本伺服器已被上游棄用（`tools/list` 只回 `deprecation_notice`），已由 `servers/semgrep.md`（`semgrep mcp`）取代並自 `registry.json` 的 `servers[]` 移除。此檔保留為歷史與決策紀錄。
+
 # semgrep-mcp
 
 第一個接入 `.agent/mcp` 的伺服器。選它當第一顆，是因為它**自足**：entrypoint `semgrep_mcp.server:main`、pip 相依內含 `semgrep==1.135.0`，不需要外部工具鏈（不像 Ghidra/Volatility/Velociraptor 那些要先備好宿主工具或金鑰）。
