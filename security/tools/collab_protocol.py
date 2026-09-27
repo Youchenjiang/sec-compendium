@@ -236,6 +236,17 @@ def discover_assigned_tasks(
             task_path, metadata, allow_legacy=allow_legacy
         )
         errors.extend(anchor_errors)
+        if metadata.get("task_type") == "REVIEW" and metadata.get(
+            "review_target_finding"
+        ):
+            errors.extend(
+                validate_finding_provenance(
+                    metadata["case_id"],
+                    metadata["review_target_finding"],
+                    cases_dir=cases_dir,
+                    events_dir=events_dir,
+                )
+            )
         if errors:
             raise ValueError(f"invalid assigned task {task_path}: {'; '.join(errors)}")
         assigned.append((task_path, metadata))
@@ -638,6 +649,119 @@ def validate_lifecycle_events(payloads: list[dict]) -> list[str]:
     if counts["DONE"] and counts["ERROR"]:
         errors.append("conflicting terminal events: DONE and ERROR")
     return errors
+
+
+def validate_terminal_output_anchor(
+    task_path: Path,
+    metadata: dict[str, str],
+    events_dir: Path | None = None,
+) -> list[str]:
+    """Fail closed when a governed output drifts after DONE/ERROR.
+
+    Terminal events content-address the governed output at the instant the task
+    closes.  A later direct edit must not silently replace that evidence.
+    """
+    case_id = metadata.get("case_id", "")
+    task_id = metadata.get("task_id", "")
+    if not case_id or not task_id:
+        return ["cannot validate terminal output anchor with incomplete task metadata"]
+
+    terminal_payloads = [
+        payload
+        for _, payload in events_for_task(case_id, task_id, events_dir)
+        if payload.get("kind") in TERMINAL_TASK_STATES
+    ]
+    if not terminal_payloads:
+        return []
+    if len(terminal_payloads) != 1:
+        return [f"expected exactly one terminal event, got {len(terminal_payloads)}"]
+
+    payload = terminal_payloads[0]
+    kind = payload.get("kind", "terminal")
+    output_path = output_path_for_task(task_path, metadata)
+    anchored_hash = payload.get("output_sha256")
+    anchored_path = payload.get("output_path")
+
+    if anchored_path:
+        try:
+            current_rel = relative_posix(output_path)
+        except ValueError:
+            current_rel = output_path.as_posix()
+        if anchored_path != current_rel:
+            return [
+                f"{kind} output path mismatch: event={anchored_path} current={current_rel}"
+            ]
+
+    if anchored_hash:
+        if not output_path.is_file():
+            return [f"{kind} anchored governed output is missing: {output_path}"]
+        current_hash = sha256_file(output_path)
+        if current_hash != anchored_hash:
+            return [
+                f"terminal output hash 已改變: {case_id}/{task_id} "
+                f"event={anchored_hash} current={current_hash}"
+            ]
+        return []
+
+    if kind == "DONE":
+        return ["DONE event missing output_sha256 anchor"]
+    if output_path.exists():
+        return [
+            f"governed output appeared after terminal {kind} without an output hash anchor"
+        ]
+    return []
+
+
+def validate_finding_provenance(
+    case_id: str,
+    finding_id: str,
+    cases_dir: Path | None = None,
+    events_dir: Path | None = None,
+) -> list[str]:
+    """Validate that a review target is the exact output anchored by DONE."""
+    if not FINDING_ID_RE.fullmatch(finding_id):
+        return [f"invalid finding id: {finding_id}"]
+    task_id = finding_id.removeprefix("FINDING_")
+    try:
+        source_task, source_metadata = find_task(case_id, task_id, cases_dir)
+    except ValueError as exc:
+        return [f"review target source task invalid: {exc}"]
+
+    if source_metadata.get("task_type") == "REVIEW":
+        return [f"review target must originate from a finding task: {finding_id}"]
+
+    errors = validate_task_dispatch_anchor(
+        source_task, source_metadata, events_dir=events_dir
+    )
+    state = latest_task_state(case_id, task_id, events_dir)
+    if state != "DONE":
+        errors.append(f"review target source task is not DONE: {case_id}/{task_id} state={state}")
+
+    expected_output = output_path_for_task(source_task, source_metadata)
+    expected_target = source_task.parent.parent / "findings" / f"{finding_id}.md"
+    if expected_output.resolve() != expected_target.resolve():
+        errors.append(
+            f"review target path mismatch: source output={expected_output} target={expected_target}"
+        )
+    errors.extend(
+        validate_terminal_output_anchor(
+            source_task, source_metadata, events_dir=events_dir
+        )
+    )
+    return errors
+
+
+def require_finding_provenance(
+    case_id: str,
+    finding_id: str,
+    cases_dir: Path | None = None,
+    events_dir: Path | None = None,
+) -> None:
+    errors = validate_finding_provenance(
+        case_id, finding_id, cases_dir=cases_dir, events_dir=events_dir
+    )
+    if errors:
+        raise ValueError("; ".join(errors))
 
 
 def latest_task_state(

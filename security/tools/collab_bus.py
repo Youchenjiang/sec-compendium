@@ -98,6 +98,13 @@ def command_new_task(args: argparse.Namespace) -> int:
         finding_path = current_case / "findings" / f"{review_target}.md"
         if not finding_path.is_file():
             raise ValueError(f"review target finding does not exist: {review_target}")
+        provenance_errors = protocol.validate_finding_provenance(
+            args.case, review_target
+        )
+        if provenance_errors:
+            raise ValueError(
+                "review target provenance 未通過: " + "; ".join(provenance_errors)
+            )
     elif review_target:
         raise ValueError("--review-target-finding 只能用於 REVIEW task")
 
@@ -165,6 +172,13 @@ def emit_worker_event(args: argparse.Namespace, kind: str) -> int:
         if not output_path.exists():
             raise ValueError(f"DONE 前 governed output 必須存在: {output_path}")
     protocol.require_task_dispatch_anchor(task_path, metadata)
+    if (
+        metadata["task_type"] == "REVIEW"
+        and kind in {"ACK", "START", "DONE"}
+    ):
+        protocol.require_finding_provenance(
+            metadata["case_id"], metadata["review_target_finding"]
+        )
     if kind == "DONE":
         output_errors = protocol.validate_governed_output(task_path, metadata, output_path)
         if output_errors:
@@ -191,6 +205,10 @@ def emit_worker_event(args: argparse.Namespace, kind: str) -> int:
 def command_init_output(args: argparse.Namespace) -> int:
     task_path, metadata = task_and_assignee(args.case, args.task_id, args.session)
     protocol.require_task_dispatch_anchor(task_path, metadata)
+    if metadata["task_type"] == "REVIEW":
+        protocol.require_finding_provenance(
+            metadata["case_id"], metadata["review_target_finding"]
+        )
     state = protocol.latest_task_state(args.case, args.task_id)
     if state in protocol.TERMINAL_TASK_STATES:
         raise ValueError(f"task 已是 terminal state {state}，不可重新建立 output")
@@ -362,6 +380,18 @@ def command_status(args: argparse.Namespace) -> int:
             task_path, metadata, allow_legacy=allow_legacy
         )
         errors.extend(anchor_errors)
+        terminal_output_errors = protocol.validate_terminal_output_anchor(
+            task_path, metadata
+        )
+        errors.extend(terminal_output_errors)
+        if metadata.get("task_type") == "REVIEW" and metadata.get(
+            "review_target_finding"
+        ):
+            errors.extend(
+                protocol.validate_finding_provenance(
+                    metadata["case_id"], metadata["review_target_finding"]
+                )
+            )
         state = "INVALID" if errors else protocol.latest_task_state(
             metadata["case_id"], metadata["task_id"]
         )
@@ -467,6 +497,21 @@ def command_doctor(args: argparse.Namespace) -> int:
                 errors.append(
                     f"{metadata['case_id']}/{metadata['task_id']}: {lifecycle_error}"
                 )
+            for output_error in protocol.validate_terminal_output_anchor(
+                task_path, metadata
+            ):
+                errors.append(
+                    f"{metadata['case_id']}/{metadata['task_id']}: {output_error}"
+                )
+            if metadata.get("task_type") == "REVIEW" and metadata.get(
+                "review_target_finding"
+            ):
+                for review_error in protocol.validate_finding_provenance(
+                    metadata["case_id"], metadata["review_target_finding"]
+                ):
+                    errors.append(
+                        f"{metadata['case_id']}/{metadata['task_id']}: {review_error}"
+                    )
             if not metadata.get("execution_environment"):
                 warnings.append(
                     f"legacy task missing execution environment: "

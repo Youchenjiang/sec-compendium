@@ -276,6 +276,120 @@ class CollabProtocolTests(unittest.TestCase):
                         "C01_Test", "T001", events, expected_issuer="Session-Lead"
                     )
 
+    def test_terminal_output_hash_detects_post_done_mutation(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            cases = root / "cases"
+            events = root / "events"
+            case = self.build_case(cases)
+            task = case / "tasks" / "T001_TRIAGE.md"
+            task.write_text(
+                TASK_BODY.format(
+                    case_id="C01_Test",
+                    task_type="TRIAGE",
+                    assignee="Session-Worker",
+                    issuer="Session-Lead",
+                    task_id="T001",
+                ),
+                encoding="utf-8",
+            )
+            output = case / "findings" / "FINDING_T001.md"
+            output.write_text("anchored finding\n", encoding="utf-8")
+
+            with patch.object(protocol, "REPO_ROOT", root):
+                protocol.emit_event(
+                    kind="DISPATCHED",
+                    case_id="C01_Test",
+                    task_id="T001",
+                    from_session="Session-Lead",
+                    to_session="Session-Worker",
+                    task_path=task,
+                    events_dir=events,
+                )
+                protocol.emit_event(
+                    kind="DONE",
+                    case_id="C01_Test",
+                    task_id="T001",
+                    from_session="Session-Worker",
+                    to_session="Session-Lead",
+                    task_path=task,
+                    output_path=output,
+                    events_dir=events,
+                )
+                self.assertEqual(
+                    protocol.validate_terminal_output_anchor(
+                        task, protocol.parse_task_metadata(task), events
+                    ),
+                    [],
+                )
+                output.write_text("mutated after done\n", encoding="utf-8")
+                errors = protocol.validate_terminal_output_anchor(
+                    task, protocol.parse_task_metadata(task), events
+                )
+
+            self.assertTrue(
+                any("terminal output hash 已改變" in error for error in errors),
+                errors,
+            )
+
+    def test_review_target_provenance_rejects_post_done_mutation(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            cases = root / "cases"
+            events = root / "events"
+            case = self.build_case(cases)
+            task = case / "tasks" / "T001_TRIAGE.md"
+            task.write_text(
+                TASK_BODY.format(
+                    case_id="C01_Test",
+                    task_type="TRIAGE",
+                    assignee="Session-Worker",
+                    issuer="Session-Lead",
+                    task_id="T001",
+                ),
+                encoding="utf-8",
+            )
+            output = case / "findings" / "FINDING_T001.md"
+            output.write_text("anchored finding\n", encoding="utf-8")
+
+            with (
+                patch.object(protocol, "REPO_ROOT", root),
+                patch.object(protocol, "CASES_DIR", cases),
+                patch.object(protocol, "EVENTS_DIR", events),
+            ):
+                protocol.emit_event(
+                    kind="DISPATCHED",
+                    case_id="C01_Test",
+                    task_id="T001",
+                    from_session="Session-Lead",
+                    to_session="Session-Worker",
+                    task_path=task,
+                )
+                protocol.emit_event(
+                    kind="DONE",
+                    case_id="C01_Test",
+                    task_id="T001",
+                    from_session="Session-Worker",
+                    to_session="Session-Lead",
+                    task_path=task,
+                    output_path=output,
+                )
+                self.assertEqual(
+                    protocol.validate_finding_provenance(
+                        "C01_Test", "FINDING_T001"
+                    ),
+                    [],
+                )
+                output.write_text("mutated after done\n", encoding="utf-8")
+                errors = protocol.validate_finding_provenance(
+                    "C01_Test", "FINDING_T001"
+                )
+
+            self.assertTrue(
+                any("terminal output hash 已改變" in error for error in errors),
+                errors,
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

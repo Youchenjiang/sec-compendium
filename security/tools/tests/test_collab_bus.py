@@ -317,7 +317,7 @@ class CollabBusTests(unittest.TestCase):
     def test_review_task_requires_and_propagates_target_finding(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
-            cases, _ = self.build_case(root)
+            cases, task = self.build_case(root)
             events = root / "events"
             finding = cases / "C01_Test" / "findings" / "FINDING_T001.md"
             finding.write_text("# FINDING: T001\n", encoding="utf-8")
@@ -341,6 +341,39 @@ class CollabBusTests(unittest.TestCase):
                 patch.object(protocol, "CASES_DIR", cases),
                 patch.object(protocol, "EVENTS_DIR", events),
             ):
+                protocol.emit_event(
+                    kind="DISPATCHED",
+                    case_id="C01_Test",
+                    task_id="T001",
+                    from_session="Session-Lead",
+                    to_session="Session-Worker",
+                    task_path=task,
+                )
+                protocol.emit_event(
+                    kind="ACK",
+                    case_id="C01_Test",
+                    task_id="T001",
+                    from_session="Session-Worker",
+                    to_session="Session-Lead",
+                    task_path=task,
+                )
+                protocol.emit_event(
+                    kind="START",
+                    case_id="C01_Test",
+                    task_id="T001",
+                    from_session="Session-Worker",
+                    to_session="Session-Lead",
+                    task_path=task,
+                )
+                protocol.emit_event(
+                    kind="DONE",
+                    case_id="C01_Test",
+                    task_id="T001",
+                    from_session="Session-Worker",
+                    to_session="Session-Lead",
+                    task_path=task,
+                    output_path=finding,
+                )
                 self.assertEqual(collab_bus.command_new_task(args), 0)
                 task_path, metadata = protocol.find_task("C01_Test", "T002")
                 self.assertEqual(metadata["review_target_finding"], "FINDING_T001")
@@ -376,6 +409,56 @@ class CollabBusTests(unittest.TestCase):
             )
             with patch.object(protocol, "CASES_DIR", cases):
                 with self.assertRaisesRegex(ValueError, "review-target-finding"):
+                    collab_bus.command_new_task(args)
+
+    def test_new_review_rejects_terminal_target_hash_drift(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            cases, task = self.build_case(root)
+            events = root / "events"
+            finding = cases / "C01_Test" / "findings" / "FINDING_T001.md"
+            finding.write_text("anchored finding\n", encoding="utf-8")
+            args = argparse.Namespace(
+                case="C01_Test",
+                actor_session="Session-Lead",
+                task_id="T002",
+                task_type="REVIEW",
+                target_role="ROLE_03_DEVILS_ADVOCATE",
+                assignee_session="Session-Reviewer",
+                execution_environment="portable_text_any",
+                review_target_finding="FINDING_T001",
+                question="Q02",
+                title="Review T001",
+                objective="Review the governed finding.",
+                context="Synthetic review test only.",
+                skills="independent review",
+            )
+            with (
+                patch.object(protocol, "REPO_ROOT", root),
+                patch.object(protocol, "CASES_DIR", cases),
+                patch.object(protocol, "EVENTS_DIR", events),
+            ):
+                protocol.emit_event(
+                    kind="DISPATCHED",
+                    case_id="C01_Test",
+                    task_id="T001",
+                    from_session="Session-Lead",
+                    to_session="Session-Worker",
+                    task_path=task,
+                )
+                protocol.emit_event(
+                    kind="DONE",
+                    case_id="C01_Test",
+                    task_id="T001",
+                    from_session="Session-Worker",
+                    to_session="Session-Lead",
+                    task_path=task,
+                    output_path=finding,
+                )
+                finding.write_text("drifted finding\n", encoding="utf-8")
+                with self.assertRaisesRegex(
+                    ValueError, "review target provenance.*terminal output hash 已改變"
+                ):
                     collab_bus.command_new_task(args)
 
 
