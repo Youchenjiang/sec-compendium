@@ -8,6 +8,7 @@
 | `registry.json` | 機器可讀的伺服器註冊表，**單一真相來源** |
 | `servers/<name>.md` | 單一伺服器的引入說明與操作手冊 |
 | `servers/<name>.verification.md` | 可跑的驗證證據（原始輸出） |
+| `tools/mcp_probe.py` | 活體 stdio MCP 客戶端探針（握手／列工具／呼叫工具） |
 
 掛載點刻意與 `.agent/skills/` 同層：技能是「知識面」，MCP 是「工具面」，兩者皆屬 agent 能力層，但以不同目錄區分意圖。
 
@@ -61,4 +62,39 @@
 
 ---
 
-> 目前狀態：註冊表為空骨架（第 1 顆），第一個伺服器見後續 commit。
+## 7. 由協作執行路徑自動呼叫（runner + collab bus）
+
+註冊表不只是文件：`runner` 區塊把條目變成**可執行**的 stdio 伺服器，`collab` 層再把呼叫入口暴露給 agent。
+
+### 7.1 `runner` schema（registry 條目的一部分）
+
+```json
+"runner": {
+  "venv": ".agent/mcp/.verify/<env>",   // 釘版本的執行環境（repo 內、gitignored）
+  "script": "<console-script>",           // venv Scripts/bin 下的可執行檔名
+  "args": ["mcp", "-t", "stdio"],        // 啟動伺服器的 argv
+  "env": { "KEY": "repo-relative/path" }  // 可選；值相對 repo root 解析
+}
+```
+
+- **相依執行環境不可預設直譯器**：`runner.venv` 指向釘版本環境；缺環境即視為未 provisioning，由 bridge 明確回報並指到 `servers/<name>.md`。
+- **只記環境變數名，不記值**（同第 5 節金鑰規則）。
+
+### 7.2 協作呼叫入口（`collab_bus.py mcp`）
+
+| 指令 | 行為 |
+|------|------|
+| `collab_bus.py mcp list` | 離線：列出已註冊伺服器、`requires_python`、runtime 是否就緒、retired 條目 |
+| `collab_bus.py mcp tools --server <name>` | 活體 session：列出伺服器真的暴露的工具 |
+| `collab_bus.py mcp call --server <name> --tool <tool> [--args JSON] [--json]` | 活體 session：呼叫單一工具並印出真實結果（失敗 exit 1） |
+
+由 `security/tools/collab_mcp.py` 實作；session 在**伺服器自己的 venv** 裡以 `tools/mcp_probe.py` 執行（host 直譯器沒有 MCP SDK，伺服器有）。
+
+### 7.3 逾時與錯誤
+
+- 單一 session 預設上限 300s，逾時回報錯誤而非無限等待。
+- 伺服器未 provisioning、registry 損壞、工具呼叫 `isError=true` 皆以 `ERROR ...` 印到 stderr，exit 2；工具本身的錯誤 exit 1。
+
+---
+
+> 目前狀態：`semgrep` 與 `cve-mcp-server` 已接入且可由 `collab_bus.py mcp ...` 自動呼叫；`semgrep-mcp` 已退役並移入 `retired[]`。
