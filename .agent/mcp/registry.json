@@ -14,5 +14,38 @@
       "runnable verification evidence (servers/<name>.verification.md)"
     ]
   },
-  "servers": []
+  "servers": [
+    {
+      "name": "semgrep-mcp",
+      "status": "wired",
+      "purpose": "Static code scanning (Semgrep OSS) exposed as MCP tools for code-security analysis.",
+      "source": {
+        "snapshot": "Security-LabData/external-mcp-tools/semgrep-mcp",
+        "upstream": "https://github.com/semgrep/mcp",
+        "commit": "cade782501e611373844696edc2ceef31eb7e1f7",
+        "package": "semgrep-mcp==0.9.0",
+        "license": "MIT",
+        "submodules": {
+          "src/semgrep_mcp/semgrep_interfaces": "3ce3539b8d9e46b98cf73d08f0b44ef63c3e80a0"
+        }
+      },
+      "runtime": {
+        "holder_node": "Primary Analysis Gateway (host LabStrix)",
+        "requires_python": ">=3.9,<3.12",
+        "requires_python_reason": "semgrep==1.135.0 wheels are cp39/cp310/cp311 only; host default 3.14.7 is unsupported",
+        "verified_runtime": "python 3.11.16 (.agent/mcp/.verify/venv311, gitignored)",
+        "entrypoint": "semgrep_mcp.server:main",
+        "transport": "stdio",
+        "extra_hard_deps": ["setuptools<81 (provides pkg_resources for opentelemetry-instrumentation)"],
+        "fallback_holders": ["Kali/FLARE-VM with python 3.9-3.11", "ghcr.io/semgrep/mcp container"]
+      },
+      "secrets": {
+        "required": false,
+        "env": ["SEMGREP_APP_TOKEN (optional; only for remote/Pro features)"]
+      },
+      "deprecation": "Upstream deprecates semgrep-mcp 0.9.0 in favor of the `semgrep mcp` subcommand in newer semgrep (>=1.178.0, which ships cp314 wheels). See servers/semgrep-mcp.md section 7.",
+      "docs": "servers/semgrep-mcp.md",
+      "evidence": "servers/semgrep-mcp.verification.md"
+    }
+  ]
 }
