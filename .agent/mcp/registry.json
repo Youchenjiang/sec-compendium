@@ -60,6 +60,11 @@
           "semgrep_scan_supply_chain"
         ]
       },
+      "runner": {
+        "venv": ".agent/mcp/.verify/semgrep178",
+        "script": "semgrep",
+        "args": ["mcp", "-t", "stdio"]
+      },
       "secrets": {
         "required": false,
         "env": ["SEMGREP_APP_TOKEN (optional; for platform findings, remote, and Pro features)"]
@@ -89,6 +94,15 @@
         "tools_count": 28,
         "extra_hard_deps": ["mcp<2 (snapshot declares mcp[cli]>=1.7.0 which resolves to mcp 2.x and breaks: FastMCP renamed to MCPServer)"],
         "runtime_paths": ["CACHE_DB_PATH (default ~/.cve-mcp)", "AUDIT_LOG_PATH (default ~/.cve-mcp)"]
+      },
+      "runner": {
+        "venv": ".agent/mcp/.verify/cve-mcp",
+        "script": "cve-mcp",
+        "args": [],
+        "env": {
+          "CACHE_DB_PATH": ".agent/mcp/.verify/cve-cache.db",
+          "AUDIT_LOG_PATH": ".agent/mcp/.verify/cve-audit.log"
+        }
       },
       "secrets": {
         "required": false,
