@@ -67,6 +67,56 @@
       "pinned_by": "semgrep 1.178.0 ships cp314 wheels, so the host default interpreter runs it natively",
       "docs": "servers/semgrep.md",
       "evidence": "servers/semgrep.verification.md"
+    },
+    {
+      "name": "cve-mcp-server",
+      "status": "wired",
+      "purpose": "CVE/vulnerability intelligence MCP server spanning 20+ sources (NVD, EPSS, CISA KEV, OSV, GitHub Advisory, ...) with a triage_cve orchestrator; aligns with the framework CVE/EPSS/KEV/CVSS research line.",
+      "source": {
+        "snapshot": "Security-LabData/external-mcp-tools/cve-mcp-server",
+        "upstream": "https://github.com/mukul975/cve-mcp-server",
+        "commit": "d666bac3743574cecc98bcbf524558c2bf0d8e61",
+        "package": "cve-mcp-server==0.2.0",
+        "license": "MIT",
+        "snapshot_note": "working tree has 2 deleted tracked files (src/cve_mcp/server.py, src/cve_mcp/api/report_generator.py); restored from HEAD into a scratch copy; snapshot itself untouched"
+      },
+      "runtime": {
+        "holder_node": "Primary Analysis Gateway (host LabStrix)",
+        "requires_python": ">=3.10",
+        "verified_runtime": "host python 3.14.7 (.agent/mcp/.verify/cve-mcp, gitignored)",
+        "entrypoint": "cve_mcp.server:main",
+        "transport": "stdio",
+        "tools_count": 28,
+        "extra_hard_deps": ["mcp<2 (snapshot declares mcp[cli]>=1.7.0 which resolves to mcp 2.x and breaks: FastMCP renamed to MCPServer)"],
+        "runtime_paths": ["CACHE_DB_PATH (default ~/.cve-mcp)", "AUDIT_LOG_PATH (default ~/.cve-mcp)"]
+      },
+      "secrets": {
+        "required": false,
+        "env": [
+          "NVD_API_KEY",
+          "GITHUB_TOKEN",
+          "VULNCHECK_TOKEN",
+          "ABUSEIPDB_KEY",
+          "VIRUSTOTAL_KEY",
+          "URLSCAN_KEY",
+          "SHODAN_KEY",
+          "GREYNOISE_API_KEY",
+          "CIRCL_PDNS_USER",
+          "CIRCL_PDNS_PASS"
+        ]
+      },
+      "no_key_public_tools": [
+        "lookup_cve",
+        "search_cves",
+        "get_epss_score",
+        "check_kev",
+        "get_cve_summary",
+        "check_package_vulns",
+        "parse_cvss",
+        "health_check"
+      ],
+      "docs": "servers/cve-mcp-server.md",
+      "evidence": "servers/cve-mcp-server.verification.md"
     }
   ]
 }
