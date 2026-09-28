@@ -2,6 +2,7 @@ import argparse
 import contextlib
 import io
 import json
+import os
 import sys
 import tempfile
 import unittest
@@ -173,6 +174,24 @@ class CollabMcpTests(unittest.TestCase):
         self.assertIn("cve-mcp-server status=wired", output)
         self.assertIn("runtime=ready", output)
 
+    def test_real_registry_declares_placement_and_capabilities(self) -> None:
+        """Every wired server must state where it runs and what it can do."""
+        registry = collab_mcp.load_registry()
+        for entry in registry["servers"]:
+            with self.subTest(server=entry["name"]):
+                self.assertTrue(entry.get("placement", {}).get("holder_class"))
+                self.assertTrue(entry.get("placement", {}).get("rationale"))
+                self.assertTrue(entry.get("capability_class"))
+                self.assertNotIn("unclassified", collab_mcp.capability_classes(entry))
+
+    def test_real_registry_authorization_defaults_to_deny(self) -> None:
+        policy = collab_mcp.authorization_policy(collab_mcp.load_registry())
+        self.assertEqual(policy["default_decision"], "deny")
+        self.assertIn("command_exec", policy["applies_to_capabilities"])
+        self.assertIn("write", policy["applies_to_capabilities"])
+        self.assertIn("unclassified", policy["applies_to_capabilities"])
+        self.assertEqual(policy["command_exec_allowlist"], [])
+
     def test_run_session_rejects_missing_probe(self) -> None:
         registry = {"servers": []}
         missing = protocol.REPO_ROOT / ".agent" / "mcp" / "tools" / "definitely-missing.py"
@@ -180,6 +199,309 @@ class CollabMcpTests(unittest.TestCase):
             with self.assertRaises(ValueError) as ctx:
                 collab_mcp.run_session(registry, "anything")
         self.assertIn("probe missing", str(ctx.exception))
+
+
+def gate_registry(allowlist: list[dict] | None = None) -> dict:
+    """Registry fixture: one harmless server plus one command-capable server."""
+    return {
+        "servers": [
+            {"name": "reader", "capability_class": ["read_only"]},
+            {"name": "danger", "capability_class": ["command_exec"]},
+            {"name": "mystery"},
+        ],
+        "authorization": {
+            "policy_version": 1,
+            "default_decision": "deny",
+            "applies_to_capabilities": ["command_exec", "write", "unclassified"],
+            "authorization_env": "MCP_AUTHORIZATION",
+            "command_exec_allowlist": list(allowlist or []),
+        },
+    }
+
+
+ALLOW_ENTRY = {
+    "server": "danger",
+    "tools": ["run_command"],
+    "paths_allow": ["security/"],
+    "deny_patterns": [r";\s*rm\b", r"\|\s*(sh|bash)\b"],
+    "requires_authorization": True,
+    "note": "fixture entry",
+}
+
+
+class McpAuthorizationGateTests(unittest.TestCase):
+    def test_gate_allows_server_without_gated_capability(self) -> None:
+        decision = collab_mcp.gate_decision(gate_registry(), "reader", "lookup", {})
+        self.assertEqual(decision["decision"], "allow")
+        self.assertIn("no gated capability", decision["reason"])
+
+    def test_gate_denies_command_exec_without_allowlist_entry(self) -> None:
+        decision = collab_mcp.gate_decision(gate_registry(), "danger", "run_command", {})
+        self.assertEqual(decision["decision"], "deny")
+        self.assertIn("command_exec_allowlist", decision["reason"])
+        self.assertIn("default decision is deny", decision["reason"])
+
+    def test_gate_treats_missing_capability_as_gated(self) -> None:
+        decision = collab_mcp.gate_decision(gate_registry(), "mystery", "anything", {})
+        self.assertEqual(decision["decision"], "deny")
+        self.assertIn("unclassified", decision["gated_capabilities"])
+
+    def test_gate_denies_tool_outside_the_allowlist(self) -> None:
+        decision = collab_mcp.gate_decision(
+            gate_registry([ALLOW_ENTRY]), "danger", "wipe_disk", {}
+        )
+        self.assertEqual(decision["decision"], "deny")
+        self.assertIn("not allowlisted", decision["reason"])
+
+    def test_gate_denies_path_argument_outside_the_allowlisted_scope(self) -> None:
+        registry = gate_registry([ALLOW_ENTRY])
+        allowed = collab_mcp.gate_decision(
+            registry,
+            "danger",
+            "run_command",
+            {"target": "security/tools/collab_mcp.py"},
+            authorized_reason="triaging C04 finding",
+            process_env={"MCP_AUTHORIZATION": "1"},
+        )
+        self.assertEqual(allowed["decision"], "allow")
+        denied = collab_mcp.gate_decision(
+            registry,
+            "danger",
+            "run_command",
+            {"target": "C:/Windows/System32/cmd.exe"},
+            authorized_reason="triaging C04 finding",
+            process_env={"MCP_AUTHORIZATION": "1"},
+        )
+        self.assertEqual(denied["decision"], "deny")
+        self.assertIn("outside the allowlisted scope", denied["reason"])
+
+    def test_gate_denies_argument_matching_a_deny_pattern(self) -> None:
+        decision = collab_mcp.gate_decision(
+            gate_registry([ALLOW_ENTRY]),
+            "danger",
+            "run_command",
+            {"cmd": "cat security/x ; rm -rf security"},
+            authorized_reason="approved",
+            process_env={"MCP_AUTHORIZATION": "1"},
+        )
+        self.assertEqual(decision["decision"], "deny")
+        self.assertIn("deny pattern", decision["reason"])
+
+    def test_gate_requires_reason_and_authorization_env(self) -> None:
+        registry = gate_registry([ALLOW_ENTRY])
+        no_reason = collab_mcp.gate_decision(
+            registry, "danger", "run_command", {}, process_env={"MCP_AUTHORIZATION": "1"}
+        )
+        self.assertEqual(no_reason["decision"], "deny")
+        self.assertIn("--authorized", no_reason["reason"])
+
+        no_env = collab_mcp.gate_decision(
+            registry, "danger", "run_command", {}, authorized_reason="approved", process_env={}
+        )
+        self.assertEqual(no_env["decision"], "deny")
+        self.assertIn("MCP_AUTHORIZATION", no_env["reason"])
+
+    def test_gate_denies_expired_allowlist_entry(self) -> None:
+        expired = dict(ALLOW_ENTRY, expires="2000-01-01")
+        decision = collab_mcp.gate_decision(
+            gate_registry([expired]),
+            "danger",
+            "run_command",
+            {},
+            authorized_reason="approved",
+            process_env={"MCP_AUTHORIZATION": "1"},
+        )
+        self.assertEqual(decision["decision"], "deny")
+        self.assertIn("expired", decision["reason"])
+
+    def test_enforce_gate_raises_on_denial(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            with patch.object(collab_mcp, "GATE_LOG_PATH", Path(tmp) / "gate.jsonl"):
+                with self.assertRaises(ValueError) as ctx:
+                    collab_mcp.enforce_gate(gate_registry(), "danger", "run_command", {})
+        self.assertIn("authorization gate denied", str(ctx.exception))
+
+    def test_record_gate_decision_appends_an_audit_line(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            log = Path(tmp) / "nested" / "mcp-gate.jsonl"
+            collab_mcp.record_gate_decision(
+                {
+                    "server": "danger",
+                    "tool": "run_command",
+                    "capabilities": ["command_exec"],
+                    "decision": "deny",
+                    "reason": "no allowlist entry",
+                },
+                reason="why the operator asked",
+                mode="dry-run",
+                log_path=log,
+            )
+            record = json.loads(log.read_text(encoding="utf-8").strip())
+        self.assertEqual(record["decision"], "deny")
+        self.assertEqual(record["server"], "danger")
+        self.assertEqual(record["mode"], "dry-run")
+        self.assertEqual(record["authorized_reason"], "why the operator asked")
+        self.assertIn("at", record)
+
+    def test_command_gate_returns_zero_on_allow_and_two_on_deny(self) -> None:
+        registry = gate_registry([ALLOW_ENTRY])
+        with tempfile.TemporaryDirectory() as tmp:
+            with patch.object(collab_mcp, "load_registry", lambda: registry), patch.object(
+                collab_mcp, "GATE_LOG_PATH", Path(tmp) / "gate.jsonl"
+            ):
+                buffer = io.StringIO()
+                with contextlib.redirect_stdout(buffer):
+                    allowed = collab_mcp.command_gate(
+                        argparse.Namespace(
+                            server="reader", tool="lookup", args="", authorized=""
+                        )
+                    )
+                self.assertEqual(allowed, 0)
+                self.assertIn('"decision": "allow"', buffer.getvalue())
+
+                buffer = io.StringIO()
+                with contextlib.redirect_stdout(buffer):
+                    denied = collab_mcp.command_gate(
+                        argparse.Namespace(
+                            server="danger", tool="run_command", args="", authorized=""
+                        )
+                    )
+                self.assertEqual(denied, 2)
+                self.assertIn('"decision": "deny"', buffer.getvalue())
+
+    def test_command_gate_reports_unknown_server_as_denied(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            with patch.object(collab_mcp, "load_registry", lambda: gate_registry()), patch.object(
+                collab_mcp, "GATE_LOG_PATH", Path(tmp) / "gate.jsonl"
+            ):
+                buffer = io.StringIO()
+                with contextlib.redirect_stdout(buffer):
+                    code = collab_mcp.command_gate(
+                        argparse.Namespace(server="ghost", tool="x", args="", authorized="")
+                    )
+        self.assertEqual(code, 2)
+        self.assertIn("unknown MCP server", buffer.getvalue())
+
+
+class McpSecretsTests(unittest.TestCase):
+    def test_parse_secrets_env_handles_comments_quotes_and_export(self) -> None:
+        parsed = collab_mcp.parse_secrets_env(
+            "# comment\n\nNVD_API_KEY=abc123\nexport GITHUB_TOKEN='ghp_x'\n"
+            'SHODAN_KEY="shodan$literal"\nnot-a-line\n'
+        )
+        self.assertEqual(parsed["NVD_API_KEY"], "abc123")
+        self.assertEqual(parsed["GITHUB_TOKEN"], "ghp_x")
+        self.assertEqual(parsed["SHODAN_KEY"], "shodan$literal")
+        self.assertEqual(len(parsed), 3)
+
+    def test_resolve_secret_env_only_returns_declared_names(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            secrets_file = Path(tmp) / "secrets.env"
+            secrets_file.write_text(
+                "DECLARED_KEY=value\nOTHER_SERVER_KEY=secret\n", encoding="utf-8"
+            )
+            entry = {
+                "name": "gated",
+                "secrets_binding": {"required": False, "env": ["DECLARED_KEY"]},
+            }
+            values, missing = collab_mcp.resolve_secret_env(
+                entry, secrets_file=secrets_file, process_env={}
+            )
+        self.assertEqual(values, {"DECLARED_KEY": "value"})
+        self.assertNotIn("OTHER_SERVER_KEY", values)
+        self.assertEqual(missing, [])
+
+    def test_resolve_secret_env_reports_missing_and_falls_back_to_process_env(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            secrets_file = Path(tmp) / "absent-secrets.env"
+            entry = {
+                "name": "gated",
+                "secrets_binding": {"required": False, "env": ["FROM_ENV", "ABSENT"]},
+            }
+            values, missing = collab_mcp.resolve_secret_env(
+                entry, secrets_file=secrets_file, process_env={"FROM_ENV": "set"}
+            )
+        self.assertEqual(values, {"FROM_ENV": "set"})
+        self.assertEqual(missing, ["ABSENT"])
+
+    def test_declared_secret_names_prefers_binding_over_legacy_block(self) -> None:
+        entry = {
+            "name": "legacy",
+            "secrets_binding": {"env": ["NEW_NAME"]},
+            "secrets": {"env": ["OLD_NAME (deprecated note)"]},
+        }
+        self.assertEqual(collab_mcp.declared_secret_names(entry), ["NEW_NAME"])
+
+    def test_secrets_binding_reports_injection_mode(self) -> None:
+        self.assertEqual(
+            collab_mcp.secrets_binding({"name": "x"})["inject"], "none"
+        )
+        self.assertEqual(
+            collab_mcp.secrets_binding(
+                {"name": "x", "secrets_binding": {"env": ["T"]}}
+            )["inject"],
+            "host-env",
+        )
+
+    def test_command_secrets_prints_names_without_values(self) -> None:
+        registry = {
+            "servers": [
+                {
+                    "name": "gated",
+                    "capability_class": ["read_only"],
+                    "secrets_binding": {"required": True, "env": ["HITCON_MCP_TEST_TOKEN"]},
+                }
+            ]
+        }
+        with patch.object(collab_mcp, "load_registry", lambda: registry), patch.object(
+            collab_mcp, "SECRETS_PATH", Path("definitely-absent-secrets.env")
+        ), patch.dict(os.environ, {"HITCON_MCP_TEST_TOKEN": "super-secret-value"}, clear=False):
+            buffer = io.StringIO()
+            with contextlib.redirect_stdout(buffer):
+                code = collab_mcp.command_secrets(argparse.Namespace(server="gated"))
+        output = buffer.getvalue()
+        self.assertEqual(code, 0)
+        self.assertIn("HITCON_MCP_TEST_TOKEN present", output)
+        self.assertNotIn("super-secret-value", output)
+
+    def test_run_session_requires_declared_secrets_when_required(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            make_venv(root, "gated", "gated")
+            probe = root / "probe.py"
+            probe.write_text("# probe\n", encoding="utf-8")
+            registry = {
+                "servers": [
+                    {
+                        "name": "gated",
+                        "capability_class": ["read_only"],
+                        "runner": {
+                            "venv": ".agent/mcp/.verify/gated",
+                            "script": "gated",
+                            "args": [],
+                        },
+                        "secrets_binding": {
+                            "required": True,
+                            "env": ["HITCON_MCP_TEST_TOKEN_ABSENT"],
+                        },
+                    }
+                ]
+            }
+            with patch.object(collab_mcp.protocol, "REPO_ROOT", root), patch.object(
+                collab_mcp, "PROBE_PATH", probe
+            ), patch.object(
+                collab_mcp, "SECRETS_PATH", root / "secrets.env"
+            ), patch.object(
+                collab_mcp, "GATE_LOG_PATH", root / "gate.jsonl"
+            ), patch.dict(
+                os.environ, {"HITCON_MCP_TEST_TOKEN_ABSENT": ""}, clear=False
+            ):
+                with self.assertRaises(ValueError) as ctx:
+                    collab_mcp.run_session(registry, "gated")
+        message = str(ctx.exception)
+        self.assertIn("missing required secret env names", message)
+        self.assertIn("HITCON_MCP_TEST_TOKEN_ABSENT", message)
+        self.assertIn("secrets.env", message)
 
 
 if __name__ == "__main__":
