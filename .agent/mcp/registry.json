@@ -8,11 +8,31 @@
     "holder_node": "Primary Analysis Gateway (host LabStrix), in a dedicated version-pinned runtime; never the host default interpreter when deps pin an older Python",
     "fallback_holders": ["Kali analysis VM", "FLARE-VM", "container image"],
     "secrets": "environment variables only; never committed; registry records variable names, not values",
+    "secret_injection": "values live in the gitignored secrets.env at the repo root; a session receives only the names its own entry declares, and only on the host gateway that holds the file",
+    "node_placement": "one node per server: host gateway (big RAM/disk, repo-local tooling, secrets), flare-vm (Windows artifact parsers, vmrun guest operations), kali (Linux CLI, pcap, document/macro work), container (isolated offensive tooling); never place a server where its data or OS is absent",
+    "capability_classes": [
+      "read_only",
+      "analysis",
+      "network",
+      "write",
+      "command_exec"
+    ],
+    "authorization": "command-capable servers (command_exec/write, or an entry that declares no capability at all) are denied until an explicit allowlist entry exists; the decision and its stated reason are audited",
     "commit_split": [
       "wiring/registration (this policy + registry skeleton)",
       "single server introduction (registry entry + servers/<name>.md)",
       "runnable verification evidence (servers/<name>.verification.md)"
     ]
+  },
+  "authorization": {
+    "policy_version": 1,
+    "default_decision": "deny",
+    "applies_to_capabilities": ["command_exec", "write", "unclassified"],
+    "authorization_env": "MCP_AUTHORIZATION",
+    "allowlist_entry_required_fields": ["server", "tools", "paths_allow", "requires_authorization"],
+    "allowlist_entry_optional_fields": ["deny_patterns", "expires", "authorization_env", "note", "reviewed_by"],
+    "command_exec_allowlist": [],
+    "enforcement": "security/tools/collab_mcp.py (mcp gate / mcp call); every decision is appended to .collab/runtime/mcp-gate.jsonl"
   },
   "retired": [
     {
@@ -52,6 +72,12 @@
         "license": "LGPL-2.1",
         "note": "server code is bundled in the semgrep package at semgrep/mcp/server.py; no external snapshot or submodule"
       },
+      "placement": {
+        "holder_class": "host_gateway",
+        "rationale": "needs repo-local file access and the host's cp314-native runtime; the scans are read-only over paths we hand it, so no node hop is worth the copy cost",
+        "fallback": ["container"]
+      },
+      "capability_class": ["read_only", "analysis"],
       "runtime": {
         "holder_node": "Primary Analysis Gateway (host LabStrix)",
         "requires_python": ">=3.10",
@@ -73,9 +99,15 @@
         "script": "semgrep",
         "args": ["mcp", "-t", "stdio"]
       },
+      "secrets_binding": {
+        "required": false,
+        "inject": "host-env",
+        "env": ["SEMGREP_APP_TOKEN"]
+      },
       "secrets": {
         "required": false,
-        "env": ["SEMGREP_APP_TOKEN (optional; for platform findings, remote, and Pro features)"]
+        "env": ["SEMGREP_APP_TOKEN"],
+        "note": "optional; only needed for platform findings, remote and Pro features"
       },
       "pinned_by": "semgrep 1.178.0 ships cp314 wheels, so the host default interpreter runs it natively",
       "docs": "servers/semgrep.md",
@@ -93,6 +125,12 @@
         "license": "MIT",
         "snapshot_note": "working tree has 2 deleted tracked files (src/cve_mcp/server.py, src/cve_mcp/api/report_generator.py); restored from HEAD into a scratch copy; snapshot itself untouched"
       },
+      "placement": {
+        "holder_class": "host_gateway",
+        "rationale": "reaches external intelligence APIs and needs the host-held secrets.env; keep it off the VMs so tokens never travel onto the analysis nodes",
+        "fallback": ["container"]
+      },
+      "capability_class": ["read_only", "network"],
       "runtime": {
         "holder_node": "Primary Analysis Gateway (host LabStrix)",
         "requires_python": ">=3.10",
@@ -111,6 +149,22 @@
           "CACHE_DB_PATH": ".agent/mcp/.verify/cve-cache.db",
           "AUDIT_LOG_PATH": ".agent/mcp/.verify/cve-audit.log"
         }
+      },
+      "secrets_binding": {
+        "required": false,
+        "inject": "host-env",
+        "env": [
+          "NVD_API_KEY",
+          "GITHUB_TOKEN",
+          "VULNCHECK_TOKEN",
+          "ABUSEIPDB_KEY",
+          "VIRUSTOTAL_KEY",
+          "URLSCAN_KEY",
+          "SHODAN_KEY",
+          "GREYNOISE_API_KEY",
+          "CIRCL_PDNS_USER",
+          "CIRCL_PDNS_PASS"
+        ]
       },
       "secrets": {
         "required": false,
