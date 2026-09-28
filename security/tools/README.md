@@ -54,7 +54,8 @@
   - **跨機同步韌性**：runtime 目錄實際靠雲端硬碟跨機同步（Drive 不遵守 `.gitignore`）；讀取器以 `is_sync_artifact()` 忽略驅動器產生的衝突副本／暫存碎片，`doctor` 會將其列為 WARN，確保同步競態不會被誤讀成正式 event/handoff。
   - **Secret boundary**：plaintext password/token/session secret/private key 不得進 tracked `.collab`，也不得進 `.collab/runtime/`；只傳遞 `[REDACTED: local secret ref]` 類型的 host-local reference。
   - **Canonical naming / review linkage**：task=`Txxx_TYPE.md`、finding=`FINDING_Txxx.md`、review=`REVIEW_Txxx.md`；`REVIEW` task 必須以 `--review-target-finding FINDING_Txxx` 綁定既有 finding，且 review output 的 `對應 Finding` 必須完全一致。
-  - **MCP bridge（`mcp` 子命令）**：以 `collab_bus.py mcp {list,tools,call}` 作為協作執行路徑的 MCP 入口；服務端清單、金鑰變數名與 runner 均登載於 `.agent/mcp/registry.json`，可由 session 直接呼叫（例：`semgrep` 掃碼、`cve-mcp-server` 查 CVE/EPSS/KEV）。實作見 `collab_mcp.py`。
+  - **MCP bridge（`mcp` 子命令）**：以 `collab_bus.py mcp {list,launch,tools,call}` 作為協作執行路徑的 MCP 入口；服務端清單、金鑰變數名與 runner 均登載於 `.agent/mcp/registry.json`，可由 session 直接呼叫（例：`semgrep` 掃碼、`cve-mcp-server` 查 CVE/EPSS/KEV）。實作見 `collab_mcp.py`；`mcp launch` 為離線檢視（傳輸、argv、金鑰名稱，永不輸出值）。
+  - **節點型傳輸**：`placement.holder_class` 決定連線方式（`kali`→ssh、`flare_vm`→vmrun Guest Operations、`container`→`docker run -i`），MCP 客戶端仍只說 stdio；規劃在 `mcp_transports.py`，橋接器在 `.agent/mcp/tools/`，規範見 `.agent/mcp/README.md` §12。
 
 ---
 
@@ -108,7 +109,10 @@ python security/tools/collab_bus.py mcp list
 # 9. MCP：活體 session 列出伺服器真的暴露的工具
 python security/tools/collab_bus.py mcp tools --server semgrep
 
-# 10. MCP：呼叫單一工具（註冊表見 .agent/mcp/registry.json）
+# 10. MCP：離線檢視某顆伺服器會怎麼被拉起（傳輸、argv、金鑰名稱；不輸出值）
+python security/tools/collab_bus.py mcp launch --server semgrep
+
+# 11. MCP：呼叫單一工具（註冊表見 .agent/mcp/registry.json）
 python security/tools/collab_bus.py mcp call --server cve-mcp-server \
   --tool lookup_cve --args '{"cve_id": "CVE-2021-44228"}'
 python security/tools/collab_bus.py mcp call --server semgrep \
