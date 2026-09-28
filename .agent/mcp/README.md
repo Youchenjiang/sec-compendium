@@ -43,6 +43,7 @@
 
 - 預設 `stdio`：由 agent 進程直接拉起伺服器子進程，最單純、無網路面。
 - `streamable-http` / `sse` 僅在需要跨節點共享一個長駐伺服器時使用；啟用時需另立網路與認證規範，不得預設開啟。
+- **節點型傳輸**（`ssh`／`vmrun_guest`／`container`）由 `placement.holder_class` 推導，實作與規範見 §12。無論哪一種，MCP 客戶端看到的都還是 stdio：`ssh`、`docker -i`、vmrun 橋接器都只是把 stdin/stdout 轉進節點。
 
 ## 5. 金鑰與治理
 
@@ -256,5 +257,85 @@ VM_GP="guest-password"      # 值不展開 shell 變數（$ 保持字面）
 | 擺放欄位（`placement`）與能力分級（`capability_class`） | ✅ 已進 registry，`mcp list` 顯示 |
 | 金鑰最小權限注入（`secrets_binding`）＋`mcp secrets` 稽核 | ✅ 已實作於 `collab_mcp.py` |
 | Authorization Gate（白名單／路徑範圍／黑名單／到期／事由）＋稽核日誌 | ✅ 已實作，`mcp gate`／`mcp call --authorized` |
-| 節點型傳輸（`kali` SSH／`flare_vm` vmrun／`container` exec） | ⬜ 尚未實作：目前只有 `host_gateway` 的 stdio 能真的拉起。`runner` 需增列節點欄位與對應傳輸實作 |
+| 節點型傳輸（`kali` SSH／`flare_vm` vmrun／`container` exec） | ✅ 已實作（§12）：三個傳輸都以活體 session 驗證過（container 真的在容器內、ssh 真的在 Kali 上、vmrun 真的經 Guest Operations 進到 VMware 客體） |
+| `mcp launch`（離線檢視傳輸、argv、金鑰名稱） | ✅ 已實作，secret 值永不輸出 |
 | `mcp doctor`（檢查 venv／pin／工具數與證據是否一致） | ⬜ 待做 |
+
+> 尚未把任何**真實**伺服器擺到節點上：目前 registry 內兩個已接伺服器都是 `host_gateway`／`stdio_local`。傳輸本身已可跑，缺的是「有伺服器真的需要那個節點」——見 §8.3 的擺放表與引入判定矩陣。
+
+---
+
+## 12. 節點型傳輸（實作）
+
+規範在 §8 決定「跑哪裡」，這裡決定「怎麼連上去」。實作：`security/tools/mcp_transports.py`（規劃）、`.agent/mcp/tools/mcp_node_bridge.py`（客體內側）、`.agent/mcp/tools/mcp_vmrun_bridge.py`（宿主側 vmrun 適配器）、`security/tools/collab_mcp.py`（接線）。
+
+### 12.1 傳輸對照
+
+| `holder_class` | transport | 實際拉起的子行程 | 節點需要什麼 |
+| :--- | :--- | :--- | :--- |
+| `host_gateway` | `stdio_local` | 伺服器自己的 venv 執行檔 | 該 venv |
+| `kali` | `ssh` | `ssh`（`BatchMode=yes`） | 金鑰登入（或 `sshpass`）、客體上的伺服器 argv |
+| `flare_vm` | `vmrun_guest` | 宿主 `mcp_vmrun_bridge.py` | VMware Tools；**不需要**客體開任何埠或 SSH |
+| `container` | `container` | `docker run --rm -i` | 映像；預設 `--network none` |
+
+- 傳輸由 `placement.holder_class` 推導；要偏離必須明寫 `runner.node.transport`。
+- 節點型 session 的 MCP 客戶端（`mcp_probe.py`）跑在**宿主**的 probe 環境（`policy.node_transports.probe_env`，預設 `.agent/mcp/.verify/probe`，內容為 `pip install "mcp<2"`）；伺服器 venv 只在節點上存在，不能拿來跑客戶端。
+
+### 12.2 `runner.node` schema
+
+```jsonc
+"runner": {
+  "node": {
+    "transport": "vmrun_guest",           // 可省略＝由 holder_class 推導
+    "probe_env": ".agent/mcp/.verify/probe", // 可省略＝用 policy 預設
+    "exec": {                              // 在節點上真正跑什麼
+      "command": "python.exe", "args": ["C:/Tools/mcp/server.py"],
+      "cwd": "C:/Tools/mcp", "env": {"MCP_MODE": "stdio"}, "path_prepend": null
+    },
+    "ssh":      {"host": {"secret": "KALI_HOST"}, "user": {"secret": "KALI_USER"},
+                 "port": 22, "options": ["-o", "BatchMode=yes"], "password_secret": null},
+    "container":{"image": "python:3.12-alpine", "network": "none", "workdir": "/work",
+                 "mounts": [{"host": ".agent/mcp/.verify/fixtures", "container": "/work", "mode": "ro"}],
+                 "secrets": []},
+    "vmrun":    {"vmx": {"secret": "FLARE_VMX"}, "guest_user": {"secret": "VM_GU"},
+                 "guest_password": {"secret": "VM_GP"}, "guest_dir": "C:\\Windows\\Temp\\mcp-bridge",
+                 "guest_python": "python.exe", "idle_seconds": 120, "poll_interval": 0.4}
+  }
+}
+```
+
+任何欄位都可以是字面值或 `{"secret": "NAME"}`；值只從 `secrets.env` 取，`registry.json` 只記名稱。
+
+### 12.3 三條由程式強制執行的紅線
+
+1. **金鑰不上節點**：`exec.env` 不得引用 secret（規劃階段即 `TransportError`）。只有 `container.secrets`（明寫清單、以 `docker -e NAME` 讓值從容器客戶端環境轉入，值不進 argv）可以跨邊界。節點位址／客體憑證則只進**宿主 wrapper** 的環境或 argv，VM 不持有。
+2. **不得掛到 repo 外**：`container.mounts[].host` 必須解析在 repo 內（`／`、`$HOME`、`..` 逃逸一律拒絕）；`network` 預設 `none`，要用網路必須明寫。
+3. **節點型伺服器不得宣告宿主金鑰**：`secrets_binding.env` 若要求非 forwarded 的名稱，session 在拉起任何行程前就以 exit 2 拒絕（`secrets X cannot reach a <transport> node`）。
+
+### 12.4 vmrun 傳輸的兩個實務陷阱（實測踩到）
+
+- **不要用 `runProgramInGuest` 傳複雜 argv**：`vmrun` 轉交參數時的引用不完整，JSON argv 會走樣，客體程式**還沒開始就結束**，而 `runProgramInGuest` 仍回報成功。因此整個啟動描述會先落地成 `bridge-config.json`，客體只收到一個 `--config <file>`。（與 `vmrun_guest.py` 對 `.cmd` payload 的結論相同。）
+- **客體程式要寫絕對路徑**：`vmrun` 不做 PATH 查找，`python3` 會失敗，`/usr/bin/python3` 才對；規劃與錯誤訊息都會提示這點。
+
+傳輸本身是「兩個檔案當管道」：宿主把 JSON-RPC 逐行追加到 `requests` 後上傳，客體橋接器把伺服器 stdout 逐行追加到 `responses`，宿主再拉回來。只轉發**完整行**（尾端半行會被扣住），因此複製時機不會造成截斷的訊息。
+
+### 12.5 清理語意（誰負責收尾）
+
+MCP 客戶端結束 session 時通常是**硬殺**子行程（不是關 stdin），所以宿主適配器的 `finally` 不一定跑得到。因此：
+
+- 客體橋接器在**收到關機哨兵或閒置逾時**後會自行刪掉宿主 staging 的所有檔案（含自己），並且在 host 已消失時仍一定會執行；
+- 宿主收到 `SIGTERM`／`SIGINT` 時也會轉成正常退出（POSIX 有效），先把哨兵送進客體；
+- 客體橋接器的 `--idle` 是安全網：主機死亡後最遲在該秒數後自行收工，不會留下孤兒伺服器（這正是 `vmrun_guest.py` 記錄過的痛點）。
+
+實測：三個 vmrun session 結束後，客體 6 個 staged 檔與 3 個橋接行程在 60 秒內全數自行消失（`node_transport_demo.txt` §7）。
+
+### 12.6 驗證狀態
+
+| 傳輸 | 活體驗證 | 證據 |
+| :--- | :--- | :--- |
+| `container` | ✅ `python:3.12-alpine`、`--network none`、read-only 掛載；`whoami` 回容器 hostname／`python 3.12.14` | `.agent/mcp/.verify/node_transport_demo.txt` §2 |
+| `ssh` | ✅ 真的在 Kali 節點執行（`host=kali`、`cwd=/home/kali`） | 同上 §3 |
+| `vmrun_guest` | ✅ 真的經 VMware Guest Operations 進到執行中的客體（`host=kali`、無任何客體埠） | 同上 §4 |
+| `vmrun_guest` 對 Windows 客體（FLARE-VM） | ⬜ 未實測：FLARE-VM 目前關機中，且未持有它的客體帳密；檔案橋接器的邏輯已由 `security/tools/tests/fake_vmrun.py`（假 vmrun＋真橋接器）端到端覆蓋 | `security/tools/tests/test_mcp_transports.py` |
+
+驗證用的伺服器是拋棄式 echo fixture，跑在**另外一份** scratch registry（`.agent/mcp/.verify/node-demo-registry.json`）上；生產 registry 完全沒被改動。
