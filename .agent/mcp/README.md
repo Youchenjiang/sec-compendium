@@ -9,6 +9,7 @@
 | `servers/<name>.md` | 單一伺服器的引入說明與操作手冊 |
 | `servers/<name>.verification.md` | 可跑的驗證證據（原始輸出） |
 | `tools/mcp_probe.py` | 活體 stdio MCP 客戶端探針（握手／列工具／呼叫工具） |
+| `../../secrets.env.example` | 金鑰清單模板：只有**變數名稱**；複製成 Git-ignored 的 `secrets.env` 後才填值（第 9 節） |
 
 掛載點刻意與 `.agent/skills/` 同層：技能是「知識面」，MCP 是「工具面」，兩者皆屬 agent 能力層，但以不同目錄區分意圖。
 
@@ -98,3 +99,162 @@
 ---
 
 > 目前狀態：`semgrep` 與 `cve-mcp-server` 已接入且可由 `collab_bus.py mcp ...` 自動呼叫；`semgrep-mcp` 已退役並移入 `retired[]`。
+
+---
+
+## 8. 節點擺放規範（node placement）
+
+每一條 `servers[]` 條目以 `placement.holder_class` 指定**唯一承載節點**；沒有 `placement` 的伺服器不得進 `servers[]`（`mcp list` 會顯示該欄）。
+
+### 8.1 四類節點
+
+| `holder_class` | 節點 | 能力 | 限制 |
+| :--- | :--- | :--- | :--- |
+| `host_gateway` | Primary Analysis Gateway（宿主 `LabStrix`） | 64 GB RAM、大映像／記憶體 dump、repo 內檔案直讀、`secrets.env` 所在地 | 不得把 VM 當算力用；command-capable 服務須過 Authorization Gate（第 10 節） |
+| `flare_vm` | FLARE-VM（Windows 10 x64，`192.168.12.129`，vmrun Guest Operations） | `C:\Tools\DFIR\`（EZTools／Chainsaw／Hayabusa／Sysmon）、Windows 工件原生解析 | 2 GB RAM；防火牆全擋外部 TCP；**不持有任何金鑰** |
+| `kali` | Kali（`192.168.12.128`，免密 SSH） | Linux CLI、`tshark`／pcap、文書與巨集分析 | 2 GB RAM；系統時區 `America/New_York`（一律換算 UTC）；**不持有任何金鑰** |
+| `container` | 一次性容器（`docker compose run --rm`） | 隔離的掃描／offensive 工具鏈 | 需明示網路與掛載範圍；不得掛載宿主家目錄 |
+
+### 8.2 擺放決策（依序判斷，先命中先決定）
+
+1. **資料重力**：標本 > 2 GB 或記憶體 dump → `host_gateway`（VM 會 OOM）。
+2. **作業系統相依**：Windows 工件解析器 → `flare_vm`；Linux CLI／pcap／文書 → `kali`。
+3. **爆炸半徑**：會執行指令或改寫狀態者，優先 `container` 或 `kali`；只有宿主才做得到時才留 `host_gateway`，且**必須有 allowlist 條目**。
+4. **金鑰暴露面**：需要對外 API 金鑰者一律留 `host_gateway`（`secrets.env` 在宿主）；**不得把金鑰帶上 VM**。
+5. **時間語意**：跨節點時間線一律換算 UTC；Kali 時區不是 UTC。
+
+### 8.3 目前與已評估的擺放
+
+| 伺服器 | `holder_class` | 理由 | fallback |
+| :--- | :--- | :--- | :--- |
+| `semgrep`（已接入） | `host_gateway` | 需 repo 內檔案直讀＋宿主原生 cp314 執行環境 | `container` |
+| `cve-mcp-server`（已接入） | `host_gateway` | 對外情報 API＋金鑰在宿主 | `container` |
+| `Volatility-MCP-Server`（未接） | `host_gateway` | 記憶體 dump 只有宿主吃得下（VM 2 GB 會 OOM） | — |
+| `WireMCP`（未接） | `host_gateway` 或 `kali` | 宿主已裝 Wireshark 但 `tshark` 不在 PATH；Kali 現成 | `kali` |
+| `velociraptor-mcp-server`（未接） | `host_gateway` | 需 JWT／採集服務，金鑰留宿主 | `kali` |
+| `android-mcp`（未接） | `kali`／`flare_vm` | 需 apktool／jadx／adb／frida 等節點工具鏈 | `container` |
+| `reverse-engineering-assistant`（未接） | `host_gateway` | 需 Ghidra（JDK 已具備）＋大樣本處理 | — |
+| `mcp-security-hub`（未接） | `container` | offensive 掃描需網路隔離 | — |
+
+> 未接項目的級別與前置需求見引入判定矩陣；本表只決定「接上後跑哪裡」。
+
+---
+
+## 9. 金鑰注入（`secrets.env`）
+
+### 9.1 單一來源
+
+- 唯一來源是 repo 根目錄的 `secrets.env`（`.gitignore` 已排除）。
+- 版控內只放 `secrets.env.example`（**只有變數名稱**，值一律留空）；新進人員複製成 `secrets.env` 後自行填值。
+- `registry.json` 永遠**只記變數名稱**，不記值。
+
+### 9.2 檔案格式
+
+```text
+# 註解行以 # 開頭
+NVD_API_KEY=abc123          # KEY=value，值不加引號也支援單／雙引號
+VM_GP="guest-password"      # 值不展開 shell 變數（$ 保持字面）
+```
+
+容忍空白行、`#` 註解與 `export ` 前綴；鍵必須符合 `[A-Za-z_][A-Za-z0-9_]*`。
+
+### 9.3 最小權限注入
+
+1. 每個伺服器在 `secrets_binding.env` 宣告**自己有權取得的變數名稱**；`secrets_binding.required` 決定缺值是否中止。
+2. Session 啟動時只把**該伺服器宣告**的名稱注入其子行程環境；`secrets.env` 中其他條目的金鑰不會外洩給它。
+3. 取值順序：`secrets.env` → 既有 process 環境變數（同名）。runner 自身指向路徑的 `runner.env` 與金鑰無關。
+4. `required: true` 而缺值時，session 直接以 `ERROR ... missing required secret env names ...`（exit 2）中止，不半殘啟動。
+5. 稽核用 `collab_bus.py mcp secrets --server <name>`：只印名稱與 `present`／`missing`，**永不印值**。
+
+### 9.4 節點與輪替
+
+- 金鑰留在 `host_gateway`；`flare_vm`／`kali` 不持有任何 token——需要憑證的工作由宿主代跑後回傳文字工件。
+- 輪替＝改 `secrets.env` 後重跑對應 session，不需要改 registry（名稱不變）。
+- **禁止**：把值寫進 registry／證據檔／playbook、貼進命令列參數，或提交 `secrets.env`。
+- 既有框架層變數（非 MCP）：`SECURITY_LAB_DATA_ROOT`、`KALI_HOST`／`KALI_USER`／`KALI_PASSWORD`、`VM_GP`／`VM_GU`、`VM_VMRUN`／`VM_VMX`／`VM_CREDS_FILE`；同樣只記名稱。
+
+---
+
+## 10. Authorization Gate：指令執行型 MCP 白名單
+
+### 10.1 能力分級與預設拒絕
+
+| `capability_class` | 意義 | 是否需白名單 |
+| :--- | :--- | :---: |
+| `read_only` | 只讀資訊，不改狀態 | 否 |
+| `analysis` | 對我們給的檔案做解析／掃描，不改狀態 | 否 |
+| `network` | 會連外部服務（金鑰走第 9 節） | 否 |
+| `write` | 會改寫本地狀態 | **是** |
+| `command_exec` | 會執行指令或驅動工具（nmap／nuclei／hashcat／Kali server／採集器） | **是** |
+| （未宣告） | `unclassified`：無證據證明安全 | **是**（fail-closed） |
+
+`registry.authorization.default_decision = "deny"`；白名單目前**刻意留空**，因此現行兩條已接入伺服器（`read_only`／`analysis`／`network`）不受影響，而任何 `command_exec`／`write`／未宣告的伺服器一律拒絕。
+
+### 10.2 白名單條目（`authorization.command_exec_allowlist[]`）
+
+| 欄位 | 必填 | 說明 |
+| :--- | :---: | :--- |
+| `server` | ✅ | 條目對應的伺服器名（與 `servers[].name` 一致） |
+| `tools` | ✅ | 允許的工具名清單；`["*"]` 只在確實需要時使用，且必須搭配 `requires_authorization` |
+| `paths_allow` | ✅ | 允許的**路徑根**（repo 相對或絕對）。任何看起來像路徑的參數都必須落在這些根之內；未宣告根＝一律拒絕 |
+| `requires_authorization` | ✅ | `true` 時每次呼叫都要有明確事由＋授權變數 |
+| `deny_patterns` | ⬜ | 正規表達式黑名單（如 `;\s*rm\b`、`\|\s*(sh|bash)\b`），任何參數命中即拒絕 |
+| `expires` | ⬜ | `YYYY-MM-DD`；過期即拒絕（強迫定期複審） |
+| `authorization_env` | ⬜ | 覆寫預設授權變數名（預設 `MCP_AUTHORIZATION`） |
+| `note`／`reviewed_by` | ⬜ | 為何開這條、誰審的 |
+
+### 10.3 判定流程與稽核
+
+```text
+[Authorization Gate] 🧭 server/tool/arguments
+  ➔ 🚪 條目存在？ 無 → DENY（default_decision=deny）
+  ➔ 🚪 capability 是否已具備？（未宣告視為 unclassified）→ 無需白名單 → ALLOW
+  ➔ 🚪 tool 在 tools 內？ 否 → DENY
+  ➔ 🚪 expires 未過期？ 否 → DENY
+  ➔ 🚪 deny_patterns 未命中？ 命中 → DENY
+  ➔ 🚪 路徑型參數在 paths_allow 內？ 否 → DENY
+  ➔ 🚪 --authorized 事由非空？＋授權變數存在？ 否 → DENY
+  ➔ ✅ ALLOW（並寫入稽核）
+```
+
+- 閘門在**拉起子行程之前**執行；被拒的呼叫不會 spawn 任何伺服器。
+- 每次判定（含 dry-run）追加一行 JSON 到 `.collab/runtime/mcp-gate.jsonl`（Git-ignored）：`at`／`mode`／`server`／`tool`／`capabilities`／`decision`／`reason`／`authorized_reason`；**不含參數內容與金鑰值**。
+- 與 `.agent/rules.md` 的 Authorization Gate 對齊：「外部變更需當回合明確授權」在工具面落地為 `--authorized "<事由>"` ＋ `MCP_AUTHORIZATION` 存在，且事由入稽核。
+
+### 10.4 指令
+
+| 指令 | 行為 |
+| :--- | :--- |
+| `collab_bus.py mcp gate --server <s> [--tool <t>] [--args JSON] [--authorized "<why>"]` | 離線試算判定，印出決策 JSON；allow exit 0／deny exit 2 |
+| `collab_bus.py mcp call ... --authorized "<why>"` | 先過閘門再開 session；被拒時 `ERROR authorization gate denied ...`（exit 2） |
+| `collab_bus.py mcp list` | 顯示每條的 `holder=` 與 `capabilities=`／`gated=` |
+| `collab_bus.py mcp secrets --server <s>` | 顯示宣告的金鑰名稱與 present／missing（不顯示值） |
+
+### 10.5 尚未開放的例子（C 級，不引入）
+
+`mcp-security-hub`（nmap／nuclei／sqlmap／hashcat）與 `MCP-Kali-Server` 屬指令執行型。若要真的接，除了 §4 的網路與認證規範，還必須給出像下面這種**收斂的**條目——而不是一句「整台掃」：
+
+```json
+{
+  "server": "mcp-security-hub",
+  "tools": ["nmap_scan"],
+  "paths_allow": ["tracks/lab/hitcon_range/", "security/"],
+  "deny_patterns": ["\\.\\./", ";", "\\|", "&&"],
+  "requires_authorization": true,
+  "expires": "2026-12-31",
+  "note": "僅限靶場網段掃描；每次呼叫需記錄事由",
+  "reviewed_by": "primary-gateway-operator"
+}
+```
+
+---
+
+## 11. 實作現況與待辦
+
+| 能力 | 狀態 |
+| :--- | :--- |
+| 擺放欄位（`placement`）與能力分級（`capability_class`） | ✅ 已進 registry，`mcp list` 顯示 |
+| 金鑰最小權限注入（`secrets_binding`）＋`mcp secrets` 稽核 | ✅ 已實作於 `collab_mcp.py` |
+| Authorization Gate（白名單／路徑範圍／黑名單／到期／事由）＋稽核日誌 | ✅ 已實作，`mcp gate`／`mcp call --authorized` |
+| 節點型傳輸（`kali` SSH／`flare_vm` vmrun／`container` exec） | ⬜ 尚未實作：目前只有 `host_gateway` 的 stdio 能真的拉起。`runner` 需增列節點欄位與對應傳輸實作 |
+| `mcp doctor`（檢查 venv／pin／工具數與證據是否一致） | ⬜ 待做 |
