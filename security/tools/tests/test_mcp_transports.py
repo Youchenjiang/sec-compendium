@@ -700,15 +700,19 @@ class CollabIntegrationTests(unittest.TestCase):
             make_probe_env(root, "probe-env")
             policy_rel = str((root / ".agent" / "mcp" / ".verify" / "probe-env").resolve())
             entry = ssh_entry()
-            entry["runner"]["venv"] = "unused"
-            entry["runner"]["script"] = "unused"
-            with patch.object(collab_mcp.protocol, "REPO_ROOT", root):
-                plan = collab_mcp.resolve_session_plan(
-                    entry, self._registry(policy_rel, entry)
-                )
+            # Node addressing comes from secrets.env; the test points that lookup at
+            # a file that does not exist and supplies the values through the process
+            # environment, so it behaves the same on a clone and in CI.
+            with patch.dict(os.environ, {"KALI_HOST": "10.0.0.5", "KALI_USER": "analyst"}):
+                with patch.object(collab_mcp, "SECRETS_PATH", root / "no-secrets.env"):
+                    with patch.object(collab_mcp.protocol, "REPO_ROOT", root):
+                        plan = collab_mcp.resolve_session_plan(
+                            entry, self._registry(policy_rel, entry)
+                        )
             self.assertEqual(plan["transport"], "ssh")
             self.assertEqual(plan["holder"], "kali")
             self.assertIn("probe-env", plan["probe_python"])
+            self.assertIn("analyst@10.0.0.5", plan["args"])
 
     def test_node_transport_refuses_server_secrets_before_spawning(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -718,12 +722,33 @@ class CollabIntegrationTests(unittest.TestCase):
             entry = ssh_entry()
             entry["secrets_binding"] = {"required": True, "env": ["SEMGREP_APP_TOKEN"]}
             registry = self._registry(policy_rel, entry)
-            with patch.object(collab_mcp.protocol, "REPO_ROOT", root):
-                with self.assertRaises(ValueError) as ctx:
-                    collab_mcp.run_session(registry, "kali-scanner")
+            with patch.dict(os.environ, {"KALI_HOST": "10.0.0.5", "KALI_USER": "analyst"}):
+                with patch.object(collab_mcp, "SECRETS_PATH", root / "no-secrets.env"):
+                    with patch.object(collab_mcp.protocol, "REPO_ROOT", root):
+                        with self.assertRaises(ValueError) as ctx:
+                            collab_mcp.run_session(registry, "kali-scanner")
             message = str(ctx.exception)
             self.assertIn("cannot reach a ssh node", message)
             self.assertIn("SEMGREP_APP_TOKEN", message)
+
+    def test_display_plan_works_on_a_clone_without_provisioned_venvs(self) -> None:
+        """`mcp launch` must still explain a host_gateway server before provisioning."""
+        entry = {
+            "name": "local-server",
+            "placement": {"holder_class": "host_gateway"},
+            "secrets_binding": {"required": False, "env": []},
+            "runner": {"venv": ".agent/mcp/.verify/never-installed", "script": "server", "args": ["-t", "stdio"]},
+        }
+        registry = {"version": 1, "policy": {}, "authorization": {}, "servers": [entry]}
+        with tempfile.TemporaryDirectory() as tmp:
+            with patch.object(collab_mcp.protocol, "REPO_ROOT", Path(tmp)):
+                with self.assertRaises(ValueError):
+                    collab_mcp.resolve_session_plan(entry, registry)
+                plan = collab_mcp.resolve_session_plan(entry, registry, execute=False)
+        self.assertEqual(plan["transport"], "stdio_local")
+        self.assertIn("never-installed", plan["command"])
+        self.assertIn("never-installed", plan["probe_python"])
+        self.assertTrue(any("not provisioned" in note for note in plan["notes"]))
 
     def test_container_transport_may_forward_a_declared_secret(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

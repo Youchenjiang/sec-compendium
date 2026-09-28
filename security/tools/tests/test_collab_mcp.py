@@ -197,7 +197,15 @@ class CollabMcpTests(unittest.TestCase):
         self.assertEqual(exit_code, 0)
         self.assertIn("semgrep status=wired", output)
         self.assertIn("cve-mcp-server status=wired", output)
-        self.assertIn("runtime=ready", output)
+        # The readiness token must match reality: a fresh clone has no venvs, and
+        # this view has to keep telling the truth there too.
+        registry = collab_mcp.load_registry()
+        for entry in registry["servers"]:
+            venv = protocol.REPO_ROOT / (entry.get("runner") or {}).get("venv", "")
+            expected = "runtime=ready" if venv.exists() else "runtime=missing"
+            with self.subTest(server=entry["name"]):
+                self.assertIn(f"{entry['name']} status=", output)
+                self.assertIn(expected, output)
 
     def test_real_registry_declares_placement_and_capabilities(self) -> None:
         """Every wired server must state where it runs and what it can do."""
