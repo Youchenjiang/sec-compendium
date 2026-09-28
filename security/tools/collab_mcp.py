@@ -455,51 +455,74 @@ def _venv_binary(venv: Path, name: str) -> Path | None:
     return None
 
 
-def resolve_runner(entry: dict) -> dict:
+def _declared_binary(venv: Path, name: str) -> Path:
+    """Where a venv binary *would* live, for a clone whose venv is not provisioned yet."""
+    sub, suffix = ("Scripts", ".exe") if os.name == "nt" else ("bin", "")
+    return venv / sub / f"{name}{suffix}"
+
+
+def resolve_runner(entry: dict, *, require_provisioned: bool = True) -> dict:
     """Turn a registry entry's ``runner`` block into concrete executables.
 
     Returns a dict with ``command`` (server executable), ``args``, ``python``
     (venv interpreter used to run the MCP client session), ``env`` (resolved
-    child environment overrides) and ``path_prepend`` (so the server can find
-    its own binaries, e.g. ``semgrep``).
+    child environment overrides), ``path_prepend`` (so the server can find its
+    own binaries, e.g. ``semgrep``) and ``notes``.
+
+    With ``require_provisioned=False`` a missing venv is not an error: the plan is
+    built from the declared paths and flagged, so ``mcp launch`` can show what a
+    fresh clone *would* run instead of refusing to say anything.
     """
+    name = entry.get("name", "?")
     runner = entry.get("runner")
     if not isinstance(runner, dict):
         raise ValueError(
-            f"{entry.get('name', '?')}: registry entry has no 'runner' block; "
+            f"{name}: registry entry has no 'runner' block; "
             "add the server's venv/script/args so the collab bus can spawn it"
         )
 
     venv_rel = runner.get("venv")
     if not venv_rel:
-        raise ValueError(f"{entry.get('name', '?')}: runner.venv is required")
+        raise ValueError(f"{name}: runner.venv is required")
 
     venv = protocol.REPO_ROOT / venv_rel
-    if not venv.exists():
+    provisioned = venv.exists()
+    if require_provisioned and not provisioned:
         raise ValueError(
-            f"{entry.get('name', '?')}: runtime not provisioned at {venv_rel} "
+            f"{name}: runtime not provisioned at {venv_rel} "
             f"-> follow {entry.get('docs', '.agent/mcp/servers/')} install steps"
         )
 
     script = runner.get("script")
     if not script:
-        raise ValueError(f"{entry.get('name', '?')}: runner.script is required")
+        raise ValueError(f"{name}: runner.script is required")
 
     command = _venv_binary(venv, script)
     if command is None:
-        raise ValueError(
-            f"{entry.get('name', '?')}: {script!r} not found under {venv_rel}; "
-            "the runtime is incomplete or the install recipe was not run"
-        )
+        if require_provisioned:
+            raise ValueError(
+                f"{name}: {script!r} not found under {venv_rel}; "
+                "the runtime is incomplete or the install recipe was not run"
+            )
+        command = _declared_binary(venv, script)
 
     python = _venv_binary(venv, "python")
     if python is None:
-        raise ValueError(f"{entry.get('name', '?')}: python interpreter missing in {venv_rel}")
+        if require_provisioned:
+            raise ValueError(f"{name}: python interpreter missing in {venv_rel}")
+        python = _declared_binary(venv, "python")
 
     env: dict[str, str] = {}
     for key, value in (runner.get("env") or {}).items():
         path_value = protocol.REPO_ROOT / value
         env[key] = str(path_value if not Path(value).is_absolute() else Path(value))
+
+    notes = []
+    if not provisioned:
+        notes.append(
+            f"runner venv {venv_rel} is not provisioned on this clone; follow "
+            f"{entry.get('docs', '.agent/mcp/servers/')} before calling this server"
+        )
 
     return {
         "command": str(command),
@@ -507,6 +530,7 @@ def resolve_runner(entry: dict) -> dict:
         "python": str(python),
         "env": env,
         "path_prepend": str(Path(command).parent),
+        "notes": notes,
     }
 
 
@@ -547,7 +571,7 @@ def resolve_session_plan(
     holder = (entry.get("placement") or {}).get("holder_class", "-")
 
     if transport == "stdio_local":
-        runner = resolve_runner(entry)
+        runner = resolve_runner(entry, require_provisioned=execute)
         return {
             "transport": transport,
             "holder": holder,
@@ -559,7 +583,7 @@ def resolve_session_plan(
             "secret_names": declared_secret_names(entry),
             "env_from_secrets": {},
             "forwarded_secrets": [],
-            "notes": [],
+            "notes": list(runner.get("notes") or []),
             "exec": {},
         }
 
