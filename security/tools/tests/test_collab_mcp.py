@@ -17,6 +17,7 @@ if str(TOOLS_DIR) not in sys.path:
 import collab_bus
 import collab_mcp
 import collab_protocol as protocol
+import mcp_transports
 
 
 def make_venv(root: Path, name: str, script: str) -> Path:
@@ -32,16 +33,40 @@ def make_venv(root: Path, name: str, script: str) -> Path:
     return venv
 
 
+class GateAuditTests(unittest.TestCase):
+    def test_audit_record_omits_transport_when_it_is_unknown(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            log = Path(tmp) / "gate.jsonl"
+            collab_mcp.record_gate_decision(
+                {"server": "x", "tool": None, "decision": "allow", "reason": "ok"},
+                log_path=log,
+            )
+            record = json.loads(log.read_text(encoding="utf-8").strip())
+            self.assertNotIn("transport", record)
+            self.assertNotIn("node", record)
+
+
 class CollabMcpTests(unittest.TestCase):
-    def test_real_registry_lists_registered_servers_with_runners(self) -> None:
+    def test_real_registry_gives_every_server_a_runnable_transport(self) -> None:
         registry = collab_mcp.load_registry()
+        policy = mcp_transports.normalise_policy(registry)
         servers = {entry["name"]: entry for entry in registry["servers"]}
         self.assertIn("semgrep", servers)
         self.assertIn("cve-mcp-server", servers)
         for name, entry in servers.items():
+            transport = mcp_transports.transport_for(entry, policy=policy)
+            self.assertIn(transport, mcp_transports.NODE_TRANSPORTS)
             runner = entry.get("runner") or {}
-            self.assertTrue(runner.get("venv"), f"{name} is missing runner.venv")
-            self.assertTrue(runner.get("script"), f"{name} is missing runner.script")
+            if transport == "stdio_local":
+                self.assertTrue(runner.get("venv"), f"{name} is missing runner.venv")
+                self.assertTrue(runner.get("script"), f"{name} is missing runner.script")
+            else:
+                # A node-bound server must describe both how to reach the node and
+                # what to run there; planning is what validates the rest.
+                self.assertTrue(
+                    mcp_transports.node_block(entry), f"{name} needs a runner.node block"
+                )
+                self.assertIn("holder_class", entry.get("placement") or {})
 
     def test_get_server_raises_for_unknown_name_and_names_known_ones(self) -> None:
         registry = {"servers": [{"name": "alpha"}, {"name": "beta"}]}
