@@ -20,13 +20,21 @@
       "retired_date": "2026-09-27",
       "replaced_by": "semgrep",
       "reason": "Upstream deprecated semgrep-mcp 0.9.0; its tools/list exposed only the deprecation_notice tool. Superseded by the `semgrep mcp` subcommand built into semgrep.",
+      "reverified": {
+        "date": "2026-09-28",
+        "python": "3.14.7",
+        "venv": ".agent/mcp/.verify/semgrep-mcp314 (gitignored)",
+        "outcome": "Installs on 3.14 (pip 26 accepts the cp39.cp310.cp311 compressed-tag wheel, so the earlier wheel-ceiling claim was wrong) but the pinned semgrep 1.135.0 crashes at runtime on protobuf 4.25.9; after overriding the pin (protobuf 7.36.2, setuptools<81) the server launches and answers initialize with Semgrep/1.12.2, yet tools/list still exposes only the upstream deprecation_notice tombstone and it cannot scan. The same venv's OSS semgrep 1.135.0 also refuses MCP mode (requires Pro Engine). Retirement unchanged; scans come from the semgrep 1.178.0 entry.",
+        "evidence": "servers/retired/semgrep-mcp.verification.md (section 5)"
+      },
       "previous_source": {
         "snapshot": "Security-LabData/external-mcp-tools/semgrep-mcp",
         "upstream": "https://github.com/semgrep/mcp",
         "commit": "cade782501e611373844696edc2ceef31eb7e1f7",
         "package": "semgrep-mcp==0.9.0",
         "submodule": "src/semgrep_mcp/semgrep_interfaces@3ce3539b8d9e46b98cf73d08f0b44ef63c3e80a0",
-        "requires_python": ">=3.9,<3.12"
+        "requires_python": ">=3.10 (PyPI metadata)",
+        "wheel_tags": "semgrep==1.135.0 ships only cp39.cp310.cp311 compressed-tag wheels; pip 26 still installs them on 3.14, the runtime failure is protobuf 4.25.9 upb"
       },
       "docs": "servers/retired/semgrep-mcp.md",
       "evidence": "servers/retired/semgrep-mcp.verification.md"

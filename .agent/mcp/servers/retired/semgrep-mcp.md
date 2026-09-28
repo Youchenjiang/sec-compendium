@@ -27,12 +27,12 @@
 | 項目 | 值 |
 |------|-----|
 | holder node | Primary Analysis Gateway（宿主 `LabStrix`） |
-| `requires_python` | `>=3.9,<3.12`（因 `semgrep==1.135.0` 的 wheel 只有 `cp39/cp310/cp311`，**無 3.12/3.13/3.14 wheel**） |
+| `requires_python` | `>=3.10`（PyPI 後設資料）。`semgrep==1.135.0` 的 wheel 標籤為壓縮 tag `cp39.cp310.cp311`；**2026-09-28 實測：pip 26 在 3.14 上仍接受它安裝**，牆在執行期而非安裝期（見第 2、8 節） |
 | 實測執行環境 | 專屬 Python **3.11.16** env（`.agent/mcp/.verify/venv311`，已 gitignore） |
 | 傳輸 | `stdio` |
 | 替代節點 | Kali / FLARE-VM（若其 Python 為 3.9–3.11），或官方容器 `ghcr.io/semgrep/mcp` |
 
-> **宿主預設 Python 3.14.7 直接安裝會失敗**：`semgrep==1.135.0` 無 cp314 wheel，pip 只能退回 sdist 並嘗試 OCaml 建置。故本伺服器**不得用宿主預設直譯器硬跑**，必須以釘版本的 3.11 環境承載。
+> **宿主預設 Python 3.14.7：可安裝，但預設不可執行（2026-09-28 修正）**。安裝層面 pip 26 會接受 `semgrep==1.135.0` 的壓縮 tag wheel（`cp39.cp310.cp311`）——原本「無 cp314 wheel 所以裝不起來」的推論**不成立**。真正的牆在執行期：被硬釘的 `protobuf 4.25.9` 原生 upb 擴充在 3.14 無法載入（`TypeError: Metaclasses with custom tp_new are not supported.`）。要讓它跑起來必須覆寫 pin（`protobuf>=5` 實測 7.36.2、`setuptools<81`），詳見第 8 節。正式承載環境仍以釘版本環境（3.11）或替代節點為準。
 
 ## 3. 安裝（可重現）
 
@@ -80,7 +80,7 @@ PATH="$PWD/$ENV/Scripts:$PATH" "$ENV/Scripts/semgrep-mcp.exe" -t stdio
 
 ## 6. 避坑（實測踩到的）
 
-1. **Python 版本**：`semgrep==1.135.0` 僅 `cp39/cp310/cp311`。宿主 3.14 不行，3.12/3.13 也不行。
+1. **Python 版本**：`semgrep==1.135.0` 的 wheel 標籤僅 `cp39/cp310/cp311`。宿主 3.14 上**裝得起來但跑不起來**（protobuf upb 崩潰）；3.12/3.13 同理。要跑需覆寫 pin，見第 8 節。
 2. **未初始化的 submodule**：快照的 `semgrep_interfaces` 為空 → `ModuleNotFoundError: No module named 'semgrep_mcp.semgrep_interfaces'`。需先 `git submodule update --init`。
 3. **`pkg_resources` 被移除**：`opentelemetry-instrumentation` import `pkg_resources`；`setuptools>=81` 已移除它 → `semgrep` CLI 直接 traceback。需 `pip install "setuptools<81"`。
 4. **`semgrep` 必須在 PATH**：伺服器 `ensure_semgrep_available()` 以 `PATH` 尋找 `semgrep`，否則 `initialize` 時丟 `McpError: Semgrep is not installed or not in your PATH`。啟動時把 `<venv>/Scripts` 前置到 `PATH`。
@@ -92,3 +92,17 @@ PATH="$PWD/$ENV/Scripts:$PATH" "$ENV/Scripts/semgrep-mcp.exe" -t stdio
 - 影響：本伺服器能跑、握手正常，但**功能面已被上游標為 deprecated**，代理價值有限。
 - 遷移路徑：改用新版 `semgrep`（例如 `1.178.0`，**具 cp314 wheel**）提供的 `semgrep mcp`。此舉還有附帶好處——新版 semgrep 支援 Python 3.14，**可直接回到宿主預設直譯器**，不再需要 3.11 特製環境。
 - 建議：把 `semgrep mcp`（新版）列為下一個要接的 MCP，並在 `registry.json` 以獨立條目登記；本 `semgrep-mcp` 條目保留為「已驗證但已棄用」的對照。
+
+---
+
+## 8. 2026-09-28 再驗（Python 3.14 隔離 venv）與最終結論
+
+以全新的隔離 venv（`.agent/mcp/.verify/semgrep-mcp314`，Python 3.14.7、pip 26.2.1）重做完整實驗：
+
+1. **安裝成功**：`pip install --only-binary=:all: semgrep-mcp` 選用 `semgrep-1.135.0-cp39.cp310.cp311.py39.py310.py311-none-win_amd64.whl`；pip 26 接受壓縮 tag wheel，更正第 2 節原本的推論。
+2. **預設執行失敗**：`semgrep --version` 崩在 protobuf 原生 upb（`TypeError: Metaclasses with custom tp_new are not supported.`）；`PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python` 不足以繞過。
+3. **覆寫 pin 後可跑**：`pip install --no-deps --upgrade protobuf`（→ 7.36.2）之後 `semgrep --version` 回 `1.135.0`，`semgrep-mcp -t stdio` 完成 `initialize`（`Semgrep/1.12.2`）與 `tools/list`（**1 個工具**：`deprecation_notice`），真呼叫回傳上游遷移通知。
+4. **仍無掃描能力**：工具面只有墓碑工具；且同 venv 的 `semgrep mcp`（1.135.0 OSS）拒絕啟動（`MCP subcommand requires Pro Engine`）。
+5. **維持退役**：Python 3.14 上要掃描，請用 registry 的 `semgrep`（1.178.0 OSS），見 `servers/semgrep.verification.md` 第 7 節的 sample 目標掃描。
+
+完整原始輸出：`servers/retired/semgrep-mcp.verification.md` 第 5 節。
