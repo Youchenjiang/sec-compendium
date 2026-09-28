@@ -153,3 +153,132 @@ semgrep.exe mcp -t stdio
 | 明確失敗原因（若遇到的） | `semgrep_scan` 於 `SEMGREP_SEND_METRICS=off` 時回 `Cannot run scan with auto config when metrics are off`；`/c/...` 形式路徑回 `code_files.path must be a absolute path`（皆已記入 `servers/semgrep.md` 避坑） |
 
 本段證明了「這條線」：**現行 semgrep MCP 可被活體客戶端連上、列工具、並真的跑掃描取回真實結果**。
+
+---
+
+## 7. sample 目標掃描（可重現 fixture，2026-09-28）
+
+前幾節掃的是真實 repo 檔案（乾淨結果，或單一規則）。本節改用**固定 fixture**，證明 MCP 掃描路徑能一次回傳多條 findings，且重跑逐筆一致。
+
+### 7.1 fixture（不進版控；以下原文可一秒重建）
+
+置於 Git-ignored 的 `.agent/mcp/.verify/sample-target/`。刻意不入庫：內容是刻意弱點與假憑證常數，入庫只會干擾 secret／SAST 掃描與閱讀。
+
+`sample-target/vulnerable.py`：
+
+```python
+"""Deliberately vulnerable sample used as an MCP scan target.
+
+This file is a throwaway fixture in the Git-ignored .verify/ scratch area; it
+is never imported, executed, or committed. It exists only so the semgrep MCP
+server has a small, known target with deterministic findings.
+"""
+
+import hashlib
+import os
+import sqlite3
+import subprocess
+
+API_TOKEN = "hardcoded-sample-token-0000"
+PASSWORD = "SampleP@ssw0rd!"
+
+
+def weak_hash(data: bytes) -> str:
+    return hashlib.md5(data).hexdigest()
+
+
+def run(cmd: str) -> None:
+    subprocess.run(cmd, shell=True, check=False)
+
+
+def lookup(user_input: str) -> None:
+    conn = sqlite3.connect("sample.db")
+    conn.execute(f"SELECT * FROM users WHERE name = '{user_input}'")
+
+
+def evaluate(expr: str):
+    return eval(expr)
+
+
+def read(path: str) -> str:
+    with open(os.path.join("/tmp", path)) as handle:
+        return handle.read()
+```
+
+`sample-target/sample-rules.yaml`：
+
+```yaml
+rules:
+  - id: sample-python-hardcoded-secret
+    languages: [python]
+    severity: WARNING
+    message: Hardcoded credential-like constant in source
+    patterns:
+      - pattern-regex: (?i)(password|passwd|token|api_key|secret)\s*=\s*"[^"]{8,}"
+
+  - id: sample-python-md5
+    languages: [python]
+    severity: WARNING
+    message: MD5 used as a hash function
+    patterns:
+      - pattern: hashlib.md5(...)
+
+  - id: sample-python-shell-true
+    languages: [python]
+    severity: ERROR
+    message: subprocess invoked with shell=True
+    patterns:
+      - pattern: subprocess.$FUNC(..., shell=True, ...)
+
+  - id: sample-python-eval
+    languages: [python]
+    severity: ERROR
+    message: eval() called on a value
+    patterns:
+      - pattern: eval(...)
+
+  - id: sample-python-fstring-sql
+    languages: [python]
+    severity: ERROR
+    message: SQL statement built with an f-string
+    patterns:
+      - pattern: $CONN.execute(f"...")
+```
+
+### 7.2 呼叫（活體 MCP session）
+
+```text
+<venv>/python.exe .agent/mcp/tools/mcp_probe.py \
+  --cmd <repo>/.agent/mcp/.verify/semgrep178/Scripts/semgrep.exe \
+  --arg mcp --arg=-t --arg stdio \
+  --path-prepend .agent/mcp/.verify/semgrep178/Scripts \
+  --metrics-off \
+  --call semgrep_scan_with_custom_rule \
+  --arguments "$(cat .agent/mcp/.verify/sample-scan-args.json)" \
+  --out .agent/mcp/.verify/semgrep_scan_1178_sample.txt
+```
+
+`arguments` 形狀：`{"code_files": [{"path": "sample-target/vulnerable.py", "content": "<fixture 全文>"}], "rule": "<規則 YAML 全文>"}`。
+選 custom rule 而非 `auto`：`SEMGREP_SEND_METRICS=off` 與 auto config 互斥（第 6 節已記錄），且 custom rule 為離線決定性。
+
+### 7.3 結果（伺服器自報 `semgrep version 1.178.0`，`isError: false`）
+
+| # | check_id | 位置 | 嚴重度 | 對應 fixture 內容 |
+|---|----------|------|--------|------------------|
+| 1 | `sample-python-hardcoded-secret` | `vulnerable.py` L13 | WARNING | `API_TOKEN = "hardcoded-sample-token-0000"` |
+| 2 | `sample-python-hardcoded-secret` | `vulnerable.py` L14 | WARNING | `PASSWORD = "SampleP@ssw0rd!"` |
+| 3 | `sample-python-md5` | `vulnerable.py` L18 | WARNING | `hashlib.md5(data).hexdigest()` |
+| 4 | `sample-python-shell-true` | `vulnerable.py` L22 | ERROR | `subprocess.run(cmd, shell=True, ...)` |
+| 5 | `sample-python-fstring-sql` | `vulnerable.py` L27 | ERROR | `conn.execute(f"SELECT ...")` |
+| 6 | `sample-python-eval` | `vulnerable.py` L31 | ERROR | `eval(expr)` |
+
+→ 5 條規則全數命中（`hardcoded-secret` 命中 2 處），fixture 植入的 6 個弱點 **6/6** 被回報，路徑為該工具接收的 `sample-target/vulnerable.py`。
+
+### 7.4 重跑一致性
+
+同一命令第二次執行，輸出至 `semgrep_scan_1178_sample_run2.txt`，以 `(check_id, path, line, severity)` 逐筆比對：**rerun identical = True**（6/6 相同，無行號或順序漂移）。
+
+### 7.5 負面對照（同日）
+
+- **舊線不可用**：`semgrep==1.135.0`（OSS）在同世代的 `semgrep mcp` 拒絕啟動——`[ERROR]: MCP subcommand requires Pro Engine--make sure you are using the proprietary semgrep binary.`（客戶端 `McpError: Connection closed`）。故 3.14 上的掃描供應者只有 1.178.0 這條線。
+- **被棄用的 `semgrep-mcp` 0.9.0** 只有墓碑工具，無法提供掃描；其 3.14 再驗見 `servers/retired/semgrep-mcp.verification.md` 第 5 節。
