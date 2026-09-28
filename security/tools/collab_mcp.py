@@ -13,6 +13,12 @@ Design notes
   MCP SDK, and each server owns a venv that does. The session therefore runs in
   the *server's* venv python, which is also the interpreter that can import the
   installed server package.
+* A server placed on a node (Kali over SSH, FLARE-VM over VMware Guest
+  Operations, an isolated container) is reached through the transport planners in
+  ``mcp_transports``: the MCP client still speaks stdio, but to a wrapper (ssh,
+  docker -i or the vmrun bridge) that forwards the session into the node. Those
+  sessions run the probe from a host-side probe environment instead of the
+  server's venv, which does not exist on the host gateway.
 * Every tool call passes the Authorization Gate first: servers that declare a
   gated capability (``command_exec``/``write``, or no capability at all) need an
   explicit allowlist entry in ``registry.authorization``, and the call is
@@ -36,9 +42,14 @@ from datetime import date
 from pathlib import Path
 
 import collab_protocol as protocol
+import mcp_transports
 
 REGISTRY_PATH = protocol.REPO_ROOT / ".agent" / "mcp" / "registry.json"
 PROBE_PATH = protocol.REPO_ROOT / ".agent" / "mcp" / "tools" / "mcp_probe.py"
+#: Node-side stdio bridge, copied into a guest for the ``vmrun_guest`` transport.
+NODE_BRIDGE_PATH = protocol.REPO_ROOT / ".agent" / "mcp" / "tools" / "mcp_node_bridge.py"
+#: Host-side vmrun adapter that exposes a guest server as a local stdio child.
+VMRUN_BRIDGE_PATH = protocol.REPO_ROOT / ".agent" / "mcp" / "tools" / "mcp_vmrun_bridge.py"
 SECRETS_PATH = protocol.REPO_ROOT / "secrets.env"
 GATE_LOG_PATH = protocol.RUNTIME_DIR / "mcp-gate.jsonl"
 
@@ -122,17 +133,17 @@ def declared_secret_names(entry: dict) -> list[str]:
     return sorted(name for name in names if re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", name))
 
 
-def resolve_secret_env(
-    entry: dict,
+def resolve_named_secrets(
+    names: list[str],
     *,
     secrets_file: Path | None = None,
     process_env: dict[str, str] | None = None,
 ) -> tuple[dict[str, str], list[str]]:
-    """Return ``(values, missing_names)`` for one server's declared names.
+    """Return ``(values, missing_names)`` for an explicit list of variable names.
 
     Precedence: ``secrets.env`` first, then an already-set process environment
-    variable of the same name. Undeclared keys in ``secrets.env`` are never
-    returned, so a server cannot harvest another server's credentials.
+    variable of the same name. Names outside the list are never returned, so a
+    caller (server or transport wrapper) cannot harvest unrelated credentials.
     """
     path = Path(secrets_file) if secrets_file is not None else SECRETS_PATH
     stored: dict[str, str] = {}
@@ -145,7 +156,7 @@ def resolve_secret_env(
     env = os.environ if process_env is None else process_env
     values: dict[str, str] = {}
     missing: list[str] = []
-    for name in declared_secret_names(entry):
+    for name in names:
         if name in stored:
             values[name] = stored[name]
         elif env.get(name):
@@ -153,6 +164,18 @@ def resolve_secret_env(
         else:
             missing.append(name)
     return values, missing
+
+
+def resolve_secret_env(
+    entry: dict,
+    *,
+    secrets_file: Path | None = None,
+    process_env: dict[str, str] | None = None,
+) -> tuple[dict[str, str], list[str]]:
+    """Return ``(values, missing_names)`` for one server's declared names."""
+    return resolve_named_secrets(
+        declared_secret_names(entry), secrets_file=secrets_file, process_env=process_env
+    )
 
 
 def secrets_binding(entry: dict) -> dict:
@@ -359,9 +382,20 @@ def gate_decision(
     return decision
 
 
-def record_gate_decision(decision: dict, *, reason: str = "", mode: str = "enforce",
-                         log_path: Path | None = None) -> None:
-    """Append one audit line; a logging failure never blocks or unwinds a call."""
+def record_gate_decision(
+    decision: dict,
+    *,
+    reason: str = "",
+    mode: str = "enforce",
+    transport: str | None = None,
+    node: str | None = None,
+    log_path: Path | None = None,
+) -> None:
+    """Append one audit line; a logging failure never blocks or unwinds a call.
+
+    ``transport``/``node`` are recorded when the caller already knows where the
+    session would run, so the audit trail shows which node a call was aimed at.
+    """
     path = Path(log_path) if log_path is not None else GATE_LOG_PATH
     record = {
         "at": protocol.utc_timestamp(),
@@ -373,6 +407,10 @@ def record_gate_decision(decision: dict, *, reason: str = "", mode: str = "enfor
         "reason": decision.get("reason"),
         "authorized_reason": reason,
     }
+    if transport:
+        record["transport"] = transport
+    if node:
+        record["node"] = node
     try:
         path.parent.mkdir(parents=True, exist_ok=True)
         with path.open("a", encoding="utf-8") as handle:
@@ -389,6 +427,8 @@ def enforce_gate(
     *,
     authorized_reason: str = "",
     process_env: dict[str, str] | None = None,
+    transport: str | None = None,
+    node: str | None = None,
 ) -> dict:
     """Apply the gate and raise ``ValueError`` when the call is not authorized."""
     decision = gate_decision(
@@ -399,7 +439,7 @@ def enforce_gate(
         authorized_reason=authorized_reason,
         process_env=process_env,
     )
-    record_gate_decision(decision, reason=authorized_reason)
+    record_gate_decision(decision, reason=authorized_reason, transport=transport, node=node)
     if decision["decision"] != "allow":
         raise ValueError(f"authorization gate denied {server}/{tool}: {decision['reason']}")
     return decision
@@ -470,11 +510,97 @@ def resolve_runner(entry: dict) -> dict:
     }
 
 
-def _child_env(runner: dict, secrets: dict[str, str] | None = None) -> dict:
-    """Child environment for one session: runner overrides plus declared secrets only."""
+def _policy_path(value: str, default: Path) -> Path:
+    """Resolve a registry-declared path (repo-relative) with a compiled-in default."""
+    if not value:
+        return default
+    path = Path(str(value))
+    return path if path.is_absolute() else protocol.REPO_ROOT / path
+
+
+def session_transport(entry: dict, registry: dict | None = None) -> str:
+    """Which transport this server is reached through (registry-derived)."""
+    return mcp_transports.transport_for(entry, policy=mcp_transports.normalise_policy(registry))
+
+
+def resolve_session_plan(
+    entry: dict,
+    registry: dict | None = None,
+    *,
+    execute: bool = True,
+    secrets_file: Path | None = None,
+) -> dict:
+    """Resolve how one registered server is launched, transport included.
+
+    ``stdio_local`` keeps the original behaviour: the server's own venv executable
+    is the child process, and the session runs in that venv's interpreter. Node
+    transports return a wrapper command (``ssh`` / ``docker -i`` / the vmrun
+    bridge) plus the host-side probe interpreter that speaks stdio to it, so the
+    caller never has to know which kind of node it is talking to.
+
+    With ``execute=False`` the plan is built for display: a ``{"secret": "NAME"}``
+    field renders as ``<NAME>`` instead of being resolved, so ``mcp launch`` can
+    print a plan without touching ``secrets.env`` (and without printing a value).
+    """
+    policy = mcp_transports.normalise_policy(registry)
+    transport = mcp_transports.transport_for(entry, policy=policy)
+    holder = (entry.get("placement") or {}).get("holder_class", "-")
+
+    if transport == "stdio_local":
+        runner = resolve_runner(entry)
+        return {
+            "transport": transport,
+            "holder": holder,
+            "probe_python": runner["python"],
+            "command": runner["command"],
+            "args": runner["args"],
+            "env": runner["env"],
+            "path_prepend": runner["path_prepend"],
+            "secret_names": declared_secret_names(entry),
+            "env_from_secrets": {},
+            "forwarded_secrets": [],
+            "notes": [],
+            "exec": {},
+        }
+
+    probe_python = mcp_transports.resolve_probe_python(
+        entry, repo_root=protocol.REPO_ROOT, policy=policy
+    )
+    name = entry.get("name", "?")
+    resolved: dict[str, str] = {}
+
+    def lookup(secret_name: str) -> str:
+        """Resolve one transport secret on demand, failing on the first missing one."""
+        if secret_name not in resolved:
+            values, missing = resolve_named_secrets([secret_name], secrets_file=secrets_file)
+            if missing:
+                raise mcp_transports.TransportError(
+                    f"{name}: missing required secret env name {secret_name}; add it to "
+                    "secrets.env (the registry records names, not values)"
+                )
+            resolved[secret_name] = values[secret_name]
+        return resolved[secret_name]
+
+    plan = mcp_transports.plan_launch(
+        entry,
+        transport=transport,
+        repo_root=protocol.REPO_ROOT,
+        probe_python=probe_python,
+        policy=policy,
+        guest_bridge=_policy_path(policy.get("guest_bridge"), NODE_BRIDGE_PATH),
+        vmrun_bridge=_policy_path(policy.get("vmrun_bridge"), VMRUN_BRIDGE_PATH),
+        secret_lookup=lookup if execute else None,
+    )
+    plan["holder"] = holder
+    plan["probe_python"] = str(probe_python)
+    return plan
+
+
+def _child_env(plan: dict, secrets: dict[str, str] | None = None) -> dict:
+    """Child environment for one session: plan overrides plus declared secrets only."""
     env = dict(os.environ)
-    env["PATH"] = runner["path_prepend"] + os.pathsep + env.get("PATH", "")
-    env.update(runner["env"])
+    env["PATH"] = plan["path_prepend"] + os.pathsep + env.get("PATH", "")
+    env.update(plan.get("env") or {})
     for name, value in (secrets or {}).items():
         env[name] = value
     return env
@@ -518,26 +644,58 @@ def run_session(
         raise ValueError(f"MCP probe missing: {protocol.relative_posix(PROBE_PATH)}")
 
     entry = get_server(registry, server)
-    enforce_gate(registry, server, call, arguments, authorized_reason=authorized_reason)
-    runner = resolve_runner(entry)
-
-    secrets, missing = resolve_secret_env(entry)
+    transport = session_transport(entry, registry)
+    holder = (entry.get("placement") or {}).get("holder_class", "-")
+    enforce_gate(
+        registry,
+        server,
+        call,
+        arguments,
+        authorized_reason=authorized_reason,
+        transport=transport,
+        node=holder,
+    )
+    plan = resolve_session_plan(entry, registry)
     binding = secrets_binding(entry)
-    if missing and binding["required"]:
-        raise ValueError(
-            f"{server}: missing required secret env names {', '.join(missing)}; "
-            "add them to secrets.env (the registry records names only)"
-        )
+    injected: dict[str, str] = {}
+
+    if transport != "stdio_local":
+        # Node transports run the wrapper on the host gateway only; the server's
+        # own declared secrets would have to cross the node boundary, which is
+        # exactly what the placement rules forbid. Transport secrets (node
+        # addressing, guest credentials) were already resolved into ``plan.env``
+        # by the planner, and a missing one failed the plan.
+        forwarded = set(plan.get("forwarded_secrets") or [])
+        blocked = sorted(set(declared_secret_names(entry)) - forwarded)
+        if blocked:
+            raise ValueError(
+                f"{server}: secrets {', '.join(blocked)} cannot reach a {transport} node; "
+                "place the server on host_gateway, or declare each name in "
+                "runner.node.container.secrets to forward it explicitly"
+            )
+    else:
+        secrets, missing = resolve_named_secrets(plan["secret_names"])
+        if missing and binding["required"]:
+            raise ValueError(
+                f"{server}: missing required secret env names {', '.join(missing)}; "
+                "add them to secrets.env (the registry records names only)"
+            )
+        injected = secrets
+        # ``env_from_secrets`` renames a declared secret onto the variable its
+        # wrapper expects; values never live in the plan.
+        injected = {
+            plan["env_from_secrets"].get(name, name): value for name, value in secrets.items()
+        }
 
     cmd = [
-        runner["python"],
+        plan["probe_python"],
         str(PROBE_PATH),
         "--cmd",
-        runner["command"],
+        plan["command"],
         "--path-prepend",
-        runner["path_prepend"],
+        plan["path_prepend"],
     ]
-    for arg in runner["args"]:
+    for arg in plan["args"]:
         # Server argv values routinely start with "-" (e.g. ``-t``); pass them in
         # ``--arg=value`` form so argparse never mistakes them for its own flags.
         cmd.extend([f"--arg={arg}"])
@@ -552,7 +710,7 @@ def run_session(
             text=True,
             encoding="utf-8",
             errors="replace",
-            env=_child_env(runner, secrets),
+            env=_child_env(plan, injected),
             cwd=str(protocol.REPO_ROOT),
             timeout=SESSION_TIMEOUT_SECONDS,
         )
@@ -604,6 +762,7 @@ def command_list(args: argparse.Namespace) -> int:
         print("No MCP servers registered.")
         return 0
 
+    node_policy = mcp_transports.normalise_policy(registry)
     for entry in servers:
         name = entry.get("name", "?")
         runner = entry.get("runner") or {}
@@ -613,10 +772,15 @@ def command_list(args: argparse.Namespace) -> int:
         runtime = "ready" if script_ok else "missing"
         python_req = entry.get("runtime", {}).get("requires_python", "any")
         placement = entry.get("placement") or {}
+        try:
+            transport = mcp_transports.transport_for(entry, policy=node_policy)
+        except mcp_transports.TransportError as exc:
+            transport = f"invalid({exc})"
         print(
             f"{name} status={entry.get('status', 'unknown')} "
             f"requires_python={python_req} runtime={runtime} "
             f"venv={venv_rel or '-'} holder={placement.get('holder_class', '-')} "
+            f"transport={transport} "
             f"capabilities={','.join(capability_classes(entry))} "
             f"gated={'yes' if set(capability_classes(entry)) & set(authorization_policy(registry)['applies_to_capabilities']) else 'no'} "
             f"docs={entry.get('docs', '-')}"
@@ -680,6 +844,51 @@ def command_call(args: argparse.Namespace) -> int:
                 print(block["text"])
         if not payload:
             print(json.dumps(structured, indent=2, ensure_ascii=False, default=str))
+    return 0
+
+
+def command_launch(args: argparse.Namespace) -> int:
+    """Offline: show how a server would be launched, transport and argv included.
+
+    Prints the plan only - secret names appear, secret values never do - so this
+    doubles as the provisioning/debug view for a node-bound server.
+    """
+    registry = load_registry()
+    entry = get_server(registry, args.server)
+    # Display mode: secret references render as <NAME> and env values are never
+    # printed, so this view can be pasted into a report or an issue.
+    plan = resolve_session_plan(entry, registry, execute=False)
+    if args.json:
+        printable = {
+            key: plan[key]
+            for key in (
+                "transport",
+                "holder",
+                "command",
+                "args",
+                "path_prepend",
+                "secret_names",
+                "forwarded_secrets",
+                "notes",
+            )
+            if key in plan
+        }
+        printable["env_names"] = sorted((plan.get("env") or {}))
+        printable["probe_python"] = plan["probe_python"]
+        print(json.dumps(printable, indent=2, ensure_ascii=False))
+        return 0
+
+    print(
+        f"{args.server} holder={plan['holder']} "
+        + mcp_transports.describe(plan, repo_root=protocol.REPO_ROOT)
+    )
+    print(f"  probe: {plan['probe_python']}")
+    if plan["forwarded_secrets"]:
+        print(f"  forwarded into node: {', '.join(plan['forwarded_secrets'])}")
+    elif plan["transport"] != "stdio_local":
+        print("  forwarded into node: (none - node transports carry no secret values)")
+    for note in plan.get("notes") or []:
+        print(f"  note: {note}")
     return 0
 
 
@@ -756,6 +965,14 @@ def add_subcommands(parser: argparse.ArgumentParser) -> None:
         help="Reason this command-capable call is authorized; recorded in the gate audit log",
     )
     call.set_defaults(func=command_call)
+
+    launch = sub.add_parser(
+        "launch",
+        help="Offline: show how a server is launched (transport, argv, secret names)",
+    )
+    launch.add_argument("--server", required=True)
+    launch.add_argument("--json", action="store_true", help="Emit the full plan as JSON")
+    launch.set_defaults(func=command_launch)
 
     gate = sub.add_parser(
         "gate", help="Offline: evaluate the authorization gate for a call without running it"
