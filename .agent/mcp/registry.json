@@ -10,6 +10,27 @@
     "secrets": "environment variables only; never committed; registry records variable names, not values",
     "secret_injection": "values live in the gitignored secrets.env at the repo root; a session receives only the names its own entry declares, and only on the host gateway that holds the file",
     "node_placement": "one node per server: host gateway (big RAM/disk, repo-local tooling, secrets), flare-vm (Windows artifact parsers, vmrun guest operations), kali (Linux CLI, pcap, document/macro work), container (isolated offensive tooling); never place a server where its data or OS is absent",
+    "node_transports": {
+      "policy_version": 1,
+      "description": "how a placement.holder_class is turned into a runnable session; implemented by security/tools/mcp_transports.py and driven through collab_bus.py mcp launch/tools/call",
+      "holder_defaults": {
+        "host_gateway": "stdio_local",
+        "kali": "ssh",
+        "flare_vm": "vmrun_guest",
+        "container": "container"
+      },
+      "probe_env": ".agent/mcp/.verify/probe",
+      "guest_bridge": ".agent/mcp/tools/mcp_node_bridge.py",
+      "vmrun_bridge": ".agent/mcp/tools/mcp_vmrun_bridge.py",
+      "rules": [
+        "the transport is derived from placement.holder_class; an entry may only deviate by declaring runner.node.transport explicitly",
+        "the MCP client still speaks stdio: ssh, docker -i and the vmrun bridge all forward stdin/stdout, so mcp_probe.py stays transport-agnostic",
+        "node transports run the probe from policy.node_transports.probe_env on the host gateway, because the server venv exists on the node only",
+        "secret values never enter a node: runner.node.exec.env may not reference a secret, and only container.secrets (forwarded as docker -e NAME, value read from the wrapper environment) may cross",
+        "container mounts must resolve inside the repository, and container networking defaults to none; a server that needs either must declare it",
+        "a node transport is not wired until its server document records a live verification and the runtime is provisioned on that node"
+      ]
+    },
     "capability_classes": [
       "read_only",
       "analysis",
