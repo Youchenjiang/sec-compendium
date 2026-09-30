@@ -15,7 +15,10 @@ security/knowledge/red_team/
 ├── index.md                           # ⚔️ 實戰技能細分矩陣 (全景 23 大攻擊領域・110 個專項技術點・L1~L4 分級)
 ├── RED_TEAM_TECHNIQUES_CATALOG.md     # 📋 23 大領域與 110 項核心實戰技術索引目錄
 │
-├── learning_paths/                    # 📚【領域深度自學路徑】（13 篇深度原理指南 + 全景自學地圖）
+├── operations/                        # 🎯【作戰編排與交戰方法論】(00~05 授權邊界、路徑路由、驗證與復盤)
+│   └── README.md                      # 作戰編排層定位與核心流程
+│
+├── learning_paths/                    # 📚【領域深度自學路徑】（22 篇深度原理指南 + 全景自學地圖）
 │   └── README.md                      # 自學指南全景說明
 │
 └── playbooks/                         # 📋【110 篇標準化原子實戰手冊】
@@ -38,6 +41,8 @@ security/knowledge/red_team/
 | **紅隊實戰通關課表** | [`career_curriculum.md`](career_curriculum.md) | **【修課主線】** Phase 1 ~ Phase 6 階段式進階課表、三層能力分流 (Core 40 篇必修) 與作戰鏈導引 |
 | **全領域技能矩陣總表** | [`index.md`](index.md) | **【技術總覽】** 全景 23 大領域、110 項技術點（L1~L4 難度分級）與可練習靶場清單 |
 | **110 項實戰技術索引** | [`RED_TEAM_TECHNIQUES_CATALOG.md`](RED_TEAM_TECHNIQUES_CATALOG.md) | **【原子清單】** 23 大領域、110 項技術點的標準命名、原語定義與檔案對照表 |
+| **紅隊作戰編排方法論** | [`operations/`](operations/README.md) | **【戰略規劃】** 涵蓋授權 Scope 界定、攻擊面路由、立足點躍遷、真假陽性驗證與覆盤沉澱之 6 大全流程指南 |
+| **領域深度自學指南** | [`learning_paths/`](learning_paths/README.md) | **【原理深潛】** 涵蓋 6 大作戰區塊、22 篇深度原理與全景自學地圖（偵察、Web、AD、提權、C2、防禦規避與雲原生） |
 | **110 篇原子實戰手冊** | [`playbooks/`](playbooks/README.md) | **【即時作戰】** 嚴格遵循特戰速查標準（五動破題、指令速查、驗收閉環）之作戰手冊庫 |
 
 ---
