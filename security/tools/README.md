@@ -29,6 +29,11 @@
 - **路徑**：`security/tools/validate_red_team_playbooks.py`
 - **定位**：自動化檢查 `red_team/playbooks` 110 篇特戰手冊之五動戰術結構、速查規範篇幅 (150~210 行) 與紅隊內部連結。
 
+### 5. [Commit Policy & Atomic Linter](lint_commits.py) (提交規範與四權分立稽核工具)
+- **路徑**：`security/tools/lint_commits.py`
+- **定位**：本機端 Conventional Commits 與「四權分立（目的/功能/脈絡/治理）」原子化稽核工具，對齊 CI 政策守門標準。
+- **參數支援**：`--base <ref>` (預設自動偵測 `origin/main`), `--range <rev>`, `--strict`。
+
 ---
 
 ## 🚀 常用指令速查
@@ -55,4 +60,7 @@ python -m security.tools.code_auditor.main --local-dir /path/to/target --scan-on
 
 # 6. 執行本地審計並生成 Exploit
 python -m security.tools.code_auditor.main --local-dir /path/to/target
+
+# 7. 執行本地 Commit 規範與四權分立稽核
+python security/tools/lint_commits.py --base origin/main
 ```
