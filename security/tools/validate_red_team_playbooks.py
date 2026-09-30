@@ -26,7 +26,10 @@ PLAYBOOKS_DIR = os.path.join(BASE_DIR, "knowledge", "red_team", "playbooks")
 PHASES = [
     "phase_1_recon_surface",
     "phase_2_perimeter_web",
-    "phase_3_domain_dominance"
+    "phase_3_domain_dominance",
+    "phase_4_host_privesc",
+    "phase_5_pivoting_c2",
+    "phase_6_evasion_cloud"
 ]
 
 GOLDEN_KEYWORDS = [
@@ -125,7 +128,7 @@ def main():
         print("\n❌ 稽核未通過，請修正上述問題！")
         sys.exit(1)
     else:
-        print("\n✅ 恭喜！紅隊全庫 70 篇特戰手冊 100% 通過品質稽核，格式與章節完全合規！")
+        print(f"\n✅ 恭喜！紅隊全庫 {total_playbooks} 篇特戰手冊 100% 通過品質稽核，格式與章節完全合規！")
         sys.exit(0)
 
 if __name__ == "__main__":
