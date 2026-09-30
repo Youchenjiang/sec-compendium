@@ -23,7 +23,8 @@ graph TD
     Sec --> SecTools["tools/<br/>(審計引擎與校驗工具)"]
 
     SecKnow --> SecBlue["blue_team/ (Phase 0~6 防禦手冊 & 實體靶場)"]
-    SecKnow --> SecRed["red_team/ (攻防路徑與技術手冊)"]
+    SecKnow --> SecRed["red_team/ (Phase 1~6 特戰手冊 & 自學路徑)"]
+    SecKnow --> SecPurple["purple_team/ (攻防全景聯防矩陣 & 熱圖)"]
 
     SecPrac --> SecChal["challenges/ (8大平台題庫與爬蟲)"]
     SecPrac --> SecExam["exams/ (全真試卷、取證標本與速查表)"]
@@ -44,11 +45,12 @@ ctfd-kit/
 ├── 🛡️ security/           # 【資安核心技術知識庫】(全體共享技術基石)
 │   ├── knowledge/         # 📚【攻防體系知識庫】
 │   │   ├── blue_team/     # 🔵 藍隊體系 (Phase 0~6 課表、31 大路徑、107 篇手冊、Phase 6 實體靶場 ranges/)
-│   │   └── red_team/      # 🔴 紅隊體系 (Phase 1~6 課表、23 大領域、110 篇特戰手冊、13 篇深度自學路徑)
+│   │   ├── red_team/      # 🔴 紅隊體系 (Phase 1~6 課表、23 大領域、110 篇特戰手冊、22 篇深度自學路徑、作戰編排 operations/)
+│   │   └── purple_team/   # 🟣 紫隊協同體系 (攻防全景聯防矩陣、ATT&CK Navigator 圖層產生器與覆蓋熱圖)
 │   ├── practice/          # 🎯【實踐驗證與評量中心】
 │   │   ├── challenges/    # 題庫中心 (8 大平台實戰題庫 3,945+ 關卡與同步爬蟲)
 │   │   └── exams/         # 評量中心 (金盾/技能競賽 A/B 卷、取證標本 evidence/、Cheatsheets)
-│   └── tools/             # 🛠️ 作戰工具庫 (Playbook 校驗器、Code Auditor 程式碼審計引擎)
+│   └── tools/             # 🛠️ 作戰工具庫 (雙軌 Playbook 校驗器、Code Auditor 程式碼審計引擎)
 │
 ├── 🚀 tracks/             # 【三大研訓專軌庫】(實施方案與日程對齊)
 │   ├── lab/               # 🧪 實驗室深耕計畫 (90-Runs 課表與地圖、金盾衝刺、HITCON 實戰案例)
@@ -77,6 +79,7 @@ ctfd-kit/
 | :--- | :--- | :--- |
 | **藍隊實戰與防禦應變** | [`security/knowledge/blue_team/`](security/knowledge/blue_team/) | 涵蓋 SOC、威脅獵捕、數位鑑識 (DFIR) 等 107 本手冊與 7 階段課表 |
 | **紅隊攻擊與武器庫** | [`security/knowledge/red_team/`](security/knowledge/red_team/) | 涵蓋偵察、Web 突破、AD 統治、提權、C2、防禦規避等 110 本特戰手冊與 6 階段課表 |
+| **紫隊協同與對抗聯防** | [`security/knowledge/purple_team/`](security/knowledge/purple_team/) | 攻防全景聯防矩陣、ATT&CK 雙軌對映與 Navigator 熱圖產生工具 |
 | **全真模擬考與金盾準備** | [`security/practice/exams/`](security/practice/exams/) | 包含模擬試卷 A/B 卷全解析、速記卡與命題大綱 |
 | **靶場實戰題目演練** | [`security/practice/challenges/`](security/practice/challenges/UNIFIED_FREE_CHALLENGES_INDEX.md) | 匯整 8 大主流攻防平台 (HTB, THM, CyberDefenders 等) 3,945+ 免費題庫索引 |
 | **實驗室深耕成長** | [`tracks/lab/90_runs/`](tracks/lab/90_runs/) | 180 天 90-Runs 課表、HITCON Range 靶場與金盾奪標計畫 |
