@@ -30,22 +30,25 @@ def parse_matrix_table(md_path):
     with open(md_path, "r", encoding="utf-8", errors="ignore") as f:
         content = f.read()
 
-    # 正則提取表格列：| **T1059.001** | ... | [R19.2...](...) | [09.1...](...) | ... | ... |
-    # 支援子技術如 T1059.001 或主技術 T1055
-    row_pattern = re.compile(
-        r"\|\s*\*\*(T\d+(?:\.\d+)?)\*\*\s*\|\s*([^|]+)\|\s*([^|]+)\|\s*([^|]+)\|\s*([^|]+)\|\s*([^|]+)\|"
-    )
-
     techniques = []
     broken_targets = []
 
-    for match in row_pattern.finditer(content):
-        tech_id = match.group(1).strip()
-        tech_name = match.group(2).strip()
-        red_col = match.group(3).strip()
-        blue_col = match.group(4).strip()
-        telemetry_col = match.group(5).strip()
-        mitigation_col = match.group(6).strip()
+    for line in content.splitlines():
+        line = line.strip()
+        if not (line.startswith("|") and line.endswith("|")):
+            continue
+        cols = [c.strip() for c in line.strip("|").split("|")]
+        if len(cols) < 6:
+            continue
+        m = re.match(r"^\*\*(T\d+(?:\.\d+)?)\*\*$", cols[0])
+        if not m:
+            continue
+
+        tech_id = m.group(1)
+        red_col = cols[2]
+        blue_col = cols[3]
+        telemetry_col = cols[4]
+        mitigation_col = cols[5]
 
         # 提取紅隊手冊路徑
         red_links = re.findall(r"\[([^\]]+)\]\(([^)]+)\)", red_col)
@@ -181,7 +184,7 @@ def main():
     count = generate_navigator_layer(techniques, OUTPUT_JSON)
 
     print(f"✅ 成功自 attack_defense_matrix.md 解析 {count} 項關鍵 ATT&CK 技術！")
-    print(f"✅ 所有引用的紅隊與藍隊實戰手冊 100% 存在，無任何無效路徑！")
+    print("✅ 所有引用的紅隊與藍隊實戰手冊 100% 存在，無任何無效路徑！")
     print(f"📁 已成功匯出 ATT&CK Navigator Layer 檔案至:\n   👉 {OUTPUT_JSON}")
     print("=" * 75)
     print("💡 使用說明：可直接開啟 https://mitre-attack.github.io/attack-navigator/")
