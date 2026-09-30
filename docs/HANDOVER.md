@@ -13,6 +13,7 @@
 * **當前分支**：`feature/red-team-curriculum`（Working Tree 100% Clean）
 * **遠端追蹤**：未推送到 `origin`（本機歷史包含完整原子化 Commits）
 * **本輪任務連續原子化提交（已嚴格解耦，遵循 SRP 單一責任原則）**：
+  * `09d8e2f docs(curriculum): synchronize catalog, index, curriculum, and handover for 110 playbooks`
   * `6497b36 feat(playbooks): expand phase 6 evasion and cloud to 13 playbooks`
   * `094f516 feat(playbooks): expand phase 5 pivoting and c2 to 13 playbooks`
   * `26bc8de feat(playbooks): expand phase 4 host privesc to 14 playbooks covering UAC, DLL, LSASS, and DPAPI`
