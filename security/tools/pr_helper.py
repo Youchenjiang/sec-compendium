@@ -95,14 +95,18 @@ def get_current_branch():
 
 def get_commits_since_base(base_ref):
     safe_base = sanitize_identifier(base_ref, "base_ref")
-    raw = run_cmd(["git", "log", f"{safe_base}..HEAD", "--format=%H|%s"])
+    raw = run_cmd(["git", "log", "--format=%H %s", "--end-of-options", f"{safe_base}..HEAD"])
     if not raw:
         return []
     commits = []
     for line in raw.splitlines():
-        if "|" in line:
-            sha, subj = line.split("|", 1)
-            commits.append((sha.strip(), subj.strip()))
+        line = line.strip()
+        if not line:
+            continue
+        parts = line.split(" ", 1)
+        sha = parts[0]
+        subj = parts[1] if len(parts) > 1 else ""
+        commits.append((sha, subj))
     return commits
 
 
