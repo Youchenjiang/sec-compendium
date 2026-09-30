@@ -67,10 +67,12 @@ SUBJECT_REGEX = re.compile(
     rf"^({TYPE_PATTERN})(?:\(({SCOPE_PATTERN})\))?: [a-z0-9].*$"
 )
 VAGUE_REGEX = re.compile(r"^(update|misc|stuff|changes|fix bug|bug fix)$", re.IGNORECASE)
+REF_REGEX = re.compile(r"^[a-zA-Z0-9_./~^-]+(\.\.[a-zA-Z0-9_./~^-]+)?$")
 
 GOVERNANCE_PATTERNS = ["docs/handover.md", "memory.md", ".agent/"]
 CODE_PATTERNS = [".py", ".sh", ".ps1", ".json", ".yml", ".yaml"]
 KNOWLEDGE_PATTERNS = ["security/knowledge/"]
+
 
 def run_git(cmd):
     try:
@@ -84,8 +86,9 @@ def run_git(cmd):
             check=True
         )
         return res.stdout.strip()
-    except subprocess.CalledProcessError as e:
+    except subprocess.CalledProcessError:
         return None
+
 
 def detect_base_ref():
     for candidate in ["origin/main", "main", "origin/master", "master"]:
@@ -94,7 +97,10 @@ def detect_base_ref():
             return candidate
     return None
 
+
 def get_commits(rev_range):
+    if not REF_REGEX.match(rev_range):
+        raise ValueError(f"Invalid git rev_range specification: '{rev_range}'")
     raw = run_git(["log", "--format=%H %s", rev_range])
     if not raw:
         return []
@@ -109,13 +115,15 @@ def get_commits(rev_range):
         commits.append((sha, subject))
     return commits
 
+
 def get_changed_files(sha):
     raw = run_git(["diff-tree", "--no-commit-id", "--name-only", "-r", sha])
     if not raw:
         return []
     return [line.strip().replace("\\", "/").lower() for line in raw.splitlines() if line.strip()]
 
-def validate_commit(sha, subject, changed_files, strict=False):
+
+def validate_commit(_sha, subject, changed_files, strict=False):
     errors = []
     warnings = []
 
@@ -141,7 +149,6 @@ def validate_commit(sha, subject, changed_files, strict=False):
     has_knowledge = any(any(kp in f for kp in KNOWLEDGE_PATTERNS) for f in changed_files)
     has_tools = any(f.startswith("security/tools/") or f.endswith(".py") for f in changed_files)
 
-    # 檢查是否混雜提交
     if has_gov and (has_knowledge or has_tools):
         msg = "違反四權分立：偵測到治理文檔 (HANDOVER/MEMORY) 與功能代碼或知識手冊混雜提交（嚴禁搭便車）"
         if strict:
@@ -156,6 +163,32 @@ def validate_commit(sha, subject, changed_files, strict=False):
         warnings.append("語意建議：該 commit 僅修改知識手冊，但使用了 feat(tools) 標籤，建議使用 feat(knowledge)")
 
     return errors, warnings
+
+
+def audit_commit_batch(commits, strict=False):
+    total_errors = 0
+    total_warnings = 0
+
+    for sha, subject in commits:
+        changed_files = get_changed_files(sha)
+        errors, warnings = validate_commit(sha, subject, changed_files, strict=strict)
+        
+        short_sha = sha[:7]
+        if errors:
+            total_errors += len(errors)
+            print(f"❌ [{short_sha}] {subject}")
+            for err in errors:
+                print(f"   🔴 錯誤: {err}")
+        elif warnings:
+            total_warnings += len(warnings)
+            print(f"⚠️  [{short_sha}] {subject}")
+            for warn in warnings:
+                print(f"   🟡 警告: {warn}")
+        else:
+            print(f"✅ [{short_sha}] {subject}")
+
+    return total_errors, total_warnings
+
 
 def main():
     parser = argparse.ArgumentParser(description="專案 Commit 規範與四權分立驗證工具")
@@ -178,34 +211,18 @@ def main():
         rev_range = f"{base}..HEAD"
 
     print(f"📌 檢驗範圍: {rev_range}")
-    commits = get_commits(rev_range)
+    try:
+        commits = get_commits(rev_range)
+    except ValueError as val_err:
+        print(f"❌ {val_err}")
+        sys.exit(1)
 
     if not commits:
         print("ℹ️ 指定範圍內無任何提交紀錄需要檢驗。")
         sys.exit(0)
 
     print(f"📊 預計檢驗提交數: {len(commits)} 筆\n")
-
-    total_errors = 0
-    total_warnings = 0
-
-    for sha, subject in commits:
-        changed_files = get_changed_files(sha)
-        errors, warnings = validate_commit(sha, subject, changed_files, strict=args.strict)
-        
-        short_sha = sha[:7]
-        if errors:
-            total_errors += len(errors)
-            print(f"❌ [{short_sha}] {subject}")
-            for err in errors:
-                print(f"   🔴 錯誤: {err}")
-        elif warnings:
-            total_warnings += len(warnings)
-            print(f"⚠️  [{short_sha}] {subject}")
-            for warn in warnings:
-                print(f"   🟡 警告: {warn}")
-        else:
-            print(f"✅ [{short_sha}] {subject}")
+    total_errors, total_warnings = audit_commit_batch(commits, strict=args.strict)
 
     print("\n" + "=" * 75)
     print(f"📋 審核總結：共檢驗 {len(commits)} 筆 Commit | 錯誤: {total_errors} | 警告: {total_warnings}")
@@ -214,9 +231,10 @@ def main():
     if total_errors > 0:
         print("❌ 檢驗未通過！請修正上述 Commit 標題或拆分違規混雜提交後再行推送。")
         sys.exit(1)
-    else:
-        print("🎉 恭喜！所有 Commit 均 100% 符合專案政策與四權分立規範！")
-        sys.exit(0)
+
+    print("🎉 恭喜！所有 Commit 均 100% 符合專案政策與四權分立規範！")
+    sys.exit(0)
+
 
 if __name__ == "__main__":
     main()

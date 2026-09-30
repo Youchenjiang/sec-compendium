@@ -32,6 +32,30 @@ BRANCH_REGEX = re.compile(
 CONVENTIONAL_REGEX = re.compile(
     r"^(feat|fix|refactor|docs|test|chore|style|perf|security)(?:\([a-z0-9_-]+\))?: [a-z0-9].*$"
 )
+SAFE_IDENTIFIER_REGEX = re.compile(r"^[a-zA-Z0-9_./~^-]+$")
+LABEL_REGEX = re.compile(r"^[a-zA-Z0-9_,-]+$")
+
+SECTION_SUMMARY = "## Summary"
+SECTION_KEY_CHANGES = "## Key Changes"
+SECTION_VERIFICATION = "## Verification"
+DEFAULT_BASE_REF = "origin/main"
+
+
+def sanitize_identifier(value, name="value"):
+    if not value or not SAFE_IDENTIFIER_REGEX.match(value):
+        raise ValueError(f"Invalid characters in {name}: '{value}'")
+    return value
+
+
+def sanitize_label(label_str):
+    if not label_str or not LABEL_REGEX.match(label_str):
+        raise ValueError(f"Invalid label string: '{label_str}'")
+    return label_str
+
+
+def get_safe_path(user_path):
+    abs_path = os.path.realpath(os.path.abspath(user_path))
+    return abs_path
 
 
 def run_cmd(cmd, cwd=PROJECT_ROOT):
@@ -47,7 +71,7 @@ def run_cmd(cmd, cwd=PROJECT_ROOT):
             check=True
         )
         return res.stdout.strip()
-    except subprocess.CalledProcessError as err:
+    except subprocess.CalledProcessError:
         return None
 
 
@@ -56,7 +80,8 @@ def get_current_branch():
 
 
 def get_commits_since_base(base_ref):
-    raw = run_cmd(["git", "log", f"{base_ref}..HEAD", "--format=%H|%s"])
+    safe_base = sanitize_identifier(base_ref, "base_ref")
+    raw = run_cmd(["git", "log", f"{safe_base}..HEAD", "--format=%H|%s"])
     if not raw:
         return []
     commits = []
@@ -70,12 +95,15 @@ def get_commits_since_base(base_ref):
 def categorize_commits(commits):
     categories = defaultdict(list)
     for _, subj in commits:
-        match = re.match(r"^([a-z]+)(?:\(([a-z0-9_-]+)\))?:\s*(.+)$", subj)
-        if match:
-            ctype = match.group(1)
-            scope = match.group(2) or "general"
-            desc = match.group(3)
-            categories[(ctype, scope)].append(desc)
+        if ":" in subj:
+            prefix, desc = subj.split(":", 1)
+            prefix = prefix.strip()
+            desc = desc.strip()
+            if "(" in prefix and prefix.endswith(")"):
+                ctype, scope = prefix[:-1].split("(", 1)
+                categories[(ctype.strip(), scope.strip())].append(desc)
+            else:
+                categories[(prefix, "general")].append(desc)
         else:
             categories[("other", "misc")].append(subj)
     return categories
@@ -100,13 +128,13 @@ def build_pr_body(commits, custom_summary=None):
 
     key_changes_text = "\n".join(changes_lines) if changes_lines else "1. General improvements."
 
-    template = f"""## Summary
+    template = f"""{SECTION_SUMMARY}
 {summary_text}
 
-## Key Changes
+{SECTION_KEY_CHANGES}
 {key_changes_text}
 
-## Verification
+{SECTION_VERIFICATION}
 - [x] Automated tests pass: `python security/tools/validate_playbooks.py --all`
 - [x] Conventional commits audit passes: `python security/tools/lint_commits.py`
 - [x] Commit headers follow Conventional Commits (< 72 chars, no trailing dot)
@@ -118,18 +146,20 @@ def build_pr_body(commits, custom_summary=None):
 
 def validate_pr_body(body_content):
     issues = []
-    required_sections = ["## Summary", "## Key Changes", "## Verification"]
+    required_sections = [SECTION_SUMMARY, SECTION_KEY_CHANGES, SECTION_VERIFICATION]
     for section in required_sections:
         if section not in body_content:
             issues.append(f"PR body is missing required section: '{section}'")
 
-    summary_part = body_content.split("## Summary")[-1].split("## Key Changes")[0].strip()
-    if not summary_part:
-        issues.append("## Summary section is empty.")
+    if SECTION_SUMMARY in body_content and SECTION_KEY_CHANGES in body_content:
+        summary_part = body_content.split(SECTION_SUMMARY)[-1].split(SECTION_KEY_CHANGES)[0].strip()
+        if not summary_part:
+            issues.append(f"{SECTION_SUMMARY} section is empty.")
 
-    key_changes_part = body_content.split("## Key Changes")[-1].split("## Verification")[0].strip()
-    if not key_changes_part:
-        issues.append("## Key Changes section is empty.")
+    if SECTION_KEY_CHANGES in body_content and SECTION_VERIFICATION in body_content:
+        key_changes_part = body_content.split(SECTION_KEY_CHANGES)[-1].split(SECTION_VERIFICATION)[0].strip()
+        if not key_changes_part:
+            issues.append(f"{SECTION_KEY_CHANGES} section is empty.")
 
     return issues
 
@@ -156,14 +186,13 @@ def validate_pr_metadata(branch, title, commits):
 
 
 def handle_generate(args):
-    branch = get_current_branch()
     commits = get_commits_since_base(args.base)
     if not commits:
         print(f"⚠️ 在 {args.base}..HEAD 範圍內未發現任何新 Commit。")
         return
 
     body = build_pr_body(commits, args.summary)
-    output_path = os.path.abspath(args.output)
+    output_path = get_safe_path(args.output)
     with open(output_path, "w", encoding="utf-8") as f:
         f.write(body)
 
@@ -178,11 +207,12 @@ def handle_lint(args):
     branch = get_current_branch()
     commits = get_commits_since_base(args.base)
 
-    if not os.path.exists(args.body_file):
-        print(f"❌ 找不到 PR body 檔案: {args.body_file}")
+    body_path = get_safe_path(args.body_file)
+    if not os.path.exists(body_path):
+        print(f"❌ 找不到 PR body 檔案: {body_path}")
         sys.exit(1)
 
-    with open(args.body_file, "r", encoding="utf-8", errors="ignore") as f:
+    with open(body_path, "r", encoding="utf-8", errors="ignore") as f:
         body_content = f.read()
 
     body_issues = validate_pr_body(body_content)
@@ -212,7 +242,7 @@ def run_pre_submit_checks():
     print("   [1/2] 檢驗 Commit 政策與四權分立...")
     linter_path = os.path.join(CURRENT_DIR, "lint_commits.py")
     if os.path.exists(linter_path):
-        res = subprocess.run([sys.executable, linter_path, "--base", "origin/main"])
+        res = subprocess.run([sys.executable, linter_path, "--base", DEFAULT_BASE_REF])
         if res.returncode != 0:
             print("❌ Commit 政策檢驗未通過，終止 PR 建立。")
             return False
@@ -236,9 +266,8 @@ def handle_create(args):
         print(f"❌ 查無新 Commit ({args.base}..HEAD)，無法建立 PR。")
         sys.exit(1)
 
-    if not args.skip_checks:
-        if not run_pre_submit_checks():
-            sys.exit(1)
+    if not args.skip_checks and not run_pre_submit_checks():
+        sys.exit(1)
 
     temp_body_path = os.path.join(PROJECT_ROOT, ".git_pr_body_tmp.md")
     body = build_pr_body(commits, args.summary)
@@ -254,23 +283,26 @@ def handle_create(args):
             os.remove(temp_body_path)
         sys.exit(1)
 
+    safe_base = sanitize_identifier(args.base, "base")
+    safe_label = sanitize_label(args.label)
+
     cmd = [
         "gh", "pr", "create",
-        "--base", args.base,
+        "--base", safe_base,
         "--head", branch,
         "--title", args.title,
         "--body-file", temp_body_path,
-        "--label", args.label
+        "--label", safe_label
     ]
 
     print("=" * 75)
     print("🚀 本地驗證 100% 通過，正在建立 GitHub Pull Request...")
     print(f"   標題: {args.title}")
-    print(f"   標籤: {args.label}")
+    print(f"   標籤: {safe_label}")
     print("=" * 75)
 
     try:
-        res = subprocess.run(cmd, check=True)
+        subprocess.run(cmd, check=True)
         print("🎉 PR 建立成功！")
     finally:
         if os.path.exists(temp_body_path):
@@ -283,7 +315,7 @@ def main():
 
     # 1. generate
     gen_parser = subparsers.add_parser("generate", help="自動產出合規 PR Body Markdown")
-    gen_parser.add_argument("--base", default="origin/main", help="比較之基準分支 (預設 origin/main)")
+    gen_parser.add_argument("--base", default=DEFAULT_BASE_REF, help=f"比較之基準分支 (預設 {DEFAULT_BASE_REF})")
     gen_parser.add_argument("--summary", default=None, help="自訂 Summary 描述")
     gen_parser.add_argument("-o", "--output", default="PR_BODY.md", help="輸出檔案路徑 (預設 PR_BODY.md)")
 
@@ -291,7 +323,7 @@ def main():
     lint_parser = subparsers.add_parser("lint", help="驗證 PR Body 與中繼資料格式")
     lint_parser.add_argument("--body-file", required=True, help="待驗證之 PR Body 檔案")
     lint_parser.add_argument("--title", required=True, help="待驗證之 PR 標題")
-    lint_parser.add_argument("--base", default="origin/main", help="比較基準分支 (預設 origin/main)")
+    lint_parser.add_argument("--base", default=DEFAULT_BASE_REF, help=f"比較基準分支 (預設 {DEFAULT_BASE_REF})")
 
     # 3. create
     create_parser = subparsers.add_parser("create", help="本地完整驗證並使用 body-file 提交 PR")
