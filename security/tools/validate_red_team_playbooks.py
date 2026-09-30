@@ -55,7 +55,7 @@ def check_playbook_file(fpath):
     # 1. 圍欄閉合檢查
     in_code = False
     fence_count = 0
-    for idx, line in enumerate(lines, 1):
+    for line in lines:
         if line.strip().startswith("```"):
             fence_count += 1
             in_code = not in_code
@@ -90,7 +90,7 @@ def check_link_integrity():
         txt_no_code = re.sub(r"```[\s\S]*?```", "", txt)
         links = re.findall(r"\[([^\]]+)\]\(([^)]+)\)", txt_no_code)
         
-        for text, link in links:
+        for _, link in links:
             link = link.strip()
             if link.startswith(("http://", "https://", "mailto:", "#")):
                 continue
@@ -165,7 +165,7 @@ def main():
     if broken_links:
         has_error = True
         print(f"❌ 發現 {len(broken_links)} 處死鏈:")
-        for src, lnk, tgt in broken_links:
+        for src, lnk, _ in broken_links:
             print(f"  - 來源: {src} -> 鏈接: {lnk}")
     else:
         print(f"✅ 紅隊全庫共檢查 {total_links} 處內部超連結，100% 暢通，無任何死鏈！")
