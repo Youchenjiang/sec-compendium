@@ -1,8 +1,8 @@
 # 🧭 紅隊全領域深度學習路徑全景導航庫 (Red Team Learning Paths Directory)
 
-> 💡 **核心精神**：本目錄為 [`../index.md`](../index.md) 中六大作戰階段、23 個攻擊核心領域量身打造的**「全流程深度自學與實戰突破指南」**。
+> 💡 **核心精神**：本目錄為 [`../index.md`](../index.md) 中六大作戰階段、23 個攻擊核心領域量身打造的**「全流程深度自學與實戰突破指南」**（六大作戰區塊、22 篇深度原理手冊）。
 >
-> 徹底解決「只有技術手冊、不知道怎麼學、缺乏系統化底層架構」的信心焦慮，每個模組皆包含：**📍 你在哪裡去哪裡（狀態對比）、🧱 第零關前置基礎、🗺️ 整體學習地圖（五階段時長）、各階段底層機制/封包結構/指令實作、以及 ✅ 本路徑通過檢查表（Checklist）**。
+> 徹底解決「只有技術手冊、不知道怎麼學、缺乏系統化底層架構」的信心焦慮，每個模組皆包含：**📍 你在哪裡去哪裡（狀態對比）、🧱 第零關前置基礎、🗺️ 整體學習地圖（四/五階段時長）、各階段底層機制/封包結構/指令實作、以及 ✅ 本路徑通過檢查表（Checklist）**。
 >
 > 🚀 **實戰修課主線**：想知道按部就班的推薦學習順序？請直接參閱 [【現代紅隊實戰通關課表與作戰主線 (Phase 1 ~ Phase 6)】](../career_curriculum.md)（含 Phase 1 ~ Phase 6 全景作戰鏈、40 項 Core 核心必修與能力分流）。
 >
@@ -67,16 +67,45 @@
 
 ---
 
-## ⚡ 區塊四 ~ 區塊六：主機提權、內網穿透 C2 與防禦規避/雲原生 (Blocks 4 ~ 6 手冊直通)
+## ⚡ 區塊四：主機立足與本地提權 (Host Foothold & Privilege Escalation)
+> 💡 **作戰任務**：突破作業系統邊界獲取 Root 或 SYSTEM 終極控制權。深入 Linux 核心狀態機與 Windows 存取權杖模型，掌握 SUID、Capabilities、Dirty Pipe、Potato 家族、UAC 繞過與 LSASS/DPAPI 憑據金庫提取。
 
-> 💡 **作戰任務**：深入端點作業系統底層與現代雲端架構。突破作業系統邊界獲取 Root/SYSTEM 權限、建立隱蔽多層代理與現代 C2 鏈路、並對抗 EDR/XDR 動態遙測與攻陷雲原生容器環境。本階段手冊已全面落地於 `playbooks/` 庫中：
+- [**學習路徑 14：Linux 主機權限提升與核心安全機制深度自學路徑**](block_4_host_privesc/14_linux_privilege_escalation_internals.md)
+  - **涵蓋領域**：R18 (SUID/SGID 權限位元、Sudoers 弱配置、Dirty Pipe 核心漏洞、POSIX Capabilities、Cron 通配符、NFS no_root_squash)
+  - **核心技術**：行程身分模型 (RUID/EUID/SUID) 轉換、微特權 Capability 分割、Linux 管道環形緩衝區髒頁覆寫、Wildcard 命令列參數注入。
+- [**學習路徑 15：Windows 主機權限提升：存取權杖、UAC 繞過與服務劫持深度學習路徑**](block_4_host_privesc/15_windows_privilege_escalation_tokens_uac.md)
+  - **涵蓋領域**：R19.1 ~ R19.5 (未加引號服務路徑、Potato 權杖模擬、AlwaysInstallElevated、UAC Bypass、DLL 搜尋順序劫持)
+  - **核心技術**：Windows Token 模擬機制、DCOM 命名管道欺騙、Auto-Elevate 程式白名單、Mock Folders 空格目錄偽造、SafeDllSearchMode 順序劫持。
+- [**學習路徑 16：Windows 憑證存取機制：SAM、LSASS 記憶體與 DPAPI 深度學習路徑**](block_4_host_privesc/16_windows_credential_access_lsass_dpapi.md)
+  - **涵蓋領域**：R19.6 ~ R19.8 (SAM/SYSTEM 登錄檔轉儲、LSASS 記憶體憑據提取、RunAsPPL 核心防護對抗、DPAPI 主金鑰解密)
+  - **核心技術**：離線 Syskey 解密本機 NTLM Hash、LSA 安全子系統記憶體佈局、BYOVD 易受害驅動抹除 PPL 旗標、網域備份金鑰 (Domain Backup Key) 跨主機解密。
 
-- **[Phase 4: 主機立足與本地提權 (14 篇)](../playbooks/phase_4_host_privesc/)**：
-  - [R18 Linux 主機本地提權](../playbooks/phase_4_host_privesc/R18_linux_host_privilege_escalation/)：SUID/SGID、Sudoers 弱配置、Dirty Pipe 核心提權、POSIX Capabilities、Cron 通配符、NFS no_root_squash。
-  - [R19 Windows 主機本地提權](../playbooks/phase_4_host_privesc/R19_windows_host_privilege_escalation/)：未加引號服務路徑、Token 模擬 Potato 系列、AlwaysInstallElevated、UAC Bypass、DLL 搜尋順序劫持、SAM/SYSTEM 轉儲、LSASS PPL 規避、DPAPI MasterKey。
-- **[Phase 5: 內網橫向與穿透代理 (13 篇)](../playbooks/phase_5_pivoting_c2/)**：
-  - [R20 網路隧道穿透與跳板代理](../playbooks/phase_5_pivoting_c2/R20_network_tunneling_proxy_pivoting/)：Chisel SOCKS5、Ligolo-ng TUN、SSH 轉發、FRP 反向代理、DNS/ICMP 隧道、Netsh PortProxy、SMB 命名管道。
-  - [R21 命令與控制基礎設施 (C2)](../playbooks/phase_5_pivoting_c2/R21_command_and_control_infrastructure/)：Sliver C2、Malleable C2 流量混淆、Havoc C2 Demon Agent、Sleep Mask 記憶體混淆、WMI/WinRM 橫向、RDP 會話劫持與 Shadow。
-- **[Phase 6: 防禦規避與前沿環境攻防 (13 篇)](../playbooks/phase_6_evasion_cloud/)**：
-  - [R22 執行期防禦規避與端點對抗](../playbooks/phase_6_evasion_cloud/R22_defense_evasion_endpoint_runtime/)：Direct Syscalls、AMSI/ETW Patching、Process Hollowing、Early Bird APC、PPID 欺騙、Perun's Fart 脫鉤、UUID 編碼、Defender 排除路徑濫用。
-  - [R23 雲端基礎設施與容器逃逸](../playbooks/phase_6_evasion_cloud/R23_cloud_container_infrastructure_exploitation/)：雲端 IAM 提權、Kubernetes 特權容器逃逸、S3 儲存桶接管、Docker Socket 掛載逃逸、K8s RBAC 提權與 Secrets 轉儲。
+---
+
+## 🌪️ 區塊五：內網橫向移動、穿透代理與 C2 基礎設施 (Pivoting & C2 Infrastructure)
+> 💡 **作戰任務**：建立隱蔽、強韌、具備動態流量可塑性的多層通訊鏈路。化解企業嚴苛邊界防火牆，將整個內網直接映射至本機路由，並透過 WMI/WinRM 原生無檔案機制進行跳板橫向移動。
+
+- [**學習路徑 17：網路流量穿透、SOCKS5 代理與隱蔽隧道深度學習路徑**](block_5_pivoting_c2/17_network_traffic_tunneling_socks_proxies.md)
+  - **涵蓋領域**：R20 (Chisel 反向 SOCKS5、Ligolo-ng TUN 代理、SSH 動態轉發、FRP 高性能穿透、DNS/ICMP 隱蔽隧道、PortProxy)
+  - **核心技術**：SOCKS5 (RFC 1928) 握手語意、Ligolo-ng 虛擬 L3 網卡路由直連、DNS 遞迴解析外帶通道、ICMP Payload 數據封裝。
+- [**學習路徑 18：現代 C2 架構體系、流量可塑性偽裝與記憶體隱蔽深度學習路徑**](block_5_pivoting_c2/18_c2_frameworks_architecture_traffic_malleability.md)
+  - **涵蓋領域**：R21.1 ~ R21.4 (Sliver C2、Havoc C2 Demon Agent、Malleable 流量塑形、CDN/Domain Fronting、Sleep Mask 動態記憶體加密)
+  - **核心技術**：分散式 Team Server 拓撲、HTTP 標頭流量可塑性偽裝、隨機 Jitter 破壞週期性分析、Sleep Mask (Ekko) 休眠記憶體 XOR 動態加密。
+- [**學習路徑 19：內網橫向移動協定、無檔案遠端執行與會話劫持深度學習路徑**](block_5_pivoting_c2/19_lateral_movement_protocols_session_hijacking.md)
+  - **涵蓋領域**：R21.5 ~ R21.6 (WMI/WinRM 無檔案遠端執行、PsExec 服務代價分析、RDP 會話劫持與影子桌面)
+  - **核心技術**：DCE/RPC 端點映射、`Win32_Process.Create` 無二進位檔案落地執行、Evil-WinRM 雜湊傳遞登入、`tscon.exe` 遠端桌面免密搶奪。
+
+---
+
+## 🥷 區塊六：執行期防禦規避、雲端與容器滲透 (Defense Evasion, Cloud & Containers)
+> 💡 **作戰任務**：與現代最頂級的安全防禦機制正面對抗。直擊 EDR/XDR 底層核心，穿透 User-Mode API Hooking、直接發出核心系統調用，並攻陷公有雲 IAM 身分邊界與 Kubernetes 容器編排叢集。
+
+- [**學習路徑 20：終端防禦規避、直接系統調用與進程注入深度學習路徑**](block_6_evasion_cloud/20_edr_evasion_syscalls_unhooking_injection.md)
+  - **涵蓋領域**：R22 (Direct/Indirect Syscalls、AMSI/ETW Patching、Process Hollowing、Early Bird APC 注入、Perun's Fart 磁碟脫鉤)
+  - **核心技術**：EDR Inline Hook 機器碼覆寫本質、Indirect Syscalls 規避呼叫堆疊審查、記憶體讀取磁碟乾淨 `ntdll.dll` 脫鉤、APC 佇列早期注入。
+- [**學習路徑 21：雲端環境滲透、實例元數據與 IAM 特權提升深度學習路徑**](block_6_evasion_cloud/21_cloud_identity_metadata_iam_abuse.md)
+  - **涵蓋領域**：R23.1, R23.3 (IMDSv1 vs IMDSv2 元數據竊取、AWS/GCP IAM 策略漏洞與 21 種提權鏈、S3/GCS 儲存桶枚舉與接管)
+  - **核心技術**：SSRF 穿透 Link-Local 取得 STS 臨時憑證、`iam:CreatePolicyVersion` 提權、`iam:PassRole` 結合 EC2 反彈 Shell、儲存桶未授權寫入投毒。
+- [**學習路徑 22：容器逃逸機制、Kubernetes 叢集滲透與 RBAC 特權提升深度學習路徑**](block_6_evasion_cloud/22_container_escape_kubernetes_cluster_exploitation.md)
+  - **涵蓋領域**：R23.2, R23.4, R23.5 (特權容器逃逸、Docker.sock 掛載逃逸、K8s ServiceAccount 憑據提取、RBAC 提權與 etcd 轉儲)
+  - **核心技術**：Linux 命名空間與 Cgroups 邊界穿透、宿主機磁碟設備直接掛載逃逸、ServiceAccount JWT Token 存取 API Server、`pods/create` 結合 HostPath 接管節點。
