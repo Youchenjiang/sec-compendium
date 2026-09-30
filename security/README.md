@@ -11,13 +11,14 @@
 security/
 ├── knowledge/          # 📚【攻防體系知識庫】
 │   ├── blue_team/      # 🔵 藍隊體系 (Phase 0~6 課表、31 大路徑、107 篇手冊、Phase 6 實體靶場 ranges/)
-│   └── red_team/       # 🔴 紅隊體系 (Phase 1~6 課表、23 大領域、110 篇特戰手冊、13 篇深度自學路徑)
+│   ├── red_team/       # 🔴 紅隊體系 (Phase 1~6 課表、23 大領域、110 篇特戰手冊、22 篇深度自學路徑、作戰編排 operations/)
+│   └── purple_team/    # 🟣 紫隊協同體系 (攻防全景聯防矩陣、ATT&CK Navigator 圖層產生器與覆蓋熱圖)
 │
 ├── practice/           # 🎯【實踐驗證與評量中心】
 │   ├── challenges/     # 題目中心 (8 大攻防平台同步引擎、3,945+ 關卡 CSV 與 Markdown 目錄)
 │   └── exams/          # 評量中心 (金盾獎/技能競賽 A/B 卷、數位取證標本 evidence/、Cheatsheets)
 │
-└── tools/              # 🛠️【作戰工具庫】Playbooks 品質驗證器、Code Auditor 程式碼審計引擎與方法論
+└── tools/              # 🛠️【作戰工具庫】雙軌 Playbooks 品質驗證器、Code Auditor 程式碼審計引擎與方法論
 ```
 
 ---
@@ -25,8 +26,9 @@ security/
 ## 🧭 模組快速連結
 
 - **藍隊全景導覽**：👉 [knowledge/blue_team/index.md](knowledge/blue_team/index.md) ｜ [knowledge/blue_team/career_curriculum.md](knowledge/blue_team/career_curriculum.md)
+- **紅隊全景導覽**：👉 [knowledge/red_team/index.md](knowledge/red_team/index.md) ｜ [knowledge/red_team/career_curriculum.md](knowledge/red_team/career_curriculum.md) ｜ [knowledge/red_team/operations/README.md](knowledge/red_team/operations/README.md) ｜ [knowledge/red_team/README.md](knowledge/red_team/README.md)
+- **紫隊全景聯防**：👉 [knowledge/purple_team/README.md](knowledge/purple_team/README.md) ｜ [knowledge/purple_team/attack_defense_matrix.md](knowledge/purple_team/attack_defense_matrix.md)
 - **Phase 6 實體攻防靶場**：👉 [knowledge/blue_team/playbooks/phase_6_capstone/ranges/README.md](knowledge/blue_team/playbooks/phase_6_capstone/ranges/README.md)
-- **紅隊全景導覽**：👉 [knowledge/red_team/index.md](knowledge/red_team/index.md) ｜ [knowledge/red_team/career_curriculum.md](knowledge/red_team/career_curriculum.md) ｜ [knowledge/red_team/README.md](knowledge/red_team/README.md)
 - **實踐驗證與評量中心**：👉 [practice/README.md](practice/README.md) ｜ [practice/challenges/UNIFIED_FREE_CHALLENGES_INDEX.md](practice/challenges/UNIFIED_FREE_CHALLENGES_INDEX.md)
 - **全真模擬試卷與速查手冊**：👉 [practice/exams/README.md](practice/exams/README.md) ｜ [practice/exams/cheatsheets/README.md](practice/exams/cheatsheets/README.md)
 - **作戰輔助工具與審計方法論**：👉 [tools/README.md](tools/README.md) ｜ [tools/code_auditor/audit_methodology.md](tools/code_auditor/audit_methodology.md)
