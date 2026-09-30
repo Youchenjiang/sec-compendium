@@ -1,6 +1,6 @@
 # 🛠️ 資安作戰與自動化工具庫 (Security Tools)
 
-本目錄收錄專案通用之資安作戰工具、白箱原始碼審計引擎與自動化檢驗腳本。
+本目錄收錄專案通用之資安作戰工具、白箱原始碼審計引擎與自動化品質檢驗腳本。
 
 ---
 
@@ -16,21 +16,43 @@
   - 🔌 **模組化平台介面**：支援本機離線審計與 CTF/Wargame 遠端競賽自動化。
   - 📐 **方法論指導**：👉 [全方位安全審計與攻防方法論 (audit_methodology.md)](code_auditor/audit_methodology.md)
 
-### 2. [Playbook Validator](validate_playbooks.py) (原子手冊結構規範檢驗工具)
+### 2. [Unified Playbook Validator](validate_playbooks.py) (攻防手冊雙軌全能檢驗工具)
 - **路徑**：`security/tools/validate_playbooks.py`
-- **定位**：自動化檢查 `blue_team/playbooks` 107 本實戰手冊的結構規範、YAML metadata 與必備章節。
+- **定位**：一鍵整合執行藍隊 (107 篇) 與紅隊 (110 篇) 實戰手冊規範稽核，並對全專案所有 Markdown 文檔執行跨模組超連結防護稽核。
+- **參數支援**：`--all` (預設), `--blue`, `--red`, `--links-only`。
+
+### 3. [Blue Team Playbook Validator](validate_blue_team_playbooks.py) (藍隊原子實戰手冊檢驗工具)
+- **路徑**：`security/tools/validate_blue_team_playbooks.py`
+- **定位**：自動化檢查 `blue_team/playbooks` 107 篇實戰手冊之七大黃金規格關鍵字（案發現場破題、第一動~第五動、靶場實戰、過關驗收）、行數門檻 (>=200 行) 與藍隊內部連結。
+
+### 4. [Red Team Playbook Validator](validate_red_team_playbooks.py) (紅隊特戰手冊檢驗工具)
+- **路徑**：`security/tools/validate_red_team_playbooks.py`
+- **定位**：自動化檢查 `red_team/playbooks` 110 篇特戰手冊之五動戰術結構、速查規範篇幅 (150~210 行) 與紅隊內部連結。
 
 ---
 
 ## 🚀 常用指令速查
 
 ```bash
-# 1. 執行本地白箱代碼審計 (純靜態掃描)
+# 1. 執行雙軌實戰手冊全能自動化品質稽核 (預設執行藍隊、紅隊與全專案超連結防護)
+python security/tools/validate_playbooks.py
+
+# 2. 單獨執行藍隊實戰手冊品質稽核
+python security/tools/validate_blue_team_playbooks.py
+# 或
+python security/tools/validate_playbooks.py --blue
+
+# 3. 單獨執行紅隊特戰手冊品質稽核
+python security/tools/validate_red_team_playbooks.py
+# 或
+python security/tools/validate_playbooks.py --red
+
+# 4. 僅執行全專案 Markdown 跨模組超連結稽核
+python security/tools/validate_playbooks.py --links-only
+
+# 5. 執行本地白箱代碼審計 (純靜態掃描)
 python -m security.tools.code_auditor.main --local-dir /path/to/target --scan-only
 
-# 2. 執行本地審計並生成 Exploit
+# 6. 執行本地審計並生成 Exploit
 python -m security.tools.code_auditor.main --local-dir /path/to/target
-
-# 3. 執行 Playbook 規範檢查
-python security/tools/validate_playbooks.py
 ```
