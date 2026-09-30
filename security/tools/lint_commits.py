@@ -73,22 +73,34 @@ CODE_PATTERNS = [".py", ".sh", ".ps1", ".json", ".yml", ".yaml"]
 KNOWLEDGE_PATTERNS = ["security/knowledge/"]
 
 
+ALLOWED_GIT_FLAGS = frozenset(
+    {"--verify", "--format=%H %s", "--end-of-options", "--no-commit-id", "--name-only", "-r"}
+)
+SAFE_REF_REGEX = re.compile(r"^[a-zA-Z0-9][a-zA-Z0-9_./~^-]*$")
+
+
 def is_safe_ref(ref_token):
-    return bool(ref_token and re.fullmatch(r"[a-zA-Z0-9_/~^-]+", ref_token))
+    if not ref_token or ref_token.startswith("-") or ".." in ref_token:
+        return False
+    return bool(SAFE_REF_REGEX.fullmatch(ref_token))
 
 
 def validate_rev_range(rev_range):
+    if not rev_range or rev_range.startswith("-"):
+        raise ValueError(f"Invalid git rev_range specification: '{rev_range}'")
     if ".." in rev_range:
         parts = rev_range.split("..", 1)
         if is_safe_ref(parts[0]) and is_safe_ref(parts[1]):
-            return rev_range
+            return f"{parts[0]}..{parts[1]}"
     elif is_safe_ref(rev_range):
         return rev_range
     raise ValueError(f"Invalid git rev_range specification: '{rev_range}'")
 
 
 def sanitize_ref_arg(arg_str):
-    clean = os.path.basename(arg_str.strip()) if arg_str else ""
+    if not arg_str or arg_str.startswith("-"):
+        raise ValueError(f"Invalid reference parameter: '{arg_str}'")
+    clean = arg_str.strip()
     if not is_safe_ref(clean):
         raise ValueError(f"Invalid reference parameter: '{arg_str}'")
     return clean
@@ -100,6 +112,8 @@ def run_git(cmd):
         clean_arg = str(arg).strip()
         if any(bad in clean_arg for bad in [";", "&", "|", "`", "$", "\n", "\r"]):
             raise ValueError(f"Dangerous character in git command: {clean_arg}")
+        if clean_arg.startswith("-") and clean_arg not in ALLOWED_GIT_FLAGS:
+            raise ValueError(f"Disallowed git option flag: {clean_arg}")
         safe_cmd.append(clean_arg)
     try:
         res = subprocess.run(
@@ -118,7 +132,7 @@ def run_git(cmd):
 
 def detect_base_ref():
     for candidate in ["origin/main", "main", "origin/master", "master"]:
-        out = run_git(["rev-parse", "--verify", candidate])
+        out = run_git(["rev-parse", "--verify", "--end-of-options", candidate])
         if out:
             return candidate
     return None
@@ -126,7 +140,7 @@ def detect_base_ref():
 
 def get_commits(rev_range):
     safe_range = validate_rev_range(rev_range)
-    raw = run_git(["log", "--format=%H %s", safe_range])
+    raw = run_git(["log", "--format=%H %s", "--end-of-options", safe_range])
     if not raw:
         return []
     commits = []
@@ -143,9 +157,9 @@ def get_commits(rev_range):
 
 def get_changed_files(sha):
     clean_sha = sha.strip()
-    if not re.fullmatch(r"[a-fA-F0-9]{7,40}", clean_sha):
+    if clean_sha.startswith("-") or not re.fullmatch(r"[a-fA-F0-9]{7,40}", clean_sha):
         return []
-    raw = run_git(["diff-tree", "--no-commit-id", "--name-only", "-r", clean_sha])
+    raw = run_git(["diff-tree", "--no-commit-id", "--name-only", "-r", "--end-of-options", clean_sha])
     if not raw:
         return []
     return [line.strip().replace("\\", "/").lower() for line in raw.splitlines() if line.strip()]
@@ -230,8 +244,14 @@ def main():
     print("=" * 75)
 
     if args.range:
+        if args.range.startswith("-"):
+            print("❌ 錯誤：--range 參數不可包含選項旗標")
+            sys.exit(1)
         rev_range = validate_rev_range(args.range)
     else:
+        if args.base and args.base.startswith("-"):
+            print("❌ 錯誤：--base 參數不可包含選項旗標")
+            sys.exit(1)
         base = sanitize_ref_arg(args.base) if args.base else detect_base_ref()
         if not base:
             print("❌ 無法自動偵測基準分支，請透過 --base 指定基準分支 (例如: origin/main)")
