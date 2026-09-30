@@ -1,0 +1,984 @@
+{
+  "name": "Enterprise Purple Team Attack-Defense Matrix - 2026-09-30",
+  "versions": {
+    "attack": "14",
+    "navigator": "4.8.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "企業級紫隊對抗聯防全景熱圖，橫跨紅隊 110 篇實戰手冊與藍隊 107 篇防禦取證手冊之閉環驗證成果。",
+  "filters": {
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS",
+      "IaaS",
+      "Containers",
+      "Active Directory"
+    ]
+  },
+  "sorting": 3,
+  "layout": {
+    "layout": "side",
+    "aggregateFunction": "max",
+    "showID": true,
+    "showName": true,
+    "showAggregateScores": true,
+    "countUnscored": false
+  },
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1596",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R03.4 憑證透明度 CT 探查\n【藍隊防禦】: 06.3 HTTP/TLS JA3 指紋檢查\n【核心遙測】: Certificate Transparency Logs\n【對抗處置】: 監控 CAA 記錄與企業憑證簽發告警，定期稽核公網暴露面。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R03.4 憑證透明度 CT 探查"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "06.3 HTTP/TLS JA3 指紋檢查"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "Certificate Transparency Logs"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1595",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R05.3 通訊埠狀態列舉驗證\n【藍隊防禦】: 02.1 邊界防火牆精準阻斷\n【核心遙測】: Zeek `conn.log` / Suricata Alert\n【對抗處置】: 防火牆速率限制 (Rate-limiting)、動態黑名單、封鎖未授權 SYN 探針。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R05.3 通訊埠狀態列舉驗證"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "02.1 邊界防火牆精準阻斷"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "Zeek `conn.log` / Suricata Alert"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1590",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R04.1 IP 與 ASN 邊界拓撲分析\n【藍隊防禦】: 21.2 基礎設施拓撲追蹤\n【核心遙測】: BGP Routeviews / WHOIS DB\n【對抗處置】: 建立外部資產管理 (EASM) 與 ASN 廣播異動即時警報。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R04.1 IP 與 ASN 邊界拓撲分析"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "21.2 基礎設施拓撲追蹤"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "BGP Routeviews / WHOIS DB"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1593",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R02.1 開放網路搜尋引擎偵察\n【藍隊防禦】: 21.1 CTI 痛苦之塔與 ATT&CK 映射\n【核心遙測】: MISP / AlienVault OTX\n【對抗處置】: 定期清理過期與廢棄的 API Endpoint，並於 CDN 端收緊敏感路徑存取。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R02.1 開放網路搜尋引擎偵察"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "21.1 CTI 痛苦之塔與 ATT&CK 映射"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "MISP / AlienVault OTX"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1587",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R21.3 Havoc C2 Demon 作戰運用\n【藍隊防禦】: 19.1 PE 結構熵值分析 / 17.1 YARA 惡意特徵比對\n【核心遙測】: YARA / PEiD / ClamAV\n【對抗處置】: 對可疑二進制檔案執行靜態熵值 (Entropy) 檢測與加殼標籤識別。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R21.3 Havoc C2 Demon 作戰運用"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "19.1 PE 結構熵值分析 / 17.1 YARA 惡意特徵比對"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "YARA / PEiD / ClamAV"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1584",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R23.3 雲端儲存桶列舉與接管\n【藍隊防禦】: 05.4 S3 儲存桶洩漏防護\n【核心遙測】: AWS CloudTrail / S3 Access Logs\n【對抗處置】: 啟用 S3 Block Public Access、強制使用 KMS 加密與雲端合規監控。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R23.3 雲端儲存桶列舉與接管"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "05.4 S3 儲存桶洩漏防護"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "AWS CloudTrail / S3 Access Logs"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1588",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R12.1 不安全反序列化物件注入\n【藍隊防禦】: 22.2 Log4Shell 與 N-Day 溯源\n【核心遙測】: WAF Logs / Nginx Access Log\n【對抗處置】: 維護軟體物料清單 (SBOM)，阻絕已知 CVE 與 JNDI/反序列化威脅。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R12.1 不安全反序列化物件注入"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "22.2 Log4Shell 與 N-Day 溯源"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "WAF Logs / Nginx Access Log"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1190",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R10.1 SQL 查詢注入滲透 / R11.1 SSRF 伺服器端請求偽造\n【藍隊防禦】: 09.1 Web SQLi 與命令注入防禦 / 16.4 HTTP 走私攻擊防禦\n【核心遙測】: WAF 阻斷日誌 / Web Access Logs\n【對抗處置】: 部署 WAF (OWASP CRS)、啟用 IMDSv2、後端程式碼全面採用參數化查詢 (Prepared Statements)。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R10.1 SQL 查詢注入滲透 / R11.1 SSRF 伺服器端請求偽造"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "09.1 Web SQLi 與命令注入防禦 / 16.4 HTTP 走私攻擊防禦"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "WAF 阻斷日誌 / Web Access Logs"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1566",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R02.2 公開程式碼倉庫情資偵察\n【藍隊防禦】: 10.1 郵件認證 SPF/DKIM/DMARC / 10.3 惡意 Office 巨集提取\n【核心遙測】: Mail Gateway Logs / OLE Tools\n【對抗處置】: 嚴格落實 DMARC `p=reject`、阻絕未簽章巨集文件、附件動態沙箱引爆。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R02.2 公開程式碼倉庫情資偵察"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "10.1 郵件認證 SPF/DKIM/DMARC / 10.3 惡意 Office 巨集提取"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "Mail Gateway Logs / OLE Tools"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1195",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R01.2 公開人員角色與身分列舉\n【藍隊防禦】: 04.1 軟體供應鏈相依性混淆防禦 / 04.3 CI/CD 機密保護\n【核心遙測】: CI/CD Audit Logs / Git Guardian\n【對抗處置】: 私有套件庫範圍作用域 (Scoping)、CI/CD 敏感環境變數掃描與自動撤銷。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R01.2 公開人員角色與身分列舉"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "04.1 軟體供應鏈相依性混淆防禦 / 04.3 CI/CD 機密保護"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "CI/CD Audit Logs / Git Guardian"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1059.001",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R21.5 WMI 與 WinRM 無檔案橫向執行\n【藍隊防禦】: 14.3 Windows Event 7045/4688 服務建立\n【核心遙測】: Windows Event ID 4104 / 4688\n【對抗處置】: 啟用 PowerShell ConstrainedLanguage 模式、全域 ScriptBlock 審計與 AMSI 保護。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R21.5 WMI 與 WinRM 無檔案橫向執行"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "14.3 Windows Event 7045/4688 服務建立"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "Windows Event ID 4104 / 4688"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1047",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R21.5 WMI 與 WinRM 無檔案橫向執行\n【藍隊防禦】: 18.1 Sysmon 行程遙測事件\n【核心遙測】: Sysmon Event ID 1 / Event ID 5861\n【對抗處置】: 阻斷遠端 WMI 呼叫、監控 `__EventConsumer` 建立並限制 DCOM 存取權限。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R21.5 WMI 與 WinRM 無檔案橫向執行"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "18.1 Sysmon 行程遙測事件"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "Sysmon Event ID 1 / Event ID 5861"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1059.004",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R18.1 Linux SUID/SGID 二進制濫用\n【藍隊防禦】: 01.1 Linux 驗證 PAM 與 Sudoers\n【核心遙測】: Auditd `SYSCALL execve` / `setuid`\n【對抗處置】: 掛載分區使用 `nosuid` 選項、監控 Auditd setuid 系統呼叫、定期清理不必要 Capabilities。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R18.1 Linux SUID/SGID 二進制濫用"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "01.1 Linux 驗證 PAM 與 Sudoers"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "Auditd `SYSCALL execve` / `setuid`"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1505.003",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R11.3 本地檔案包含 LFI 利用\n【藍隊防禦】: 20.2 加密 Webshell 檢測 / 20.1 Java 內存馬溯源\n【核心遙測】: Web 日誌 / JVM Arthas Dump\n【對抗處置】: 啟用唯讀容器檔案系統 (Read-only Rootfs)、監控 JVM Class 載入與 YARA 檔案掃描。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R11.3 本地檔案包含 LFI 利用"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "20.2 加密 Webshell 檢測 / 20.1 Java 內存馬溯源"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "Web 日誌 / JVM Arthas Dump"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1053.005",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R18.5 Linux Crontab 與 Systemd Timer 濫用\n【藍隊防禦】: 18.3 排程任務常駐追蹤 / 01.2 Linux Systemd 與 Cron 行程管理\n【核心遙測】: Windows Event ID 4698 / Auditd\n【對抗處置】: 監控排程任務註冊事件 (4698)、比對啟動參數中異常的 `powershell.exe -enc` 或 LOLBAS 二進制。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R18.5 Linux Crontab 與 Systemd Timer 濫用"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "18.3 排程任務常駐追蹤 / 01.2 Linux Systemd 與 Cron 行程管理"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "Windows Event ID 4698 / Auditd"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1546.015",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R19.4 Windows 登錄檔 Mocking 與 UAC 繞過\n【藍隊防禦】: 24.3 註冊表痕跡分析取證\n【核心遙測】: Sysmon Event ID 12 / 13\n【對抗處置】: 監控登錄檔 `HKCU\\Software\\Classes\\CLSID` 寫入行為，比對已知 COM 劫持鍵值。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R19.4 Windows 登錄檔 Mocking 與 UAC 繞過"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "24.3 註冊表痕跡分析取證"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "Sysmon Event ID 12 / 13"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1068",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R18.3 Linux 核心漏洞利用\n【藍隊防禦】: 25.1 Linux 核心 Rootkit 取證\n【核心遙測】: `/var/log/audit/audit.log`\n【對抗處置】: 即時更新 Linux 核心補丁、限制非特權使用者命名空間 (Unprivileged User Namespaces)。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R18.3 Linux 核心漏洞利用"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "25.1 Linux 核心 Rootkit 取證"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "`/var/log/audit/audit.log`"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1134",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R19.2 Windows 權限標記模擬濫用\n【藍隊防禦】: 14.1 Windows 登入事件 4624/4625\n【核心遙測】: Windows Event ID 4673 / 4624 (Logon Type 9)\n【對抗處置】: 移除服務帳號之 `SeImpersonatePrivilege` 與 `SeAssignPrimaryTokenPrivilege` 權限。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R19.2 Windows 權限標記模擬濫用"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "14.1 Windows 登入事件 4624/4625"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "Windows Event ID 4673 / 4624 (Logon Type 9)"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1548.002",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R19.4 Windows 登錄檔 Mocking 與 UAC 繞過\n【藍隊防禦】: 18.2 LOLBAS 離地攻擊獵捕\n【核心遙測】: Sysmon Event ID 1 (High Integrity)\n【對抗處置】: 將 UAC 策略設為「始終通知 (Always Notify)」、停用一般使用者的本機管理員群組權限。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R19.4 Windows 登錄檔 Mocking 與 UAC 繞過"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "18.2 LOLBAS 離地攻擊獵捕"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "Sysmon Event ID 1 (High Integrity)"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1055",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R22.1 系統原生呼叫 API 脫鉤規避 / R22.3 行程挖空注入技術\n【藍隊防禦】: 18.4 遠端執行緒注入偵測 / 23.2 VAD 樹與代碼注入分析\n【核心遙測】: Sysmon Event ID 8 / Volatility `malfind`\n【對抗處置】: 啟用 Windows Defender Exploit Guard (ACG/CIG)、EDR 核心 ETW-Ti 遙測監控。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R22.1 系統原生呼叫 API 脫鉤規避 / R22.3 行程挖空注入技術"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "18.4 遠端執行緒注入偵測 / 23.2 VAD 樹與代碼注入分析"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "Sysmon Event ID 8 / Volatility `malfind`"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1562.001",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R22.2 AMSI 與 ETW 記憶體動態修補\n【藍隊防禦】: 14.4 Windows Defender 運作日誌\n【核心遙測】: Sysmon Event ID 10 (ProcessAccess)\n【對抗處置】: 監控對 `amsi.dll` / `ntdll.dll` 之 `PAGE_EXECUTE_READWRITE` 記憶體屬性修改行為。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R22.2 AMSI 與 ETW 記憶體動態修補"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "14.4 Windows Defender 運作日誌"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "Sysmon Event ID 10 (ProcessAccess)"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1070.006",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R11.2 檔案路徑遍歷利用\n【藍隊防禦】: 24.1 NTFS $MFT 時間戳反篡改取證\n【核心遙測】: NTFS `$STANDARD_INFORMATION` vs `$FILE_NAME`\n【對抗處置】: 解析 MFT 雙時間戳差異，比對 USN Journal 與日誌異動記錄。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R11.2 檔案路徑遍歷利用"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "24.1 NTFS $MFT 時間戳反篡改取證"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "NTFS `$STANDARD_INFORMATION` vs `$FILE_NAME`"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1003.001",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R19.7 Windows LSASS 記憶體憑證導出\n【藍隊防禦】: 23.4 LSASS 記憶體憑證提取分析\n【核心遙測】: Sysmon Event ID 10 (LSASS Target)\n【對抗處置】: 啟用 LSA RunAsPPL、CredGuard、阻斷非授權行程對 lsass.exe 的存取句柄請求。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R19.7 Windows LSASS 記憶體憑證導出"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "23.4 LSASS 記憶體憑證提取分析"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "Sysmon Event ID 10 (LSASS Target)"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1558.003",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R07.2 Kerberos 服務票據請求攻擊\n【藍隊防禦】: 12.2 SPN Kerberoasting 偵測\n【核心遙測】: Windows Event ID 4769 (RC4 加密 0x17)\n【對抗處置】: 啟用 AES-256 加密、服務帳戶改用 gMSA (群組受管服務帳戶)、設定 25 字元以上高強度密碼。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R07.2 Kerberos 服務票據請求攻擊"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "12.2 SPN Kerberoasting 偵測"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "Windows Event ID 4769 (RC4 加密 0x17)"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1558.004",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R07.1 AS-REP Roast 素材取得\n【藍隊防禦】: 12.1 Kerberos 預認證攻擊偵測\n【核心遙測】: Windows Event ID 4768 (無預驗證請求)\n【對抗處置】: 清查並取消所有網域帳戶之「不需要 Kerberos 預先驗證 (DONT_REQ_PREAUTH)」旗標。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R07.1 AS-REP Roast 素材取得"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "12.1 Kerberos 預認證攻擊偵測"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "Windows Event ID 4768 (無預驗證請求)"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1003.006",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R16.1 網域目錄憑證複寫導出\n【藍隊防禦】: 12.4 DCSync NTDS 憑證傾印獵捕\n【核心遙測】: Windows Event ID 4662 (Replicating Directory Changes)\n【對抗處置】: 嚴格稽核域根節點複寫權限 (DS-Replication-Get-Changes-All)，非 DC IP 呼叫立即產生 P1 警報。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R16.1 網域目錄憑證複寫導出"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "12.4 DCSync NTDS 憑證傾印獵捕"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "Windows Event ID 4662 (Replicating Directory Changes)"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1069",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R08.1 網域關係圖譜收集與標準化\n【藍隊防禦】: 12.5 BloodHound ACL 攻擊路徑防禦\n【核心遙測】: AD LDAP Query Logs (Event ID 1644)\n【對抗處置】: 限制非管理者帳號的大規模 LDAP 查詢速率、部署 LDAP 蜜罐帳號即時觸發告警。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R08.1 網域關係圖譜收集與標準化"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "12.5 BloodHound ACL 攻擊路徑防禦"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "AD LDAP Query Logs (Event ID 1644)"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1018",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R05.2 授權主機連通性驗證\n【藍隊防禦】: 02.2 內網微隔離策略構建\n【核心遙測】: NetFlow / VPC Flow Logs\n【對抗處置】: 實施 Zero Trust 網路微隔離、封鎖橫向跨 VLAN 的任意通訊與 ICMP Ping。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R05.2 授權主機連通性驗證"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "02.2 內網微隔離策略構建"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "NetFlow / VPC Flow Logs"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1526",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R23.1 雲端 IAM 權限提升與元數據濫用\n【藍隊防禦】: 05.1 雲端共擔責任模型落地\n【核心遙測】: AWS CloudTrail (`Describe*` / `List*`)\n【對抗處置】: 監控短時間內大量呼叫 `DescribeInstances` 或 `ListBuckets` 的異常 API 金鑰呼叫。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R23.1 雲端 IAM 權限提升與元數據濫用"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "05.1 雲端共擔責任模型落地"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "AWS CloudTrail (`Describe*` / `List*`)"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1021.002",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R21.5 WMI 與 WinRM 無檔案橫向執行\n【藍隊防禦】: 28.3 多主機橫向移動歸因取證\n【核心遙測】: Windows Event ID 5140 / 5145\n【對抗處置】: 端點主機停用 SMBv1、開啟 Windows 防火牆阻絕 445/139 橫向存取、全面啟用 LAPS。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R21.5 WMI 與 WinRM 無檔案橫向執行"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "28.3 多主機橫向移動歸因取證"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "Windows Event ID 5140 / 5145"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1550.002",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R07.3 NTLM Pass-the-Hash 認證攻擊 / R07.6 Kerberos TGT 票據偽造\n【藍隊防禦】: 12.3 黃金/白銀票據偽造取證\n【核心遙測】: Windows Event ID 4624 (Logon Type 3, NTLM)\n【對抗處置】: 定期（每 180 天）重設兩次 KRBTGT 帳號密碼、部署 Protected Users 群組。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R07.3 NTLM Pass-the-Hash 認證攻擊 / R07.6 Kerberos TGT 票據偽造"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "12.3 黃金/白銀票據偽造取證"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "Windows Event ID 4624 (Logon Type 3, NTLM)"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1021.006",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R21.5 WMI 與 WinRM 無檔案橫向執行\n【藍隊防禦】: 14.1 Windows 登入事件 4624/4625\n【核心遙測】: Windows Event ID 4624 (Logon Type 3, Port 5985)\n【對抗處置】: 限制 WinRM 僅允許專用堡壘機 IP 存取、實施多因子認證 (MFA)。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R21.5 WMI 與 WinRM 無檔案橫向執行"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "14.1 Windows 登入事件 4624/4625"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "Windows Event ID 4624 (Logon Type 3, Port 5985)"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1560",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R19.8 Windows DPAPI 憑證秘密提取\n【藍隊防禦】: 24.4 VSS 磁碟卷影複製取證\n【核心遙測】: Sysmon Event ID 1 (7z.exe / rar.exe)\n【對抗處置】: 監控壓縮軟體或 `tar` / `gzip` 於非典型目錄下壓縮大批內部文檔之行為。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R19.8 Windows DPAPI 憑證秘密提取"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "24.4 VSS 磁碟卷影複製取證"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "Sysmon Event ID 1 (7z.exe / rar.exe)"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1005",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R17.1 證書使用者提供識別資訊濫用\n【藍隊防禦】: 31.1 機敏個資資料外洩鑑識\n【核心遙測】: DLP Agent Logs / EDR File Auditing\n【對抗處置】: 部署端點 DLP (資料外洩防護)、檔案標籤化管制與敏感資料存取審計。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R17.1 證書使用者提供識別資訊濫用"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "31.1 機敏個資資料外洩鑑識"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "DLP Agent Logs / EDR File Auditing"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1090",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R20.1 Chisel 反向 SOCKS5 穿透 / R20.2 Ligolo-ng TUN 虛擬穿透\n【藍隊防禦】: 16.1 DNS 隧道與資料滲出分析 / 07.2 VPN 隧道安全比較分析\n【核心遙測】: Zeek `conn.log` (長期長連接)\n【對抗處置】: 限制內部主機直連外部高埠位 (High Ports)、阻斷未知 WebSocket 與 SSH 隧道特徵。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R20.1 Chisel 反向 SOCKS5 穿透 / R20.2 Ligolo-ng TUN 虛擬穿透"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "16.1 DNS 隧道與資料滲出分析 / 07.2 VPN 隧道安全比較分析"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "Zeek `conn.log` (長期長連接)"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1071.001",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R21.1 Sliver C2 框架部署與作戰運用\n【藍隊防禦】: 16.2 C2 信標週期性抖動分析\n【核心遙測】: Web Proxy / Zeek `http.log`\n【對抗處置】: 透過 SPL 計算時間間隔變異係數 (Coefficient of Variation)、阻絕高信標關聯 IP。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R21.1 Sliver C2 框架部署與作戰運用"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "16.2 C2 信標週期性抖動分析"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "Web Proxy / Zeek `http.log`"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1048",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R23.1 雲端 IAM 權限提升與元數據濫用\n【藍隊防禦】: 05.1 雲端共擔責任模型落地\n【核心遙測】: AWS GuardDuty / VPC Flow Logs\n【對抗處置】: 啟用 GuardDuty 偵測異常憑證向外呼叫行為，強制要求 VPC Endpoint 與安全群組邊界。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R23.1 雲端 IAM 權限提升與元數據濫用"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "05.1 雲端共擔責任模型落地"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "AWS GuardDuty / VPC Flow Logs"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1048.003",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R20.5 DNS 與 ICMP 隱蔽隧道穿透\n【藍隊防禦】: 06.2 DNS 隧道與 DGA 檢測\n【核心遙測】: Bind / Windows DNS Query Logs\n【對抗處置】: 限制內網主機直連外部 Public DNS、部署 DNS 封包深度檢驗 (DPI) 阻絕異常長子網域。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R20.5 DNS 與 ICMP 隱蔽隧道穿透"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "06.2 DNS 隧道與 DGA 檢測"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "Bind / Windows DNS Query Logs"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1567",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R23.1 雲端 IAM 權限提升與元數據濫用\n【藍隊防禦】: 05.2 雲端 IAM 權限提升獵捕\n【核心遙測】: CloudTrail `PutObject` / `AssumeRole`\n【對抗處置】: 啟用 IAM 最小權限 (Principle of Least Privilege)、強制執行 SCP 邊界與跨帳號防護。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R23.1 雲端 IAM 權限提升與元數據濫用"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "05.2 雲端 IAM 權限提升獵捕"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "CloudTrail `PutObject` / `AssumeRole`"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1499",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R13.1 HTTP 請求走私與脫步利用\n【藍隊防禦】: 02.3 核心 NGFW 與 Suricata 聯防\n【核心遙測】: Suricata Drop Logs / CPU 監控\n【對抗處置】: 部署負載平衡反向代理、啟用 Rate Limit、禁止 XML 外部實體解析 (Disallow DOCTYPE)。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R13.1 HTTP 請求走私與脫步利用"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "02.3 核心 NGFW 與 Suricata 聯防"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "Suricata Drop Logs / CPU 監控"
+        }
+      ]
+    },
+    {
+      "techniqueID": "T1485",
+      "tactic": "",
+      "score": 3,
+      "color": "#800080",
+      "comment": "【紅隊作戰】: R23.4 Docker Socket 宿主機逃逸 / R23.5 K8s RBAC 提權與機密導出\n【藍隊防禦】: 05.3 容器逃逸與 K8s 執行期防禦 / 25.3 雲原生 eBPF 威脅檢測 Falco\n【核心遙測】: Falco Alert (`docker.sock open`)\n【對抗處置】: 嚴禁掛載宿主機 `/var/run/docker.sock`、開啟 AppArmor/SELinux、強制 non-root 容器執行。",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "Red Team Playbooks",
+          "value": "R23.4 Docker Socket 宿主機逃逸 / R23.5 K8s RBAC 提權與機密導出"
+        },
+        {
+          "name": "Blue Team Playbooks",
+          "value": "05.3 容器逃逸與 K8s 執行期防禦 / 25.3 雲原生 eBPF 威脅檢測 Falco"
+        },
+        {
+          "name": "Telemetry Source",
+          "value": "Falco Alert (`docker.sock open`)"
+        }
+      ]
+    }
+  ],
+  "gradient": {
+    "colors": [
+      "#ffffff",
+      "#e0b0ff",
+      "#ba55d3",
+      "#800080"
+    ],
+    "minValue": 0,
+    "maxValue": 3
+  },
+  "legendItems": [
+    {
+      "label": "未納入對抗驗證 (Unverified)",
+      "color": "#ffffff"
+    },
+    {
+      "label": "單軌驗證 (Single Track)",
+      "color": "#e0b0ff"
+    },
+    {
+      "label": "遙測具備 (Telemetry Ingested)",
+      "color": "#ba55d3"
+    },
+    {
+      "label": "雙軌閉環聯防 (Purple Validated)",
+      "color": "#800080"
+    }
+  ],
+  "metadata": [
+    {
+      "name": "Curriculum",
+      "value": "Sec-Compendium Purple Team"
+    },
+    {
+      "name": "Red Team Volume",
+      "value": "110 Playbooks"
+    },
+    {
+      "name": "Blue Team Volume",
+      "value": "107 Playbooks"
+    },
+    {
+      "name": "Generator",
+      "value": "purple_layer_generator.py"
+    }
+  ],
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#4a0e4e",
+  "selectTechniquesAcrossTactics": true,
+  "selectSubtechniquesWithParent": true
+}
