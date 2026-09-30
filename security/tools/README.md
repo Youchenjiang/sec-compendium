@@ -29,6 +29,17 @@
 - **路徑**：`security/tools/validate_red_team_playbooks.py`
 - **定位**：自動化檢查 `red_team/playbooks` 110 篇特戰手冊之五動戰術結構、速查規範篇幅 (150~210 行) 與紅隊內部連結。
 
+### 5. [Commit Policy & Atomic Linter](lint_commits.py) (提交規範與四權分立稽核工具)
+- **路徑**：`security/tools/lint_commits.py`
+- **定位**：本機端 Conventional Commits 與「四權分立（目的/功能/脈絡/治理）」原子化稽核工具，對齊 CI 政策守門標準。
+### 6. [PR Helper & Validator](pr_helper.py) (PR 自動生成、結構驗證與安全提交工具)
+- **路徑**：`security/tools/pr_helper.py`
+- **定位**：自動解析 Conventional Commits 產出合規 PR 說明文檔，本機端先跑完 CI 守門員再使用 `--body-file` 提交，徹底避免 Windows PowerShell 跳脫截斷與標籤時間差紅燈。
+- **子命令**：
+  - `generate`：自動分析分支 Commit 產出符合 `.github/pull_request_template.md` 規範之 PR Markdown。
+  - `lint`：校驗 PR Body 三大章節、標題長度與 Conventional Commits。
+  - `create`：本地全套驗證通過後，一鍵建立帶有標籤之 GitHub Pull Request。
+
 ---
 
 ## 🚀 常用指令速查
@@ -55,4 +66,13 @@ python -m security.tools.code_auditor.main --local-dir /path/to/target --scan-on
 
 # 6. 執行本地審計並生成 Exploit
 python -m security.tools.code_auditor.main --local-dir /path/to/target
+
+# 7. 執行本地 Commit 規範與四權分立稽核
+python security/tools/lint_commits.py --base origin/main
+
+# 8. 自動產出當前分支之合規 PR 說明檔 (避免 PowerShell 跳脫字元問題)
+python security/tools/pr_helper.py generate --base origin/main -o PR_BODY.md
+
+# 9. 本地全套驗證並一鍵安全提交 PR (附帶必備標籤)
+python security/tools/pr_helper.py create --title "feat(tools): add pr helper and validator" --label "documentation"
 ```
