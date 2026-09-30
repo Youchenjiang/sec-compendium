@@ -1,12 +1,12 @@
-# ⚔️ 紅隊全領域實戰滲透與可練習題庫總表 (三大現代作戰階段・全景17大領域・70項技術點終極矩陣)
+# ⚔️ 紅隊全領域實戰滲透與可練習題庫總表 (六大現代作戰階段・全景23大領域・110項技術點終極矩陣)
 
-> 📌 **驗證聲明**：本表所有資源經 100% 線上連線與存取機制審查，全數為**免訂閱、無付費牆、直接可進入**之官方靶場、開源挑戰、公共情報資料庫與實體演練環境（涵蓋 PortSwigger Web Security Academy、Hack The Box Starting Point / Sherlocks、picoCTF、GOAD、SadServers 等）。依據現代紅隊作戰鏈 (Cyber Kill Chain) 與攻擊面管理 (ASM)，全面整合為**三大作戰階段**。
+> 📌 **驗證聲明**：本表所有資源經 100% 線上連線與存取機制審查，全數為**免訂閱、無付費牆、直接可進入**之官方靶場、開源挑戰、公共情報資料庫與實體演練環境（涵蓋 PortSwigger Web Security Academy、Hack The Box Starting Point / Sherlocks、picoCTF、GOAD、SadServers 等）。依據現代紅隊作戰鏈 (Cyber Kill Chain) 與攻擊面管理 (ASM)，全面整合為**六大作戰階段**。
 >
 > 💡 **配套學習路徑手冊**：若您在特定領域感到缺乏信心或需要底層架構系統化構建，請直接查閱 [【紅隊全領域 17 大深度學習路徑全景導航庫】](learning_paths/README.md)（涵蓋三大作戰區塊之底層架構、前置測試、核心指令、防禦規避與階段通過檢查表）。
 >
-> 🚀 **實戰通關主線課表**：**技術難度 (Level) ≠ 修課順序 (Phase)！** 請參閱 [【現代紅隊實戰通關課表與作戰主線 (Phase 1 ~ Phase 6)】](career_curriculum.md)（含 Phase 1 ~ Phase 6 全景作戰鏈與 **25 項 Core 核心必修** 分流導引）。
+> 🚀 **實戰通關主線課表**：**技術難度 (Level) ≠ 修課順序 (Phase)！** 請參閱 [【現代紅隊實戰通關課表與作戰主線 (Phase 1 ~ Phase 6)】](career_curriculum.md)（含 Phase 1 ~ Phase 6 全景作戰鏈與 **40 項 Core 核心必修** 分流導引）。
 >
-> 🔴 **標準技術型錄對照**：全量 17 領域 70 項技術點檔案路徑與命名規範，請參閱 [【紅隊 17 領域與 70 個核心實戰技術索引】](RED_TEAM_TECHNIQUES_CATALOG.md)。
+> 🔴 **標準技術型錄對照**：全量 23 領域 110 項技術點檔案路徑與命名規範，請參閱 [【紅隊 23 領域與 110 個核心實戰技術索引】](RED_TEAM_TECHNIQUES_CATALOG.md)。
 
 ---
 
@@ -14,17 +14,17 @@
 
 | 難度等級 (Level) | 定位標籤 | 項目數量 | 適用階段與核心目標 |
 | :---: | :--- | :---: | :--- |
-| **🟢 L1** | **基礎情報與初階突破** | **20 項** | 開源情報 (OSINT)、DNS/WHOIS 解析、服務指紋識別、離線密碼破解、基礎 SQLi/Cmdi、BOLA 越權等。快速掌握邊界探針與弱點驗證打底。 |
-| **🟡 L2** | **主力突防與漏洞利用** | **24 項** | CDN 真實 IP 穿透、Web 目錄 Fuzzing、密碼噴灑與撞庫、SSTI 模板注入、SSRF/LFI 檔案讀取、XXE、XSS/CSRF、競態條件、Kerberoasting 等。掌握邊界突破撕開口子之核心火力。 |
-| **🔴 L3** | **網域攻防與進階利用** | **18 項** | 安全無害驗證、HTTP 請求走私、Web 快取投毒、不安全反序列化、NTLM 雜湊傳遞 (PtH)、TGT 票據重放 (PtT)、BloodHound 圖譜分析、DACL 授權濫用、GPO 劫持、AD CS ESC1~ESC4 等。直擊企業認證與內部授權樞紐。 |
-| **👑 L4** | **極致對抗與網域統治** | **8 項** | Kerberos 黃金票據 (Golden Ticket)、白銀票據 (Silver Ticket)、DCSync 全域雜湊導出、DCShadow 惡意複製注入、AD CS ESC6~ESC8 跨林濫用、憑證信任錨點操縱。達成網域全局持久化統治。 |
-| **合計** | **三大作戰階段全景矩陣** | **70 項** | 覆蓋從外網被動情報收集、邊界技術暴露收斂、Web/API 突破拿點，一路挺進至企業 Active Directory 網域核心控制權的完整作戰鏈 |
+| **🟢 L1** | **基礎情報與初階突破** | **26 項** | 開源情報 (OSINT)、DNS/WHOIS 解析、服務指紋識別、離線密碼破解、基礎 SQLi/Cmdi、BOLA 越權、Linux SUID/Sudo 提權、Windows 未加引號路徑/MSI 提權、SSH/Netsh 轉發。快速掌握邊界探針與弱點驗證打底。 |
+| **🟡 L2** | **主力突防與漏洞利用** | **41 項** | CDN 真實 IP 穿透、Web 目錄 Fuzzing、密碼噴灑與撞庫、SSTI 模板注入、SSRF/LFI 檔案讀取、XXE、XSS/CSRF、競態條件、Kerberoasting、SeImpersonate Potato、UAC Bypass、DLL 劫持、Chisel/FRP 隧道、Sliver C2、WMI/WinRM 橫向、PPID 欺騙、S3/Docker 逃逸等。掌握邊界突破與內網橫向主力火力。 |
+| **🔴 L3** | **網域攻防與進階利用** | **32 項** | 安全無害驗證、HTTP 請求走私、Web 快取投毒、不安全反序列化、NTLM 雜湊傳遞 (PtH)、TGT 票據重放 (PtT)、BloodHound 圖譜分析、DACL 授權濫用、GPO 劫持、AD CS ESC1~ESC4、Linux Dirty Pipe、LSASS PPL 規避、DPAPI 萃取、Ligolo-ng TUN、DNS/ICMP 隧道、SMB 命名管道、Havoc C2、AMSI/ETW Patch、Early Bird APC、K8s RBAC 提權。直擊企業認證與防禦核心。 |
+| **👑 L4** | **極致對抗與網域統治** | **11 項** | Kerberos 黃金票據 (Golden Ticket)、白銀票據 (Silver Ticket)、DCSync 全域雜湊導出、DCShadow 惡意複製注入、AD CS ESC6~ESC8 跨林濫用、憑證信任錨點操縱、C2 Sleep Mask 記憶體混淆、直接系統調用 (Direct Syscalls)、Perun's Fart 磁碟脫鉤。達成終端免殺與全局持久化統治。 |
+| **合計** | **六大作戰階段全景矩陣** | **110 項** | 覆蓋從外網被動情報收集、邊界技術暴露收斂、Web/API 突破、AD 網域統治、主機本地提權、隧道穿透/C2，一路挺進至前沿防禦規避與雲原生容器逃逸的完整作戰鏈 |
 
 > 🎯 **三層修課分流建議 (消解資訊焦慮)**：
 >
-> - **🎯 核心主幹 (Core Track, 25 項)**：建立外部快速打點、注入漏洞突破、Kerberoasting、Pass-the-Hash、DCSync 與 BloodHound 圖譜分析之**絕對必修**，優先拿下即可勝任初中階紅隊滲透與外網打點任務！
-> - **🔬 領域專精 (Specialization Track, 32 項)**：請求走私 (Smuggling)、反序列化 (Deserialization)、AD CS 憑證範本濫用 (ESC1~ESC8)、進階 DACL 委派劫持。按滲透目標情境與隊伍分工專攻。
-> - **🚀 高階前沿 (Advanced Track, 13 項)**：邊界架構拓撲推導、Golden/Silver Ticket 偽造、DCSync/DCShadow 底層狀態注入、併發競態 (Race Condition) 深度套利。
+> - **🎯 核心主幹 (Core Track, 40 項)**：建立外部快速打點、注入漏洞突破、Kerberoasting、Pass-the-Hash、DCSync、BloodHound 圖譜分析、Linux/Windows 經典提權、Chisel/Ligolo-ng 隧道、Sliver C2 之**絕對必修**，優先拿下即可勝任全鏈路紅隊滲透任務！
+> - **🔬 領域專精 (Specialization Track, 48 項)**：請求走私 (Smuggling)、反序列化 (Deserialization)、AD CS (ESC1~ESC8)、進階 DACL 委派劫持、UAC Bypass、DPAPI 萃取、FRP/DNS 隧道、Havoc C2、Docker 容器逃逸。按滲透目標情境與隊伍分工專攻。
+> - **🚀 高階前沿 (Advanced Track, 22 項)**：邊界架構拓撲推導、Golden/Silver Ticket 偽造、DCSync/DCShadow 底層狀態注入、併發競態深度套利、LSASS PPL 規避、Sleep Mask 混淆、Direct/Indirect Syscalls、Perun's Fart 脫鉤、K8s RBAC 提權。
 
 ---
 
@@ -145,12 +145,76 @@
 
 ---
 
-## 🔮 未來作戰擴充槽位 (Phase 4 ~ Phase 6 前瞻規劃)
+## ⚡ Phase 4: 主機立足與本地提權 (Host Foothold & PrivEsc)
+> 💡 **作戰任務**：突破作業系統內部防護邊界。從初階 Web Shell 或未授權連線躍遷至作業系統至高權限 (`root` / `NT AUTHORITY\SYSTEM`)，萃取本機記憶體與登錄檔憑證，為後續內網橫向漫遊儲備作戰彈藥。
+>
+> 📋 **本階段涵蓋領域說明 (Domains Overview)**：
+> - [**R18：Linux 主機本地提權**](playbooks/phase_4_host_privesc/R18_linux_host_privilege_escalation/)：SUID/SGID 特權二進位、Sudoers 弱配置、Linux 核心 Dirty Pipe 提權、POSIX Capabilities 濫用、定時任務與通配符注入、NFS no_root_squash 跨主機提權。
+> - [**R19：Windows 主機本地提權**](playbooks/phase_4_host_privesc/R19_windows_host_privilege_escalation/)：未加引號服務路徑、Token 模擬 Potato 系列、AlwaysInstallElevated、UAC Bypass 模擬目錄、DLL 搜尋順序劫持、SAM/SYSTEM 備份單元轉儲、LSASS 記憶體導出與 PPL 規避、DPAPI MasterKey 萃取。
 
-為保持紅隊全景作戰光譜的完整性，本庫預留三大進階作戰槽位，未來將以相同的高密度「特戰速查規範」逐步拓展落地：
+| 難度 | 細分實戰技術點 (Sub-Topic & Technique) | 🎯 具體線上靶場、實戰房間、開源數據集與題目清單 (Practicable Challenges & Labs) |
+| :---: | :--- | :--- |
+| **🟢 L1** | **R18.1 Linux SUID/SGID 特權二進位濫用**<br>(GTFOBins、SUID 權限位元搜尋、環境變數與 Shell 逸出) | • [GTFOBins 官方特權二進位索引庫](https://gtfobins.github.io/)<br>• [OverTheWire: Bandit (Level 19-20 SUID 特權提權)](https://overthewire.org/wargames/bandit/)<br>• [SadServers: "The SUID File" 實戰修復挑戰](https://sadservers.com/) |
+| **🟢 L1** | **R18.2 Linux Sudo 授權弱點與環境變數劫持**<br>(`sudo -l`、NOPASSWD 濫用、`env_keep+=LD_PRELOAD` 劫持) | • [HTB Starting Point: Unified (Sudoers 濫用)](https://app.hackthebox.com/starting-point)<br>• [GTFOBins: Sudo 提權利用清單](https://gtfobins.github.io/#+sudo)<br>• [OverTheWire: Bandit (Sudo 配置審查)](https://overthewire.org/wargames/bandit/) |
+| **🔴 L3** | **R18.3 Linux 核心漏洞提權 (Dirty Pipe / CVE-2022-0847)**<br>(核心 Pipe 緩衝區標誌覆寫、唯讀唯寫穿透、`/etc/passwd` 篡改) | • [Dirty Pipe (CVE-2022-0847) 官方 PoC 倉庫](https://dirtypipe.cm4all.com/)<br>• [TryHackMe: Dirty Pipe (免費演練房間)](https://tryhackme.com/room/dirtypipe)<br>• [The-Sploit: Linux Kernel Exploitation 實戰庫](https://github.com/) |
+| **🟡 L2** | **R18.4 Linux POSIX Capabilities 細粒度特權過度授予濫用**<br>(`cap_setuid`、`cap_dac_override`、`getcap -r /` 審計) | • [HackTricks: Linux Capabilities 提權指南](https://book.hacktricks.xyz/linux-hardening/privilege-escalation/linux-capabilities)<br>• [GTFOBins: Capabilities 利用分類](https://gtfobins.github.io/#+capabilities) |
+| **🟡 L2** | **R18.5 Linux 定期任務通配符注入與 Systemd 定時器劫持**<br>(`crontab` 隱藏排程、tar/rsync 通配符引數注入、Systemd Timer 覆寫) | • [OverTheWire: Bandit (Cron 定期任務通配符挑戰)](https://overthewire.org/wargames/bandit/)<br>• [PayloadsAllTheThings: Linux Cron & Wildcard Tricks](https://github.com/swisskyrepo/PayloadsAllTheThings) |
+| **🟡 L2** | **R18.6 Linux NFS 弱配置 no_root_squash 與 SUID 遠程注入提權**<br>(`/etc/exports` 審查、遠程 Root 掛載、本機編譯 SUID 二進位檔回灌) | • [HTB Starting Point: Vaccine (NFS 共享與 no_root_squash)](https://app.hackthebox.com/starting-point)<br>• [VulnHub: NFS Misconfiguration 靶場系列](https://www.vulnhub.com/) |
+| **🟢 L1** | **R19.1 Windows 服務權限缺陷與未加引號路徑提權**<br>(Unquoted Service Path、空格解析截斷、弱目錄 ACL 寫入) | • [HTB Starting Point: Archetype (Windows 服務與路徑提權)](https://app.hackthebox.com/machines/Archetype)<br>• [PayloadsAllTheThings: Windows Unquoted Service Paths](https://github.com/swisskyrepo/PayloadsAllTheThings) |
+| **🟡 L2** | **R19.2 Windows 權杖模擬與 SeImpersonatePotato 濫用**<br>(`SeImpersonatePrivilege`、SweetPotato、GodPotato、LocalPotato) | • [BeichenDream/GodPotato 官方開源專案](https://github.com/BeichenDream/GodPotato)<br>• [HTB Starting Point: Responder (Potato 系列特權提升)](https://app.hackthebox.com/machines/Responder)<br>• [CCob/SweetPotato (DCOM 模擬與本機 SYSTEM 提權)](https://github.com/CCob/SweetPotato) |
+| **🟢 L1** | **R19.3 Windows 登錄檔 AlwaysInstallElevated MSI 提權**<br>(登錄檔雙鍵啟用確認、msfvenom MSI 構造、msiexec 靜默安裝) | • [HTB Starting Point: Guard (Windows 登錄檔提權)](https://app.hackthebox.com/starting-point)<br>• [PayloadsAllTheThings: AlwaysInstallElevated 實操指南](https://github.com/swisskyrepo/PayloadsAllTheThings) |
+| **🟡 L2** | **R19.4 Windows 使用者帳戶控制 (UAC) 繞過與模擬目錄劫持**<br>(Mock Directories `C:\Windows \`、自動提升二進位檔、Fodhelper 登錄檔劫持) | • [hfiref0x/UACME (Windows UAC 繞過技術開源全集)](https://github.com/hfiref0x/UACME)<br>• [HTB Starting Point: Archetype (UAC 突破實戰)](https://app.hackthebox.com/machines/Archetype) |
+| **🟡 L2** | **R19.5 Windows DLL 搜尋順序劫持與 Ghostpack 植入**<br>(DLL Search Order、已知缺失 DLL 探測、無重啟植入常駐) | • [GhostPack/KeeThief (Windows 憑證與 DLL 劫持)](https://github.com/GhostPack)<br>• [PayloadsAllTheThings: DLL Hijacking 指南](https://github.com/swisskyrepo/PayloadsAllTheThings) |
+| **🟡 L2** | **R19.6 Windows SAM/SYSTEM 登錄檔配置單元磁碟備份轉儲與密鑰萃取**<br>(VSS 磁碟區陰影複製、`reg save`、`Repair\SAM` 歷史備份萃取) | • [HTB Starting Point: Archetype (SAM/SYSTEM 導出實操)](https://app.hackthebox.com/machines/Archetype)<br>• [Impacket `secretsdump.py` 離線 SAM 雜湊解析](https://github.com/fortra/impacket) |
+| **🔴 L3** | **R19.7 Windows LSASS 記憶體憑證轉儲與 PPL 深度防護規避**<br>(MiniDumpWriteDump、PPL 核心驅動保護繞過、Nanodump 隱蔽轉儲) | • [HelpServices/nanodump (無 handle 標籤 LSASS 轉儲)](https://github.com/HelpServices/nanodump)<br>• [gentilkiwi/mimikatz `sekurlsa::minidump`](https://github.com/gentilkiwi/mimikatz)<br>• [GOAD: LSASS 防護與轉儲演練](https://github.com/Orange-Cyberdefense/GOAD) |
+| **🔴 L3** | **R19.8 Windows 資料保護 API (DPAPI) MasterKey 解密與本機憑證萃取**<br>(DPAPI 憑證架構、Chrome/Edge 密碼解密、SharpDPAPI 自動化解析) | • [GhostPack/SharpDPAPI (C# DPAPI 金鑰萃取庫)](https://github.com/GhostPack/SharpDPAPI)<br>• [Mimikatz `dpapi::masterkey` 解密指南](https://github.com/gentilkiwi/mimikatz) |
 
-| 規劃作戰階段 | 核心作戰任務 (Operational Scope) | 預計涵蓋技術方向與工具鏈 | 推薦實兵演練平台 |
-| :--- | :--- | :--- | :--- |
-| **Phase 4: Host Foothold & PrivEsc**<br>(主機立足與本地提權) | 突破作業系統邊界，從低特權 Shell 躍遷至系統最高特權 (`root` / `NT AUTHORITY\SYSTEM`) | • **Linux**: SUID/SGID 特權二進位濫用 (GTFOBins)、Sudo 配置錯誤、LD_PRELOAD 共享庫劫持、核心漏洞提權 (Dirty Pipe / Dirty COW)<br>• **Windows**: 未加引號服務路徑 (Unquoted Path)、弱權限服務註冊表、Token 模擬 (SeImpersonate / Potato 系列)、AlwaysInstallElevated | • [GTFOBins](https://gtfobins.github.io/)<br>• [HTB Starting Point: Archetype / Responder](https://app.hackthebox.com/starting-point)<br>• [OverTheWire: Bandit](https://overthewire.org/wargames/bandit/) |
-| **Phase 5: Pivoting & Lateral Movement**<br>(跨網段穿透與 C2 基礎設施) | 突破多層次內網隔離，建立隱蔽命令與控制 (C2) 鏈路，實施多跳板穿透與橫向漫遊 | • **內網隧道與代理**: Chisel、Ligolo-ng (TUN 網卡代理)、FRP 反向代理、SSH SOCKS5 動態轉發、Proxychains 多級串接<br>• **命令與控制 (C2)**: Sliver、Havoc、Mythic 框架部署、Malleable C2 流量特徵偽裝、Cloudflare CDN 域名重定向 (Domain Fronting) | • [BishopFox/Sliver](https://github.com/BishopFox/sliver)<br>• [Havoc C2](https://github.com/HavocFramework/Havoc)<br>• [jpillora/chisel](https://github.com/jpillora/chisel)<br>• [nicocha30/ligolo-ng](https://github.com/nicocha30/ligolo-ng) |
-| **Phase 6: Evasion & Specialized Targets**<br>(防禦規避與前沿環境攻防) | 對抗現代 EDR/XDR 動態遙測、穿透記憶體監控、突破公有雲邊界與雲原生容器逃逸 | • **防禦規避**: 直接系統調用 (Direct Syscalls / SysWhispers)、AMSI / ETW 記憶體動態修補、進程鏤空 (Process Hollowing)、無檔案反射式注入<br>• **雲端與雲原生**: AWS/Azure IMDSv2 SSRF 憑證竊取、IAM 提權利用 (CloudGoat)、Kubernetes 特權容器逃逸、ServiceAccount 權限提升 | • [RhinoSecurityLabs: CloudGoat](https://github.com/RhinoSecurityLabs/cloudgoat)<br>• [madhuakula: Kubernetes Goat](https://github.com/madhuakula/kubernetes-goat)<br>• [Flaws.cloud](http://flaws.cloud/)<br>• [Pwned Labs](https://pwnedlabs.io/) |
+---
+
+## 🌪️ Phase 5: 內網橫向與穿透代理 (Pivoting & Lateral Movement)
+> 💡 **作戰任務**：撕開企業深層子網隔離。部署現代化 C2 命令與控制基礎設施，利用多元協議（SOCKS5、L3 TUN、DNS/ICMP、SMB 命名管道）構建穩定可靠的跳板通道，執行高隱蔽無檔案橫向漫遊。
+>
+> 📋 **本階段涵蓋領域說明 (Domains Overview)**：
+> - [**R20：網路隧道穿透與跳板代理**](playbooks/phase_5_pivoting_c2/R20_network_tunneling_proxy_pivoting/)：Chisel 反向隧道、Ligolo-ng TUN 代理、SSH 動態轉發、FRP 高性能代理、DNS/ICMP 隱蔽隧道、Socat/Netsh PortProxy、SMB 命名管道隧道。
+> - [**R21：命令與控制基礎設施 (C2)**](playbooks/phase_5_pivoting_c2/R21_command_and_control_infrastructure/)：Sliver C2 跨平台控制架構、Malleable C2 流量特徵混淆、Havoc C2 Demon Agent、Sleep Mask 記憶體休眠混淆、WMI/WinRM 無檔案橫向執行、RDP 會話劫持與 Shadow。
+
+| 難度 | 細分實戰技術點 (Sub-Topic & Technique) | 🎯 具體線上靶場、實戰房間、開源數據集與題目清單 (Practicable Challenges & Labs) |
+| :---: | :--- | :--- |
+| **🟡 L2** | **R20.1 Chisel 反向 SOCKS5 隧道與 HTTP 穿透**<br>(WebSocket 協定封裝、Yamux 多路複用、出站防火牆突破) | • [jpillora/chisel 官方開源專案與實戰手冊](https://github.com/jpillora/chisel)<br>• [HTB Starting Point: Oopsie (跨網段代理)](https://app.hackthebox.com/starting-point) |
+| **🔴 L3** | **R20.2 Ligolo-ng TUN 虛擬網卡多層次代理跳板**<br>(L3 TUN 網卡代理、iptables 路由串接、零 Proxychains 全局漫遊) | • [nicocha30/ligolo-ng 官方倉庫與教學](https://github.com/nicocha30/ligolo-ng)<br>• [GOAD: 多網段跨子網域 Ligolo-ng 穿透挑戰](https://github.com/Orange-Cyberdefense/GOAD) |
+| **🟢 L1** | **R20.3 SSH 動態轉發與 Proxychains 多級跳板**<br>(`ssh -D`、動態 SOCKS4/5 代理、Proxychains 鏈式串聯) | • [OverTheWire: Bandit (SSH 端口轉發演練)](https://overthewire.org/wargames/bandit/)<br>• [HTB Starting Point: Pennyworth (SSH 隧道)](https://app.hackthebox.com/starting-point) |
+| **🟡 L2** | **R20.4 FRP 高性能多協議內網穿透與埠轉發**<br>(Fast Reverse Proxy、TCP/KCP 穿透、自定義域名與連接池複用) | • [fatedier/frp 官方開源倉庫](https://github.com/fatedier/frp)<br>• [GOAD: 內網深層服務映射至外部 VPS](https://github.com/Orange-Cyberdefense/GOAD) |
+| **🔴 L3** | **R20.5 DNS 與 ICMP 隱蔽隧道穿透受限網路**<br>(dnscat2、Iodine L3 TUN、Base32 標籤編碼、PingTunnel) | • [iagox86/dnscat2 (DNS 隱蔽控制通道官方倉庫)](https://github.com/iagox86/dnscat2)<br>• [yarrick/iodine (IP over DNS 穿透系統)](https://github.com/yarrick/iodine) |
+| **🟢 L1** | **R20.6 Socat 與 Netsh PortProxy 雙向流量轉發與重定向**<br>(Windows 原生 `netsh interface portproxy`、Linux Socat 雙向中繼) | • [Microsoft Learn: Netsh PortProxy 官方指令文檔](https://learn.microsoft.com/)<br>• [PayloadsAllTheThings: Network Pivoting with Netsh](https://github.com/swisskyrepo/PayloadsAllTheThings) |
+| **🔴 L3** | **R20.7 SMB 命名管道隧道穿越完全隔離子網域**<br>(`\\pipe\` 跨主機串接、Peer-to-Peer C2 橫向中繼、零出站連線穿透) | • [BishopFox/sliver (Named Pipe Pivoting 實戰)](https://github.com/BishopFox/sliver)<br>• [GOAD: 完全隔離區 SMB 管道控制鏈路](https://github.com/Orange-Cyberdefense/GOAD) |
+| **🟡 L2** | **R21.1 Sliver C2 現代跨平台控制架構部署與操作**<br>(mTLS/WireGuard 通訊、Implant 生成、Armory 外掛擴充生態) | • [BishopFox/sliver 官方教學與快速上手指南](https://github.com/BishopFox/sliver/wiki)<br>• [GOAD: Sliver C2 跨網域滲透操作實兵環境](https://github.com/Orange-Cyberdefense/GOAD) |
+| **🔴 L3** | **R21.2 Malleable C2 流量特徵自定義與 CDN 隱蔽重定向**<br>(C2 Profile 偽裝微軟/CDN 流量、Domain Fronting、Cloudflare 轉發) | • [Cobalt Strike Malleable C2 Profile 官方範本庫](https://github.com/threatexpress/malleable-c2)<br>• [BishopFox/sliver: HTTP C2 Custom Profiles](https://github.com/BishopFox/sliver) |
+| **🔴 L3** | **R21.3 Havoc C2 現代化跨平台框架與 Demon Agent 實戰作戰**<br>(Qt GUI 客戶端、Go Teamserver、Demon C/ASM Agent、EDR 規避) | • [HavocFramework/Havoc 官方開源專案庫](https://github.com/HavocFramework/Havoc)<br>• [Havoc C2 官方操作指引與 Demon 配置手冊](https://havocframework.com/) |
+| **👑 L4** | **R21.4 C2 記憶體休眠混淆與呼叫堆疊欺騙**<br>(Ekko/Foliage 異步計時器 ROP 鏈、PAGE_NOACCESS 權限翻轉、Stack Spoofing) | • [Cracked5pider/Ekko (Sleep Obfuscation 官方開源庫)](https://github.com/Cracked5pider/Ekko)<br>• [KSec/SleepySp00f (呼叫堆疊欺騙範例庫)](https://github.com/) |
+| **🟡 L2** | **R21.5 WMI 與 WinRM 無檔案橫向移動與遠端執行**<br>(DCOM/RPC 135、Win32_Process.Create、Evil-WinRM、無磁碟殘留) | • [Hackplayers/evil-winrm (WinRM 橫向工具)](https://github.com/Hackplayers/evil-winrm)<br>• [Impacket `wmiexec.py` 實作手冊](https://github.com/fortra/impacket) |
+| **🟡 L2** | **R21.6 RDP 會話劫持與 Shadow 隱蔽無感監控**<br>(`tscon.exe` SYSTEM 提權無密碼切換、`mstsc /shadow` 靜默螢幕鏡像) | • [HTB Starting Point: Return (Windows 會話管理)](https://app.hackthebox.com/machines/Return)<br>• [PayloadsAllTheThings: RDP Session Hijacking](https://github.com/swisskyrepo/PayloadsAllTheThings) |
+
+---
+
+## 🥷 Phase 6: 防禦規避與前沿環境攻防 (Evasion & Specialized Targets)
+> 💡 **作戰任務**：正面擊穿頂級 EDR/XDR 動態遙測與行為檢測防線，達成端點記憶體全靜默執行；並跨越傳統邊界攻破雲端基礎設施 (AWS/Azure/GCP) 與雲原生 Kubernetes 容器叢集。
+>
+> 📋 **本階段涵蓋領域說明 (Domains Overview)**：
+> - [**R22：執行期防禦規避與端點對抗**](playbooks/phase_6_evasion_cloud/R22_defense_evasion_endpoint_runtime/)：Direct Syscalls、AMSI/ETW 記憶體修補、Process Hollowing、Early Bird APC 注入、PPID 欺騙與參數偽裝、Perun's Fart 磁碟脫鉤、Shellcode UUID 格式混淆、Defender 排除路徑濫用。
+> - [**R23：雲端基礎設施與容器逃逸**](playbooks/phase_6_evasion_cloud/R23_cloud_container_infrastructure_exploitation/)：雲端 IAM 提權與中繼資料濫用、Kubernetes 特權容器逃逸、S3 儲存桶枚舉與接管、Docker Socket 掛載逃逸、K8s RBAC 提權與 Secrets 轉儲。
+
+| 難度 | 細分實戰技術點 (Sub-Topic & Technique) | 🎯 具體線上靶場、實戰房間、開源數據集與題目清單 (Practicable Challenges & Labs) |
+| :---: | :--- | :--- |
+| **👑 L4** | **R22.1 直接系統調用 (Direct Syscalls) 與 EDR 鉤子繞過**<br>(SysWhispers、Hell's Gate、Halo's Gate、動態 SSN 解析、繞過用戶層 Hook) | • [jthuraisamy/SysWhispers2 官方開源庫](https://github.com/jthuraisamy/SysWhispers2)<br>• [am0nsec/HellsGate (直接系統調用官方實作)](https://github.com/am0nsec/HellsGate)<br>• [RedTeamOps: Syscalls 繞過實兵手冊](https://redteamops.io/) |
+| **🔴 L3** | **R22.2 AMSI 與 ETW 記憶體動態修補繞過**<br>(`AmsiScanBuffer` 字節覆寫、`EtwEventWrite` 靜音、繞過腳本安全日誌) | • [rasta-mouse/AmsiScanBufferBypass 範例倉庫](https://github.com/rasta-mouse)<br>• [PayloadsAllTheThings: AMSI Bypass 技巧全集](https://github.com/swisskyrepo/PayloadsAllTheThings) |
+| **🔴 L3** | **R22.3 進程鏤空 (Process Hollowing) 與隱蔽注入實施**<br>(掛起建立、`NtUnmapViewOfSection` 卸載、PE 標頭重建、Entrypoint 劫持) | • [m0nkm0nk/ProcessHollowing (經典鏤空實作)](https://github.com/m0nkm0nk/ProcessHollowing)<br>• [HTB Sherlocks: 進程注入事件取證分析](https://app.hackthebox.com/sherlocks) |
+| **🔴 L3** | **R22.4 Early Bird APC 佇列非同步注入技術**<br>(`CREATE_SUSPENDED`、QueueUserAPC、搶在 EDR DLL 注入前執行代碼) | • [Context Information Security: Early Bird APC 原始白皮書](https://www.cyberark.com/resources/threat-research-blog)<br>• [SafeBreach: Early Bird 注入開源利用碼](https://github.com/SafeBreach-Labs) |
+| **🟡 L2** | **R22.5 父進程 ID (PPID) 欺騙與命令列參數偽裝**<br>(`PROC_THREAD_ATTRIBUTE_PARENT_PROCESS`、PEB `CommandLine` 動態覆寫) | • [decoder-it/psgetsystem (PPID 欺騙與 Token 模擬)](https://github.com/decoder-it)<br>• [PayloadsAllTheThings: PPID Spoofing 實作指南](https://github.com/swisskyrepo/PayloadsAllTheThings) |
+| **👑 L4** | **R22.6 Perun's Fart 磁碟純淨 DLL 重載與 API 脫鉤技術**<br>(自磁碟重載 ntdll.dll、`.text` 節區比對覆寫、完全擦除 EDR Inline Hook) | • [secforce/PerunsFart 官方技術發布與源碼](https://github.com/secforce/PerunsFart)<br>• [RedTeamZone: API Unhooking 深度分析](https://redteam.zone/) |
+| **🔴 L3** | **R22.7 Shellcode 格式混淆與 UUID/MAC/IPv4 位址編碼**<br>(`UuidFromStringA`、`RtlEthernetStringToAddressA`、消滅二進位特徵與降低資訊熵) | • [ChaitanyaHaritash/Callback_Shellcode_Injection (UUID/MAC 編碼)](https://github.com/)<br>• [PayloadsAllTheThings: Obfuscation Techniques](https://github.com/swisskyrepo/PayloadsAllTheThings) |
+| **🟡 L2** | **R22.8 Windows Defender 篡改保護機制與排除路徑濫用**<br>(`Add-MpPreference -ExclusionPath`、Tamper Protection 邊界分析、免檢工作區) | • [Microsoft Learn: Windows Defender 排除項配置文檔](https://learn.microsoft.com/)<br>• [PayloadsAllTheThings: Defender Exclusions Abuse](https://github.com/swisskyrepo/PayloadsAllTheThings) |
+| **🟡 L2** | **R23.1 雲端 IAM 權限提升與中繼資料憑證濫用**<br>(AWS IMDSv1/v2 穿透、SSRF 取得 Instance Profile、CloudGoat IAM 提權) | • [RhinoSecurityLabs/cloudgoat (AWS 漏洞環境開源庫)](https://github.com/RhinoSecurityLabs/cloudgoat)<br>• [flaws.cloud (AWS 雲端滲透免費靶場)](http://flaws.cloud/)<br>• [Pwned Labs: AWS IAM 提權實戰演練](https://pwnedlabs.io/) |
+| **🔴 L3** | **R23.2 Kubernetes 特權容器逃逸與叢集控制權獲取**<br>(`--privileged` 特權標籤、`nsenter` 逃逸至宿主機 PID 命名空間、cgroups release_agent) | • [madhuakula/kubernetes-goat (K8s 脆弱叢集開源靶場)](https://github.com/madhuakula/kubernetes-goat)<br>• [BadPods (危險 Kubernetes Pod 配置利用全集)](https://github.com/BishopFox/badPods) |
+| **🟡 L2** | **R23.3 雲端儲存桶枚舉、權限配置失誤與子域名接管**<br>(S3 AllUsers 公開讀寫、Dangling DNS CNAME 懸空指針接管、S3Scanner) | • [flaws.cloud (S3 Bucket 權限配置失誤實兵挑戰)](http://flaws.cloud/)<br>• [sa7mon/S3Scanner (開源 S3 儲存桶探測器)](https://github.com/sa7mon/S3Scanner)<br>• [HTB Starting Point: Express (雲端儲存桶探測)](https://app.hackthebox.com/starting-point) |
+| **🟡 L2** | **R23.4 Docker Socket 掛載濫用與容器主機逃逸**<br>(`/var/run/docker.sock` 掛載、Docker REST API、創建宿主機根目錄掛載容器) | • [madhuakula/kubernetes-goat: Docker in Docker 逃逸](https://github.com/madhuakula/kubernetes-goat)<br>• [SadServers: 容器安全與權限隔離修復](https://sadservers.com/)<br>• [PayloadsAllTheThings: Docker Escape](https://github.com/swisskyrepo/PayloadsAllTheThings) |
+| **🔴 L3** | **R23.5 Kubernetes RBAC 權限提升與全叢集 Secrets 轉儲**<br>(ServiceAccount JWT Token、`secrets (get/list)`、`pods/exec` 橫向穿透) | • [madhuakula/kubernetes-goat: RBAC 提權場景](https://github.com/madhuakula/kubernetes-goat)<br>• [Pwned Labs: Compromising Kubernetes Cluster via Overprivileged Pod](https://pwnedlabs.io/) |

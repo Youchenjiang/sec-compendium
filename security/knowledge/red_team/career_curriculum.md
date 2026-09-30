@@ -1,7 +1,7 @@
 # 🚀 現代紅隊實戰通關課表與作戰主線 (Red Team Career & Operational Curriculum)
 
-> 💡 **核心精神**：本文件將紅隊 17 大領域與 70 項實戰 Playbook，由「扁平分散的技術手冊」昇華為**「以作戰鏈 (Cyber Kill Chain) 與企業滲透為核心的修課主線」**。  
-> **徹底打破「平鋪流水號 (R01~R17)」帶來的結構割裂**，依照真實滲透作戰順序推進：從外網情報偵察、邊界打點突破，一路挺進至企業 Active Directory 網域統治。
+> 💡 **核心精神**：本文件將紅隊 23 大領域與 110 項實戰 Playbook，由「扁平分散的技術手冊」昇華為**「以作戰鏈 (Cyber Kill Chain) 與企業實戰滲透為核心的修課主線」**。  
+> **徹底打破平鋪號碼帶來的結構割裂**，依照真實滲透作戰全生命週期推進：從外網情報偵察、邊界打點突破、AD 網域統治，推進至本機提權、隧道 C2 與前沿防禦規避/雲原生攻防。
 
 ---
 
@@ -11,22 +11,22 @@
 graph TD
     P1["Phase 1: Recon & Attack Surface<br>外部情報與資產暴露面 (R01~R05，19 篇)"] --> P2["Phase 2: Perimeter & Web Exploitation<br>邊界打點與 Web/API 突破 (R06, R09~R15，30 篇)"]
     P2 --> P3["Phase 3: Domain Dominance & Identity<br>企業身分與 AD 網域統治 (R07, R08, R16, R17，21 篇)"]
-    P3 -.-> P4["Phase 4: Host Foothold & PrivEsc<br>主機立足與本地提權 (Linux / Windows 本機提權)"]
-    P4 -.-> P5["Phase 5: Pivoting & Lateral Movement<br>內網橫向、隧道穿透與 C2 基礎設施"]
-    P5 -.-> P6["Phase 6: Evasion & Specialized Targets<br>防禦規避、免殺繞過與雲原生 / K8s 逃逸"]
+    P3 --> P4["Phase 4: Host Foothold & PrivEsc<br>主機立足與本地提權 (R18~R19，14 篇)"]
+    P4 --> P5["Phase 5: Pivoting & Lateral Movement<br>內網橫向、隧道穿透與 C2 基礎設施 (R20~R21，13 篇)"]
+    P5 --> P6["Phase 6: Evasion & Specialized Targets<br>防禦規避、免殺繞過與雲原生 / K8s 逃逸 (R22~R23，13 篇)"]
 ```
 
 ---
 
 ## 🎯 學習負擔消解：三層能力分類 (Core / Specialization / Advanced)
 
-面對 70 篇原子手冊，**不需要死記硬背**！請依據三層分流逐步推進：
+面對 110 篇原子手冊，**不需要死記硬背**！請依據三層分流逐步推進：
 
 | 能力層級 | 包含篇數 | 核心定位與目標 | 適合對象 |
 | :--- | :---: | :--- | :--- |
-| **🎯 核心主幹 (Core Track)** | **25 篇** | 外網快速打點、注入漏洞利用、Kerberoasting/PtH/DCSync、BloodHound 圖譜分析之**絕對必修**。掌握此 25 篇即具備企業外網突破與內網橫向的主力作戰能力！ | 滲透測試員、競賽攻防手、紅隊新手 |
-| **🔬 領域專精 (Specialization Track)** | **32 篇** | 請求走私 (Smuggling)、反序列化 (Deserialization)、AD CS 憑證範本濫用 (ESC1~ESC8)、進階 ACL 劫持。按滲透目標情境與隊伍分工專攻。 | 資深滲透顧問、AD 專案研究員、Web 安全專家 |
-| **🚀 高階前沿 (Advanced Track)** | **13 篇** | 邊界架構拓撲推導、Golden/Silver Ticket 偽造、DCSync/DCShadow 底層注入、併發競態 (Race Condition) 深度利用。 | 紅隊技術負責人、APT 模擬專家、全真攻防推演主力 |
+| **🎯 核心主幹 (Core Track)** | **40 篇** | 外網快速打點、注入漏洞利用、Kerberoasting/PtH/DCSync、Linux/Windows 經典提權、Chisel/Ligolo-ng 隧道、Sliver C2 之**絕對必修**。掌握此 40 篇即具備企業全鏈路滲透的主力作戰能力！ | 滲透測試員、競賽攻防手、紅隊主力 |
+| **🔬 領域專精 (Specialization Track)** | **48 篇** | 請求走私 (Smuggling)、反序列化 (Deserialization)、AD CS (ESC1~ESC8)、UAC Bypass、DPAPI 萃取、FRP/DNS 隧道、Havoc C2、Docker 逃逸。按滲透目標情境與隊伍分工專攻。 | 資深滲透顧問、AD 專案研究員、內網/雲端專家 |
+| **🚀 高階前沿 (Advanced Track)** | **22 篇** | 邊界架構拓撲推導、Golden/Silver Ticket 偽造、DCShadow 注入、LSASS PPL 規避、Sleep Mask 記憶體混淆、Direct/Indirect Syscalls、Perun's Fart 脫鉤、K8s RBAC 提權。 | 紅隊架構師、APT 模擬專家、全真攻防推演負責人 |
 
 ---
 
@@ -97,10 +97,45 @@ graph TD
 
 ---
 
-## 🔮 未來作戰擴充槽位 (Phase 4 ~ Phase 6)
+## ⚡ Phase 4: Host Foothold & PrivEsc (主機立足與本地提權)
 
-| 規劃階段 | 核心任務 | 涵蓋技術方向 |
+> 💡 **階段目標**：突破作業系統內部防護邊界。從低權限 Shell 躍遷至系統最高特權 (`root` / `NT AUTHORITY\SYSTEM`)，並提取本機憑證作為內網橫向素材。
+
+### 必修核心清單
+1. **R18 Linux 主機本地提權**：SUID/SGID 特權二進位 (`R18.1`)、Sudo 弱配置 (`R18.2`)、核心漏洞 Dirty Pipe (`R18.3`)、Capabilities 濫用 (`R18.4`)、定時任務與通配符 (`R18.5`)、NFS no_root_squash (`R18.6`)。
+2. **R19 Windows 主機本地提權**：未加引號服務路徑 (`R19.1`)、Token 模擬 Potato 系列 (`R19.2`)、AlwaysInstallElevated (`R19.3`)、UAC Bypass (`R19.4`)、DLL 搜尋順序劫持 (`R19.5`)、SAM/SYSTEM 轉儲 (`R19.6`)、LSASS 記憶體導出與 PPL 規避 (`R19.7`)、DPAPI MasterKey 解密 (`R19.8`)。
+
+| 領域編號 | 涵蓋技術手冊路徑 | 核心重點 |
 | :--- | :--- | :--- |
-| **Phase 4: Host Foothold & PrivEsc** | 主機本地立足與提權 | Linux SUID / Sudo / 核心漏洞提權；Windows 服務配置、Token 模擬、SeImpersonate 濫用 |
-| **Phase 5: Pivoting & Lateral Movement** | 跨網段穿透與 C2 基礎設施 | Chisel / Ligolo-ng 內網隧道、Sliver / Havoc C2 隱蔽通訊、可塑性 C2 Profile 配置 |
-| **Phase 6: Evasion & Specialized Targets** | 防禦規避與前沿環境攻防 | EDR 鉤子繞過 (Direct Syscalls)、AMSI/ETW 記憶體修補、AWS/Azure 雲端提權、K8s 容器逃逸 |
+| **R18** | [`playbooks/phase_4_host_privesc/R18_linux_host_privilege_escalation/`](playbooks/phase_4_host_privesc/R18_linux_host_privilege_escalation/) | Linux SUID、Sudoers、POSIX Capabilities、Dirty Pipe 核心提權 |
+| **R19** | [`playbooks/phase_4_host_privesc/R19_windows_host_privilege_escalation/`](playbooks/phase_4_host_privesc/R19_windows_host_privilege_escalation/) | Windows 服務、Token 模擬、UAC 繞過、LSASS 轉儲、DPAPI 憑證萃取 |
+
+---
+
+## 🌪️ Phase 5: Pivoting & Lateral Movement (內網橫向與穿透代理)
+
+> 💡 **階段目標**：撕開企業多層次網路隔離。建立高效能內網穿透隧道與現代化 C2 基礎設施，實施無檔案橫向漫遊與深層控制。
+
+### 必修核心清單
+1. **R20 網路隧道穿透與跳板代理**：Chisel 反向 SOCKS5 (`R20.1`)、Ligolo-ng TUN 代理 (`R20.2`)、SSH 動態轉發 (`R20.3`)、FRP 高性能穿透 (`R20.4`)、DNS/ICMP 隱蔽隧道 (`R20.5`)、Socat/Netsh PortProxy (`R20.6`)、SMB 命名管道隧道 (`R20.7`)。
+2. **R21 命令與控制基礎設施 (C2)**：Sliver C2 部署操作 (`R21.1`)、Malleable C2 流量偽裝 (`R21.2`)、Havoc C2 Demon Agent (`R21.3`)、Sleep Mask 記憶體混淆 (`R21.4`)、WMI/WinRM 無檔案橫向 (`R21.5`)、RDP 會話劫持與 Shadow (`R21.6`)。
+
+| 領域編號 | 涵蓋技術手冊路徑 | 核心重點 |
+| :--- | :--- | :--- |
+| **R20** | [`playbooks/phase_5_pivoting_c2/R20_network_tunneling_proxy_pivoting/`](playbooks/phase_5_pivoting_c2/R20_network_tunneling_proxy_pivoting/) | SOCKS5 代理、L3 TUN 網卡跳板、DNS/ICMP 穿透、SMB 命名管道 |
+| **R21** | [`playbooks/phase_5_pivoting_c2/R21_command_and_control_infrastructure/`](playbooks/phase_5_pivoting_c2/R21_command_and_control_infrastructure/) | Sliver/Havoc C2 架構、Malleable 偽裝、Sleep Mask 混淆、WMI/WinRM 橫向 |
+
+---
+
+## 🥷 Phase 6: Evasion & Specialized Targets (防禦規避與前沿環境攻防)
+
+> 💡 **階段目標**：穿透現代 EDR/XDR 動態防禦矩陣，實現端點記憶體免殺；攻破雲原生架構與容器邊界，統治公有雲與 Kubernetes 叢集。
+
+### 必修核心清單
+1. **R22 執行期防禦規避與端點對抗**：直接系統調用 Direct Syscalls (`R22.1`)、AMSI/ETW 記憶體動態修補 (`R22.2`)、進程鏤空 Process Hollowing (`R22.3`)、Early Bird APC 佇列注入 (`R22.4`)、PPID 欺騙與參數偽裝 (`R22.5`)、Perun's Fart 磁碟脫鉤 (`R22.6`)、Shellcode UUID 編碼混淆 (`R22.7`)、Defender 排除路徑濫用 (`R22.8`)。
+2. **R23 雲端基礎設施與容器逃逸**：雲端 IAM 提權與中繼資料憑證濫用 (`R23.1`)、Kubernetes 特權容器逃逸 (`R23.2`)、雲端儲存桶枚舉與子網域接管 (`R23.3`)、Docker Socket 掛載逃逸 (`R23.4`)、Kubernetes RBAC 提權與全叢集 Secrets 轉儲 (`R23.5`)。
+
+| 領域編號 | 涵蓋技術手冊路徑 | 核心重點 |
+| :--- | :--- | :--- |
+| **R22** | [`playbooks/phase_6_evasion_cloud/R22_defense_evasion_endpoint_runtime/`](playbooks/phase_6_evasion_cloud/R22_defense_evasion_endpoint_runtime/) | Direct Syscalls、AMSI/ETW Patch、Early Bird APC、PPID 欺騙、Unhooking |
+| **R23** | [`playbooks/phase_6_evasion_cloud/R23_cloud_container_infrastructure_exploitation/`](playbooks/phase_6_evasion_cloud/R23_cloud_container_infrastructure_exploitation/) | 雲端 IAM/Metadata 濫用、S3 儲存桶接管、Docker Socket 逃逸、K8s RBAC 提權 |
