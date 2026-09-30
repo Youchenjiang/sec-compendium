@@ -70,7 +70,10 @@
 3. 🟣 **[紫隊全景熱圖展示層 (layers/enterprise_attack_defense_layer.json)](layers/enterprise_attack_defense_layer.json)**  
    預先編譯的企業級紫隊演習覆蓋圖層，已標註雙軌驗證得分與對應技術清單。
 
-4. 🧪 **實體對抗模擬靶場**  
+4. 📋 **[紫隊技術規範與評分模型 (SPECIFICATION.md)](SPECIFICATION.md)**  
+   詳細定義 TTP 映射準則、L0~L4 防禦成熟度判定標準與 Navigator 圖層自動化編譯工作流。
+
+5. 🧪 **實體對抗模擬靶場**  
    - [Atomic Purple Range](../blue_team/playbooks/phase_6_capstone/ranges/01_atomic_purple_range/README.md)：Caldera + Ubuntu 22.04 + Auditd 自動化注入對抗環境。
    - [Splunk BOTS 實戰取證分析](../blue_team/playbooks/phase_6_capstone/ranges/02_splunk_bots_range/README.md)：百萬筆真實企業攻防流量溯源環境。
    - [APT 跨域實戰演練](../blue_team/playbooks/phase_6_capstone/ranges/03_apt_cross_domain_ctf/README.md)：多主機橫向移動與域滲透混合對抗場景。
