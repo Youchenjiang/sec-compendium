@@ -53,8 +53,22 @@ def sanitize_label(label_str):
     return label_str
 
 
+def sanitize_title(title_str):
+    if not title_str or not CONVENTIONAL_REGEX.match(title_str) or len(title_str) > 72:
+        raise ValueError(f"Invalid PR title: '{title_str}'")
+    if any(ch in title_str for ch in ["\n", "\r", '"', ";", "`", "$"]):
+        raise ValueError("Invalid character in PR title")
+    return title_str
+
+
 def get_safe_path(user_path):
     abs_path = os.path.realpath(os.path.abspath(user_path))
+    try:
+        common = os.path.commonpath([abs_path, PROJECT_ROOT])
+        if common != PROJECT_ROOT:
+            raise ValueError(f"Path outside repository: '{user_path}'")
+    except ValueError:
+        raise ValueError(f"Path outside repository: '{user_path}'")
     return abs_path
 
 
@@ -285,19 +299,20 @@ def handle_create(args):
 
     safe_base = sanitize_identifier(args.base, "base")
     safe_label = sanitize_label(args.label)
+    safe_title = sanitize_title(args.title)
 
     cmd = [
         "gh", "pr", "create",
         "--base", safe_base,
         "--head", branch,
-        "--title", args.title,
+        "--title", safe_title,
         "--body-file", temp_body_path,
         "--label", safe_label
     ]
 
     print("=" * 75)
     print("🚀 本地驗證 100% 通過，正在建立 GitHub Pull Request...")
-    print(f"   標題: {args.title}")
+    print(f"   標題: {safe_title}")
     print(f"   標籤: {safe_label}")
     print("=" * 75)
 

@@ -67,7 +67,20 @@ SUBJECT_REGEX = re.compile(
     rf"^({TYPE_PATTERN})(?:\(({SCOPE_PATTERN})\))?: [a-z0-9].*$"
 )
 VAGUE_REGEX = re.compile(r"^(update|misc|stuff|changes|fix bug|bug fix)$", re.IGNORECASE)
-REF_REGEX = re.compile(r"^[a-zA-Z0-9_./~^-]+(\.\.[a-zA-Z0-9_./~^-]+)?$")
+
+
+def is_safe_ref(ref_token):
+    return bool(ref_token and re.fullmatch(r"[a-zA-Z0-9_/~^-]+", ref_token))
+
+
+def validate_rev_range(rev_range):
+    if ".." in rev_range:
+        parts = rev_range.split("..", 1)
+        if is_safe_ref(parts[0]) and is_safe_ref(parts[1]):
+            return rev_range
+    elif is_safe_ref(rev_range):
+        return rev_range
+    raise ValueError(f"Invalid git rev_range specification: '{rev_range}'")
 
 GOVERNANCE_PATTERNS = ["docs/handover.md", "memory.md", ".agent/"]
 CODE_PATTERNS = [".py", ".sh", ".ps1", ".json", ".yml", ".yaml"]
@@ -99,9 +112,8 @@ def detect_base_ref():
 
 
 def get_commits(rev_range):
-    if not REF_REGEX.match(rev_range):
-        raise ValueError(f"Invalid git rev_range specification: '{rev_range}'")
-    raw = run_git(["log", "--format=%H %s", rev_range])
+    safe_range = validate_rev_range(rev_range)
+    raw = run_git(["log", "--format=%H %s", safe_range])
     if not raw:
         return []
     commits = []
