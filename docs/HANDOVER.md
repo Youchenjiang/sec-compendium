@@ -70,25 +70,71 @@
   - `R22_defense_evasion_endpoint_runtime/` (8 篇): Direct Syscalls、AMSI/ETW Patching、Process Hollowing、Early Bird APC 注入、PPID 欺騙與參數偽裝、Perun's Fart 磁碟脫鉤、Shellcode UUID 編碼、Defender 排除路徑濫用。
   - `R23_cloud_container_infrastructure_exploitation/` (5 篇): 雲端 IAM/Metadata 濫用、Kubernetes 特權容器逃逸、S3 儲存桶枚舉接管、Docker Socket 掛載逃逸、K8s RBAC 提權與 Secrets 轉儲。
 
+### ✅ 成果 4：召回紅隊作戰編排層 `operations/` (6 篇作戰方法論)
+從歷史封存分支中召回並正式編入主幹核心：
+* `00_target_intake_and_scope.md` (授權邊界、ROE 制定、測試界限確認)
+* `01_attack_surface_and_entry_routing.md` (攻擊面梳理、最佳進入路徑決策)
+* `02_foothold_and_privilege_pivots.md` (立足點評估、權限邊界跳板選擇)
+* `03_identity_and_lateral_movement_paths.md` (憑證與身分映射、橫向移動作戰路徑)
+* `04_execution_validation_and_failure_paths.md` (假陽性辨識、結構化失敗分析與回退)
+* `05_scenario_lesson_promotion.md` (實戰覆盤、去識別化沉澱為共通知識庫)
+* `README.md` (作戰編排層架構總覽，與藍隊 DFIR 鏈完整對齊)
+
+### ✅ 成果 5：徹底清除冗餘封存區 `tracks/.../archive/` (已完成)
+* 將創立宗旨與競賽定位考量濃縮合流至 `tracks/club/friday_study_group/README.md`。
+* 徹底刪除實體 `archive/` 目錄，全專案超連結 100% 暢通，消滅歷史目錄噪訊。
+
+### ✅ 成果 6：落成 Block 4 ~ Block 6 深度自學路徑 (共 9 篇新指南，全庫達 22 篇)
+為 Phase 4 ~ Phase 6 建立完整的深度自學體系，與前三階段完全對稱：
+* **`block_4_host_privesc/`**：
+  - `14_linux_privilege_escalation_internals.md` (SUID/Capabilities、Sudoers 弱配置、Dirty Pipe 核心髒頁覆寫、NFS)
+  - `15_windows_privilege_escalation_tokens_uac.md` (未加引號服務路徑、Potato 權杖模擬、Auto-Elevate UAC 繞過、DLL 劫持)
+  - `16_windows_credential_access_lsass_dpapi.md` (離線 Syskey SAM 轉儲、LSASS PPL 核心防護、BYOVD 驅動對抗、DPAPI 主金鑰解密)
+* **`block_5_pivoting_c2/`**：
+  - `17_network_traffic_tunneling_socks_proxies.md` (SOCKS5 協定、Chisel 反向隧道、Ligolo-ng TUN 虛擬網卡路由、DNS/ICMP 隱蔽外帶)
+  - `18_c2_frameworks_architecture_traffic_malleability.md` (Sliver/Havoc 架構、CDN 隱蔽重定向、Malleable 流量塑形、Sleep Mask 記憶體動態加密)
+  - `19_lateral_movement_protocols_session_hijacking.md` (SMB 命名管道、WMI/WinRM 無檔案遠端執行、Evil-WinRM、`tscon` RDP 會話劫持)
+* **`block_6_evasion_cloud/`**：
+  - `20_edr_evasion_syscalls_unhooking_injection.md` (EDR Inline Hook 剖析、Direct/Indirect Syscalls、Perun's Fart 磁碟脫鉤、AMSI/ETW Patching、Process Hollowing、Early Bird APC)
+  - `21_cloud_identity_metadata_iam_abuse.md` (IMDSv1/v2 差異、SSRF 竊取臨時憑證、21 種 IAM 提權利用鏈、S3 儲存桶覆寫投毒)
+  - `22_container_escape_kubernetes_cluster_exploitation.md` (特權容器逃逸、Docker Socket 掛載逃逸、K8s ServiceAccount JWT 存取、RBAC 提權與 etcd 轉儲)
+* **`learning_paths/README.md`**：升級為全景 6 大區塊、22 篇深度指南之終極導覽門戶。
+
+### ✅ 成果 7：藍隊專屬品質校驗器與雙軌一鍵校驗總入口 (已完成)
+* **`validate_blue_team_playbooks.py`**：為藍隊量身打造獨立之手冊品質稽核工具，精準檢驗 107 篇實戰手冊之七大黃金規格關鍵字（案發現場破題、第一動~第五動、靶場實戰、過關驗收）、行數門檻 (>=200 行) 與藍隊內部連結。
+* **`validate_playbooks.py` 升級為全能守門員**：整合執行藍隊 (107 篇) 與紅隊 (110 篇) 實戰手冊規範稽核，並對全專案所有 Markdown 文檔 (380 份，736 處內部連結) 執行全量斷鏈檢測。支援 `--all`、`--blue`、`--red`、`--links-only` 命令列參數。
+
+### ✅ 成果 8：紫隊全景對抗聯防體系與 ATT&CK 熱圖閉環 (已完成)
+* **`security/knowledge/purple_team/README.md`**：確立紫隊協同演練總綱、偵測在迴圈 (Detection-in-the-Loop) 生命週期與 L0~L4 成熟度評估模型。
+* **`attack_defense_matrix.md` (攻防全景聯防矩陣)**：橫跨 MITRE ATT&CK 14 大戰術，建立紅隊 110 篇手冊與藍隊 107 篇手冊的點對點對映表，詳列核心遙測來源 (Sysmon, Windows Event ID, Auditd, Zeek, Suricata, eBPF) 與應變對策。
+* **`SPECIFICATION.md` (紫隊技術規範與評分模型)**：定義 TTP 雙向實體關聯準則、L0~L4 防禦成熟度判定指標與 Navigator 圖層自動化編譯工作流。
+* **`purple_layer_generator.py`**：自動化解析攻防矩陣資料，校驗所有引用的紅藍手冊有效性，並一鍵產出合乎 MITRE ATT&CK Navigator v4.5 官方規範之 JSON 圖層檔案。
+* **`layers/enterprise_attack_defense_layer.json`**：預編譯之企業級紫隊演習覆蓋熱圖，可直接載入官方 Navigator Web 介面呈現實戰閉環。
+
+### ✅ 成果 9：四權分立提交規範與自動化 Commit 審核器 (已完成)
+* **`.agent/atomic_commit_rules.md` 重構**：確立「四權分立（目的層 Purpose / 功能層 Function / 脈絡層 Context / 治理層 Governance）」原子化原則，禁止搭便車（嚴禁將 `MEMORY.md`、`HANDOVER.md` 混入功能 commit），並強制規定長度 $\le 72$ 字元與白名單 scopes。
+* **`security/tools/lint_commits.py`**：本機端 Conventional Commits 與四權分立驗證腳本，嚴格對齊 `.github/workflows/policy.yml` 門禁標準，支援 `--base`、`--range` 與 `--strict` 模式。
+* **歷史 Commit 全面校驗**：重構歷史並審核全部分支提交，達成 100% 符合規範。
+
 ---
 
 ## 📊 三、 自動化品質驗證現狀 (100% 通過)
 
 執行指令：
 ```bash
-python security/tools/validate_red_team_playbooks.py
+# 1. 執行雙軌手冊與全庫超連結檢驗
+python security/tools/validate_playbooks.py
+
+# 2. 執行本機 Commit 政策與四權分立檢驗
+python security/tools/lint_commits.py --base origin/main
 ```
 
 當前全量測試統計結果：
-* `phase_1_recon_surface`         : 19 篇 | 總行數:  3,233 行 (平均: 170 行/篇)
-* `phase_2_perimeter_web`         : 30 篇 | 總行數:  5,459 行 (平均: 181 行/篇)
-* `phase_3_domain_dominance`      : 21 篇 | 總行數:  3,531 行 (平均: 168 行/篇)
-* `phase_4_host_privesc`          : 14 篇 | 總行數:  2,378 行 (平均: 169 行/篇)
-* `phase_5_pivoting_c2`           : 13 篇 | 總行數:  2,190 行 (平均: 168 行/篇)
-* `phase_6_evasion_cloud`         : 13 篇 | 總行數:  2,322 行 (平均: 178 行/篇)
-* ----------------------------------------------------------------------
-* 🏁 **全庫總計**：**110 篇特戰手冊** | **總行數: 19,113 行** (平均: 173 行/篇)
-* ✅ **合規狀態**：100% 通過（0 Errors），所有程式碼圍欄閉合、關鍵字章節全數齊備、篇幅嚴格落於 160 ~ 190 行高密度黃金區間。
+* 🔵 **藍隊全庫 (107 篇手冊 | 31,972 行 | 379 處超連結)**：100% 通過品質稽核。
+* 🔴 **紅隊全庫 (110 篇手冊 | 19,113 行 | 115 處超連結)**：100% 通過品質稽核。
+* 🟣 **紫隊全庫 (41 項核心 ATT&CK 技術對映 | 1 份 Navigator 圖層 | 1 份技術規範)**：100% 通過有效性檢驗。
+* 🌐 **全專案跨模組超連結**：全專案 **381 份 Markdown 文檔共 741 處內部超連結 100% 暢通，無任何死鏈！**
+* 🛡️ **Commit 治理政策**：全部分支 Commits **100% 符合 Conventional Commits 與長度 $\le 72$ 字元限制！**
 
 ---
 
@@ -97,5 +143,6 @@ python security/tools/validate_red_team_playbooks.py
 1. **遠端倉庫同步 (Push to Remote)**：
    - 目前所有原子化 Commits 皆安全保存在本地 `feature/red-team-curriculum` 分支。
    - 經用戶確認後，可執行 `git push origin feature/red-team-curriculum` 或發起 Pull Request 合併進主幹。
-2. **學習路徑 Phase 4~6 專題延伸 (可選)**：
-   - 若未來需進一步拓展理論教材，可於 `learning_paths/` 依據相同架構建立 `block_4_privesc/`、`block_5_pivoting_c2/` 與 `block_6_evasion_cloud/`。
+2. **靶場實體紫隊演習聯動**：
+   - 透過 `phase_6_capstone/ranges/01_atomic_purple_range` 進行 Caldera 與 Atomic Red Team 的自動化注入測試，驗證端點日誌即時產出。
+

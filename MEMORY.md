@@ -14,6 +14,12 @@
 ## 📋 Current Active Tasks
 - 專案架構與規範化整頓：確立「公共技術基石（`security/`） $\times$ 三大研訓專軌（`tracks/`） $\times$ CTFd 實戰靶場（`ctfd/`）」三足鼎立體系。
 - 嚴格落實 Git 原子化提交與分支政策，確保所有變更具備高可逆性與精準 scope 標註。
+- **四階段依序 PR 拆分與推進計畫 (PR Execution Plan)**：
+  - PR 1: `feat/red-team-curriculum` (紅隊 110 篇手冊 + 22 條自學路徑 + 6 篇作戰編排)
+  - PR 2: `feat/blue-team-validator` (藍隊專屬校驗器 + 全能雙軌超連結守門員)
+  - PR 3: `feat/purple-team-matrix` (紫隊對抗矩陣 + ATT&CK 熱圖 + 技術規範 SPECIFICATION.md)
+  - PR 4: `feat/governance-commit-linter` (四權分立提交規範 + 本機 Commit 審核器 lint_commits.py)
+  - 詳情見工件計畫書：`PR_SPLIT_AND_SUBMISSION_PLAN.md`。
 
 ---
 
@@ -23,14 +29,14 @@
   - `security/` (公共技術基石庫):
     - `knowledge/`:
       - `blue_team/`: Phase 0~6 藍隊職涯課表、31 大領域學習路徑、107 篇原子化實戰防禦手冊、實體靶場 ranges/
-      - `red_team/`: 16 大作戰維度全景索引、武器庫與攻防路徑
+      - `red_team/`: Phase 1~6 課表、23 大領域、110 篇原子特戰手冊、22 篇深度自學路徑 (Block 1~6)、作戰編排 operations/ (6 篇全流程方法論)
     - `practice/`:
       - `challenges/`: 8 大主流攻防平台 (HTB, THM, CyberDefenders, PortSwigger, etc.) 3,945+ 免費關卡目錄與全自動爬蟲
       - `exams/`: 金盾獎/技能競賽 A/B 卷全真題本解析、離線取證封包標本 (evidence/) 與考點 Cheatsheets
-    - `tools/`: Playbook 品質驗證器 (`validate_playbooks.py`) 與 Code Auditor 白箱審計引擎
+    - `tools/`: Playbook 品質驗證器 (`validate_playbooks.py`, `validate_red_team_playbooks.py`) 與 Code Auditor 白箱審計引擎
   - `tracks/` (三大研訓專軌庫):
     - `lab/`: 實驗室專屬深耕計畫 (180 天 90-Runs 課表與 CyLab 教室建置、金盾 30 天衝刺、HITCON Range 與 Wargame 案例庫)
-    - `club/`: NCtfU 資安社讀書會 (週五讀書會雙軌課表、Discord 分流、CTF 戰隊 6 個月培訓與出國指南)
+    - `club/`: NCtfU 資安社讀書會 (週五讀書會 14 週雙軌課表、Discord 分流、CTF 戰隊 6 個月培訓與出國指南，已徹底清除冗餘 archive/ 歷史目錄)
     - `courses/`: 大學學術課程與教學出題專軌 (中央資管陳奕明教授《電腦網路安全》14 週課表與 CyLab 出題指南)
   - `ctfd/` (實戰評測靶場模組):
     - `event_guide.md`: 🏆 中央資管碩一茶會 Mini-CTF 全套活動手冊暨官方解題指南 (Write-Up)
@@ -93,4 +99,18 @@
     - **專案全庫 Git 排除規則與部署腳本對齊**：在 `.gitignore` 補齊 OS 桌面中繼資料（`.DS_Store`、`Thumbs.db` 等）與 Zig 編譯快取（`.zig-cache/`、`zig-out/`），並同步更新 `ctfd/install.sh` 提示訊息，完整涵蓋 `sync_challenges.py` 與 `send_final_top10.py` 雙重維運能力。
     - **全庫 Shell 腳本執行權限與專軌導覽補齊**：使用 `git update-index --chmod=+x` 為全庫 4 份 `.sh` 腳本標記標準 POSIX 執行位元（`100755`），並在 `tracks/README.md` 補齊 HITCON 2026 Wargame 實戰案例庫索引，全專案 235 份 Markdown 超連結 100% 暢通。
     - **安全審計器暫態 IO 競爭防護**：強化 `security/tools/code_auditor/core/scanner_utils.py` 之 `read_php_file`，在檔案讀取時兼捕 `(PermissionError, OSError)` 暫態檔案鎖，並增至 5 次指數退避重試，徹底消除 Windows/CI 環境下快速單元測試的偶發 IO 競爭，15/15 測試穩定通過。
+  - **2026-09-30 紅藍紫三位一體大成：紅隊自學路徑補齊、雙軌校驗器與紫隊對抗聯防矩陣落地**：
+    - **紅隊自學指南全量落成 (Block 1~6, 22 篇)**：新增 Block 4 (14~16 本機提權與身分憑據)、Block 5 (17~19 內網穿透與 C2 指揮)、Block 6 (20~22 EDR 規避與雲原生滲透) 共 9 篇深度指南，全庫達成 22 條完整自學路徑。
+    - **方向一 (藍隊專屬品質校驗器與雙軌一鍵總入口)**：
+      - 建立獨立 `security/tools/validate_blue_team_playbooks.py`，檢驗藍隊 107 篇手冊之七大黃金規格與行數門檻。
+      - 升級 `security/tools/validate_playbooks.py` 為全能一鍵雙軌守門員，統一檢驗藍隊 107 篇、紅隊 110 篇手冊與全庫跨模組斷鏈，支援 `--all`, `--blue`, `--red`, `--links-only`。
+    - **方向二 (紫隊對抗聯防體系與 ATT&CK 熱圖閉環)**：
+      - 建立 `security/knowledge/purple_team/`，包含營運架構 `README.md`、橫跨 ATT&CK 14 大戰術之 `attack_defense_matrix.md`（紅藍 1:1 映射 41 項關鍵 TTP）。
+      - 撰寫 `purple_layer_generator.py`，自動驗證引用手冊並匯出標準 MITRE ATT&CK Navigator v4.5 JSON Layer（`layers/enterprise_attack_defense_layer.json`）。
+      - 撰寫 `SPECIFICATION.md`，定義 TTP 雙向映射標準、L0~L4 防禦成熟度指標與圖層編譯流程。
+    - **方向三 (治理強化與自動化 Commit 審核器)**：
+      - 重構 `.agent/atomic_commit_rules.md`，制定「四權分立（目的/功能/脈絡/治理）」原子化提交法則，嚴禁搭便車（HANDOVER/MEMORY 混裝）。
+      - 撰寫 `security/tools/lint_commits.py`，本機自動化校驗 Conventional Commits 正則、白名單 scope、72 字元上限與四權分立搭便車偵測。
+      - 重構與校驗全部分支 Commit 歷史，達成全庫 100% 合規。
+    - **全庫超連結與規範 100% 綠燈**：全專案 381 份 Markdown 文檔共 741 處內部超連結 100% 暢通，無任何死鏈！
   - **嚴格原子化提交**：全流程無任何 `git add .` 或 `git add -A`，全部採顯式檔案暫存，提交歷史極度乾淨且每步可獨立 Revert。
