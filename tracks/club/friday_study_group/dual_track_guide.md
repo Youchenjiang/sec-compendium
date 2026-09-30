@@ -49,4 +49,3 @@ flowchart TD
 
 * 👉 **[14 週完整雙軌自適應課表 (v2.5 最新實行版)](curriculum_14weeks.md)**：包含每週核心主題、Track 101 與 Track 201 每週題目對照表
 * 👉 **[紅藍對稱專案參考](purple_team_ref.md)**：紅藍對稱專項知識點與對抗參考
-* 👉 **[歷史存檔與背景脈絡](archive/goals_and_vision.md)**：讀書會創立理念與投入考量

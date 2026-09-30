@@ -16,12 +16,7 @@ tracks/club/
     ├── README.md                  # 週五讀書會總指南與運作機制
     ├── curriculum_14weeks.md      # 14 週完整雙軌自適應課表 (v2.5 最新實行版)
     ├── dual_track_guide.md        # 雙軌機制決策與 Discord 分流運作手冊
-    ├── purple_team_ref.md         # 紅藍對稱攻防題目與作戰參考
-    └── archive/                   # 🗄️ 創立初期脈絡與歷史題表存檔
-        ├── README.md              # 歷史歸檔說明
-        ├── goals_and_vision.md    # 創立定位、學習目標與競賽考量
-        ├── classic_ctf_practice_table.md # 舊版每週題目認領存檔
-        └── officer_handover_notes.md # 幹部交接筆記
+    └── purple_team_ref.md         # 紅藍對稱攻防題目與作戰參考
 ```
 
 ---
