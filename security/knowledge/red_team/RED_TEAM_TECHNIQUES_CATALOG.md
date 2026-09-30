@@ -53,36 +53,36 @@
 
 ### 📁 R09_application_authentication_session_authorization_state
 - **路徑**：`playbooks/phase_2_perimeter_web/R09_application_authentication_session_authorization_state/`
-- **R09.1_application_session_token_forgery.md**：應用程式 Session Token 偽造與簽章破壞
-- **R09.2_application_session_fixation_adoption.md**：應用程式 Session Fixation 攻擊實施
-- **R09.3_broken_object_level_authorization.md**：物件層級存取控制失效 (BOLA / IDOR) 利用
-- **R09.4_broken_function_level_authorization.md**：功能層級存取控制失效 (BFLA) 越權利用
-- **R09.5_authentication_session_replay_bypass.md**：認證工作階段重放與防護繞過
+- **R09.1_application_session_state_forgery_validation_bypass.md**：應用程式 Session Token 偽造與簽章破壞
+- **R09.2_session_fixation.md**：應用程式 Session Fixation 攻擊實施
+- **R09.3_object_level_authorization_bypass.md**：物件層級存取控制失效 (BOLA / IDOR) 利用
+- **R09.4_function_level_authorization_bypass.md**：功能層級存取控制失效 (BFLA) 越權利用
+- **R09.5_application_session_replay_control_bypass.md**：認證工作階段重放與防護繞過
 
 ### 📁 R10_interpreter_query_expression_injection
 - **路徑**：`playbooks/phase_2_perimeter_web/R10_interpreter_query_expression_injection/`
-- **R10.1_sql_query_structure_injection.md**：SQL 查詢語法樹破壞與注入利用
-- **R10.2_operating_system_command_interpreter_injection.md**：作業系統命令直譯器注入突破
-- **R10.3_server_side_template_expression_injection.md**：伺服器端模板引擎表示式注入 (SSTI)
+- **R10.1_sql_query_injection.md**：SQL 查詢語法樹破壞與注入利用
+- **R10.2_os_command_shell_injection.md**：作業系統命令直譯器注入突破
+- **R10.3_server_side_template_injection.md**：伺服器端模板引擎表示式注入 (SSTI)
 
 ### 📁 R11_server_side_resource_backend_trust
 - **路徑**：`playbooks/phase_2_perimeter_web/R11_server_side_resource_backend_trust/`
 - **R11.1_server_side_request_forgery.md**：伺服器端請求偽造 (SSRF) 與內網穿透
-- **R11.2_file_path_traversal_arbitrary_file_read.md**：檔案路徑穿越與任意檔案讀取
+- **R11.2_file_path_traversal.md**：檔案路徑穿越與任意檔案讀取
 - **R11.3_local_file_inclusion.md**：本機檔案包含 (LFI) 漏洞利用
 - **R11.4_remote_file_inclusion.md**：遠端檔案包含 (RFI) 漏洞利用
 
 ### 📁 R12_serialization_object_binding_state_reconstruction
 - **路徑**：`playbooks/phase_2_perimeter_web/R12_serialization_object_binding_state_reconstruction/`
-- **R12.1_insecure_deserialization_object_injection.md**：不安全反序列化與物件注入攻擊
+- **R12.1_unsafe_deserialization_object_injection.md**：不安全反序列化與物件注入攻擊
 - **R12.2_xml_external_entity_processing_abuse.md**：XML 外部實體 (XXE) 解析機制濫用
-- **R12.3_mass_assignment_object_binding_abuse.md**：物件自動綁定濫用 (Mass Assignment)
+- **R12.3_mass_assignment_unsafe_object_binding.md**：物件自動綁定濫用 (Mass Assignment)
 
 ### 📁 R13_application_message_framing_routing_intermediary_semantics
 - **路徑**：`playbooks/phase_2_perimeter_web/R13_application_message_framing_routing_intermediary_semantics/`
-- **R13.1_http_request_smuggling_message_framing_abuse.md**：HTTP 請求走私與訊息長度邊界混淆
-- **R13.2_web_cache_poisoning_routing_manipulation.md**：Web 快取投毒與中繼節點路由操控
-- **R13.3_host_forwarded_header_routing_trust_abuse.md**：Host 與 Forwarded 標頭路由信任濫用
+- **R13.1_http_request_smuggling_desynchronization.md**：HTTP 請求走私與訊息長度邊界混淆
+- **R13.2_web_cache_poisoning_cache_key_normalization_confusion.md**：Web 快取投毒與中繼節點路由操控
+- **R13.3_host_forwarded_header_routing_origin_selection_trust_abuse.md**：Host 與 Forwarded 標頭路由信任濫用
 
 ### 📁 R14_browser_cross_origin_trust
 - **路徑**：`playbooks/phase_2_perimeter_web/R14_browser_cross_origin_trust/`
@@ -145,19 +145,19 @@
 - **R18.2_linux_sudoers_misconfiguration_abuse.md**：Linux Sudo 授權弱點與環境變數劫持利用
 - **R18.3_linux_kernel_vulnerability_exploitation.md**：Linux 核心漏洞提權與 Dirty Pipe 實施
 - **R18.4_linux_capabilities_privilege_abuse.md**：Linux POSIX Capabilities 細粒度特權過度授予濫用
-- **R18.5_linux_cron_wildcards_systemd_timer_abuse.md**：Linux 定期任務通配符注入與 Systemd 定時器劫持
-- **R18.6_linux_nfs_no_root_squash_misconfiguration.md**：Linux NFS 弱配置 no_root_squash 與 SUID 遠程注入提權
+- **R18.5_linux_crontab_systemd_timer_abuse.md**：Linux 定期任務通配符注入與 Systemd 定時器劫持
+- **R18.6_linux_nfs_no_root_squash_abuse.md**：Linux NFS 弱配置 no_root_squash 與 SUID 遠程注入提權
 
 ### 📁 R19_windows_host_privilege_escalation
 - **路徑**：`playbooks/phase_4_host_privesc/R19_windows_host_privilege_escalation/`
 - **R19.1_windows_service_configuration_abuse.md**：Windows 服務權限缺陷與未加引號路徑提權
 - **R19.2_windows_token_impersonation_privilege_abuse.md**：Windows 權杖模擬與 SeImpersonatePotato 濫用
 - **R19.3_windows_always_install_elevated_abuse.md**：Windows 登錄檔 AlwaysInstallElevated MSI 提權
-- **R19.4_windows_uac_bypass_mock_directories.md**：Windows 使用者帳戶控制 (UAC) 繞過與模擬目錄劫持
-- **R19.5_windows_dll_search_order_hijacking.md**：Windows DLL 搜尋順序劫持與 Ghostpack 植入
-- **R19.6_windows_sam_system_security_registry_hives_dumping.md**：Windows SAM/SYSTEM 登錄檔配置單元磁碟備份轉儲與密鑰萃取
-- **R19.7_windows_lsass_dumping_mitigation_evasion.md**：Windows LSASS 記憶體憑證轉儲與 PPL 深度防護規避
-- **R19.8_windows_dpapi_masterkey_credential_extraction.md**：Windows 資料保護 API (DPAPI) MasterKey 解密與本機憑證萃取
+- **R19.4_windows_uac_bypass_registry_mocking.md**：Windows 使用者帳戶控制 (UAC) 繞過與模擬目錄劫持
+- **R19.5_windows_dll_hijacking_search_order.md**：Windows DLL 搜尋順序劫持與 Ghostpack 植入
+- **R19.6_windows_sam_system_hive_dumping.md**：Windows SAM/SYSTEM 登錄檔配置單元磁碟備份轉儲與密鑰萃取
+- **R19.7_windows_lsass_memory_credential_dumping.md**：Windows LSASS 記憶體憑證轉儲與 PPL 深度防護規避
+- **R19.8_windows_dpapi_secret_extraction.md**：Windows 資料保護 API (DPAPI) MasterKey 解密與本機憑證萃取
 
 ---
 

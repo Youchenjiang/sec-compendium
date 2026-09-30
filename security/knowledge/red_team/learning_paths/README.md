@@ -1,12 +1,12 @@
 # 🧭 紅隊全領域深度學習路徑全景導航庫 (Red Team Learning Paths Directory)
 
-> 💡 **核心精神**：本目錄為 [`../index.md`](../index.md) 中三大作戰階段、17 個攻擊核心領域量身打造的**「全流程深度自學與實戰突破指南」**。
+> 💡 **核心精神**：本目錄為 [`../index.md`](../index.md) 中六大作戰階段、23 個攻擊核心領域量身打造的**「全流程深度自學與實戰突破指南」**。
 >
 > 徹底解決「只有技術手冊、不知道怎麼學、缺乏系統化底層架構」的信心焦慮，每個模組皆包含：**📍 你在哪裡去哪裡（狀態對比）、🧱 第零關前置基礎、🗺️ 整體學習地圖（五階段時長）、各階段底層機制/封包結構/指令實作、以及 ✅ 本路徑通過檢查表（Checklist）**。
 >
-> 🚀 **實戰修課主線**：想知道按部就班的推薦學習順序？請直接參閱 [【現代紅隊實戰通關課表與作戰主線 (Phase 1 ~ Phase 6)】](../career_curriculum.md)（含 Phase 1 ~ Phase 6 全景作戰鏈、25 項 Core 核心必修與能力分流）。
+> 🚀 **實戰修課主線**：想知道按部就班的推薦學習順序？請直接參閱 [【現代紅隊實戰通關課表與作戰主線 (Phase 1 ~ Phase 6)】](../career_curriculum.md)（含 Phase 1 ~ Phase 6 全景作戰鏈、40 項 Core 核心必修與能力分流）。
 >
-> 🎯 **實戰題庫對照表**：所有 70 篇原子手冊與免費線上靶場（PortSwigger、HTB、picoCTF、GOAD）的逐題對照，請參閱 [【紅隊全領域實戰滲透與可練習題庫總表】](../index.md)。
+> 🎯 **實戰題庫對照表**：所有 110 篇原子手冊與免費線上靶場（PortSwigger、HTB、picoCTF、GOAD、SadServers、CloudGoat 等）的逐題對照，請參閱 [【紅隊全領域實戰滲透與可練習題庫總表】](../index.md)。
 
 ---
 
@@ -64,3 +64,19 @@
 - [**學習路徑 13：企業憑證服務 (AD CS) 核心原理與 ESC1~ESC8 攻擊鏈深度學習路徑**](block_3_domain_dominance/13_adcs_certificate_template_abuse.md)
   - **涵蓋領域**：R17 (ESC1~ESC4 範本濫用、ESC6 CA 全域 SAN 策略濫用、ESC7 管理特權、憑證信任錨點篡改)
   - **核心技術**：PKINIT 數位憑證換取 TGT 票證、ESC1 指定任意 SAN 偽造管理員憑證、ESC3 註冊代理代表申請、Certipy 工具鏈實戰、CA 私鑰外洩「黃金憑證」持久化。
+
+---
+
+## ⚡ 區塊四 ~ 區塊六：主機提權、內網穿透 C2 與防禦規避/雲原生 (Blocks 4 ~ 6 手冊直通)
+
+> 💡 **作戰任務**：深入端點作業系統底層與現代雲端架構。突破作業系統邊界獲取 Root/SYSTEM 權限、建立隱蔽多層代理與現代 C2 鏈路、並對抗 EDR/XDR 動態遙測與攻陷雲原生容器環境。本階段手冊已全面落地於 `playbooks/` 庫中：
+
+- **[Phase 4: 主機立足與本地提權 (14 篇)](../playbooks/phase_4_host_privesc/)**：
+  - [R18 Linux 主機本地提權](../playbooks/phase_4_host_privesc/R18_linux_host_privilege_escalation/)：SUID/SGID、Sudoers 弱配置、Dirty Pipe 核心提權、POSIX Capabilities、Cron 通配符、NFS no_root_squash。
+  - [R19 Windows 主機本地提權](../playbooks/phase_4_host_privesc/R19_windows_host_privilege_escalation/)：未加引號服務路徑、Token 模擬 Potato 系列、AlwaysInstallElevated、UAC Bypass、DLL 搜尋順序劫持、SAM/SYSTEM 轉儲、LSASS PPL 規避、DPAPI MasterKey。
+- **[Phase 5: 內網橫向與穿透代理 (13 篇)](../playbooks/phase_5_pivoting_c2/)**：
+  - [R20 網路隧道穿透與跳板代理](../playbooks/phase_5_pivoting_c2/R20_network_tunneling_proxy_pivoting/)：Chisel SOCKS5、Ligolo-ng TUN、SSH 轉發、FRP 反向代理、DNS/ICMP 隧道、Netsh PortProxy、SMB 命名管道。
+  - [R21 命令與控制基礎設施 (C2)](../playbooks/phase_5_pivoting_c2/R21_command_and_control_infrastructure/)：Sliver C2、Malleable C2 流量混淆、Havoc C2 Demon Agent、Sleep Mask 記憶體混淆、WMI/WinRM 橫向、RDP 會話劫持與 Shadow。
+- **[Phase 6: 防禦規避與前沿環境攻防 (13 篇)](../playbooks/phase_6_evasion_cloud/)**：
+  - [R22 執行期防禦規避與端點對抗](../playbooks/phase_6_evasion_cloud/R22_defense_evasion_endpoint_runtime/)：Direct Syscalls、AMSI/ETW Patching、Process Hollowing、Early Bird APC、PPID 欺騙、Perun's Fart 脫鉤、UUID 編碼、Defender 排除路徑濫用。
+  - [R23 雲端基礎設施與容器逃逸](../playbooks/phase_6_evasion_cloud/R23_cloud_container_infrastructure_exploitation/)：雲端 IAM 提權、Kubernetes 特權容器逃逸、S3 儲存桶接管、Docker Socket 掛載逃逸、K8s RBAC 提權與 Secrets 轉儲。
