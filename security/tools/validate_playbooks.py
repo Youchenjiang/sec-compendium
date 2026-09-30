@@ -85,13 +85,14 @@ def check_repo_wide_links():
 
 def main():
     parser = argparse.ArgumentParser(description="攻防原子實戰手冊全能自動化校驗器")
+    parser.add_argument("--all", action="store_true", help="執行雙軌手冊與全庫超連結全能稽核（預設）")
     parser.add_argument("--blue", action="store_true", help="僅執行藍隊手冊品質校驗")
     parser.add_argument("--red", action="store_true", help="僅執行紅隊手冊品質校驗")
     parser.add_argument("--links-only", action="store_true", help="僅執行全專案 Markdown 超連結校驗")
     args = parser.parse_args()
 
-    # 若未指定特定標籤，預設為雙軌全檢驗
-    run_all = not (args.blue or args.red or args.links_only)
+    # 若指定 --all 或未指定特定標籤，預設為雙軌全檢驗
+    run_all = args.all or not (args.blue or args.red or args.links_only)
 
     success = True
 
