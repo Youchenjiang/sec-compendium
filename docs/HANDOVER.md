@@ -3,7 +3,7 @@
 > **交接地點**：`docs/HANDOVER.md`  
 > **更新時間**：2026-09-30  
 > **交接對象**：接手本專案的下一任 AI 助理 / 資安工程師  
-> **當前狀態**：三大核心缺口已 100% 補齊，全庫 86 篇原子實戰手冊與 13 篇深度自學路徑全數落成！
+> **當前狀態**：六大作戰階段、23 大領域、全量 110 篇原子特戰手冊與 13 篇深度自學路徑 100% 全數落成！
 
 ---
 
@@ -11,9 +11,11 @@
 
 * **工作目錄**：`c:\Users\LabStrix\Documents\GitHub\Youchen\Security\red-team-curriculum`
 * **當前分支**：`feature/red-team-curriculum`（Working Tree 100% Clean）
-* **遠端追蹤**：未推送到 `origin`（本機歷史包含 55 個完整 Commits）
+* **遠端追蹤**：未推送到 `origin`（本機歷史包含完整原子化 Commits）
 * **本輪任務連續原子化提交（已嚴格解耦，遵循 SRP 單一責任原則）**：
-  * `580e39c docs(catalog): expand technical catalog to 23 domains and 86 techniques`
+  * `6497b36 feat(playbooks): expand phase 6 evasion and cloud to 13 playbooks`
+  * `094f516 feat(playbooks): expand phase 5 pivoting and c2 to 13 playbooks`
+  * `26bc8de feat(playbooks): expand phase 4 host privesc to 14 playbooks covering UAC, DLL, LSASS, and DPAPI`
   * `6695daf feat(playbooks): add phase 6 defense evasion and cloud native playbooks`
   * `109d2da feat(playbooks): add phase 5 network pivoting and c2 infrastructure playbooks`
   * `2b771f9 feat(playbooks): add phase 4 host foothold and privilege escalation playbooks`
@@ -26,17 +28,16 @@
 
 ---
 
-## 🏛️ 二、 三大缺口補齊成果總覽
+## 🏛️ 二、 紅隊體系三大核心工程成果總覽
 
-### ✅ 缺口 1：重構 `security/knowledge/red_team/index.md` (已完成)
-* **升級維度**：對齊「三大作戰階段、17 大領域、70 項實戰技術點」的完整終極矩陣表。
+### ✅ 成果 1：重構 `security/knowledge/red_team/index.md` (已完成)
+* **升級維度**：對齊「六大作戰階段、23 大領域、110 項實戰技術點」的完整終極矩陣表。
 * **分級與分流**：
-  - 🟢 L1 (20 項) | 🟡 L2 (24 項) | 🔴 L3 (18 項) | 👑 L4 (8 項) 全景難度對照。
-  - 整合 Core (25 項) / Specialization (32 項) / Advanced (13 項) 三層修課分流。
-* **100% 免費靶場映照**：精準對接 PortSwigger Web Security Academy、HTB Starting Point / Sherlocks、picoCTF、GOAD、SadServers、Censys、Shodan 等免付費資源。
-* **前瞻擴充架構**：保留並詳細規劃 Phase 4 ~ Phase 6 未來擴充槽位。
+  - 🟢 L1 (26 項) | 🟡 L2 (41 項) | 🔴 L3 (32 項) | 👑 L4 (11 項) 全景難度對照。
+  - 整合 🎯 Core 核心主幹 (40 項) / 🔬 Specialization 領域專精 (48 項) / 🚀 Advanced 高階前沿 (22 項) 三層修課分流。
+* **100% 免費靶場映照**：精準對接 PortSwigger Web Security Academy、HTB Starting Point / Sherlocks、picoCTF、GOAD、SadServers、GTFOBins、CloudGoat、Kubernetes Goat 等免付費實兵環境。
 
-### ✅ 缺口 2：建立 `learning_paths/` 深度自學體系 (已完成)
+### ✅ 成果 2：建立 `learning_paths/` 深度自學體系 (已完成)
 比照藍隊最高品質規格，於 `security/knowledge/red_team/learning_paths/` 下完成三大區塊共 13 篇深度原理指南：
 * **`block_1_recon_surface/`**：
   - `01_external_recon_osint.md` (SEC 10-K 子公司穿透、Hunter.io、TruffleHog 資訊熵)
@@ -56,33 +57,17 @@
   - `13_adcs_certificate_template_abuse.md` (PKINIT 憑證換 TGT、ESC1~ESC8 利用鏈、CA 私鑰外洩「黃金憑證」)
 * **`learning_paths/README.md`**：升級為全景導覽手冊，與 index.md、career_curriculum.md 形成無縫導航。
 
-### ✅ 缺口 3：Phase 4 ~ Phase 6 擴充槽位落地 (已完成)
-依據 `PLAYBOOK_SPECIFICATION_AND_TEMPLATE.md` 規範，在 `playbooks/` 下落成了 3 個新作戰階段、6 個新領域、共 16 篇特戰速查原子手冊：
-* **`playbooks/phase_4_host_privesc/` (6 篇)**：
-  - `R18_linux_host_privilege_escalation/`:
-    - `R18.1_linux_suid_sgid_binary_abuse.md`
-    - `R18.2_linux_sudoers_misconfiguration_abuse.md`
-    - `R18.3_linux_kernel_vulnerability_exploitation.md`
-  - `R19_windows_host_privilege_escalation/`:
-    - `R19.1_windows_service_configuration_abuse.md`
-    - `R19.2_windows_token_impersonation_privilege_abuse.md`
-    - `R19.3_windows_always_install_elevated_abuse.md`
-* **`playbooks/phase_5_pivoting_c2/` (5 篇)**：
-  - `R20_network_tunneling_proxy_pivoting/`:
-    - `R20.1_chisel_reverse_socks5_tunneling.md`
-    - `R20.2_ligolo_ng_tun_interface_pivoting.md`
-    - `R20.3_ssh_dynamic_forwarding_proxychains.md`
-  - `R21_command_and_control_infrastructure/`:
-    - `R21.1_sliver_c2_framework_deployment_operation.md`
-    - `R21.2_malleable_c2_profile_traffic_obfuscation.md`
-* **`playbooks/phase_6_evasion_cloud/` (5 篇)**：
-  - `R22_defense_evasion_endpoint_runtime/`:
-    - `R22.1_direct_system_calls_api_unhooking.md`
-    - `R22.2_amsi_etw_in_memory_patching.md`
-    - `R22.3_process_injection_hollowing_techniques.md`
-  - `R23_cloud_container_infrastructure_exploitation/`:
-    - `R23.1_cloud_iam_privilege_escalation_metadata_abuse.md`
-    - `R23.2_kubernetes_container_escape_cluster_compromise.md`
+### ✅ 成果 3：Phase 4 ~ Phase 6 全量原子手冊高密度落地 (已完成)
+依據 `PLAYBOOK_SPECIFICATION_AND_TEMPLATE.md` 規範，在 `playbooks/` 下完整落成了 3 個新作戰階段、6 個新領域、共 40 篇特戰速查原子手冊：
+* **`playbooks/phase_4_host_privesc/` (14 篇)**：
+  - `R18_linux_host_privilege_escalation/` (6 篇): SUID/SGID、Sudoers 弱配置、Dirty Pipe 核心提權、POSIX Capabilities、Cron 通配符、NFS no_root_squash。
+  - `R19_windows_host_privilege_escalation/` (8 篇): 未加引號服務路徑、SeImpersonate Potato、AlwaysInstallElevated、UAC Bypass 模擬目錄、DLL 搜尋順序劫持、SAM/SYSTEM 轉儲、LSASS PPL 規避、DPAPI MasterKey。
+* **`playbooks/phase_5_pivoting_c2/` (13 篇)**：
+  - `R20_network_tunneling_proxy_pivoting/` (7 篇): Chisel 反向 SOCKS5、Ligolo-ng TUN 代理、SSH 動態轉發、FRP 高性能穿透、DNS/ICMP 隱蔽隧道、Socat/Netsh PortProxy、SMB 命名管道隧道。
+  - `R21_command_and_control_infrastructure/` (6 篇): Sliver C2 部署操作、Malleable C2 流量偽裝、Havoc C2 Demon Agent、Sleep Mask 記憶體混淆、WMI/WinRM 無檔案橫向、RDP 會話劫持與 Shadow。
+* **`playbooks/phase_6_evasion_cloud/` (13 篇)**：
+  - `R22_defense_evasion_endpoint_runtime/` (8 篇): Direct Syscalls、AMSI/ETW Patching、Process Hollowing、Early Bird APC 注入、PPID 欺騙與參數偽裝、Perun's Fart 磁碟脫鉤、Shellcode UUID 編碼、Defender 排除路徑濫用。
+  - `R23_cloud_container_infrastructure_exploitation/` (5 篇): 雲端 IAM/Metadata 濫用、Kubernetes 特權容器逃逸、S3 儲存桶枚舉接管、Docker Socket 掛載逃逸、K8s RBAC 提權與 Secrets 轉儲。
 
 ---
 
@@ -97,19 +82,19 @@ python security/tools/validate_red_team_playbooks.py
 * `phase_1_recon_surface`         : 19 篇 | 總行數:  3,233 行 (平均: 170 行/篇)
 * `phase_2_perimeter_web`         : 30 篇 | 總行數:  5,459 行 (平均: 181 行/篇)
 * `phase_3_domain_dominance`      : 21 篇 | 總行數:  3,531 行 (平均: 168 行/篇)
-* `phase_4_host_privesc`          :  6 篇 | 總行數:  1,020 行 (平均: 170 行/篇)
-* `phase_5_pivoting_c2`           :  5 篇 | 總行數:    840 行 (平均: 168 行/篇)
-* `phase_6_evasion_cloud`         :  5 篇 | 總行數:    893 行 (平均: 178 行/篇)
+* `phase_4_host_privesc`          : 14 篇 | 總行數:  2,378 行 (平均: 169 行/篇)
+* `phase_5_pivoting_c2`           : 13 篇 | 總行數:  2,190 行 (平均: 168 行/篇)
+* `phase_6_evasion_cloud`         : 13 篇 | 總行數:  2,322 行 (平均: 178 行/篇)
 * ----------------------------------------------------------------------
-* 🏁 **全庫總計**：**86 篇特戰手冊** | **總行數: 14,976 行** (平均: 174 行/篇)
-* ✅ **合規狀態**：100% 通過（0 Errors），所有程式碼圍欄閉合、關鍵字章節全數齊備、篇幅嚴格落於 160 ~ 190 行高密度區間。
+* 🏁 **全庫總計**：**110 篇特戰手冊** | **總行數: 19,113 行** (平均: 173 行/篇)
+* ✅ **合規狀態**：100% 通過（0 Errors），所有程式碼圍欄閉合、關鍵字章節全數齊備、篇幅嚴格落於 160 ~ 190 行高密度黃金區間。
 
 ---
 
 ## 🔮 四、 下一階段展望與建議行動
 
 1. **遠端倉庫同步 (Push to Remote)**：
-   - 目前所有 55 個原子化 Commits 皆安全保存在本地 `feature/red-team-curriculum` 分支。
+   - 目前所有原子化 Commits 皆安全保存在本地 `feature/red-team-curriculum` 分支。
    - 經用戶確認後，可執行 `git push origin feature/red-team-curriculum` 或發起 Pull Request 合併進主幹。
-2. **延伸擴充實驗腳本**：
-   - 可在 `practice/` 目錄下進一步補充與 Phase 4~6 對應的本機 Docker-compose 實戰靶場配置。
+2. **學習路徑 Phase 4~6 專題延伸 (可選)**：
+   - 若未來需進一步拓展理論教材，可於 `learning_paths/` 依據相同架構建立 `block_4_privesc/`、`block_5_pivoting_c2/` 與 `block_6_evasion_cloud/`。

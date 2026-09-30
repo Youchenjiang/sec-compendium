@@ -1,6 +1,6 @@
-# 🔴 紅隊 23 領域與 86 個核心實戰技術索引 (Red Team Tactical Catalog)
+# 🔴 紅隊 23 領域與 110 個核心實戰技術索引 (Red Team Tactical Catalog)
 
-> 本清單匯整自標準架構，完整收錄 23 個作戰領域與 86 項攻擊技術點，並依照「紅隊全景作戰階段 (Phase 1 ~ Phase 6)」進行分層導覽，作為實戰操作之標準索引。
+> 本清單匯整自標準架構，完整收錄 23 個作戰領域與 110 項攻擊技術點，並依照「紅隊全景作戰階段 (Phase 1 ~ Phase 6)」進行分層導覽，作為實戰操作之標準索引。
 
 ---
 
@@ -144,12 +144,20 @@
 - **R18.1_linux_suid_sgid_binary_abuse.md**：Linux SUID/SGID 特權二進位與 GTFOBins 濫用
 - **R18.2_linux_sudoers_misconfiguration_abuse.md**：Linux Sudo 授權弱點與環境變數劫持利用
 - **R18.3_linux_kernel_vulnerability_exploitation.md**：Linux 核心漏洞提權與 Dirty Pipe 實施
+- **R18.4_linux_capabilities_privilege_abuse.md**：Linux POSIX Capabilities 細粒度特權過度授予濫用
+- **R18.5_linux_cron_wildcards_systemd_timer_abuse.md**：Linux 定期任務通配符注入與 Systemd 定時器劫持
+- **R18.6_linux_nfs_no_root_squash_misconfiguration.md**：Linux NFS 弱配置 no_root_squash 與 SUID 遠程注入提權
 
 ### 📁 R19_windows_host_privilege_escalation
 - **路徑**：`playbooks/phase_4_host_privesc/R19_windows_host_privilege_escalation/`
 - **R19.1_windows_service_configuration_abuse.md**：Windows 服務權限缺陷與未加引號路徑提權
 - **R19.2_windows_token_impersonation_privilege_abuse.md**：Windows 權杖模擬與 SeImpersonatePotato 濫用
 - **R19.3_windows_always_install_elevated_abuse.md**：Windows 登錄檔 AlwaysInstallElevated MSI 提權
+- **R19.4_windows_uac_bypass_mock_directories.md**：Windows 使用者帳戶控制 (UAC) 繞過與模擬目錄劫持
+- **R19.5_windows_dll_search_order_hijacking.md**：Windows DLL 搜尋順序劫持與 Ghostpack 植入
+- **R19.6_windows_sam_system_security_registry_hives_dumping.md**：Windows SAM/SYSTEM 登錄檔配置單元磁碟備份轉儲與密鑰萃取
+- **R19.7_windows_lsass_dumping_mitigation_evasion.md**：Windows LSASS 記憶體憑證轉儲與 PPL 深度防護規避
+- **R19.8_windows_dpapi_masterkey_credential_extraction.md**：Windows 資料保護 API (DPAPI) MasterKey 解密與本機憑證萃取
 
 ---
 
@@ -160,11 +168,19 @@
 - **R20.1_chisel_reverse_socks5_tunneling.md**：Chisel 反向 SOCKS5 隧道與 HTTP 穿透
 - **R20.2_ligolo_ng_tun_interface_pivoting.md**：Ligolo-ng TUN 虛擬網卡多層次代理跳板
 - **R20.3_ssh_dynamic_forwarding_proxychains.md**：SSH 動態轉發與 Proxychains 多級跳板
+- **R20.4_frp_high_performance_reverse_proxy.md**：FRP 高性能多協議內網穿透與埠轉發
+- **R20.5_dns_icmp_covert_tunneling.md**：DNS 與 ICMP 隱蔽隧道穿透受限網路
+- **R20.6_socat_netsh_port_forwarding_redirection.md**：Socat 與 Netsh PortProxy 雙向流量轉發與重定向
+- **R20.7_smb_named_pipe_pivoting.md**：SMB 命名管道隧道穿越完全隔離子網域
 
 ### 📁 R21_command_and_control_infrastructure
 - **路徑**：`playbooks/phase_5_pivoting_c2/R21_command_and_control_infrastructure/`
 - **R21.1_sliver_c2_framework_deployment_operation.md**：Sliver C2 現代跨平台控制架構部署與操作
 - **R21.2_malleable_c2_profile_traffic_obfuscation.md**：Malleable C2 流量特徵自定義與 CDN 隱蔽重定向
+- **R21.3_havoc_c2_demon_agent_operations.md**：Havoc C2 現代化跨平台框架與 Demon Agent 實戰作戰
+- **R21.4_c2_sleep_mask_obfuscation.md**：C2 記憶體休眠混淆與呼叫堆疊欺騙
+- **R21.5_wmi_winrm_fileless_lateral_execution.md**：WMI 與 WinRM 無檔案橫向移動與遠端執行
+- **R21.6_rdp_session_hijacking_shadowing.md**：RDP 會話劫持與 Shadow 隱蔽無感監控
 
 ---
 
@@ -175,9 +191,17 @@
 - **R22.1_direct_system_calls_api_unhooking.md**：直接系統調用 Direct Syscalls 與 EDR 鉤子繞過
 - **R22.2_amsi_etw_in_memory_patching.md**：AMSI 與 ETW 記憶體動態修補繞過
 - **R22.3_process_injection_hollowing_techniques.md**：進程鏤空 Process Hollowing 與隱蔽注入實施
+- **R22.4_early_bird_apc_queue_injection.md**：Early Bird APC 佇列非同步注入技術
+- **R22.5_parent_pid_spoofing_command_line_argument_mocking.md**：父進程 ID (PPID) 欺騙與命令列參數偽裝
+- **R22.6_peruns_fart_disk_dll_unhooking.md**：Perun's Fart 磁碟純淨 DLL 重載與 API 脫鉤技術
+- **R22.7_shellcode_encoding_uuid_mac_formatting.md**：Shellcode 格式混淆與 UUID/MAC/IPv4 位址編碼
+- **R22.8_windows_defender_tampering_exclusion_abuse.md**：Windows Defender 篡改保護機制與排除路徑濫用
 
 ### 📁 R23_cloud_container_infrastructure_exploitation
 - **路徑**：`playbooks/phase_6_evasion_cloud/R23_cloud_container_infrastructure_exploitation/`
 - **R23.1_cloud_iam_privilege_escalation_metadata_abuse.md**：雲端 IAM 權限提升與中繼資料憑證濫用
 - **R23.2_kubernetes_container_escape_cluster_compromise.md**：Kubernetes 特權容器逃逸與叢集控制權獲取
+- **R23.3_cloud_storage_bucket_enumeration_takeover.md**：雲端儲存桶枚舉、權限配置失誤與子域名接管
+- **R23.4_docker_socket_host_mount_escape.md**：Docker Socket 掛載濫用與容器主機逃逸
+- **R23.5_kubernetes_rbac_privilege_escalation_secrets_dumping.md**：Kubernetes RBAC 權限提升與全叢集 Secrets 轉儲
 
