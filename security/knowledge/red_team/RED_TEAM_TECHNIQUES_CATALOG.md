@@ -1,6 +1,6 @@
-# 🔴 紅隊 17 領域與 70 個核心實戰技術索引 (Red Team Tactical Catalog)
+# 🔴 紅隊 23 領域與 86 個核心實戰技術索引 (Red Team Tactical Catalog)
 
-> 本清單匯整自標準架構，完整保留 17 個作戰領域與 70 項攻擊技術點，並依照「紅隊三大作戰階段 (Phase 1 ~ Phase 3)」進行分層導覽，作為實戰操作之標準索引。
+> 本清單匯整自標準架構，完整收錄 23 個作戰領域與 86 項攻擊技術點，並依照「紅隊全景作戰階段 (Phase 1 ~ Phase 6)」進行分層導覽，作為實戰操作之標準索引。
 
 ---
 
@@ -134,3 +134,50 @@
 - **R17.5_ca_wide_request_attribute_san_issuance_policy_abuse.md**：CA 全域請求屬性 SAN 頒發策略濫用 (ESC6)
 - **R17.6_certificate_request_approval_disposition_authority_abuse.md**：憑證註冊審查管理權限脆弱性濫用 (ESC7)
 - **R17.7_enterprise_certificate_authentication_trust_anchor_manipulation.md**：憑證信任鏈錨點操縱與惡意憑證注入
+
+---
+
+## ⚡ Phase 4: 主機立足與本地提權 (Host Foothold & PrivEsc)
+
+### 📁 R18_linux_host_privilege_escalation
+- **路徑**：`playbooks/phase_4_host_privesc/R18_linux_host_privilege_escalation/`
+- **R18.1_linux_suid_sgid_binary_abuse.md**：Linux SUID/SGID 特權二進位與 GTFOBins 濫用
+- **R18.2_linux_sudoers_misconfiguration_abuse.md**：Linux Sudo 授權弱點與環境變數劫持利用
+- **R18.3_linux_kernel_vulnerability_exploitation.md**：Linux 核心漏洞提權與 Dirty Pipe 實施
+
+### 📁 R19_windows_host_privilege_escalation
+- **路徑**：`playbooks/phase_4_host_privesc/R19_windows_host_privilege_escalation/`
+- **R19.1_windows_service_configuration_abuse.md**：Windows 服務權限缺陷與未加引號路徑提權
+- **R19.2_windows_token_impersonation_privilege_abuse.md**：Windows 權杖模擬與 SeImpersonatePotato 濫用
+- **R19.3_windows_always_install_elevated_abuse.md**：Windows 登錄檔 AlwaysInstallElevated MSI 提權
+
+---
+
+## 🌪️ Phase 5: 內網橫向與穿透代理 (Pivoting & Lateral Movement)
+
+### 📁 R20_network_tunneling_proxy_pivoting
+- **路徑**：`playbooks/phase_5_pivoting_c2/R20_network_tunneling_proxy_pivoting/`
+- **R20.1_chisel_reverse_socks5_tunneling.md**：Chisel 反向 SOCKS5 隧道與 HTTP 穿透
+- **R20.2_ligolo_ng_tun_interface_pivoting.md**：Ligolo-ng TUN 虛擬網卡多層次代理跳板
+- **R20.3_ssh_dynamic_forwarding_proxychains.md**：SSH 動態轉發與 Proxychains 多級跳板
+
+### 📁 R21_command_and_control_infrastructure
+- **路徑**：`playbooks/phase_5_pivoting_c2/R21_command_and_control_infrastructure/`
+- **R21.1_sliver_c2_framework_deployment_operation.md**：Sliver C2 現代跨平台控制架構部署與操作
+- **R21.2_malleable_c2_profile_traffic_obfuscation.md**：Malleable C2 流量特徵自定義與 CDN 隱蔽重定向
+
+---
+
+## 🥷 Phase 6: 防禦規避與前沿環境攻防 (Evasion & Specialized Targets)
+
+### 📁 R22_defense_evasion_endpoint_runtime
+- **路徑**：`playbooks/phase_6_evasion_cloud/R22_defense_evasion_endpoint_runtime/`
+- **R22.1_direct_system_calls_api_unhooking.md**：直接系統調用 Direct Syscalls 與 EDR 鉤子繞過
+- **R22.2_amsi_etw_in_memory_patching.md**：AMSI 與 ETW 記憶體動態修補繞過
+- **R22.3_process_injection_hollowing_techniques.md**：進程鏤空 Process Hollowing 與隱蔽注入實施
+
+### 📁 R23_cloud_container_infrastructure_exploitation
+- **路徑**：`playbooks/phase_6_evasion_cloud/R23_cloud_container_infrastructure_exploitation/`
+- **R23.1_cloud_iam_privilege_escalation_metadata_abuse.md**：雲端 IAM 權限提升與中繼資料憑證濫用
+- **R23.2_kubernetes_container_escape_cluster_compromise.md**：Kubernetes 特權容器逃逸與叢集控制權獲取
+
