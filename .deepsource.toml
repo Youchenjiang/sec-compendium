@@ -1,11 +1,7 @@
 version = 1
 
 exclude_patterns = [
-  "ctfd/database/**",
-  "ctfd/challenges/**",
-  "ctfd/automation/**",
-  "ctfd/assets/**",
-  "ctfd/patches/**",
+  "ctfd/**",
   "security/**",
   "tracks/**",
   "**/*.md",
@@ -17,10 +13,7 @@ exclude_patterns = [
 name = "python"
 enabled = true
 exclude_patterns = [
-  "ctfd/database/**",
-  "ctfd/challenges/**",
-  "ctfd/automation/**",
-  "ctfd/patches/**",
+  "ctfd/**",
   "security/**",
   "tracks/**"
 ]
@@ -29,13 +22,9 @@ exclude_patterns = [
 name = "secrets"
 enabled = true
 exclude_patterns = [
+  "ctfd/**",
   "security/**",
   "tracks/**",
-  "ctfd/database/**",
-  "ctfd/challenges/**",
-  "ctfd/automation/**",
-  "ctfd/assets/**",
-  "ctfd/patches/**",
   "**/*.md",
   "**/*.csv",
   "**/*.sql"
