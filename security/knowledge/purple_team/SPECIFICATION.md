@@ -78,7 +78,7 @@ flowchart LR
 ## 4. Navigator 圖層編譯工作流 (Compilation Workflow)
 
 ### 4.1 自動化生成腳本
-專案配備獨立編譯器：[purple_layer_generator.py](file:///c:/Users/LabStrix/Documents/GitHub/Youchen/Security/red-team-curriculum/security/knowledge/purple_team/purple_layer_generator.py)。
+專案配備獨立編譯器：[purple_layer_generator.py](purple_layer_generator.py)。
 
 執行命令：
 ```powershell
