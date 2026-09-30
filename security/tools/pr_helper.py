@@ -62,20 +62,20 @@ def sanitize_title(title_str):
 
 
 def get_safe_path(user_path):
-    abs_path = os.path.realpath(os.path.abspath(user_path))
-    try:
-        common = os.path.commonpath([abs_path, PROJECT_ROOT])
-        if common != PROJECT_ROOT:
-            raise ValueError(f"Path outside repository: '{user_path}'")
-    except ValueError:
-        raise ValueError(f"Path outside repository: '{user_path}'")
-    return abs_path
+    safe_name = os.path.basename(user_path)
+    return os.path.join(PROJECT_ROOT, safe_name)
 
 
 def run_cmd(cmd, cwd=PROJECT_ROOT):
+    safe_cmd = []
+    for arg in cmd:
+        clean_arg = str(arg).strip()
+        if any(bad in clean_arg for bad in [";", "&", "|", "`", "$", "\n", "\r"]):
+            raise ValueError(f"Dangerous character in command argument: {clean_arg}")
+        safe_cmd.append(clean_arg)
     try:
         res = subprocess.run(
-            cmd,
+            safe_cmd,
             cwd=cwd,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,

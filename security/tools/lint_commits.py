@@ -68,6 +68,10 @@ SUBJECT_REGEX = re.compile(
 )
 VAGUE_REGEX = re.compile(r"^(update|misc|stuff|changes|fix bug|bug fix)$", re.IGNORECASE)
 
+GOVERNANCE_PATTERNS = ["docs/handover.md", "memory.md", ".agent/"]
+CODE_PATTERNS = [".py", ".sh", ".ps1", ".json", ".yml", ".yaml"]
+KNOWLEDGE_PATTERNS = ["security/knowledge/"]
+
 
 def is_safe_ref(ref_token):
     return bool(ref_token and re.fullmatch(r"[a-zA-Z0-9_/~^-]+", ref_token))
@@ -82,15 +86,24 @@ def validate_rev_range(rev_range):
         return rev_range
     raise ValueError(f"Invalid git rev_range specification: '{rev_range}'")
 
-GOVERNANCE_PATTERNS = ["docs/handover.md", "memory.md", ".agent/"]
-CODE_PATTERNS = [".py", ".sh", ".ps1", ".json", ".yml", ".yaml"]
-KNOWLEDGE_PATTERNS = ["security/knowledge/"]
+
+def sanitize_ref_arg(arg_str):
+    clean = os.path.basename(arg_str.strip()) if arg_str else ""
+    if not is_safe_ref(clean):
+        raise ValueError(f"Invalid reference parameter: '{arg_str}'")
+    return clean
 
 
 def run_git(cmd):
+    safe_cmd = ["git"]
+    for arg in cmd:
+        clean_arg = str(arg).strip()
+        if any(bad in clean_arg for bad in [";", "&", "|", "`", "$", "\n", "\r"]):
+            raise ValueError(f"Dangerous character in git command: {clean_arg}")
+        safe_cmd.append(clean_arg)
     try:
         res = subprocess.run(
-            ["git"] + cmd,
+            safe_cmd,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True,
@@ -129,7 +142,10 @@ def get_commits(rev_range):
 
 
 def get_changed_files(sha):
-    raw = run_git(["diff-tree", "--no-commit-id", "--name-only", "-r", sha])
+    clean_sha = sha.strip()
+    if not re.fullmatch(r"[a-fA-F0-9]{7,40}", clean_sha):
+        return []
+    raw = run_git(["diff-tree", "--no-commit-id", "--name-only", "-r", clean_sha])
     if not raw:
         return []
     return [line.strip().replace("\\", "/").lower() for line in raw.splitlines() if line.strip()]
@@ -214,9 +230,9 @@ def main():
     print("=" * 75)
 
     if args.range:
-        rev_range = args.range
+        rev_range = validate_rev_range(args.range)
     else:
-        base = args.base or detect_base_ref()
+        base = sanitize_ref_arg(args.base) if args.base else detect_base_ref()
         if not base:
             print("❌ 無法自動偵測基準分支，請透過 --base 指定基準分支 (例如: origin/main)")
             sys.exit(1)
