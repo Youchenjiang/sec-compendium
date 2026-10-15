@@ -12,14 +12,20 @@
 ---
 
 ## 📋 Current Active Tasks
-- 專案架構與規範化整頓：確立「公共技術基石（`security/`） $\times$ 三大研訓專軌（`tracks/`） $\times$ CTFd 實戰靶場（`ctfd/`）」三足鼎立體系。
-- 嚴格落實 Git 原子化提交與分支政策，確保所有變更具備高可逆性與精準 scope 標註。
-- **四階段依序 PR 拆分與推進計畫 (PR Execution Plan)**：
-  - PR 1: `feat/red-team-curriculum` (紅隊 110 篇手冊 + 22 條自學路徑 + 6 篇作戰編排)
-  - PR 2: `feat/blue-team-validator` (藍隊專屬校驗器 + 全能雙軌超連結守門員)
-  - PR 3: `feat/purple-team-matrix` (紫隊對抗矩陣 + ATT&CK 熱圖 + 技術規範 SPECIFICATION.md)
-  - PR 4: `feat/governance-commit-linter` (四權分立提交規範 + 本機 Commit 審核器 lint_commits.py)
-  - 詳情見工件計畫書：`PR_SPLIT_AND_SUBMISSION_PLAN.md`。
+- **金盾獎初賽隊員 A（蔣）衝刺專案**：
+  - 確立專屬目錄：`tracks/lab/golden_shield_sprint/member_a/`（含專屬手冊 `README.md`、三位一體推進表 `SPRINT_PLAN_7DAYS.md`、30 篇實戰 Playbook）。
+  - **確立隊員 A「6 大核心作戰單元」體系**：
+    - 單元一：Web 伺服器端核心注入 (SQLi / OS 命令注入 / SSTI)
+    - 單元二：Web 前端與跨站信任邊界 (XSS / CSRF / CORS / Cookie 旗標)
+    - 單元三：Web 架構、語意與深層利用 (SSRF / 反序列化 / 請求走私 / JWT / OWASP 2025)
+    - 單元四：Android / Java 逆向工程 (APK 結構 / Smali 語法 / 四大工具分工)
+    - 單元五：隊員 A 專屬通識 1/3 (Linux 權限 / 14 大 Ports / 雲端共同責任模型 / 隱寫)
+    - 單元六：工具總表辨識與全真出題對抗 (防誘答陷阱 / 15 題出題 / 一頁紙速查表)
+  - 全面升級 `R10.1_sql_query_injection.md`：補齊「攻擊者決策樹」、「白話頻寬定義」、「四大 DB 延遲函數對比」、「寬字節逃逸」與「SQL 五大維度及秒殺公式」。
+- **先前完成之治理任務**：
+  - 四階段 PR 拆分（PR #28 ~ PR #31）已全數合併至 `main`。
+  - 工具腳本 Scaffolding 規則已反向同步至 `tool-scripts` (PR #4)。
+  - 安全解綁並刪除冗餘的 `red-team-curriculum` worktree 目錄。
 
 ---
 
