@@ -95,6 +95,13 @@ L2 的新技術是 **Wireshark Follow TCP Stream**。全程同一工具，難度
 | capstone | `286` | **Packets Primer** | Forensics | Medium | 第一題真 picoCTF 封包：開 pcap、讀 payload | [library](https://learn.cylabacademy.org/library?search=Packets%20Primer) |
 | capstone | `30` | **shark on wire 1** | Forensics | Medium | 跟隨 stream，把拆散的 flag 拼回來 | [library](https://learn.cylabacademy.org/library?search=shark%20on%20wire%201) |
 
+### 🧠 理解問題（解完就答）
+
+1. **ftp-cleartext** - 你不是這段連線的收發雙方，為什麼還能看到那組密碼？
+2. **http-basic** - `Authorization: Basic` 裡的帳密是加密過的，還是只是換個樣子？
+3. **Packets Primer** - flag 是從封包裡「看」到的，還是「解密」出來的？這代表這段流量受保護了嗎？
+4. **shark on wire 1** - 為什麼光看單一封包不夠，要「追蹤整條 stream」才拼得出 flag？
+
 > **工具**：Wireshark（Follow TCP Stream）。**選配**：`telnet-echo`（自建，重組無回顯密碼）。
 > **刻意不配題**：DoS & Repudiation（picoCTF 無對應題型，純講義）。
 > **刻意外移**：竄改（cookie）→ L4；窺探（公開路徑）→ L3。避免跨工具孤兒，也不占別課的 Web Easy 名額。
