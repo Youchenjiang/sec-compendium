@@ -2,6 +2,8 @@
 
 > **用途**：把 [`ncu_cylab_curriculum_mapping_matrix.md`](ncu_cylab_curriculum_mapping_matrix.md) 的「方向」落到**具體題目**。配合講義逐課挑題。
 >
+> **定位**：這份是「**關卡解題**」軌——CyLab picoCTF，一題一技能、拿 flag。另一條「**情境演練**」軌（CDX 靶場，Nessus／Suricata 那種掃描與偵測實作，交報告不拿 flag）性質不同，放在 `tracks/lab/`，兩軌互補。
+>
 > **選題原則**
 > 1. **難度靠脈絡換取**：Easy 進場暖身；一課鋪好「奠基示範 → 練習」後，可用 **Medium 當實戰 capstone** 收尾（踩前面的階梯上去）。要避開的是 **Hard 與重工具**，不是 Medium 本身。
 > 2. **依賴順序排列**：題目依「先會的技能 → 疊上去的技能」排成一條學習鏈，而非平行清單。
@@ -14,7 +16,28 @@
 
 ---
 
+## 🧭 Lesson 0 — 導論（開課前先講）
+
+### 1. 什麼是 CTF
+每題藏一個 flag（像 `picoCTF{...}`，本站是 `academy{...}`），想辦法把它弄出來提交，就算解開。題目分 Web、Forensics、Crypto、Reverse、Pwn、General 幾類，本課主要碰前幾類。
+
+### 2. 為何用 CTF
+自己動手做，不是只在台下聽。題目都在靶機上，合法也安全。真正的攻擊其實是一堆小技巧堆出來的，CTF 就是一題一題把這些基礎補起來。
+
+### 3. 難度定位（上週 CVE、這週 base64）
+上週 CVE-2021-41773 是帶你們看一次完整的攻擊，重點在動機。picoCTF 這邊是從頭累積基礎：編碼、看原始碼、cookie、封包這些。所以一開始題目簡單是正常的，看老師做過，跟自己做得出來，差很遠。
+
+### 4. CyLab Academy
+網站是 learn.cylabacademy.org，免費。流程是註冊帳號、用老師給的代碼加入班級、到 Challenge Library 找題。flag 格式 picoCTF 原題是 `picoCTF{...}`，我們自建的是 `academy{...}`，提交前看清楚。班級註冊的細節老師上課再講。
+
+### 5. 評量
+交 flag 只代表你弄出來了，不代表懂，所以每題還要回答一個理解問題。練習題在聚會現場做、講給大家聽。像 wireshark 那種自建題，每個人的 flag 都不一樣，抄別人的沒用。
+
+---
+
 ## 📘 Lesson 1 — What Is InfoSec?
+
+> **定位**：承 Lesson 0 §3，本課從基礎起步。L1 先破兩個最常見的入門迷思。
 
 **對應迷思**：① 編碼 ≠ 加密（Obscurity 之一）｜② 隱藏 ≠ 安全（Obscurity ≠ Security）
 **BLP/MLS 多層次存取模型** 屬純理論，picoCTF 無對應題型，以講義與案例講授，不配題。
