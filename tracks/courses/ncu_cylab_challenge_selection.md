@@ -2,7 +2,7 @@
 
 > **用途**：把 [`ncu_cylab_curriculum_mapping_matrix.md`](ncu_cylab_curriculum_mapping_matrix.md) 的「方向」落到**具體題目**。配合講義逐課挑題。
 >
-> **定位**：這份是「**關卡解題**」軌——CyLab picoCTF，一題一技能、拿 flag。另一條「**情境演練**」軌（CDX 靶場，Nessus／Suricata 那種掃描與偵測實作，交報告不拿 flag）性質不同，放在 `tracks/lab/`，兩軌互補。
+> **定位**：這份是「**關卡解題**」軌——CyLab picoCTF，一題一技能、拿 flag。另一條「**情境演練**」軌（CDX 靶場，Nessus／Suricata 那種掃描與偵測實作，交報告不拿 flag）性質不同，教材在 `Common/Slide/workshops/`（攻擊側 `202610_CDX_CVE-2021-41773`、防守側 `202610_CDX_CVE-2021-41773-Blue`），兩軌互補。
 >
 > **選題原則**
 > 1. **難度靠脈絡換取**：Easy 進場暖身；一課鋪好「奠基示範 → 練習」後，可用 **Medium 當實戰 capstone** 收尾（踩前面的階梯上去）。要避開的是 **Hard 與重工具**，不是 Medium 本身。
