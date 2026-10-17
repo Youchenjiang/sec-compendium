@@ -33,51 +33,26 @@
 ### 5. 評量
 交 flag 只代表你弄出來了，不代表懂，所以每題還要回答一個理解問題。練習題在聚會現場做、講給大家聽。像 wireshark 那種自建題，每個人的 flag 都不一樣，抄別人的沒用。
 
----
+### 6. 第一次上手（帶練 + 練習）
+導論最後實際解題，把平台和核心工具摸過一遍：老師先帶著示範三個工具，再讓學員用同樣的工具自己練三題。這些**不是講義內容**，純粹是「怎麼在 CyLab 解題、怎麼用瀏覽器與 CyberChef」的手感。
 
-## 📘 Lesson 1 — What Is InfoSec?
+**帶練（老師課堂示範，各示範一個工具）**
 
-> **定位**：承 Lesson 0 §3，本課從基礎起步。L1 先破兩個最常見的入門迷思。
+| 題名 | 示範的工具／動作 | 連結 |
+| :-- | :-- | :-- |
+| **Inspect HTML** | devtools／看網頁原始碼 | [library](https://learn.cylabacademy.org/library?search=Inspect%20HTML) |
+| **Bases** | CyberChef 解 base64 | [library](https://learn.cylabacademy.org/library?search=Bases) |
+| **Cookie Monster Secret Recipe** | 看 cookie ＋ 解碼 | [library](https://learn.cylabacademy.org/library?search=Cookie%20Monster%20Secret%20Recipe) |
 
-**對應迷思**：① 編碼 ≠ 加密（Obscurity 之一）｜② 隱藏 ≠ 安全（Obscurity ≠ Security）
-**BLP/MLS 多層次存取模型** 屬純理論，picoCTF 無對應題型，以講義與案例講授，不配題。
+**學員練習（自己做，重用剛示範的工具）**
 
-### 選題邏輯（依賴順序，非平行兩軸）
+| 題名 | 練的工具 | 連結 |
+| :-- | :-- | :-- |
+| **Insp3ct0r** | 看原始碼：flag 拆在 HTML/CSS/JS 三處 | [library](https://learn.cylabacademy.org/library?search=Insp3ct0r) |
+| **Unminify** | 看原始碼：還原被壓縮的前端碼 | [library](https://learn.cylabacademy.org/library?search=Unminify) |
+| **WebDecode** | 解碼：解元素屬性裡的編碼 | [library](https://learn.cylabacademy.org/library?search=WebDecode) |
 
-這六題是一條**依賴鏈**：要先會「找」（看原始碼）＋會「解」（decode 機制），才解得動最後的情境 capstone。
-
-```
-階段 1  打底（各自獨立）
-  ├─ 67  Bases         →  decode 機制（decode ≠ decrypt）
-  └─ 275 Inspect HTML  →  看網頁原始碼
-
-階段 2  隱藏 ≠ 安全（疊在「看原始碼」上）
-  ├─ 18  Insp3ct0r     →  flag 拆在 HTML/CSS/JS 三處，多處檢視
-  └─ 426 Unminify      →  還原被壓縮/混淆的前端碼
-
-階段 3  編碼 ≠ 加密・情境 capstone（同時需要 decode + inspect）
-  ├─ 427 WebDecode           →  inspect 出編碼屬性 → 解開
-  └─ 469 Cookie Monster      →  inspect 出 base64 cookie → 解開
-```
-
-> **為什麼這樣排**：`469`/`427` 不是獨立的解碼題，而是「在網頁裡找到一段編碼過的東西再解開」——要先具備 `275`/`18` 的 inspect 能力與 `67` 的 decode 手感。它們是 Lesson 1 的收尾高潮，一題同時打中「藏了也沒用 + 編碼不是加密」兩個迷思。
->
-> 隱藏軸（`275`/`18`/`426`）天生自帶情境——「粗心的開發者以為藏進原始碼就沒人看」，那個開發者就是受害主體；編碼軸缺的正是這個受害者，所以從 Web 的 cookie/屬性把情境補回來。
-
-### 題目清單
-
-| 階段 | ID | 題名 | 分類 | 難度 | 角色 / 教學點 | 連結 |
-| :--: | :-- | :-- | :-- | :--: | :-- | :-- |
-| 1 | `67` | **Bases** | General Skills | Easy | decode 機制：Base64，釐清「編碼可逆、不是加密」 | [library](https://learn.cylabacademy.org/library?search=Bases) |
-| 1 | `275` | **Inspect HTML** | Web | Easy | 看原始碼：單頁 view-source | [library](https://learn.cylabacademy.org/library?search=Inspect%20HTML) |
-| 2 | `18` | **Insp3ct0r** | Web | Easy | 隱藏≠安全：flag 拆在 HTML/CSS/JS 三處 | [library](https://learn.cylabacademy.org/library?search=Insp3ct0r) |
-| 2 | `426` | **Unminify** | Web | Easy | 隱藏≠安全：還原被壓縮的前端碼 | [library](https://learn.cylabacademy.org/library?search=Unminify) |
-| 3 | `427` | **WebDecode** | Web | Easy | capstone：編碼藏在元素屬性，inspect → decode | [library](https://learn.cylabacademy.org/library?search=WebDecode) |
-| 3 | `469` | **Cookie Monster Secret Recipe** | Web | Easy | capstone：base64 cookie 當保護，inspect → decode | [library](https://learn.cylabacademy.org/library?search=Cookie%20Monster%20Secret%20Recipe) |
-
-### 🧠 理解問題（解完就答——收 flag 之外，收「懂了沒」）
-
-> 每題一問，問「為什麼／怎麼回事」，對準該題要破的迷思；flag 證明「做到」，這題證明「懂了」，兩者分開收。
+🧠 **理解問題（解完就答）**
 
 1. **Bases** - 你把它還原時，需要任何「別人沒有的秘密（密碼／金鑰）」嗎？
 2. **Inspect HTML** - 畫面上沒顯示這段 flag，它是怎麼來到你瀏覽器裡的？
@@ -87,8 +62,50 @@
 6. **Cookie Monster** - 這個裝著秘密的 cookie，存在誰的電腦上、誰能改它？
 
 > **工具**：瀏覽器（devtools / view-source）＋ CyberChef。解碼時注意 CyberChef「**From Binary**（當位元解讀）vs **To Decimal**（逐字元取 ASCII）」的差別——`'0'`=48、`'1'`=49 是常見的踩坑點。
->
-> **刻意留給後面課**：`4` where are the robots（/robots.txt）→ L3 偵察；cookie/屬性若進一步要「偽造身分、繞過驗證」→ L4。
+
+---
+
+## 📘 Lesson 1 — What Is InfoSec?
+
+> **定位**：對照講義本體（`Handout/NOW/Lesson 1`）。兩個 Critical Skill：(1.1) 用發展史定義資安；(1.2) 資安是「流程」，不是「單點產品」。
+
+### 講義重點與配題
+
+講義用安全發展史定義資安：實體 → 通訊（Caesar、Enigma）→ 輻射（TEMPEST）→ 電腦（BLP、Orange Book）→ 網路 → 資訊；接著逐一點出每種「產品」的盲點，結論是沒有單一產品足夠。
+
+能落到 picoCTF 題的只有兩處；其餘（BLP、TEMPEST、Orange Book）屬純觀念，講義講授、不配題。
+
+| 講義點 | 題名 | 難度 | 連結 |
+| :-- | :-- | :--: | :-- |
+| 通訊安全史：Caesar 位移密碼 | `62` **13**（ROT13） | Easy | [library](https://learn.cylabacademy.org/library?search=13) |
+| 存取控制擋不住弱密碼（講義 §1.2 原話） | `245` **PW Crack 1** | Easy | [library](https://learn.cylabacademy.org/library?search=PW%20Crack%201) |
+
+課後自選：`144` **Mod 26**（另一種位移）、`246` **PW Crack 2**。
+
+### 每題三格（觀念 / 基本功 / 接續）
+
+- **13（ROT13）**
+  - 觀念：最早的通訊「加密」只是字母位移，規則一旦知道就形同沒加密
+  - 基本功：辨識並還原位移／代換密碼
+  - 接續：**中**（古典密碼打底；深入在 L12，真實系統少見）
+- **PW Crack 1**
+  - 觀念：講義 §1.2 明寫「存取控制擋不住弱密碼」——登入檢查再嚴，弱密碼一破就形同虛設
+  - 基本功：對弱密碼做字典比對
+  - 接續：**高**（弱密碼是真實最常見破口；情境演練裡 Nessus 常報弱憑證）
+
+### 🧠 理解問題（解完就答）
+
+1. **13** - 你沒用任何密碼就把它還原了，那它跟「要金鑰才能解」的加密差在哪？
+2. **PW Crack 1** - 系統明明有「登入檢查」這道存取控制，為什麼一支弱密碼就讓它形同虛設？
+
+### 這一課真正的重點：流程 ≠ 產品（直接接情境演練）
+
+講義 §1.2 逐一點名產品盲點，其中兩句，正好就是情境演練那兩個工具的極限：
+
+- 「**弱點掃描**不會抓到已在系統內的入侵者」→ Nessus 的極限
+- 「**入侵偵測**不會抓到有合法權限的越權使用者」→ Suricata／IDS 的極限
+
+所以做完情境演練（Nessus 掃、Suricata 偵測），回到 L1 這句話，學生就親身驗證了「沒有單一產品足夠、資安是流程」。**L1 的論點本身就是關卡解題與情境演練的橋。**
 
 ---
 
@@ -137,12 +154,16 @@ L2 的新技術是 **Wireshark Follow TCP Stream**。全程同一工具，難度
 
 | ID / 來源 | 題名 | 分類 | 歸屬 | 狀態 |
 | :-- | :-- | :-- | :--: | :-- |
-| `67` | Bases | General Skills | L1 | ✅ 已用 |
-| `275` | Inspect HTML | Web | L1 | ✅ 已用 |
-| `18` | Insp3ct0r | Web | L1 | ✅ 已用 |
-| `426` | Unminify | Web | L1 | ✅ 已用 |
-| `427` | WebDecode | Web | L1 | ✅ 已用 |
-| `469` | Cookie Monster Secret Recipe | Web | L1 | ✅ 已用 |
+| `67` | Bases | General Skills | L0 | ✅ 帶練 |
+| `275` | Inspect HTML | Web | L0 | ✅ 帶練 |
+| `18` | Insp3ct0r | Web | L0 | ✅ 練習 |
+| `426` | Unminify | Web | L0 | ✅ 練習 |
+| `427` | WebDecode | Web | L0 | ✅ 練習 |
+| `469` | Cookie Monster Secret Recipe | Web | L0 | ✅ 帶練 |
+| `62` | 13（ROT13） | Cryptography | L1 | ✅ 已用（Caesar 史） |
+| `245` | PW Crack 1 | General Skills | L1 | ✅ 已用（弱密碼破存取控制） |
+| `144` | Mod 26 | Cryptography | L1 | ✅ 自選 |
+| `246` | PW Crack 2 | General Skills | L1 | ✅ 自選 |
 | 自建 | ftp-cleartext | wireshark_labs | L2 | ✅ 已用 |
 | 自建 | http-basic | wireshark_labs | L2 | ✅ 已用 |
 | `286` | Packets Primer | Forensics | L2 | ✅ 已用 |
@@ -151,5 +172,7 @@ L2 的新技術是 **Wireshark Follow TCP Stream**。全程同一工具，難度
 | `161` | Scavenger Hunt | Web | L3 | 🔒 預留（偵察示範） |
 | `132` | GET aHEAD | Web | L10 | 🔒 預留（方法繞過） |
 | `173` | Cookies | Web | L4? | ⏳ 候選（竄改/信任邊界，排 L4 時定） |
+
+> **重疊提醒**：PW Crack（`245`/`246`）在 L1 是「弱密碼破存取控制」的角度；L12 的弱密碼題請改用**雜湊破解**角度的題（如 `475` hashcrack），別重用 `245`/`246`。
 
 <!-- 後續 Lesson 3~13 待逐課定稿後續補；每定一課同步更新分配帳本 -->
