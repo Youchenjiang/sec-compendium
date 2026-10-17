@@ -189,3 +189,14 @@
 ### 📁 Misc 與雲端責任模型教學文檔 (`./misc_cloud/`)
 1. [`05.1_cloud_shared_responsibility_matrix.md`](misc_cloud/05.1_cloud_shared_responsibility_matrix.md) - 雲端 IaaS / PaaS / SaaS 共同責任模型劃分全表
 2. [`R18.1_linux_suid_sgid_binary_abuse.md`](misc_cloud/R18.1_linux_suid_sgid_binary_abuse.md) - Linux SUID/SGID 權限設定與提權防護
+
+### 📁 速查表、模擬卷與考前整理
+- [`CHEATSHEET_1PAGE.md`](CHEATSHEET_1PAGE.md) - 一頁紙秒選速查表（特徵 → 秒選對照）
+- [`考前整理版.md`](考前整理版.md) - 考前 30 分鐘掃描版 ＋ 脈絡故事版（Web 到 App 滲透之旅）
+- [`exams/FINAL_SPRINT_MASTER_60Q.md`](exams/FINAL_SPRINT_MASTER_60Q.md) - 60 題跨單元總衝刺大卷（實戰深度版）
+- [`exams/MASTER_60Q_DEEPDIVE_NOTES.md`](exams/MASTER_60Q_DEEPDIVE_NOTES.md) - 大卷 Q1~Q15 逐題深度精講 ＋ 前端信任邊界概念釐清
+- [`exams/REMAINING_Q16-Q60_DEEPDIVE.md`](exams/REMAINING_Q16-Q60_DEEPDIVE.md) - 大卷 Q16~Q60 逐題深度解析
+- [`exams/unit_1_exam_25q.md`](exams/unit_1_exam_25q.md) - 單元一（Web 注入）25 題檢定卷
+- [`exams/final_mock_25q.md`](exams/final_mock_25q.md) - 跨單元 25 題模擬卷
+- [`exams/weakpoint_drill_12q.md`](exams/weakpoint_drill_12q.md) - 弱點強化 12 題變化卷
+- [`exams/artifact_reading_10q.md`](exams/artifact_reading_10q.md) - 現場證據判讀 10 題（看 payload 反推漏洞）
