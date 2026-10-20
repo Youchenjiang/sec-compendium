@@ -108,27 +108,73 @@
 
 ---
 
-## 🧩 M5 — 編碼繞過與輸入信任（待細排）
+## 🧩 M5 — 輸入信任與注入
 
-> 對應講義：講義無強對應（屬紅隊補充）。｜接情境演練：CVE-2021-41773 的 `.%2e` 路徑穿越正是這階。｜技能：URL/百分比編碼、過濾繞過、路徑穿越。
+> 對應講義：無（紅隊補充）。｜與情境演練的分工：**路徑穿越已經由情境演練（CVE-2021-41773 workshop）做掉了，M5 不重複**；這階補的是那個 CVE 沒碰到的另一類「伺服器盲信輸入」破口——**注入**。｜觀念：伺服器把你送的輸入當成「程式／查詢」而非「資料」。
 >
-> ⚠️ picoCTF 這塊 Easy 很少，多為 Medium／紅隊題。依原則 1，鋪好前面階梯後可上 Medium。候選待挑（例如目錄穿越／LFI 類）。**TODO：挑題 + 理解問題。**
+> ⚠️ Easy 很少，多為 Medium。依原則 1，踩前面四階上去。
+
+| 角色 | ID | 題名 | 難度 | 練什麼 | 連結 |
+| :--: | :-- | :-- | :--: | :-- | :-- |
+| 帶練 | `492` | **SSTI1** | Easy | 你送的字串被當模板「程式」執行（SSTI） | [library](https://learn.cylabacademy.org/library?search=SSTI1) |
+| capstone | `304` | **SQLiLite** | Medium | SQL 注入：你的輸入改寫了資料庫查詢 | [library](https://learn.cylabacademy.org/library?search=SQLiLite) |
+
+🧠 **理解問題**
+1. **SSTI1** - 你送出去的字串，為什麼被伺服器當成「程式」執行，而不是「資料」？
+2. **SQLiLite** - 你在輸入框打的東西，為什麼能改變資料庫查詢的意思？
+
+> 命令注入、反序列化等其他注入在紅隊 playbook，想深入再看。路徑穿越（本 CVE 的命門）走情境演練，不在此重複。
 
 ---
 
-## 🔐 M6 — 雜湊與密碼學（待細排）
+## 🔐 M6 — 雜湊與密碼學
 
-> 對應講義：L12。｜技能：雜湊（不可逆、完整性）、ROT/Caesar、簡易對稱（XOR）。
->
-> 候選：`62` 13（ROT13）、`144` Mod 26、`475` hashcrack、簡易 XOR。古典密碼只取簡易題，排除長篇手動頻率分析與 RSA 數論。**TODO：排帶練/練習 + 理解問題。**
+> 對應講義：L12。｜觀念：古典密碼（位移／代換）規則一旦知道就形同沒加密；雜湊單向、只能查表反推不能「解開」。｜工具：CyberChef／線上雜湊查詢。排除 RSA 數論與長篇手動頻率分析。
+
+**古典密碼（位移／代換）**
+
+| 角色 | ID | 題名 | 難度 | 練什麼 | 連結 |
+| :--: | :-- | :-- | :--: | :-- | :-- |
+| 帶練 | `62` | **13** | Easy | ROT13 位移 | [library](https://learn.cylabacademy.org/library?search=13) |
+| 練習 | `144` | **Mod 26** | Easy | 另一種位移 | [library](https://learn.cylabacademy.org/library?search=Mod%2026) |
+| 練習 | `68` | **The Numbers** | Easy | 字母↔數字代換（A1Z26） | [library](https://learn.cylabacademy.org/library?search=The%20Numbers) |
+
+**雜湊**
+
+| 角色 | ID | 題名 | 難度 | 練什麼 | 連結 |
+| :--: | :-- | :-- | :--: | :-- | :-- |
+| 帶練 | `475` | **hashcrack** | Easy | 用字典／查表反推弱密碼雜湊 | [library](https://learn.cylabacademy.org/library?search=hashcrack) |
+| 選配 | `243` | **HashingJobApp** | Easy | 算雜湊、體會單向 | [library](https://learn.cylabacademy.org/library?search=HashingJobApp) |
+
+🧠 **理解問題**
+1. **13 / Mod 26** - 你沒有任何金鑰就把它還原了，為什麼位移密碼這麼容易破？
+2. **hashcrack** - 雜湊號稱「不可逆」，那你是怎麼「還原」出原文的？（提示：你不是解開它，是猜中）
 
 ---
 
-## 🧷 M7 — 鑑識與逆向基礎（待細排）
+## 🧷 M7 — 鑑識與逆向基礎
 
-> 對應講義：L3 惡意碼（特徵字串）、forensics。｜技能：`strings` 抽硬編碼字串、`exiftool` 看中繼資料。
->
-> 候選：`37` strings it、中繼資料／polyglot 類 Easy 題。排除記憶體 dump、Ghidra 反組譯。**TODO：排帶練/練習 + 理解問題。**
+> 對應講義：L3 惡意碼（硬編碼特徵字串）、forensics。｜觀念：祕密常被硬編碼在檔案／程式裡，靜態就能抽出來。｜工具：`strings`、`exiftool`。排除記憶體 dump、Ghidra 反組譯。
+
+**靜態字串／中繼資料**
+
+| 角色 | ID | 題名 | 難度 | 練什麼 | 連結 |
+| :--: | :-- | :-- | :--: | :-- | :-- |
+| 帶練 | `37` | **strings it** | Easy | 對檔案跑 `strings` 抽硬編碼字串 | [library](https://learn.cylabacademy.org/library?search=strings%20it) |
+| 練習 | `408` | **CanYouSee** | Easy | `exiftool` 看圖片中繼資料 | [library](https://learn.cylabacademy.org/library?search=CanYouSee) |
+| 練習 | `186` | **information** | Easy | 中繼資料藏 flag | [library](https://learn.cylabacademy.org/library?search=information) |
+
+**讀簡單程式找密鑰**
+
+| 角色 | ID | 題名 | 難度 | 練什麼 | 連結 |
+| :--: | :-- | :-- | :--: | :-- | :-- |
+| 帶練 | `7` | **vault-door-training** | Easy | 讀簡單 Java 找寫死的密碼 | [library](https://learn.cylabacademy.org/library?search=vault-door-training) |
+| 練習 | `104` | **Transformation** | Easy | 讀／逆簡單 Python 轉換 | [library](https://learn.cylabacademy.org/library?search=Transformation) |
+
+🧠 **理解問題**
+1. **strings it** - 執行檔是二進位，`strings` 為什麼還能把裡面的文字撈出來？
+2. **CanYouSee** - flag 不在圖片「畫面」裡，卻在檔案裡——它藏在哪個部分？
+3. **vault-door-training** - 密鑰就寫在原始碼裡，為什麼「把密鑰藏在程式碼裡」本身就不安全？
 
 ---
 
@@ -152,11 +198,20 @@
 | `245` | PW Crack 1 | General Skills | M4 | ✅ 帶練 | L4/L1 |
 | `246` | PW Crack 2 | General Skills | M4 | ✅ 練習 | L4/L1 |
 | `173` | Cookies | Web | M4 | ✅ 練習 | L4 |
-| `62` | 13（ROT13） | Cryptography | M6 | 🔒 候選 | L12 |
-| `144` | Mod 26 | Cryptography | M6 | 🔒 候選 | L12 |
-| `475` | hashcrack | Cryptography | M6 | 🔒 候選 | L12 |
-| `37` | strings it | General Skills | M7 | 🔒 候選 | L3 |
+| `492` | SSTI1 | Web | M5 | ✅ 帶練 | 紅隊補充 |
+| `304` | SQLiLite | Web | M5 | ✅ capstone (Medium) | 紅隊補充 |
+| ~~`270`~~ | ~~Forbidden Paths~~ | Web | — | ❌ 不用（路徑穿越走情境演練 CVE，不重複） | — |
+| `62` | 13（ROT13） | Cryptography | M6 | ✅ 帶練 | L12 |
+| `144` | Mod 26 | Cryptography | M6 | ✅ 練習 | L12 |
+| `68` | The Numbers | Cryptography | M6 | ✅ 練習 | L12 |
+| `475` | hashcrack | Cryptography | M6 | ✅ 帶練(雜湊) | L12 |
+| `243` | HashingJobApp | General Skills | M6 | ✅ 選配 | L12 |
+| `37` | strings it | General Skills | M7 | ✅ 帶練 | L3 |
+| `408` | CanYouSee | Forensics | M7 | ✅ 練習 | L3 |
+| `186` | information | Forensics | M7 | ✅ 練習 | L3 |
+| `7` | vault-door-training | Reverse Engineering | M7 | ✅ 帶練(讀碼) | L3 |
+| `104` | Transformation | Reverse Engineering | M7 | ✅ 練習 | L3 |
 | `4` | where are the robots | Web | M2? | ⏳ 候選（偵察，排細時定） | L3 |
 | `161` | Scavenger Hunt | Web | M2? | ⏳ 候選（偵察示範） | L3 |
 
-<!-- M5~M7 待細排；每定一階同步更新帳本。偏差修正見 matrix。 -->
+<!-- 每定一階同步更新帳本。偏差修正見 matrix。 -->
