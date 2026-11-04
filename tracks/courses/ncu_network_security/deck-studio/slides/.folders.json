@@ -1,0 +1,27 @@
+{
+  "folders": [
+    {
+      "id": "workshops",
+      "name": "Workshops 實戰工作坊",
+      "icon": {
+        "type": "emoji",
+        "value": "🛠️"
+      }
+    },
+    {
+      "id": "templates",
+      "name": "Templates & Guides 範本導引",
+      "icon": {
+        "type": "emoji",
+        "value": "📐"
+      }
+    }
+  ],
+  "assignments": {
+    "workshop-202610-cdx-cve-2021-41773": "workshops",
+    "workshop-202610-net-wireshark-fundamentals": "workshops",
+    "workshop-202610-net-wireshark-v2": "workshops",
+    "_template": "templates",
+    "getting-started": "templates"
+  }
+}
