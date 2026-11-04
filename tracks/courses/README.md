@@ -10,6 +10,8 @@
 | :--- | :--- | :---: | :--- |
 | **《電腦網路安全》** (114 學年度) | 國立中央大學資訊管理學系<br>陳奕明 教授 | CMU CyLab<br>(picoCTF 官方題庫) | 👉 [**CyLab 課後加分作業題庫規劃指南 (14 道精選實作題)**](ncu_network_security_cylab_guide.md) |
 
+> 📅 每場次的日期、主題與用到的教材，見 [**課程排課表索引**](ncu_network_security_schedule.md)。
+
 ---
 
 ## 🧭 文檔核心價值與規劃特色
