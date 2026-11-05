@@ -78,13 +78,17 @@
 | 帶練 | `286` | **Packets Primer** | Medium | 開 pcap、Follow TCP Stream，payload 直接看到 flag | [library](https://learn.cylabacademy.org/library?search=Packets%20Primer) |
 | 練習（接 M1） | `459` | **Ph4nt0m 1ntrud3r** | Easy | 依時間排序封包，拼回分段的 base64 再解開 | [library](https://learn.cylabacademy.org/library?search=Ph4nt0m%201ntrud3r) |
 | capstone | `30` | **shark on wire 1** | Medium | 在多條 stream 中找出藏 flag 的那條，拼回來 | [library](https://learn.cylabacademy.org/library?search=shark%20on%20wire%201) |
+| 選配 | `264` | **Eavesdrop** | Medium | 從明文聊天讀出解密指令，匯出傳輸的檔案再解密 | [library](https://learn.cylabacademy.org/library?search=Eavesdrop) |
 
 🧠 **理解問題**
 1. **Packets Primer** - flag 是「看」到的還是「解密」到的？這代表這段流量受保護了嗎？
 2. **Ph4nt0m 1ntrud3r** - 封包裡的字串是 base64，攻擊者這樣傳，有讓旁觀的人看不到內容嗎？
 3. **shark on wire 1** - 為什麼光看單一封包不夠，要追蹤整條 stream？
+4. **Eavesdrop** - 檔案明明加密了，為什麼還是沒擋住竊聽者？
 
-> 全用 CyLab 題，不另架環境。CyLab 的封包題沒有 Easy 的純明文題，故以 Medium 當帶練、用 Easy 的 `459` 練習。選配：`115` Wireshark doo dooo do doo...（HTTP 明文，但 flag 套了 ROT13，屬 M6 範圍，進階者再做）。DoS／Repudiation 無對應題型，講義帶過。
+> 全用 CyLab 題，不另架環境。CyLab 的封包題沒有 Easy 的純明文題，故以 Medium 當帶練、用 Easy 的 `459` 練習。選配 `264` 題名就是講義的 Eavesdropping，金鑰在明文聊天裡傳，正好收束「加密也要整條路都保護」。`115` Wireshark doo dooo do doo... 不用：flag 套了 ROT13，屬 M6。DoS／Repudiation 無對應題型，講義帶過。
+>
+> 講義與作業：[`sessions/20261106_cylab-packets/`](ncu_network_security/sessions/20261106_cylab-packets/)。課堂只示範 `286`，作業必做 `459`、`30`。
 
 ---
 
@@ -192,7 +196,7 @@
 | `286` | Packets Primer | Forensics | M3 | ✅ 帶練 | L2 |
 | `459` | Ph4nt0m 1ntrud3r | Forensics | M3 | ✅ 練習 | L2 |
 | `30` | shark on wire 1 | Forensics | M3 | ✅ capstone | L2 |
-| `115` | Wireshark doo dooo do doo... | Forensics | M3 | ⏳ 選配（ROT13 屬 M6） | L2 |
+| `264` | Eavesdrop | Forensics | M3 | ✅ 選配 | L2 |
 | `245` | PW Crack 1 | General Skills | M4 | ✅ 帶練 | L4/L1 |
 | `246` | PW Crack 2 | General Skills | M4 | ✅ 練習 | L4/L1 |
 | `173` | Cookies | Web | M4 | ✅ 練習 | L4 |
