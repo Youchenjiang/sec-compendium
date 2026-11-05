@@ -45,8 +45,8 @@
 30,shark on wire 1,Forensics,2,M3 封包分析,逐題歸類
 42,WebNet1,Forensics,3,M3 封包分析,逐題歸類
 32,WebNet0,Forensics,3,M3 封包分析,逐題歸類
-739,Old Sessions,Web Exploitation,1,M4 認證、Session 與 Cookie,依題名推測
-712,Password Profiler,General Skills,1,M4 認證、Session 與 Cookie,依題名推測
+739,Old Sessions,Web Exploitation,1,M4 認證、Session 與 Cookie,逐題歸類
+712,Password Profiler,General Skills,1,M4 認證、Session 與 Cookie,逐題歸類
 520,Crack the Gate 1,Web Exploitation,1,M4 認證、Session 與 Cookie,逐題歸類
 419,IntroToBurp,Web Exploitation,1,M4 認證、Session 與 Cookie,逐題歸類
 278,Local Authority,Web Exploitation,1,M4 認證、Session 與 Cookie,逐題歸類
@@ -55,9 +55,9 @@
 173,Cookies,Web Exploitation,1,M4 認證、Session 與 Cookie,逐題歸類
 66,dont-use-client-side,Web Exploitation,1,M4 認證、Session 與 Cookie,逐題歸類
 46,logon,Web Exploitation,1,M4 認證、Session 與 Cookie,逐題歸類
-765,No FA,Web Exploitation,2,M4 認證、Session 與 Cookie,依題名推測
-749,Credential Stuffing,Web Exploitation,2,M4 認證、Session 與 Cookie,依題名推測
-743,Fool the Lockout,Web Exploitation,2,M4 認證、Session 與 Cookie,依題名推測
+765,No FA,Web Exploitation,2,M4 認證、Session 與 Cookie,逐題歸類
+749,Credential Stuffing,Web Exploitation,2,M4 認證、Session 與 Cookie,逐題歸類
+743,Fool the Lockout,Web Exploitation,2,M4 認證、Session 與 Cookie,逐題歸類
 521,Crack the Gate 2,Web Exploitation,2,M4 認證、Session 與 Cookie,逐題歸類
 467,Apriti sesamo,Web Exploitation,2,M4 認證、Session 與 Cookie,逐題歸類
 355,Java Code Analysis!?!,Web Exploitation,2,M4 認證、Session 與 Cookie,逐題歸類
