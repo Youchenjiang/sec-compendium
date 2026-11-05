@@ -112,30 +112,34 @@
 
 ---
 
-## 🔑 M4 — 認證與弱憑證
+## 🔑 M4 — 認證與憑證
 
-> 對應講義：L4 安全服務（Accountability 下的身分識別與認證，I&A）、L1 存取控制。｜觀念：登入之後伺服器靠一張「憑證」（cookie／session）認人；憑證放錯地方、不會過期、能被繞過，或密碼本身猜得到，認證就形同虛設。｜工具：瀏覽器 devtools、CyberChef、Python。
+> 對應講義：L4 安全服務（Accountability 下的身分識別與認證，I&A）、L1 存取控制。｜觀念：登入後伺服器靠一張「憑證」（cookie／token）認人；每一種保護措施（簽章、嘗試次數限制、密碼雜湊、雙因素）都只在「它依賴的東西不在使用者手裡」時才有效。｜工具：瀏覽器 devtools、`flask-unsign`、Python `requests`、CyberChef。
+>
+> **難度定位**：學生已在 A1、A3 自己用 exploit 拿過 shell，Easy 只留給課堂示範；必做全用 Medium。
 
 | 角色 | ID | 題名 | 難度 | 練什麼 | 連結 |
 | :--: | :-- | :-- | :--: | :-- | :-- |
-| 帶練 | `46` | **logon** | Easy | 權限旗標放在 cookie，改 `admin` 就成為管理員 | [library](https://learn.cylabacademy.org/library?search=logon) |
-| 練習 | `739` | **Old Sessions** | Easy | session 不過期又被列出來，換上別人的 session 就是別人 | [library](https://learn.cylabacademy.org/library?search=Old%20Sessions) |
-| 練習 | `520` | **Crack the Gate 1** | Easy | 開發者留在原始碼的後門 header，繞過登入 | [library](https://learn.cylabacademy.org/library?search=Crack%20the%20Gate%201) |
-| capstone | `712` | **Password Profiler** | Easy | 用目標的個資產生候選密碼，比對 SHA-1 雜湊 | [library](https://learn.cylabacademy.org/library?search=Password%20Profiler) |
-| 選配 | `765` | **No FA** | Medium | 無 salt 的密碼雜湊被查表，雙因素驗證碼放在 client 的 cookie | [library](https://learn.cylabacademy.org/library?search=No%20FA) |
+| 帶練 | `46` | **logon** | Easy | cookie 沒簽章，權限旗標 `admin` 改了就生效 | [library](https://learn.cylabacademy.org/library?search=logon) |
+| 必做 | `177` | **Most Cookies** | Medium | Flask cookie 有簽章，但金鑰只從 28 個字中挑一個；猜出金鑰再自己簽 | [library](https://learn.cylabacademy.org/library?search=Most%20Cookies) |
+| 必做 | `521` | **Crack the Gate 2** | Medium | 登入失敗會鎖，但鎖的依據是使用者自己能填的 `X-Forwarded-For`；換值逐一試 20 個密碼 | [library](https://learn.cylabacademy.org/library?search=Crack%20the%20Gate%202) |
+| 必做 | `765` | **No FA** | Medium | 無 salt 的密碼雜湊被查表還原；雙因素驗證碼放在 client 的 cookie | [library](https://learn.cylabacademy.org/library?search=No%20FA) |
+| 選配 | `236` | **JAuth** | Medium | JWT 改成 `alg: none`，伺服器接受沒有簽章的 token | [library](https://learn.cylabacademy.org/library?search=JAuth) |
 
 🧠 **理解問題**
 1. **logon** - 你改了瀏覽器裡的 cookie，伺服器為什麼會信你改過的值？
-2. **Old Sessions** - 一串 session ID 為什麼就能代表一個人？伺服器該怎麼限制它？
-3. **Crack the Gate 1** - 「只有開發者知道的後門」為什麼不算一種認證？
-4. **Password Profiler** - 密碼存成雜湊，為什麼還是被猜中了？
-5. **No FA** - 雙因素的第二個因素應該只有誰拿得到？這題它放在哪裡？
+2. **Most Cookies** - cookie 明明有簽章，為什麼你還是能偽造？簽章的安全靠的是什麼？
+3. **Crack the Gate 2** - 伺服器用什麼判斷「同一個人一直猜錯」？為什麼這個依據擋不住你？
+4. **No FA** - 密碼雜湊為什麼查得到原文？雙因素的第二個因素應該只有誰拿得到？這題它放在哪裡？
+5. **JAuth** - token 上寫著用什麼演算法簽章，為什麼「讓 token 自己決定」會出事？
 
-> 2026-11-06 起改用這組（原 PW Crack 1／2 解法是讀程式碼與還原編碼，與 A2 重複；Cookies 與 logon 同招，移入候選池）。全組只需瀏覽器與 Python，不需 Burp。Crack the Gate 1 的註解用 ROT13 寫，題目提示直接講明，不算跨進 M6。雜湊的單向性本身仍在 M6 教；這裡只從「弱密碼可被猜中」的角度用到。講義與作業：[`sessions/20261106_cylab-auth/`](ncu_network_security/sessions/20261106_cylab-auth/)。
+> 2026-11-06 起改用這組。原 PW Crack 1／2 解法是讀程式碼與還原編碼，與 A2 重複；Old Sessions、Crack the Gate 1、Password Profiler 雖然切題但都是 Easy，移入候選池當暖身。全組不需 Burp：Crack the Gate 2 用 Python `requests` 迴圈即可。雜湊的單向性本身仍在 M6 教；這裡只從「沒加 salt 可查表」的角度用到。講義與作業：[`sessions/20261106_cylab-auth/`](ncu_network_security/sessions/20261106_cylab-auth/)。
 
 <details><summary>候選池（21 題）</summary>
 
-`66` dont-use-client-side（E・96k）、`278` Local Authority（E・90k）、`173` Cookies（E・107k，與 logon 同招）、`245` PW Crack 1（E・84k，與 A2 重複）、`246` PW Crack 2（E・81k，與 A2 重複）、`419` IntroToBurp（E・46k，需 Burp）、`247` PW Crack 3（M・60k，7 個候選比對 MD5）、`200` login（M・56k）、`248` PW Crack 4（M・51k，100 個候選，需寫迴圈）、`249` PW Crack 5（M・45k）、`288` Power Cookie（M・40k）、`69` Client-side-again（M・25k）、`124` More Cookies（M・11k）、`177` Most Cookies（M・9k）、`25` JaWT Scratchpad（M・9k）、`236` JAuth（M・8k）、`355` Java Code Analysis!?!（M・7k）、`521` Crack the Gate 2（M・7k）、`467` Apriti sesamo（M・3k）。另有需寫連線腳本的 `749` Credential Stuffing（M）、`743` Fool the Lockout（M）。
+暖身（Easy）：`739` Old Sessions（E・16k，session 不過期又被列出）、`520` Crack the Gate 1（E・34k，原始碼裡的後門 header）、`712` Password Profiler（E・5k，用個資產生候選密碼）、`66` dont-use-client-side（E・96k）、`278` Local Authority（E・90k）、`173` Cookies（E・107k，與 logon 同招）、`245` PW Crack 1（E・84k，與 A2 重複）、`246` PW Crack 2（E・81k，與 A2 重複）、`419` IntroToBurp（E・46k，需 Burp）。
+
+Medium：`743` Fool the Lockout（M・3k，每 30 秒重置的鎖定，放慢速度暴力猜）、`749` Credential Stuffing（M・3k，拿外洩帳密逐一試，需連線腳本）、`247` PW Crack 3（M・60k）、`248` PW Crack 4（M・51k，100 個候選，需寫迴圈）、`249` PW Crack 5（M・45k）、`200` login（M・56k）、`288` Power Cookie（M・40k，與 logon 同招）、`69` Client-side-again（M・25k）、`124` More Cookies（M・11k）、`25` JaWT Scratchpad（M・9k）、`355` Java Code Analysis!?!（M・7k）、`467` Apriti sesamo（M・3k）。
 
 </details>
 
@@ -259,10 +263,13 @@
 | `30` | shark on wire 1 | Forensics | M3 | ✅ capstone | L2 |
 | `264` | Eavesdrop | Forensics | M3 | ✅ 選配 | L2 |
 | `46` | logon | Web | M4 | ✅ 帶練 | L4 |
-| `739` | Old Sessions | Web | M4 | ✅ 練習 | L4 |
-| `520` | Crack the Gate 1 | Web | M4 | ✅ 練習 | L4 |
-| `712` | Password Profiler | General Skills | M4 | ✅ capstone | L4 |
-| `765` | No FA | Web | M4 | ✅ 選配 (Medium) | L4 |
+| `177` | Most Cookies | Web | M4 | ✅ 必做 (Medium) | L4 |
+| `521` | Crack the Gate 2 | Web | M4 | ✅ 必做 (Medium) | L4 |
+| `765` | No FA | Web | M4 | ✅ 必做 (Medium) | L4 |
+| `236` | JAuth | Web | M4 | ✅ 選配 (Medium) | L4 |
+| `739` | Old Sessions | Web | M4 | ⏳ 候選（暖身） | L4 |
+| `520` | Crack the Gate 1 | Web | M4 | ⏳ 候選（暖身） | L4 |
+| `712` | Password Profiler | General Skills | M4 | ⏳ 候選（暖身） | L4 |
 | `245` | PW Crack 1 | General Skills | M4 | ⏳ 候選（與 A2 重複） | L4/L1 |
 | `246` | PW Crack 2 | General Skills | M4 | ⏳ 候選（與 A2 重複） | L4/L1 |
 | `173` | Cookies | Web | M4 | ⏳ 候選（與 logon 同招） | L4 |
