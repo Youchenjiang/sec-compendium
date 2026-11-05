@@ -104,7 +104,7 @@
 | `/icons/.%2e/.%2e/.%2e/.%2e/etc/passwd` | 403 | 別名存在但未授權，穿越也讀不到 |
 | `/cgi-bin/.%2e/.%2e/.%2e/.%2e/etc/passwd` | 500 | 穿越到 `/etc/passwd`，但 cgi-bin 是 ScriptAlias、有載 mod_cgi，它把目標當程式去執行 → 失敗 500（在這台，500 即代表穿越到位） |
 - 這台**沒有**可直接 GET 讀檔的路徑（icons／manual 等別名皆 403）。要讀 `/etc/passwd` 得走 **RCE**：`POST /cgi-bin/.%2e/.../bin/sh` 帶一行指令，mod_cgi 會執行它（實測以 `daemon` 身分跑）。
-- 攻擊側套件：`../../../CDX_scenario-drills/01_attack-cve-2021-41773/scripts/01_test_traversal.sh <靶機IP>` 送三個邊界請求；`02_exploit_rce.sh <靶機IP> 'cat /etc/passwd'` 才是實際讀檔那步。手打時 `curl --path-as-is` 不能省。
+- 攻擊側套件：`../../../sessions/20261002_attack-cve-2021-41773/scripts/01_test_traversal.sh <靶機IP>` 送三個邊界請求；`02_exploit_rce.sh <靶機IP> 'cat /etc/passwd'` 才是實際讀檔那步。手打時 `curl --path-as-is` 不能省。
 
 **偵測 ≠ 攻擊成功**
 - Suricata 抓的是「有人送了這個請求」，就算回 400／403／500、檔案沒讀到，alert 照跳。

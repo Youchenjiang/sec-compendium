@@ -4,9 +4,9 @@
 > **技術領域**：弱點掃描（Nessus，偏偵察／**非藍隊**）· 入侵偵測（Suricata，藍隊 IDS）
 > **對應講義**：L7 弱點識別 · L13 入侵偵測。
 
-搭配攻擊側 [`01_attack-cve-2021-41773`](../../CDX_scenario-drills/01_attack-cve-2021-41773/)（紅隊把同一個 CVE 的靶機打穿）。這套負責掃出漏洞、偵測攻擊。
+搭配攻擊側 [`20261002_attack-cve-2021-41773`](../../sessions/20261002_attack-cve-2021-41773/)（紅隊把同一個 CVE 的靶機打穿）。這套負責掃出漏洞、偵測攻擊。
 
-> 弱掃那一塊的「預裝工具實證 + 學員作業」已獨立成**第二堂** [`02_recon-to-shell-meta2`](../../CDX_scenario-drills/02_recon-to-shell-meta2/)，不在本備選教材內。
+> 弱掃那一塊的「預裝工具實證 + 學員作業」已獨立成**第二堂** [`20261029_recon-to-shell-meta2`](../../sessions/20261029_recon-to-shell-meta2/)，不在本備選教材內。
 
 ## 套件結構
 

@@ -4,7 +4,7 @@
 >
 > **骨架為何是技能、不是講義 Lesson**：講義是概念／管理導向的課，硬把動手題塞進 Lesson 1~13 會一直跑偏（半數課沒題配、框架被污染、技能接不起來）。技能軸才會真的疊起來。講義的對齊與偏差修正另見 [`ncu_cylab_curriculum_mapping_matrix.md`](ncu_cylab_curriculum_mapping_matrix.md)。
 >
-> **定位（兩軌）**：這份是「**關卡解題**」軌——CyLab picoCTF，一題一技能、拿 flag。另一條「**情境演練**」軌（CDX 靶場，Nessus／Suricata 掃描與偵測，交報告不拿 flag）在 `Common/Slide/workshops/`（攻擊側 `202610_CDX_CVE-2021-41773`、防守側 `202610_CDX_CVE-2021-41773-Blue`）。兩軌互補。
+> **定位（兩軌）**：這份是「**關卡解題**」軌——CyLab picoCTF，一題一技能、拿 flag。另一條「**情境演練**」軌（CDX 靶場，Nessus／Suricata 掃描與偵測，交報告不拿 flag）在 [`ncu_network_security/`](ncu_network_security/)（攻擊側 `sessions/20261002_attack-cve-2021-41773`、防守側備選 `alt-materials/nessus-suricata`）。兩軌互補。
 >
 > **選題原則**
 > 1. **難度靠脈絡換取**：Easy 進場暖身；一階鋪好「帶練 → 練習」後，可用 **Medium 當實戰 capstone** 收尾。要避開的是 **Hard 與重工具**，不是 Medium 本身。

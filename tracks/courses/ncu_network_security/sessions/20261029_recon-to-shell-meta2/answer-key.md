@@ -249,7 +249,7 @@ ls -la /root
 
 - **對應講義**：nmap 弱點識別段（L7）。**場次**：2026-10 於 CDX。
 - 第一堂（`../20261002_attack-cve-2021-41773`）是「給好漏洞、帶著打一條」；本堂要學員自己掃、自己判讀、自己挑一條做。
-- 弱掃不一定要 Nessus：本堂證明 Kali 預裝的 nmap 放對靶機就能到真正弱掃等級。Nessus 路線見備選教材 `../../CDX_alt-materials/nessus-suricata`。
+- 弱掃不一定要 Nessus：本堂證明 Kali 預裝的 nmap 放對靶機就能到真正弱掃等級。Nessus 路線見備選教材 `../../alt-materials/nessus-suricata`。
 
 ---
 
