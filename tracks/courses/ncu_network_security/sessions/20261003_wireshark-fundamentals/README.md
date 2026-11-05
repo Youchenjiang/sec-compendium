@@ -15,11 +15,10 @@
 │   ├── instructor-guide.md               # 教師課堂教案 (20 分鐘配速、提問設計、白話引導)
 │   └── lab-handout.md                    # 學員實作手冊 (四大實戰情境、介面三區導覽、AI Prompt 範本、複習題)
 │
-├── slides/                               # 投影片原始碼獨立存檔與交付產物
-│   └── index.tsx                         # 12 頁簡報原始碼 (Open Slide React)
-│
 └── README.md                             # 本說明文件
 ```
+
+簡報原始碼（12 頁 `index.tsx`）在 [`../../deck-studio/slides/workshop-202610-net-wireshark-fundamentals/`](../../deck-studio/slides/workshop-202610-net-wireshark-fundamentals/)。
 
 ---
 
@@ -45,9 +44,9 @@
 ## 🚀 快速開始
 
 ### 1. 課堂授課預覽 (Open Slide)
-在 `Common/Slide/open-slide` 目錄啟動投影片伺服器：
+在 `deck-studio` 目錄啟動投影片伺服器（首次需先 `npm install`）：
 ```bash
-cd ../../open-slide
+cd ../../deck-studio
 npm run dev
 # 瀏覽: http://localhost:5173/s/workshop-202610-net-wireshark-fundamentals
 ```

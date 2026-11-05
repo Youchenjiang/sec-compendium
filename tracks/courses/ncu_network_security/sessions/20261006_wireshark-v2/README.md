@@ -42,4 +42,4 @@
 * [`docs/LAB_ASSIGNMENT_AND_SCENARIOS.md`](./docs/LAB_ASSIGNMENT_AND_SCENARIOS.md)：完整的題目情境設定、實作步驟與技術結論。
 * [`docs/instructor-guide.md`](./docs/instructor-guide.md)：助教與講師授課指引、關鍵問題解答劇本、改作業評分標準。
 * [`docs/student-handout.md`](./docs/student-handout.md)：學生作業實作講義（可直接公告至 ee-class）。
-* [`slides/index.tsx`](./slides/index.tsx)：14 頁全新高清大圖版 Open Slide 原始碼（置入完整實測 Wireshark 截圖）。
+* [`deck-studio/…/workshop-202610-net-wireshark-v2/index.tsx`](../../deck-studio/slides/workshop-202610-net-wireshark-v2/index.tsx)：14 頁全新高清大圖版 Open Slide 原始碼（置入完整實測 Wireshark 截圖）。
