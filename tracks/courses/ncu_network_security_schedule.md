@@ -12,7 +12,7 @@
 
 | 堂次 | 日期 | 主題 | 文字教材 | 簡報 |
 |---|---|---|---|---|
-| 第一堂 | 2026-10 | Apache CVE-2021-41773:路徑穿越 → RCE → reverse shell | [`sessions/20261002_attack-cve-2021-41773/`](ncu_network_security/sessions/20261002_attack-cve-2021-41773/)（教案＋手冊＋腳本＋pptx）| [`deck-studio …cve-2021-41773/`](ncu_network_security/deck-studio/slides/workshop-202610-cdx-cve-2021-41773/) |
+| 第一堂 | 2026-10-02 | Apache CVE-2021-41773:路徑穿越 → RCE → reverse shell | [`sessions/20261002_attack-cve-2021-41773/`](ncu_network_security/sessions/20261002_attack-cve-2021-41773/)（教案＋手冊＋腳本＋pptx）| [`deck-studio …cve-2021-41773/`](ncu_network_security/deck-studio/slides/workshop-202610-cdx-cve-2021-41773/) |
 | 第二堂 | 2026-10-29 | 用 nmap 偵察 Metasploitable2:掃 → 讀成一張表 → 自選一條利用拿 shell | [`sessions/20261029_recon-to-shell-meta2/`](ncu_network_security/sessions/20261029_recon-to-shell-meta2/)（[handout](ncu_network_security/sessions/20261029_recon-to-shell-meta2/handout.md)・[assignment](ncu_network_security/sessions/20261029_recon-to-shell-meta2/assignment.md)・[answer-key](ncu_network_security/sessions/20261029_recon-to-shell-meta2/answer-key.md)）| 無 deck |
 | 第三堂 | 未定 | 尚未排定 | — | — |
 
@@ -42,7 +42,8 @@ picoCTF 官方題庫,14 道題嚴格對應講義週次 W2–W13,是課後加分�
 
 同一份課程的日期目前有兩種來源,本表據實標註、不統一造假:
 
-- **明寫的場次日期**:CDX 第二堂在 `answer-key.md` 寫「日期 2026-10-29／場次 2026-10」,最可靠。
-- **簡報建立時間**:其餘場次目前只有 deck `index.tsx` 的 `createdAt`(授課前後的編寫時間,近似授課月份）——CDX 第一堂 10-02、Wireshark 基礎 10-03、v2 10-06。
+- **明寫的場次日期**:CDX 第二堂在 `answer-key.md` 寫「日期 2026-10-29／場次 2026-10」,最可靠。CDX 第一堂 2026-10-02 由授課者確認。
+- **簡報建立時間**:Wireshark 兩場目前只有 deck `index.tsx` 的 `createdAt`(授課前後的編寫時間,近似授課日期）——基礎 10-03、v2 10-06。
+- `sessions/` 資料夾以 `YYYYMMDD_` 前綴命名,依上述日期排序即授課順序。
 
 要讓每一場都有可靠日期,可在各堂自己的 README／answer-key 補一行明確場次,本表再改引那一行。
