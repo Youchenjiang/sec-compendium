@@ -8,7 +8,7 @@
 >
 > **選題原則**
 > 1. **難度靠脈絡換取**：Easy 進場暖身；一階鋪好「帶練 → 練習」後，可用 **Medium 當實戰 capstone** 收尾。要避開的是 **Hard 與重工具**，不是 Medium 本身。
-> 2. **依賴順序**：整條階梯就是「先會的技能 → 疊上去的技能」，M0→M7 不跳階。
+> 2. **依賴順序**：整條階梯就是「先會的技能 → 疊上去的技能」，M0→M7 不跳階。M3～M7 彼此只依賴 M1、M2，不互相依賴，**排課順序可依講義進度調整**（實際：M0–M2 → M7 → M5 → M4，M3 因 Wireshark 工作坊已教而略過）。
 > 3. **帶練 → 練習**：每階老師先示範，學員再用同工具自己練。
 > 4. **不跨階重複**：一題的技能屬於哪一階，就在那階出現；別的階要用同概念，換不同題。
 > 5. **flag ≠ 學習成果**：每題配一個「🧠 理解問題」，解完就答。flag 只當「做過」的門票，成績看能否講清機制；這也是對「貼 GPT 拿 flag 卻沒懂」的防線。自建題（wireshark_labs）每人 flag 不同，再加一層防抄。
@@ -201,19 +201,34 @@ Medium：`743` Fool the Lockout（M・3k，每 30 秒重置的鎖定，放慢速
 
 ---
 
-## 🧷 M7 — 鑑識與逆向基礎
+## 🧷 M7 — 靜態檔案分析與讀程式找密鑰
 
-> 對應講義：L3 惡意碼（硬編碼特徵字串）、forensics。｜觀念：祕密常被硬編碼在檔案／程式裡，靜態就能抽出來。｜工具：`strings`、`exiftool`。排除記憶體 dump、Ghidra 反組譯。
+> 對應講義：L3 惡意碼（硬編碼特徵字串、藏在檔案裡的東西）、forensics。｜觀念：不執行檔案，也能把裡面藏的東西挖出來；副檔名、畫面、塗黑都不可信，要看位元組。｜工具：`file`、`strings`、`exiftool`、`binwalk`、`zsteg`、`xxd`。排除記憶體 dump、Ghidra 反組譯。
+>
+> **教法**：示範的不是一招，是一張「拿到不明檔案時」的檢查表（辨識 → 看明文 → 拆 → 看像素 → 修檔頭）；作業每一題都是跑同一張表，flag 停在不同的步驟。難度定位同 M4：學生已在 A1、A3 自己拿過 shell，必做全用 Medium。
 
-**靜態字串／中繼資料**
+**藏在檔案裡的東西（2026-11-06）**
 
-| 角色 | ID | 題名 | 難度 | 練什麼 | 連結 |
+| 角色 | ID | 題名 | 難度 | flag 停在哪一步 | 連結 |
 | :--: | :-- | :-- | :--: | :-- | :-- |
-| 帶練 | `37` | **strings it** | Easy | 對檔案跑 `strings` 抽硬編碼字串 | [library](https://learn.cylabacademy.org/library?search=strings%20it) |
-| 練習 | `408` | **CanYouSee** | Easy | `exiftool` 看圖片中繼資料 | [library](https://learn.cylabacademy.org/library?search=CanYouSee) |
-| 練習 | `186` | **information** | Easy | 中繼資料藏 flag | [library](https://learn.cylabacademy.org/library?search=information) |
+| 帶練 | `129` | **Matryoshka doll** | Medium | 辨識 → 拆，反覆四層：`.jpg` 其實是 PNG，IEND 後面接著 zip，拆出下一張圖 | [library](https://learn.cylabacademy.org/library?search=Matryoshka%20doll) |
+| 必做 | `268` | **File types** | Medium | 同一個「辨識 → 拆」迴圈，但 11 層每層格式不同（shar、ar、cpio、bzip2、gzip、lzip、lz4、lzma、lzop、xz），最後是 hex | [library](https://learn.cylabacademy.org/library?search=File%20types) |
+| 必做 | `305` | **St3g0** | Medium | 前三步都沒東西，資料在像素最低位元；`zsteg` 的 `b1,rgb,lsb,xy` | [library](https://learn.cylabacademy.org/library?search=St3g0) |
+| 必做 | `112` | **tunn3l v1s10n** | Medium | `file` 說是 data；BMP 檔頭三個欄位被改，修回後高度還被砍掉，藏了上半張圖 | [library](https://learn.cylabacademy.org/library?search=tunn3l%20v1s10n) |
+| 選配 | `290` | **Redaction gone wrong** | Medium | 第二步就有：PDF 的塗黑只是蓋一層，文字物件還在 | [library](https://learn.cylabacademy.org/library?search=Redaction%20gone%20wrong) |
 
-**讀簡單程式找密鑰**
+🧠 **理解問題**
+1. **Matryoshka doll** - 副檔名是 `.jpg`、看起來也是一張正常的圖，`file` 和 `binwalk` 憑什麼知道裡面還有東西？
+2. **File types** - 你的 PDF 閱讀器打不開它，`file` 卻認得出來；`file` 看的是什麼？為什麼副檔名不算數？
+3. **St3g0** - 圖片看起來完全正常，`exiftool`、`binwalk` 也都沒東西，資料到底放在哪裡？為什麼肉眼看不出差別？
+4. **tunn3l v1s10n** - 你改了哪幾個欄位、各代表什麼？為什麼把高度改大就看得到被藏起來的那一半？
+5. **Redaction gone wrong** - 畫面上明明是黑的，為什麼複製得到文字？真正的刪除該做什麼？
+
+> St3g0 與 What Lies Within 同招（`zsteg` 同一行），選 St3g0 是因為它的 flag 每個環境不同、且有 `$t3g0` 結尾可自我確認；What Lies Within 的 flag 固定，留候選池。講義與作業：[`sessions/20261106_cylab-files/`](ncu_network_security/sessions/20261106_cylab-files/)。
+>
+> **安裝**：Kali 已有 `binwalk`、`exiftool`；另需 `sudo apt install binutils lzip lz4 lzop sharutils` 與 `gem install zsteg`。
+
+**讀簡單程式找密鑰（未排入堂次，另一套方法，不與上面混在同一堂）**
 
 | 角色 | ID | 題名 | 難度 | 練什麼 | 連結 |
 | :--: | :-- | :-- | :--: | :-- | :-- |
@@ -221,13 +236,13 @@ Medium：`743` Fool the Lockout（M・3k，每 30 秒重置的鎖定，放慢速
 | 練習 | `104` | **Transformation** | Easy | 讀／逆簡單 Python 轉換 | [library](https://learn.cylabacademy.org/library?search=Transformation) |
 
 🧠 **理解問題**
-1. **strings it** - 執行檔是二進位，`strings` 為什麼還能把裡面的文字撈出來？
-2. **CanYouSee** - flag 不在圖片「畫面」裡，卻在檔案裡——它藏在哪個部分？
-3. **vault-door-training** - 密鑰就寫在原始碼裡，為什麼「把密鑰藏在程式碼裡」本身就不安全？
+1. **vault-door-training** - 密鑰就寫在原始碼裡，為什麼「把密鑰藏在程式碼裡」本身就不安全？
 
-<details><summary>候選池：檔案、中繼資料與隱寫（35 題）</summary>
+> 排入時依 M4／M7 的難度定位，把必做換成候選池裡的 Medium（crackme-py、keygenme-py、vault-door-1）。原本的 Easy 題 strings it、CanYouSee、information 移入候選池當暖身。
 
-`44` Glory of the Garden（E・96k）、`444` Scan Surprise（E・70k）、`450` Verify（E・62k）、`423` Secret of the Polyglot（E・44k）、`530` Riddle Registry（E・43k）、`524` Hidden in plainsight（E・32k）、`460` RED（E・29k）、`523` Flag in Flame（E・23k）、`519` Corrupted file（E・19k）、`698` Binary Digits（E・10k・題名推測）、`129` Matryoshka doll（M・52k）、`265` Enhance!（M・48k）、`52` extensions（M・35k）、`19` So Meta（M・34k）、`279` Lookey here（M・30k）、`74` What Lies Within（M・27k）、`290` Redaction gone wrong（M・24k）、`112` tunn3l v1s10n（M・22k）、`350` hideme（M・18k）、`305` St3g0（M・17k）、`268` File types（M・12k）、`420` Mob psycho（M・10k）、`348` FindAndOpen（M・10k）、`205` advanced-potion-making（M・9k）、`81` like1000（M・9k）、`359` MSB（M・8k）、`51` WhitePages（M・8k）、`26` m00nwalk（M・8k）、`139` Milkslap（M・7k）、`53` c0rrupt（M・7k）、`415` endianness-v2（M・6k）、`432` Blast from the past（M・4k）、`481` flags are stepic（M・4k）、`714` Rogue Tower（M・3k）、`101` Weird File（M・2k）
+<details><summary>候選池：檔案、中繼資料與隱寫（33 題）</summary>
+
+`37` strings it（E・117k，暖身）、`408` CanYouSee（E・47k，暖身）、`186` information（E・148k，暖身）、`44` Glory of the Garden（E・96k）、`444` Scan Surprise（E・70k）、`450` Verify（E・62k）、`423` Secret of the Polyglot（E・44k）、`530` Riddle Registry（E・43k）、`524` Hidden in plainsight（E・32k）、`460` RED（E・29k）、`523` Flag in Flame（E・23k）、`519` Corrupted file（E・19k）、`698` Binary Digits（E・10k・題名推測）、`265` Enhance!（M・48k）、`52` extensions（M・35k）、`19` So Meta（M・34k）、`279` Lookey here（M・30k）、`74` What Lies Within（M・27k，與 St3g0 同招，flag 固定）、`350` hideme（M・18k）、`420` Mob psycho（M・10k）、`348` FindAndOpen（M・10k）、`205` advanced-potion-making（M・9k）、`81` like1000（M・9k）、`359` MSB（M・8k）、`51` WhitePages（M・8k）、`26` m00nwalk（M・8k）、`139` Milkslap（M・7k）、`53` c0rrupt（M・7k）、`415` endianness-v2（M・6k）、`432` Blast from the past（M・4k）、`481` flags are stepic（M・4k）、`714` Rogue Tower（M・3k）、`101` Weird File（M・2k）
 
 </details>
 
@@ -281,11 +296,16 @@ Medium：`743` Fool the Lockout（M・3k，每 30 秒重置的鎖定，放慢速
 | `68` | The Numbers | Cryptography | M6 | ✅ 練習 | L12 |
 | `475` | hashcrack | Cryptography | M6 | ✅ 帶練(雜湊) | L12 |
 | `243` | HashingJobApp | General Skills | M6 | ✅ 選配 | L12 |
-| `37` | strings it | General Skills | M7 | ✅ 帶練 | L3 |
-| `408` | CanYouSee | Forensics | M7 | ✅ 練習 | L3 |
-| `186` | information | Forensics | M7 | ✅ 練習 | L3 |
-| `7` | vault-door-training | Reverse Engineering | M7 | ✅ 帶練(讀碼) | L3 |
-| `104` | Transformation | Reverse Engineering | M7 | ✅ 練習 | L3 |
+| `129` | Matryoshka doll | Forensics | M7 | ✅ 帶練 | L3 |
+| `268` | File types | Forensics | M7 | ✅ 必做 (Medium) | L3 |
+| `305` | St3g0 | Forensics | M7 | ✅ 必做 (Medium) | L3 |
+| `112` | tunn3l v1s10n | Forensics | M7 | ✅ 必做 (Medium) | L3 |
+| `290` | Redaction gone wrong | Forensics | M7 | ✅ 選配 (Medium) | L3 |
+| `37` | strings it | General Skills | M7 | ⏳ 候選（暖身） | L3 |
+| `408` | CanYouSee | Forensics | M7 | ⏳ 候選（暖身） | L3 |
+| `186` | information | Forensics | M7 | ⏳ 候選（暖身） | L3 |
+| `7` | vault-door-training | Reverse Engineering | M7 | ✅ 帶練(讀碼，未排) | L3 |
+| `104` | Transformation | Reverse Engineering | M7 | ✅ 練習(讀碼，未排) | L3 |
 | `4` | where are the robots | Web | M2? | ⏳ 候選（偵察，排細時定） | L3 |
 | `161` | Scavenger Hunt | Web | M2? | ⏳ 候選（偵察示範） | L3 |
 
