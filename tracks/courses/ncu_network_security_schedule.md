@@ -23,12 +23,18 @@
 | 2026-10-03 | Wireshark 封包分析基礎（20 分鐘） | [`sessions/20261003_wireshark-fundamentals/`](ncu_network_security/sessions/20261003_wireshark-fundamentals/) | [`deck-studio …wireshark-fundamentals/`](ncu_network_security/deck-studio/slides/workshop-202610-net-wireshark-fundamentals/) |
 | 2026-10-06 | Wireshark 實務操作與通訊協定檢視 | [`sessions/20261006_wireshark-v2/`](ncu_network_security/sessions/20261006_wireshark-v2/) | [`deck-studio …wireshark-v2/`](ncu_network_security/deck-studio/slides/workshop-202610-net-wireshark-v2/) |
 
-## 三、CyLab 課後加分題庫（依週次，非場次日期）
+## 三、CyLab 技能階梯場次
 
-picoCTF 官方題庫,14 道題嚴格對應講義週次 W2–W13,是課後加分而非單一上課場次,故按**週次**而非日期編排。
+照 [技能階梯](ncu_cylab_challenge_selection.md) 一階一堂,每堂有講義、作業與 eeclass 作業編號。階的順序依講義進度調整(M0–M2 → M7 → M5 → M4;M3 因 Wireshark 工作坊已教而略過)。
 
-- 題庫與逐題導引:[`ncu_network_security_cylab_guide.md`](ncu_network_security_cylab_guide.md)
-- 範圍:W2 監聽、W3 探測、W4 嗅探、W5 認證、W7 最小權限、W10 防火牆、W12 VPN、W13 侵入偵測。
+| 日期 | 作業 | 階 | 主題 | 教材 |
+|---|---|---|---|---|
+| 2026-10-16 | A2 Cylab Basic | M0–M2 | 平台上手、編碼、前端暴露 | [`sessions/20261016_cylab-basic/`](ncu_network_security/sessions/20261016_cylab-basic/) |
+| 2026-11-06 | A4 Cylab Files | M7 | 靜態檔案分析:辨識 → 看 → 拆 → 像素 → 檔頭 | [`sessions/20261106_cylab-files/`](ncu_network_security/sessions/20261106_cylab-files/)([handout](ncu_network_security/sessions/20261106_cylab-files/handout.md)・[assignment](ncu_network_security/sessions/20261106_cylab-files/assignment.md)) |
+| 未定 | — | M5 | 注入 | 待寫 |
+| 未定 | — | M4 | 認證與憑證(等 L4 講完) | [`alt-materials/cylab-auth/`](ncu_network_security/alt-materials/cylab-auth/) |
+
+另有早期規劃的 CyLab 課後加分題庫(14 題依講義週次 W2–W13 編排,非場次):[`ncu_network_security_cylab_guide.md`](ncu_network_security_cylab_guide.md)。
 
 ## 四、備選・未排入堂次
 
