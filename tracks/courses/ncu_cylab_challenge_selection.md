@@ -114,19 +114,30 @@
 
 ## 🔑 M4 — 認證與弱憑證
 
-> 對應講義：L4 安全服務（Accountability 下的認證）、L1 存取控制。｜觀念：存取控制擋不住弱密碼、伺服器別盲信 client 送回來的東西。
+> 對應講義：L4 安全服務（Accountability 下的身分識別與認證，I&A）、L1 存取控制。｜觀念：登入之後伺服器靠一張「憑證」（cookie／session）認人；憑證放錯地方、不會過期、能被繞過，或密碼本身猜得到，認證就形同虛設。｜工具：瀏覽器 devtools、CyberChef、Python。
 
 | 角色 | ID | 題名 | 難度 | 練什麼 | 連結 |
 | :--: | :-- | :-- | :--: | :-- | :-- |
-| 帶練 | `245` | **PW Crack 1** | Easy | 弱密碼字典比對 | [library](https://learn.cylabacademy.org/library?search=PW%20Crack%201) |
-| 練習 | `246` | **PW Crack 2** | Easy | 同招，多一點變化 | [library](https://learn.cylabacademy.org/library?search=PW%20Crack%202) |
-| 練習 | `173` | **Cookies** | Easy | 改 cookie 值竄改伺服器行為 | [library](https://learn.cylabacademy.org/library?search=Cookies) |
+| 帶練 | `46` | **logon** | Easy | 權限旗標放在 cookie，改 `admin` 就成為管理員 | [library](https://learn.cylabacademy.org/library?search=logon) |
+| 練習 | `739` | **Old Sessions** | Easy | session 不過期又被列出來，換上別人的 session 就是別人 | [library](https://learn.cylabacademy.org/library?search=Old%20Sessions) |
+| 練習 | `520` | **Crack the Gate 1** | Easy | 開發者留在原始碼的後門 header，繞過登入 | [library](https://learn.cylabacademy.org/library?search=Crack%20the%20Gate%201) |
+| capstone | `712` | **Password Profiler** | Easy | 用目標的個資產生候選密碼，比對 SHA-1 雜湊 | [library](https://learn.cylabacademy.org/library?search=Password%20Profiler) |
+| 選配 | `765` | **No FA** | Medium | 無 salt 的密碼雜湊被查表，雙因素驗證碼放在 client 的 cookie | [library](https://learn.cylabacademy.org/library?search=No%20FA) |
 
 🧠 **理解問題**
-1. **PW Crack 1** - 系統明明有登入檢查，為什麼一支弱密碼就讓它形同虛設？
-2. **Cookies** - 你改了瀏覽器裡的 cookie，伺服器為什麼會信你改過的值？
+1. **logon** - 你改了瀏覽器裡的 cookie，伺服器為什麼會信你改過的值？
+2. **Old Sessions** - 一串 session ID 為什麼就能代表一個人？伺服器該怎麼限制它？
+3. **Crack the Gate 1** - 「只有開發者知道的後門」為什麼不算一種認證？
+4. **Password Profiler** - 密碼存成雜湊，為什麼還是被猜中了？
+5. **No FA** - 雙因素的第二個因素應該只有誰拿得到？這題它放在哪裡？
 
-> 弱密碼的**雜湊**深入在 M6；這裡只做「弱密碼破存取控制」的角度。
+> 2026-11-06 起改用這組（原 PW Crack 1／2 解法是讀程式碼與還原編碼，與 A2 重複；Cookies 與 logon 同招，移入候選池）。全組只需瀏覽器與 Python，不需 Burp。Crack the Gate 1 的註解用 ROT13 寫，題目提示直接講明，不算跨進 M6。雜湊的單向性本身仍在 M6 教；這裡只從「弱密碼可被猜中」的角度用到。講義與作業：[`sessions/20261106_cylab-auth/`](ncu_network_security/sessions/20261106_cylab-auth/)。
+
+<details><summary>候選池（21 題）</summary>
+
+`66` dont-use-client-side（E・96k）、`278` Local Authority（E・90k）、`173` Cookies（E・107k，與 logon 同招）、`245` PW Crack 1（E・84k，與 A2 重複）、`246` PW Crack 2（E・81k，與 A2 重複）、`419` IntroToBurp（E・46k，需 Burp）、`247` PW Crack 3（M・60k，7 個候選比對 MD5）、`200` login（M・56k）、`248` PW Crack 4（M・51k，100 個候選，需寫迴圈）、`249` PW Crack 5（M・45k）、`288` Power Cookie（M・40k）、`69` Client-side-again（M・25k）、`124` More Cookies（M・11k）、`177` Most Cookies（M・9k）、`25` JaWT Scratchpad（M・9k）、`236` JAuth（M・8k）、`355` Java Code Analysis!?!（M・7k）、`521` Crack the Gate 2（M・7k）、`467` Apriti sesamo（M・3k）。另有需寫連線腳本的 `749` Credential Stuffing（M）、`743` Fool the Lockout（M）。
+
+</details>
 
 ---
 
@@ -247,9 +258,14 @@
 | `459` | Ph4nt0m 1ntrud3r | Forensics | M3 | ✅ 練習 | L2 |
 | `30` | shark on wire 1 | Forensics | M3 | ✅ capstone | L2 |
 | `264` | Eavesdrop | Forensics | M3 | ✅ 選配 | L2 |
-| `245` | PW Crack 1 | General Skills | M4 | ✅ 帶練 | L4/L1 |
-| `246` | PW Crack 2 | General Skills | M4 | ✅ 練習 | L4/L1 |
-| `173` | Cookies | Web | M4 | ✅ 練習 | L4 |
+| `46` | logon | Web | M4 | ✅ 帶練 | L4 |
+| `739` | Old Sessions | Web | M4 | ✅ 練習 | L4 |
+| `520` | Crack the Gate 1 | Web | M4 | ✅ 練習 | L4 |
+| `712` | Password Profiler | General Skills | M4 | ✅ capstone | L4 |
+| `765` | No FA | Web | M4 | ✅ 選配 (Medium) | L4 |
+| `245` | PW Crack 1 | General Skills | M4 | ⏳ 候選（與 A2 重複） | L4/L1 |
+| `246` | PW Crack 2 | General Skills | M4 | ⏳ 候選（與 A2 重複） | L4/L1 |
+| `173` | Cookies | Web | M4 | ⏳ 候選（與 logon 同招） | L4 |
 | `492` | SSTI1 | Web | M5 | ✅ 帶練 | 紅隊補充 |
 | `304` | SQLiLite | Web | M5 | ✅ capstone (Medium) | 紅隊補充 |
 | ~~`270`~~ | ~~Forbidden Paths~~ | Web | — | ❌ 不用（路徑穿越走情境演練 CVE，不重複） | — |
