@@ -215,16 +215,18 @@ Medium：`743` Fool the Lockout（M・3k，每 30 秒重置的鎖定，放慢速
 | 必做 | `268` | **File types** | Medium | 同一個「辨識 → 拆」迴圈，但 11 層每層格式不同（shar、ar、cpio、bzip2、gzip、lzip、lz4、lzma、lzop、xz），最後是 hex | [library](https://learn.cylabacademy.org/library?search=File%20types) |
 | 必做 | `305` | **St3g0** | Medium | 前三步都沒東西，資料在像素最低位元；`zsteg` 的 `b1,rgb,lsb,xy` | [library](https://learn.cylabacademy.org/library?search=St3g0) |
 | 必做 | `112` | **tunn3l v1s10n** | Medium | `file` 說是 data；BMP 檔頭三個欄位被改，修回後高度還被砍掉，藏了上半張圖 | [library](https://learn.cylabacademy.org/library?search=tunn3l%20v1s10n) |
-| 選配 | `290` | **Redaction gone wrong** | Medium | 第二步就有：PDF 的塗黑只是蓋一層，文字物件還在 | [library](https://learn.cylabacademy.org/library?search=Redaction%20gone%20wrong) |
+| 加分 | `81` | **like1000** | Medium | 第三步「拆」做到 1000 層：`1000.tar` 裝 `999.tar`，一路到 `1.tar` 裝 `flag.png`；手動拆不完，必須寫迴圈 | [library](https://learn.cylabacademy.org/library?search=like1000) |
+| 選做不計分 | `290` | **Redaction gone wrong** | Medium | 第二步就有：PDF 的塗黑只是蓋一層，文字物件還在；補「塗黑」這種藏法的觀念 | [library](https://learn.cylabacademy.org/library?search=Redaction%20gone%20wrong) |
 
 🧠 **理解問題**
 1. **Matryoshka doll** - 副檔名是 `.jpg`、看起來也是一張正常的圖，`file` 和 `binwalk` 憑什麼知道裡面還有東西？
 2. **File types** - 你的 PDF 閱讀器打不開它，`file` 卻認得出來；`file` 看的是什麼？為什麼副檔名不算數？
 3. **St3g0** - 圖片看起來完全正常，`exiftool`、`binwalk` 也都沒東西，資料到底放在哪裡？為什麼肉眼看不出差別？
 4. **tunn3l v1s10n** - 你改了哪幾個欄位、各代表什麼？為什麼把高度改大就看得到被藏起來的那一半？
-5. **Redaction gone wrong** - 畫面上明明是黑的，為什麼複製得到文字？真正的刪除該做什麼？
+5. **like1000** - 你的迴圈怎麼知道下一層叫什麼、什麼時候該停？不邊拆邊刪會發生什麼事？
+6. **Redaction gone wrong** - 畫面上明明是黑的，為什麼複製得到文字？真正的刪除該做什麼？
 
-> St3g0 與 What Lies Within 同招（`zsteg` 同一行），選 St3g0 是因為它的 flag 每個環境不同、且有 `$t3g0` 結尾可自我確認；What Lies Within 的 flag 固定，留候選池。講義與作業：[`sessions/20261106_cylab-files/`](ncu_network_security/sessions/20261106_cylab-files/)。
+> 加分題選 like1000 而非 Redaction：Redaction 只到第二步、動作是複製貼上，比必做還輕，不該拿加分；like1000 是示範的同一個迴圈放大到 1000 層，逼學生把手動流程寫成程式，接 A3 的程度。它的 flag 固定，所以評分看腳本與回答，不看 flag。St3g0 與 What Lies Within 同招（`zsteg` 同一行），選 St3g0 是因為它的 flag 每個環境不同、且有 `$t3g0` 結尾可自我確認；What Lies Within 的 flag 固定，留候選池。講義與作業：[`sessions/20261106_cylab-files/`](ncu_network_security/sessions/20261106_cylab-files/)。
 >
 > **安裝**：Kali 已有 `binwalk`、`exiftool`；另需 `sudo apt install binutils lzip lz4 lzop sharutils` 與 `gem install zsteg`。
 
@@ -240,9 +242,9 @@ Medium：`743` Fool the Lockout（M・3k，每 30 秒重置的鎖定，放慢速
 
 > 排入時依 M4／M7 的難度定位，把必做換成候選池裡的 Medium（crackme-py、keygenme-py、vault-door-1）。原本的 Easy 題 strings it、CanYouSee、information 移入候選池當暖身。
 
-<details><summary>候選池：檔案、中繼資料與隱寫（33 題）</summary>
+<details><summary>候選池：檔案、中繼資料與隱寫（32 題）</summary>
 
-`37` strings it（E・117k，暖身）、`408` CanYouSee（E・47k，暖身）、`186` information（E・148k，暖身）、`44` Glory of the Garden（E・96k）、`444` Scan Surprise（E・70k）、`450` Verify（E・62k）、`423` Secret of the Polyglot（E・44k）、`530` Riddle Registry（E・43k）、`524` Hidden in plainsight（E・32k）、`460` RED（E・29k）、`523` Flag in Flame（E・23k）、`519` Corrupted file（E・19k）、`698` Binary Digits（E・10k・題名推測）、`265` Enhance!（M・48k）、`52` extensions（M・35k）、`19` So Meta（M・34k）、`279` Lookey here（M・30k）、`74` What Lies Within（M・27k，與 St3g0 同招，flag 固定）、`350` hideme（M・18k）、`420` Mob psycho（M・10k）、`348` FindAndOpen（M・10k）、`205` advanced-potion-making（M・9k）、`81` like1000（M・9k）、`359` MSB（M・8k）、`51` WhitePages（M・8k）、`26` m00nwalk（M・8k）、`139` Milkslap（M・7k）、`53` c0rrupt（M・7k）、`415` endianness-v2（M・6k）、`432` Blast from the past（M・4k）、`481` flags are stepic（M・4k）、`714` Rogue Tower（M・3k）、`101` Weird File（M・2k）
+`37` strings it（E・117k，暖身）、`408` CanYouSee（E・47k，暖身）、`186` information（E・148k，暖身）、`44` Glory of the Garden（E・96k）、`444` Scan Surprise（E・70k）、`450` Verify（E・62k）、`423` Secret of the Polyglot（E・44k）、`530` Riddle Registry（E・43k）、`524` Hidden in plainsight（E・32k）、`460` RED（E・29k）、`523` Flag in Flame（E・23k）、`519` Corrupted file（E・19k）、`698` Binary Digits（E・10k・題名推測）、`265` Enhance!（M・48k）、`52` extensions（M・35k）、`19` So Meta（M・34k）、`279` Lookey here（M・30k）、`74` What Lies Within（M・27k，與 St3g0 同招，flag 固定）、`350` hideme（M・18k）、`420` Mob psycho（M・10k）、`348` FindAndOpen（M・10k）、`205` advanced-potion-making（M・9k）、`359` MSB（M・8k）、`51` WhitePages（M・8k）、`26` m00nwalk（M・8k）、`139` Milkslap（M・7k）、`53` c0rrupt（M・7k）、`415` endianness-v2（M・6k）、`432` Blast from the past（M・4k）、`481` flags are stepic（M・4k）、`714` Rogue Tower（M・3k）、`101` Weird File（M・2k）
 
 </details>
 
@@ -300,7 +302,8 @@ Medium：`743` Fool the Lockout（M・3k，每 30 秒重置的鎖定，放慢速
 | `268` | File types | Forensics | M7 | ✅ 必做 (Medium) | L3 |
 | `305` | St3g0 | Forensics | M7 | ✅ 必做 (Medium) | L3 |
 | `112` | tunn3l v1s10n | Forensics | M7 | ✅ 必做 (Medium) | L3 |
-| `290` | Redaction gone wrong | Forensics | M7 | ✅ 選配 (Medium) | L3 |
+| `81` | like1000 | Forensics | M7 | ✅ 加分 (Medium) | L3 |
+| `290` | Redaction gone wrong | Forensics | M7 | ✅ 選做不計分 | L3 |
 | `37` | strings it | General Skills | M7 | ⏳ 候選（暖身） | L3 |
 | `408` | CanYouSee | Forensics | M7 | ⏳ 候選（暖身） | L3 |
 | `186` | information | Forensics | M7 | ⏳ 候選（暖身） | L3 |
