@@ -1,10 +1,10 @@
-# A4 - Cylab Packets
+# Cylab Packets
 
-> 2026-11-06 發布。對應技能階梯 M3（明文流量與竊聽），選題與理解問題見 [`ncu_cylab_challenge_selection.md`](../../../ncu_cylab_challenge_selection.md)。期限、成績比重與 CyLab 作業連結以 eeclass 作業頁為準。
+> 備選作業，尚未排入堂次（原排 2026-11-06，因與 Wireshark 工作坊重疊改上 M4）。對應技能階梯 M3（明文流量與竊聽），選題與理解問題見 [`ncu_cylab_challenge_selection.md`](../../../ncu_cylab_challenge_selection.md)。期限、成績比重與 CyLab 作業連結以 eeclass 作業頁為準。
 
 ## 前置作業
 
-參考講義：[從封包裡讀出別人的對話](handout.md)（課堂以 Packets Primer 示範）。用 A2 加入的同一個 CyLab 教室帳號，完成平台上的 A4 作業：
+參考講義：[從封包裡讀出別人的對話](handout.md)（課堂以 Packets Primer 示範）。用 A2 加入的同一個 CyLab 教室帳號，完成平台上對應的作業：
 
 - **Ph4nt0m 1ntrud3r**
 - **shark on wire 1**

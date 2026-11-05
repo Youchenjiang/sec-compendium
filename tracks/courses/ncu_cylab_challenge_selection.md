@@ -102,7 +102,7 @@
 
 > 全用 CyLab 題，不另架環境。CyLab 的封包題沒有 Easy 的純明文題，故以 Medium 當帶練、用 Easy 的 `459` 練習。選配 `264` 題名就是講義的 Eavesdropping，金鑰在明文聊天裡傳，正好收束「加密也要整條路都保護」。`115` Wireshark doo dooo do doo... 不用：flag 套了 ROT13，屬 M6。DoS／Repudiation 無對應題型，講義帶過。
 >
-> 講義與作業：[`sessions/20261106_cylab-packets/`](ncu_network_security/sessions/20261106_cylab-packets/)。課堂只示範 `286`，作業必做 `459`、`30`。
+> 講義與作業（備選，未排入堂次）：[`alt-materials/cylab-packets/`](ncu_network_security/alt-materials/cylab-packets/)。課堂只示範 `286`，作業必做 `459`、`30`。學生若已上過 Wireshark 工作坊，Follow Stream 與明文帳密已教過，這階可略過或只用作業兩題當進階。
 
 <details><summary>候選池（7 題，全為 Medium）</summary>
 
