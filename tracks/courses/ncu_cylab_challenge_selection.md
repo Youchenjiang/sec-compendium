@@ -133,7 +133,7 @@
 4. **No FA** - 密碼雜湊為什麼查得到原文？雙因素的第二個因素應該只有誰拿得到？這題它放在哪裡？
 5. **JAuth** - token 上寫著用什麼演算法簽章，為什麼「讓 token 自己決定」會出事？
 
-> 2026-11-06 起改用這組。原 PW Crack 1／2 解法是讀程式碼與還原編碼，與 A2 重複；Old Sessions、Crack the Gate 1、Password Profiler 雖然切題但都是 Easy，移入候選池當暖身。全組不需 Burp：Crack the Gate 2 用 Python `requests` 迴圈即可。雜湊的單向性本身仍在 M6 教；這裡只從「沒加 salt 可查表」的角度用到。講義與作業：[`sessions/20261106_cylab-auth/`](ncu_network_security/sessions/20261106_cylab-auth/)。
+> 本組已備妥但**未排入堂次**（原排 2026-11-06，改先上 M7 接剛講完的 L3）；等 L4 講義上完再排。原 PW Crack 1／2 解法是讀程式碼與還原編碼，與 A2 重複；Old Sessions、Crack the Gate 1、Password Profiler 雖然切題但都是 Easy，移入候選池當暖身。全組不需 Burp：Crack the Gate 2 用 Python `requests` 迴圈即可。雜湊的單向性本身仍在 M6 教；這裡只從「沒加 salt 可查表」的角度用到。講義與作業（備選）：[`alt-materials/cylab-auth/`](ncu_network_security/alt-materials/cylab-auth/)。
 
 <details><summary>候選池（21 題）</summary>
 

@@ -1,10 +1,10 @@
-# A4 - Cylab Auth
+# Cylab Auth
 
-> 2026-11-06 發布。對應技能階梯 M4（認證與憑證），選題與理解問題見 [`ncu_cylab_challenge_selection.md`](../../../ncu_cylab_challenge_selection.md)。期限、成績比重與 CyLab 作業連結以 eeclass 作業頁為準。
+> 備選作業，尚未排入堂次（原排 2026-11-06，改先上 M7；等 L4 講完再排）。對應技能階梯 M4（認證與憑證），選題與理解問題見 [`ncu_cylab_challenge_selection.md`](../../../ncu_cylab_challenge_selection.md)。期限、成績比重與 CyLab 作業連結以 eeclass 作業頁為準。
 
 ## 前置作業
 
-參考講義：[伺服器憑什麼相信你是誰](handout.md)（課堂以 logon 示範）。用 A2 加入的同一個 CyLab 教室帳號，完成平台上的 A4 作業（三題皆為 Medium）：
+參考講義：[伺服器憑什麼相信你是誰](handout.md)（課堂以 logon 示範）。用 A2 加入的同一個 CyLab 教室帳號，完成平台上對應的作業（三題皆為 Medium）：
 
 - **Most Cookies**
 - **Crack the Gate 2**

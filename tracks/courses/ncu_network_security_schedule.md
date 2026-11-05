@@ -36,6 +36,7 @@ picoCTF 官方題庫,14 道題嚴格對應講義週次 W2–W13,是課後加分�
 |---|---|
 | Nessus 弱掃 + Suricata 偵測（防守對照,堂次未定）| [`alt-materials/nessus-suricata/`](ncu_network_security/alt-materials/nessus-suricata/) |
 | CyLab 封包分析（技能階梯 M3,與 Wireshark 工作坊重疊而未排入）| [`alt-materials/cylab-packets/`](ncu_network_security/alt-materials/cylab-packets/) |
+| CyLab 認證與憑證（技能階梯 M4,等 L4 講完再排）| [`alt-materials/cylab-auth/`](ncu_network_security/alt-materials/cylab-auth/) |
 
 ---
 

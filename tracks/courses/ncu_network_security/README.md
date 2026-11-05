@@ -8,7 +8,7 @@
 |---|---|
 | `deck-studio/` | **可編譯的簡報工作區**(Open Slide = Vite + React)。本課所有 deck 的源碼。`node_modules`/`dist` 不進 git,`npm install` 還原。 |
 | `sessions/` | **各堂文字教材**:教案、跟課手冊、作業、answer-key、腳本、離線 pptx。 |
-| `alt-materials/` | 未排入堂次的備選教材(Nessus + Suricata、CyLab 封包分析)。 |
+| `alt-materials/` | 未排入堂次的備選教材(Nessus + Suricata、CyLab 封包分析、CyLab 認證)。 |
 
 ## 編輯／預覽簡報
 
