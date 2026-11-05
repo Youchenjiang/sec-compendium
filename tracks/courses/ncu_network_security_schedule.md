@@ -12,16 +12,16 @@
 
 | 堂次 | 日期 | 主題 | 文字教材 | 簡報 |
 |---|---|---|---|---|
-| 第一堂 | 2026-10 | Apache CVE-2021-41773:路徑穿越 → RCE → reverse shell | [`sessions/01_attack-cve-2021-41773/`](ncu_network_security/sessions/01_attack-cve-2021-41773/)（教案＋手冊＋腳本＋pptx）| [`deck-studio …cve-2021-41773/`](ncu_network_security/deck-studio/slides/workshop-202610-cdx-cve-2021-41773/) |
-| 第二堂 | 2026-10-29 | 用 nmap 偵察 Metasploitable2:掃 → 讀成一張表 → 自選一條利用拿 shell | [`sessions/02_recon-to-shell-meta2/`](ncu_network_security/sessions/02_recon-to-shell-meta2/)（[handout](ncu_network_security/sessions/02_recon-to-shell-meta2/handout.md)・[assignment](ncu_network_security/sessions/02_recon-to-shell-meta2/assignment.md)・[answer-key](ncu_network_security/sessions/02_recon-to-shell-meta2/answer-key.md)）| 無 deck |
+| 第一堂 | 2026-10 | Apache CVE-2021-41773:路徑穿越 → RCE → reverse shell | [`sessions/20261002_attack-cve-2021-41773/`](ncu_network_security/sessions/20261002_attack-cve-2021-41773/)（教案＋手冊＋腳本＋pptx）| [`deck-studio …cve-2021-41773/`](ncu_network_security/deck-studio/slides/workshop-202610-cdx-cve-2021-41773/) |
+| 第二堂 | 2026-10-29 | 用 nmap 偵察 Metasploitable2:掃 → 讀成一張表 → 自選一條利用拿 shell | [`sessions/20261029_recon-to-shell-meta2/`](ncu_network_security/sessions/20261029_recon-to-shell-meta2/)（[handout](ncu_network_security/sessions/20261029_recon-to-shell-meta2/handout.md)・[assignment](ncu_network_security/sessions/20261029_recon-to-shell-meta2/assignment.md)・[answer-key](ncu_network_security/sessions/20261029_recon-to-shell-meta2/answer-key.md)）| 無 deck |
 | 第三堂 | 未定 | 尚未排定 | — | — |
 
 ## 二、Wireshark 封包分析講座
 
 | 日期 | 主題 | 文字教材 | 簡報 |
 |---|---|---|---|
-| 2026-10-03 | Wireshark 封包分析基礎（20 分鐘） | [`sessions/202610_NET_Wireshark-Fundamentals/`](ncu_network_security/sessions/202610_NET_Wireshark-Fundamentals/) | [`deck-studio …wireshark-fundamentals/`](ncu_network_security/deck-studio/slides/workshop-202610-net-wireshark-fundamentals/) |
-| 2026-10-06 | Wireshark 實務操作與通訊協定檢視 | [`sessions/202610_NET_Wireshark-v2/`](ncu_network_security/sessions/202610_NET_Wireshark-v2/) | [`deck-studio …wireshark-v2/`](ncu_network_security/deck-studio/slides/workshop-202610-net-wireshark-v2/) |
+| 2026-10-03 | Wireshark 封包分析基礎（20 分鐘） | [`sessions/20261003_wireshark-fundamentals/`](ncu_network_security/sessions/20261003_wireshark-fundamentals/) | [`deck-studio …wireshark-fundamentals/`](ncu_network_security/deck-studio/slides/workshop-202610-net-wireshark-fundamentals/) |
+| 2026-10-06 | Wireshark 實務操作與通訊協定檢視 | [`sessions/20261006_wireshark-v2/`](ncu_network_security/sessions/20261006_wireshark-v2/) | [`deck-studio …wireshark-v2/`](ncu_network_security/deck-studio/slides/workshop-202610-net-wireshark-v2/) |
 
 ## 三、CyLab 課後加分題庫（依週次，非場次日期）
 

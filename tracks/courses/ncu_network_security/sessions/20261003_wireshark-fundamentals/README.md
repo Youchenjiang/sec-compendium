@@ -10,7 +10,7 @@
 ## 📦 套件結構 (Kit Contents)
 
 ```text
-202610_NET_Wireshark-Fundamentals/
+20261003_wireshark-fundamentals/
 ├── docs/                                 # 核心教材文檔
 │   ├── instructor-guide.md               # 教師課堂教案 (20 分鐘配速、提問設計、白話引導)
 │   └── lab-handout.md                    # 學員實作手冊 (四大實戰情境、介面三區導覽、AI Prompt 範本、複習題)

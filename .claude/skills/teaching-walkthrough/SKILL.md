@@ -19,7 +19,7 @@ description: >-
 這兩件事都會出錯，但方向相反：有據不足會變「通靈」，自然不足會變「腳本旁白」。下面分開講，收尾的自檢清單也分兩欄。
 
 錨定範例（寫新的照它的骨架）：
-`tracks/courses/ncu_network_security/sessions/02_recon-to-shell-meta2/handout.md`
+`tracks/courses/ncu_network_security/sessions/20261029_recon-to-shell-meta2/handout.md`
 
 ---
 
