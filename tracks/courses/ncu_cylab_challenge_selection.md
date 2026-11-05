@@ -75,18 +75,16 @@
 
 | 角色 | ID／來源 | 題名 | 難度 | 練什麼 | 連結 |
 | :--: | :-- | :-- | :--: | :-- | :-- |
-| 帶練 | 自建 | **ftp-cleartext** | Easy | Follow Stream，明文密碼裸奔 | [plugin](../../ctfd/plugins/wireshark_labs/) |
-| 練習 | 自建 | **http-basic** | Easy | 同招 + base64 解碼（`Authorization: Basic` 不是加密，呼應 M1） | [plugin](../../ctfd/plugins/wireshark_labs/) |
-| capstone | `286` | **Packets Primer** | Medium | 第一題真 picoCTF 封包：開 pcap、讀 payload | [library](https://learn.cylabacademy.org/library?search=Packets%20Primer) |
-| capstone | `30` | **shark on wire 1** | Medium | 跟隨 stream，把拆散的 flag 拼回來 | [library](https://learn.cylabacademy.org/library?search=shark%20on%20wire%201) |
+| 帶練 | `286` | **Packets Primer** | Medium | 開 pcap、Follow TCP Stream，payload 直接看到 flag | [library](https://learn.cylabacademy.org/library?search=Packets%20Primer) |
+| 練習（接 M1） | `459` | **Ph4nt0m 1ntrud3r** | Easy | 依時間排序封包，拼回分段的 base64 再解開 | [library](https://learn.cylabacademy.org/library?search=Ph4nt0m%201ntrud3r) |
+| capstone | `30` | **shark on wire 1** | Medium | 在多條 stream 中找出藏 flag 的那條，拼回來 | [library](https://learn.cylabacademy.org/library?search=shark%20on%20wire%201) |
 
 🧠 **理解問題**
-1. **ftp-cleartext** - 你不是這段連線的收發雙方，為什麼還能看到那組密碼？
-2. **http-basic** - `Authorization: Basic` 裡的帳密是加密過的，還是只是換個樣子？
-3. **Packets Primer** - flag 是「看」到的還是「解密」到的？這代表這段流量受保護了嗎？
-4. **shark on wire 1** - 為什麼光看單一封包不夠，要追蹤整條 stream？
+1. **Packets Primer** - flag 是「看」到的還是「解密」到的？這代表這段流量受保護了嗎？
+2. **Ph4nt0m 1ntrud3r** - 封包裡的字串是 base64，攻擊者這樣傳，有讓旁觀的人看不到內容嗎？
+3. **shark on wire 1** - 為什麼光看單一封包不夠，要追蹤整條 stream？
 
-> 選配：`telnet-echo`（自建，重組無回顯密碼）。DoS／Repudiation 無對應題型，講義帶過。
+> 全用 CyLab 題，不另架環境。CyLab 的封包題沒有 Easy 的純明文題，故以 Medium 當帶練、用 Easy 的 `459` 練習。選配：`115` Wireshark doo dooo do doo...（HTTP 明文，但 flag 套了 ROT13，屬 M6 範圍，進階者再做）。DoS／Repudiation 無對應題型，講義帶過。
 
 ---
 
@@ -191,10 +189,10 @@
 | `426` | Unminify | Web | M2 | ✅ 練習 | L2/L3 |
 | `427` | WebDecode | Web | M2 | ✅ 練習 | L2/L3 |
 | `469` | Cookie Monster Secret Recipe | Web | M2 | ✅ 練習 | L2 |
-| 自建 | ftp-cleartext | wireshark_labs | M3 | ✅ 帶練 | L2/L13 |
-| 自建 | http-basic | wireshark_labs | M3 | ✅ 練習 | L2/L13 |
-| `286` | Packets Primer | Forensics | M3 | ✅ capstone | L2 |
+| `286` | Packets Primer | Forensics | M3 | ✅ 帶練 | L2 |
+| `459` | Ph4nt0m 1ntrud3r | Forensics | M3 | ✅ 練習 | L2 |
 | `30` | shark on wire 1 | Forensics | M3 | ✅ capstone | L2 |
+| `115` | Wireshark doo dooo do doo... | Forensics | M3 | ⏳ 選配（ROT13 屬 M6） | L2 |
 | `245` | PW Crack 1 | General Skills | M4 | ✅ 帶練 | L4/L1 |
 | `246` | PW Crack 2 | General Skills | M4 | ✅ 練習 | L4/L1 |
 | `173` | Cookies | Web | M4 | ✅ 練習 | L4 |
