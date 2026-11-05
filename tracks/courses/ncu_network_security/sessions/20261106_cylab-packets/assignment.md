@@ -4,7 +4,10 @@
 
 ## 前置作業
 
-在 [CyLab 平台](https://learn.cylabacademy.org/) 用 A2 加入的同一個教室帳號，完成平台上的 A4 作業。需要安裝 [Wireshark](https://www.wireshark.org/download.html)。
+參考講義：[從封包裡讀出別人的對話](handout.md)（課堂以 Packets Primer 示範）。用 A2 加入的同一個 CyLab 教室帳號，完成平台上的 A4 作業：
+
+- **Ph4nt0m 1ntrud3r**
+- **shark on wire 1**
 
 ## 繳交格式
 
@@ -14,12 +17,15 @@
 
 ## 作業要求
 
-CyLab 加入教室的帳號名稱（用來確認作答情況），並回答：
+CyLab 加入教室的帳號名稱（用來確認作答情況），並針對兩題各回答：
 
-1. Packets Primer - flag 是「看」到的還是「解密」到的？這代表這段流量受保護了嗎？
-2. Ph4nt0m 1ntrud3r - 封包裡的字串是 base64，攻擊者這樣傳，有讓旁觀的人看不到內容嗎？
-3. shark on wire 1 - 為什麼光看單一封包不夠，要追蹤整條 stream？
+1. Ph4nt0m 1ntrud3r
+   - 你用了哪些過濾條件或操作，把 flag 所在的封包挑出來、排好順序？
+   - 封包裡的字串是 base64，攻擊者這樣傳，有讓旁觀的人看不到內容嗎？
+2. shark on wire 1
+   - flag 在哪一條 stream？你是怎麼找到那一條的？
+   - 為什麼光看單一封包不夠，要追蹤整條 stream？
 
 ## 額外加分（選做）
 
-- Wireshark doo dooo do doo... - 你在 HTTP 回應裡看到的那串字還不是 flag，你怎麼判斷它被做了什麼處理？
+- Eavesdrop - 這份錄製檔裡有一段聊天和一次檔案傳輸，檔案本身是加密的。說明你從哪裡得到解密需要的資訊，以及「檔案有加密」為什麼還是沒擋住竊聽者。
