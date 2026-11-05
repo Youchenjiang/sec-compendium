@@ -1,0 +1,208 @@
+# 不執行，也能把檔案裡藏的東西挖出來
+
+Lesson 3 講惡意程式時提到：攻擊者會把要用的東西藏起來。藏在程式裡的字串、附在檔案尾巴的另一個檔案、塗黑之後其實還在的文字，都是同一件事：畫面上看不到，位元組裡還在。鑑識（forensics）就是反過來做：不執行檔案，只看它的位元組，把藏的東西找出來。
+
+這份講義教一張**檢查表**：拿到任何不明檔案，都照同一個順序走，每一步用一個工具。課堂用 CyLab 上的 **Matryoshka doll** 從頭走到尾；作業的每一題也是跑同一張表，差別只在東西藏在哪一步。
+
+走完這份講義，你應該能做到：
+
+- 不看副檔名，判斷一個檔案真正的格式。
+- 從檔案裡抽出明文字串與中繼資料。
+- 找出並拆出藏在檔案裡的另一個檔案，拆完再從頭檢查一次。
+- 知道圖片像素裡也能藏資料，以及用什麼工具看。
+- 讀懂一個檔頭的欄位，判斷它有沒有被改過。
+
+---
+
+## 檢查表
+
+| 步驟 | 問題 | 指令 |
+|---|---|---|
+| 1 辨識 | 這到底是什麼格式？ | `file x` |
+| 2 看明文 | 有沒有直接可讀的字串、中繼資料？ | `strings x \| grep -i pico`、`exiftool x` |
+| 3 拆 | 裡面有沒有藏另一個檔案？拆出來後**回到步驟 1** | `binwalk x`、`binwalk -e x` |
+| 4 看像素 | （圖片）像素的最低位元有沒有資料？ | `zsteg x.png` |
+| 5 修檔頭 | 認不出來、打不開？檔頭欄位對不對？ | `xxd x \| head` |
+
+前三步是每個檔案都要跑的；4 和 5 是前三步都沒有收穫時才往下走。下面先用 Matryoshka doll 走一遍，再把每一步的工具講清楚。
+
+---
+
+## 走一遍：Matryoshka doll
+
+題目說：俄羅斯娃娃是一組大小遞減、一個套一個的木娃娃，最裡面那個是什麼？提示問：檔案裡可以藏檔案？那要怎麼找？下載下來的檔案叫 `dolls.jpg`。
+
+### 步驟 1：辨識
+
+```bash
+file dolls.jpg
+```
+
+它回報的是 PNG，不是 JPEG。副檔名是人取的，`file` 看的是檔案開頭的幾個位元組（magic bytes，每種格式固定的開頭），這才算數。
+
+### 步驟 2：看明文與中繼資料
+
+```bash
+strings dolls.jpg | grep -i pico
+exiftool dolls.jpg
+```
+
+`strings` 沒有撈到 flag。`exiftool` 列出 594×1104 的 PNG，但多了一行警告：
+
+```text
+Warning : [minor] Trailer data after PNG IEND chunk
+```
+
+PNG 以 `IEND` 這個區塊結尾，後面照理不該有東西。這行警告的意思是：檔案在圖片結束之後還有資料。
+
+### 步驟 3：拆
+
+`binwalk` 會掃整個檔案，把它認得的每一種格式和出現的位置（offset，距離檔案開頭的位元組數）列出來：
+
+```bash
+binwalk dolls.jpg
+```
+
+```text
+DECIMAL       HEXADECIMAL     DESCRIPTION
+--------------------------------------------------------------------------------
+0             0x0             PNG image, 594 x 1104, 8-bit/color RGBA, non-interlaced
+3226          0xC9A           TIFF image data, big-endian
+272492        0x4286C         Zip archive data, ..., name: base_images/2_c.jpg
+```
+
+第一列是圖片本身。第二列的 TIFF 其實是 PNG 裡的 EXIF 區塊，不用理。第三列才是重點：從第 272492 個位元組開始，有一個 zip，裡面有一個叫 `base_images/2_c.jpg` 的檔案。
+
+加上 `-e` 讓它把找到的東西拆出來：
+
+```bash
+binwalk -e dolls.jpg
+ls _dolls.jpg.extracted/
+```
+
+目錄裡有 `4286C.zip`（用剛才那個 offset 的十六進位命名）和已經解開的 `base_images/2_c.jpg`。
+
+不用 binwalk 也行。zip 格式的目錄放在檔案尾端，所以 `unzip` 直接吃這個 PNG 也能解，只是會先抱怨前面多了 272492 個位元組：
+
+```bash
+unzip dolls.jpg
+```
+
+```text
+warning [dolls.jpg]:  272492 extra bytes at beginning or within zipfile
+```
+
+### 回到步驟 1
+
+拆出來的 `2_c.jpg` 是一個新的不明檔案，從頭再跑一次：`file` 說它是 PNG（526×1106），`binwalk` 又在 187707 找到一個 zip，裡面是 `base_images/3_c.jpg`。再拆、再回頭。第三層是 `4_c.jpg`；第四層拆出來的不再是圖片，而是 `flag.txt`，這就是最裡面的娃娃：
+
+```bash
+cat flag.txt
+```
+
+```text
+p i c o C T F { . . . }
+```
+
+字元之間夾著空白，去掉就是 flag。
+
+四層都是同一個動作。`binwalk -e -M dolls.jpg` 的 `-M`（matryoshka）會自動對拆出來的檔案再跑一次，一行指令做完；但第一次請手動走，才看得到每一層的 `file` 和 `binwalk` 在說什麼。
+
+---
+
+## 每一步的工具
+
+### 步驟 1：`file` 看的是開頭，不是名字
+
+`file` 比對檔案開頭的位元組。PNG 開頭固定是 `89 50 4E 47`，zip 是 `50 4B`（`PK`），PDF 是 `25 50 44 46`（`%PDF`）。副檔名改成什麼都不影響它的判斷。
+
+兩種特別的回答要認得：
+
+- 回報一個你沒想到的格式（例如 `.pdf` 回報 `shell archive text`）：那就是它真正的格式，用對應的工具開。
+- 回報 `data`：`file` 認不出來。不是沒有格式，而是開頭的位元組跟任何已知格式都對不上，常見原因是檔頭被改壞了，往步驟 5 走。
+
+### 步驟 2：`strings` 與 `exiftool`
+
+`strings` 把檔案裡連續 4 個以上的可印字元列出來，配合 `grep` 找關鍵字。`exiftool` 讀中繼資料（metadata，描述檔案本身的資料：尺寸、相機、作者、時間），而且像剛才那樣，會順手警告檔案結構異常。
+
+兩個都沒有收穫，不代表沒藏東西。壓縮過或藏在像素裡的資料，這兩個工具看不到。
+
+### 步驟 3：拆，然後再從頭來
+
+`binwalk` 在整個檔案裡找 magic bytes，所以附在尾端、夾在中間的檔案都找得到；`-e` 拆出來。拆出來的東西是新的不明檔案，一律回到步驟 1。
+
+拆出來的格式不一定是 zip。遇到不熟的壓縮格式，照 `file` 的回答查對應的解壓工具：
+
+| `file` 回報 | 工具 |
+|---|---|
+| Zip archive data | `unzip` |
+| shell archive text | `sh 檔名` |
+| current ar archive | `ar x 檔名` |
+| cpio archive | `cpio -idv < 檔名`（`<` 不能省，否則它會把檔名當成搜尋樣式、停在那裡等輸入）|
+| bzip2 / gzip / XZ compressed data | `bzip2 -d`、`gzip -d`、`xz -d` |
+| lzip / LZ4 / LZMA / lzop compressed data | `lzip -d`、`lz4 -d`、`lzma -d`、`lzop -d` |
+| ASCII text，但內容像 `7069636f...` | 十六進位，`xxd -r -p` 還原 |
+
+其中 `lzma`、`lzop`、`xz` 會看副檔名決定要不要處理，拆出來的檔案沒有副檔名時，先 `mv` 成對應的 `.lzma`、`.lzo`、`.xz`。
+
+### 步驟 4：像素裡的資料（LSB）
+
+一個像素的每個顏色值佔 8 個位元，把最低的那一個位元（LSB，least significant bit）改掉，顏色只差 1/256，肉眼看不出來；一張圖有幾十萬個像素，就能藏不少資料。這種藏法 `strings`、`exiftool`、`binwalk` 全都看不到，因為圖片的結構完全正常。
+
+`zsteg` 專門對 PNG 和 BMP 做這件事，它會把各種「哪個通道、哪個位元、什麼順序」的組合都試一遍，列出看起來像文字或檔案的結果：
+
+```bash
+zsteg x.png
+```
+
+```text
+b1,rgb,lsb,xy       .. text: "..."
+b1,abgr,msb,xy      .. file: PGP Secret Sub-key
+```
+
+每一行前面是組合：`b1` 取 1 個位元、`rgb` 依 R、G、B 三個通道交錯、`lsb` 取最低位元、`xy` 逐列掃。後面是用那個組合讀出來的東西。列出來的大多是雜訊（像那行 PGP），要找的是有意義的文字。確定某一組合之後，`zsteg -E b1,rgb,lsb,xy x.png` 只輸出那一組。
+
+### 步驟 5：讀檔頭
+
+`file` 回報 `data`、或格式對了但圖片打不開，通常是檔頭（header，檔案開頭描述結構的固定欄位）有欄位被改了。用 `xxd` 看前幾行：
+
+```bash
+xxd -g 1 x | head
+```
+
+以 BMP 為例，前 54 個位元組是檔頭，欄位位置固定；數值用小端序（little-endian）存，也就是低位元組在前，`36 00 00 00` 代表 0x36 = 54：
+
+| offset | 長度 | 欄位 | 正常值 |
+|---|---|---|---|
+| 0x00 | 2 | 識別字 | `42 4D`（`BM`）|
+| 0x02 | 4 | 整個檔案的大小 | 等於實際檔案大小 |
+| 0x0A | 4 | 像素資料從哪裡開始 | 54（0x36）|
+| 0x0E | 4 | 第二段檔頭的大小 | 40（0x28）|
+| 0x12 | 4 | 寬 | |
+| 0x16 | 4 | 高 | |
+| 0x1A | 2 | 色彩平面數 | 1 |
+| 0x1C | 2 | 每像素位元數 | 24 |
+
+檢查方法是拿欄位互相對：每一列像素佔「寬 × 每像素位元組數」再補到 4 的倍數，「檔案大小 − 54」除以每列的位元組數，就是這張圖實際有幾列。算出來的值跟高度欄位不一樣，就是有人改過高度。BMP 的像素資料是**從最下面一列開始往上存**，高度被改小，檢視器只畫出下面那幾列，上面的部分還在檔案裡，只是沒被畫出來。
+
+改檔頭用任何十六進位編輯器（`hexedit`、HxD、線上的 HexEd.it）都可以；改完存檔，再用 `file` 確認它認得出來了。
+
+---
+
+## 安裝
+
+Kali 已經有 `file`、`strings`、`xxd`、`binwalk`、`exiftool`。另外需要：
+
+```bash
+sudo apt install binutils lzip lz4 lzop sharutils
+```
+
+```bash
+sudo gem install zsteg
+```
+
+---
+
+## 接下來
+
+回頭看就是這五步：**認 → 看 → 拆（再回頭）→ 像素 → 檔頭**。作業的每一題都從步驟 1 開始跑這張表，東西各藏在不同的一步；題目與繳交方式見 [作業說明](assignment.md)。
