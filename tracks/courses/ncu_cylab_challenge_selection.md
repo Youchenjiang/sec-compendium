@@ -13,6 +13,8 @@
 > 4. **不跨階重複**：一題的技能屬於哪一階，就在那階出現；別的階要用同概念，換不同題。
 > 5. **flag ≠ 學習成果**：每題配一個「🧠 理解問題」，解完就答。flag 只當「做過」的門票，成績看能否講清機制；這也是對「貼 GPT 拿 flag 卻沒懂」的防線。自建題（wireshark_labs）每人 flag 不同，再加一層防抄。
 >
+> 6. **從候選池挑，不憑印象**：每階附「候選池」，列出同技能、還沒選用的 Easy／Medium 題（依難度、全站解出人數排序），來自 [技能分類](../../security/practice/challenges/platforms/cylab_picoctf/cylab_skill_classification.md)。換題、加分題、補考題都從這裡挑；標「題名推測」的題目要先看題目說明。
+>
 > **題數／難度來源**：`security/practice/challenges/platforms/cylab_picoctf/cylab_all_challenges_2026-08-08.csv`（2026-08-08 快照）。連結為 `https://learn.cylabacademy.org/library?search=<題名>`。
 
 ---
@@ -44,6 +46,12 @@
 
 > **工具坑**：CyberChef「**From Binary**（當位元解讀）vs **To Decimal**（逐字元取 ASCII）」不一樣——`'0'`=48、`'1'`=49 是常見踩坑。
 
+<details><summary>候選池（12 題）</summary>
+
+`58` Warmed Up（E・172k）、`86` 2warm（E・169k）、`239` convertme.py（E・79k）、`371` repetitions（E・43k）、`404` binhexa（E・27k）、`414` endianness（E・27k）、`762` bytemancy 1（E・9k・題名推測）、`742` bytemancy 0（E・9k・題名推測）、`35` Based（M・41k）、`390` ASCII Numbers（M・36k）、`724` bytemancy 2（M・3k・題名推測）、`730` bytemancy 3（M・2k・題名推測）
+
+</details>
+
 ---
 
 ## 🔍 M2 — 前端暴露與 obscurity
@@ -67,6 +75,12 @@
 
 > WebDecode／Cookie Monster 同時要 M1 的解碼 + M2 的 inspect，是這階的收尾。
 
+<details><summary>候選池（12 題）</summary>
+
+`132` GET aHEAD（E・119k）、`274` Includes（E・89k）、`406` Bookmarklet（E・67k）、`476` head-dump（E・28k）、`295` Search source（M・39k）、`9` picobrowser（M・38k）、`152` Some Assembly Required 1（M・36k）、`296` Secrets（M・31k）、`349` findme（M・28k）、`291` Roboto Sans（M・28k）、`356` MatchTheRegex（M・25k）、`131` Some Assembly Required 2（M・9k）。另有帳本中的候選 `4` where are the robots、`161` Scavenger Hunt。
+
+</details>
+
 ---
 
 ## 📡 M3 — 明文流量與竊聽
@@ -89,6 +103,12 @@
 > 全用 CyLab 題，不另架環境。CyLab 的封包題沒有 Easy 的純明文題，故以 Medium 當帶練、用 Easy 的 `459` 練習。選配 `264` 題名就是講義的 Eavesdropping，金鑰在明文聊天裡傳，正好收束「加密也要整條路都保護」。`115` Wireshark doo dooo do doo... 不用：flag 套了 ROT13，屬 M6。DoS／Repudiation 無對應題型，講義帶過。
 >
 > 講義與作業：[`sessions/20261106_cylab-packets/`](ncu_network_security/sessions/20261106_cylab-packets/)。課堂只示範 `286`，作業必做 `459`、`30`。
+
+<details><summary>候選池（7 題，全為 Medium）</summary>
+
+`115` Wireshark doo dooo do doo...（M・41k，ROT13 屬 M6，不用）、`362` PcapPoisoning（M・22k）、`103` Trivial Flag Transfer Protocol（M・16k）、`110` Wireshark twoo twooo two twoo...（M・13k）、`84` shark on wire 2（M・7k）、`237` WPA-ing Out（M・6k）、`311` Torrent Analyze（M・6k）
+
+</details>
 
 ---
 
@@ -127,6 +147,12 @@
 
 > 命令注入、反序列化等其他注入在紅隊 playbook，想深入再看。路徑穿越（本 CVE 的命門）走情境演練，不在此重複。
 
+<details><summary>候選池（19 題）</summary>
+
+`482` n0s4n1ty 1（E・20k）、`270` Forbidden Paths（M・34k，路徑穿越，與情境演練重複，不用）、`80` Irish-Name-Repo 1（M・27k）、`303` SQL Direct（M・25k）、`202` caas（M・23k）、`358` More SQLi（M・22k）、`59` Irish-Name-Repo 2（M・20k）、`376` SOAP（M・19k）、`445` Trickster（M・16k）、`8` Irish-Name-Repo 3（M・16k）、`88` Web Gauntlet（M・16k）、`488` SSTI2（M・12k）、`443` No Sql Injection（M・11k）、`484` 3v@l（M・10k）、`174` Web Gauntlet 2（M・10k）、`180` Super Serial（M・9k）、`128` Web Gauntlet 3（M・7k）、`729` Sql Map1（M・3k・題名推測）、`108` Startup Company（M・1k）
+
+</details>
+
 ---
 
 ## 🔐 M6 — 雜湊與密碼學
@@ -151,6 +177,12 @@
 🧠 **理解問題**
 1. **13 / Mod 26** - 你沒有任何金鑰就把它還原了，為什麼位移密碼這麼容易破？
 2. **hashcrack** - 雜湊號稱「不可逆」，那你是怎麼「還原」出原文的？（提示：你不是解開它，是猜中）
+
+<details><summary>候選池（25 題）</summary>
+
+`418` interencdec（E・61k）、`64` caesar（M・62k）、`43` Easy1（M・45k）、`316` Vigenere（M・36k）、`373` rotation（M・30k）、`307` substitution0（M・29k）、`31` Flags（M・28k）、`253` basic-mod1（M・25k）、`21` Tapping（M・23k）、`280` morse-code（M・22k）、`261` credstuff（M・21k）、`309` substitution2（M・20k）、`308` substitution1（M・20k）、`289` rail-fence（M・19k）、`254` basic-mod2（M・18k）、`40` Mr-Worldwide（M・17k）、`3` la cifra de（M・16k）、`312` transposition-trial（M・16k）、`351` HideToSee（M・15k）、`158` New Caesar（M・15k）、`210` spelling-quiz（M・7k）、`38` waves over lambda（M・6k）、`407` C3（M・6k）、`473` Guess My Cheese (Part 1)（M・6k）、`474` Guess My Cheese (Part 2)（M・2k）
+
+</details>
 
 ---
 
@@ -177,6 +209,24 @@
 1. **strings it** - 執行檔是二進位，`strings` 為什麼還能把裡面的文字撈出來？
 2. **CanYouSee** - flag 不在圖片「畫面」裡，卻在檔案裡——它藏在哪個部分？
 3. **vault-door-training** - 密鑰就寫在原始碼裡，為什麼「把密鑰藏在程式碼裡」本身就不安全？
+
+<details><summary>候選池：檔案、中繼資料與隱寫（35 題）</summary>
+
+`44` Glory of the Garden（E・96k）、`444` Scan Surprise（E・70k）、`450` Verify（E・62k）、`423` Secret of the Polyglot（E・44k）、`530` Riddle Registry（E・43k）、`524` Hidden in plainsight（E・32k）、`460` RED（E・29k）、`523` Flag in Flame（E・23k）、`519` Corrupted file（E・19k）、`698` Binary Digits（E・10k・題名推測）、`129` Matryoshka doll（M・52k）、`265` Enhance!（M・48k）、`52` extensions（M・35k）、`19` So Meta（M・34k）、`279` Lookey here（M・30k）、`74` What Lies Within（M・27k）、`290` Redaction gone wrong（M・24k）、`112` tunn3l v1s10n（M・22k）、`350` hideme（M・18k）、`305` St3g0（M・17k）、`268` File types（M・12k）、`420` Mob psycho（M・10k）、`348` FindAndOpen（M・10k）、`205` advanced-potion-making（M・9k）、`81` like1000（M・9k）、`359` MSB（M・8k）、`51` WhitePages（M・8k）、`26` m00nwalk（M・8k）、`139` Milkslap（M・7k）、`53` c0rrupt（M・7k）、`415` endianness-v2（M・6k）、`432` Blast from the past（M・4k）、`481` flags are stepic（M・4k）、`714` Rogue Tower（M・3k）、`101` Weird File（M・2k）
+
+</details>
+
+<details><summary>候選池：讀程式找密鑰（19 題）</summary>
+
+`472` Flag Hunters（E・26k）、`175` crackme-py（M・44k）、`121` keygenme-py（M・42k）、`12` vault-door-1（M・36k）、`294` Safe Opener（M・23k）、`287` patchme.py（M・20k）、`116` speeds and feeds（M・18k）、`314` unpackme.py（M・17k）、`400` Picker I（M・16k）、`375` Safe Opener 2（M・16k）、`60` vault-door-3（M・13k）、`256` bloat.py（M・13k）、`71` vault-door-4（M・11k）、`271` Fresh Java（M・11k）、`401` Picker II（M・10k）、`77` vault-door-5（M・9k）、`402` Picker III（M・8k）、`45` vault-door-6（M・7k）、`428` weirdSnake（M・3k）
+
+</details>
+
+<details><summary>候選池：磁碟、記憶體、日誌與 Git 調查（21 題，多數超出本階「排除記憶體 dump」的範圍，列供進階參考）</summary>
+
+`505` DISKO 1（E・36k）、`301` Sleuthkit Intro（M・29k）、`300` Sleuthkit Apprentice（M・21k）、`130` MacroHard WeakEdge（M・21k）、`137` Disk, disk, sleuth! II（M・18k）、`113` Disk, disk, sleuth!（M・14k）、`285` Operation Orchid（M・11k）、`456` Event-Viewing（M・7k）、`506` DISKO 2（M・7k）、`87` Pitter, Patter, Platters（M・6k）、`284` Operation Oni（M・6k）、`507` DISKO 3（M・6k）、`413` Dear Diary（M・4k）、`453` Bitlocker-1（M・4k）、`720` Timeline 0（M・3k・題名推測）、`705` Forensics Git 0（M・3k・題名推測）、`704` DISKO 4（M・3k・題名推測）、`706` Forensics Git 1（M・2k・題名推測）、`721` Timeline 1（M・2k・題名推測）、`454` Bitlocker-2（M・2k）、`707` Forensics Git 2（M・2k・題名推測）
+
+</details>
 
 ---
 
