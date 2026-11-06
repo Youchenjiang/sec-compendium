@@ -46,7 +46,7 @@ webshell 的家目錄只有 128 MB，拆完的中間檔要隨手刪。它也沒�
 
 題目和提示已經把要做的事說完了：有一個檔案裡面藏著檔案，而且不只一層；剩下的問題只有「怎麼找」。下載下來的檔案叫 `dolls.jpg`。
 
-### 它真的是 jpg 嗎
+### 步驟 1 辨識：它真的是 jpg 嗎
 
 檔名是人取的，副檔名改成什麼都可以，所以先不要打開它，先問它到底是什麼：
 
@@ -58,7 +58,7 @@ file dolls.jpg
 
 `file` 有兩種回答要記得怎麼處理：回報一個你沒想到的格式（例如 `.pdf` 卻說是 `shell archive text`），那就是它真正的格式，用對應的工具開；回報 `data`，表示開頭的位元組跟任何已知格式都對不上，常見原因是檔頭被改壞了，作業裡會碰到。
 
-### 有沒有直接看得到的東西
+### 步驟 2 看明文：有沒有直接看得到的東西
 
 知道是 PNG 之後，先做兩個最快的檢查：檔案裡有沒有可讀的字串、中繼資料有沒有說什麼。
 
@@ -75,7 +75,7 @@ Warning : [minor] Trailer data after PNG IEND chunk
 
 PNG 以 `IEND` 這個區塊結尾，後面照理不該有東西。這行的意思是：檔案在圖片結束之後還有資料。提示問的「檔案裡藏檔案」，看來就在尾巴。
 
-### 圖片結束之後是什麼
+### 步驟 3 拆：圖片結束之後是什麼
 
 `binwalk` 會掃整個檔案，把它認得的每一種格式和出現的位置（offset，距離檔案開頭的位元組數）列出來：
 
@@ -93,26 +93,28 @@ DECIMAL       HEXADECIMAL     DESCRIPTION
 
 第一列是圖片本身。第二列的 TIFF 其實是 PNG 裡的 EXIF 區塊，不用理。第三列才是重點：從第 272492 個位元組開始，有一個 zip，裡面有一個叫 `base_images/2_c.jpg` 的檔案。
 
-加上 `-e` 讓它把找到的東西拆出來：
+把它拆出來有三種做法，結果相同，**擇一即可**：
+
+| 做法 | 指令 | 差別 |
+|---|---|---|
+| A `binwalk -e` | `binwalk -e dolls.jpg` | 只拆這一層，拆出來的東西放在 `_dolls.jpg.extracted/` |
+| B `unzip` | `unzip dolls.jpg` | 不靠 binwalk。zip 的目錄在檔案尾端，所以直接解得開，只是它會先抱怨前面多了 272492 個位元組 |
+| C `binwalk -e -M` | `binwalk -e -M dolls.jpg` | `-M`（matryoshka）自動對拆出來的檔案再拆，一行做完所有層 |
+
+下面用做法 A 走，才看得到每一層的 `file` 和 `binwalk` 在說什麼；做法 C 留到你確定裡面是什麼之後再用。
 
 ```bash
 binwalk -e dolls.jpg
 ls _dolls.jpg.extracted/
 ```
 
-目錄裡有 `4286C.zip`（用剛才那個 offset 的十六進位命名）和已經解開的 `base_images/2_c.jpg`。
-
-不用 binwalk 也行。zip 格式的目錄放在檔案尾端，所以直接對這個 PNG 跑 `unzip` 也能解開，只是它會先抱怨前面多了 272492 個位元組：
-
-```bash
-unzip dolls.jpg
-```
+目錄裡有 `4286C.zip`（用剛才那個 offset 的十六進位命名）和已經解開的 `base_images/2_c.jpg`。做法 B 的輸出長這樣：
 
 ```text
 warning [dolls.jpg]:  272492 extra bytes at beginning or within zipfile
 ```
 
-### 拆出來的檔案，再從頭檢查一次
+### 回到步驟 1：拆出來的檔案，再從頭檢查一次
 
 `2_c.jpg` 跟剛才的 `dolls.jpg` 一樣，檔名不可信、內容不知道，所以從頭再做一次：`file` 說它是 PNG（526×1106），`binwalk` 又在 187707 找到一個 zip，裡面是 `base_images/3_c.jpg`。再拆、再回頭。第三層是 `4_c.jpg`；第四層拆出來的不再是圖片，而是 `flag.txt`，這就是最裡面的娃娃：
 
@@ -124,9 +126,7 @@ cat flag.txt
 p i c o C T F { . . . }
 ```
 
-字元之間夾著空白，去掉就是 flag。
-
-四層都是同一個動作。`binwalk -e -M dolls.jpg` 的 `-M`（matryoshka）會自動對拆出來的檔案再跑一次，一行指令做完；但第一次請手動走，才看得到每一層的 `file` 和 `binwalk` 在說什麼。
+字元之間夾著空白，去掉就是 flag。四層都是步驟 1 → 2 → 3 再回頭，做法 C 就是把這個迴圈交給 binwalk 自動跑。
 
 ### 回頭看：剛才做的事排起來就是一張表
 
