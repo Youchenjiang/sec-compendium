@@ -254,7 +254,7 @@ Medium：`743` Fool the Lockout（M・3k，每 30 秒重置的鎖定，放慢速
 
 **磁碟映像與反鑑識（未排入堂次，接講義的 rootkit 單元）**
 
-> 觀念：rootkit 騙的是正在跑的系統（掛鉤 `ls`、`ps`、改核心的表），騙不了磁碟上的位元組；對策是把磁碟做成映像，不開機、不信那個系統，從外面看。這一組練的就是這個動作，而且其中幾題的「藏」正是反鑑識手法：改時間戳、`shred`、清 shell 歷史、寫進 slack space。CyLab 沒有直接叫 rootkit 的題。｜工具：`strings`、`xxd`，加 sleuthkit 的 `mmls`、`fls`、`icat`、`mactime`。webshell 有沒有 sleuthkit未確認；2022 那批題的官方說明寫「用 webshell 請解到 /tmp」，暗示 /tmp 不受家目錄 128 MB 限制，待驗證。
+> 觀念：rootkit 騙的是正在跑的系統（掛鉤 `ls`、`ps`、改核心的表），騙不了磁碟上的位元組；對策是把磁碟做成映像，不開機、不信那個系統，從外面看。這一組練的就是這個動作，而且其中幾題的「藏」正是反鑑識手法：改時間戳、`shred`、清 shell 歷史、寫進 slack space。CyLab 沒有直接叫 rootkit 的題。｜工具：`strings`、`xxd`，加 sleuthkit 的 `mmls`、`fls`、`icat`、`mactime`。webshell 有沒有 sleuthkit 未確認；2022 那批題的官方說明寫「用 webshell 請解到 /tmp」，暗示 /tmp 不受家目錄 128 MB 限制，待驗證。
 
 | 角色 | ID | 題名 | 難度 | 藏的東西／痕跡 | 解開後大小 | 連結 |
 | :--: | :-- | :-- | :--: | :-- | :-- | :-- |
