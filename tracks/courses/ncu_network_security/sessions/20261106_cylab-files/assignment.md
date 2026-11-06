@@ -4,15 +4,14 @@
 
 ## 前置作業
 
-參考講義：[一個檔案真正是什麼、藏了什麼](handout.md)（課堂以 Matryoshka doll 示範）。用 A2 加入的同一個 CyLab 教室帳號，完成平台上的 A4 作業三題：
+參考講義：[一個檔案真正是什麼、藏了什麼](handout.md)。用 A2 加入的同一個 CyLab 教室帳號，完成平台上的 A4 作業兩題：
 
-- **Secret of the Polyglot**（Easy）
-- **Disk, disk, sleuth!**（Medium）
-- **Mob psycho**（Medium）
+- **Matryoshka doll**（Medium）- 課堂示範的那一題，自己再走一遍。
+- **Secret of the Polyglot**（Easy）- 同一套工具，換一個檔案。
 
-三題只用課堂示範打過的工具：`file`、`strings`、`grep`、`exiftool`、`binwalk`、`unzip`、`xxd`，再加 `gzip`、`base64` 這兩個 Linux 本來就有的。
+兩題只用課堂示範打過的工具：`file`、`strings`、`grep`、`exiftool`、`binwalk`、`unzip`。
 
-環境要求：CyLab 自帶的 terminal（webshell）已經裝好本次需要的全部工具，直接在裡面做即可；用自己的 Linux（Kali 虛擬機或 WSL）也可以。兩點注意：webshell 家目錄只有 128 MB，拆過的中間檔要隨手刪，Disk, disk, sleuth! 的映像檔解開後正好 128 MB，放不下，講義有不落地的做法；webshell 沒有畫面，要看圖或開 PDF 的那一步，把檔案下載到自己電腦開。
+環境要求：CyLab 自帶的 terminal（webshell）已經裝好本次需要的全部工具，直接在裡面做即可；用自己的 Linux（Kali 虛擬機或 WSL）也可以。兩點注意：webshell 家目錄只有 128 MB，每題開自己的資料夾、做完整個刪掉；webshell 沒有畫面，要看圖或開 PDF 的那一步，把檔案下載到自己電腦開。
 
 ## 繳交格式
 
@@ -22,33 +21,28 @@
 
 ## 作業要求
 
-CyLab 加入教室的帳號名稱（用來確認作答情況），並針對三題各回答。每一題都照同一個順序：先讀題目說明寫下預期，再動手，最後回答理解問題。
+CyLab 加入教室的帳號名稱（用來確認作答情況），並針對兩題各回答。
 
-1. Secret of the Polyglot
+1. Matryoshka doll
+   - 走的路：四層每一層的 `file` 和 `binwalk` 各說什麼（貼關鍵那幾行）。拆的時候**不要用課堂的做法 A**（`binwalk -e`），從講義的做法 B（`unzip`）或做法 C（`binwalk -e -M`）選一個，說明你選它的理由、它和做法 A 的輸出差在哪。
+   - 理解：副檔名是 `.jpg`、看起來也是一張正常的圖，`file` 和 `binwalk` 憑什麼知道裡面還有東西？各看的是檔案的哪個部分？
+2. Secret of the Polyglot
    - 題目說：單位的網路維運中心攔到一個可疑檔案，對它是什麼格式各說各話，你能把裡面的資訊全部挖出來嗎？提示：用不同方式打開它就能解。
    - 先猜再動手：從這段說明，你預期東西藏在檢查表的哪一步？哪一句讓你這樣想？（跑任何指令之前寫。）
-   - 走的路：`file` 怎麼說、檔名怎麼說，兩者不同你各做了什麼；兩半 flag 各從哪裡看到。最後一句：這題跟課堂示範的哪一步同一招？差在哪裡？
+   - 走的路：`file` 怎麼說、檔名怎麼說，兩者不同你各做了什麼；兩半 flag 各從哪裡看到。最後一句：這題跟 Matryoshka doll 哪一步同一招？差在哪裡？
    - 理解：一個檔案怎麼能同時是 PNG 又是 PDF？`file` 為什麼只說它是 PNG？
-2. Disk, disk, sleuth!
-   - 題目說：用 sleuthkit 的 `srch_strings` 和一點終端機功夫，在這個磁碟映像裡找 flag。檔案是 `.img.gz`。
-   - 先猜再動手：同上。
-   - 走的路：你怎麼處理 `.gz`、在 webshell 上怎麼避開 128 MB 的限制；`grep` 出來的每一行各是什麼，哪一行才是 flag。這題跟課堂示範的哪一步同一招？差在哪裡？
-   - 理解：磁碟映像是什麼？為什麼不用掛載、不用 sleuthkit，`strings` 就找得到？
-3. Mob psycho
-   - 題目說：你會處理 APK 嗎？提示：APK 可以直接 `unzip`；解開之後整套 shell 工具都能拿來搜。
-   - 先猜再動手：同上。
-   - 走的路：`file` 怎麼說；解開後幾百個檔案你怎麼找到那一個（附指令）；找到的內容長什麼樣、怎麼還原成 flag。這題跟課堂示範的哪一步同一招？差在哪裡？
-   - 理解：為什麼 `strings mobpsycho.apk | grep pico` 找不到 flag，解開之後卻找得到？
 
 > 評分看「走得對 > 猜得中」：每一題都要看得出你是照檢查表一步步走到的，而不是直接套某個工具。flag 是做過的證明，不是分數來源。「先猜再動手」猜錯不扣分，沒寫才扣：它要看的是你有沒有從題目說明推理，不是推對。
 
-## 額外加分（選做）
+## 之後可能加的題（本次不用交）
 
-- MacroHard WeakEdge - 題目說：我把 flag 藏在這個檔案裡，你找得到嗎？檔案是 `.pptm`。附上你找到那個檔案的指令；它的內容為什麼不能直接解碼、你多做了什麼；`vbaProject.bin` 裡那句話是什麼。這題的 flag 是固定的，分數看路徑和回答。
+只用示範過的工具就做得了，想練的可以先做：
 
-## 第二批（之後另行公告繳交方式，或列為課後加分）
+- **Disk, disk, sleuth!**（Medium）- 磁碟映像，`strings | grep`；解開正好 128 MB，webshell 要用 `zcat` 不落地。
+- **Mob psycho**（Medium）- `.apk` 其實是 zip，找到的檔案內容是十六進位。
+- **MacroHard WeakEdge**（Medium）- `.pptm` 其實是 zip，藏的檔案是隔空白的 base64。
 
-這四題要用到課堂沒示範過的工具（多種解壓程式、`zsteg`、十六進位編輯器、寫迴圈），講義後半已經寫了，想先做的可以先做：
+要用到課堂沒示範過的工具（多種解壓程式、`zsteg`、十六進位編輯器、寫迴圈），講義後半已經寫了：
 
 - **File types**（Medium）- 十一層不同格式。
 - **St3g0**（Medium）- 像素最低位元。
