@@ -174,10 +174,27 @@ binwalk 2_c.jpg
 DECIMAL       HEXADECIMAL     DESCRIPTION
 --------------------------------------------------------------------------------
 0             0x0             PNG image, 526 x 1106, 8-bit/color RGBA, non-interlaced
-187707        0x2DD3B         Zip archive data, ..., name: base_images/3_c.jpg
+3226          0xC9A           TIFF image data, big-endian, offset of first image directory: 8
+187707        0x2DD3B         Zip archive data, at least v2.0 to extract, compressed size: 196024, uncompressed size: 201426, name: base_images/3_c.jpg
+383786        0x5DB2A         End of Zip archive, footer length: 22
+383897        0x5DB99         End of Zip archive, footer length: 22
 ```
 
-跟第一層同一個樣子：又是一張 PNG，尺寸換了（526 x 1106），尾巴又接著一個 zip，這次在 187707，裡面是 `base_images/3_c.jpg`。再拆、再回頭。第三層拆出 `4_c.jpg`；第四層拆出來的不再是圖片，而是 `flag.txt`，這就是最裡面的娃娃：
+跟第一層同一個樣子：又是一張 PNG，尺寸換了（526 x 1106），尾巴又接著一個 zip，這次在 187707，裡面是 `base_images/3_c.jpg`。
+
+多了一列要解釋：zip 結尾標記出現兩次。真正屬於這一層的是最後一列，383897 加 22 等於 383919，正好是第一層列出的 uncompressed size，也就是 `2_c.jpg` 的大小。383786 那一列多半是再裡面一層的 zip 露出來的痕跡：圖片資料壓不太動，壓縮時大段照原樣存，裡面那個 zip 的結尾簽名就這樣被 binwalk 掃到。這是 binwalk 的常態，它只認簽名、不驗證，所以列出來的東西要拿數字互相對，對得上的才算。
+
+再拆、再回頭：
+
+```bash
+binwalk -e 2_c.jpg
+ls
+```
+```text
+2_c.jpg  _2_c.jpg.extracted
+```
+
+第三層在 `_2_c.jpg.extracted/base_images/3_c.jpg`，同樣三步再跑一次，拆出 `4_c.jpg`；第四層拆出來的不再是圖片，而是 `flag.txt`，這就是最裡面的娃娃：
 
 ```bash
 cat flag.txt
