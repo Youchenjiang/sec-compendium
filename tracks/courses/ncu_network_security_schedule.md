@@ -30,7 +30,7 @@
 | 日期 | 作業 | 階 | 主題 | 教材 |
 |---|---|---|---|---|
 | 2026-10-16 | A2 Cylab Basic | M0–M2 | 平台上手、編碼、前端暴露 | [`sessions/20261016_cylab-basic/`](ncu_network_security/sessions/20261016_cylab-basic/) |
-| 2026-11-06 | A4 Cylab Files | M7 | 靜態檔案分析:辨識 → 看 → 拆 → 像素 → 檔頭 | [`sessions/20261106_cylab-files/`](ncu_network_security/sessions/20261106_cylab-files/)([handout](ncu_network_security/sessions/20261106_cylab-files/handout.md)・[assignment](ncu_network_security/sessions/20261106_cylab-files/assignment.md)) |
+| 2026-11-06 | A4 Cylab Files | M7 | 檔案鑑識:辨識 → 看 → 拆 → 像素 → 檔頭 | [`sessions/20261106_cylab-files/`](ncu_network_security/sessions/20261106_cylab-files/)([handout](ncu_network_security/sessions/20261106_cylab-files/handout.md)・[assignment](ncu_network_security/sessions/20261106_cylab-files/assignment.md)) |
 | 未定 | — | M5 | 注入 | 待寫 |
 | 未定 | — | M4 | 認證與憑證(等 L4 講完) | [`alt-materials/cylab-auth/`](ncu_network_security/alt-materials/cylab-auth/) |
 

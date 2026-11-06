@@ -1,10 +1,10 @@
 # A4 - Cylab Files
 
-> 2026-11-06 發布。對應技能階梯 M7（靜態檔案分析），選題與理解問題見 [`ncu_cylab_challenge_selection.md`](../../../ncu_cylab_challenge_selection.md)。期限、成績比重與 CyLab 作業連結以 eeclass 作業頁為準。
+> 2026-11-06 發布。對應技能階梯 M7（檔案鑑識），選題與理解問題見 [`ncu_cylab_challenge_selection.md`](../../../ncu_cylab_challenge_selection.md)。期限、成績比重與 CyLab 作業連結以 eeclass 作業頁為準。
 
 ## 前置作業
 
-參考講義：[不執行，也能把檔案裡藏的東西挖出來](handout.md)（課堂以 Matryoshka doll 示範）。用 A2 加入的同一個 CyLab 教室帳號，完成平台上的 A4 作業（三題皆為 Medium）：
+參考講義：[一個檔案真正是什麼、藏了什麼](handout.md)（課堂以 Matryoshka doll 示範）。用 A2 加入的同一個 CyLab 教室帳號，完成平台上的 A4 作業（三題皆為 Medium）：
 
 - **File types**
 - **St3g0**
