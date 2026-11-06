@@ -252,6 +252,22 @@ Medium：`743` Fool the Lockout（M・3k，每 30 秒重置的鎖定，放慢速
 
 > 排入時依 M4／M7 的難度定位，把必做換成候選池裡的 Medium（crackme-py、keygenme-py、vault-door-1）。原本的 Easy 題 strings it、CanYouSee、information 移入候選池當暖身。
 
+**磁碟映像與反鑑識（未排入堂次，接講義的 rootkit 單元）**
+
+> 觀念：rootkit 騙的是正在跑的系統（掛鉤 `ls`、`ps`、改核心的表），騙不了磁碟上的位元組；對策是把磁碟做成映像，不開機、不信那個系統，從外面看。這一組練的就是這個動作，而且其中幾題的「藏」正是反鑑識手法：改時間戳、`shred`、清 shell 歷史、寫進 slack space。CyLab 沒有直接叫 rootkit 的題。｜工具：`strings`、`xxd`，加 sleuthkit 的 `mmls`、`fls`、`icat`、`mactime`。webshell 有沒有 sleuthkit未確認；2022 那批題的官方說明寫「用 webshell 請解到 /tmp」，暗示 /tmp 不受家目錄 128 MB 限制，待驗證。
+
+| 角色 | ID | 題名 | 難度 | 藏的東西／痕跡 | 解開後大小 | 連結 |
+| :--: | :-- | :-- | :--: | :-- | :-- | :-- |
+| 帶練 | `87` | **Pitter, Patter, Platters** | Medium | 文字寫在檔案的 slack space，掛載後 `cat` 只看到誘餌句；UTF-16LE 且反轉，`strings -e l \| rev` 就出來。不用 sleuthkit | 未壓縮，小 | [library](https://learn.cylabacademy.org/library?search=Pitter%2C%20Patter%2C%20Platters) |
+| 必做 | `720` | **Timeline 0** | Medium | `/bin/bcab` 被改成 1985 年的時間戳；`fls -r -m` 加 `mactime` 排時間線，第一行就是它，內容 base64 | 不明 | [library](https://learn.cylabacademy.org/library?search=Timeline%200) |
+| 必做 | `721` | **Timeline 1** | Medium | 攻擊者 `shred` 檔案、清空 `.ash_history`，清理前丟進 `/etc/chat` 的新檔被時間線的 macb 群抓到 | 不明 | [library](https://learn.cylabacademy.org/library?search=Timeline%201) |
+| 加分 | `704` | **DISKO 4** | Medium | 刪掉的 `/log/dont-delete.gz`，FAT 目錄項和叢集還在；`fls -r -d` 列出、`icat` 撈回 | 100 MiB | [library](https://learn.cylabacademy.org/library?search=DISKO%204) |
+| 候選 | `285` | Operation Orchid | Medium | `.ash_history` 留著 openssl 的密碼，原檔 `shred` 掉。痕跡劇情最完整，但 400 MiB，webshell 放不下 | 400 MiB | [library](https://learn.cylabacademy.org/library?search=Operation%20Orchid) |
+| 候選 | `456` | Event-Viewing | Medium | Windows 事件日誌：Run 機碼持久化、每次登入就關機，三段 base64。是日誌不是磁碟，要 evtx 解析器 | evtx，小 | [library](https://learn.cylabacademy.org/library?search=Event-Viewing) |
+| 候選 | `506` | DISKO 2 | Medium | 全碟 `strings` 撈到一堆假 flag，要先 `dd` 切出 Linux 分割區；可 `zcat \| dd \| strings` 串流 | ≥58 MiB | [library](https://learn.cylabacademy.org/library?search=DISKO%202) |
+
+> 不選的：Disk, disk, sleuth! II（沒藏東西，flag 是 ASCII art，128 MiB）、Sleuthkit Apprentice（300 MiB）、Operation Oni（要連 picoCTF 的靶機）、DISKO 3（只是 gzip 壓過）。Timeline 兩題是 2026 新題，writeup 少，數字多為單一來源，排入前要自己跑一次。以上查證日期 2026-11-06，來源為公開 writeup，官方頁面無法連線。
+
 <details><summary>候選池：檔案、中繼資料與隱寫（32 題）</summary>
 
 `37` strings it（E・117k，暖身）、`408` CanYouSee（E・47k，暖身）、`186` information（E・148k，暖身）、`44` Glory of the Garden（E・96k）、`444` Scan Surprise（E・70k）、`450` Verify（E・62k）、`423` Secret of the Polyglot（E・44k）、`530` Riddle Registry（E・43k）、`524` Hidden in plainsight（E・32k）、`460` RED（E・29k）、`523` Flag in Flame（E・23k）、`519` Corrupted file（E・19k）、`698` Binary Digits（E・10k・題名推測）、`265` Enhance!（M・48k）、`52` extensions（M・35k）、`19` So Meta（M・34k）、`279` Lookey here（M・30k）、`74` What Lies Within（M・27k，與 St3g0 同招，flag 固定）、`350` hideme（M・18k）、`420` Mob psycho（M・10k）、`348` FindAndOpen（M・10k）、`205` advanced-potion-making（M・9k）、`359` MSB（M・8k）、`51` WhitePages（M・8k）、`26` m00nwalk（M・8k）、`139` Milkslap（M・7k）、`53` c0rrupt（M・7k）、`415` endianness-v2（M・6k）、`432` Blast from the past（M・4k）、`481` flags are stepic（M・4k）、`714` Rogue Tower（M・3k）、`101` Weird File（M・2k）
