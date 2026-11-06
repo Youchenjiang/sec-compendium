@@ -228,7 +228,7 @@ p i c o C T F { . . . }
 
 ### 整個 dolls.jpg 長什麼樣
 
-把剛才每一層的 `binwalk` 數字疊起來，就是這個檔案的全貌。每一層都是「一張完整的 PNG，IEND 之後接一個 zip，zip 裡是下一層」：
+把剛才每一層的 `binwalk` 數字疊起來，就是這個檔案的全貌。每一層都是「一張完整的 PNG，IEND 之後接一個 zip，zip 裡是下一層」，所以下一層一定比上一層小，圖裡每一層的寬度就是它的大小，而且剛好接在上一層 zip 的正下方：
 
 ![dolls.jpg 四層結構：每一層都是 PNG，IEND 之後接著一個 zip，zip 裡是下一層](img/09_dolls_structure.png)
 
