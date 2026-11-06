@@ -160,7 +160,7 @@ ls _dolls.jpg.extracted/
 
 ![binwalk -e 之後的目錄](img/04_binwalk_e.png)
 
-目錄裡有 `4286C.zip`（用剛才那個 offset 的十六進位命名）和已經解開的 `base_images/2_c.jpg`。做法 B 的輸出長這樣：
+目錄裡有 `4286C.zip` 和一個 `base_images` 資料夾，裡面是已經解開的 `2_c.jpg`。兩層資料夾的名字來自兩個不同的人：`_dolls.jpg.extracted/` 是 binwalk 取的，它固定把拆出來的東西放進 `_原檔名.extracted`，切下來的那段原始資料用 offset 的十六進位命名（所以叫 `4286C.zip`）；`base_images/` 是出題者取的，binwalk 列出的 `name: base_images/2_c.jpg` 就是壓進 zip 裡的路徑，任何工具解開都會照這個路徑建資料夾。做法 B 沒有經過 binwalk，所以 `base_images/2_c.jpg` 直接出現在目前目錄，沒有外面那層 `_extracted`。做法 B 的輸出長這樣：
 
 ```text
 Archive:  dolls.jpg
