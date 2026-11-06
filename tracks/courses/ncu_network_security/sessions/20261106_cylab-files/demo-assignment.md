@@ -21,7 +21,7 @@
 | 狀況 | 處理 |
 |---|---|
 | 圖太小 | 50×50 像素，放大到 800% 再看。 |
-| 不想離開 webshell 看 PDF 那半 | `binwalk -e` 拆出的 `47D` 是純文字，`cat` 就有後半（單一 writeup 來源）。 |
+| 想在 webshell 裡解 | 不行。`binwalk -e` 只拆出 PNG 自己的 IDAT（`2B0.zlib`），PDF 那半拆不出來（實測）；兩半都要看畫面，到筆電做。 |
 
 ## Disk, disk, sleuth!（步驟 2，明文）
 
