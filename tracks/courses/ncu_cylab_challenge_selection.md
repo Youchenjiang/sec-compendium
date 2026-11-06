@@ -215,9 +215,9 @@ Medium：`743` Fool the Lockout（M・3k，每 30 秒重置的鎖定，放慢速
 | :--: | :-- | :-- | :--: | :-- | :-- |
 | 帶練＋必做 | `129` | **Matryoshka doll** | Medium | 辨識 → 拆，反覆四層：`.jpg` 其實是 PNG，IEND 後面接著 zip，拆出下一張圖 | [library](https://learn.cylabacademy.org/library?search=Matryoshka%20doll) |
 | 必做 | `423` | **Secret of the Polyglot** | Easy | 第 1 步：`.pdf` 其實開頭是 PNG，IEND 之後才接 PDF；當圖開是前半 flag，當 PDF 開是後半 | [library](https://learn.cylabacademy.org/library?search=Secret%20of%20the%20Polyglot) |
-| 之後可能加 | `113` | **Disk, disk, sleuth!** | Medium | 第 2 步：128 MiB 的磁碟映像，`strings \| grep pico` 直接命中；另有三行核心符號是干擾 | [library](https://learn.cylabacademy.org/library?search=Disk%2C%20disk%2C%20sleuth%21) |
-| 之後可能加 | `420` | **Mob psycho** | Medium | 第 1＋3 步：`.apk` 其實是 zip，六百多個檔案裡的 `res/color/flag.txt` 是十六進位，`xxd -r -p` 還原 | [library](https://learn.cylabacademy.org/library?search=Mob%20psycho) |
-| 之後可能加 | `130` | **MacroHard WeakEdge** | Medium | 第 1＋3 步：`.pptm` 其實是 zip，`ppt/slideMasters/hidden` 是每個字元隔空白的 base64；`vbaProject.bin` 是誘餌 | [library](https://learn.cylabacademy.org/library?search=MacroHard%20WeakEdge) |
+| 候選 | `113` | **Disk, disk, sleuth!** | Medium | 第 2 步：128 MiB 的磁碟映像，`strings \| grep pico` 直接命中；另有三行核心符號是干擾 | [library](https://learn.cylabacademy.org/library?search=Disk%2C%20disk%2C%20sleuth%21) |
+| 候選 | `420` | **Mob psycho** | Medium | 第 1＋3 步：`.apk` 其實是 zip，六百多個檔案裡的 `res/color/flag.txt` 是十六進位，`xxd -r -p` 還原 | [library](https://learn.cylabacademy.org/library?search=Mob%20psycho) |
+| 候選 | `130` | **MacroHard WeakEdge** | Medium | 第 1＋3 步：`.pptm` 其實是 zip，`ppt/slideMasters/hidden` 是每個字元隔空白的 base64；`vbaProject.bin` 是誘餌 | [library](https://learn.cylabacademy.org/library?search=MacroHard%20WeakEdge) |
 | 第二批 | `268` | **File types** | Medium | 同一個「辨識 → 拆」迴圈，但 11 層每層格式不同（shar、ar、cpio、bzip2、gzip、lzip、lz4、lzma、lzop、xz），最後是 hex | [library](https://learn.cylabacademy.org/library?search=File%20types) |
 | 第二批 | `305` | **St3g0** | Medium | 前三步都沒東西，資料在像素最低位元；`zsteg` 的 `b1,rgb,lsb,xy` | [library](https://learn.cylabacademy.org/library?search=St3g0) |
 | 第二批 | `112` | **tunn3l v1s10n** | Medium | `file` 說是 data；BMP 檔頭三個欄位被改，修回後高度還被砍掉，藏了上半張圖 | [library](https://learn.cylabacademy.org/library?search=tunn3l%20v1s10n) |
@@ -236,7 +236,7 @@ Medium：`743` Fool the Lockout（M・3k，每 30 秒重置的鎖定，放慢速
 9. **like1000** - 你的迴圈怎麼知道下一層叫什麼、什麼時候該停？不邊拆邊刪會發生什麼事？
 10. **Redaction gone wrong** - 畫面上明明是黑的，為什麼複製得到文字？真正的刪除該做什麼？
 
-> 2026-11-06 實際發布的 A4 只有兩題：Matryoshka doll（示範題再走一遍，但必須換做法 B 或 C 拆）和 Secret of the Polyglot。另外三題只用示範過的工具就做得了，各停在第 1、2、3 步，列為之後可能加的題。Disk, disk, sleuth! 解開後正好 128 MiB，webshell 配額放不下，要 `zcat x.img.gz | strings | grep pico` 不落地；Secret of the Polyglot 的 PDF 那一半要下載到自己電腦用瀏覽器開。四題裡只有 MacroHard WeakEdge 的 flag 固定，所以它當加分、看路徑。第二批四題是原本的必做與加分，講義後半與 [`demo-assignment.md`](ncu_network_security/sessions/20261106_cylab-files/demo-assignment.md) 已寫好，之後再排繳交。St3g0 與 What Lies Within 同招，選 St3g0 是因為它的 flag 每個環境不同、且有 `$t3g0` 結尾可自我確認。講義與作業：[`sessions/20261106_cylab-files/`](ncu_network_security/sessions/20261106_cylab-files/)。
+> 2026-11-06 實際發布的 A4 只有兩題：Matryoshka doll（示範題再走一遍，但必須換做法 B 或 C 拆）和 Secret of the Polyglot。另外三題只用示範過的工具就做得了，各停在第 1、2、3 步，留作候選，不加進這次作業。Disk, disk, sleuth! 解開後正好 128 MiB，webshell 配額放不下，要 `zcat x.img.gz | strings | grep pico` 不落地；Secret of the Polyglot 的 PDF 那一半要下載到自己電腦用瀏覽器開。四題裡只有 MacroHard WeakEdge 的 flag 固定，所以它當加分、看路徑。第二批四題是原本的必做與加分，講義後半與 [`demo-assignment.md`](ncu_network_security/sessions/20261106_cylab-files/demo-assignment.md) 已寫好，之後再排繳交。St3g0 與 What Lies Within 同招，選 St3g0 是因為它的 flag 每個環境不同、且有 `$t3g0` 結尾可自我確認。講義與作業：[`sessions/20261106_cylab-files/`](ncu_network_security/sessions/20261106_cylab-files/)。
 >
 > **安裝**：Kali 已有 `binwalk`、`exiftool`；另需 `sudo apt install binutils lzip lz4 lzop sharutils` 與 `gem install zsteg`。
 
