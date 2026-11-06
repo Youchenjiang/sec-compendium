@@ -1,35 +1,20 @@
 # A4 - Cylab Files
 
-> 2026-11-06 發布。對應技能階梯 M7（檔案鑑識），選題與理解問題見 [`ncu_cylab_challenge_selection.md`](../../../ncu_cylab_challenge_selection.md)。期限、成績比重與 CyLab 作業連結以 eeclass 作業頁為準。
+> 2026-11-06 發布。對應技能階梯 M7（檔案鑑識，選題與理解問題見 [`ncu_cylab_challenge_selection.md`](../../../ncu_cylab_challenge_selection.md)）。期限與成績比重以 eeclass 作業頁為準。
 
 ## 前置作業
 
-參考講義：[一個檔案真正是什麼、藏了什麼](handout.md)。用 A2 加入的同一個 CyLab 教室帳號，完成平台上的 A4 作業兩題：
-
-- **Matryoshka doll**（Medium）- 課堂示範的那一題，自己再走一遍。
-- **Secret of the Polyglot**（Easy）- 同一套工具，換一個檔案。
-
-兩題只用課堂示範打過的工具：`file`、`strings`、`grep`、`exiftool`、`binwalk`、`unzip`。
-
-環境要求：CyLab 自帶的 terminal（webshell）已經裝好本次需要的全部工具，直接在裡面做即可；用自己的 Linux（Kali 虛擬機或 WSL）也可以。兩點注意：webshell 家目錄只有 128 MB，每題開自己的資料夾、做完整個刪掉；webshell 沒有畫面，要看圖或開 PDF 的那一步，把檔案下載到自己電腦開。
+參考講義 [一個檔案真正是什麼、藏了什麼](handout.md)，用 A2 的 CyLab 教室帳號完成平台上的 A4 作業：Matryoshka doll、Secret of the Polyglot。在 CyLab 的 terminal 做即可；要看圖或開 PDF 時把檔案下載到自己電腦。
 
 ## 繳交格式
 
 - 文件格式：作業區內容欄填寫，不需附件。
-- 文字說明：數字列點回答；附上你實際下的指令與關鍵輸出（文字即可，不必截圖）。
+- 文字說明：數字列點回答，附上你下的指令與關鍵輸出。
 - AI 限制：可詢問原理、討論實作，但繳交的是自己理解後的內容而非原始回應。
 
 ## 作業要求
 
-CyLab 加入教室的帳號名稱（用來確認作答情況），並針對兩題各回答。
+CyLab 加入教室的帳號名稱（用來確認作答情況），並回答：
 
-1. Matryoshka doll
-   - 走的路：四層每一層的 `file` 和 `binwalk` 各說什麼（貼關鍵那幾行）。拆的做法照講義即可，寫出你用的是 A、B、C 哪一種。
-   - 理解：副檔名是 `.jpg`、看起來也是一張正常的圖，`file` 和 `binwalk` 憑什麼知道裡面還有東西？各看的是檔案的哪個部分？
-2. Secret of the Polyglot
-   - 題目說：單位的網路維運中心攔到一個可疑檔案，對它是什麼格式各說各話，你能把裡面的資訊全部挖出來嗎？提示：用不同方式打開它就能解。
-   - 先猜再動手：從這段說明，你預期東西藏在檢查表的哪一步？哪一句讓你這樣想？（跑任何指令之前寫。）
-   - 走的路：`file` 怎麼說、檔名怎麼說，兩者不同你各做了什麼；兩半 flag 各從哪裡看到。最後一句：這題跟 Matryoshka doll 哪一步同一招？差在哪裡？
-   - 理解：一個檔案怎麼能同時是 PNG 又是 PDF？`file` 為什麼只說它是 PNG？
-
-> 評分看「走得對 > 猜得中」：每一題都要看得出你是照檢查表一步步走到的，而不是直接套某個工具。flag 是做過的證明，不是分數來源。「先猜再動手」猜錯不扣分，沒寫才扣：它要看的是你有沒有從題目說明推理，不是推對。
+1. Matryoshka doll - 四層各是什麼、你怎麼拆的？副檔名是 `.jpg`、看起來也是正常的圖，`file` 和 `binwalk` 憑什麼知道裡面還有東西？
+2. Secret of the Polyglot - 兩半 flag 各從哪裡看到？一個檔案怎麼能同時是 PNG 又是 PDF，`file` 為什麼只說它是 PNG？
