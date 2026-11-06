@@ -128,6 +128,8 @@ DECIMAL       HEXADECIMAL     DESCRIPTION
 
 ![binwalk dolls.jpg 的輸出](img/03_binwalk.png)
 
+先看表頭。三個欄位：DECIMAL 和 HEXADECIMAL 是同一個位置（offset）的十進位和十六進位寫法，十六進位那個等一下會變成拆出來的檔名、也是十六進位編輯器裡看到的位址；DESCRIPTION 是它在那個位置認出了什麼。每一列就是「在第幾個位元組，看到什麼格式的開頭」。
+
 四列各是什麼：
 
 - 第一列是圖片本身，跟 `file` 說的一樣。
