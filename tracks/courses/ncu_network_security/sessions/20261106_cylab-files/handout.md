@@ -57,6 +57,8 @@ file dolls.jpg
 dolls.jpg: PNG image data, 594 x 1104, 8-bit/color RGBA, non-interlaced
 ```
 
+![file dolls.jpg 的輸出](img/01_file.png)
+
 冒號後面第一個詞就是答案：PNG，而不是副檔名說的 JPEG。後面是它順便讀出的檔頭欄位：594 x 1104 是寬高，8-bit/color RGBA 是每個像素四個通道、各 8 位元，non-interlaced 是像素的儲存順序。現在只需要第一個詞，寬高留著，等一下對 `exiftool` 和 `binwalk` 的輸出時會用到。
 
 `file` 不看檔名，只比對檔案開頭的幾個位元組（magic bytes，每種格式固定的開頭）：PNG 開頭固定是 `89 50 4E 47`，zip 是 `50 4B`（`PK`），PDF 是 `25 50 44 46`（`%PDF`）。副檔名可以隨便改，開頭的位元組改了檔案就壞，所以 `file` 信的是後者。
@@ -70,6 +72,8 @@ dolls.jpg: PNG image data, 594 x 1104, 8-bit/color RGBA, non-interlaced
 ```bash
 strings dolls.jpg | grep -i pico
 ```
+
+![strings 配合 grep，沒有輸出](img/02_strings.png)
 
 沒有任何輸出。`strings` 把檔案裡連續 4 個以上的可印字元列出來，`grep -i pico` 只留下含 pico 的那些行（`-i` 不分大小寫）；一行都沒有，表示 flag 沒有用明文放在檔案裡。
 
@@ -122,6 +126,8 @@ DECIMAL       HEXADECIMAL     DESCRIPTION
 651587        0x9F143         End of Zip archive, footer length: 22
 ```
 
+![binwalk dolls.jpg 的輸出](img/03_binwalk.png)
+
 四列各是什麼：
 
 - 第一列是圖片本身，跟 `file` 說的一樣。
@@ -148,6 +154,8 @@ ls _dolls.jpg.extracted/
 4286C.zip  base_images
 ```
 
+![binwalk -e 之後的目錄](img/04_binwalk_e.png)
+
 目錄裡有 `4286C.zip`（用剛才那個 offset 的十六進位命名）和已經解開的 `base_images/2_c.jpg`。做法 B 的輸出長這樣：
 
 ```text
@@ -157,7 +165,11 @@ warning [dolls.jpg]:  272492 extra bytes at beginning or within zipfile
   inflating: base_images/2_c.jpg
 ```
 
+![unzip dolls.jpg 的輸出](img/05_unzip.png)
+
 警告說的 272492 就是 binwalk 找到的那個 offset：zip 之前的 272492 個位元組是 PNG，`unzip` 不認識它們、跳過，照樣把 `base_images/2_c.jpg` 解到目前目錄。
+
+![解完之後的家目錄，多了 base_images](img/06_ls_home.png)
 
 ### 回到步驟 1：拆出來的檔案，再從頭檢查一次
 
@@ -180,6 +192,8 @@ DECIMAL       HEXADECIMAL     DESCRIPTION
 383897        0x5DB99         End of Zip archive, footer length: 22
 ```
 
+![第二層的 file 與 binwalk](img/07_layer2_binwalk.png)
+
 跟第一層同一個樣子：又是一張 PNG，尺寸換了（526 x 1106），尾巴又接著一個 zip，這次在 187707，裡面是 `base_images/3_c.jpg`。
 
 多了一列要解釋：zip 結尾標記出現兩次。真正屬於這一層的是最後一列，383897 加 22 等於 383919，正好是第一層列出的 uncompressed size，也就是 `2_c.jpg` 的大小。383786 那一列多半是再裡面一層的 zip 露出來的痕跡：圖片資料壓不太動，壓縮時大段照原樣存，裡面那個 zip 的結尾簽名就這樣被 binwalk 掃到。這是 binwalk 的常態，它只認簽名、不驗證，所以列出來的東西要拿數字互相對，對得上的才算。
@@ -193,6 +207,8 @@ ls
 ```text
 2_c.jpg  _2_c.jpg.extracted
 ```
+
+![第二層 binwalk -e 之後的目錄](img/08_layer2_binwalk_e.png)
 
 第三層在 `_2_c.jpg.extracted/base_images/3_c.jpg`，同樣三步再跑一次，拆出 `4_c.jpg`；第四層拆出來的不再是圖片，而是 `flag.txt`，這就是最裡面的娃娃：
 
