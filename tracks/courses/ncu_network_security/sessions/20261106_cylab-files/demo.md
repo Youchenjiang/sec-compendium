@@ -5,10 +5,13 @@
 ## 開始前（學生進場時做完）
 
 ```bash
-cd ~ && rm -rf _dolls.jpg.extracted base_images dolls.jpg
+rm -rf ~/*
+mkdir -p ~/work/matryoshka && cd ~/work/matryoshka
 wget <題目頁 dolls.jpg 的連結>
-ls -l
+ls -l && df -h ~
 ```
+
+第一行清空整個家目錄（點開頭的設定檔不會動），沒有回收桶，打之前看提示字元是 `@webshell`。之後每一題都開自己的資料夾，做完 `rm -rf ~/work/<題名>` 就乾淨。
 
 - 投影講義的題目表（「這堂用哪幾題」），題目說明和提示先唸一遍：檔案裡藏檔案，問題只剩「怎麼找」。
 - 終端字體放大到後排看得到 binwalk 那四列。
@@ -28,7 +31,7 @@ ls -l
 | `unzip dolls.jpg` | `272492 extra bytes at beginning` | 同一件事，不靠 binwalk 也行。binwalk 自己不解壓，`-e` 是替你叫 unzip。 |
 | `cd _dolls.jpg.extracted/base_images && file 2_c.jpg` | `PNG image data, 526 x 1106` | 新檔案，回到步驟 1。 |
 | `binwalk 2_c.jpg` | `187707 ... name: base_images/3_c.jpg` 和兩列 `End of Zip` | 同一個樣子，尺寸變小。結尾標記有兩個：383897 + 22 = 383919 是這一層的；另一個是更裡面那層露出來的簽名，binwalk 只認簽名不驗證。 |
-| `cd ~ && rm -rf _dolls.jpg.extracted base_images && binwalk -e -M dolls.jpg` | 它自己一層層往下列 | `-M` 就是剛才的迴圈交給它跑。第一次要手動走，才知道它在做什麼。 |
+| `cd ~/work/matryoshka && rm -rf _dolls.jpg.extracted base_images && binwalk -e -M dolls.jpg` | 它自己一層層往下列 | `-M` 就是剛才的迴圈交給它跑。第一次要手動走，才知道它在做什麼。 |
 | `find _dolls.jpg.extracted -name flag.txt -exec cat {} \;` | `p i c o C T F { ... }` | 去掉空白就是 flag。四層，每層都是：認 → 看 → 拆 → 回頭。 |
 
 ## 收尾
@@ -45,4 +48,4 @@ ls -l
 | `exiftool` 整頁捲太快 | 直接打 grep 那行，或 `exiftool dolls.jpg \| tail -5`，Warning 在倒數第三行。 |
 | `binwalk -e` 沒拆出 `base_images` | 改用做法 B `unzip dolls.jpg`，順便講 binwalk 不自己解壓。 |
 | `-M` 之後找不到 flag.txt | 手動再走一層：`find . -name "*.jpg" \| sort` 看到哪一層，從那層 `binwalk -e`。 |
-| 家目錄塞滿（128 MB） | `rm -rf ~/_dolls.jpg.extracted ~/base_images`。這題連拆出來的副本在內只有幾 MB，塞滿多半是前面留的別題。 |
+| 家目錄塞滿（128 MB） | 跑開始前那兩行重來。這題連拆出來的副本在內只有幾 MB，塞滿多半是前面留的別題。 |
