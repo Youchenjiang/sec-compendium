@@ -28,6 +28,10 @@ Lesson 3 講惡意程式時提到：攻擊者會把要用的東西藏起來。�
 
 順序則是從便宜、通用，到昂貴、特定：`file` 一秒鐘就有答案，而且後面每一步都靠它決定用什麼工具，所以一定最先；`strings`、`exiftool` 幾乎不花時間；`binwalk` 可能要一層層遞迴；`zsteg` 只對圖片有意義；檔頭要自己讀、自己算。前三步是每個檔案都要跑的，大多數檔案在這裡就結束；4 和 5 是前三步都沒有收穫時才往下走。下面先用 Matryoshka doll 走一遍，再把每一步的工具講清楚。
 
+### 在哪裡做
+
+CyLab 自帶的 terminal（webshell）已經有這張表要的全部工具：`file`、`strings`、`exiftool`、`binwalk`、`zsteg`、`xxd`，以及各種解壓程式。題目檔案在 webshell 裡用 `wget` 貼上題目頁的下載連結就拿到，不必安裝任何東西。兩個限制要記得：家目錄只有 128 MB，拆完的中間檔要隨手刪；沒有畫面，需要看圖的那一步（步驟 5 修完檔頭之後）要把檔案下載到自己電腦做。用自己的 Linux 也行，安裝指令在講義最後。
+
 ---
 
 ## 走一遍：Matryoshka doll
@@ -140,7 +144,7 @@ p i c o C T F { . . . }
 | Zip archive data | `unzip` |
 | shell archive text | `sh 檔名` |
 | current ar archive | `ar x 檔名` |
-| cpio archive | `cpio -idv < 檔名`（`<` 不能省，否則它會把檔名當成搜尋樣式、停在那裡等輸入）|
+| cpio archive | `cpio -idv < 檔名`（`<` 不能省，否則它會把檔名當成搜尋樣式、停在那裡等輸入）；webshell 沒有 `cpio`，改用 `7z x 檔名` |
 | bzip2 / gzip / XZ compressed data | `bzip2 -d`、`gzip -d`、`xz -d` |
 | lzip / LZ4 / LZMA / lzop compressed data | `lzip -d`、`lz4 -d`、`lzma -d`、`lzop -d` |
 | ASCII text，但內容像 `7069636f...` | 十六進位，`xxd -r -p` 還原 |
@@ -187,13 +191,13 @@ xxd -g 1 x | head
 
 檢查方法是拿欄位互相對：每一列像素佔「寬 × 每像素位元組數」再補到 4 的倍數，「檔案大小 − 54」除以每列的位元組數，就是這張圖實際有幾列。算出來的值跟高度欄位不一樣，就是有人改過高度。BMP 的像素資料是**從最下面一列開始往上存**，高度被改小，檢視器只畫出下面那幾列，上面的部分還在檔案裡，只是沒被畫出來。
 
-改檔頭用任何十六進位編輯器（`hexedit`、HxD、線上的 HexEd.it）都可以；改完存檔，再用 `file` 確認它認得出來了。
+改檔頭用任何十六進位編輯器（`hexedit`、HxD、線上的 HexEd.it）都可以；改完存檔，再用 `file` 確認它認得出來了。webshell 裡沒有 `hexedit`，也沒有畫面可以看修好的圖，所以這一步把檔案下載到自己電腦做：Windows 用 HxD 改完，直接用看圖軟體開。
 
 ---
 
-## 安裝
+## 安裝（用自己的 Linux 才需要）
 
-Kali 已經有 `file`、`strings`、`xxd`、`binwalk`、`exiftool`。另外需要：
+CyLab webshell 全部都有，不用裝。Kali 已經有 `file`、`strings`、`xxd`、`binwalk`、`exiftool`，另外需要：
 
 ```bash
 sudo apt install binutils lzip lz4 lzop sharutils

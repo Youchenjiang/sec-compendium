@@ -10,7 +10,7 @@
 - **St3g0**
 - **tunn3l v1s10n**
 
-環境要求：在 Linux 上完成，建議用課堂使用的 Kali 虛擬機，或 Windows 上的 WSL（Ubuntu）。純 Windows 環境缺少本次需要的幾個解壓與影像工具，不支援。安裝指令見講義末尾。
+環境要求：CyLab 自帶的 terminal（webshell）已經裝好本次需要的全部工具，直接在裡面做即可；用自己的 Linux（Kali 虛擬機或 WSL）也可以，安裝指令見講義末尾。兩點注意：webshell 家目錄只有 128 MB，拆過的中間檔要隨手刪；webshell 沒有畫面，tunn3l v1s10n 改完檔頭要看圖的那一步，把檔案下載到自己電腦，用任何十六進位編輯器（Windows 的 HxD 也行）改完再開圖。
 
 ## 繳交格式
 
