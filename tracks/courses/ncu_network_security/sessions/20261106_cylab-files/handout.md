@@ -53,8 +53,13 @@ webshell 的家目錄只有 128 MB，拆完的中間檔要隨手刪。它也沒�
 ```bash
 file dolls.jpg
 ```
+```text
+dolls.jpg: PNG image data, 594 x 1104, 8-bit/color RGBA, non-interlaced
+```
 
-它回報 PNG，而不是副檔名說的 JPEG。`file` 不看檔名，只比對檔案開頭的幾個位元組（magic bytes，每種格式固定的開頭）：PNG 開頭固定是 `89 50 4E 47`，zip 是 `50 4B`（`PK`），PDF 是 `25 50 44 46`（`%PDF`）。副檔名可以隨便改，開頭的位元組改了檔案就壞，所以 `file` 信的是後者。
+冒號後面第一個詞就是答案：PNG，而不是副檔名說的 JPEG。後面是它順便讀出的檔頭欄位：594 x 1104 是寬高，8-bit/color RGBA 是每個像素四個通道、各 8 位元，non-interlaced 是像素的儲存順序。現在只需要第一個詞，寬高留著，等一下對 `exiftool` 和 `binwalk` 的輸出時會用到。
+
+`file` 不看檔名，只比對檔案開頭的幾個位元組（magic bytes，每種格式固定的開頭）：PNG 開頭固定是 `89 50 4E 47`，zip 是 `50 4B`（`PK`），PDF 是 `25 50 44 46`（`%PDF`）。副檔名可以隨便改，開頭的位元組改了檔案就壞，所以 `file` 信的是後者。
 
 `file` 有兩種回答要記得怎麼處理：回報一個你沒想到的格式（例如 `.pdf` 卻說是 `shell archive text`），那就是它真正的格式，用對應的工具開；回報 `data`，表示開頭的位元組跟任何已知格式都對不上，常見原因是檔頭被改壞了，作業裡會碰到。
 
@@ -64,16 +69,41 @@ file dolls.jpg
 
 ```bash
 strings dolls.jpg | grep -i pico
+```
+
+沒有任何輸出。`strings` 把檔案裡連續 4 個以上的可印字元列出來，`grep -i pico` 只留下含 pico 的那些行（`-i` 不分大小寫）；一行都沒有，表示 flag 沒有用明文放在檔案裡。
+
+```bash
 exiftool dolls.jpg
 ```
-
-`strings` 把檔案裡連續 4 個以上的可印字元列出來，配合 `grep` 找關鍵字，這次沒有撈到 flag。`exiftool` 讀中繼資料（metadata，描述檔案本身的資料：尺寸、相機、作者、時間），列出 594×1104 的 PNG，但多了一行警告：
-
 ```text
-Warning : [minor] Trailer data after PNG IEND chunk
+ExifTool Version Number         : 12.40
+File Name                       : dolls.jpg
+File Size                       : 636 KiB
+...
+File Type                       : PNG
+File Type Extension             : png
+MIME Type                       : image/png
+Image Width                     : 594
+Image Height                    : 1104
+...
+Profile Description             : Display
+...
+User Comment                    : Screenshot
+...
+Warning                         : [minor] Trailer data after PNG IEND chunk
+Image Size                      : 594x1104
+Megapixels                      : 0.656
 ```
 
-PNG 以 `IEND` 這個區塊結尾，後面照理不該有東西。這行的意思是：檔案在圖片結束之後還有資料。提示問的「檔案裡藏檔案」，看來就在尾巴。
+`exiftool` 讀中繼資料（metadata，描述檔案本身的資料：尺寸、相機、作者、時間）。完整輸出有一百多行，其中大半是 Profile 開頭的色彩描述檔（截圖時螢幕的顏色設定，連各國語言的「彩色 LCD」都在），跟藏東西無關，上面用 `...` 略過。要看的只有四種行：
+
+- File Type 寫 PNG，跟 `file` 的答案一致。
+- Image Width、Image Height 是 594、1104，也跟 `file` 一致。
+- User Comment 寫 Screenshot，說明這張圖是截圖來的。這一行是作者可以自由填的欄位，有些題目把 flag 直接放在這裡。
+- Warning 那一行才是重點。
+
+PNG 以 `IEND` 這個區塊結尾，後面照理不該有東西。這行的意思是：檔案在圖片結束之後還有資料。提示問的「檔案裡藏檔案」，看來就在尾巴。以後跑 `exiftool` 可以先只看這幾行：`exiftool x | grep -iE "warning|comment|type"`。
 
 ### 步驟 3 拆：圖片結束之後是什麼
 
@@ -116,7 +146,23 @@ warning [dolls.jpg]:  272492 extra bytes at beginning or within zipfile
 
 ### 回到步驟 1：拆出來的檔案，再從頭檢查一次
 
-`2_c.jpg` 跟剛才的 `dolls.jpg` 一樣，檔名不可信、內容不知道，所以從頭再做一次：`file` 說它是 PNG（526×1106），`binwalk` 又在 187707 找到一個 zip，裡面是 `base_images/3_c.jpg`。再拆、再回頭。第三層是 `4_c.jpg`；第四層拆出來的不再是圖片，而是 `flag.txt`，這就是最裡面的娃娃：
+`2_c.jpg` 跟剛才的 `dolls.jpg` 一樣，檔名不可信、內容不知道，所以從頭再做一次：
+
+```bash
+cd _dolls.jpg.extracted/base_images
+file 2_c.jpg
+binwalk 2_c.jpg
+```
+```text
+2_c.jpg: PNG image data, 526 x 1106, 8-bit/color RGBA, non-interlaced
+
+DECIMAL       HEXADECIMAL     DESCRIPTION
+--------------------------------------------------------------------------------
+0             0x0             PNG image, 526 x 1106, 8-bit/color RGBA, non-interlaced
+187707        0x2DD3B         Zip archive data, ..., name: base_images/3_c.jpg
+```
+
+跟第一層同一個樣子：又是一張 PNG，尺寸換了（526 x 1106），尾巴又接著一個 zip，這次在 187707，裡面是 `base_images/3_c.jpg`。再拆、再回頭。第三層拆出 `4_c.jpg`；第四層拆出來的不再是圖片，而是 `flag.txt`，這就是最裡面的娃娃：
 
 ```bash
 cat flag.txt
