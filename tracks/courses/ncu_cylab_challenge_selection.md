@@ -205,28 +205,38 @@ Medium：`743` Fool the Lockout（M・3k，每 30 秒重置的鎖定，放慢速
 
 > 對應講義：L3 惡意碼（硬編碼特徵字串、藏在檔案裡的東西）、forensics。｜觀念：不執行檔案，也能把裡面藏的東西挖出來；副檔名、畫面、塗黑都不可信，要看位元組。｜工具：`file`、`strings`、`exiftool`、`binwalk`、`zsteg`、`xxd`。排除記憶體 dump、Ghidra 反組譯。
 >
-> **教法**：示範的不是一招，是一張「拿到不明檔案時」的檢查表（辨識 → 看明文 → 拆 → 看像素 → 修檔頭）；作業每一題都是跑同一張表，flag 停在不同的步驟。難度定位同 M4：學生已在 A1、A3 自己拿過 shell，必做全用 Medium。
+> **教法**：示範的不是一招，是一張「拿到不明檔案時」的檢查表（辨識 → 看明文 → 拆 → 看像素 → 修檔頭）；作業每一題都是跑同一張表，flag 停在不同的步驟。難度定位同 M4：學生已在 A1、A3 自己拿過 shell，必做以 Medium 為主；第一批為了只用示範過的工具，收一題 Easy。
 
 **藏在檔案裡的東西（2026-11-06）**
+
+分兩批。第一批只用課堂示範打過的工具（`file`、`strings`、`exiftool`、`binwalk`、`unzip`、`xxd`，加 `gzip`、`base64`），檔案和藏法換掉、工具不換，學生看完示範就做得了；第二批要用課堂沒打過的工具（多種解壓程式、`zsteg`、十六進位編輯器、迴圈），之後另行公告繳交或列課後加分。
 
 | 角色 | ID | 題名 | 難度 | flag 停在哪一步 | 連結 |
 | :--: | :-- | :-- | :--: | :-- | :-- |
 | 帶練 | `129` | **Matryoshka doll** | Medium | 辨識 → 拆，反覆四層：`.jpg` 其實是 PNG，IEND 後面接著 zip，拆出下一張圖 | [library](https://learn.cylabacademy.org/library?search=Matryoshka%20doll) |
-| 必做 | `268` | **File types** | Medium | 同一個「辨識 → 拆」迴圈，但 11 層每層格式不同（shar、ar、cpio、bzip2、gzip、lzip、lz4、lzma、lzop、xz），最後是 hex | [library](https://learn.cylabacademy.org/library?search=File%20types) |
-| 必做 | `305` | **St3g0** | Medium | 前三步都沒東西，資料在像素最低位元；`zsteg` 的 `b1,rgb,lsb,xy` | [library](https://learn.cylabacademy.org/library?search=St3g0) |
-| 必做 | `112` | **tunn3l v1s10n** | Medium | `file` 說是 data；BMP 檔頭三個欄位被改，修回後高度還被砍掉，藏了上半張圖 | [library](https://learn.cylabacademy.org/library?search=tunn3l%20v1s10n) |
-| 加分 | `81` | **like1000** | Medium | 第三步「拆」做到 1000 層：`1000.tar` 裝 `999.tar`，一路到 `1.tar` 裝 `flag.png`；手動拆不完，必須寫迴圈 | [library](https://learn.cylabacademy.org/library?search=like1000) |
+| 第一批必做 | `423` | **Secret of the Polyglot** | Easy | 第 1 步：`.pdf` 其實開頭是 PNG，IEND 之後才接 PDF；當圖開是前半 flag，當 PDF 開是後半 | [library](https://learn.cylabacademy.org/library?search=Secret%20of%20the%20Polyglot) |
+| 第一批必做 | `113` | **Disk, disk, sleuth!** | Medium | 第 2 步：128 MiB 的磁碟映像，`strings \| grep pico` 直接命中；另有三行核心符號是干擾 | [library](https://learn.cylabacademy.org/library?search=Disk%2C%20disk%2C%20sleuth%21) |
+| 第一批必做 | `420` | **Mob psycho** | Medium | 第 1＋3 步：`.apk` 其實是 zip，六百多個檔案裡的 `res/color/flag.txt` 是十六進位，`xxd -r -p` 還原 | [library](https://learn.cylabacademy.org/library?search=Mob%20psycho) |
+| 第一批加分 | `130` | **MacroHard WeakEdge** | Medium | 第 1＋3 步：`.pptm` 其實是 zip，`ppt/slideMasters/hidden` 是每個字元隔空白的 base64；`vbaProject.bin` 是誘餌 | [library](https://learn.cylabacademy.org/library?search=MacroHard%20WeakEdge) |
+| 第二批 | `268` | **File types** | Medium | 同一個「辨識 → 拆」迴圈，但 11 層每層格式不同（shar、ar、cpio、bzip2、gzip、lzip、lz4、lzma、lzop、xz），最後是 hex | [library](https://learn.cylabacademy.org/library?search=File%20types) |
+| 第二批 | `305` | **St3g0** | Medium | 前三步都沒東西，資料在像素最低位元；`zsteg` 的 `b1,rgb,lsb,xy` | [library](https://learn.cylabacademy.org/library?search=St3g0) |
+| 第二批 | `112` | **tunn3l v1s10n** | Medium | `file` 說是 data；BMP 檔頭三個欄位被改，修回後高度還被砍掉，藏了上半張圖 | [library](https://learn.cylabacademy.org/library?search=tunn3l%20v1s10n) |
+| 第二批 | `81` | **like1000** | Medium | 第三步「拆」做到 1000 層：`1000.tar` 裝 `999.tar`，一路到 `1.tar` 裝 `flag.png`；手動拆不完，必須寫迴圈 | [library](https://learn.cylabacademy.org/library?search=like1000) |
 | 選做不計分 | `290` | **Redaction gone wrong** | Medium | 第二步就有：PDF 的塗黑只是蓋一層，文字物件還在；補「塗黑」這種藏法的觀念 | [library](https://learn.cylabacademy.org/library?search=Redaction%20gone%20wrong) |
 
 🧠 **理解問題**
 1. **Matryoshka doll** - 副檔名是 `.jpg`、看起來也是一張正常的圖，`file` 和 `binwalk` 憑什麼知道裡面還有東西？
-2. **File types** - 你的 PDF 閱讀器打不開它，`file` 卻認得出來；`file` 看的是什麼？為什麼副檔名不算數？
-3. **St3g0** - 圖片看起來完全正常，`exiftool`、`binwalk` 也都沒東西，資料到底放在哪裡？為什麼肉眼看不出差別？
-4. **tunn3l v1s10n** - 你改了哪幾個欄位、各代表什麼？為什麼把高度改大就看得到被藏起來的那一半？
-5. **like1000** - 你的迴圈怎麼知道下一層叫什麼、什麼時候該停？不邊拆邊刪會發生什麼事？
-6. **Redaction gone wrong** - 畫面上明明是黑的，為什麼複製得到文字？真正的刪除該做什麼？
+2. **Secret of the Polyglot** - 一個檔案怎麼能同時是 PNG 又是 PDF？`file` 為什麼只說它是 PNG？
+3. **Disk, disk, sleuth!** - 磁碟映像是什麼？為什麼不用掛載、不用 sleuthkit，`strings` 就找得到？
+4. **Mob psycho** - 為什麼 `strings mobpsycho.apk | grep pico` 找不到 flag，解開之後卻找得到？
+5. **MacroHard WeakEdge** - 那個檔案的內容為什麼不能直接 `base64 -d`？`vbaProject.bin` 裡那句話是什麼？
+6. **File types** - 你的 PDF 閱讀器打不開它，`file` 卻認得出來；`file` 看的是什麼？為什麼副檔名不算數？
+7. **St3g0** - 圖片看起來完全正常，`exiftool`、`binwalk` 也都沒東西，資料到底放在哪裡？為什麼肉眼看不出差別？
+8. **tunn3l v1s10n** - 你改了哪幾個欄位、各代表什麼？為什麼把高度改大就看得到被藏起來的那一半？
+9. **like1000** - 你的迴圈怎麼知道下一層叫什麼、什麼時候該停？不邊拆邊刪會發生什麼事？
+10. **Redaction gone wrong** - 畫面上明明是黑的，為什麼複製得到文字？真正的刪除該做什麼？
 
-> 加分題選 like1000 而非 Redaction：Redaction 只到第二步、動作是複製貼上，比必做還輕，不該拿加分；like1000 是示範的同一個迴圈放大到 1000 層，逼學生把手動流程寫成程式，接 A3 的程度。它的 flag 固定，所以評分看腳本與回答，不看 flag。St3g0 與 What Lies Within 同招（`zsteg` 同一行），選 St3g0 是因為它的 flag 每個環境不同、且有 `$t3g0` 結尾可自我確認；What Lies Within 的 flag 固定，留候選池。講義與作業：[`sessions/20261106_cylab-files/`](ncu_network_security/sessions/20261106_cylab-files/)。
+> 第一批的三題各停在檢查表第 1、2、3 步，只換檔案不換工具，所以示範一題就夠。Disk, disk, sleuth! 解開後正好 128 MiB，webshell 配額放不下，要 `zcat x.img.gz | strings | grep pico` 不落地；Secret of the Polyglot 的 PDF 那一半要下載到自己電腦用瀏覽器開。四題裡只有 MacroHard WeakEdge 的 flag 固定，所以它當加分、看路徑。第二批四題是原本的必做與加分，講義後半與 [`demo-assignment.md`](ncu_network_security/sessions/20261106_cylab-files/demo-assignment.md) 已寫好，之後再排繳交。St3g0 與 What Lies Within 同招，選 St3g0 是因為它的 flag 每個環境不同、且有 `$t3g0` 結尾可自我確認。講義與作業：[`sessions/20261106_cylab-files/`](ncu_network_security/sessions/20261106_cylab-files/)。
 >
 > **安裝**：Kali 已有 `binwalk`、`exiftool`；另需 `sudo apt install binutils lzip lz4 lzop sharutils` 與 `gem install zsteg`。
 
