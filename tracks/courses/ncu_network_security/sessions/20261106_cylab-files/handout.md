@@ -117,18 +117,24 @@ binwalk dolls.jpg
 DECIMAL       HEXADECIMAL     DESCRIPTION
 --------------------------------------------------------------------------------
 0             0x0             PNG image, 594 x 1104, 8-bit/color RGBA, non-interlaced
-3226          0xC9A           TIFF image data, big-endian
-272492        0x4286C         Zip archive data, ..., name: base_images/2_c.jpg
+3226          0xC9A           TIFF image data, big-endian, offset of first image directory: 8
+272492        0x4286C         Zip archive data, at least v2.0 to extract, compressed size: 378929, uncompressed size: 383919, name: base_images/2_c.jpg
+651587        0x9F143         End of Zip archive, footer length: 22
 ```
 
-第一列是圖片本身。第二列的 TIFF 其實是 PNG 裡的 EXIF 區塊，不用理。第三列才是重點：從第 272492 個位元組開始，有一個 zip，裡面有一個叫 `base_images/2_c.jpg` 的檔案。
+四列各是什麼：
+
+- 第一列是圖片本身，跟 `file` 說的一樣。
+- 第二列的 TIFF 其實是 PNG 裡的 EXIF 區塊（`exiftool` 列出的那些欄位就存在這裡），不用理。
+- 第三列才是重點：從第 272492 個位元組開始，有一個 zip，壓縮後 378929、解開 383919 個位元組，裡面有一個叫 `base_images/2_c.jpg` 的檔案。
+- 第四列是 zip 的結尾標記，在 651587；加上 22 個位元組的結尾就是 651609，正好是整個檔案的大小（`exiftool` 說的 636 KiB）。所以這個 zip 從 272492 一路接到檔案最後。
 
 把它拆出來有三種做法，結果相同，**擇一即可**：
 
 | 做法 | 指令 | 差別 |
 |---|---|---|
 | A `binwalk -e` | `binwalk -e dolls.jpg` | 只拆這一層，拆出來的東西放在 `_dolls.jpg.extracted/` |
-| B `unzip` | `unzip dolls.jpg` | 不靠 binwalk。zip 的目錄在檔案尾端，所以直接解得開，只是它會先抱怨前面多了 272492 個位元組 |
+| B `unzip` | `unzip dolls.jpg` | 不靠 binwalk。zip 的目錄在檔案尾端，所以直接解得開，只是它會先抱怨前面多了 272492 個位元組；解開的東西放在目前目錄的 `base_images/` |
 | C `binwalk -e -M` | `binwalk -e -M dolls.jpg` | `-M`（matryoshka）自動對拆出來的檔案再拆，一行做完所有層 |
 
 下面用做法 A 走，才看得到每一層的 `file` 和 `binwalk` 在說什麼；做法 C 留到你確定裡面是什麼之後再用。
@@ -138,11 +144,20 @@ binwalk -e dolls.jpg
 ls _dolls.jpg.extracted/
 ```
 
+```text
+4286C.zip  base_images
+```
+
 目錄裡有 `4286C.zip`（用剛才那個 offset 的十六進位命名）和已經解開的 `base_images/2_c.jpg`。做法 B 的輸出長這樣：
 
 ```text
+Archive:  dolls.jpg
 warning [dolls.jpg]:  272492 extra bytes at beginning or within zipfile
+  (attempting to process anyway)
+  inflating: base_images/2_c.jpg
 ```
+
+警告說的 272492 就是 binwalk 找到的那個 offset：zip 之前的 272492 個位元組是 PNG，`unzip` 不認識它們、跳過，照樣把 `base_images/2_c.jpg` 解到目前目錄。
 
 ### 回到步驟 1：拆出來的檔案，再從頭檢查一次
 
