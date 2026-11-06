@@ -145,6 +145,8 @@ DECIMAL       HEXADECIMAL     DESCRIPTION
 | B `unzip` | `unzip dolls.jpg` | 不靠 binwalk。zip 的目錄在檔案尾端，所以直接解得開，只是它會先抱怨前面多了 272492 個位元組；解開的東西放在目前目錄的 `base_images/` |
 | C `binwalk -e -M` | `binwalk -e -M dolls.jpg` | `-M`（matryoshka）自動對拆出來的檔案再拆，一行做完所有層 |
 
+A 和 B 其實是同一件事。`binwalk` 自己不壓縮、也不解壓縮，它只找簽名；`-e` 是它認出 zip 之後替你呼叫解壓工具去拆，認出 gzip 就用 gzip 的解法、認出 tar 就用 tar 的。所以它認得的格式比它拆得動的多：系統沒裝對應工具的格式，`-e` 會列出那一行，卻什麼都拆不出來，也不太會報錯。這就是後面那張解壓表存在的原因：拆不動時，照 `file` 的回答自己挑工具。
+
 下面用做法 A 走，才看得到每一層的 `file` 和 `binwalk` 在說什麼；做法 C 留到你確定裡面是什麼之後再用。
 
 ```bash
