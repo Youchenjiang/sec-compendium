@@ -1,6 +1,6 @@
 # 台上示範腳本：Matryoshka doll
 
-> 教師用。講義 [handout.md](handout.md) 的走查壓成一頁：左欄照打，右欄是打完要指給學生看的那一行、和要說的那一句。全程在 CyLab webshell，約 15 分鐘。
+> 教師用。講義 [handout.md](handout.md) 的走查壓成一頁：左欄照打，中欄是打完要指給學生看的那一行，右欄是要說的一句。全程在 CyLab webshell，約 15 分鐘。作業五題的同款腳本在 [demo-assignment.md](demo-assignment.md)。
 
 ## 開始前（學生進場時做完）
 
