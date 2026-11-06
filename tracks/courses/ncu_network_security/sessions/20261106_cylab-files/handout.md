@@ -226,6 +226,28 @@ p i c o C T F { . . . }
 
 字元之間夾著空白，去掉就是 flag。四層都是步驟 1 → 2 → 3 再回頭，做法 C 就是把這個迴圈交給 binwalk 自動跑。
 
+### 整個 dolls.jpg 長什麼樣
+
+把剛才每一層的 `binwalk` 數字疊起來，就是這個檔案的全貌。每一層都是「一張完整的 PNG，IEND 之後接一個 zip，zip 裡是下一層」：
+
+```text
+dolls.jpg（651609 bytes）
+│
+├─ 0        PNG 594×1104 ……………… IEND        ← 圖片本身，看圖軟體只畫到這裡
+└─ 272492   zip ─── base_images/2_c.jpg（383919 bytes）
+             │
+             ├─ 0        PNG 526×1106 ……… IEND
+             └─ 187707   zip ─── base_images/3_c.jpg（201426 bytes）
+                          │
+                          ├─ PNG ……………………… IEND
+                          └─ zip ─── base_images/4_c.jpg
+                                       │
+                                       ├─ PNG ……………………… IEND
+                                       └─ zip ─── flag.txt   ← 最裡面的娃娃
+```
+
+前兩層的 offset 和大小是上面 `binwalk` 列出的；第三、四層的數字請你自己拆到那裡時填上。看圖軟體每一層都只畫 PNG 的部分，IEND 之後的 zip 對它來說不存在，所以四張圖看起來都是正常的圖片。
+
 ### 回頭看：剛才做的事排起來就是一張表
 
 | 步驟 | 問題 | 指令 | Matryoshka doll |
