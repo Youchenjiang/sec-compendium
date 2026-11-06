@@ -1,8 +1,74 @@
-# 作業五題的檢討腳本
+# 作業題的檢討腳本
 
-> 教師用，格式同 [demo.md](demo.md)：左欄照打，中欄是要指的那一行，右欄是要說的一句。作業檢討或有人卡住時用。這五題的路徑來自多份 writeup 交叉比對，沒有在 webshell 實跑過，上台前請自己走一遍。flag 不要唸出來；St3g0 以外都是固定 flag。
+> 教師用，格式同 [demo.md](demo.md)：左欄照打，中欄是要指的那一行，右欄是要說的一句。作業檢討或有人卡住時用。九題的路徑都來自多份 writeup 交叉比對，沒有在 webshell 實跑過，上台前請自己走一遍。flag 不要唸出來；St3g0 以外都是固定 flag。
 
 每題開場一樣：先清場，`rm -rf ~/*` 清空家目錄（沒有回收桶，確認提示字元是 `@webshell`），`mkdir -p ~/work/<題名> && cd ~/work/<題名>` 再 `wget`；唸題目說明和提示，問「你猜藏在檢查表哪一步」，再開始打。
+
+# 第一批（本次作業）
+
+## Secret of the Polyglot（步驟 1，謊報格式）
+
+檔案 `flag2of2-final.pdf`。兩半 flag 都要看畫面，所以先下載到筆電。
+
+| 打 | 指著哪一行 | 說一句 |
+|---|---|---|
+| `file flag2of2-final.pdf` | `PNG image data, 50 x 50, 8-bit/color RGBA` | 檔名說 PDF，開頭說 PNG。題目說的「各說各話」就是這個。 |
+| `exiftool flag2of2-final.pdf \| grep -i warning` | `Trailer data after PNG IEND chunk` | 跟 Matryoshka 一樣，圖片結束之後還有東西。 |
+| `binwalk flag2of2-final.pdf` | IEND 之後的位置認出 PDF | 一個檔案、兩個格式：`file` 只看開頭，PDF 閱讀器從檔尾找目錄，各自都滿意。 |
+| 筆電：複製一份改名 `.png`，看圖軟體開 | 50×50 的小圖，放大才看得到，寫著前半 flag | |
+| 筆電：原檔用瀏覽器開 | 一頁文字，後半 flag | 兩半接起來。 |
+
+| 狀況 | 處理 |
+|---|---|
+| 圖太小 | 50×50 像素，放大到 800% 再看。 |
+| 不想離開 webshell 看 PDF 那半 | `binwalk -e` 拆出的 `47D` 是純文字，`cat` 就有後半（單一 writeup 來源）。 |
+
+## Disk, disk, sleuth!（步驟 2，明文）
+
+檔案 `dds1-alpine.flag.img.gz`。解開是 134217728 bytes，正好 128 MiB，等於 webshell 的配額，**不能落地**。
+
+| 打 | 指著哪一行 | 說一句 |
+|---|---|---|
+| `file dds1-alpine.flag.img.gz` | `gzip compressed data, was "dds1-alpine.flag.img" ... 134217728` | `.gz` 不是 zip；`file` 連解開後的大小都告訴你了：128 MiB，家目錄放不下。 |
+| `zcat dds1-alpine.flag.img.gz \| strings \| grep pico` | 四行：三行 `pirq_pico_*`、`pico_router_probe`，一行 `SAY picoCTF{...}` | 不解到磁碟，解開的位元組直接流進 `strings`。前三行是 Linux 核心的符號名稱，含 pico 不是 flag；看到完整的 `picoCTF{` 才算。 |
+| 自己的 Linux 才做：`gzip -d` 再 `strings dds1-alpine.flag.img \| grep pico` | 同樣四行 | 磁碟映像對 `strings` 來說只是一大串位元組。題目叫你用 sleuthkit 的 `srch_strings`，不用也行。 |
+
+| 狀況 | 處理 |
+|---|---|
+| 有人 `gzip -d` 之後家目錄滿了 | 刪掉 `.img`，改用 `zcat` 管線。 |
+| `strings` 不接 `grep` | 幾十萬行，捲不完。 |
+
+## Mob psycho（步驟 1＋3，zip 裡找一個檔）
+
+檔案 `mobpsycho.apk`。
+
+| 打 | 指著哪一行 | 說一句 |
+|---|---|---|
+| `file mobpsycho.apk` | zip（新版 `file` 會寫 Android package） | APK 就是 zip，題目提示也直說了。 |
+| `unzip -l mobpsycho.apk \| grep -i flag` | `res/color/flag.txt` | 六百多個檔案，先列清單再找，不要全解開。 |
+| `unzip mobpsycho.apk res/color/flag.txt && cat res/color/flag.txt` | 一行 84 個十六進位字元，`7069636f...7d` | `70 69 63 6f` 就是 `pico`。 |
+| `xxd -r -p res/color/flag.txt` | `picoCTF{...}` | 文字檔不代表內容就是 flag，還要看它是用什麼寫的。 |
+
+| 狀況 | 處理 |
+|---|---|
+| `strings mobpsycho.apk \| grep pico` 沒東西 | zip 裡的內容是壓縮過的，`strings` 看不到；解開才看得到。正好是講義「單一工具沒結果不代表沒東西」。 |
+| `strings classes.dex \| grep flag` 有東西但不是 flag | 程式碼裡的字串，誘餌。 |
+
+## MacroHard WeakEdge（加分，步驟 1＋3，誘餌）
+
+檔案 `Forensics is fun.pptm`，檔名有空白，要加引號。flag 固定，看路徑。
+
+| 打 | 指著哪一行 | 說一句 |
+|---|---|---|
+| `file 'Forensics is fun.pptm'` | Microsoft PowerPoint（Office 檔案都是 zip） | |
+| `unzip -l 'Forensics is fun.pptm' \| grep -v xml` | `ppt/slideMasters/hidden`、`ppt/vbaProject.bin` | 153 個檔案，不是 xml 的只有幾個，名字叫 hidden 的那個太可疑。 |
+| `unzip 'Forensics is fun.pptm' ppt/slideMasters/hidden && cat ppt/slideMasters/hidden` | `Z m x h Z z o g ...`，每個字元隔一個空白 | 像 base64，但 base64 沒有空白。 |
+| `tr -d ' ' < ppt/slideMasters/hidden \| base64 -d` | `flag: picoCTF{...}` 後面接 `base64: invalid input` | 空白去掉才解得開；結尾少了補齊用的 `=`，所以印完 flag 才報錯，不理。 |
+| `strings ppt/vbaProject.bin \| grep -i sorry` | `sorry_but_this_isn't_it` | 題名的 Macro 是誘餌，巨集裡故意放了這句。 |
+
+---
+
+# 第二批（之後另行公告）
 
 ## File types（步驟 3，十一層格式不同）
 
