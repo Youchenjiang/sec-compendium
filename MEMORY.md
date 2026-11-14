@@ -1,6 +1,6 @@
 # Agent Persistent Memory
 
-> **Every agent session MUST read this file first** (defined in .agent/rules.md).
+> **Every agent session MUST read this file first** (defined in AGENTS.md).
 > **Every agent session MUST update this file before ending.**
 
 ---
