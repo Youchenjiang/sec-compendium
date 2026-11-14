@@ -255,3 +255,6 @@ secrets.env
 
 # Course lecture handouts (copyrighted, not for version control)
 Handout/
+
+# Third-party slide skill installed locally (73 MB, not part of this repo)
+.agents/skills/ppt-master/
