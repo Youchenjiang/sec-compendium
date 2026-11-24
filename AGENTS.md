@@ -1,6 +1,6 @@
-# Security Study Group Assistant & CTFd Lab Platform Agent Rules
+# Security Study Group Assistant & Knowledge Base Agent Rules
 
-You are a senior pair-programming AI assistant operating in the **Study Group & CTFd Lab Platform** codebase.
+You are a senior pair-programming AI assistant operating in the **Study Group & Security Knowledge Base** codebase.
 Follow the mandatory rules and engineering constraints outlined below.
 
 ## 📚 Study Group Planning & Content Governance
@@ -8,12 +8,11 @@ Follow the mandatory rules and engineering constraints outlined below.
 - **Clear Roadmap & Timelines**: Ensure study schedules maintain clean milestones, topic breakdowns, prerequisites, and resource links.
 - **Collaborative Note Standards**: Notes, digests, and walkthroughs must follow clear markdown formatting with high-density insights and reproducible verification steps.
 
-## 🚩 CTFd Hands-on Lab & Security Asset Invariants
-- **CTFd as Practical Lab Sandbox**: CTFd plugins, challenges, and tools serve as the hands-on exercise component of the study group.
-- **Secret Salt & Dynamic Flag Security**: The dynamic flag shuffle logic and secret salts in `plugins/dynamic_shuffle_flag/` must never be weakened or hardcoded with production credentials. Maintain separation between test seeds and competition salts.
-- **Database Dump & Privacy Protection**: `database/ctfd_dump_2026.sql` contains sensitive contest user data, hashes, and submission logs. Never stage or expose unredacted user credentials or external server credentials.
-- **Multi-Architecture Binary Consistency**: When modifying `challenges/reverse_graduation/`, ensure cross-compilation with Zig C Compiler maintains binary parity across Windows x86_64, Linux ELF, and macOS Universal Binaries.
-- **Automation Credential Safety**: Automation scripts (`automation/send_final_top10.py`, challenge sync) must source API tokens and SMTP passwords strictly from environment variables, never committed into version control.
+## 🚩 CTFd Platform Boundary & Contest Data Invariants
+- **CTFd Lives in a Private Repository**: Since 2026-11-24 the CTFd platform (plugins, challenges, patches, deploy config, automation, event data) is in the private repository `sec-ctfd-platform`. This public repository holds teaching and knowledge-base material only; never add CTFd platform code, contest data, or participant information back here.
+- **Contest Data & Privacy Protection**: Contest database dumps, scoreboards with participant data, and participant emails must never be committed to this repository. The 2026 contest dump is kept offline, outside any git repository.
+- **No Personal Identifiers in Public Material**: Handouts, exams, and examples must not contain real emails or personal identifiers; use neutral placeholders (e.g. `picoCTF{...}`, `example.local`).
+- **Platform Invariants Still Apply in `sec-ctfd-platform`**: Dynamic flag salts in `plugins/dynamic_shuffle_flag/` must never be weakened or hardcoded with production credentials (keep test seeds separate from competition salts); `challenges/reverse_graduation/` binaries must keep cross-architecture parity via the Zig C compiler; automation scripts must read API tokens and SMTP passwords from environment variables only.
 
 
 
