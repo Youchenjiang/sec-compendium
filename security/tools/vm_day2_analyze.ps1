@@ -25,7 +25,7 @@ $log = Join-Path $out 'analyze_log.txt'
 $utf8 = New-Object System.Text.UTF8Encoding($false)
 [IO.File]::WriteAllText($log, '', $utf8)
 function L([string]$m) { [IO.File]::AppendAllText($log, $m + "`r`n", $utf8) }
-function Say([string]$m) { Write-Host $m }
+function Show-Message([string]$m) { Write-Host $m }
 
 $EZ = 'C:\Tools\DFIR\EZTools\net9'
 $script:failures = 0
@@ -113,5 +113,5 @@ Get-ChildItem $out | Sort-Object Name | ForEach-Object { L ('  ' + $_.Name.PadRi
 
 L ''
 L ('DONE analyze failures=' + $script:failures)
-Say ('DONE analyze failures=' + $script:failures + ' -> read C:\Tools\DFIR\day2\toolout\analyze_log.txt')
+Show-Message ('DONE analyze failures=' + $script:failures + ' -> read C:\Tools\DFIR\day2\toolout\analyze_log.txt')
 if ($script:failures -gt 0) { exit 1 }

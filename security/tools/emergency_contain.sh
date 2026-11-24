@@ -14,7 +14,7 @@ FORCE_KILL9=${FORCE_KILL9:-0}
 
 timestamp() { date -u '+%Y-%m-%dT%H:%M:%SZ'; }
 log() { printf '%s\t%s\n' "$(timestamp)" "$*"; }
-have() { command -v "$1" >/dev/null 2>&1; }
+have() { local cmd="$1"; command -v "$cmd" >/dev/null 2>&1; }
 
 usage() {
   cat <<'EOF'

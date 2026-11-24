@@ -34,7 +34,7 @@ $utf8 = New-Object System.Text.UTF8Encoding($false)
 function L([string]$m) { [IO.File]::AppendAllText($slog, $m + "`r`n", $utf8) }
 function AppCsv([string]$line) { [IO.File]::AppendAllText($gt, $line + "`r`n", $utf8) }
 function Q([string]$s) { '"' + ($s -replace '"', '""') + '"' }
-function Say([string]$m) { Write-Host $m }
+function Show-Message([string]$m) { Write-Host $m }
 
 # ---------------------------------------------------------------------------
 # native runner: stdin closed + hard timeout + no pipe deadlock
@@ -57,7 +57,7 @@ function RunNative {
     $ot = $p.StandardOutput.ReadToEndAsync()
     $et = $p.StandardError.ReadToEndAsync()
     if (-not $p.WaitForExit($TimeoutSec * 1000)) {
-        try { $p.Kill() } catch { }
+        try { $p.Kill() } catch { Write-Verbose ("process already exited: " + $_.Exception.Message) }
         return ('<TIMEOUT after ' + $TimeoutSec + 's, process killed> ' + $ot.Result + $et.Result)
     }
     $o = ($ot.Result + ' ' + $et.Result)
@@ -81,9 +81,9 @@ foreach ($r in @(
 }
 foreach ($cls in @('__FilterToConsumerBinding', 'CommandLineEventConsumer', '__EventFilter')) {
     try {
-        Get-WmiObject -Namespace root\subscription -Class $cls -ErrorAction SilentlyContinue |
-            Where-Object { $_.Name -eq 'SprintDay1BFilter' -or $_.Name -eq 'SprintDay1BConsumer' -or ('{0}' -f $_.Filter) -match 'SprintDay1B' } |
-            ForEach-Object { $_.Delete() }
+        Get-CimInstance -Namespace root\subscription -ClassName $cls -ErrorAction SilentlyContinue |
+            Where-Object { $_.Name -eq 'SprintDay1BFilter' -or $_.Name -eq 'SprintDay1BConsumer' -or ($_.Filter -and $_.Filter.Name -match 'SprintDay1B') } |
+            Remove-CimInstance
         L ('  WMI ' + $cls.PadRight(26) + ' reset')
     } catch { L ('  WMI ' + $cls + ' reset error: ' + $_.Exception.Message) }
 }
@@ -98,7 +98,7 @@ $t0l = Get-Date
 L '=== simulation window opens ==='
 L ('sim_start_local : ' + $t0l.ToString('yyyy-MM-dd HH:mm:ss.fff K'))
 L ('sim_start_utc   : ' + $t0u.ToString('yyyy-MM-dd HH:mm:ss.fff') + 'Z')
-Say ('SIM START  local=' + $t0l.ToString('HH:mm:ss') + '  utc=' + $t0u.ToString('HH:mm:ss') + 'Z')
+Show-Message ('SIM START  local=' + $t0l.ToString('HH:mm:ss') + '  utc=' + $t0u.ToString('HH:mm:ss') + 'Z')
 
 AppCsv 'seq,step,technique,name,start_utc,start_local,end_utc,end_local,expect_sysmon,expect_security,expect_other,observed_output'
 
@@ -113,7 +113,7 @@ function Step {
     L ''
     L ('--- [' + $Id + '] (' + $Tech + ') ' + $Name)
     L ('    command : ' + $Desc)
-    Say ('STEP ' + $Id.PadRight(4) + ' (' + $Tech + ') ' + $Name)
+    Show-Message ('STEP ' + $Id.PadRight(4) + ' (' + $Tech + ') ' + $Name)
     $note = ''
     try { $note = (& $Body 2>&1 | Out-String) } catch { $note = 'THREW: ' + $_.Exception.Message }
     Start-Sleep -Milliseconds 800
@@ -317,15 +317,15 @@ Step 'S13' 'T1003.001' 'Open a handle to lsass.exe (P/Invoke only; no dump writt
 Step 'S14' 'T1546.003' 'WMI permanent event subscription (filter + consumer + binding)' `
     'Set-WmiInstance __EventFilter / CommandLineEventConsumer / __FilterToConsumerBinding' `
     {
-        $f = Set-WmiInstance -Namespace root\subscription -Class __EventFilter -Arguments @{
+        $f = New-CimInstance -Namespace root\subscription -ClassName __EventFilter -Property @{
             Name = 'SprintDay1BFilter'; EventNamespace = 'root\cimv2'; QueryLanguage = 'WQL'
             Query = "SELECT * FROM __InstanceModificationEvent WITHIN 60 WHERE TargetInstance ISA 'Win32_PerfFormattedData_PerfOS_System'"
         }
-        $c = Set-WmiInstance -Namespace root\subscription -Class CommandLineEventConsumer -Arguments @{
+        $c = New-CimInstance -Namespace root\subscription -ClassName CommandLineEventConsumer -Property @{
             Name = 'SprintDay1BConsumer'; CommandLineTemplate = 'cmd.exe /c calc.exe'
         }
-        $b = Set-WmiInstance -Namespace root\subscription -Class __FilterToConsumerBinding -Arguments @{ Filter = $f; Consumer = $c }
-        'filter=' + $f.Name + ' consumer=' + $c.Name + ' binding=' + $b.__CLASS
+        $b = New-CimInstance -Namespace root\subscription -ClassName __FilterToConsumerBinding -Property @{ Filter = [ref]$f; Consumer = [ref]$c }
+        'filter=' + $f.Name + ' consumer=' + $c.Name + ' binding=' + $b.CimClass.CimClassName
     } `
     '19(WmiEventFilter);20(WmiEventConsumer);21(WmiEventConsumerToFilter)' '-' '-'
 
@@ -351,6 +351,6 @@ $win = @(
 )
 [IO.File]::WriteAllLines((Join-Path $out 'window.txt'), $win, $utf8)
 
-Say ''
-Say ('SIM END  steps=' + $script:seq + '  elapsed=' + [math]::Round(($t1l - $t0l).TotalSeconds, 1) + 's')
-Say 'DONE sim -> C:\Tools\DFIR\day1b\ground_truth.csv'
+Show-Message ''
+Show-Message ('SIM END  steps=' + $script:seq + '  elapsed=' + [math]::Round(($t1l - $t0l).TotalSeconds, 1) + 's')
+Show-Message 'DONE sim -> C:\Tools\DFIR\day1b\ground_truth.csv'

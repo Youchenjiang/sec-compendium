@@ -20,7 +20,7 @@ $log = Join-Path $out 'phaseb_log.txt'
 $utf8 = New-Object System.Text.UTF8Encoding($false)
 [IO.File]::WriteAllText($log, '', $utf8)
 function L([string]$m) { [IO.File]::AppendAllText($log, $m + "`r`n", $utf8) }
-function Say([string]$m) { Write-Host $m }
+function Show-Message([string]$m) { Write-Host $m }
 
 $live = 'C:\Tools\DFIR\sysmonconfig.xml'
 $base = Join-Path $out 'sysmonconfig.baseline.xml'
@@ -33,12 +33,12 @@ L ('local ' + $t0.ToString('yyyy-MM-dd HH:mm:ss K') + ' | utc ' + $t0.ToUniversa
 # ---- 1. build the patched config -------------------------------------------
 L ''
 L '--- 1. patch config (exact string insert, no regex escaping traps) ---'
-if (-not (Test-Path $base)) { L 'ERROR: sysmonconfig.baseline.xml missing -- run vm_day1b_harden.ps1 first'; Say 'ERROR baseline missing'; return }
+if (-not (Test-Path $base)) { L 'ERROR: sysmonconfig.baseline.xml missing -- run vm_day1b_harden.ps1 first'; Show-Message 'ERROR baseline missing'; return }
 Copy-Item $base $new -Force
 $raw = [IO.File]::ReadAllText($new)
 $needle = '<ProcessAccess onmatch="include">'
 $i = $raw.IndexOf($needle)
-if ($i -lt 0) { L 'ERROR: ProcessAccess include block not found'; Say 'ERROR block not found'; return }
+if ($i -lt 0) { L 'ERROR: ProcessAccess include block not found'; Show-Message 'ERROR block not found'; return }
 $insert = $needle +
           "`r`n`t`t`t" +
           '<TargetImage condition="is">C:\Windows\system32\lsass.exe</TargetImage>' +
@@ -131,4 +131,4 @@ L '  wrote phaseb_eid10.txt'
 L ''
 L ('elapsed_sec ' + [math]::Round(((Get-Date) - $t0).TotalSeconds, 1))
 L 'DONE phase B'
-Say 'DONE phase B -> read C:\Tools\DFIR\day1b\phaseb_log.txt and phaseb_eid10.txt'
+Show-Message 'DONE phase B -> read C:\Tools\DFIR\day1b\phaseb_log.txt and phaseb_eid10.txt'

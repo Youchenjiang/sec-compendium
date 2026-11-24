@@ -26,7 +26,7 @@ $log = Join-Path $out 'hayabusa_log.txt'
 $utf8 = New-Object System.Text.UTF8Encoding($false)
 [IO.File]::WriteAllText($log, '', $utf8)
 function L([string]$m) { [IO.File]::AppendAllText($log, $m + "`r`n", $utf8) }
-function Say([string]$m) { Write-Host $m }
+function Show-Message([string]$m) { Write-Host $m }
 
 function Run([string]$ArgLine, [int]$TimeoutSec) {
     # NOTE: the parameter must NOT be called $Args -- that name is PowerShell's
@@ -45,7 +45,7 @@ function Run([string]$ArgLine, [int]$TimeoutSec) {
     $p.StandardInput.Close()
     $ot = $p.StandardOutput.ReadToEndAsync()
     $et = $p.StandardError.ReadToEndAsync()
-    if (-not $p.WaitForExit($TimeoutSec * 1000)) { try { $p.Kill() } catch { } ; return @{ exit = -1; text = '<TIMEOUT>' } }
+    if (-not $p.WaitForExit($TimeoutSec * 1000)) { try { $p.Kill() } catch { Write-Verbose ("process already exited: " + $_.Exception.Message) } ; return @{ exit = -1; text = '<TIMEOUT>' } }
     return @{ exit = $p.ExitCode; text = ($ot.Result + "`n" + $et.Result) }
 }
 
@@ -93,4 +93,4 @@ if (Test-Path $csv) {
 
 L ''
 L 'DONE hayabusa'
-Say 'DONE hayabusa -> C:\Tools\DFIR\day1b\hayabusa_log.txt'
+Show-Message 'DONE hayabusa -> C:\Tools\DFIR\day1b\hayabusa_log.txt'

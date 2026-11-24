@@ -19,7 +19,7 @@ $log = Join-Path $out 'cleanup_log.txt'
 $utf8 = New-Object System.Text.UTF8Encoding($false)
 [IO.File]::WriteAllText($log, '', $utf8)
 function L([string]$m) { [IO.File]::AppendAllText($log, $m + "`r`n", $utf8) }
-function Say([string]$m) { Write-Host $m }
+function Show-Message([string]$m) { Write-Host $m }
 
 L '=== Day 1B cleanup ==='
 L ('local ' + (Get-Date).ToString('yyyy-MM-dd HH:mm:ss K') + ' | Full=' + $Full)
@@ -42,19 +42,19 @@ Try1 'service SprintDay1BSvc'          { sc.exe delete 'SprintDay1BSvc' }
 Try1 'HKCU Run value SprintDay1B'      { reg.exe delete 'HKCU\Software\Microsoft\Windows\CurrentVersion\Run' /v 'SprintDay1B' /f }
 Try1 'local account sprint_svc'        { net.exe user 'sprint_svc' /delete }
 Try1 'WMI binding' {
-    Get-WmiObject -Namespace root\subscription -Class __FilterToConsumerBinding -ErrorAction SilentlyContinue |
-        Where-Object { ('{0}' -f $_.Filter) -match 'SprintDay1B' } |
-        ForEach-Object { $_.Delete() }
+    Get-CimInstance -Namespace root\subscription -ClassName __FilterToConsumerBinding -ErrorAction SilentlyContinue |
+        Where-Object { ($_.Filter -and $_.Filter.Name -match 'SprintDay1B') } |
+        Remove-CimInstance
 }
 Try1 'WMI consumer SprintDay1BConsumer' {
-    Get-WmiObject -Namespace root\subscription -Class CommandLineEventConsumer -ErrorAction SilentlyContinue |
+    Get-CimInstance -Namespace root\subscription -ClassName CommandLineEventConsumer -ErrorAction SilentlyContinue |
         Where-Object { $_.Name -eq 'SprintDay1BConsumer' } |
-        ForEach-Object { $_.Delete() }
+        Remove-CimInstance
 }
 Try1 'WMI filter SprintDay1BFilter' {
-    Get-WmiObject -Namespace root\subscription -Class __EventFilter -ErrorAction SilentlyContinue |
+    Get-CimInstance -Namespace root\subscription -ClassName __EventFilter -ErrorAction SilentlyContinue |
         Where-Object { $_.Name -eq 'SprintDay1BFilter' } |
-        ForEach-Object { $_.Delete() }
+        Remove-CimInstance
 }
 Try1 'staged files in C:\Windows\Temp' { Remove-Item 'C:\Windows\Temp\sprint_*' -Force -ErrorAction SilentlyContinue; 'removed' }
 
@@ -66,7 +66,7 @@ $chk = @(
     @{ n = 'service SprintDay1BSvc'; f = { -not (Get-Service -Name 'SprintDay1BSvc' -ErrorAction SilentlyContinue) } },
     @{ n = 'Run value SprintDay1B'; f = { -not (Get-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' -Name 'SprintDay1B' -ErrorAction SilentlyContinue) } },
     @{ n = 'account sprint_svc'; f = { -not (Get-LocalUser -Name 'sprint_svc' -ErrorAction SilentlyContinue) } },
-    @{ n = 'WMI filter/consumer'; f = { -not (Get-WmiObject -Namespace root\subscription -Class __EventFilter -ErrorAction SilentlyContinue | Where-Object { $_.Name -eq 'SprintDay1BFilter' }) } },
+    @{ n = 'WMI filter/consumer'; f = { -not (Get-CimInstance -Namespace root\subscription -ClassName __EventFilter -ErrorAction SilentlyContinue | Where-Object { $_.Name -eq 'SprintDay1BFilter' }) } },
     @{ n = 'temp files'; f = { @(Get-ChildItem 'C:\Windows\Temp\sprint_*' -ErrorAction SilentlyContinue).Count -eq 0 } }
 )
 foreach ($c in $chk) {
@@ -100,4 +100,4 @@ if ($Full) {
 
 L ''
 L 'DONE cleanup'
-Say 'DONE cleanup'
+Show-Message 'DONE cleanup'

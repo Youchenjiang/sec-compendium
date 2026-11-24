@@ -11,7 +11,7 @@ $log = Join-Path $out 'export_log.txt'
 $utf8 = New-Object System.Text.UTF8Encoding($false)
 [IO.File]::WriteAllText($log, '', $utf8)
 function L([string]$m) { [IO.File]::AppendAllText($log, $m + "`r`n", $utf8) }
-function Say([string]$m) { Write-Host $m }
+function Show-Message([string]$m) { Write-Host $m }
 
 $evtxDir = Join-Path $out 'evtx'
 $toolDir = Join-Path $out 'toolout'
@@ -119,4 +119,4 @@ Get-ChildItem $out -File | Sort-Object Name | ForEach-Object { L ('    ' + $_.Na
 
 L ''
 L 'DONE export'
-Say 'DONE export -> read C:\Tools\DFIR\day1b\export_log.txt'
+Show-Message 'DONE export -> read C:\Tools\DFIR\day1b\export_log.txt'

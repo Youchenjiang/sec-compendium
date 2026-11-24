@@ -15,121 +15,121 @@ $ErrorActionPreference = 'Continue'
 $out = 'C:\Tools\DFIR\day2'
 New-Item -ItemType Directory -Force -Path $out | Out-Null
 
-function Say([string]$m) { Write-Host $m }
+function Show-Message([string]$m) { Write-Host $m }
 
 $now = Get-Date
-Say '=== 0. Identity / time basis ==='
-Say ("whoami     : " + (whoami))
+Show-Message '=== 0. Identity / time basis ==='
+Show-Message ("whoami     : " + (whoami))
 $id = [Security.Principal.WindowsIdentity]::GetCurrent()
 $pr = New-Object Security.Principal.WindowsPrincipal($id)
-Say ("IsAdmin    : " + $pr.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator))
-Say ("LocalNow   : " + $now.ToString('yyyy-MM-dd HH:mm:ss K'))
-Say ("UtcNow     : " + $now.ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss') + 'Z')
-Say ("TimeZone   : " + [TimeZoneInfo]::Local.Id + " (offset " + [TimeZoneInfo]::Local.BaseUtcOffset + ")")
+Show-Message ("IsAdmin    : " + $pr.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator))
+Show-Message ("LocalNow   : " + $now.ToString('yyyy-MM-dd HH:mm:ss K'))
+Show-Message ("UtcNow     : " + $now.ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss') + 'Z')
+Show-Message ("TimeZone   : " + [TimeZoneInfo]::Local.Id + " (offset " + [TimeZoneInfo]::Local.BaseUtcOffset + ")")
 
-Say ''
-Say '=== 1. Prefetch ==='
+Show-Message ''
+Show-Message '=== 1. Prefetch ==='
 $pp = 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters'
 try {
     $v = Get-ItemProperty -Path $pp -ErrorAction Stop
-    Say ("EnablePrefetcher : " + $v.EnablePrefetcher + "  (0=off 1=app 2=boot 3=both)")
-    Say ("EnableSuperfetch : " + $v.EnableSuperfetch)
-} catch { Say ("PrefetchParameters read failed: " + $_.Exception.Message) }
+    Show-Message ("EnablePrefetcher : " + $v.EnablePrefetcher + "  (0=off 1=app 2=boot 3=both)")
+    Show-Message ("EnableSuperfetch : " + $v.EnableSuperfetch)
+} catch { Show-Message ("PrefetchParameters read failed: " + $_.Exception.Message) }
 $pfDir = "$env:SystemRoot\Prefetch"
 if (Test-Path $pfDir) {
     $pfs = Get-ChildItem $pfDir -Filter '*.pf' -ErrorAction SilentlyContinue
-    Say ("prefetch dir     : $pfDir (.pf count = " + @($pfs).Count + ")")
-    Say '  sample of 10:'
+    Show-Message ("prefetch dir     : $pfDir (.pf count = " + @($pfs).Count + ")")
+    Show-Message '  sample of 10:'
     $pfs | Sort-Object LastWriteTime -Descending | Select-Object -First 10 | ForEach-Object {
-        Say ('    ' + $_.Name.PadRight(40) + ' ' + $_.LastWriteTimeUtc.ToString('yyyy-MM-dd HH:mm:ss') + 'Z')
+        Show-Message ('    ' + $_.Name.PadRight(40) + ' ' + $_.LastWriteTimeUtc.ToString('yyyy-MM-dd HH:mm:ss') + 'Z')
     }
-    Say ("  READY1 layout   : " + (Test-Path (Join-Path $pfDir 'Layout.ini')))
-    Say ("  ReadyBoot       : " + (Test-Path (Join-Path $pfDir 'ReadyBoot')))
-} else { Say ("prefetch dir     : MISSING ($pfDir)") }
+    Show-Message ("  READY1 layout   : " + (Test-Path (Join-Path $pfDir 'Layout.ini')))
+    Show-Message ("  ReadyBoot       : " + (Test-Path (Join-Path $pfDir 'ReadyBoot')))
+} else { Show-Message ("prefetch dir     : MISSING ($pfDir)") }
 $sysmain = Get-Service -Name 'SysMain' -ErrorAction SilentlyContinue
-if ($sysmain) { Say ("SysMain service  : " + $sysmain.Status + " / " + $sysmain.StartType) } else { Say 'SysMain service  : NOT FOUND' }
+if ($sysmain) { Show-Message ("SysMain service  : " + $sysmain.Status + " / " + $sysmain.StartType) } else { Show-Message 'SysMain service  : NOT FOUND' }
 
-Say ''
-Say '=== 2. Amcache ==='
+Show-Message ''
+Show-Message '=== 2. Amcache ==='
 foreach ($p in @("$env:SystemRoot\AppCompat\Programs\Amcache.hve", "$env:SystemRoot\AppCompat\Programs\Amcache.hve.LOG1", "$env:SystemRoot\AppCompat\Programs\Amcache.hve.LOG2", "$env:SystemRoot\AppCompat\Programs\RecentFileCache.bcf")) {
     if (Test-Path $p) {
-        Say ('  EXISTS ' + $p + '  ' + [math]::Round((Get-Item $p).Length / 1MB, 2) + ' MB  ' + (Get-Item $p).LastWriteTimeUtc.ToString('yyyy-MM-dd HH:mm:ss') + 'Z')
-    } else { Say ('  MISSING ' + $p) }
+        Show-Message ('  EXISTS ' + $p + '  ' + [math]::Round((Get-Item $p).Length / 1MB, 2) + ' MB  ' + (Get-Item $p).LastWriteTimeUtc.ToString('yyyy-MM-dd HH:mm:ss') + 'Z')
+    } else { Show-Message ('  MISSING ' + $p) }
 }
 
-Say ''
-Say '=== 3. Shimcache (AppCompatCache) ==='
+Show-Message ''
+Show-Message '=== 3. Shimcache (AppCompatCache) ==='
 $systemLive = 'C:\Windows\System32\config\SYSTEM'
-if (Test-Path $systemLive) { Say ('  SYSTEM hive: ' + [math]::Round((Get-Item $systemLive).Length / 1MB, 2) + ' MB  ' + (Get-Item $systemLive).LastWriteTimeUtc.ToString('yyyy-MM-dd HH:mm:ss') + 'Z') }
+if (Test-Path $systemLive) { Show-Message ('  SYSTEM hive: ' + [math]::Round((Get-Item $systemLive).Length / 1MB, 2) + ' MB  ' + (Get-Item $systemLive).LastWriteTimeUtc.ToString('yyyy-MM-dd HH:mm:ss') + 'Z') }
 try {
     $key = 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\AppCompatCache\AppCompatCache'
     $item = Get-Item -Path $key -ErrorAction Stop
-    Say ('  AppCompatCache value size = ' + $item.GetValue('AppCompatCache').Length + ' bytes')
-} catch { Say ('  AppCompatCache registry read: ' + $_.Exception.Message) }
+    Show-Message ('  AppCompatCache value size = ' + $item.GetValue('AppCompatCache').Length + ' bytes')
+} catch { Show-Message ('  AppCompatCache registry read: ' + $_.Exception.Message) }
 
-Say ''
-Say '=== 4. USBSTOR ==='
+Show-Message ''
+Show-Message '=== 4. USBSTOR ==='
 $usb = 'HKLM:\SYSTEM\CurrentControlSet\Enum\USBSTOR'
 if (Test-Path $usb) {
     $devs = Get-ChildItem $usb -ErrorAction SilentlyContinue
-    Say ('  USBSTOR device types = ' + @($devs).Count)
+    Show-Message ('  USBSTOR device types = ' + @($devs).Count)
     foreach ($d in $devs) {
         $insts = Get-ChildItem $d.PSPath -ErrorAction SilentlyContinue
         foreach ($i in $insts) {
-            Say ('    ' + $i.PSChildName)
+            Show-Message ('    ' + $i.PSChildName)
         }
     }
-} else { Say '  USBSTOR key MISSING' }
+} else { Show-Message '  USBSTOR key MISSING' }
 $setupapi = "$env:SystemRoot\inf\setupapi.dev.log"
-if (Test-Path $setupapi) { Say ('  setupapi.dev.log : ' + [math]::Round((Get-Item $setupapi).Length / 1KB, 1) + ' KB') } else { Say '  setupapi.dev.log : MISSING' }
+if (Test-Path $setupapi) { Show-Message ('  setupapi.dev.log : ' + [math]::Round((Get-Item $setupapi).Length / 1KB, 1) + ' KB') } else { Show-Message '  setupapi.dev.log : MISSING' }
 # also current mount points (real USB volumes get mountpoints2)
 $mp2 = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\MountPoints2'
-if (Test-Path $mp2) { Say ('  MountPoints2 entries = ' + @(Get-ChildItem $mp2 -ErrorAction SilentlyContinue).Count) } else { Say '  MountPoints2 : MISSING' }
+if (Test-Path $mp2) { Show-Message ('  MountPoints2 entries = ' + @(Get-ChildItem $mp2 -ErrorAction SilentlyContinue).Count) } else { Show-Message '  MountPoints2 : MISSING' }
 
-Say ''
-Say '=== 5. UserAssist ==='
+Show-Message ''
+Show-Message '=== 5. UserAssist ==='
 $ua = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\UserAssist'
 if (Test-Path $ua) {
     $guids = Get-ChildItem $ua -ErrorAction SilentlyContinue
-    Say ('  UserAssist GUID subkeys = ' + @($guids).Count)
+    Show-Message ('  UserAssist GUID subkeys = ' + @($guids).Count)
     foreach ($g in $guids) {
         $cnt = Get-Item (Join-Path $g.PSPath 'Count') -ErrorAction SilentlyContinue
-        if ($cnt) { Say ('    ' + $g.PSChildName + '  Count values = ' + @($cnt.GetValueNames()).Count) }
+        if ($cnt) { Show-Message ('    ' + $g.PSChildName + '  Count values = ' + @($cnt.GetValueNames()).Count) }
     }
-} else { Say '  UserAssist : MISSING' }
+} else { Show-Message '  UserAssist : MISSING' }
 
-Say ''
-Say '=== 6. ConsentStore (mic / camera) ==='
+Show-Message ''
+Show-Message '=== 6. ConsentStore (mic / camera) ==='
 $csRoot = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore'
 foreach ($cap in @('microphone', 'webcam')) {
     $p = Join-Path $csRoot $cap
     if (Test-Path $p) {
         $subs = @(Get-ChildItem $p -Recurse -ErrorAction SilentlyContinue)
-        Say ('  ' + $cap + ' : subkeys = ' + $subs.Count)
-    } else { Say ('  ' + $cap + ' : MISSING') }
+        Show-Message ('  ' + $cap + ' : subkeys = ' + $subs.Count)
+    } else { Show-Message ('  ' + $cap + ' : MISSING') }
 }
 $csNonPkg = Join-Path $csRoot 'microphone\NonPackaged'
-if (Test-Path $csNonPkg) { Say ('  microphone\NonPackaged apps = ' + @(Get-ChildItem $csNonPkg -ErrorAction SilentlyContinue).Count) }
+if (Test-Path $csNonPkg) { Show-Message ('  microphone\NonPackaged apps = ' + @(Get-ChildItem $csNonPkg -ErrorAction SilentlyContinue).Count) }
 
-Say ''
-Say '=== 7. EZ Tools presence ==='
+Show-Message ''
+Show-Message '=== 7. EZ Tools presence ==='
 foreach ($t in @('PECmd.exe', 'AmcacheParser.exe', 'AppCompatCacheParser.exe', 'RECmd.exe', 'MFTECmd.exe', 'SBECmd.exe')) {
     $f = Get-ChildItem 'C:\Tools\DFIR\EZTools' -Filter $t -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
-    if ($f) { Say ('  OK   ' + $t.PadRight(28) + $f.FullName) } else { Say ('  MISS ' + $t) }
+    if ($f) { Show-Message ('  OK   ' + $t.PadRight(28) + $f.FullName) } else { Show-Message ('  MISS ' + $t) }
 }
 $recmdBatch = Get-ChildItem 'C:\Tools\DFIR' -Filter '*.reb' -Recurse -ErrorAction SilentlyContinue | Select-Object -First 5
-Say ('  RECmd batch files found: ' + @($recmdBatch).Count)
-foreach ($b in $recmdBatch) { Say ('    ' + $b.FullName) }
+Show-Message ('  RECmd batch files found: ' + @($recmdBatch).Count)
+foreach ($b in $recmdBatch) { Show-Message ('    ' + $b.FullName) }
 
-Say ''
-Say '=== 8. Baseline: known-benign already-executed programs ==='
+Show-Message ''
+Show-Message '=== 8. Baseline: known-benign already-executed programs ==='
 # these give us a "before" set; after we run our own programs we can diff.
 foreach ($exe in @('notepad.exe', 'calc.exe', 'cmd.exe', 'powershell.exe', 'mspaint.exe', 'write.exe', 'charmap.exe')) {
     $pf = Join-Path $pfDir (($exe.ToUpper() -replace '\.EXE$', '.EXE') + '-')
     $found = Get-ChildItem $pfDir -Filter ($exe.Split('.')[0].ToUpper() + '.EXE-*') -ErrorAction SilentlyContinue
     $n = @($found).Count
-    Say ('  ' + $exe.PadRight(16) + ' prefetch present = ' + $n)
+    Show-Message ('  ' + $exe.PadRight(16) + ' prefetch present = ' + $n)
 }
 
-Say ''
-Say 'DONE recon'
+Show-Message ''
+Show-Message 'DONE recon'

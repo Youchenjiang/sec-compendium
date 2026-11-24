@@ -83,8 +83,8 @@ Log ''
 Log '### RUN: Hayabusa (threat hunt) ###'
 try {
     $hbOut = Join-Path $Out 'hayabusa_security.csv'
-    $args = @('-d', $evtxDir, '-o', $hbOut, '-q')
-    & $hayabusa.FullName @args 2>&1 | Select-Object -Last 6 | ForEach-Object { Log ('  ' + $_) }
+    $hbArgs = @('-d', $evtxDir, '-o', $hbOut, '-q')
+    & $hayabusa.FullName @hbArgs 2>&1 | Select-Object -Last 6 | ForEach-Object { Log ('  ' + $_) }
     if (Test-Path $hbOut) {
         $hb = @(Import-Csv $hbOut -ErrorAction SilentlyContinue)
         Log ('  detections  : ' + $hb.Count)

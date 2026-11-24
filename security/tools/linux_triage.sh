@@ -20,7 +20,8 @@ section() {
 }
 
 have() {
-  command -v "$1" >/dev/null 2>&1
+  local cmd="$1"
+  command -v "$cmd" >/dev/null 2>&1
 }
 
 section "Acquisition context"
