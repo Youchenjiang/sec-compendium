@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- PCB Board -->
+  <rect x="8" y="14" width="48" height="38" rx="6" fill="#047857" />
+  <rect x="12" y="18" width="40" height="30" rx="4" fill="#065F46" />
+  
+  <!-- PCIe Connector Fingers -->
+  <rect x="14" y="52" width="6" height="6" rx="1" fill="#F59E0B" />
+  <rect x="23" y="52" width="6" height="6" rx="1" fill="#F59E0B" />
+  <rect x="32" y="52" width="16" height="6" rx="1" fill="#F59E0B" />
+
+  <!-- Ethernet / Port Jack -->
+  <rect x="4" y="24" width="10" height="18" rx="2" fill="#94A3B8" />
+  <rect x="2" y="27" width="4" height="12" fill="#475569" />
+
+  <!-- NIC Chip & Status LEDs -->
+  <rect x="22" y="24" width="16" height="16" rx="3" fill="#1E293B" />
+  <circle cx="44" cy="24" r="3" fill="#10B981" />
+  <circle cx="44" cy="34" r="3" fill="#F59E0B" />
+
+  <!-- Signal / Wi-Fi traces -->
+  <path d="M26 32H34" stroke="#34D399" stroke-width="2" stroke-linecap="round" />
+</svg>

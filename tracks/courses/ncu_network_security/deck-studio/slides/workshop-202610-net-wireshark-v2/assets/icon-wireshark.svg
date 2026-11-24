@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Circular Badge -->
+  <rect x="4" y="4" width="56" height="56" rx="14" fill="#0284C7" />
+  
+  <!-- Ocean / Packet Stream Waves -->
+  <path d="M8 44C16 42 22 47 30 45C38 43 44 47 56 44V52C56 54 54 56 52 56H12C10 56 8 54 8 52V44Z" fill="#0369A1" />
+  <path d="M8 48C18 47 24 50 32 49C40 48 46 51 56 49" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" />
+
+  <!-- Shark Fin -->
+  <path d="M22 44C22 44 26 28 34 20C38 16 42 13 44 12C44 14 43 23 41 28C39 33 38 37 45 44H22Z" fill="#FFFFFF" />
+  <path d="M22 44C26 36 32 26 40 20C39 26 38 34 45 44H22Z" fill="#E0F2FE" />
+</svg>

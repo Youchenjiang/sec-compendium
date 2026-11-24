@@ -238,6 +238,7 @@ __marimo__/
 # Sensitive Private Keys
 *.key
 *.pem
+*.key.pub
 
 # Security research projects
 security/projects/
@@ -248,3 +249,12 @@ secrets.env
 
 # Scratch & Temporary Workspace
 /scratch/
+
+# Obsidian editor workspace config (per-machine)
+.obsidian/
+
+# Course lecture handouts (copyrighted, not for version control)
+Handout/
+
+# Third-party slide skill installed locally (73 MB, not part of this repo)
+.agents/skills/ppt-master/

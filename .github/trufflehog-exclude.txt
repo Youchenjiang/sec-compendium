@@ -1,0 +1,4 @@
+# Paths TruffleHog skips (one regex per line, matched against the file path).
+# The CVE-2021-41773 lab handout embeds its screenshots as base64 PNG data;
+# the image bytes match Box and TLy token patterns and never verify.
+^tracks/courses/ncu_network_security/sessions/[^/]+_attack-cve-2021-41773/docs/lab-handout\.md$
