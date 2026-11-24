@@ -115,24 +115,30 @@ def parse_argv(raw) -> list[str]:
     return shlex.split(raw)
 
 
-def staged_config_path(path: str) -> str:
-    """Canonical ``--config`` path, which must sit next to this bridge script.
+def staged_path(path: str, what: str = "--config") -> str:
+    """Canonical path of a staged file, which must sit next to this bridge script.
 
-    The host stages the config and this script into the same guest directory, so a
-    config anywhere else is not one the host wrote and is refused.
+    The host stages the config, the request/response/ready files and this script
+    into the same guest directory, so a path anywhere else is not one the host
+    wrote and is refused.
     """
     staging_dir = os.path.dirname(os.path.realpath(__file__))
     real = os.path.realpath(path)
     if os.path.dirname(real) != staging_dir:
-        raise SystemExit(f"--config must be staged next to the bridge ({staging_dir}): {path}")
+        raise SystemExit(f"{what} must be staged next to the bridge ({staging_dir}): {path}")
     return real
+
+
+def staged_config_path(path: str) -> str:
+    return staged_path(path, "--config")
 
 
 def load_config(path: str) -> dict:
     """Read the staged launch description written by the host-side bridge."""
     path = staged_config_path(path)
     try:
-        with open(path, "r", encoding="utf-8", errors="replace") as handle:
+        # path was confined to the staging directory by staged_config_path above.
+        with open(path, "r", encoding="utf-8", errors="replace") as handle:  # skipcq: PTC-W6004
             data = json.load(handle)
     except (OSError, json.JSONDecodeError) as exc:
         raise SystemExit(f"cannot read --config {path}: {exc}")
@@ -177,11 +183,14 @@ def _settings(args: argparse.Namespace) -> dict:
     extra_env = _opt(args.env, config, "env", {})
     if isinstance(extra_env, str):
         extra_env = json.loads(extra_env) if extra_env.strip() else {}
+    requests = _opt(args.requests, config, "requests")
+    responses = _opt(args.responses, config, "responses")
+    ready_file = _opt(args.ready_file, config, "ready_file", "") or ""
     return {
         "server_argv": parse_argv(_opt(args.argv, config, "argv")),
-        "requests": _opt(args.requests, config, "requests"),
-        "responses": _opt(args.responses, config, "responses"),
-        "ready_file": _opt(args.ready_file, config, "ready_file", "") or "",
+        "requests": staged_path(requests, "--requests") if requests else requests,
+        "responses": staged_path(responses, "--responses") if responses else responses,
+        "ready_file": staged_path(ready_file, "--ready-file") if ready_file else "",
         "cwd": _opt(args.cwd, config, "cwd", "") or None,
         "idle": float(_opt(args.idle, config, "idle", DEFAULT_IDLE_SECONDS)),
         "cleanup_grace": float(
@@ -197,7 +206,8 @@ def _prepare_files(cfg: dict) -> None:
         if path:
             os.makedirs(os.path.dirname(os.path.abspath(path)), exist_ok=True)
     if not os.path.exists(cfg["requests"]):
-        open(cfg["requests"], "a", encoding="utf-8").close()
+        # cfg paths were confined to the staging directory by staged_path in _settings.
+        open(cfg["requests"], "a", encoding="utf-8").close()  # skipcq: PTC-W6004
     if os.path.exists(cfg["responses"]):
         os.remove(cfg["responses"])
 
@@ -272,7 +282,7 @@ def _run_server(cfg: dict, stderr_sink) -> int:
         print(f"bridge: cannot start server {cfg['server_argv']!r}: {exc}", file=sys.stderr)
         return 2
 
-    responses = open(cfg["responses"], "a", encoding="utf-8", buffering=1)
+    responses = open(cfg["responses"], "a", encoding="utf-8", buffering=1)  # skipcq: PTC-W6004
     stopped = threading.Event()
 
     def pump_stdout() -> None:
@@ -286,7 +296,7 @@ def _run_server(cfg: dict, stderr_sink) -> int:
     pump = threading.Thread(target=pump_stdout, name="bridge-stdout", daemon=True)
     pump.start()
     if cfg["ready_file"]:
-        with open(cfg["ready_file"], "w", encoding="utf-8") as handle:
+        with open(cfg["ready_file"], "w", encoding="utf-8") as handle:  # skipcq: PTC-W6004
             handle.write(f"{os.getpid()}\n")
 
     exit_code = 0
@@ -332,7 +342,7 @@ def main(argv: list[str] | None = None) -> int:
         return 2
 
     _prepare_files(cfg)
-    with open(cfg["responses"] + ".stderr", "a", encoding="utf-8") as stderr_sink:
+    with open(cfg["responses"] + ".stderr", "a", encoding="utf-8") as stderr_sink:  # skipcq: PTC-W6004
         stderr_sink.write(
             f"### bridge start {time.strftime('%Y-%m-%dT%H:%M:%S')} argv={cfg['server_argv']}\n"
         )
