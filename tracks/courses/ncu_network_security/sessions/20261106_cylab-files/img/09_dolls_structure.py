@@ -16,7 +16,7 @@ layers = [
 out = []
 a = out.append
 a('<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><title>dolls.jpg 結構</title><style>')
-a('html,body{margin:0;background:#fff} body{width:%dpx;height:%dpx;overflow:hidden} svg{display:block}' % (W, H))
+a(f'html,body{{margin:0;background:#fff}} body{{width:{W}px;height:{H}px;overflow:hidden}} svg{{display:block}}')
 a('text{font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;font-size:18px;fill:#1f2328}')
 a('.mono{font-family:Consolas,"Cascadia Mono",monospace;font-size:16px} .title{font-size:20px;font-weight:700} .small{font-size:15px;fill:#57606a}')
 a('.png{fill:#dbeafe;stroke:#1d4ed8;stroke-width:2} .zip{fill:#fef3c7;stroke:#b45309;stroke-width:2}')
@@ -24,7 +24,7 @@ a('.unk{fill:#f3f4f6;stroke:#6b7280;stroke-width:2;stroke-dasharray:8 6} .flag{f
 a('.iend{stroke:#1d4ed8;stroke-width:3} .guide{stroke:#b45309;stroke-width:1.5;stroke-dasharray:4 5;fill:none}')
 a('.arrow{stroke:#57606a;stroke-width:2;fill:none} .ah{fill:#57606a}')
 a('</style></head><body>')
-a('<svg xmlns="http://www.w3.org/2000/svg" width="%d" height="%d" viewBox="0 0 %d %d">' % (W, H, W, H))
+a(f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">')
 a('<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker></defs>')
 
 # legend
@@ -41,35 +41,35 @@ for i, (name, size, png, off, child) in enumerate(layers):
     zx, zw = x + pw, w - pw
     # label: above the bar for the first row, to the left for the rest
     if i == 0:
-        a('<text x="%d" y="%d" class="title">%s</text>' % (x, y - 12, name))
-        a('<text x="%d" y="%d" class="mono small">%d bytes</text>' % (x + 100, y - 12, size))
+        a(f'<text x="{x}" y="{y - 12}" class="title">{name}</text>')
+        a(f'<text x="{x + 100}" y="{y - 12}" class="mono small">{size} bytes</text>')
     else:
-        a('<text x="%d" y="%d" class="title" text-anchor="end">%s</text>' % (x - 14, y + 24, name))
+        a(f'<text x="{x - 14}" y="{y + 24}" class="title" text-anchor="end">{name}</text>')
         if size:
-            a('<text x="%d" y="%d" class="mono small" text-anchor="end">%d bytes</text>' % (x - 14, y + 46, size))
-    a('<rect x="%d" y="%d" width="%d" height="%d" class="png"/>' % (x, y, pw, BAR))
-    a('<rect x="%d" y="%d" width="%d" height="%d" class="%s"/>' % (zx, y, zw, BAR, 'zip' if known else 'unk'))
-    a('<line x1="%d" y1="%d" x2="%d" y2="%d" class="iend"/>' % (zx, y - 6, zx, y + BAR + 6))
-    a('<text x="%d" y="%d" class="mono">0  %s</text>' % (x + 12, y + 33, png))
-    a('<text x="%d" y="%d" class="mono">%s  zip</text>' % (zx + 12, y + 23, off if known else '?'))
-    a('<text x="%d" y="%d" class="mono">%s</text>' % (zx + 12, y + 45, child))
+            a(f'<text x="{x - 14}" y="{y + 46}" class="mono small" text-anchor="end">{size} bytes</text>')
+    a(f'<rect x="{x}" y="{y}" width="{pw}" height="{BAR}" class="png"/>')
+    a(f'<rect x="{zx}" y="{y}" width="{zw}" height="{BAR}" class="{"zip" if known else "unk"}"/>')
+    a(f'<line x1="{zx}" y1="{y - 6}" x2="{zx}" y2="{y + BAR + 6}" class="iend"/>')
+    a(f'<text x="{x + 12}" y="{y + 33}" class="mono">0  {png}</text>')
+    a(f'<text x="{zx + 12}" y="{y + 23}" class="mono">{off if known else "?"}  zip</text>')
+    a(f'<text x="{zx + 12}" y="{y + 45}" class="mono">{child}</text>')
     # guides from this zip down to the next row, and the arrow
     ny = ROWS_Y[i + 1] if i + 1 < len(layers) else y + 140
-    a('<path d="M %d %d L %d %d" class="guide"/>' % (zx, y + BAR, zx, ny))
-    a('<path d="M %d %d L %d %d" class="guide"/>' % (zx + zw, y + BAR, zx + zw, ny))
+    a(f'<path d="M {zx} {y + BAR} L {zx} {ny}" class="guide"/>')
+    a(f'<path d="M {zx + zw} {y + BAR} L {zx + zw} {ny}" class="guide"/>')
     mx = zx + zw // 2
-    a('<path d="M %d %d L %d %d" class="arrow" marker-end="url(#ah)"/>' % (mx, y + BAR + 6, mx, ny - 8))
+    a(f'<path d="M {mx} {y + BAR + 6} L {mx} {ny - 8}" class="arrow" marker-end="url(#ah)"/>')
     if i == 0:
-        a('<text x="%d" y="%d" class="small">拆出來，回到步驟 1</text>' % (mx + 12, (y + BAR + ny) // 2 + 5))
+        a(f'<text x="{mx + 12}" y="{(y + BAR + ny) // 2 + 5}" class="small">拆出來，回到步驟 1</text>')
     x, w = zx, zw
 
 # flag box under the last zip
 fy = ROWS_Y[-1] + 140
 fw = max(w, 150)
 fx = min(x + w // 2 - fw // 2, X0 + FULL - fw)
-a('<rect x="%d" y="%d" width="%d" height="34" class="flag"/>' % (fx, fy, fw))
-a('<text x="%d" y="%d" class="mono" text-anchor="middle">flag.txt</text>' % (fx + fw // 2, fy + 23))
-a('<text x="%d" y="%d" class="small" text-anchor="end">最裡面的娃娃</text>' % (fx - 14, fy + 23))
+a(f'<rect x="{fx}" y="{fy}" width="{fw}" height="34" class="flag"/>')
+a(f'<text x="{fx + fw // 2}" y="{fy + 23}" class="mono" text-anchor="middle">flag.txt</text>')
+a(f'<text x="{fx - 14}" y="{fy + 23}" class="small" text-anchor="end">最裡面的娃娃</text>')
 a('</svg></body></html>')
 
 dest = os.path.join(os.path.dirname(os.path.abspath(__file__)), '09_dolls_structure.html')
