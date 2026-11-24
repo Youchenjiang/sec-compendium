@@ -1,0 +1,5 @@
+# Known-good local Race-mode DFIR backend for the Windows/Python 3.14 host.
+# Newer dissect.target 3.25.1 failed in this environment on glob._Globber.
+dissect.target==3.20
+dissect.esedb==3.18
+colorama==0.4.6
