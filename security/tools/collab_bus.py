@@ -16,6 +16,11 @@ def render_task_markdown(args: argparse.Namespace) -> str:
     skills = args.skills or "unspecified"
     context = args.context or "None provided."
     review_target = getattr(args, "review_target_finding", "") or ""
+    execution_profile = getattr(args, "execution_profile", "governed") or "governed"
+    lane_id = getattr(args, "lane_id", "") or ""
+    profile_lines = f"- **Execution Profile**: `{execution_profile}`\n"
+    if lane_id:
+        profile_lines += f"- **Lane ID**: `{lane_id}`\n"
     review_target_line = (
         f"- **Review Target Finding**：`{review_target}`\n"
         if args.task_type == "REVIEW"
@@ -33,7 +38,7 @@ def render_task_markdown(args: argparse.Namespace) -> str:
 - **發起 Session**：`{args.actor_session}`
 - **發起時間**：`{protocol.utc_timestamp()}`
 - **Execution Environment**：`{args.execution_environment}`
-{review_target_line}- **期望技能**：`{skills}`
+{profile_lines}{review_target_line}- **期望技能**：`{skills}`
 - **Task ID**：`{args.task_id}`
 
 ---
@@ -85,6 +90,17 @@ def command_new_task(args: argparse.Namespace) -> int:
         raise ValueError(f"invalid task type: {args.task_type}")
     if args.execution_environment not in protocol.VALID_EXECUTION_ENVIRONMENTS:
         raise ValueError(f"invalid execution environment: {args.execution_environment}")
+    execution_profile = getattr(args, "execution_profile", "governed") or "governed"
+    lane_id = getattr(args, "lane_id", "") or ""
+    if execution_profile not in protocol.VALID_EXECUTION_PROFILES:
+        raise ValueError(f"invalid execution profile: {execution_profile}")
+    if execution_profile == "race":
+        if not protocol.LANE_ID_RE.fullmatch(lane_id):
+            raise ValueError("race task requires --lane-id LNN")
+        if args.task_type == "REVIEW":
+            raise ValueError("REVIEW task cannot use race execution profile")
+    elif lane_id:
+        raise ValueError("--lane-id requires --execution-profile race")
     if args.task_id in find_case_task_ids(args.case):
         raise ValueError(f"duplicate Task ID in {args.case}: {args.task_id}")
 
@@ -566,6 +582,12 @@ def build_parser() -> argparse.ArgumentParser:
         required=True,
         choices=sorted(protocol.VALID_EXECUTION_ENVIRONMENTS),
     )
+    new_task.add_argument(
+        "--execution-profile",
+        choices=sorted(protocol.VALID_EXECUTION_PROFILES),
+        default="governed",
+    )
+    new_task.add_argument("--lane-id", default="")
     new_task.add_argument(
         "--review-target-finding",
         default="",

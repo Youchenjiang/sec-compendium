@@ -9,6 +9,7 @@ import os
 import subprocess
 import sys
 import time
+from collections.abc import Callable
 from datetime import datetime
 from pathlib import Path
 
@@ -100,6 +101,14 @@ def build_task_instruction(
     metadata: dict[str, str],
 ) -> str:
     execution_environment = metadata.get("execution_environment") or protocol.LEGACY_EXECUTION_ENVIRONMENT
+    execution_profile = metadata.get("execution_profile", "governed") or "governed"
+    lane_id = metadata.get("lane_id", "")
+    race_hint = ""
+    if execution_profile == "race":
+        race_hint = (
+            f" RACE MODE lane={lane_id}: publish each resolved question immediately with "
+            "python security/tools/collab_race.py answer; do not wait for task DONE before surfacing answers."
+        )
     return (
         f"你是 {session}。請讀取 {protocol.relative_posix(task_path)} 的 "
         f"{metadata['task_type']} 任務（execution_environment={execution_environment}）。"
@@ -107,6 +116,7 @@ def build_task_instruction(
         f"完成分析，且只新增 {protocol.relative_posix(output_path)}；需要澄清時使用 "
         "collab_bus.py send --kind QUESTION，完成後使用 collab_bus.py done。不得修改 "
         "task、CASE_STATE.md、questions.md 或 SCOREBOARD.md。"
+        + race_hint
     )
 
 
@@ -183,6 +193,7 @@ def process_assignments(
     exec_timeout: float | None = 600.0,
     inbox_dir: Path | None = None,
     node_class: str = "auto",
+    on_handoff: Callable[[Path, str], None] | None = None,
 ) -> int:
     announced = 0
     assignments = protocol.discover_assigned_tasks(CASES_DIR, session, case_filters)
@@ -277,9 +288,20 @@ def process_assignments(
             reason="assigned task detected by watcher",
             transport=transport,
             lead_session=lead,
+            execution_profile=metadata.get("execution_profile", "governed") or "governed",
+            lane_id=metadata.get("lane_id", ""),
             inbox_dir=inbox_dir,
         )
         print(f"    📥 handoff: {protocol.relative_posix(handoff_path)}")
+
+        # A supervisor (e.g. the host-2 resident watcher) can hook the fresh
+        # handoff to launch a worker. The hook runs after the durable packet is
+        # on disk, so a broken hook can never lose the ACK/handoff.
+        if on_handoff is not None:
+            try:
+                on_handoff(handoff_path, instruction)
+            except Exception as exc:  # noqa: BLE001 - isolate worker hook failures
+                print(f"    ⚠️ on_handoff hook failed: {exc}")
 
         wants_agent = (
             transport in {"agent", "auto"}

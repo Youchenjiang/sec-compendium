@@ -35,6 +35,8 @@ SYNC_CONFLICT_RE = re.compile(r"\s+\([^)]*conflicted copy[^)]*\)(?=(?:\.[^.]+)?$
 
 VALID_TASK_TYPES = {"DISCOVERY", "TRIAGE", "VERIFY", "REVERSE", "REVIEW"}
 VALID_EXECUTION_ENVIRONMENTS = {"host_local_gateway", "portable_text_any"}
+VALID_EXECUTION_PROFILES = {"governed", "race"}
+LANE_ID_RE = re.compile(r"^L\d{2,}$", re.IGNORECASE)
 LEGACY_EXECUTION_ENVIRONMENT = "legacy_unspecified"
 CURRENT_TASK_CONTRACT = "v2.3"
 TERMINAL_TASK_STATES = {"DONE", "ERROR"}
@@ -113,6 +115,8 @@ def parse_task_metadata(task_path: Path) -> dict[str, str]:
         "assignee_session": fields.get("Assignee Session", ""),
         "issuer_session": fields.get("發起 Session", ""),
         "execution_environment": fields.get("執行環境", "") or fields.get("Execution Environment", ""),
+        "execution_profile": fields.get("Execution Profile", "") or "governed",
+        "lane_id": fields.get("Lane ID", ""),
         "review_target_finding": fields.get("Review Target Finding", ""),
         "task_id": fields.get("Task ID", ""),
     }
@@ -144,6 +148,19 @@ def validate_task_metadata(
     contract = metadata.get("protocol_contract", "")
     execution_environment = metadata.get("execution_environment", "")
     review_target_finding = metadata.get("review_target_finding", "")
+    execution_profile = metadata.get("execution_profile", "governed") or "governed"
+    lane_id = metadata.get("lane_id", "")
+    if execution_profile not in VALID_EXECUTION_PROFILES:
+        errors.append(f"invalid execution profile: {execution_profile}")
+    if execution_profile == "race":
+        if not lane_id:
+            errors.append("race task missing Lane ID")
+        elif not LANE_ID_RE.fullmatch(lane_id):
+            errors.append(f"invalid Lane ID: {lane_id}")
+        if metadata.get("task_type") == "REVIEW":
+            errors.append("REVIEW tasks are not race lanes")
+    elif lane_id:
+        errors.append("Lane ID is only valid for race tasks")
     if not contract and not allow_legacy:
         errors.append("missing Protocol Contract")
     if contract and contract != CURRENT_TASK_CONTRACT:
@@ -510,6 +527,8 @@ def write_handoff(
     reason: str,
     transport: str,
     lead_session: str | None,
+    execution_profile: str = "governed",
+    lane_id: str = "",
     inbox_dir: Path | None = None,
 ) -> Path:
     """Persist a durable, browser-free handoff packet for one assigned task.
@@ -551,6 +570,8 @@ def write_handoff(
         "task_id": task_id,
         "task_type": task_type,
         "execution_environment": execution_environment,
+        "execution_profile": execution_profile,
+        "lane_id": lane_id,
         "task_state": current_state,
         "task_path": relative_posix(task_path),
         "task_sha256": task_sha256,
