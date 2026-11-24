@@ -9,6 +9,7 @@ import re
 import time
 import uuid
 from datetime import datetime, timezone
+from dataclasses import dataclass
 from pathlib import Path
 
 
@@ -574,22 +575,29 @@ def handoff_dir(session: str, inbox_dir: Path | None = None) -> Path:
     return (inbox_dir or INBOX_DIR) / session
 
 
+@dataclass(frozen=True)
+class HandoffTask:
+    """Identity and paths of the task a handoff packet describes."""
+
+    case_id: str
+    task_id: str
+    task_type: str
+    execution_environment: str
+    task_path: Path
+    output_path: Path
+    execution_profile: str = "governed"
+    lane_id: str = ""
+
+
 def write_handoff(
     *,
     session: str,
-    case_id: str,
-    task_id: str,
-    task_type: str,
-    execution_environment: str,
+    task: HandoffTask,
     current_state: str,
-    task_path: Path,
-    output_path: Path,
     instruction: str,
     reason: str,
     transport: str,
     lead_session: str | None,
-    execution_profile: str = "governed",
-    lane_id: str = "",
     inbox_dir: Path | None = None,
 ) -> Path:
     """Persist a durable, browser-free handoff packet for one assigned task.
@@ -598,6 +606,10 @@ def write_handoff(
     human) that can read the repo can pick it up without an interactive
     composer/browser, and replay the exact governed commands to finish the task.
     """
+    case_id, task_id, task_type = task.case_id, task.task_id, task.task_type
+    execution_environment = task.execution_environment
+    task_path, output_path = task.task_path, task.output_path
+    execution_profile, lane_id = task.execution_profile, task.lane_id
     validate_session(session)
     validate_task_id(task_id)
     if execution_environment not in VALID_EXECUTION_ENVIRONMENTS | {LEGACY_EXECUTION_ENVIRONMENT}:

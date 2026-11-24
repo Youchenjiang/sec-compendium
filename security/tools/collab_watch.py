@@ -352,19 +352,21 @@ def process_assignments(
         # launched but silently did nothing (the T900 failure mode).
         handoff_path = protocol.write_handoff(
             session=session,
-            case_id=metadata["case_id"],
-            task_id=metadata["task_id"],
-            task_type=metadata["task_type"],
-            execution_environment=execution_environment,
+            task=protocol.HandoffTask(
+                case_id=metadata["case_id"],
+                task_id=metadata["task_id"],
+                task_type=metadata["task_type"],
+                execution_environment=execution_environment,
+                task_path=task_path,
+                output_path=output_path,
+                execution_profile=metadata.get("execution_profile", "governed") or "governed",
+                lane_id=metadata.get("lane_id", ""),
+            ),
             current_state=current_state,
-            task_path=task_path,
-            output_path=output_path,
             instruction=instruction,
             reason="assigned task detected by watcher",
             transport=transport,
             lead_session=lead,
-            execution_profile=metadata.get("execution_profile", "governed") or "governed",
-            lane_id=metadata.get("lane_id", ""),
             inbox_dir=inbox_dir,
         )
         print(f"    📥 handoff: {protocol.relative_posix(handoff_path)}")
