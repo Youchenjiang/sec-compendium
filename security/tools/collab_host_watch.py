@@ -67,24 +67,31 @@ def discover_host_sessions(
     watchers_dir = watchers_dir or collab_watch.RUNTIME_DIR
     inbox_dir = inbox_dir or protocol.INBOX_DIR
 
-    sessions: set[str] = set()
+    sessions = {
+        *_task_assignee_names(cases_dir, case_filters),
+        *_watcher_state_names(watchers_dir),
+        *_inbox_session_names(inbox_dir),
+    }
+    return sorted(name for name in sessions if is_host_session(name, prefix))
 
-    for task_path in protocol.iter_tasks(cases_dir, case_filters) or []:
-        assignee = protocol.parse_task_metadata(task_path).get("assignee_session", "")
-        if is_host_session(assignee, prefix):
-            sessions.add(assignee)
 
-    if watchers_dir.exists():
-        for state_path in watchers_dir.glob("*.json"):
-            if is_host_session(state_path.stem, prefix):
-                sessions.add(state_path.stem)
+def _task_assignee_names(cases_dir: Path, case_filters: set[str] | None) -> list[str]:
+    return [
+        protocol.parse_task_metadata(task_path).get("assignee_session", "")
+        for task_path in protocol.iter_tasks(cases_dir, case_filters) or []
+    ]
 
-    if inbox_dir.exists():
-        for entry in inbox_dir.iterdir():
-            if entry.is_dir() and is_host_session(entry.name, prefix):
-                sessions.add(entry.name)
 
-    return sorted(sessions)
+def _watcher_state_names(watchers_dir: Path) -> list[str]:
+    if not watchers_dir.exists():
+        return []
+    return [state_path.stem for state_path in watchers_dir.glob("*.json")]
+
+
+def _inbox_session_names(inbox_dir: Path) -> list[str]:
+    if not inbox_dir.exists():
+        return []
+    return [entry.name for entry in inbox_dir.iterdir() if entry.is_dir()]
 
 
 class HostWatchSupervisor:
@@ -145,7 +152,7 @@ class HostWatchSupervisor:
             self._states[session] = collab_watch.load_state(self._state_path_for(session))
         return self._states[session]
 
-    def _on_handoff(self, session: str, handoff_path: Path, instruction: str) -> None:
+    def _on_handoff(self, session: str, handoff_path: Path) -> None:
         self.queued_handoffs.append(handoff_path)
         self.log(
             f"[{session}] handoff queued -> {protocol.relative_posix(handoff_path)}"
@@ -188,8 +195,8 @@ class HostWatchSupervisor:
             exec_timeout=self.exec_timeout,
             inbox_dir=self.inbox_dir,
             node_class=self.node_class,
-            on_handoff=lambda path, instruction, s=session: self._on_handoff(
-                s, path, instruction
+            on_handoff=lambda path, _instruction, s=session: self._on_handoff(
+                s, path
             ),
         )
         collab_watch.process_incoming_events(

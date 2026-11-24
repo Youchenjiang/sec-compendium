@@ -82,14 +82,7 @@ def find_case_task_ids(case_id: str) -> set[str]:
     }
 
 
-def command_new_task(args: argparse.Namespace) -> int:
-    ensure_actor_is_case_lead(args.case, args.actor_session)
-    protocol.validate_session(args.assignee_session)
-    protocol.validate_task_id(args.task_id)
-    if args.task_type not in protocol.VALID_TASK_TYPES:
-        raise ValueError(f"invalid task type: {args.task_type}")
-    if args.execution_environment not in protocol.VALID_EXECUTION_ENVIRONMENTS:
-        raise ValueError(f"invalid execution environment: {args.execution_environment}")
+def _validate_execution_profile(args: argparse.Namespace) -> None:
     execution_profile = getattr(args, "execution_profile", "governed") or "governed"
     lane_id = getattr(args, "lane_id", "") or ""
     if execution_profile not in protocol.VALID_EXECUTION_PROFILES:
@@ -101,10 +94,9 @@ def command_new_task(args: argparse.Namespace) -> int:
             raise ValueError("REVIEW task cannot use race execution profile")
     elif lane_id:
         raise ValueError("--lane-id requires --execution-profile race")
-    if args.task_id in find_case_task_ids(args.case):
-        raise ValueError(f"duplicate Task ID in {args.case}: {args.task_id}")
 
-    current_case = protocol.case_dir(args.case)
+
+def _validate_review_target(args: argparse.Namespace, current_case: Path) -> None:
     review_target = getattr(args, "review_target_finding", "") or ""
     if args.task_type == "REVIEW":
         if not review_target:
@@ -123,6 +115,22 @@ def command_new_task(args: argparse.Namespace) -> int:
             )
     elif review_target:
         raise ValueError("--review-target-finding 只能用於 REVIEW task")
+
+
+def command_new_task(args: argparse.Namespace) -> int:
+    ensure_actor_is_case_lead(args.case, args.actor_session)
+    protocol.validate_session(args.assignee_session)
+    protocol.validate_task_id(args.task_id)
+    if args.task_type not in protocol.VALID_TASK_TYPES:
+        raise ValueError(f"invalid task type: {args.task_type}")
+    if args.execution_environment not in protocol.VALID_EXECUTION_ENVIRONMENTS:
+        raise ValueError(f"invalid execution environment: {args.execution_environment}")
+    _validate_execution_profile(args)
+    if args.task_id in find_case_task_ids(args.case):
+        raise ValueError(f"duplicate Task ID in {args.case}: {args.task_id}")
+
+    current_case = protocol.case_dir(args.case)
+    _validate_review_target(args, current_case)
 
     task_path = current_case / "tasks" / f"{args.task_id}_{args.task_type}.md"
     if task_path.exists():
@@ -156,6 +164,28 @@ def task_and_assignee(case_id: str, task_id: str, session: str):
     return task_path, metadata
 
 
+def _session_sent(prior_events: list[dict], kind: str, session: str) -> bool:
+    return any(
+        payload.get("kind") == kind and payload.get("from_session") == session
+        for payload in prior_events
+    )
+
+
+def _require_worker_prerequisites(
+    kind: str, session: str, prior_events: list[dict], output_path: Path
+) -> None:
+    if kind == "START" and not _session_sent(prior_events, "ACK", session):
+        raise ValueError("START 前必須由同一 Assignee Session 先送 ACK")
+    if kind != "DONE":
+        return
+    if not _session_sent(prior_events, "ACK", session):
+        raise ValueError("DONE 前缺少同一 Assignee Session 的 ACK")
+    if not _session_sent(prior_events, "START", session):
+        raise ValueError("DONE 前缺少同一 Assignee Session 的 START")
+    if not output_path.exists():
+        raise ValueError(f"DONE 前 governed output 必須存在: {output_path}")
+
+
 def emit_worker_event(args: argparse.Namespace, kind: str) -> int:
     task_path, metadata = task_and_assignee(args.case, args.task_id, args.session)
     lead = protocol.get_case_lead(args.case)
@@ -169,24 +199,7 @@ def emit_worker_event(args: argparse.Namespace, kind: str) -> int:
     if transition_error:
         raise ValueError(transition_error)
 
-    if kind == "START" and not any(
-        payload.get("kind") == "ACK" and payload.get("from_session") == args.session
-        for payload in prior_events
-    ):
-        raise ValueError("START 前必須由同一 Assignee Session 先送 ACK")
-    if kind == "DONE":
-        if not any(
-            payload.get("kind") == "ACK" and payload.get("from_session") == args.session
-            for payload in prior_events
-        ):
-            raise ValueError("DONE 前缺少同一 Assignee Session 的 ACK")
-        if not any(
-            payload.get("kind") == "START" and payload.get("from_session") == args.session
-            for payload in prior_events
-        ):
-            raise ValueError("DONE 前缺少同一 Assignee Session 的 START")
-        if not output_path.exists():
-            raise ValueError(f"DONE 前 governed output 必須存在: {output_path}")
+    _require_worker_prerequisites(kind, args.session, prior_events, output_path)
     protocol.require_task_dispatch_anchor(task_path, metadata)
     if (
         metadata["task_type"] == "REVIEW"
@@ -196,7 +209,7 @@ def emit_worker_event(args: argparse.Namespace, kind: str) -> int:
             metadata["case_id"], metadata["review_target_finding"]
         )
     if kind == "DONE":
-        output_errors = protocol.validate_governed_output(task_path, metadata, output_path)
+        output_errors = protocol.validate_governed_output(metadata, output_path)
         if output_errors:
             raise ValueError("DONE output contract 未通過: " + "; ".join(output_errors))
 
@@ -352,9 +365,7 @@ def command_list(args: argparse.Namespace) -> int:
     return 0
 
 
-def command_inbox(args: argparse.Namespace) -> int:
-    """List durable file/CLI handoff packets queued for one worker session."""
-    protocol.validate_session(args.session)
+def _inbox_rows(args: argparse.Namespace) -> list[tuple]:
     rows = []
     for handoff_path, payload in protocol.iter_handoffs(args.session) or []:
         if args.case and payload.get("case_id") != args.case:
@@ -367,7 +378,13 @@ def command_inbox(args: argparse.Namespace) -> int:
         if state in protocol.TERMINAL_TASK_STATES and not args.all:
             continue
         rows.append((handoff_path, payload, state))
+    return rows
 
+
+def command_inbox(args: argparse.Namespace) -> int:
+    """List durable file/CLI handoff packets queued for one worker session."""
+    protocol.validate_session(args.session)
+    rows = _inbox_rows(args)
     if not rows:
         print("Inbox empty.")
         return 0
@@ -385,29 +402,34 @@ def command_inbox(args: argparse.Namespace) -> int:
     return 0
 
 
+def _status_task_errors(task_path: Path, metadata: dict) -> list[str]:
+    anchor_errors = protocol.validate_task_dispatch_anchor(task_path, metadata)
+    allow_legacy = not metadata.get("protocol_contract") and not anchor_errors
+    errors = protocol.validate_task_metadata(
+        task_path, metadata, allow_legacy=allow_legacy
+    )
+    errors.extend(anchor_errors)
+    terminal_output_errors = protocol.validate_terminal_output_anchor(
+        task_path, metadata
+    )
+    errors.extend(terminal_output_errors)
+    if metadata.get("task_type") == "REVIEW" and metadata.get(
+        "review_target_finding"
+    ):
+        errors.extend(
+            protocol.validate_finding_provenance(
+                metadata["case_id"], metadata["review_target_finding"]
+            )
+        )
+    return errors
+
+
 def command_status(args: argparse.Namespace) -> int:
     case_filters = {args.case} if args.case else None
     rows = []
     for task_path in protocol.iter_tasks(protocol.CASES_DIR, case_filters) or []:
         metadata = protocol.parse_task_metadata(task_path)
-        anchor_errors = protocol.validate_task_dispatch_anchor(task_path, metadata)
-        allow_legacy = not metadata.get("protocol_contract") and not anchor_errors
-        errors = protocol.validate_task_metadata(
-            task_path, metadata, allow_legacy=allow_legacy
-        )
-        errors.extend(anchor_errors)
-        terminal_output_errors = protocol.validate_terminal_output_anchor(
-            task_path, metadata
-        )
-        errors.extend(terminal_output_errors)
-        if metadata.get("task_type") == "REVIEW" and metadata.get(
-            "review_target_finding"
-        ):
-            errors.extend(
-                protocol.validate_finding_provenance(
-                    metadata["case_id"], metadata["review_target_finding"]
-                )
-            )
+        errors = _status_task_errors(task_path, metadata)
         state = "INVALID" if errors else protocol.latest_task_state(
             metadata["case_id"], metadata["task_id"]
         )
@@ -434,23 +456,29 @@ def command_status(args: argparse.Namespace) -> int:
     return 0
 
 
+def _event_matches(args: argparse.Namespace, payload: dict) -> bool:
+    if args.case and payload.get("case_id") != args.case:
+        return False
+    if args.task_id and payload.get("task_id") != args.task_id:
+        return False
+    incoming = payload.get("to_session") == args.session
+    outgoing = payload.get("from_session") == args.session
+    if args.direction == "in":
+        return incoming
+    if args.direction == "out":
+        return outgoing
+    if args.direction == "all":
+        return incoming or outgoing
+    return True
+
+
 def command_events(args: argparse.Namespace) -> int:
     protocol.validate_session(args.session)
-    rows = []
-    for _, payload in protocol.iter_events() or []:
-        if args.case and payload.get("case_id") != args.case:
-            continue
-        if args.task_id and payload.get("task_id") != args.task_id:
-            continue
-        incoming = payload.get("to_session") == args.session
-        outgoing = payload.get("from_session") == args.session
-        if args.direction == "in" and not incoming:
-            continue
-        if args.direction == "out" and not outgoing:
-            continue
-        if args.direction == "all" and not (incoming or outgoing):
-            continue
-        rows.append(payload)
+    rows = [
+        payload
+        for _, payload in protocol.iter_events() or []
+        if _event_matches(args, payload)
+    ]
 
     if not rows:
         print("No events.")
@@ -464,6 +492,52 @@ def command_events(args: argparse.Namespace) -> int:
             f"{payload.get('message') or ''}"
         )
     return 0
+
+
+def _doctor_check_valid_task(
+    task_path: Path, metadata: dict, errors: list[str], warnings: list[str]
+) -> None:
+    """Append lifecycle/output/provenance findings for a structurally valid task."""
+    lead = protocol.get_case_lead(metadata["case_id"])
+    if lead is None:
+        warnings.append(f"{metadata['case_id']}: no valid Case Lead")
+
+    prefix = f"{metadata['case_id']}/{metadata['task_id']}"
+    lifecycle_payloads = [
+        payload
+        for _, payload in protocol.events_for_task(
+            metadata["case_id"], metadata["task_id"]
+        )
+    ]
+    for lifecycle_error in protocol.validate_lifecycle_events(lifecycle_payloads):
+        errors.append(f"{prefix}: {lifecycle_error}")
+    for output_error in protocol.validate_terminal_output_anchor(task_path, metadata):
+        errors.append(f"{prefix}: {output_error}")
+    if metadata.get("task_type") == "REVIEW" and metadata.get(
+        "review_target_finding"
+    ):
+        for review_error in protocol.validate_finding_provenance(
+            metadata["case_id"], metadata["review_target_finding"]
+        ):
+            errors.append(f"{prefix}: {review_error}")
+    if not metadata.get("execution_environment"):
+        warnings.append(f"legacy task missing execution environment: {prefix}")
+
+
+def _doctor_check_stale_handoffs(warnings: list[str]) -> None:
+    if not protocol.INBOX_DIR.exists():
+        return
+    for session_dir in sorted(protocol.INBOX_DIR.iterdir()):
+        if not session_dir.is_dir():
+            continue
+        for handoff_path, payload in protocol.iter_handoffs(session_dir.name) or []:
+            state = protocol.latest_task_state(
+                payload.get("case_id", ""), payload.get("task_id", "")
+            )
+            if state in protocol.TERMINAL_TASK_STATES:
+                warnings.append(
+                    f"stale terminal handoff: {protocol.relative_posix(handoff_path)}"
+                )
 
 
 def command_doctor(args: argparse.Namespace) -> int:
@@ -484,9 +558,7 @@ def command_doctor(args: argparse.Namespace) -> int:
         task_errors = protocol.validate_task_metadata(
             task_path, metadata, allow_legacy=allow_legacy
         )
-        for error in task_errors:
-            errors.append(f"{protocol.relative_posix(task_path)}: {error}")
-        for error in anchor_errors:
+        for error in [*task_errors, *anchor_errors]:
             errors.append(f"{protocol.relative_posix(task_path)}: {error}")
 
         key = (metadata.get("case_id", ""), metadata.get("task_id", ""))
@@ -499,52 +571,9 @@ def command_doctor(args: argparse.Namespace) -> int:
             seen_ids[key] = task_path
 
         if not task_errors and not anchor_errors:
-            lead = protocol.get_case_lead(metadata["case_id"])
-            if lead is None:
-                warnings.append(f"{metadata['case_id']}: no valid Case Lead")
+            _doctor_check_valid_task(task_path, metadata, errors, warnings)
 
-            lifecycle_payloads = [
-                payload
-                for _, payload in protocol.events_for_task(
-                    metadata["case_id"], metadata["task_id"]
-                )
-            ]
-            for lifecycle_error in protocol.validate_lifecycle_events(lifecycle_payloads):
-                errors.append(
-                    f"{metadata['case_id']}/{metadata['task_id']}: {lifecycle_error}"
-                )
-            for output_error in protocol.validate_terminal_output_anchor(
-                task_path, metadata
-            ):
-                errors.append(
-                    f"{metadata['case_id']}/{metadata['task_id']}: {output_error}"
-                )
-            if metadata.get("task_type") == "REVIEW" and metadata.get(
-                "review_target_finding"
-            ):
-                for review_error in protocol.validate_finding_provenance(
-                    metadata["case_id"], metadata["review_target_finding"]
-                ):
-                    errors.append(
-                        f"{metadata['case_id']}/{metadata['task_id']}: {review_error}"
-                    )
-            if not metadata.get("execution_environment"):
-                warnings.append(
-                    f"legacy task missing execution environment: "
-                    f"{metadata['case_id']}/{metadata['task_id']}"
-                )
-
-    for session_dir in sorted(protocol.INBOX_DIR.iterdir()) if protocol.INBOX_DIR.exists() else []:
-        if not session_dir.is_dir():
-            continue
-        for handoff_path, payload in protocol.iter_handoffs(session_dir.name) or []:
-            state = protocol.latest_task_state(
-                payload.get("case_id", ""), payload.get("task_id", "")
-            )
-            if state in protocol.TERMINAL_TASK_STATES:
-                warnings.append(
-                    f"stale terminal handoff: {protocol.relative_posix(handoff_path)}"
-                )
+    _doctor_check_stale_handoffs(warnings)
 
     for artifact in protocol.iter_sync_artifacts(
         protocol.EVENTS_DIR, protocol.INBOX_DIR, protocol.RUNTIME_DIR / "watchers"

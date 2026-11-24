@@ -24,14 +24,20 @@ SESSION_RE = re.compile(r"^[A-Za-z0-9._-]+$")
 TASK_ID_RE = re.compile(r"^T\d{3,}$")
 FINDING_ID_RE = re.compile(r"^FINDING_T\d{3,}$")
 FIELD_RE = re.compile(r"^- \*\*(?P<label>[^*]+)\*\*[：:]\s*`(?P<value>[^`]+)`")
-VALUE_FIELD_RE = re.compile(r"^- \*\*(?P<label>[^*]+)\*\*[：:]\s*(?P<value>.*)$")
+# ``value`` is always ``.strip()``-ed by callers, so no leading ``\s*`` is needed
+# (dropping it removes the ``\s*``/``.*`` overlap that caused backtracking).
+VALUE_FIELD_RE = re.compile(r"^- \*\*(?P<label>[^*]+)\*\*[：:](?P<value>.*)$")
 CASE_LEAD_RE = re.compile(
     r"^- \*\*主導代理人 \(Lead Session\)\*\*[：:]\s*`(?P<value>[^`]+)`"
 )
 
 # Cloud-sync engines (Google Drive / Dropbox / OneDrive) create sibling copies when
 # the same path is written from two hosts. Those copies are never governed artifacts.
-SYNC_CONFLICT_RE = re.compile(r"\s+\([^)]*conflicted copy[^)]*\)(?=(?:\.[^.]+)?$)", re.IGNORECASE)
+# Match the trailing parenthetical (before an optional extension); the
+# "conflicted copy" marker is checked on the captured text to avoid backtracking.
+SYNC_CONFLICT_RE = re.compile(r"\s\((?P<note>[^)]*)\)(?=(?:\.[^.]+)?$)")
+SYNC_CONFLICT_MARKER = "conflicted copy"
+EVENT_SCHEMA = "collab-event/v1"
 
 VALID_TASK_TYPES = {"DISCOVERY", "TRIAGE", "VERIFY", "REVERSE", "REVIEW"}
 VALID_EXECUTION_ENVIRONMENTS = {"host_local_gateway", "portable_text_any"}
@@ -122,6 +128,59 @@ def parse_task_metadata(task_path: Path) -> dict[str, str]:
     }
 
 
+def _execution_profile_errors(metadata: dict[str, str]) -> list[str]:
+    errors: list[str] = []
+    execution_profile = metadata.get("execution_profile", "governed") or "governed"
+    lane_id = metadata.get("lane_id", "")
+    if execution_profile not in VALID_EXECUTION_PROFILES:
+        errors.append(f"invalid execution profile: {execution_profile}")
+    if execution_profile == "race":
+        if not lane_id:
+            errors.append("race task missing Lane ID")
+        elif not LANE_ID_RE.fullmatch(lane_id):
+            errors.append(f"invalid Lane ID: {lane_id}")
+        if metadata.get("task_type") == "REVIEW":
+            errors.append("REVIEW tasks are not race lanes")
+    elif lane_id:
+        errors.append("Lane ID is only valid for race tasks")
+    return errors
+
+
+def _contract_errors(
+    contract: str, execution_environment: str, allow_legacy: bool
+) -> list[str]:
+    errors: list[str] = []
+    if not contract and not allow_legacy:
+        errors.append("missing Protocol Contract")
+    if contract and contract != CURRENT_TASK_CONTRACT:
+        errors.append(f"unsupported Protocol Contract: {contract}")
+    if contract == CURRENT_TASK_CONTRACT and not execution_environment:
+        errors.append("missing 執行環境")
+    if execution_environment and execution_environment not in VALID_EXECUTION_ENVIRONMENTS:
+        errors.append(f"invalid execution environment: {execution_environment}")
+    return errors
+
+
+def _review_target_errors(
+    task_path: Path, metadata: dict[str, str], contract: str
+) -> list[str]:
+    review_target_finding = metadata.get("review_target_finding", "")
+    if metadata.get("task_type") != "REVIEW":
+        if review_target_finding:
+            return ["Review Target Finding is only valid for REVIEW tasks"]
+        return []
+    errors: list[str] = []
+    if contract == CURRENT_TASK_CONTRACT and not review_target_finding:
+        errors.append("missing Review Target Finding")
+    if review_target_finding and not FINDING_ID_RE.fullmatch(review_target_finding):
+        errors.append(f"invalid Review Target Finding: {review_target_finding}")
+    if review_target_finding:
+        finding_path = task_path.parent.parent / "findings" / f"{review_target_finding}.md"
+        if not finding_path.is_file():
+            errors.append(f"review target finding does not exist: {review_target_finding}")
+    return errors
+
+
 def validate_task_metadata(
     task_path: Path,
     metadata: dict[str, str] | None = None,
@@ -146,40 +205,11 @@ def validate_task_metadata(
     if metadata.get("task_type") and metadata["task_type"] not in VALID_TASK_TYPES:
         errors.append(f"invalid task type: {metadata['task_type']}")
     contract = metadata.get("protocol_contract", "")
-    execution_environment = metadata.get("execution_environment", "")
-    review_target_finding = metadata.get("review_target_finding", "")
-    execution_profile = metadata.get("execution_profile", "governed") or "governed"
-    lane_id = metadata.get("lane_id", "")
-    if execution_profile not in VALID_EXECUTION_PROFILES:
-        errors.append(f"invalid execution profile: {execution_profile}")
-    if execution_profile == "race":
-        if not lane_id:
-            errors.append("race task missing Lane ID")
-        elif not LANE_ID_RE.fullmatch(lane_id):
-            errors.append(f"invalid Lane ID: {lane_id}")
-        if metadata.get("task_type") == "REVIEW":
-            errors.append("REVIEW tasks are not race lanes")
-    elif lane_id:
-        errors.append("Lane ID is only valid for race tasks")
-    if not contract and not allow_legacy:
-        errors.append("missing Protocol Contract")
-    if contract and contract != CURRENT_TASK_CONTRACT:
-        errors.append(f"unsupported Protocol Contract: {contract}")
-    if contract == CURRENT_TASK_CONTRACT and not execution_environment:
-        errors.append("missing 執行環境")
-    if execution_environment and execution_environment not in VALID_EXECUTION_ENVIRONMENTS:
-        errors.append(f"invalid execution environment: {execution_environment}")
-    if metadata.get("task_type") == "REVIEW":
-        if contract == CURRENT_TASK_CONTRACT and not review_target_finding:
-            errors.append("missing Review Target Finding")
-        if review_target_finding and not FINDING_ID_RE.fullmatch(review_target_finding):
-            errors.append(f"invalid Review Target Finding: {review_target_finding}")
-        if review_target_finding:
-            finding_path = task_path.parent.parent / "findings" / f"{review_target_finding}.md"
-            if not finding_path.is_file():
-                errors.append(f"review target finding does not exist: {review_target_finding}")
-    elif review_target_finding:
-        errors.append("Review Target Finding is only valid for REVIEW tasks")
+    errors.extend(_execution_profile_errors(metadata))
+    errors.extend(
+        _contract_errors(contract, metadata.get("execution_environment", ""), allow_legacy)
+    )
+    errors.extend(_review_target_errors(task_path, metadata, contract))
     if metadata.get("task_id") and not TASK_ID_RE.fullmatch(metadata["task_id"]):
         errors.append(f"invalid Task ID: {metadata['task_id']}")
     for key in ("assignee_session", "issuer_session"):
@@ -223,14 +253,17 @@ def iter_tasks(cases_dir: Path | None = None, case_filters: set[str] | None = No
             continue
         if case_filters and current_case.name not in case_filters:
             continue
-        tasks_dir = current_case / "tasks"
-        if not tasks_dir.is_dir():
+        yield from _case_task_files(current_case / "tasks")
+
+
+def _case_task_files(tasks_dir: Path):
+    if not tasks_dir.is_dir():
+        return
+    for task_path in sorted(tasks_dir.glob("*.md")):
+        upper_name = task_path.name.upper()
+        if upper_name.startswith("README") or "TEMPLATE" in upper_name:
             continue
-        for task_path in sorted(tasks_dir.glob("*.md")):
-            upper_name = task_path.name.upper()
-            if upper_name.startswith("README") or "TEMPLATE" in upper_name:
-                continue
-            yield task_path
+        yield task_path
 
 
 def discover_assigned_tasks(
@@ -321,60 +354,87 @@ def _is_placeholder(value: str) -> bool:
     return not normalized or normalized in {"TODO", "TBD", "-"} or "YYYY-MM-DD" in normalized
 
 
+def _mismatched_fields(fields: dict[str, str], expected: dict[str, str]) -> list[str]:
+    return [
+        f"{label} must equal {expected_value}"
+        for label, expected_value in expected.items()
+        if fields.get(label) != expected_value
+    ]
+
+
+def _incomplete_fields(fields: dict[str, str], labels: tuple[str, ...]) -> list[str]:
+    return [
+        f"{label} is incomplete"
+        for label in labels
+        if _is_placeholder(fields.get(label, ""))
+    ]
+
+
+def _review_output_errors(fields: dict[str, str], metadata: dict[str, str]) -> list[str]:
+    errors = _mismatched_fields(
+        fields,
+        {
+            "對應 Task": metadata["task_id"],
+            "對應 Finding": metadata.get("review_target_finding", ""),
+            "Reviewer Session": metadata["assignee_session"],
+        },
+    )
+    if fields.get("Verdict") not in {"APPROVED", "CHALLENGED"}:
+        errors.append("Verdict must be APPROVED or CHALLENGED")
+    if fields.get("可支持答案狀態") not in {"CANDIDATE", "VERIFIED"}:
+        errors.append("可支持答案狀態 must be CANDIDATE or VERIFIED")
+    errors.extend(
+        _incomplete_fields(
+            fields,
+            ("完成時間", "重現結果", "時間與因果", "替代解釋 / False Positive", "格式檢查"),
+        )
+    )
+    return errors
+
+
+def _finding_output_errors(fields: dict[str, str], metadata: dict[str, str]) -> list[str]:
+    errors = _mismatched_fields(
+        fields,
+        {
+            "對應任務": metadata["task_id"],
+            "解答 Session": metadata["assignee_session"],
+        },
+    )
+    if fields.get("Confidence") not in {"LOW", "MEDIUM", "HIGH"}:
+        errors.append("Confidence must be LOW, MEDIUM, or HIGH")
+    errors.extend(
+        _incomplete_fields(
+            fields,
+            (
+                "完成時間",
+                "Answer / Conclusion",
+                "Artifact / Source",
+                "取得方法 / Tool",
+                "Direct Observation",
+                "Reproduction",
+                "Known Limitations",
+            ),
+        )
+    )
+    if fields.get("建議答案狀態") not in {"CANDIDATE", "VERIFIED"}:
+        errors.append("建議答案狀態 must be CANDIDATE or VERIFIED")
+    if fields.get("需要額外 review") not in {"YES", "NO"}:
+        errors.append("需要額外 review must be YES or NO")
+    return errors
+
+
 def validate_governed_output(
-    task_path: Path,
     metadata: dict[str, str],
     output_path: Path,
 ) -> list[str]:
     """Validate that a finding/review is substantively ready for DONE."""
-    errors: list[str] = []
     if not output_path.exists():
         return ["governed output does not exist"]
 
     fields = parse_markdown_fields(output_path)
     if metadata["task_type"] == "REVIEW":
-        expected = {
-            "對應 Task": metadata["task_id"],
-            "對應 Finding": metadata.get("review_target_finding", ""),
-            "Reviewer Session": metadata["assignee_session"],
-        }
-        for label, expected_value in expected.items():
-            if fields.get(label) != expected_value:
-                errors.append(f"{label} must equal {expected_value}")
-        if fields.get("Verdict") not in {"APPROVED", "CHALLENGED"}:
-            errors.append("Verdict must be APPROVED or CHALLENGED")
-        if fields.get("可支持答案狀態") not in {"CANDIDATE", "VERIFIED"}:
-            errors.append("可支持答案狀態 must be CANDIDATE or VERIFIED")
-        for label in ("完成時間", "重現結果", "時間與因果", "替代解釋 / False Positive", "格式檢查"):
-            if _is_placeholder(fields.get(label, "")):
-                errors.append(f"{label} is incomplete")
-    else:
-        expected = {
-            "對應任務": metadata["task_id"],
-            "解答 Session": metadata["assignee_session"],
-        }
-        for label, expected_value in expected.items():
-            if fields.get(label) != expected_value:
-                errors.append(f"{label} must equal {expected_value}")
-        if fields.get("Confidence") not in {"LOW", "MEDIUM", "HIGH"}:
-            errors.append("Confidence must be LOW, MEDIUM, or HIGH")
-        for label in (
-            "完成時間",
-            "Answer / Conclusion",
-            "Artifact / Source",
-            "取得方法 / Tool",
-            "Direct Observation",
-            "Reproduction",
-            "Known Limitations",
-        ):
-            if _is_placeholder(fields.get(label, "")):
-                errors.append(f"{label} is incomplete")
-        if fields.get("建議答案狀態") not in {"CANDIDATE", "VERIFIED"}:
-            errors.append("建議答案狀態 must be CANDIDATE or VERIFIED")
-        if fields.get("需要額外 review") not in {"YES", "NO"}:
-            errors.append("需要額外 review must be YES or NO")
-
-    return errors
+        return _review_output_errors(fields, metadata)
+    return _finding_output_errors(fields, metadata)
 
 
 def event_dir(case_id: str, task_id: str, events_dir: Path | None = None) -> Path:
@@ -406,7 +466,7 @@ def emit_event(
     timestamp = utc_timestamp()
     created_ns = time.time_ns()
     payload = {
-        "schema": "collab-event/v1",
+        "schema": EVENT_SCHEMA,
         "event_id": event_id,
         "created_ns": created_ns,
         "timestamp_utc": timestamp,
@@ -444,7 +504,7 @@ def iter_events(events_dir: Path | None = None):
             payload = json.loads(event_path.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError):
             continue
-        if payload.get("schema") == "collab-event/v1":
+        if payload.get("schema") == EVENT_SCHEMA:
             yield event_path, payload
 
 
@@ -465,7 +525,7 @@ def events_for_task(
             payload = json.loads(event_path.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError):
             continue
-        if payload.get("schema") == "collab-event/v1":
+        if payload.get("schema") == EVENT_SCHEMA:
             results.append((event_path, payload))
     return results
 
@@ -494,7 +554,8 @@ def is_sync_artifact(path: Path) -> bool:
     name = path.name
     if name.startswith(".") or name.endswith("~"):
         return True
-    return bool(SYNC_CONFLICT_RE.search(name))
+    match = SYNC_CONFLICT_RE.search(name)
+    return bool(match) and SYNC_CONFLICT_MARKER in match.group("note").casefold()
 
 
 def iter_sync_artifacts(*roots: Path):
@@ -672,6 +733,30 @@ def validate_lifecycle_events(payloads: list[dict]) -> list[str]:
     return errors
 
 
+def _anchored_path_errors(kind: str, anchored_path: str, output_path: Path) -> list[str]:
+    try:
+        current_rel = relative_posix(output_path)
+    except ValueError:
+        current_rel = output_path.as_posix()
+    if anchored_path != current_rel:
+        return [f"{kind} output path mismatch: event={anchored_path} current={current_rel}"]
+    return []
+
+
+def _anchored_hash_errors(
+    kind: str, anchored_hash: str, output_path: Path, task_ref: str
+) -> list[str]:
+    if not output_path.is_file():
+        return [f"{kind} anchored governed output is missing: {output_path}"]
+    current_hash = sha256_file(output_path)
+    if current_hash != anchored_hash:
+        return [
+            f"terminal output hash 已改變: {task_ref} "
+            f"event={anchored_hash} current={current_hash}"
+        ]
+    return []
+
+
 def validate_terminal_output_anchor(
     task_path: Path,
     metadata: dict[str, str],
@@ -704,25 +789,14 @@ def validate_terminal_output_anchor(
     anchored_path = payload.get("output_path")
 
     if anchored_path:
-        try:
-            current_rel = relative_posix(output_path)
-        except ValueError:
-            current_rel = output_path.as_posix()
-        if anchored_path != current_rel:
-            return [
-                f"{kind} output path mismatch: event={anchored_path} current={current_rel}"
-            ]
+        path_errors = _anchored_path_errors(kind, anchored_path, output_path)
+        if path_errors:
+            return path_errors
 
     if anchored_hash:
-        if not output_path.is_file():
-            return [f"{kind} anchored governed output is missing: {output_path}"]
-        current_hash = sha256_file(output_path)
-        if current_hash != anchored_hash:
-            return [
-                f"terminal output hash 已改變: {case_id}/{task_id} "
-                f"event={anchored_hash} current={current_hash}"
-            ]
-        return []
+        return _anchored_hash_errors(
+            kind, anchored_hash, output_path, f"{case_id}/{task_id}"
+        )
 
     if kind == "DONE":
         return ["DONE event missing output_sha256 anchor"]

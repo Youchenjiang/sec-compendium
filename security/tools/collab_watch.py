@@ -182,6 +182,115 @@ def has_ack_from_session(case_id: str, task_id: str, session: str) -> bool:
     )
 
 
+def _require_node_for_environment(
+    metadata: dict[str, str], execution_environment: str, resolved_node_class: str
+) -> None:
+    if (
+        execution_environment == "host_local_gateway"
+        and resolved_node_class != "primary"
+    ):
+        raise ValueError(
+            f"{metadata['case_id']}/{metadata['task_id']} requires host_local_gateway; "
+            f"current node class is {resolved_node_class}"
+        )
+
+
+def _ensure_delivery_ack(
+    session: str,
+    task_path: Path,
+    metadata: dict[str, str],
+    lead: str,
+    current_state: str,
+) -> str:
+    """Emit the watcher ACK once and return the resulting task state."""
+    # ACK is a delivery acknowledgement from the exact-assignee watcher.
+    # It does not mean an interactive worker has started; START is that evidence.
+    if has_ack_from_session(metadata["case_id"], metadata["task_id"], session):
+        return protocol.latest_task_state(metadata["case_id"], metadata["task_id"])
+    transition_error = protocol.lifecycle_transition_error(current_state, "ACK")
+    if transition_error:
+        raise ValueError(transition_error)
+    protocol.emit_event(
+        kind="ACK",
+        case_id=metadata["case_id"],
+        task_id=metadata["task_id"],
+        from_session=session,
+        to_session=lead,
+        message="Watcher accepted task delivery; worker not started yet",
+        task_path=task_path,
+    )
+    return "ACK"
+
+
+def _announce_assignment(
+    metadata: dict[str, str],
+    task_key: str,
+    output_path: Path,
+    lead: str,
+    execution_environment: str,
+    resolved_node_class: str,
+) -> None:
+    timestamp = datetime.now().strftime("%H:%M:%S")
+    print(
+        f"\n[{timestamp}] 🚨 ASSIGNED {metadata['case_id']}/{metadata['task_id']} "
+        f"{metadata['task_type']}"
+    )
+    print(f"    📂 {task_key}")
+    print(f"    📤 {protocol.relative_posix(output_path)}")
+    print(f"    📡 ACK (delivery accepted; not START) -> {lead}")
+    print(f"    🧭 Environment: {execution_environment} | node={resolved_node_class}")
+    if execution_environment == protocol.LEGACY_EXECUTION_ENVIRONMENT:
+        print("    ⚠️ legacy task: execution environment was not governed at dispatch time")
+
+
+def _run_handoff_hook(
+    on_handoff: Callable[[Path, str], None] | None,
+    handoff_path: Path,
+    instruction: str,
+) -> None:
+    # A supervisor (e.g. the host-2 resident watcher) can hook the fresh
+    # handoff to launch a worker. The hook runs after the durable packet is
+    # on disk, so a broken hook can never lose the ACK/handoff.
+    if on_handoff is None:
+        return
+    try:
+        on_handoff(handoff_path, instruction)
+    except Exception as exc:  # noqa: BLE001 - isolate worker hook failures
+        print(f"    ⚠️ on_handoff hook failed: {exc}")
+
+
+def _dispatch_agent_or_file(
+    transport: str,
+    exec_program: str | None,
+    exec_args: list[str],
+    instruction: str,
+    exec_timeout: float | None,
+    current_state: str,
+    handoff_path: Path,
+) -> None:
+    wants_agent = (
+        transport in {"agent", "auto"}
+        and bool(exec_program)
+        and current_state == "ACK"
+    )
+    if not wants_agent:
+        print("    🗂️ transport=file → worker must consume the handoff inbox")
+        return
+    exit_code = dispatch_cli(exec_program, exec_args, instruction, exec_timeout)
+    if exit_code == 0:
+        print("    ✅ CLI Agent exit=0")
+    else:
+        print(
+            f"    ⚠️ CLI Agent exit={exit_code}; falling back to file/CLI "
+            f"handoff at {protocol.relative_posix(handoff_path)}"
+        )
+
+
+def _mark_seen(state: dict[str, set[str]], state_path: Path, task_key: str) -> None:
+    state["seen_tasks"].add(task_key)
+    save_state(state_path, state)
+
+
 def process_assignments(
     session: str,
     case_filters: set[str] | None,
@@ -206,27 +315,18 @@ def process_assignments(
         )
         if current_state in protocol.TERMINAL_TASK_STATES:
             protocol.consume_handoff(handoff_path)
-            state["seen_tasks"].add(task_key)
-            save_state(state_path, state)
+            _mark_seen(state, state_path, task_key)
             continue
 
         execution_environment = (
             metadata.get("execution_environment") or protocol.LEGACY_EXECUTION_ENVIRONMENT
         )
         resolved_node_class = resolve_node_class(node_class)
-        if (
-            execution_environment == "host_local_gateway"
-            and resolved_node_class != "primary"
-        ):
-            raise ValueError(
-                f"{metadata['case_id']}/{metadata['task_id']} requires host_local_gateway; "
-                f"current node class is {resolved_node_class}"
-            )
+        _require_node_for_environment(metadata, execution_environment, resolved_node_class)
 
         output_path = protocol.output_path_for_task(task_path, metadata)
         if current_state in {"ACK", "START"} and handoff_path.exists():
-            state["seen_tasks"].add(task_key)
-            save_state(state_path, state)
+            _mark_seen(state, state_path, task_key)
             continue
         if task_key in state["seen_tasks"] and handoff_path.exists():
             continue
@@ -235,39 +335,14 @@ def process_assignments(
         if lead is None:
             raise ValueError(f"assigned task 所屬 case 沒有有效 Lead: {metadata['case_id']}")
 
-        # ACK is a delivery acknowledgement from the exact-assignee watcher.
-        # It does not mean an interactive worker has started; START is that evidence.
-        if not has_ack_from_session(metadata["case_id"], metadata["task_id"], session):
-            transition_error = protocol.lifecycle_transition_error(current_state, "ACK")
-            if transition_error:
-                raise ValueError(transition_error)
-            protocol.emit_event(
-                kind="ACK",
-                case_id=metadata["case_id"],
-                task_id=metadata["task_id"],
-                from_session=session,
-                to_session=lead,
-                message="Watcher accepted task delivery; worker not started yet",
-                task_path=task_path,
-            )
-            current_state = "ACK"
-        else:
-            current_state = protocol.latest_task_state(
-                metadata["case_id"], metadata["task_id"]
-            )
-
-        timestamp = datetime.now().strftime("%H:%M:%S")
-        instruction = build_task_instruction(session, task_path, output_path, metadata)
-        print(
-            f"\n[{timestamp}] 🚨 ASSIGNED {metadata['case_id']}/{metadata['task_id']} "
-            f"{metadata['task_type']}"
+        current_state = _ensure_delivery_ack(
+            session, task_path, metadata, lead, current_state
         )
-        print(f"    📂 {task_key}")
-        print(f"    📤 {protocol.relative_posix(output_path)}")
-        print(f"    📡 ACK (delivery accepted; not START) -> {lead}")
-        print(f"    🧭 Environment: {execution_environment} | node={resolved_node_class}")
-        if execution_environment == protocol.LEGACY_EXECUTION_ENVIRONMENT:
-            print("    ⚠️ legacy task: execution environment was not governed at dispatch time")
+
+        instruction = build_task_instruction(session, task_path, output_path, metadata)
+        _announce_assignment(
+            metadata, task_key, output_path, lead, execution_environment, resolved_node_class
+        )
         copy_to_clipboard(instruction)
         beep()
 
@@ -294,34 +369,18 @@ def process_assignments(
         )
         print(f"    📥 handoff: {protocol.relative_posix(handoff_path)}")
 
-        # A supervisor (e.g. the host-2 resident watcher) can hook the fresh
-        # handoff to launch a worker. The hook runs after the durable packet is
-        # on disk, so a broken hook can never lose the ACK/handoff.
-        if on_handoff is not None:
-            try:
-                on_handoff(handoff_path, instruction)
-            except Exception as exc:  # noqa: BLE001 - isolate worker hook failures
-                print(f"    ⚠️ on_handoff hook failed: {exc}")
-
-        wants_agent = (
-            transport in {"agent", "auto"}
-            and bool(exec_program)
-            and current_state == "ACK"
+        _run_handoff_hook(on_handoff, handoff_path, instruction)
+        _dispatch_agent_or_file(
+            transport,
+            exec_program,
+            exec_args,
+            instruction,
+            exec_timeout,
+            current_state,
+            handoff_path,
         )
-        if wants_agent:
-            exit_code = dispatch_cli(exec_program, exec_args, instruction, exec_timeout)
-            if exit_code == 0:
-                print("    ✅ CLI Agent exit=0")
-            else:
-                print(
-                    f"    ⚠️ CLI Agent exit={exit_code}; falling back to file/CLI "
-                    f"handoff at {protocol.relative_posix(handoff_path)}"
-                )
-        else:
-            print("    🗂️ transport=file → worker must consume the handoff inbox")
 
-        state["seen_tasks"].add(task_key)
-        save_state(state_path, state)
+        _mark_seen(state, state_path, task_key)
         announced += 1
 
     return announced
@@ -395,21 +454,36 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def main() -> int:
-    args = build_parser().parse_args()
-    try:
-        protocol.validate_session(args.session)
-    except ValueError as exc:
-        raise SystemExit(str(exc)) from exc
-    if args.interval <= 0:
-        raise SystemExit("--interval 必須大於 0")
-
+def _load_watch_state(args: argparse.Namespace) -> tuple[Path, dict[str, set[str]]]:
     state_path = RUNTIME_DIR / f"{args.session}.json"
     if args.reset_seen and state_path.exists():
         state_path.unlink()
-    state = load_state(state_path)
-    case_filters = set(args.cases) or None
+    return state_path, load_state(state_path)
 
+
+def _run_watch_cycle(
+    args: argparse.Namespace,
+    case_filters: set[str] | None,
+    state: dict[str, set[str]],
+    state_path: Path,
+) -> None:
+    process_assignments(
+        session=args.session,
+        case_filters=case_filters,
+        state=state,
+        state_path=state_path,
+        exec_program=args.exec_program,
+        exec_args=args.exec_arg,
+        transport=args.transport,
+        exec_timeout=args.exec_timeout,
+        node_class=args.node_class,
+    )
+    process_incoming_events(args.session, case_filters, state, state_path)
+
+
+def _print_banner(
+    args: argparse.Namespace, state_path: Path, case_filters: set[str] | None
+) -> None:
     print("=" * 72)
     print(f"🤖 Governed Collab Watcher | session={args.session}")
     print("📂 Tasks: .collab/cases/<CaseID>/tasks/")
@@ -421,20 +495,24 @@ def main() -> int:
     print(f"🎯 Cases: {', '.join(sorted(case_filters)) if case_filters else 'ALL'}")
     print("=" * 72)
 
+
+def main() -> int:
+    args = build_parser().parse_args()
+    try:
+        protocol.validate_session(args.session)
+    except ValueError as exc:
+        raise SystemExit(str(exc)) from exc
+    if args.interval <= 0:
+        raise SystemExit("--interval 必須大於 0")
+
+    state_path, state = _load_watch_state(args)
+    case_filters = set(args.cases) or None
+
+    _print_banner(args, state_path, case_filters)
+
     while True:
         try:
-            process_assignments(
-                session=args.session,
-                case_filters=case_filters,
-                state=state,
-                state_path=state_path,
-                exec_program=args.exec_program,
-                exec_args=args.exec_arg,
-                transport=args.transport,
-                exec_timeout=args.exec_timeout,
-                node_class=args.node_class,
-            )
-            process_incoming_events(args.session, case_filters, state, state_path)
+            _run_watch_cycle(args, case_filters, state, state_path)
             if args.once:
                 return 0
             time.sleep(args.interval)
