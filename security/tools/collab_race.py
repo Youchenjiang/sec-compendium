@@ -371,11 +371,12 @@ def race_watchdog(
         ),
         None,
     )
-    clock_ns = int(
-        now_ns
-        if now_ns is not None
-        else (closed.get("created_ns") if closed else time.time_ns())
-    )
+    if now_ns is not None:
+        clock_ns = int(now_ns)
+    elif closed:
+        clock_ns = int(closed.get("created_ns"))
+    else:
+        clock_ns = int(time.time_ns())
     rows: list[dict] = []
     for _, event in iter_race_events(case_id, race_dir):
         if event.get("kind") != "LANE_DISPATCHED":
@@ -406,34 +407,49 @@ def race_watchdog(
     return rows
 
 
+def _yes_no(flag: bool) -> str:
+    return "YES" if flag else "NO"
+
+
+def _assist_overdue_lanes(args: argparse.Namespace, overdue: list[dict]) -> None:
+    if not getattr(args, "lead_session", ""):
+        raise ValueError("--lead-session is required with --assist-overdue")
+    require_open(args.case)
+    for row in overdue:
+        command_assist(argparse.Namespace(
+            case=args.case,
+            lead_session=args.lead_session,
+            task_id=row["task_id"],
+            reason=(
+                f"worker START exceeded {row['start_slo_seconds']}s SLO; "
+                "Lead assist enabled for cheap-pivot fallback"
+            ),
+        ))
+
+
+def _format_watchdog_row(row: dict, assist_overdue: bool) -> str:
+    start_after = row["start_seconds_after_dispatch"]
+    start_s = "-" if start_after is None else f"{start_after:.3f}"
+    assisted = row["assisted"] or (row["overdue"] and assist_overdue)
+    return (
+        f"{row['lane_id']} {row['task_id']} "
+        f"{_yes_no(row['started'])} "
+        f"{_yes_no(row['overdue'])} "
+        f"{_yes_no(assisted)} "
+        f"{row['age_seconds']:.3f} {start_s}"
+    )
+
+
 def command_watchdog(args: argparse.Namespace) -> int:
     start_slo = getattr(args, "start_slo_seconds", None)
     rows = race_watchdog(args.case, start_slo_seconds=start_slo)
     overdue = [row for row in rows if row["overdue"]]
-    if getattr(args, "assist_overdue", False):
-        if not getattr(args, "lead_session", ""):
-            raise ValueError("--lead-session is required with --assist-overdue")
-        require_open(args.case)
-        for row in overdue:
-            command_assist(argparse.Namespace(
-                case=args.case,
-                lead_session=args.lead_session,
-                task_id=row["task_id"],
-                reason=(
-                    f"worker START exceeded {row['start_slo_seconds']}s SLO; "
-                    "Lead assist enabled for cheap-pivot fallback"
-                ),
-            ))
+    assist_overdue = bool(getattr(args, "assist_overdue", False))
+    if assist_overdue:
+        _assist_overdue_lanes(args, overdue)
     print("LANE TASK STARTED OVERDUE ASSISTED AGE_S START_S")
     for row in rows:
-        start_s = "-" if row["start_seconds_after_dispatch"] is None else f"{row['start_seconds_after_dispatch']:.3f}"
-        print(
-            f"{row['lane_id']} {row['task_id']} "
-            f"{'YES' if row['started'] else 'NO'} "
-            f"{'YES' if row['overdue'] else 'NO'} "
-            f"{'YES' if row['assisted'] or (row['overdue'] and getattr(args, 'assist_overdue', False)) else 'NO'} "
-            f"{row['age_seconds']:.3f} {start_s}"
-        )
+        print(_format_watchdog_row(row, assist_overdue))
     return 0
 
 
@@ -443,19 +459,19 @@ def command_assist(args: argparse.Namespace) -> int:
     lane = _lane_for_task(args.case, args.task_id)
     if _lane_has_assist(args.case, args.task_id):
         print(f"RACE ASSIST {args.case}/{lane['lane_id']} already active")
-        return 0
-    _write_event(
-        kind="LANE_ASSISTED",
-        case_id=args.case,
-        actor_session=lead,
-        data={
-            "lane_id": lane["lane_id"],
-            "task_id": args.task_id,
-            "assignee_session": lane["assignee_session"],
-            "reason": args.reason,
-        },
-    )
-    print(f"RACE ASSIST {args.case}/{lane['lane_id']} task={args.task_id}")
+    else:
+        _write_event(
+            kind="LANE_ASSISTED",
+            case_id=args.case,
+            actor_session=lead,
+            data={
+                "lane_id": lane["lane_id"],
+                "task_id": args.task_id,
+                "assignee_session": lane["assignee_session"],
+                "reason": args.reason,
+            },
+        )
+        print(f"RACE ASSIST {args.case}/{lane['lane_id']} task={args.task_id}")
     return 0
 
 
@@ -508,33 +524,27 @@ def _same_active_answer(candidate: dict, payload: dict, state: str) -> bool:
     )
 
 
-def command_answer(args: argparse.Namespace) -> int:
-    lane = _lane_for_task(args.case, args.task_id)
-    task_path, metadata = protocol.find_task(args.case, args.task_id)
-    protocol.require_task_dispatch_anchor(task_path, metadata)
-    task_state = protocol.latest_task_state(args.case, args.task_id)
-    if task_state in {"ERROR", "DISPATCH_FAILED"}:
-        raise ValueError(f"cannot publish answer from failed task state {task_state}")
+def _answer_assist_event(args: argparse.Namespace, metadata: dict) -> dict | None:
+    """Authorize the answer actor; return the assist event a Lead answer relies on."""
     lead = protocol.get_case_lead(args.case)
     if args.session not in {metadata["assignee_session"], lead}:
         raise ValueError("answer actor must be the lane assignee or Case Lead")
-    assist_event = None
-    if (
-        args.session == lead
-        and args.session != metadata["assignee_session"]
-    ):
-        assist_event = _latest_assist_event(args.case, args.task_id)
-        if assist_event is None:
-            raise ValueError("Case Lead answer requires an explicit lane assist event")
-    question = args.question.upper()
-    if question not in lane["questions"]:
-        raise ValueError(f"question {question} is outside lane {lane['lane_id']}")
-    current = build_board(args.case).get(question)
+    if args.session != lead or args.session == metadata["assignee_session"]:
+        return None
+    assist_event = _latest_assist_event(args.case, args.task_id)
+    if assist_event is None:
+        raise ValueError("Case Lead answer requires an explicit lane assist event")
+    return assist_event
+
+
+def _unlocked_board_row(case_id: str, question: str) -> dict | None:
+    current = build_board(case_id).get(question)
     if current and current["state"] in {"SUBMITTED", "ACCEPTED"}:
         raise ValueError(f"answer is locked in state {current['state']}: {question}")
-    evidence = list(dict.fromkeys(item.strip() for item in args.evidence if item.strip()))
-    if not evidence:
-        raise ValueError("answer requires at least one evidence reference")
+    return current
+
+
+def _resolve_answer_state(args: argparse.Namespace, evidence: list[str]) -> str:
     requested = args.state.upper() if args.state != "auto" else ""
     auto_ready = (
         args.confidence == "high"
@@ -547,6 +557,37 @@ def command_answer(args: argparse.Namespace) -> int:
         raise ValueError(f"invalid answer state: {state}")
     if state == "READY" and not auto_ready:
         raise ValueError("READY requires high confidence, two unique evidence references, and no review risk")
+    return state
+
+
+def _actor_candidate(current: dict | None, session: str, task_id: str) -> dict | None:
+    return next(
+        (
+            candidate
+            for candidate in (current or {}).get("candidates", [])
+            if candidate.get("actor_session") == session
+            and candidate.get("task_id") == task_id
+        ),
+        None,
+    )
+
+
+def command_answer(args: argparse.Namespace) -> int:
+    lane = _lane_for_task(args.case, args.task_id)
+    task_path, metadata = protocol.find_task(args.case, args.task_id)
+    protocol.require_task_dispatch_anchor(task_path, metadata)
+    task_state = protocol.latest_task_state(args.case, args.task_id)
+    if task_state in {"ERROR", "DISPATCH_FAILED"}:
+        raise ValueError(f"cannot publish answer from failed task state {task_state}")
+    assist_event = _answer_assist_event(args, metadata)
+    question = args.question.upper()
+    if question not in lane["questions"]:
+        raise ValueError(f"question {question} is outside lane {lane['lane_id']}")
+    current = _unlocked_board_row(args.case, question)
+    evidence = list(dict.fromkeys(item.strip() for item in args.evidence if item.strip()))
+    if not evidence:
+        raise ValueError("answer requires at least one evidence reference")
+    state = _resolve_answer_state(args, evidence)
     answer, secret_fields = _secret_answer_fields(args)
     payload = {
         "lane_id": lane["lane_id"],
@@ -562,31 +603,23 @@ def command_answer(args: argparse.Namespace) -> int:
     }
     if assist_event is not None:
         payload["assist_event_id"] = assist_event["event_id"]
-    current_candidate = next(
-        (
-            candidate
-            for candidate in (current or {}).get("candidates", [])
-            if candidate.get("actor_session") == args.session
-            and candidate.get("task_id") == args.task_id
-        ),
-        None,
-    )
+    current_candidate = _actor_candidate(current, args.session, args.task_id)
     if current_candidate and _same_active_answer(current_candidate, payload, state):
         print(f"ANSWER {state} {args.case}/{question} lane={lane['lane_id']} unchanged")
-        return 0
-    _write_event(
-        kind=f"ANSWER_{state}",
-        case_id=args.case,
-        actor_session=args.session,
-        data=payload,
-    )
-    print(f"ANSWER {state} {args.case}/{question} lane={lane['lane_id']}")
+    else:
+        _write_event(
+            kind=f"ANSWER_{state}",
+            case_id=args.case,
+            actor_session=args.session,
+            data=payload,
+        )
+        print(f"ANSWER {state} {args.case}/{question} lane={lane['lane_id']}")
     return 0
 
 
 def command_withdraw(args: argparse.Namespace) -> int:
     lane = _lane_for_task(args.case, args.task_id)
-    task_path, metadata = protocol.find_task(args.case, args.task_id)
+    _, metadata = protocol.find_task(args.case, args.task_id)
     lead = protocol.get_case_lead(args.case)
     if args.session not in {metadata["assignee_session"], lead}:
         raise ValueError("withdraw actor must be the lane assignee or Case Lead")
@@ -635,16 +668,11 @@ def _normalize_answer(value: str) -> str:
     return " ".join(value.casefold().split())
 
 
-def build_board(
-    case_id: str,
-    race_dir: Path | None = None,
-    *,
-    at_ns: int | None = None,
-) -> dict[str, dict]:
-    events = [
-        p for _, p in iter_race_events(case_id, race_dir)
-        if at_ns is None or int(p.get("created_ns", 0)) <= at_ns
-    ]
+def _answer_record(event: dict, kind: str, data: dict) -> dict:
+    return {**data, "kind": kind, "actor_session": event.get("actor_session"), "created_ns": event.get("created_ns")}
+
+
+def _collect_answer_events(events: list[dict]) -> tuple[dict[str, dict[tuple[str, str], dict]], dict[str, dict]]:
     active: dict[str, dict[tuple[str, str], dict]] = defaultdict(dict)
     controls: dict[str, dict] = {}
     for event in events:
@@ -655,39 +683,55 @@ def build_board(
             continue
         key = (event.get("actor_session", ""), data.get("task_id", ""))
         if kind in {"ANSWER_CANDIDATE", "ANSWER_READY"}:
-            active[q][key] = {**data, "kind": kind, "actor_session": event.get("actor_session"), "created_ns": event.get("created_ns")}
+            active[q][key] = _answer_record(event, kind, data)
         elif kind == "ANSWER_WITHDRAWN":
             active[q].pop(key, None)
         elif kind in {"ANSWER_SUBMITTED", "ANSWER_ACCEPTED", "ANSWER_REJECTED"}:
-            controls[q] = {**data, "kind": kind, "actor_session": event.get("actor_session"), "created_ns": event.get("created_ns")}
+            controls[q] = _answer_record(event, kind, data)
+    return active, controls
 
+
+def _board_state(candidates: list[dict], distinct: set[str], control: dict | None) -> tuple[str, str]:
+    latest_candidate_ns = max((int(c.get("created_ns", 0)) for c in candidates), default=0)
+    if control and int(control.get("created_ns", 0)) >= latest_candidate_ns:
+        return control["kind"].removeprefix("ANSWER_"), control.get("answer", "")
+    if len(distinct) > 1:
+        return "CONFLICT", " | ".join(sorted({c.get("answer", "") for c in candidates}))
+    if candidates:
+        state = "READY" if any(c["kind"] == "ANSWER_READY" for c in candidates) else "CANDIDATE"
+        winner = max(candidates, key=lambda c: (c["kind"] == "ANSWER_READY", int(c.get("created_ns", 0))))
+        return state, winner.get("answer", "")
+    return "OPEN", ""
+
+
+def _board_row(candidates: list[dict], control: dict | None) -> dict:
+    distinct = {_candidate_identity(c) for c in candidates if c.get("answer", "")}
+    state, answer = _board_state(candidates, distinct, control)
+    needs_review = len(distinct) > 1 or any(c.get("needs_review") or c.get("semantic_risk") for c in candidates)
+    return {
+        "state": state,
+        "answer": answer,
+        "needs_review": needs_review,
+        "candidate_count": len(candidates),
+        "candidates": candidates,
+    }
+
+
+def build_board(
+    case_id: str,
+    race_dir: Path | None = None,
+    *,
+    at_ns: int | None = None,
+) -> dict[str, dict]:
+    events = [
+        p for _, p in iter_race_events(case_id, race_dir)
+        if at_ns is None or int(p.get("created_ns", 0)) <= at_ns
+    ]
+    active, controls = _collect_answer_events(events)
     board: dict[str, dict] = {}
     all_questions = sorted(set(active) | set(controls))
     for q in all_questions:
-        candidates = list(active.get(q, {}).values())
-        distinct = {_candidate_identity(c) for c in candidates if c.get("answer", "")}
-        control = controls.get(q)
-        latest_candidate_ns = max((int(c.get("created_ns", 0)) for c in candidates), default=0)
-        if control and int(control.get("created_ns", 0)) >= latest_candidate_ns:
-            state = control["kind"].removeprefix("ANSWER_")
-            answer = control.get("answer", "")
-        elif len(distinct) > 1:
-            state = "CONFLICT"
-            answer = " | ".join(sorted({c.get("answer", "") for c in candidates}))
-        elif candidates:
-            state = "READY" if any(c["kind"] == "ANSWER_READY" for c in candidates) else "CANDIDATE"
-            winner = max(candidates, key=lambda c: (c["kind"] == "ANSWER_READY", int(c.get("created_ns", 0))))
-            answer = winner.get("answer", "")
-        else:
-            state, answer = "OPEN", ""
-        needs_review = len(distinct) > 1 or any(c.get("needs_review") or c.get("semantic_risk") for c in candidates)
-        board[q] = {
-            "state": state,
-            "answer": answer,
-            "needs_review": needs_review,
-            "candidate_count": len(candidates),
-            "candidates": candidates,
-        }
+        board[q] = _board_row(list(active.get(q, {}).values()), controls.get(q))
     return board
 
 
@@ -707,7 +751,7 @@ def _lane_questions(
 
 
 def _parse_elapsed_seconds(value: str) -> float:
-    match = re.fullmatch(r"\s*(\d+(?:\.\d+)?)\s*([smh]?)\s*", value, re.IGNORECASE)
+    match = re.fullmatch(r"(\d+(?:\.\d+)?)\s*([smh]?)", value.strip(), re.IGNORECASE)
     if not match:
         raise ValueError("--at must be elapsed time such as 900s, 15m, or 0.5h")
     amount = float(match.group(1))
@@ -746,6 +790,105 @@ def command_review_queue(args: argparse.Namespace) -> int:
     return 0
 
 
+_READY_STATES = {"READY", "SUBMITTED", "ACCEPTED"}
+_MILESTONE_EVENT_KINDS = {
+    "ANSWER_CANDIDATE",
+    "ANSWER_READY",
+    "ANSWER_WITHDRAWN",
+    "ANSWER_SUBMITTED",
+    "ANSWER_ACCEPTED",
+    "ANSWER_REJECTED",
+}
+
+
+def _seconds_since(t0: int, ns: int | None) -> float | None:
+    return None if ns is None else (ns - t0) / 1e9
+
+
+def _first_event_ns(events: list[dict], kinds: set[str]) -> int | None:
+    vals = [int(p["created_ns"]) for p in events if p.get("kind") in kinds]
+    return min(vals) if vals else None
+
+
+def _first_worker_start_ns(case_id: str, task_id: str) -> int | None:
+    starts = [
+        int(payload.get("created_ns", 0))
+        for _, payload in protocol.events_for_task(case_id, task_id)
+        if payload.get("kind") == "START"
+    ]
+    return min(starts) if starts else None
+
+
+def _worker_start_stats(
+    case_id: str, lane_events: list[dict], task_ids: list, start_slo_seconds: int
+) -> tuple[list[int], int]:
+    start_ns: list[int] = []
+    breaches = 0
+    for task_id in task_ids:
+        if not task_id:
+            continue
+        first_start = _first_worker_start_ns(case_id, task_id)
+        if first_start is None:
+            continue
+        start_ns.append(first_start)
+        lane_event = next(
+            (
+                event for event in lane_events
+                if event.get("data", {}).get("task_id") == task_id
+            ),
+            None,
+        )
+        if (
+            lane_event is not None
+            and (first_start - int(lane_event["created_ns"])) / 1e9 > start_slo_seconds
+        ):
+            breaches += 1
+    return start_ns, breaches
+
+
+def _ready_count(board: dict, questions: list[str]) -> int:
+    return sum(1 for q in questions if board.get(q, {}).get("state") in _READY_STATES)
+
+
+def _ready_ratio_at(
+    case_id: str,
+    race_dir: Path | None,
+    questions: list[str],
+    *,
+    t0: int,
+    tend: int,
+    closed: bool,
+    minutes: int,
+) -> float | None:
+    cutoff = t0 + int(minutes * 60 * 1e9)
+    if not closed and tend < cutoff:
+        return None
+    snapshot_ns = min(cutoff, tend) if closed else cutoff
+    count = _ready_count(build_board(case_id, race_dir, at_ns=snapshot_ns), questions)
+    return (count / len(questions)) if questions else 0.0
+
+
+def _milestone_seconds(
+    case_id: str,
+    race_dir: Path | None,
+    events: list[dict],
+    questions: list[str],
+    t0: int,
+    target_ratio: float,
+) -> float | None:
+    if not questions:
+        return None
+    needed = math.ceil(len(questions) * target_ratio)
+    for event in events:
+        if event.get("kind") not in _MILESTONE_EVENT_KINDS:
+            continue
+        event_ns = int(event.get("created_ns", 0))
+        snapshot = build_board(case_id, race_dir, at_ns=event_ns)
+        if _ready_count(snapshot, questions) >= needed:
+            return (event_ns - t0) / 1e9
+    return None
+
+
 def race_metrics(case_id: str, race_dir: Path | None = None) -> dict:
     events = [p for _, p in iter_race_events(case_id, race_dir)]
     opened = next((p for p in events if p.get("kind") == "SESSION_OPEN"), None)
@@ -755,100 +898,35 @@ def race_metrics(case_id: str, race_dir: Path | None = None) -> dict:
     t0 = int(opened["created_ns"])
     tend = int(closed["created_ns"]) if closed else time.time_ns()
 
-    def first_ns(kinds: set[str]) -> int | None:
-        vals = [int(p["created_ns"]) for p in events if p.get("kind") in kinds]
-        return min(vals) if vals else None
-
     lane_events = [p for p in events if p.get("kind") == "LANE_DISPATCHED"]
     lane_dispatch_ns = [int(p["created_ns"]) for p in lane_events]
     task_ids = [p.get("data", {}).get("task_id") for p in lane_events]
-    start_ns: list[int] = []
     start_slo_seconds = int(opened.get("data", {}).get("worker_start_slo_seconds", 60))
-    start_slo_breaches = 0
-    for task_id in task_ids:
-        if not task_id:
-            continue
-        starts = [
-            int(payload.get("created_ns", 0))
-            for _, payload in protocol.events_for_task(case_id, task_id)
-            if payload.get("kind") == "START"
-        ]
-        if starts:
-            first_start = min(starts)
-            start_ns.append(first_start)
-            lane_event = next(
-                (
-                    event for event in lane_events
-                    if event.get("data", {}).get("task_id") == task_id
-                ),
-                None,
-            )
-            if (
-                lane_event is not None
-                and (first_start - int(lane_event["created_ns"])) / 1e9 > start_slo_seconds
-            ):
-                start_slo_breaches += 1
+    start_ns, start_slo_breaches = _worker_start_stats(case_id, lane_events, task_ids, start_slo_seconds)
 
     questions = _lane_questions(case_id, race_dir)
-    board = build_board(case_id, race_dir)
-    ready_states = {"READY", "SUBMITTED", "ACCEPTED"}
-    ready = sum(1 for q in questions if board.get(q, {}).get("state") in ready_states)
-
-    def ready_ratio_at(minutes: int) -> float | None:
-        cutoff = t0 + int(minutes * 60 * 1e9)
-        if closed is None and tend < cutoff:
-            return None
-        snapshot_ns = min(cutoff, tend) if closed is not None else cutoff
-        snapshot = build_board(case_id, race_dir, at_ns=snapshot_ns)
-        count = sum(
-            1 for q in questions
-            if snapshot.get(q, {}).get("state") in ready_states
-        )
-        return (count / len(questions)) if questions else 0.0
-
-    def milestone_seconds(target_ratio: float) -> float | None:
-        if not questions:
-            return None
-        needed = math.ceil(len(questions) * target_ratio)
-        answer_kinds = {
-            "ANSWER_CANDIDATE",
-            "ANSWER_READY",
-            "ANSWER_WITHDRAWN",
-            "ANSWER_SUBMITTED",
-            "ANSWER_ACCEPTED",
-            "ANSWER_REJECTED",
-        }
-        for event in events:
-            if event.get("kind") not in answer_kinds:
-                continue
-            event_ns = int(event.get("created_ns", 0))
-            snapshot = build_board(case_id, race_dir, at_ns=event_ns)
-            ready_count = sum(
-                1 for q in questions
-                if snapshot.get(q, {}).get("state") in ready_states
-            )
-            if ready_count >= needed:
-                return (event_ns - t0) / 1e9
-        return None
+    ready = _ready_count(build_board(case_id, race_dir), questions)
+    all_started = bool(task_ids) and len(start_ns) == len(task_ids)
+    window = {"t0": t0, "tend": tend, "closed": closed is not None}
 
     return {
         "elapsed_seconds": (tend - t0) / 1e9,
-        "first_lane_seconds": None if not lane_dispatch_ns else (min(lane_dispatch_ns) - t0) / 1e9,
-        "routing_complete_seconds": None if not lane_dispatch_ns else (max(lane_dispatch_ns) - t0) / 1e9,
-        "first_worker_start_seconds": None if not start_ns else (min(start_ns) - t0) / 1e9,
-        "all_lanes_started_seconds": None if len(start_ns) != len(task_ids) or not task_ids else (max(start_ns) - t0) / 1e9,
+        "first_lane_seconds": _seconds_since(t0, min(lane_dispatch_ns, default=None)),
+        "routing_complete_seconds": _seconds_since(t0, max(lane_dispatch_ns, default=None)),
+        "first_worker_start_seconds": _seconds_since(t0, min(start_ns, default=None)),
+        "all_lanes_started_seconds": _seconds_since(t0, max(start_ns)) if all_started else None,
         "worker_start_slo_seconds": start_slo_seconds,
         "worker_start_slo_breaches": start_slo_breaches,
-        "first_candidate_seconds": None if (x := first_ns({"ANSWER_CANDIDATE", "ANSWER_READY"})) is None else (x - t0) / 1e9,
-        "first_ready_seconds": None if (x := first_ns({"ANSWER_READY"})) is None else (x - t0) / 1e9,
-        "ready_50_seconds": milestone_seconds(0.50),
-        "ready_80_seconds": milestone_seconds(0.80),
-        "ready_100_seconds": milestone_seconds(1.00),
+        "first_candidate_seconds": _seconds_since(t0, _first_event_ns(events, {"ANSWER_CANDIDATE", "ANSWER_READY"})),
+        "first_ready_seconds": _seconds_since(t0, _first_event_ns(events, {"ANSWER_READY"})),
+        "ready_50_seconds": _milestone_seconds(case_id, race_dir, events, questions, t0, 0.50),
+        "ready_80_seconds": _milestone_seconds(case_id, race_dir, events, questions, t0, 0.80),
+        "ready_100_seconds": _milestone_seconds(case_id, race_dir, events, questions, t0, 1.00),
         "question_count": len(questions),
         "ready_count": ready,
         "ready_ratio": (ready / len(questions)) if questions else 0.0,
-        "ready_ratio_at_15m": ready_ratio_at(15),
-        "ready_ratio_at_30m": ready_ratio_at(30),
+        "ready_ratio_at_15m": _ready_ratio_at(case_id, race_dir, questions, minutes=15, **window),
+        "ready_ratio_at_30m": _ready_ratio_at(case_id, race_dir, questions, minutes=30, **window),
         "budget_minutes": opened.get("data", {}).get("budget_minutes", 30),
         "closed": closed is not None,
         "clock_semantics": {
@@ -874,144 +952,213 @@ def command_close(args: argparse.Namespace) -> int:
 
 
 
+_LEAD_ONLY_KINDS = {"ANSWER_SUBMITTED", "ANSWER_ACCEPTED", "ANSWER_REJECTED", "SESSION_OPEN", "SESSION_CLOSED"}
+_ACTIVE_ANSWER_KINDS = {"ANSWER_CANDIDATE", "ANSWER_READY"}
+
+
+@dataclass
+class _RaceValidation:
+    """Shared state while validating one race case event stream."""
+
+    case_id: str
+    race_dir: Path | None
+    lead: str
+    opens: list[dict]
+    assist_by_id: dict
+    errors: list[str]
+    lanes: dict[str, dict]
+    task_to_lane: dict[str, dict]
+
+
+def _validate_session_markers(events: list[dict], opens: list[dict], closes: list[dict], errors: list[str]) -> None:
+    if len(opens) != 1:
+        errors.append(f"expected exactly one SESSION_OPEN, got {len(opens)}")
+    if len(closes) > 1:
+        errors.append(f"expected at most one SESSION_CLOSED, got {len(closes)}")
+    if not opens:
+        return
+    opened = opens[0]
+    if not opened.get("data", {}).get("dfir_preflight_required"):
+        return
+    prior_preflight = [
+        event
+        for event in events
+        if event.get("kind") == "PREFLIGHT_PASSED"
+        and int(event.get("created_ns", 0)) < int(opened.get("created_ns", 0))
+    ]
+    if not prior_preflight:
+        errors.append("race required DFIR preflight but no prior PREFLIGHT_PASSED exists")
+
+
+def _validate_preflight_event(ctx: _RaceValidation, event: dict, kind: str, actor: str) -> None:
+    if actor != ctx.lead:
+        ctx.errors.append(f"preflight event emitted by non-lead: {actor}")
+    if ctx.opens and int(event.get("created_ns", 0)) > int(ctx.opens[0].get("created_ns", 0)):
+        ctx.errors.append(f"preflight event emitted after SESSION_OPEN: {kind}")
+
+
+def _validate_lane_dispatch(ctx: _RaceValidation, data: dict) -> None:
+    lane_id = data.get("lane_id", "")
+    task_id = data.get("task_id", "")
+    if lane_id in ctx.lanes:
+        ctx.errors.append(f"duplicate lane id: {lane_id}")
+    if task_id in ctx.task_to_lane:
+        ctx.errors.append(f"task mapped to multiple lanes: {task_id}")
+    ctx.lanes[lane_id] = data
+    ctx.task_to_lane[task_id] = data
+    try:
+        task_path, metadata = protocol.find_task(ctx.case_id, task_id)
+        if data.get("task_sha256") != protocol.sha256_file(task_path):
+            ctx.errors.append(f"lane task hash drift: {lane_id}/{task_id}")
+        if data.get("assignee_session") != metadata.get("assignee_session"):
+            ctx.errors.append(f"lane assignee mismatch: {lane_id}/{task_id}")
+        ctx.errors.extend(
+            f"{lane_id}/{task_id}: {e}"
+            for e in protocol.validate_task_dispatch_anchor(task_path, metadata)
+        )
+    except ValueError as exc:
+        ctx.errors.append(f"invalid lane task {lane_id}/{task_id}: {exc}")
+
+
+def _validate_lane_assist(ctx: _RaceValidation, data: dict, actor: str) -> None:
+    task_id = data.get("task_id", "")
+    lane = ctx.task_to_lane.get(task_id)
+    if actor != ctx.lead:
+        ctx.errors.append(f"lane assist emitted by non-lead: {actor} task={task_id}")
+    if lane is None:
+        ctx.errors.append(f"lane assist references unmapped task: {task_id}")
+    elif data.get("lane_id") != lane.get("lane_id"):
+        ctx.errors.append(f"lane assist lane mismatch: {task_id}")
+
+
+def _validate_referenced_assist(
+    ctx: _RaceValidation, event: dict, lane: dict, task_id: str, assist_event_id: str
+) -> None:
+    assist = ctx.assist_by_id.get(assist_event_id)
+    if assist is None:
+        ctx.errors.append(
+            f"lead answer references missing lane assist event: {task_id}/{assist_event_id}"
+        )
+        return
+    assist_data = assist.get("data", {})
+    if assist.get("actor_session") != ctx.lead:
+        ctx.errors.append(f"lead answer assist actor mismatch: {task_id}")
+    if assist_data.get("task_id") != task_id:
+        ctx.errors.append(f"lead answer assist task mismatch: {task_id}")
+    if assist_data.get("lane_id") != lane.get("lane_id"):
+        ctx.errors.append(f"lead answer assist lane mismatch: {task_id}")
+    if int(assist.get("created_ns", 0)) >= int(event.get("created_ns", 0)):
+        ctx.errors.append(f"lead answer lane assist must predate answer: {task_id}")
+
+
+def _validate_lead_answer_assist(ctx: _RaceValidation, event: dict, data: dict, lane: dict, task_id: str) -> None:
+    assist_event_id = data.get("assist_event_id")
+    if assist_event_id:
+        _validate_referenced_assist(ctx, event, lane, task_id, assist_event_id)
+        return
+    prior_assist = _latest_assist_event(
+        ctx.case_id,
+        task_id,
+        ctx.race_dir,
+        before_ns=int(event.get("created_ns", 0)),
+    )
+    if prior_assist is None:
+        ctx.errors.append(f"lead answer lane assist must predate answer: {task_id}")
+
+
+def _validate_secret_answer(data: dict, label: str, errors: list[str]) -> None:
+    expected = f"[REDACTED: host-local {data.get('secret_ref', '')}]"
+    if not data.get("secret_exact"):
+        errors.append(f"secret answer not marked exact: {label}")
+    if not SHA256_RE.fullmatch(str(data.get("secret_sha256", ""))):
+        errors.append(f"secret answer has invalid SHA-256: {label}")
+    if not str(data.get("secret_ref", "")).strip():
+        errors.append(f"secret answer missing ref: {label}")
+    if data.get("answer") != expected:
+        errors.append(f"secret answer display is not canonical redaction: {label}")
+
+
+def _validate_active_answer_payload(ctx: _RaceValidation, kind: str, data: dict, task_id: str, q: str) -> None:
+    label = f"{task_id}/{q}"
+    if not str(data.get("answer", "")).strip():
+        ctx.errors.append(f"empty answer: {label}")
+    if not data.get("evidence"):
+        ctx.errors.append(f"answer without evidence: {label}")
+    if data.get("answer_kind") == "secret_ref":
+        _validate_secret_answer(data, label, ctx.errors)
+    try:
+        task_path, _ = protocol.find_task(ctx.case_id, task_id)
+        if data.get("task_sha256") != protocol.sha256_file(task_path):
+            ctx.errors.append(f"answer task hash drift: {label}")
+    except ValueError as exc:
+        ctx.errors.append(f"invalid answer task {label}: {exc}")
+    if kind == "ANSWER_READY" and (data.get("semantic_risk") or data.get("needs_review")):
+        ctx.errors.append(f"READY answer carries review risk: {label}")
+
+
+def _validate_answer_event(ctx: _RaceValidation, event: dict, kind: str, data: dict, actor: str) -> None:
+    task_id = data.get("task_id", "")
+    lane = ctx.task_to_lane.get(task_id)
+    if lane is None:
+        ctx.errors.append(f"answer references unmapped task: {task_id}")
+        return
+    if actor not in {lane.get("assignee_session"), ctx.lead}:
+        ctx.errors.append(f"unauthorized answer actor: {actor} task={task_id}")
+    if actor == ctx.lead and actor != lane.get("assignee_session"):
+        _validate_lead_answer_assist(ctx, event, data, lane, task_id)
+    q = str(data.get("question_id", "")).upper()
+    if q not in lane.get("questions", []):
+        ctx.errors.append(f"answer question outside lane: {task_id}/{q}")
+    if kind in _ACTIVE_ANSWER_KINDS:
+        _validate_active_answer_payload(ctx, kind, data, task_id, q)
+
+
+def _validate_race_event(ctx: _RaceValidation, event: dict, close_ns: int | None) -> None:
+    kind = event.get("kind")
+    data = event.get("data", {})
+    actor = event.get("actor_session", "")
+    if (
+        close_ns is not None
+        and int(event.get("created_ns", 0)) > close_ns
+        and kind not in {"NOTE"}
+    ):
+        ctx.errors.append(f"event emitted after SESSION_CLOSED: {kind}")
+    if kind in {"PREFLIGHT_PASSED", "PREFLIGHT_FAILED"}:
+        _validate_preflight_event(ctx, event, kind, actor)
+    elif kind == "LANE_DISPATCHED":
+        _validate_lane_dispatch(ctx, data)
+    elif kind == "LANE_ASSISTED":
+        _validate_lane_assist(ctx, data, actor)
+    elif kind in {"ANSWER_CANDIDATE", "ANSWER_READY", "ANSWER_WITHDRAWN"}:
+        _validate_answer_event(ctx, event, kind, data, actor)
+    elif kind in _LEAD_ONLY_KINDS and actor != ctx.lead:
+        ctx.errors.append(f"lead-only event emitted by {actor}: {kind}")
+
+
 def validate_race_case(case_id: str, race_dir: Path | None = None) -> list[str]:
     errors: list[str] = []
     rows = iter_race_events(case_id, race_dir)
     events = [p for _, p in rows]
     opens = [p for p in events if p.get("kind") == "SESSION_OPEN"]
     closes = [p for p in events if p.get("kind") == "SESSION_CLOSED"]
-    if len(opens) != 1:
-        errors.append(f"expected exactly one SESSION_OPEN, got {len(opens)}")
-    if len(closes) > 1:
-        errors.append(f"expected at most one SESSION_CLOSED, got {len(closes)}")
+    _validate_session_markers(events, opens, closes, errors)
     close_ns = int(closes[0].get("created_ns", 0)) if closes else None
-    if opens:
-        opened = opens[0]
-        if opened.get("data", {}).get("dfir_preflight_required"):
-            prior_preflight = [
-                event
-                for event in events
-                if event.get("kind") == "PREFLIGHT_PASSED"
-                and int(event.get("created_ns", 0)) < int(opened.get("created_ns", 0))
-            ]
-            if not prior_preflight:
-                errors.append("race required DFIR preflight but no prior PREFLIGHT_PASSED exists")
-    lead = protocol.get_case_lead(case_id)
-    assist_by_id = {
-        event.get("event_id"): event
-        for event in events
-        if event.get("kind") == "LANE_ASSISTED" and event.get("event_id")
-    }
-    lanes: dict[str, dict] = {}
-    task_to_lane: dict[str, dict] = {}
+    ctx = _RaceValidation(
+        case_id=case_id,
+        race_dir=race_dir,
+        lead=protocol.get_case_lead(case_id),
+        opens=opens,
+        assist_by_id={
+            event.get("event_id"): event
+            for event in events
+            if event.get("kind") == "LANE_ASSISTED" and event.get("event_id")
+        },
+        errors=errors,
+        lanes={},
+        task_to_lane={},
+    )
     for event in events:
-        kind = event.get("kind")
-        data = event.get("data", {})
-        actor = event.get("actor_session", "")
-        if (
-            close_ns is not None
-            and int(event.get("created_ns", 0)) > close_ns
-            and kind not in {"NOTE"}
-        ):
-            errors.append(f"event emitted after SESSION_CLOSED: {kind}")
-        if kind in {"PREFLIGHT_PASSED", "PREFLIGHT_FAILED"}:
-            if actor != lead:
-                errors.append(f"preflight event emitted by non-lead: {actor}")
-            if opens and int(event.get("created_ns", 0)) > int(opens[0].get("created_ns", 0)):
-                errors.append(f"preflight event emitted after SESSION_OPEN: {kind}")
-        elif kind == "LANE_DISPATCHED":
-            lane_id = data.get("lane_id", "")
-            task_id = data.get("task_id", "")
-            if lane_id in lanes:
-                errors.append(f"duplicate lane id: {lane_id}")
-            if task_id in task_to_lane:
-                errors.append(f"task mapped to multiple lanes: {task_id}")
-            lanes[lane_id] = data; task_to_lane[task_id] = data
-            try:
-                task_path, metadata = protocol.find_task(case_id, task_id)
-                if data.get("task_sha256") != protocol.sha256_file(task_path):
-                    errors.append(f"lane task hash drift: {lane_id}/{task_id}")
-                if data.get("assignee_session") != metadata.get("assignee_session"):
-                    errors.append(f"lane assignee mismatch: {lane_id}/{task_id}")
-                errors.extend(f"{lane_id}/{task_id}: {e}" for e in protocol.validate_task_dispatch_anchor(task_path, metadata))
-            except ValueError as exc:
-                errors.append(f"invalid lane task {lane_id}/{task_id}: {exc}")
-        elif kind == "LANE_ASSISTED":
-            task_id = data.get("task_id", "")
-            lane = task_to_lane.get(task_id)
-            if actor != lead:
-                errors.append(f"lane assist emitted by non-lead: {actor} task={task_id}")
-            if lane is None:
-                errors.append(f"lane assist references unmapped task: {task_id}")
-            elif data.get("lane_id") != lane.get("lane_id"):
-                errors.append(f"lane assist lane mismatch: {task_id}")
-        elif kind in {"ANSWER_CANDIDATE", "ANSWER_READY", "ANSWER_WITHDRAWN"}:
-            task_id = data.get("task_id", "")
-            lane = task_to_lane.get(task_id)
-            if lane is None:
-                errors.append(f"answer references unmapped task: {task_id}")
-                continue
-            if actor not in {lane.get("assignee_session"), lead}:
-                errors.append(f"unauthorized answer actor: {actor} task={task_id}")
-            if (
-                actor == lead
-                and actor != lane.get("assignee_session")
-            ):
-                assist_event_id = data.get("assist_event_id")
-                if assist_event_id:
-                    assist = assist_by_id.get(assist_event_id)
-                    if assist is None:
-                        errors.append(
-                            f"lead answer references missing lane assist event: {task_id}/{assist_event_id}"
-                        )
-                    else:
-                        assist_data = assist.get("data", {})
-                        if assist.get("actor_session") != lead:
-                            errors.append(f"lead answer assist actor mismatch: {task_id}")
-                        if assist_data.get("task_id") != task_id:
-                            errors.append(f"lead answer assist task mismatch: {task_id}")
-                        if assist_data.get("lane_id") != lane.get("lane_id"):
-                            errors.append(f"lead answer assist lane mismatch: {task_id}")
-                        if int(assist.get("created_ns", 0)) >= int(event.get("created_ns", 0)):
-                            errors.append(f"lead answer lane assist must predate answer: {task_id}")
-                else:
-                    prior_assist = _latest_assist_event(
-                        case_id,
-                        task_id,
-                        race_dir,
-                        before_ns=int(event.get("created_ns", 0)),
-                    )
-                    if prior_assist is None:
-                        errors.append(f"lead answer lane assist must predate answer: {task_id}")
-            q = str(data.get("question_id", "")).upper()
-            if q not in lane.get("questions", []):
-                errors.append(f"answer question outside lane: {task_id}/{q}")
-            if kind in {"ANSWER_CANDIDATE", "ANSWER_READY"}:
-                if not str(data.get("answer", "")).strip():
-                    errors.append(f"empty answer: {task_id}/{q}")
-                if not data.get("evidence"):
-                    errors.append(f"answer without evidence: {task_id}/{q}")
-                if data.get("answer_kind") == "secret_ref":
-                    expected = f"[REDACTED: host-local {data.get('secret_ref', '')}]"
-                    if not data.get("secret_exact"):
-                        errors.append(f"secret answer not marked exact: {task_id}/{q}")
-                    if not SHA256_RE.fullmatch(str(data.get("secret_sha256", ""))):
-                        errors.append(f"secret answer has invalid SHA-256: {task_id}/{q}")
-                    if not str(data.get("secret_ref", "")).strip():
-                        errors.append(f"secret answer missing ref: {task_id}/{q}")
-                    if data.get("answer") != expected:
-                        errors.append(f"secret answer display is not canonical redaction: {task_id}/{q}")
-                try:
-                    task_path, _ = protocol.find_task(case_id, task_id)
-                    if data.get("task_sha256") != protocol.sha256_file(task_path):
-                        errors.append(f"answer task hash drift: {task_id}/{q}")
-                except ValueError as exc:
-                    errors.append(f"invalid answer task {task_id}/{q}: {exc}")
-                if kind == "ANSWER_READY" and (data.get("semantic_risk") or data.get("needs_review")):
-                    errors.append(f"READY answer carries review risk: {task_id}/{q}")
-        elif kind in {"ANSWER_SUBMITTED", "ANSWER_ACCEPTED", "ANSWER_REJECTED", "SESSION_OPEN", "SESSION_CLOSED"}:
-            if actor != lead:
-                errors.append(f"lead-only event emitted by {actor}: {kind}")
+        _validate_race_event(ctx, event, close_ns)
     return errors
 
 

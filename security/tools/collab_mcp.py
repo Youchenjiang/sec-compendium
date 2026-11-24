@@ -44,12 +44,13 @@ from pathlib import Path
 import collab_protocol as protocol
 import mcp_transports
 
-REGISTRY_PATH = protocol.REPO_ROOT / ".agent" / "mcp" / "registry.json"
-PROBE_PATH = protocol.REPO_ROOT / ".agent" / "mcp" / "tools" / "mcp_probe.py"
+MCP_DIR = protocol.REPO_ROOT / ".agent" / "mcp"
+REGISTRY_PATH = MCP_DIR / "registry.json"
+PROBE_PATH = MCP_DIR / "tools" / "mcp_probe.py"
 #: Node-side stdio bridge, copied into a guest for the ``vmrun_guest`` transport.
-NODE_BRIDGE_PATH = protocol.REPO_ROOT / ".agent" / "mcp" / "tools" / "mcp_node_bridge.py"
+NODE_BRIDGE_PATH = MCP_DIR / "tools" / "mcp_node_bridge.py"
 #: Host-side vmrun adapter that exposes a guest server as a local stdio child.
-VMRUN_BRIDGE_PATH = protocol.REPO_ROOT / ".agent" / "mcp" / "tools" / "mcp_vmrun_bridge.py"
+VMRUN_BRIDGE_PATH = MCP_DIR / "tools" / "mcp_vmrun_bridge.py"
 SECRETS_PATH = protocol.REPO_ROOT / "secrets.env"
 GATE_LOG_PATH = protocol.RUNTIME_DIR / "mcp-gate.jsonl"
 
@@ -108,7 +109,7 @@ def parse_secrets_env(text: str) -> dict[str, str]:
         value = value.strip()
         if len(value) >= 2 and value[0] == value[-1] and value[0] in "\"'":
             value = value[1:-1]
-        if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", key):
+        if not re.fullmatch(r"[A-Za-z_]\w*", key, re.ASCII):
             continue
         secrets[key] = value
     return secrets
@@ -130,7 +131,7 @@ def declared_secret_names(entry: dict) -> list[str]:
             if isinstance(name, str) and name.strip():
                 names.add(name.strip())
         break
-    return sorted(name for name in names if re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", name))
+    return sorted(name for name in names if re.fullmatch(r"[A-Za-z_]\w*", name, re.ASCII))
 
 
 def resolve_named_secrets(
@@ -270,6 +271,79 @@ def _allowlist_entry(policy: dict, server: str) -> dict | None:
     return None
 
 
+def _tool_denial(match: dict, server: str, tool: str | None) -> str | None:
+    allowed_tools = [str(item) for item in match.get("tools") or []]
+    if tool and tool not in allowed_tools and "*" not in allowed_tools:
+        return (
+            f"tool {tool!r} is not allowlisted for {server} "
+            f"(allowed: {', '.join(allowed_tools) or 'none'})"
+        )
+    return None
+
+
+def _expiry_denial(match: dict, server: str) -> str | None:
+    expires = match.get("expires")
+    if not expires:
+        return None
+    try:
+        expired = date.fromisoformat(str(expires)) < date.today()
+    except ValueError:
+        expired = True
+    if expired:
+        return f"allowlist entry for {server} expired on {expires}"
+    return None
+
+
+def _deny_pattern_denial(match: dict, values: list[str]) -> str | None:
+    for pattern in match.get("deny_patterns") or []:
+        try:
+            matcher = re.compile(str(pattern))
+        except re.error:
+            continue
+        hit = next((value for value in values if matcher.search(value)), None)
+        if hit is not None:
+            return (
+                f"argument matches deny pattern {pattern!r}: "
+                f"{hit[:120]!r}"
+            )
+    return None
+
+
+def _path_scope_denial(match: dict, server: str, values: list[str]) -> str | None:
+    roots = [str(root) for root in match.get("paths_allow") or []]
+    for value in values:
+        if _looks_like_path(value) and not _within_roots(value, roots):
+            return (
+                f"path argument outside the allowlisted scope for {server}: {value[:160]!r} "
+                f"(allowed roots: {', '.join(roots) or 'none declared'})"
+            )
+    return None
+
+
+def _authorization_denial(
+    match: dict,
+    policy: dict,
+    server: str,
+    authorized_reason: str,
+    process_env: dict[str, str] | None,
+) -> str | None:
+    if not match.get("requires_authorization", True):
+        return None
+    env_name = match.get("authorization_env") or policy["authorization_env"]
+    env = os.environ if process_env is None else process_env
+    if not str(authorized_reason or "").strip():
+        return (
+            f"{server} is command-capable: pass --authorized \"<why this call is "
+            f"authorized>\" so the approval is recorded in the audit log"
+        )
+    if not env.get(env_name):
+        return (
+            f"{server} is command-capable and requires {env_name} to be set "
+            "(put the value in secrets.env; the registry only records the name)"
+        )
+    return None
+
+
 def gate_decision(
     registry: dict,
     server: str,
@@ -315,70 +389,19 @@ def gate_decision(
         if key in match
     }
 
-    allowed_tools = [str(item) for item in match.get("tools") or []]
-    if tool and tool not in allowed_tools and "*" not in allowed_tools:
-        decision["decision"] = "deny"
-        decision["reason"] = (
-            f"tool {tool!r} is not allowlisted for {server} "
-            f"(allowed: {', '.join(allowed_tools) or 'none'})"
+    reason = _tool_denial(match, server, tool) or _expiry_denial(match, server)
+    if reason is None:
+        values = list(_iter_strings(arguments or {}))
+        reason = (
+            _deny_pattern_denial(match, values)
+            or _path_scope_denial(match, server, values)
+            or _authorization_denial(match, policy, server, authorized_reason, process_env)
         )
-        return decision
-
-    expires = match.get("expires")
-    if expires:
-        try:
-            expired = date.fromisoformat(str(expires)) < date.today()
-        except ValueError:
-            expired = True
-        if expired:
-            decision["decision"] = "deny"
-            decision["reason"] = f"allowlist entry for {server} expired on {expires}"
-            return decision
-
-    values = list(_iter_strings(arguments or {}))
-    for pattern in match.get("deny_patterns") or []:
-        try:
-            matcher = re.compile(str(pattern))
-        except re.error:
-            continue
-        for value in values:
-            if matcher.search(value):
-                decision["decision"] = "deny"
-                decision["reason"] = (
-                    f"argument matches deny pattern {pattern!r}: "
-                    f"{value[:120]!r}"
-                )
-                return decision
-
-    roots = [str(root) for root in match.get("paths_allow") or []]
-    for value in values:
-        if _looks_like_path(value) and not _within_roots(value, roots):
-            decision["decision"] = "deny"
-            decision["reason"] = (
-                f"path argument outside the allowlisted scope for {server}: {value[:160]!r} "
-                f"(allowed roots: {', '.join(roots) or 'none declared'})"
-            )
-            return decision
-
-    if match.get("requires_authorization", True):
-        env_name = match.get("authorization_env") or policy["authorization_env"]
-        env = os.environ if process_env is None else process_env
-        if not str(authorized_reason or "").strip():
-            decision["decision"] = "deny"
-            decision["reason"] = (
-                f"{server} is command-capable: pass --authorized \"<why this call is "
-                f"authorized>\" so the approval is recorded in the audit log"
-            )
-            return decision
-        if not env.get(env_name):
-            decision["decision"] = "deny"
-            decision["reason"] = (
-                f"{server} is command-capable and requires {env_name} to be set "
-                "(put the value in secrets.env; the registry only records the name)"
-            )
-            return decision
-
-    decision["reason"] = "allowlisted"
+    if reason:
+        decision["decision"] = "deny"
+        decision["reason"] = reason
+    else:
+        decision["reason"] = "allowlisted"
     return decision
 
 
@@ -461,6 +484,24 @@ def _declared_binary(venv: Path, name: str) -> Path:
     return venv / sub / f"{name}{suffix}"
 
 
+def _runner_binary(venv: Path, binary: str, require_provisioned: bool, missing_message: str) -> Path:
+    """Find ``binary`` in the venv, or fall back to its declared path for an unprovisioned plan."""
+    found = _venv_binary(venv, binary)
+    if found is not None:
+        return found
+    if require_provisioned:
+        raise ValueError(missing_message)
+    return _declared_binary(venv, binary)
+
+
+def _runner_env(runner: dict) -> dict[str, str]:
+    env: dict[str, str] = {}
+    for key, value in (runner.get("env") or {}).items():
+        path_value = protocol.REPO_ROOT / value
+        env[key] = str(path_value if not Path(value).is_absolute() else Path(value))
+    return env
+
+
 def resolve_runner(entry: dict, *, require_provisioned: bool = True) -> dict:
     """Turn a registry entry's ``runner`` block into concrete executables.
 
@@ -497,25 +538,20 @@ def resolve_runner(entry: dict, *, require_provisioned: bool = True) -> dict:
     if not script:
         raise ValueError(f"{name}: runner.script is required")
 
-    command = _venv_binary(venv, script)
-    if command is None:
-        if require_provisioned:
-            raise ValueError(
-                f"{name}: {script!r} not found under {venv_rel}; "
-                "the runtime is incomplete or the install recipe was not run"
-            )
-        command = _declared_binary(venv, script)
-
-    python = _venv_binary(venv, "python")
-    if python is None:
-        if require_provisioned:
-            raise ValueError(f"{name}: python interpreter missing in {venv_rel}")
-        python = _declared_binary(venv, "python")
-
-    env: dict[str, str] = {}
-    for key, value in (runner.get("env") or {}).items():
-        path_value = protocol.REPO_ROOT / value
-        env[key] = str(path_value if not Path(value).is_absolute() else Path(value))
+    command = _runner_binary(
+        venv,
+        script,
+        require_provisioned,
+        f"{name}: {script!r} not found under {venv_rel}; "
+        "the runtime is incomplete or the install recipe was not run",
+    )
+    python = _runner_binary(
+        venv,
+        "python",
+        require_provisioned,
+        f"{name}: python interpreter missing in {venv_rel}",
+    )
+    env = _runner_env(runner)
 
     notes = []
     if not provisioned:
@@ -610,7 +646,6 @@ def resolve_session_plan(
         transport=transport,
         repo_root=protocol.REPO_ROOT,
         probe_python=probe_python,
-        policy=policy,
         guest_bridge=_policy_path(policy.get("guest_bridge"), NODE_BRIDGE_PATH),
         vmrun_bridge=_policy_path(policy.get("vmrun_bridge"), VMRUN_BRIDGE_PATH),
         secret_lookup=lookup if execute else None,
@@ -651,6 +686,97 @@ def _parse_sections(stdout: str) -> dict:
     return decoded
 
 
+def _session_secrets(server: str, entry: dict, transport: str, plan: dict) -> dict[str, str]:
+    """Secret values injected into the probe child (always empty for node transports)."""
+    binding = secrets_binding(entry)
+    if transport != "stdio_local":
+        # Node transports run the wrapper on the host gateway only; the server's
+        # own declared secrets would have to cross the node boundary, which is
+        # exactly what the placement rules forbid. Transport secrets (node
+        # addressing, guest credentials) were already resolved into ``plan.env``
+        # by the planner, and a missing one failed the plan.
+        forwarded = set(plan.get("forwarded_secrets") or [])
+        blocked = sorted(set(declared_secret_names(entry)) - forwarded)
+        if blocked:
+            raise ValueError(
+                f"{server}: secrets {', '.join(blocked)} cannot reach a {transport} node; "
+                "place the server on host_gateway, or declare each name in "
+                "runner.node.container.secrets to forward it explicitly"
+            )
+        return {}
+    secrets, missing = resolve_named_secrets(plan["secret_names"])
+    if missing and binding["required"]:
+        raise ValueError(
+            f"{server}: missing required secret env names {', '.join(missing)}; "
+            "add them to secrets.env (the registry records names only)"
+        )
+    # ``env_from_secrets`` renames a declared secret onto the variable its
+    # wrapper expects; values never live in the plan.
+    return {
+        plan["env_from_secrets"].get(name, name): value for name, value in secrets.items()
+    }
+
+
+def _probe_command(plan: dict, call: str | None, arguments: dict | None) -> list[str]:
+    cmd = [
+        plan["probe_python"],
+        str(PROBE_PATH),
+        "--cmd",
+        plan["command"],
+        "--path-prepend",
+        plan["path_prepend"],
+    ]
+    for arg in plan["args"]:
+        # Server argv values routinely start with "-" (e.g. ``-t``); pass them in
+        # ``--arg=value`` form so argparse never mistakes them for its own flags.
+        cmd.extend([f"--arg={arg}"])
+    if call:
+        cmd.extend(["--call", call])
+        cmd.extend(["--arguments", json.dumps(arguments or {})])
+    return cmd
+
+
+def _run_probe(
+    server: str, plan: dict, cmd: list[str], injected: dict[str, str]
+) -> subprocess.CompletedProcess:
+    try:
+        return subprocess.run(
+            cmd,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            env=_child_env(plan, injected),
+            cwd=str(protocol.REPO_ROOT),
+            timeout=SESSION_TIMEOUT_SECONDS,
+            check=False,  # the probe's exit code is inspected by the caller
+        )
+    except subprocess.TimeoutExpired as exc:
+        raise ValueError(
+            f"MCP session for {server!r} exceeded {SESSION_TIMEOUT_SECONDS}s"
+        ) from exc
+
+
+def _probe_detail(proc: subprocess.CompletedProcess) -> str:
+    detail = (proc.stderr or proc.stdout or "").strip()[-500:]
+    return f": {detail}" if detail else ""
+
+
+def _require_session_sections(
+    server: str, call: str | None, proc: subprocess.CompletedProcess, sections: dict
+) -> None:
+    if "initialize" not in sections:
+        raise ValueError(
+            f"MCP session for {server!r} failed to initialize (exit {proc.returncode})"
+            + _probe_detail(proc)
+        )
+    if call and "tools/call.result" not in sections:
+        raise ValueError(
+            f"MCP call {call!r} on {server!r} produced no result"
+            + _probe_detail(proc)
+        )
+
+
 def run_session(
     registry: dict,
     server: str,
@@ -680,84 +806,10 @@ def run_session(
         node=holder,
     )
     plan = resolve_session_plan(entry, registry)
-    binding = secrets_binding(entry)
-    injected: dict[str, str] = {}
-
-    if transport != "stdio_local":
-        # Node transports run the wrapper on the host gateway only; the server's
-        # own declared secrets would have to cross the node boundary, which is
-        # exactly what the placement rules forbid. Transport secrets (node
-        # addressing, guest credentials) were already resolved into ``plan.env``
-        # by the planner, and a missing one failed the plan.
-        forwarded = set(plan.get("forwarded_secrets") or [])
-        blocked = sorted(set(declared_secret_names(entry)) - forwarded)
-        if blocked:
-            raise ValueError(
-                f"{server}: secrets {', '.join(blocked)} cannot reach a {transport} node; "
-                "place the server on host_gateway, or declare each name in "
-                "runner.node.container.secrets to forward it explicitly"
-            )
-    else:
-        secrets, missing = resolve_named_secrets(plan["secret_names"])
-        if missing and binding["required"]:
-            raise ValueError(
-                f"{server}: missing required secret env names {', '.join(missing)}; "
-                "add them to secrets.env (the registry records names only)"
-            )
-        injected = secrets
-        # ``env_from_secrets`` renames a declared secret onto the variable its
-        # wrapper expects; values never live in the plan.
-        injected = {
-            plan["env_from_secrets"].get(name, name): value for name, value in secrets.items()
-        }
-
-    cmd = [
-        plan["probe_python"],
-        str(PROBE_PATH),
-        "--cmd",
-        plan["command"],
-        "--path-prepend",
-        plan["path_prepend"],
-    ]
-    for arg in plan["args"]:
-        # Server argv values routinely start with "-" (e.g. ``-t``); pass them in
-        # ``--arg=value`` form so argparse never mistakes them for its own flags.
-        cmd.extend([f"--arg={arg}"])
-    if call:
-        cmd.extend(["--call", call])
-        cmd.extend(["--arguments", json.dumps(arguments or {})])
-
-    try:
-        proc = subprocess.run(
-            cmd,
-            capture_output=True,
-            text=True,
-            encoding="utf-8",
-            errors="replace",
-            env=_child_env(plan, injected),
-            cwd=str(protocol.REPO_ROOT),
-            timeout=SESSION_TIMEOUT_SECONDS,
-            check=False,  # the probe's exit code is inspected below
-        )
-    except subprocess.TimeoutExpired as exc:
-        raise ValueError(
-            f"MCP session for {server!r} exceeded {SESSION_TIMEOUT_SECONDS}s"
-        ) from exc
-
+    injected = _session_secrets(server, entry, transport, plan)
+    proc = _run_probe(server, plan, _probe_command(plan, call, arguments), injected)
     sections = _parse_sections(proc.stdout or "")
-    if "initialize" not in sections:
-        detail = (proc.stderr or proc.stdout or "").strip()[-500:]
-        raise ValueError(
-            f"MCP session for {server!r} failed to initialize (exit {proc.returncode})"
-            + (f": {detail}" if detail else "")
-        )
-
-    if call and "tools/call.result" not in sections:
-        detail = (proc.stderr or proc.stdout or "").strip()[-500:]
-        raise ValueError(
-            f"MCP call {call!r} on {server!r} produced no result"
-            + (f": {detail}" if detail else "")
-        )
+    _require_session_sections(server, call, proc, sections)
     return sections
 
 
@@ -779,41 +831,44 @@ def _parse_arguments(raw: str) -> dict:
     return arguments
 
 
+def _server_status_line(registry: dict, node_policy: dict, entry: dict) -> str:
+    name = entry.get("name", "?")
+    runner = entry.get("runner") or {}
+    venv_rel = runner.get("venv", "")
+    venv = protocol.REPO_ROOT / venv_rel if venv_rel else None
+    script_ok = bool(venv and _venv_binary(venv, runner.get("script", "script")))
+    runtime = "ready" if script_ok else "missing"
+    python_req = entry.get("runtime", {}).get("requires_python", "any")
+    placement = entry.get("placement") or {}
+    try:
+        transport = mcp_transports.transport_for(entry, policy=node_policy)
+    except mcp_transports.TransportError as exc:
+        transport = f"invalid({exc})"
+    gated = set(capability_classes(entry)) & set(authorization_policy(registry)["applies_to_capabilities"])
+    return (
+        f"{name} status={entry.get('status', 'unknown')} "
+        f"requires_python={python_req} runtime={runtime} "
+        f"venv={venv_rel or '-'} holder={placement.get('holder_class', '-')} "
+        f"transport={transport} "
+        f"capabilities={','.join(capability_classes(entry))} "
+        f"gated={'yes' if gated else 'no'} "
+        f"docs={entry.get('docs', '-')}"
+    )
+
+
 def command_list(args: argparse.Namespace) -> int:
     """Offline: show registered servers and whether their runtime is provisioned."""
     registry = load_registry()
     servers = registry.get("servers", [])
     if not servers:
         print("No MCP servers registered.")
-        return 0
-
-    node_policy = mcp_transports.normalise_policy(registry)
-    for entry in servers:
-        name = entry.get("name", "?")
-        runner = entry.get("runner") or {}
-        venv_rel = runner.get("venv", "")
-        venv = protocol.REPO_ROOT / venv_rel if venv_rel else None
-        script_ok = bool(venv and _venv_binary(venv, runner.get("script", "script")))
-        runtime = "ready" if script_ok else "missing"
-        python_req = entry.get("runtime", {}).get("requires_python", "any")
-        placement = entry.get("placement") or {}
-        try:
-            transport = mcp_transports.transport_for(entry, policy=node_policy)
-        except mcp_transports.TransportError as exc:
-            transport = f"invalid({exc})"
-        print(
-            f"{name} status={entry.get('status', 'unknown')} "
-            f"requires_python={python_req} runtime={runtime} "
-            f"venv={venv_rel or '-'} holder={placement.get('holder_class', '-')} "
-            f"transport={transport} "
-            f"capabilities={','.join(capability_classes(entry))} "
-            f"gated={'yes' if set(capability_classes(entry)) & set(authorization_policy(registry)['applies_to_capabilities']) else 'no'} "
-            f"docs={entry.get('docs', '-')}"
-        )
-
-    retired = registry.get("retired", [])
-    for entry in retired:
-        print(f"{entry.get('name', '?')} status=retired replaced_by={entry.get('replaced_by', '-')}")
+    else:
+        node_policy = mcp_transports.normalise_policy(registry)
+        for entry in servers:
+            print(_server_status_line(registry, node_policy, entry))
+        retired = registry.get("retired", [])
+        for entry in retired:
+            print(f"{entry.get('name', '?')} status=retired replaced_by={entry.get('replaced_by', '-')}")
     return 0
 
 
@@ -831,6 +886,24 @@ def command_tools(args: argparse.Namespace) -> int:
         else:
             print(f"  {tool.get('name')}")
     return 0
+
+
+def _call_error_message(result: dict) -> str:
+    payload = result.get("content") or []
+    return payload[0].get("text") if payload and isinstance(payload[0], dict) else str(result)
+
+
+def _print_call_result(result: dict) -> None:
+    structured = result.get("structuredContent")
+    if isinstance(structured, dict) and "result" in structured:
+        print(structured["result"])
+        return
+    payload = result.get("content") or []
+    for block in payload if isinstance(payload, list) else []:
+        if isinstance(block, dict) and block.get("text") is not None:
+            print(block["text"])
+    if not payload:
+        print(json.dumps(structured, indent=2, ensure_ascii=False, default=str))
 
 
 def command_call(args: argparse.Namespace) -> int:
@@ -855,21 +928,42 @@ def command_call(args: argparse.Namespace) -> int:
         return 0 if not result.get("isError") else 1
 
     if result.get("isError"):
-        payload = result.get("content") or []
-        message = payload[0].get("text") if payload and isinstance(payload[0], dict) else str(result)
-        raise ValueError(f"{args.tool} failed: {message}")
-
-    structured = result.get("structuredContent")
-    if isinstance(structured, dict) and "result" in structured:
-        print(structured["result"])
-    else:
-        payload = result.get("content") or []
-        for block in payload if isinstance(payload, list) else []:
-            if isinstance(block, dict) and block.get("text") is not None:
-                print(block["text"])
-        if not payload:
-            print(json.dumps(structured, indent=2, ensure_ascii=False, default=str))
+        raise ValueError(f"{args.tool} failed: {_call_error_message(result)}")
+    _print_call_result(result)
     return 0
+
+
+_LAUNCH_JSON_KEYS = (
+    "transport",
+    "holder",
+    "command",
+    "args",
+    "path_prepend",
+    "secret_names",
+    "forwarded_secrets",
+    "notes",
+)
+
+
+def _launch_printable(plan: dict) -> dict:
+    printable = {key: plan[key] for key in _LAUNCH_JSON_KEYS if key in plan}
+    printable["env_names"] = sorted((plan.get("env") or {}))
+    printable["probe_python"] = plan["probe_python"]
+    return printable
+
+
+def _print_launch_plan(server: str, plan: dict) -> None:
+    print(
+        f"{server} holder={plan['holder']} "
+        + mcp_transports.describe(plan, repo_root=protocol.REPO_ROOT)
+    )
+    print(f"  probe: {plan['probe_python']}")
+    if plan["forwarded_secrets"]:
+        print(f"  forwarded into node: {', '.join(plan['forwarded_secrets'])}")
+    elif plan["transport"] != "stdio_local":
+        print("  forwarded into node: (none - node transports carry no secret values)")
+    for note in plan.get("notes") or []:
+        print(f"  note: {note}")
 
 
 def command_launch(args: argparse.Namespace) -> int:
@@ -884,36 +978,9 @@ def command_launch(args: argparse.Namespace) -> int:
     # printed, so this view can be pasted into a report or an issue.
     plan = resolve_session_plan(entry, registry, execute=False)
     if args.json:
-        printable = {
-            key: plan[key]
-            for key in (
-                "transport",
-                "holder",
-                "command",
-                "args",
-                "path_prepend",
-                "secret_names",
-                "forwarded_secrets",
-                "notes",
-            )
-            if key in plan
-        }
-        printable["env_names"] = sorted((plan.get("env") or {}))
-        printable["probe_python"] = plan["probe_python"]
-        print(json.dumps(printable, indent=2, ensure_ascii=False))
-        return 0
-
-    print(
-        f"{args.server} holder={plan['holder']} "
-        + mcp_transports.describe(plan, repo_root=protocol.REPO_ROOT)
-    )
-    print(f"  probe: {plan['probe_python']}")
-    if plan["forwarded_secrets"]:
-        print(f"  forwarded into node: {', '.join(plan['forwarded_secrets'])}")
-    elif plan["transport"] != "stdio_local":
-        print("  forwarded into node: (none - node transports carry no secret values)")
-    for note in plan.get("notes") or []:
-        print(f"  note: {note}")
+        print(json.dumps(_launch_printable(plan), indent=2, ensure_ascii=False))
+    else:
+        _print_launch_plan(args.server, plan)
     return 0
 
 
@@ -961,7 +1028,6 @@ def command_secrets(args: argparse.Namespace) -> int:
     )
     if not binding["env"]:
         print("  (no secret declared: the registry grants this server no variables)")
-        return 0
     for name in binding["env"]:
         print(f"  {name} {'present' if name in values else 'missing'}")
     return 0

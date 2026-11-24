@@ -348,10 +348,11 @@ class McpAuthorizationGateTests(unittest.TestCase):
         self.assertIn("expired", decision["reason"])
 
     def test_enforce_gate_raises_on_denial(self) -> None:
+        registry = gate_registry()
         with tempfile.TemporaryDirectory() as tmp:
             with patch.object(collab_mcp, "GATE_LOG_PATH", Path(tmp) / "gate.jsonl"):
                 with self.assertRaises(ValueError) as ctx:
-                    collab_mcp.enforce_gate(gate_registry(), "danger", "run_command", {})
+                    collab_mcp.enforce_gate(registry, "danger", "run_command", {})
         self.assertIn("authorization gate denied", str(ctx.exception))
 
     def test_record_gate_decision_appends_an_audit_line(self) -> None:
@@ -379,7 +380,7 @@ class McpAuthorizationGateTests(unittest.TestCase):
     def test_command_gate_returns_zero_on_allow_and_two_on_deny(self) -> None:
         registry = gate_registry([ALLOW_ENTRY])
         with tempfile.TemporaryDirectory() as tmp:
-            with patch.object(collab_mcp, "load_registry", lambda: registry), patch.object(
+            with patch.object(collab_mcp, "load_registry", return_value=registry), patch.object(
                 collab_mcp, "GATE_LOG_PATH", Path(tmp) / "gate.jsonl"
             ):
                 buffer = io.StringIO()
@@ -404,7 +405,7 @@ class McpAuthorizationGateTests(unittest.TestCase):
 
     def test_command_gate_reports_unknown_server_as_denied(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
-            with patch.object(collab_mcp, "load_registry", lambda: gate_registry()), patch.object(
+            with patch.object(collab_mcp, "load_registry", return_value=gate_registry()), patch.object(
                 collab_mcp, "GATE_LOG_PATH", Path(tmp) / "gate.jsonl"
             ):
                 buffer = io.StringIO()
@@ -486,7 +487,7 @@ class McpSecretsTests(unittest.TestCase):
                 }
             ]
         }
-        with patch.object(collab_mcp, "load_registry", lambda: registry), patch.object(
+        with patch.object(collab_mcp, "load_registry", return_value=registry), patch.object(
             collab_mcp, "SECRETS_PATH", Path("definitely-absent-secrets.env")
         ), patch.dict(os.environ, {"HITCON_MCP_TEST_TOKEN": "super-secret-value"}, clear=False):
             buffer = io.StringIO()

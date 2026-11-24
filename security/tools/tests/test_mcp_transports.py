@@ -203,7 +203,6 @@ class SshPlanTests(unittest.TestCase):
             transport="ssh",
             repo_root=REPO_ROOT,
             probe_python=Path(sys.executable),
-            policy={},
             guest_bridge=NODE_BRIDGE,
             vmrun_bridge=VMRUN_BRIDGE,
             which=fake_which({"ssh": "/usr/bin/ssh"}),
@@ -261,16 +260,18 @@ class SshPlanTests(unittest.TestCase):
         self.assertEqual(proc.stdout, "two words|a$b|")
 
     def test_missing_ssh_binary_is_reported(self) -> None:
+        entry = ssh_entry()
+        probe_python = Path(sys.executable)
+        which = fake_which({})
         with self.assertRaises(mcp_transports.TransportError) as ctx:
             mcp_transports.plan_launch(
-                ssh_entry(),
+                entry,
                 transport="ssh",
                 repo_root=REPO_ROOT,
-                probe_python=Path(sys.executable),
-                policy={},
+                probe_python=probe_python,
                 guest_bridge=NODE_BRIDGE,
                 vmrun_bridge=VMRUN_BRIDGE,
-                which=fake_which({}),
+                which=which,
             )
         self.assertIn("'ssh' is required", str(ctx.exception))
 
@@ -285,7 +286,6 @@ class SshPlanTests(unittest.TestCase):
             transport="ssh",
             repo_root=REPO_ROOT,
             probe_python=Path(sys.executable),
-            policy={},
             guest_bridge=NODE_BRIDGE,
             vmrun_bridge=VMRUN_BRIDGE,
             which=fake_which({"ssh": "/usr/bin/ssh", "sshpass": "/usr/bin/sshpass"}),
@@ -303,7 +303,6 @@ class SshPlanTests(unittest.TestCase):
             transport="ssh",
             repo_root=REPO_ROOT,
             probe_python=Path(sys.executable),
-            policy={},
             guest_bridge=NODE_BRIDGE,
             vmrun_bridge=VMRUN_BRIDGE,
             which=fake_which({"ssh": "/usr/bin/ssh", "sshpass": "/usr/bin/sshpass"}),
@@ -332,7 +331,6 @@ class ContainerPlanTests(unittest.TestCase):
             transport="container",
             repo_root=REPO_ROOT,
             probe_python=Path(sys.executable),
-            policy={},
             guest_bridge=NODE_BRIDGE,
             vmrun_bridge=VMRUN_BRIDGE,
             which=fake_which({"docker": "/usr/bin/docker"}),
@@ -352,17 +350,20 @@ class ContainerPlanTests(unittest.TestCase):
     def test_mounts_may_not_escape_the_repository(self) -> None:
         for host in ("/tmp", "C:/Users", "../outside"):
             with self.subTest(host=host):
+                entry = container_entry(mounts=[{"host": host, "container": "/work"}])
                 with self.assertRaises(mcp_transports.TransportError) as ctx:
-                    self.plan(container_entry(mounts=[{"host": host, "container": "/work"}]))
+                    self.plan(entry)
                 self.assertIn("outside the repository", str(ctx.exception))
 
     def test_mount_target_must_be_absolute_and_mode_known(self) -> None:
+        relative_target = container_entry(mounts=[{"host": ".agent/mcp/.verify", "container": "work"}])
         with self.assertRaises(mcp_transports.TransportError):
-            self.plan(container_entry(mounts=[{"host": ".agent/mcp/.verify", "container": "work"}]))
+            self.plan(relative_target)
+        unknown_mode = container_entry(
+            mounts=[{"host": ".agent/mcp/.verify", "container": "/work", "mode": "z"}]
+        )
         with self.assertRaises(mcp_transports.TransportError):
-            self.plan(
-                container_entry(mounts=[{"host": ".agent/mcp/.verify", "container": "/work", "mode": "z"}])
-            )
+            self.plan(unknown_mode)
 
     def test_declared_secrets_are_forwarded_by_name_never_by_value(self) -> None:
         plan = self.plan(container_entry(secrets=["SEMGREP_APP_TOKEN"]))
@@ -373,8 +374,9 @@ class ContainerPlanTests(unittest.TestCase):
         self.assertNotIn("=", plan["args"][plan["args"].index("SEMGREP_APP_TOKEN")])
 
     def test_secret_names_are_validated(self) -> None:
+        entry = container_entry(secrets=["not a name"])
         with self.assertRaises(mcp_transports.TransportError):
-            self.plan(container_entry(secrets=["not a name"]))
+            self.plan(entry)
 
     def test_exec_env_is_passed_literally(self) -> None:
         entry = container_entry()
@@ -390,7 +392,6 @@ class VmrunPlanTests(unittest.TestCase):
             transport="vmrun_guest",
             repo_root=REPO_ROOT,
             probe_python=Path(sys.executable),
-            policy={},
             guest_bridge=NODE_BRIDGE,
             vmrun_bridge=VMRUN_BRIDGE,
         )
@@ -429,28 +430,31 @@ class VmrunPlanTests(unittest.TestCase):
         self.assertIn(r"C:\VMs\FLARE-VM\FLARE-VM.vmx", plan["args"])
 
     def test_missing_bridge_scripts_are_reported(self) -> None:
+        entry = self.entry()
+        probe_python = Path(sys.executable)
+        missing_bridge = REPO_ROOT / "does-not-exist.py"
         with self.assertRaises(mcp_transports.TransportError):
             mcp_transports.plan_launch(
-                self.entry(),
+                entry,
                 transport="vmrun_guest",
                 repo_root=REPO_ROOT,
-                probe_python=Path(sys.executable),
-                policy={},
-                guest_bridge=REPO_ROOT / "does-not-exist.py",
+                probe_python=probe_python,
+                guest_bridge=missing_bridge,
                 vmrun_bridge=VMRUN_BRIDGE,
             )
 
     def test_node_transport_without_a_node_block_is_reported(self) -> None:
+        probe_python = Path(sys.executable)
+        which = fake_which({"ssh": "/usr/bin/ssh"})
         with self.assertRaises(mcp_transports.TransportError) as ctx:
             mcp_transports.plan_launch(
                 {"name": "x", "placement": {"holder_class": "kali"}},
                 transport="ssh",
                 repo_root=REPO_ROOT,
-                probe_python=Path(sys.executable),
-                policy={},
+                probe_python=probe_python,
                 guest_bridge=NODE_BRIDGE,
                 vmrun_bridge=VMRUN_BRIDGE,
-                which=fake_which({"ssh": "/usr/bin/ssh"}),
+                which=which,
             )
         self.assertIn("needs a runner.node block", str(ctx.exception))
 

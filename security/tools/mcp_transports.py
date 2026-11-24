@@ -74,7 +74,7 @@ DEFAULT_IDLE_SECONDS = "120"
 DEFAULT_COPY_TIMEOUT = "60"
 DEFAULT_RESPONSE_TIMEOUT = "120"
 
-_ENV_NAME_RE = re.compile(r"[A-Za-z_][A-Za-z0-9_]*")
+_ENV_NAME_RE = re.compile(r"[A-Za-z_]\w*", re.ASCII)
 
 
 class TransportError(ValueError):
@@ -373,6 +373,44 @@ def _plan_ssh(entry_name: str, node: dict, exec_block: dict, *, which, secret_lo
     }
 
 
+def _container_mount(entry_name: str, mount, repo_root: Path) -> tuple[str, str]:
+    """Validate one container mount; return its ``-v`` value and its plan note."""
+    if not isinstance(mount, dict) or not mount.get("host") or not mount.get("container"):
+        raise TransportError(
+            f"{entry_name}: each container mount needs 'host' and 'container', got {mount!r}"
+        )
+    host_rel = str(mount["host"])
+    host_path = Path(host_rel)
+    if not host_path.is_absolute():
+        host_path = repo_root / host_path
+    host_path = host_path.resolve()
+    root = Path(repo_root).resolve()
+    if host_path != root and root not in host_path.parents:
+        raise TransportError(
+            f"{entry_name}: refusing to mount {host_rel!r} outside the repository "
+            f"({repo_root}); nodes never receive the home directory or the filesystem root"
+        )
+    container_path = str(mount["container"])
+    if not container_path.startswith("/"):
+        raise TransportError(
+            f"{entry_name}: container mount target must be an absolute path, got {container_path!r}"
+        )
+    mode = str(mount.get("mode") or "ro")
+    if mode not in ("ro", "rw"):
+        raise TransportError(f"{entry_name}: container mount mode must be 'ro' or 'rw'")
+    return f"{host_path}:{container_path}:{mode}", f"mount {host_rel} -> {container_path}:{mode}"
+
+
+def _container_secret_name(entry_name: str, name) -> str:
+    secret_name = str(name).strip()
+    if not _ENV_NAME_RE.fullmatch(secret_name):
+        raise TransportError(
+            f"{entry_name}: container.secrets entries must be environment variable names, "
+            f"got {name!r}"
+        )
+    return secret_name
+
+
 def _plan_container(
     entry_name: str, node: dict, exec_block: dict, *, repo_root: Path, which, secret_lookup
 ) -> dict:
@@ -397,31 +435,9 @@ def _plan_container(
     if not isinstance(mounts, list):
         raise TransportError(f"{entry_name}: runner.node.container.mounts must be a list")
     for mount in mounts:
-        if not isinstance(mount, dict) or not mount.get("host") or not mount.get("container"):
-            raise TransportError(
-                f"{entry_name}: each container mount needs 'host' and 'container', got {mount!r}"
-            )
-        host_rel = str(mount["host"])
-        host_path = Path(host_rel)
-        if not host_path.is_absolute():
-            host_path = repo_root / host_path
-        host_path = host_path.resolve()
-        root = Path(repo_root).resolve()
-        if host_path != root and root not in host_path.parents:
-            raise TransportError(
-                f"{entry_name}: refusing to mount {host_rel!r} outside the repository "
-                f"({repo_root}); nodes never receive the home directory or the filesystem root"
-            )
-        container_path = str(mount["container"])
-        if not container_path.startswith("/"):
-            raise TransportError(
-                f"{entry_name}: container mount target must be an absolute path, got {container_path!r}"
-            )
-        mode = str(mount.get("mode") or "ro")
-        if mode not in ("ro", "rw"):
-            raise TransportError(f"{entry_name}: container mount mode must be 'ro' or 'rw'")
-        args.extend(["-v", f"{host_path}:{container_path}:{mode}"])
-        notes.append(f"mount {host_rel} -> {container_path}:{mode}")
+        volume, note = _container_mount(entry_name, mount, repo_root)
+        args.extend(["-v", volume])
+        notes.append(note)
 
     workdir = conf.get("workdir")
     if workdir:
@@ -433,12 +449,7 @@ def _plan_container(
     secret_names: list[str] = []
     env: dict[str, str] = {}
     for name in conf.get("secrets") or []:
-        secret_name = str(name).strip()
-        if not _ENV_NAME_RE.fullmatch(secret_name):
-            raise TransportError(
-                f"{entry_name}: container.secrets entries must be environment variable names, "
-                f"got {name!r}"
-            )
+        secret_name = _container_secret_name(entry_name, name)
         # ``-e NAME`` (no value) forwards the variable from the docker client's
         # environment, so the value never appears in argv or the container's
         # process list; the value is placed in the wrapper's environment instead.
@@ -466,6 +477,41 @@ def _plan_container(
         "forwarded_secrets": list(secret_names),
         "notes": notes,
     }
+
+
+def _vmrun_credential_args(
+    entry_name: str,
+    field: str,
+    value,
+    secret_names: list[str],
+    env: dict[str, str],
+    *,
+    secret_lookup,
+) -> list[str]:
+    """Bridge argv for one vmrun credential; a secret reference is passed by name only."""
+    name = _secret_name(value, field=f"vmrun.{field}", entry_name=entry_name)
+    if name:
+        secret_names.append(name)
+        env[name] = _field_value(
+            value,
+            field=f"vmrun.{field}",
+            entry_name=entry_name,
+            secret_lookup=secret_lookup,
+        )
+        return [f"--{field}-env", name]
+    return [
+        f"--{field}",
+        _field_value(value, field=f"vmrun.{field}", entry_name=entry_name),
+    ]
+
+
+def _vmrun_exec_extras(exec_block: dict) -> list[str]:
+    extras: list[str] = []
+    if exec_block["env"]:
+        extras.extend(["--exec-env", json.dumps(exec_block["env"], ensure_ascii=False)])
+    if exec_block["cwd"]:
+        extras.extend(["--exec-cwd", exec_block["cwd"]])
+    return extras
 
 
 def _plan_vmrun(
@@ -504,21 +550,11 @@ def _plan_vmrun(
     # named variables itself, and the guest never receives any of them.
     env: dict[str, str] = {}
     for field, value in (("vmx", vmx), ("guest-user", guest_user), ("guest-password", guest_password)):
-        name = _secret_name(value, field=f"vmrun.{field}", entry_name=entry_name)
-        if name:
-            secret_names.append(name)
-            env[name] = _field_value(
-                value,
-                field=f"vmrun.{field}",
-                entry_name=entry_name,
-                secret_lookup=secret_lookup,
+        args.extend(
+            _vmrun_credential_args(
+                entry_name, field, value, secret_names, env, secret_lookup=secret_lookup
             )
-            args.extend([f"--{field}-env", name])
-        else:
-            args.append(f"--{field}")
-            args.append(
-                _field_value(value, field=f"vmrun.{field}", entry_name=entry_name)
-            )
+        )
 
     args.extend(["--guest-dir", str(conf.get("guest_dir") or GUEST_DIR_WINDOWS)])
     args.extend(["--guest-python", str(conf.get("guest_python") or DEFAULT_GUEST_PYTHON)])
@@ -529,10 +565,7 @@ def _plan_vmrun(
             json.dumps([exec_block["command"], *exec_block["args"]], ensure_ascii=False),
         ]
     )
-    if exec_block["env"]:
-        args.extend(["--exec-env", json.dumps(exec_block["env"], ensure_ascii=False)])
-    if exec_block["cwd"]:
-        args.extend(["--exec-cwd", exec_block["cwd"]])
+    args.extend(_vmrun_exec_extras(exec_block))
     args.extend(
         [
             "--poll",
@@ -579,7 +612,6 @@ def plan_launch(
     transport: str,
     repo_root: Path,
     probe_python: Path,
-    policy: dict,
     guest_bridge: Path,
     vmrun_bridge: Path,
     which=shutil.which,
