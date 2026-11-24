@@ -1,0 +1,526 @@
+﻿ID,題目名稱,官方分類,難易度,技能,歸類依據
+762,bytemancy 1,General Skills,1,M1 編碼與資料表示,依題名推測
+742,bytemancy 0,General Skills,1,M1 編碼與資料表示,依題名推測
+710,MultiCode,General Skills,1,M1 編碼與資料表示,依題名推測
+414,endianness,General Skills,1,M1 編碼與資料表示,逐題歸類
+404,binhexa,General Skills,1,M1 編碼與資料表示,逐題歸類
+371,repetitions,General Skills,1,M1 編碼與資料表示,逐題歸類
+239,convertme.py,General Skills,1,M1 編碼與資料表示,逐題歸類
+86,2warm,General Skills,1,M1 編碼與資料表示,逐題歸類
+67,Bases,General Skills,1,M1 編碼與資料表示,逐題歸類
+58,Warmed Up,General Skills,1,M1 編碼與資料表示,逐題歸類
+730,bytemancy 3,General Skills,2,M1 編碼與資料表示,依題名推測
+724,bytemancy 2,General Skills,2,M1 編碼與資料表示,依題名推測
+390,ASCII Numbers,General Skills,2,M1 編碼與資料表示,逐題歸類
+35,Based,General Skills,2,M1 編碼與資料表示,逐題歸類
+476,head-dump,Web Exploitation,1,M2 前端暴露與 HTTP,逐題歸類
+469,Cookie Monster Secret Recipe,Web Exploitation,1,M2 前端暴露與 HTTP,逐題歸類
+427,WebDecode,Web Exploitation,1,M2 前端暴露與 HTTP,逐題歸類
+426,Unminify,Web Exploitation,1,M2 前端暴露與 HTTP,逐題歸類
+406,Bookmarklet,Web Exploitation,1,M2 前端暴露與 HTTP,逐題歸類
+275,Inspect HTML,Web Exploitation,1,M2 前端暴露與 HTTP,逐題歸類
+274,Includes,Web Exploitation,1,M2 前端暴露與 HTTP,逐題歸類
+161,Scavenger Hunt,Web Exploitation,1,M2 前端暴露與 HTTP,逐題歸類
+132,GET aHEAD,Web Exploitation,1,M2 前端暴露與 HTTP,逐題歸類
+18,Insp3ct0r,Web Exploitation,1,M2 前端暴露與 HTTP,逐題歸類
+4,where are the robots,Web Exploitation,1,M2 前端暴露與 HTTP,逐題歸類
+356,MatchTheRegex,Web Exploitation,2,M2 前端暴露與 HTTP,逐題歸類
+349,findme,Web Exploitation,2,M2 前端暴露與 HTTP,逐題歸類
+296,Secrets,Web Exploitation,2,M2 前端暴露與 HTTP,逐題歸類
+295,Search source,Web Exploitation,2,M2 前端暴露與 HTTP,逐題歸類
+291,Roboto Sans,Web Exploitation,2,M2 前端暴露與 HTTP,逐題歸類
+152,Some Assembly Required 1,Web Exploitation,2,M2 前端暴露與 HTTP,逐題歸類
+131,Some Assembly Required 2,Web Exploitation,2,M2 前端暴露與 HTTP,逐題歸類
+9,picobrowser,Web Exploitation,2,M2 前端暴露與 HTTP,逐題歸類
+459,Ph4nt0m 1ntrud3r,Forensics,1,M3 封包分析,逐題歸類
+362,PcapPoisoning,Forensics,2,M3 封包分析,逐題歸類
+311,Torrent Analyze,Forensics,2,M3 封包分析,逐題歸類
+286,Packets Primer,Forensics,2,M3 封包分析,逐題歸類
+264,Eavesdrop,Forensics,2,M3 封包分析,逐題歸類
+237,WPA-ing Out,Forensics,2,M3 封包分析,逐題歸類
+115,Wireshark doo dooo do doo...,Forensics,2,M3 封包分析,逐題歸類
+110,Wireshark twoo twooo two twoo...,Forensics,2,M3 封包分析,逐題歸類
+103,Trivial Flag Transfer Protocol,Forensics,2,M3 封包分析,逐題歸類
+84,shark on wire 2,Forensics,2,M3 封包分析,逐題歸類
+30,shark on wire 1,Forensics,2,M3 封包分析,逐題歸類
+42,WebNet1,Forensics,3,M3 封包分析,逐題歸類
+32,WebNet0,Forensics,3,M3 封包分析,逐題歸類
+739,Old Sessions,Web Exploitation,1,M4 認證、Session 與 Cookie,逐題歸類
+712,Password Profiler,General Skills,1,M4 認證、Session 與 Cookie,逐題歸類
+520,Crack the Gate 1,Web Exploitation,1,M4 認證、Session 與 Cookie,逐題歸類
+419,IntroToBurp,Web Exploitation,1,M4 認證、Session 與 Cookie,逐題歸類
+278,Local Authority,Web Exploitation,1,M4 認證、Session 與 Cookie,逐題歸類
+246,PW Crack 2,General Skills,1,M4 認證、Session 與 Cookie,逐題歸類
+245,PW Crack 1,General Skills,1,M4 認證、Session 與 Cookie,逐題歸類
+173,Cookies,Web Exploitation,1,M4 認證、Session 與 Cookie,逐題歸類
+66,dont-use-client-side,Web Exploitation,1,M4 認證、Session 與 Cookie,逐題歸類
+46,logon,Web Exploitation,1,M4 認證、Session 與 Cookie,逐題歸類
+765,No FA,Web Exploitation,2,M4 認證、Session 與 Cookie,逐題歸類
+749,Credential Stuffing,Web Exploitation,2,M4 認證、Session 與 Cookie,逐題歸類
+743,Fool the Lockout,Web Exploitation,2,M4 認證、Session 與 Cookie,逐題歸類
+521,Crack the Gate 2,Web Exploitation,2,M4 認證、Session 與 Cookie,逐題歸類
+467,Apriti sesamo,Web Exploitation,2,M4 認證、Session 與 Cookie,逐題歸類
+355,Java Code Analysis!?!,Web Exploitation,2,M4 認證、Session 與 Cookie,逐題歸類
+288,Power Cookie,Web Exploitation,2,M4 認證、Session 與 Cookie,逐題歸類
+249,PW Crack 5,General Skills,2,M4 認證、Session 與 Cookie,逐題歸類
+248,PW Crack 4,General Skills,2,M4 認證、Session 與 Cookie,逐題歸類
+247,PW Crack 3,General Skills,2,M4 認證、Session 與 Cookie,逐題歸類
+236,JAuth,Web Exploitation,2,M4 認證、Session 與 Cookie,逐題歸類
+200,login,Web Exploitation,2,M4 認證、Session 與 Cookie,逐題歸類
+177,Most Cookies,Web Exploitation,2,M4 認證、Session 與 Cookie,逐題歸類
+124,More Cookies,Web Exploitation,2,M4 認證、Session 與 Cookie,逐題歸類
+69,Client-side-again,Web Exploitation,2,M4 認證、Session 與 Cookie,逐題歸類
+25,JaWT Scratchpad,Web Exploitation,2,M4 認證、Session 與 Cookie,逐題歸類
+492,SSTI1,Web Exploitation,1,M5 伺服器端注入與輸入信任,逐題歸類
+482,n0s4n1ty 1,Web Exploitation,1,M5 伺服器端注入與輸入信任,逐題歸類
+729,Sql Map1,Web Exploitation,2,M5 伺服器端注入與輸入信任,依題名推測
+488,SSTI2,Web Exploitation,2,M5 伺服器端注入與輸入信任,逐題歸類
+484,3v@l,Web Exploitation,2,M5 伺服器端注入與輸入信任,逐題歸類
+445,Trickster,Web Exploitation,2,M5 伺服器端注入與輸入信任,逐題歸類
+443,No Sql Injection,Web Exploitation,2,M5 伺服器端注入與輸入信任,逐題歸類
+376,SOAP,Web Exploitation,2,M5 伺服器端注入與輸入信任,逐題歸類
+358,More SQLi,Web Exploitation,2,M5 伺服器端注入與輸入信任,逐題歸類
+304,SQLiLite,Web Exploitation,2,M5 伺服器端注入與輸入信任,逐題歸類
+303,SQL Direct,Web Exploitation,2,M5 伺服器端注入與輸入信任,逐題歸類
+270,Forbidden Paths,Web Exploitation,2,M5 伺服器端注入與輸入信任,逐題歸類
+202,caas,Web Exploitation,2,M5 伺服器端注入與輸入信任,逐題歸類
+180,Super Serial,Web Exploitation,2,M5 伺服器端注入與輸入信任,逐題歸類
+174,Web Gauntlet 2,Web Exploitation,2,M5 伺服器端注入與輸入信任,逐題歸類
+128,Web Gauntlet 3,Web Exploitation,2,M5 伺服器端注入與輸入信任,逐題歸類
+108,Startup Company,Web Exploitation,2,M5 伺服器端注入與輸入信任,逐題歸類
+88,Web Gauntlet,Web Exploitation,2,M5 伺服器端注入與輸入信任,逐題歸類
+80,Irish-Name-Repo 1,Web Exploitation,2,M5 伺服器端注入與輸入信任,逐題歸類
+59,Irish-Name-Repo 2,Web Exploitation,2,M5 伺服器端注入與輸入信任,逐題歸類
+8,Irish-Name-Repo 3,Web Exploitation,2,M5 伺服器端注入與輸入信任,逐題歸類
+752,ORDER ORDER,Web Exploitation,3,M5 伺服器端注入與輸入信任,依題名推測
+185,X marks the spot,Web Exploitation,3,M5 伺服器端注入與輸入信任,逐題歸類
+475,hashcrack,Cryptography,1,M6 古典密碼與雜湊,逐題歸類
+418,interencdec,Cryptography,1,M6 古典密碼與雜湊,逐題歸類
+243,HashingJobApp,General Skills,1,M6 古典密碼與雜湊,逐題歸類
+144,Mod 26,Cryptography,1,M6 古典密碼與雜湊,逐題歸類
+68,The Numbers,Cryptography,1,M6 古典密碼與雜湊,逐題歸類
+62,13,Cryptography,1,M6 古典密碼與雜湊,逐題歸類
+474,Guess My Cheese (Part 2),Cryptography,2,M6 古典密碼與雜湊,逐題歸類
+473,Guess My Cheese (Part 1),Cryptography,2,M6 古典密碼與雜湊,逐題歸類
+407,C3,Cryptography,2,M6 古典密碼與雜湊,逐題歸類
+373,rotation,Cryptography,2,M6 古典密碼與雜湊,逐題歸類
+351,HideToSee,Cryptography,2,M6 古典密碼與雜湊,逐題歸類
+316,Vigenere,Cryptography,2,M6 古典密碼與雜湊,逐題歸類
+312,transposition-trial,Cryptography,2,M6 古典密碼與雜湊,逐題歸類
+309,substitution2,Cryptography,2,M6 古典密碼與雜湊,逐題歸類
+308,substitution1,Cryptography,2,M6 古典密碼與雜湊,逐題歸類
+307,substitution0,Cryptography,2,M6 古典密碼與雜湊,逐題歸類
+289,rail-fence,Cryptography,2,M6 古典密碼與雜湊,逐題歸類
+280,morse-code,Cryptography,2,M6 古典密碼與雜湊,逐題歸類
+261,credstuff,Cryptography,2,M6 古典密碼與雜湊,逐題歸類
+254,basic-mod2,Cryptography,2,M6 古典密碼與雜湊,逐題歸類
+253,basic-mod1,Cryptography,2,M6 古典密碼與雜湊,逐題歸類
+210,spelling-quiz,Cryptography,2,M6 古典密碼與雜湊,逐題歸類
+158,New Caesar,Cryptography,2,M6 古典密碼與雜湊,逐題歸類
+64,caesar,Cryptography,2,M6 古典密碼與雜湊,逐題歸類
+43,Easy1,Cryptography,2,M6 古典密碼與雜湊,逐題歸類
+40,Mr-Worldwide,Cryptography,2,M6 古典密碼與雜湊,逐題歸類
+38,waves over lambda,Cryptography,2,M6 古典密碼與雜湊,逐題歸類
+31,Flags,Cryptography,2,M6 古典密碼與雜湊,逐題歸類
+21,Tapping,Cryptography,2,M6 古典密碼與雜湊,逐題歸類
+3,la cifra de,Cryptography,2,M6 古典密碼與雜湊,逐題歸類
+148,New Vignere,Cryptography,3,M6 古典密碼與雜湊,逐題歸類
+114,Play Nice,Cryptography,3,M6 古典密碼與雜湊,逐題歸類
+698,Binary Digits,Forensics,1,M7a 檔案、中繼資料與隱寫,依題名推測
+530,Riddle Registry,Forensics,1,M7a 檔案、中繼資料與隱寫,逐題歸類
+524,Hidden in plainsight,Forensics,1,M7a 檔案、中繼資料與隱寫,逐題歸類
+523,Flag in Flame,Forensics,1,M7a 檔案、中繼資料與隱寫,逐題歸類
+519,Corrupted file,Forensics,1,M7a 檔案、中繼資料與隱寫,逐題歸類
+460,RED,Forensics,1,M7a 檔案、中繼資料與隱寫,逐題歸類
+450,Verify,Forensics,1,M7a 檔案、中繼資料與隱寫,逐題歸類
+444,Scan Surprise,Forensics,1,M7a 檔案、中繼資料與隱寫,逐題歸類
+423,Secret of the Polyglot,Forensics,1,M7a 檔案、中繼資料與隱寫,逐題歸類
+408,CanYouSee,Forensics,1,M7a 檔案、中繼資料與隱寫,逐題歸類
+186,information,Forensics,1,M7a 檔案、中繼資料與隱寫,逐題歸類
+44,Glory of the Garden,Forensics,1,M7a 檔案、中繼資料與隱寫,逐題歸類
+714,Rogue Tower,Forensics,2,M7a 檔案、中繼資料與隱寫,官方分類預設
+481,flags are stepic,Forensics,2,M7a 檔案、中繼資料與隱寫,逐題歸類
+432,Blast from the past,Forensics,2,M7a 檔案、中繼資料與隱寫,逐題歸類
+420,Mob psycho,Forensics,2,M7a 檔案、中繼資料與隱寫,逐題歸類
+415,endianness-v2,Forensics,2,M7a 檔案、中繼資料與隱寫,逐題歸類
+359,MSB,Forensics,2,M7a 檔案、中繼資料與隱寫,逐題歸類
+350,hideme,Forensics,2,M7a 檔案、中繼資料與隱寫,逐題歸類
+348,FindAndOpen,Forensics,2,M7a 檔案、中繼資料與隱寫,逐題歸類
+305,St3g0,Forensics,2,M7a 檔案、中繼資料與隱寫,逐題歸類
+290,Redaction gone wrong,Forensics,2,M7a 檔案、中繼資料與隱寫,逐題歸類
+279,Lookey here,Forensics,2,M7a 檔案、中繼資料與隱寫,逐題歸類
+268,File types,Forensics,2,M7a 檔案、中繼資料與隱寫,逐題歸類
+265,Enhance!,Forensics,2,M7a 檔案、中繼資料與隱寫,逐題歸類
+205,advanced-potion-making,Forensics,2,M7a 檔案、中繼資料與隱寫,逐題歸類
+139,Milkslap,Forensics,2,M7a 檔案、中繼資料與隱寫,逐題歸類
+129,Matryoshka doll,Forensics,2,M7a 檔案、中繼資料與隱寫,逐題歸類
+112,tunn3l v1s10n,Forensics,2,M7a 檔案、中繼資料與隱寫,逐題歸類
+101,Weird File,Forensics,2,M7a 檔案、中繼資料與隱寫,逐題歸類
+81,like1000,Forensics,2,M7a 檔案、中繼資料與隱寫,逐題歸類
+74,What Lies Within,Forensics,2,M7a 檔案、中繼資料與隱寫,逐題歸類
+53,c0rrupt,Forensics,2,M7a 檔案、中繼資料與隱寫,逐題歸類
+52,extensions,Forensics,2,M7a 檔案、中繼資料與隱寫,逐題歸類
+51,WhitePages,Forensics,2,M7a 檔案、中繼資料與隱寫,逐題歸類
+26,m00nwalk,Forensics,2,M7a 檔案、中繼資料與隱寫,逐題歸類
+19,So Meta,Forensics,2,M7a 檔案、中繼資料與隱寫,逐題歸類
+354,Invisible WORDs,Forensics,3,M7a 檔案、中繼資料與隱寫,逐題歸類
+298,SideChannel,Forensics,3,M7a 檔案、中繼資料與隱寫,官方分類預設
+206,scrambled-bytes,Forensics,3,M7a 檔案、中繼資料與隱寫,逐題歸類
+141,Very very very Hidden,Forensics,3,M7a 檔案、中繼資料與隱寫,逐題歸類
+117,Surfing the Waves,Forensics,3,M7a 檔案、中繼資料與隱寫,逐題歸類
+83,Investigative Reversing 3,Forensics,3,M7a 檔案、中繼資料與隱寫,逐題歸類
+70,Investigative Reversing 0,Forensics,3,M7a 檔案、中繼資料與隱寫,逐題歸類
+56,B1g_Mac,Forensics,3,M7a 檔案、中繼資料與隱寫,逐題歸類
+54,Investigative Reversing 4,Forensics,3,M7a 檔案、中繼資料與隱寫,逐題歸類
+47,investigation_encoded_1,Forensics,3,M7a 檔案、中繼資料與隱寫,逐題歸類
+36,investigation_encoded_2,Forensics,3,M7a 檔案、中繼資料與隱寫,逐題歸類
+28,m00nwalk2,Forensics,3,M7a 檔案、中繼資料與隱寫,逐題歸類
+27,Investigative Reversing 1,Forensics,3,M7a 檔案、中繼資料與隱寫,逐題歸類
+13,Investigative Reversing 2,Forensics,3,M7a 檔案、中繼資料與隱寫,逐題歸類
+505,DISKO 1,Forensics,1,M7b 磁碟、記憶體、日誌與 Git 調查,逐題歸類
+721,Timeline 1,Forensics,2,M7b 磁碟、記憶體、日誌與 Git 調查,依題名推測
+720,Timeline 0,Forensics,2,M7b 磁碟、記憶體、日誌與 Git 調查,依題名推測
+707,Forensics Git 2,Forensics,2,M7b 磁碟、記憶體、日誌與 Git 調查,依題名推測
+706,Forensics Git 1,Forensics,2,M7b 磁碟、記憶體、日誌與 Git 調查,依題名推測
+705,Forensics Git 0,Forensics,2,M7b 磁碟、記憶體、日誌與 Git 調查,依題名推測
+704,DISKO 4,Forensics,2,M7b 磁碟、記憶體、日誌與 Git 調查,依題名推測
+507,DISKO 3,Forensics,2,M7b 磁碟、記憶體、日誌與 Git 調查,逐題歸類
+506,DISKO 2,Forensics,2,M7b 磁碟、記憶體、日誌與 Git 調查,逐題歸類
+456,Event-Viewing,Forensics,2,M7b 磁碟、記憶體、日誌與 Git 調查,逐題歸類
+454,Bitlocker-2,Forensics,2,M7b 磁碟、記憶體、日誌與 Git 調查,逐題歸類
+453,Bitlocker-1,Forensics,2,M7b 磁碟、記憶體、日誌與 Git 調查,逐題歸類
+413,Dear Diary,Forensics,2,M7b 磁碟、記憶體、日誌與 Git 調查,逐題歸類
+301,Sleuthkit Intro,Forensics,2,M7b 磁碟、記憶體、日誌與 Git 調查,逐題歸類
+300,Sleuthkit Apprentice,Forensics,2,M7b 磁碟、記憶體、日誌與 Git 調查,逐題歸類
+285,Operation Orchid,Forensics,2,M7b 磁碟、記憶體、日誌與 Git 調查,逐題歸類
+284,Operation Oni,Forensics,2,M7b 磁碟、記憶體、日誌與 Git 調查,逐題歸類
+137,"Disk, disk, sleuth! II",Forensics,2,M7b 磁碟、記憶體、日誌與 Git 調查,逐題歸類
+130,MacroHard WeakEdge,Forensics,2,M7b 磁碟、記憶體、日誌與 Git 調查,逐題歸類
+113,"Disk, disk, sleuth!",Forensics,2,M7b 磁碟、記憶體、日誌與 Git 調查,逐題歸類
+87,"Pitter, Patter, Platters",Forensics,2,M7b 磁碟、記憶體、日誌與 Git 調查,逐題歸類
+383,UnforgottenBits,Forensics,3,M7b 磁碟、記憶體、日誌與 Git 調查,逐題歸類
+472,Flag Hunters,Reverse Engineering,1,M7c 讀程式找密鑰（入門逆向）,逐題歸類
+104,Transformation,Reverse Engineering,1,M7c 讀程式找密鑰（入門逆向）,逐題歸類
+7,vault-door-training,Reverse Engineering,1,M7c 讀程式找密鑰（入門逆向）,逐題歸類
+428,weirdSnake,Reverse Engineering,2,M7c 讀程式找密鑰（入門逆向）,逐題歸類
+402,Picker III,Reverse Engineering,2,M7c 讀程式找密鑰（入門逆向）,逐題歸類
+401,Picker II,Reverse Engineering,2,M7c 讀程式找密鑰（入門逆向）,逐題歸類
+400,Picker I,Reverse Engineering,2,M7c 讀程式找密鑰（入門逆向）,逐題歸類
+375,Safe Opener 2,Reverse Engineering,2,M7c 讀程式找密鑰（入門逆向）,逐題歸類
+314,unpackme.py,Reverse Engineering,2,M7c 讀程式找密鑰（入門逆向）,逐題歸類
+294,Safe Opener,Reverse Engineering,2,M7c 讀程式找密鑰（入門逆向）,逐題歸類
+287,patchme.py,Reverse Engineering,2,M7c 讀程式找密鑰（入門逆向）,逐題歸類
+271,Fresh Java,Reverse Engineering,2,M7c 讀程式找密鑰（入門逆向）,逐題歸類
+256,bloat.py,Reverse Engineering,2,M7c 讀程式找密鑰（入門逆向）,逐題歸類
+175,crackme-py,Reverse Engineering,2,M7c 讀程式找密鑰（入門逆向）,逐題歸類
+121,keygenme-py,Reverse Engineering,2,M7c 讀程式找密鑰（入門逆向）,逐題歸類
+116,speeds and feeds,Reverse Engineering,2,M7c 讀程式找密鑰（入門逆向）,逐題歸類
+77,vault-door-5,Reverse Engineering,2,M7c 讀程式找密鑰（入門逆向）,逐題歸類
+71,vault-door-4,Reverse Engineering,2,M7c 讀程式找密鑰（入門逆向）,逐題歸類
+60,vault-door-3,Reverse Engineering,2,M7c 讀程式找密鑰（入門逆向）,逐題歸類
+45,vault-door-6,Reverse Engineering,2,M7c 讀程式找密鑰（入門逆向）,逐題歸類
+12,vault-door-1,Reverse Engineering,2,M7c 讀程式找密鑰（入門逆向）,逐題歸類
+65,vault-door-7,Reverse Engineering,3,M7c 讀程式找密鑰（入門逆向）,逐題歸類
+10,vault-door-8,Reverse Engineering,3,M7c 讀程式找密鑰（入門逆向）,逐題歸類
+766,Undo,General Skills,1,Linux、工具與程式操作,依題名推測
+764,MY GIT,General Skills,1,Linux、工具與程式操作,依題名推測
+759,Printer Shares,General Skills,1,Linux、工具與程式操作,依題名推測
+757,ping-cmd,General Skills,1,Linux、工具與程式操作,依題名推測
+740,Piece by Piece,General Skills,1,Linux、工具與程式操作,依題名推測
+735,SUDO MAKE ME A SANDWICH,General Skills,1,Linux、工具與程式操作,依題名推測
+527,Log Hunt,General Skills,1,Linux、工具與程式操作,逐題歸類
+471,FANTASY CTF,General Skills,1,Linux、工具與程式操作,逐題歸類
+463,Rust fixme 3,General Skills,1,Linux、工具與程式操作,逐題歸類
+462,Rust fixme 2,General Skills,1,Linux、工具與程式操作,逐題歸類
+461,Rust fixme 1,General Skills,1,Linux、工具與程式操作,逐題歸類
+442,Binary Search,General Skills,1,Linux、工具與程式操作,逐題歸類
+425,Time Machine,General Skills,1,Linux、工具與程式操作,逐題歸類
+424,Super SSH,General Skills,1,Linux、工具與程式操作,逐題歸類
+411,Commitment Issues,General Skills,1,Linux、工具與程式操作,逐題歸類
+410,Collaborative Development,General Skills,1,Linux、工具與程式操作,逐題歸類
+405,Blame Game,General Skills,1,Linux、工具與程式操作,逐題歸類
+322,Big Zip,General Skills,1,Linux、工具與程式操作,逐題歸類
+320,First Find,General Skills,1,Linux、工具與程式操作,逐題歸類
+250,runme.py,General Skills,1,Linux、工具與程式操作,逐題歸類
+242,Glitch Cat,General Skills,1,Linux、工具與程式操作,逐題歸類
+241,fixme2.py,General Skills,1,Linux、工具與程式操作,逐題歸類
+240,fixme1.py,General Skills,1,Linux、工具與程式操作,逐題歸類
+238,Codebook,General Skills,1,Linux、工具與程式操作,逐題歸類
+189,Magikarp Ground Mission,General Skills,1,Linux、工具與程式操作,逐題歸類
+176,"Tab, Tab, Attack",General Skills,1,Linux、工具與程式操作,逐題歸類
+170,Wave a flag,General Skills,1,Linux、工具與程式操作,逐題歸類
+163,Static ain't always noise,General Skills,1,Linux、工具與程式操作,逐題歸類
+156,Nice netcat...,General Skills,1,Linux、工具與程式操作,逐題歸類
+147,Obedient Cat,General Skills,1,Linux、工具與程式操作,逐題歸類
+85,First Grep,General Skills,1,Linux、工具與程式操作,逐題歸類
+37,strings it,General Skills,1,Linux、工具與程式操作,逐題歸類
+34,what's a net cat?,General Skills,1,Linux、工具與程式操作,逐題歸類
+22,Lets Warm Up,General Skills,1,Linux、工具與程式操作,逐題歸類
+756,Failure Failure,General Skills,2,Linux、工具與程式操作,依題名推測
+748,ABSOLUTE NANO,General Skills,2,Linux、工具與程式操作,依題名推測
+732,KSECRETS,General Skills,2,Linux、工具與程式操作,依題名推測
+483,YaraRules0x100,General Skills,2,Linux、工具與程式操作,逐題歸類
+437,dont-you-love-banners,General Skills,2,Linux、工具與程式操作,逐題歸類
+436,SansAlpha,General Skills,2,Linux、工具與程式操作,逐題歸類
+384,useless,General Skills,2,Linux、工具與程式操作,逐題歸類
+378,Specialer,General Skills,2,Linux、工具與程式操作,逐題歸類
+377,Special,General Skills,2,Linux、工具與程式操作,逐題歸類
+363,Permissions,General Skills,2,Linux、工具與程式操作,逐題歸類
+347,chrono,General Skills,2,Linux、工具與程式操作,逐題歸類
+251,Serpentine,General Skills,2,Linux、工具與程式操作,逐題歸類
+166,Python Wrangling,General Skills,2,Linux、工具與程式操作,逐題歸類
+91,Nothing Up My Sleeve,General Skills,2,Linux、工具與程式操作,逐題歸類
+82,1_wanna_b3_a_r0ck5tar,General Skills,2,Linux、工具與程式操作,逐題歸類
+49,flag_shop,General Skills,2,Linux、工具與程式操作,逐題歸類
+48,plumbing,General Skills,2,Linux、工具與程式操作,逐題歸類
+15,mus1c,General Skills,2,Linux、工具與程式操作,逐題歸類
+741,Printer Shares 3,General Skills,3,Linux、工具與程式操作,依題名推測
+734,Printer Shares 2,General Skills,3,Linux、工具與程式操作,依題名推測
+719,StegoRSA,Cryptography,1,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+715,Shared Secrets,Cryptography,1,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+470,EVEN RSA CAN BE BROKEN???,Cryptography,1,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+722,Timestamped Secrets,Cryptography,2,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+718,Small Trouble,Cryptography,2,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+716,shift registers,Cryptography,2,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+713,Related Messages,Cryptography,2,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+711,Not TRUe,Cryptography,2,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+703,cryptomaze,Cryptography,2,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+702,ClusterRSA,Cryptography,2,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+701,Black Cobra Pepper,Cryptography,2,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+522,Crack the Power,Cryptography,2,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+422,rsa_oracle,Cryptography,2,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+412,Custom encryption,Cryptography,2,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+367,ReadMyCert,Cryptography,2,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+188,Mini RSA,Cryptography,2,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+169,It is my Birthday 2,Cryptography,2,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+162,Mind your Ps and Qs,Cryptography,2,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+159,Dachshund Attacks,Cryptography,2,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+154,"No Padding, No Problem",Cryptography,2,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+125,Easy Peasy,Cryptography,2,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+120,It's Not My Fault 2,Cryptography,2,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+100,Pixelated,Cryptography,2,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+6,john_pollard,Cryptography,2,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+728,Secure Dot Product,Cryptography,3,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+709,MSS_ADVANCE Revenge,Cryptography,3,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+495,Ricochet,Cryptography,3,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+493,ChaCha Slide,Cryptography,3,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+417,flag_printer,Cryptography,3,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+379,SRA,Cryptography,3,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+366,PowerAnalysis: Warmup,Cryptography,3,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+365,PowerAnalysis: Part 2,Cryptography,3,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+364,PowerAnalysis: Part 1,Cryptography,3,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+315,Very Smooth,Cryptography,3,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+310,Sum-O-Primes,Cryptography,3,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+297,Sequences,Cryptography,3,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+283,NSA Backdoor,Cryptography,3,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+212,college-rowing-team,Cryptography,3,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+211,corrupt-key-2,Cryptography,3,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+209,triple-secure,Cryptography,3,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+208,XtraORdinary,Cryptography,3,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+207,corrupt-key-1,Cryptography,3,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+140,Double DES,Cryptography,3,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+136,Clouds,Cryptography,3,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+127,Compress and Attack,Cryptography,3,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+123,It's Not My Fault 1,Cryptography,3,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+107,Scrambled: RSA,Cryptography,3,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+78,b00tl3gRSA3,Cryptography,3,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+76,AES-ABC,Cryptography,3,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+73,miniRSA,Cryptography,3,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+61,rsa-pop-quiz,Cryptography,3,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+2,b00tl3gRSA2,Cryptography,3,現代密碼學（RSA／AES／XOR 等）,官方分類預設
+767,Secure Password Database,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+761,Bypass Me,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+754,Autorev 1,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+751,Hidden Cipher 2,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+745,Hidden Cipher 1,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+731,Gatekeeper,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+717,Silent Stream,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+697,The Add/On Trap,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+529,Pico Bank,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+528,M1n10n'5_53cr37,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+479,Quantum Scrambler,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+468,Chronohack,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+466,Tap into Hash,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+458,perplexed,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+452,Binary Instrumentation 2,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+451,Binary Instrumentation 1,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+431,WinAntiDbg0x300,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+430,WinAntiDbg0x200,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+429,WinAntiDbg0x100,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+421,packer,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+416,FactCheck,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+409,Classic Crackme 0x100,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+398,GDB baby step 4,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+397,GDB baby step 3,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+396,GDB baby step 2,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+395,GDB baby step 1,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+394,Bit-O-Asm-4,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+393,Bit-O-Asm-3,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+392,Bit-O-Asm-2,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+391,Bit-O-Asm-1,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+389,ASCII FTW,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+385,Virtual Machine 0,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+381,timer,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+372,Reverse,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+370,Ready Gladiator 2,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+369,Ready Gladiator 1,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+368,Ready Gladiator 0,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+313,unpackme,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+273,GDB Test Drive,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+267,file-run2,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+266,file-run1,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+255,Bbbbloat,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+160,ARMssembly 0,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+134,Shop,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+111,ARMssembly 1,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+20,asm1,Reverse Engineering,2,二進位逆向（組語、除錯器）,官方分類預設
+737,JITFP,Reverse Engineering,3,二進位逆向（組語、除錯器）,官方分類預設
+700,Binary Instrumentation 4,Reverse Engineering,3,二進位逆向（組語、除錯器）,官方分類預設
+699,Binary Instrumentation 3,Reverse Engineering,3,二進位逆向（組語、除錯器）,官方分類預設
+386,Virtual Machine 1,Reverse Engineering,3,二進位逆向（組語、除錯器）,官方分類預設
+361,No way out,Reverse Engineering,3,二進位逆向（組語、除錯器）,官方分類預設
+318,Wizardlike,Reverse Engineering,3,二進位逆向（組語、除錯器）,官方分類預設
+276,Keygenme,Reverse Engineering,3,二進位逆向（組語、除錯器）,官方分類預設
+222,not crypto,Reverse Engineering,3,二進位逆向（組語、除錯器）,官方分類預設
+221,MATRIX,Reverse Engineering,3,二進位逆向（組語、除錯器）,官方分類預設
+220,breadth,Reverse Engineering,3,二進位逆向（組語、除錯器）,官方分類預設
+219,riscy business,Reverse Engineering,3,二進位逆向（組語、除錯器）,官方分類預設
+183,ARMssembly 4,Reverse Engineering,3,二進位逆向（組語、除錯器）,官方分類預設
+171,gogo,Reverse Engineering,3,二進位逆向（組語、除錯器）,官方分類預設
+151,Rolling My Own,Reverse Engineering,3,二進位逆向（組語、除錯器）,官方分類預設
+150,ARMssembly 2,Reverse Engineering,3,二進位逆向（組語、除錯器）,官方分類預設
+149,Checkpass,Reverse Engineering,3,二進位逆向（組語、除錯器）,官方分類預設
+122,Easy as GDB,Reverse Engineering,3,二進位逆向（組語、除錯器）,官方分類預設
+119,Powershelly,Reverse Engineering,3,二進位逆向（組語、除錯器）,官方分類預設
+106,ARMssembly 3,Reverse Engineering,3,二進位逆向（組語、除錯器）,官方分類預設
+102,Let's get dynamic,Reverse Engineering,3,二進位逆向（組語、除錯器）,官方分類預設
+92,OTP Implementation,Reverse Engineering,3,二進位逆向（組語、除錯器）,官方分類預設
+79,reverse_cipher,Reverse Engineering,3,二進位逆向（組語、除錯器）,官方分類預設
+72,asm3,Reverse Engineering,3,二進位逆向（組語、除錯器）,官方分類預設
+63,droids2,Reverse Engineering,3,二進位逆向（組語、除錯器）,官方分類預設
+57,B1ll_Gat35,Reverse Engineering,3,二進位逆向（組語、除錯器）,官方分類預設
+39,Need For Speed,Reverse Engineering,3,二進位逆向（組語、除錯器）,官方分類預設
+24,Forky,Reverse Engineering,3,二進位逆向（組語、除錯器）,官方分類預設
+23,droids3,Reverse Engineering,3,二進位逆向（組語、除錯器）,官方分類預設
+17,droids4,Reverse Engineering,3,二進位逆向（組語、除錯器）,官方分類預設
+16,asm2,Reverse Engineering,3,二進位逆向（組語、除錯器）,官方分類預設
+14,droids1,Reverse Engineering,3,二進位逆向（組語、除錯器）,官方分類預設
+11,droids0,Reverse Engineering,3,二進位逆向（組語、除錯器）,官方分類預設
+5,asm4,Reverse Engineering,3,二進位逆向（組語、除錯器）,官方分類預設
+727,Quizploit,Binary Exploitation,1,Binary Exploitation（pwn）,官方分類預設
+490,PIE TIME,Binary Exploitation,1,Binary Exploitation（pwn）,官方分類預設
+438,heap 0,Binary Exploitation,1,Binary Exploitation（pwn）,官方分類預設
+433,format string 0,Binary Exploitation,1,Binary Exploitation（pwn）,官方分類預設
+755,Echo Escape 1,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+746,tea-cash,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+736,Echo Escape 2,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+733,offset-cycle,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+526,Input Injection 2,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+525,Input Injection 1,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+491,PIE TIME 2,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+489,hash-only-2,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+487,hash-only-1,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+485,Echo Valley,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+449,format string 3,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+448,format string 2,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+440,heap 3,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+439,heap 1,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+435,heap 2,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+434,format string 1,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+403,Picker IV,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+399,Local Target,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+387,VNE,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+382,two-sum,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+352,hijacking,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+345,babygame01,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+319,x-sixty-what,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+293,RPS,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+269,flag leak,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+262,CVE-XXXX-XXXX,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+259,buffer overflow 2,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+258,buffer overflow 1,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+257,buffer overflow 0,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+252,basic-file-exploit,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+216,clutter-overflow,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+167,Binary Gauntlet 0,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+143,Binary Gauntlet 2,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+138,What's your input?,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+133,Binary Gauntlet 3,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+126,Binary Gauntlet 1,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+105,Stonks,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+90,Guessing Game 1,Binary Exploitation,2,Binary Exploitation（pwn）,官方分類預設
+763,Heap Havoc,Binary Exploitation,3,Binary Exploitation（pwn）,官方分類預設
+758,Pizza Router,Binary Exploitation,3,Binary Exploitation（pwn）,官方分類預設
+738,offset-cycleV2,Binary Exploitation,3,Binary Exploitation（pwn）,官方分類預設
+486,handoff,Binary Exploitation,3,Binary Exploitation（pwn）,官方分類預設
+446,babygame03,Binary Exploitation,3,Binary Exploitation（pwn）,官方分類預設
+441,high frequency troubles,Binary Exploitation,3,Binary Exploitation（pwn）,官方分類預設
+380,tic-tac,Binary Exploitation,3,Binary Exploitation（pwn）,官方分類預設
+353,Horsetrack,Binary Exploitation,3,Binary Exploitation（pwn）,官方分類預設
+346,babygame02,Binary Exploitation,3,Binary Exploitation（pwn）,官方分類預設
+317,wine,Binary Exploitation,3,Binary Exploitation（pwn）,官方分類預設
+306,stack cache,Binary Exploitation,3,Binary Exploitation（pwn）,官方分類預設
+302,solfire,Binary Exploitation,3,Binary Exploitation（pwn）,官方分類預設
+292,ropfu,Binary Exploitation,3,Binary Exploitation（pwn）,官方分類預設
+272,function overwrite,Binary Exploitation,3,Binary Exploitation（pwn）,官方分類預設
+260,buffer overflow 3,Binary Exploitation,3,Binary Exploitation（pwn）,官方分類預設
+218,vr-school,Binary Exploitation,3,Binary Exploitation（pwn）,官方分類預設
+217,homework,Binary Exploitation,3,Binary Exploitation（pwn）,官方分類預設
+215,fermat-strings,Binary Exploitation,3,Binary Exploitation（pwn）,官方分類預設
+214,lockdown-horses,Binary Exploitation,3,Binary Exploitation（pwn）,官方分類預設
+213,SaaS,Binary Exploitation,3,Binary Exploitation（pwn）,官方分類預設
+187,Unsubscriptions Are Free,Binary Exploitation,3,Binary Exploitation（pwn）,官方分類預設
+184,filtered-shellcode,Binary Exploitation,3,Binary Exploitation（pwn）,官方分類預設
+181,Bizz Fuzz,Binary Exploitation,3,Binary Exploitation（pwn）,官方分類預設
+179,Here's a LIBC,Binary Exploitation,3,Binary Exploitation（pwn）,官方分類預設
+178,Turboflan,Binary Exploitation,3,Binary Exploitation（pwn）,官方分類預設
+172,The Office,Binary Exploitation,3,Binary Exploitation（pwn）,官方分類預設
+168,Kit Engine,Binary Exploitation,3,Binary Exploitation（pwn）,官方分類預設
+164,Stonk Market,Binary Exploitation,3,Binary Exploitation（pwn）,官方分類預設
+146,Cache Me Outside,Binary Exploitation,3,Binary Exploitation（pwn）,官方分類預設
+135,Download Horsepower,Binary Exploitation,3,Binary Exploitation（pwn）,官方分類預設
+89,Guessing Game 2,Binary Exploitation,3,Binary Exploitation（pwn）,官方分類預設
+75,zero_to_hero,Binary Exploitation,3,Binary Exploitation（pwn）,官方分類預設
+55,sice_cream,Binary Exploitation,3,Binary Exploitation（pwn）,官方分類預設
+50,seed-sPRiNG,Binary Exploitation,3,Binary Exploitation（pwn）,官方分類預設
+750,Hashgate,Web Exploitation,2,進階 Web（XSS、WASM 等）,官方分類預設
+747,Secret Box,Web Exploitation,2,進階 Web（XSS、WASM 等）,官方分類預設
+725,North-South,Web Exploitation,2,進階 Web（XSS、WASM 等）,官方分類預設
+518,byp4ss3d,Web Exploitation,2,進階 Web（XSS、WASM 等）,官方分類預設
+494,Pachinko,Web Exploitation,2,進階 Web（XSS、WASM 等）,官方分類預設
+480,WebSockFish,Web Exploitation,2,進階 Web（XSS、WASM 等）,官方分類預設
+109,It is my Birthday,Web Exploitation,2,進階 Web（XSS、WASM 等）,官方分類預設
+726,paper-2,Web Exploitation,3,進階 Web（XSS、WASM 等）,依題名推測
+496,secure-email-service,Web Exploitation,3,進階 Web（XSS、WASM 等）,逐題歸類
+478,Pachinko Revisited,Web Exploitation,3,進階 Web（XSS、WASM 等）,官方分類預設
+447,elements,Web Exploitation,3,進階 Web（XSS、WASM 等）,逐題歸類
+360,msfroggenerator2,Web Exploitation,3,進階 Web（XSS、WASM 等）,逐題歸類
+344,cancri-sp,Web Exploitation,3,進階 Web（XSS、WASM 等）,逐題歸類
+282,noted,Web Exploitation,3,進階 Web（XSS、WASM 等）,逐題歸類
+277,Live Art,Web Exploitation,3,進階 Web（XSS、WASM 等）,逐題歸類
+204,notepad,Web Exploitation,3,進階 Web（XSS、WASM 等）,逐題歸類
+190,Bithug,Web Exploitation,3,進階 Web（XSS、WASM 等）,逐題歸類
+182,Some Assembly Required 4,Web Exploitation,3,進階 Web（XSS、WASM 等）,逐題歸類
+153,Some Assembly Required 3,Web Exploitation,3,進階 Web（XSS、WASM 等）,逐題歸類
+33,Java Script Kiddie 2,Web Exploitation,3,進階 Web（XSS、WASM 等）,逐題歸類
+29,Java Script Kiddie,Web Exploitation,3,進階 Web（XSS、WASM 等）,逐題歸類
+783,Trust But Verify,Artificial Intelligence,1,AI,官方分類預設
+782,Perceptron Train XOR,Artificial Intelligence,1,AI,官方分類預設
+781,Perceptron Train XNOR,Artificial Intelligence,1,AI,官方分類預設
+780,Perceptron Train Hole in Middle,Artificial Intelligence,1,AI,官方分類預設
+779,Perceptron Train Classic 2 Alpha,Artificial Intelligence,1,AI,官方分類預設
+778,Perceptron Train Classic 1,Artificial Intelligence,1,AI,官方分類預設
+777,Perceptron Train Classic 0,Artificial Intelligence,1,AI,官方分類預設
+776,Perceptron Train 3-Bit Parity,Artificial Intelligence,1,AI,官方分類預設
+775,Perceptron Play Naught,Artificial Intelligence,1,AI,官方分類預設
+774,Perceptron Play Alpha,Artificial Intelligence,1,AI,官方分類預設
+773,Perceptron Play 1D Alpha,Artificial Intelligence,1,AI,官方分類預設
+772,Neuron Meet 2D-0,Artificial Intelligence,1,AI,官方分類預設
+771,Neuron Meet 0,Artificial Intelligence,1,AI,官方分類預設
+770,Neuron Express 2D-0,Artificial Intelligence,1,AI,官方分類預設
+769,Neuron Express 0,Artificial Intelligence,1,AI,官方分類預設
+768,Assistant or Agent?,Artificial Intelligence,1,AI,官方分類預設
+760,Smart_Overflow,Blockchain,2,Blockchain,官方分類預設
+723,Access_Control,Blockchain,2,Blockchain,官方分類預設
+753,Reentrance,Blockchain,3,Blockchain,官方分類預設
+744,Front_Running,Blockchain,3,Blockchain,官方分類預設
