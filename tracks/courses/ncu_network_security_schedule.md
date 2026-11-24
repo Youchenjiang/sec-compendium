@@ -25,13 +25,14 @@
 
 ## 三、CyLab 技能階梯場次
 
-照 [技能階梯](ncu_cylab_challenge_selection.md) 一階一堂,每堂有講義、作業與 eeclass 作業編號。階的順序依講義進度調整(M0–M2 → M7 → M5 → M4;M3 因 Wireshark 工作坊已教而略過)。
+照 [技能階梯](ncu_cylab_challenge_selection.md) 一階一堂,每堂有講義、作業與 eeclass 作業編號。階的順序依講義進度調整(M0–M2 → M7 → M5 → M6,M4 待排;M3 因 Wireshark 工作坊已教而略過)。
 
 | 日期 | 作業 | 階 | 主題 | 教材 |
 |---|---|---|---|---|
 | 2026-10-16 | A2 Cylab Basic | M0–M2 | 平台上手、編碼、前端暴露 | [`sessions/20261016_cylab-basic/`](ncu_network_security/sessions/20261016_cylab-basic/) |
 | 2026-11-06 | A4 Cylab Files | M7 | 檔案鑑識:辨識 → 看 → 拆（第一批作業）;像素 → 檔頭（第二批,另排） | [`sessions/20261106_cylab-files/`](ncu_network_security/sessions/20261106_cylab-files/)([handout](ncu_network_security/sessions/20261106_cylab-files/handout.md)・[assignment](ncu_network_security/sessions/20261106_cylab-files/assignment.md)・[demo](ncu_network_security/sessions/20261106_cylab-files/demo.md)・[demo-assignment](ncu_network_security/sessions/20261106_cylab-files/demo-assignment.md)) |
-| 未定 | — | M5 | 注入 | 待寫 |
+| 2026-11-13 | A5 Cylab SQLi | M5 | SQL 注入:探針 → 閉合 → 繞過登入 → 取資料 | [`sessions/20261113_cylab-sqli/`](ncu_network_security/sessions/20261113_cylab-sqli/)([handout](ncu_network_security/sessions/20261113_cylab-sqli/handout.md)・[assignment](ncu_network_security/sessions/20261113_cylab-sqli/assignment.md)・[demo](ncu_network_security/sessions/20261113_cylab-sqli/demo.md)・[answer-key](ncu_network_security/sessions/20261113_cylab-sqli/answer-key.md)) |
+| 2026-11-20 | A6 Cylab Crypto | M6 | 密碼學:加密系統被攻破的三條路(位移、雜湊、RSA) | [`sessions/20261120_cylab-crypto/`](ncu_network_security/sessions/20261120_cylab-crypto/)([handout](ncu_network_security/sessions/20261120_cylab-crypto/handout.md)・[assignment](ncu_network_security/sessions/20261120_cylab-crypto/assignment.md)・[demo](ncu_network_security/sessions/20261120_cylab-crypto/demo.md)・[answer-key](ncu_network_security/sessions/20261120_cylab-crypto/answer-key.md)) |
 | 未定 | — | M4 | 認證與憑證(等 L4 講完) | [`alt-materials/cylab-auth/`](ncu_network_security/alt-materials/cylab-auth/) |
 
 另有早期規劃的 CyLab 課後加分題庫(14 題依講義週次 W2–W13 編排,非場次):[`ncu_network_security_cylab_guide.md`](ncu_network_security_cylab_guide.md)。

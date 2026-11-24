@@ -8,7 +8,7 @@
 >
 > **選題原則**
 > 1. **難度靠脈絡換取**：Easy 進場暖身；一階鋪好「帶練 → 練習」後，可用 **Medium 當實戰 capstone** 收尾。要避開的是 **Hard 與重工具**，不是 Medium 本身。
-> 2. **依賴順序**：整條階梯就是「先會的技能 → 疊上去的技能」，M0→M7 不跳階。M3～M7 彼此只依賴 M1、M2，不互相依賴，**排課順序可依講義進度調整**（實際：M0–M2 → M7 → M5 → M4，M3 因 Wireshark 工作坊已教而略過）。
+> 2. **依賴順序**：整條階梯就是「先會的技能 → 疊上去的技能」，M0→M7 不跳階。M3～M7 彼此只依賴 M1、M2，不互相依賴，**排課順序可依講義進度調整**（實際：M0–M2 → M7 → M5 → M6；M4 待排，M3 因 Wireshark 工作坊已教而略過）。
 > 3. **帶練 → 練習**：每階老師先示範，學員再用同工具自己練。
 > 4. **不跨階重複**：一題的技能屬於哪一階，就在那階出現；別的階要用同概念，換不同題。
 > 5. **flag ≠ 學習成果**：每題配一個「🧠 理解問題」，解完就答。flag 只當「做過」的門票，成績看能否講清機制；這也是對「貼 GPT 拿 flag 卻沒懂」的防線。自建題（wireshark_labs）每人 flag 不同，再加一層防抄。
@@ -172,26 +172,23 @@ Medium：`743` Fool the Lockout（M・3k，每 30 秒重置的鎖定，放慢速
 
 ## 🔐 M6 — 雜湊與密碼學
 
-> 對應講義：L12。｜觀念：古典密碼（位移／代換）規則一旦知道就形同沒加密；雜湊單向、只能查表反推不能「解開」。｜工具：CyberChef／線上雜湊查詢。排除 RSA 數論與長篇手動頻率分析。
-
-**古典密碼（位移／代換）**
+> 對應講義：L12。｜觀念：講義「Attack Encryption System」那一頁的三條路——演算法弱點、暴力破解金鑰、周邊系統的弱點；每一題都對回其中一條。雜湊單向，只能猜中不能解開。｜工具：CyLab terminal 的 `nc`、`python3`；CrackStation、FactorDB。
 
 | 角色 | ID | 題名 | 難度 | 練什麼 | 連結 |
 | :--: | :-- | :-- | :--: | :-- | :-- |
-| 帶練 | `62` | **13** | Easy | ROT13 位移 | [library](https://learn.cylabacademy.org/library?search=13) |
-| 練習 | `144` | **Mod 26** | Easy | 另一種位移 | [library](https://learn.cylabacademy.org/library?search=Mod%2026) |
-| 練習 | `68` | **The Numbers** | Easy | 字母↔數字代換（A1Z26） | [library](https://learn.cylabacademy.org/library?search=The%20Numbers) |
-
-**雜湊**
-
-| 角色 | ID | 題名 | 難度 | 練什麼 | 連結 |
-| :--: | :-- | :-- | :--: | :-- | :-- |
-| 帶練 | `475` | **hashcrack** | Easy | 用字典／查表反推弱密碼雜湊 | [library](https://learn.cylabacademy.org/library?search=hashcrack) |
-| 選配 | `243` | **HashingJobApp** | Easy | 算雜湊、體會單向 | [library](https://learn.cylabacademy.org/library?search=HashingJobApp) |
+| 示範 | `470` | **EVEN RSA CAN BE BROKEN???** | Easy | N 是偶數，p = 2；用講義的四個算式從公鑰算出私鑰 | [library](https://learn.cylabacademy.org/library?search=EVEN%20RSA) |
+| 必做 | `64` | **caesar** | Medium | 位移量未知，25 種全部試 | [library](https://learn.cylabacademy.org/library?search=caesar) |
+| 必做 | `475` | **hashcrack** | Easy | 從長度認演算法，查表或猜中弱密碼 | [library](https://learn.cylabacademy.org/library?search=hashcrack) |
+| 必做 | `162` | **Mind your Ps and Qs** | Medium | n 太短，查得到 p、q；其餘同示範 | [library](https://learn.cylabacademy.org/library?search=Mind%20your%20Ps%20and%20Qs) |
 
 🧠 **理解問題**
-1. **13 / Mod 26** - 你沒有任何金鑰就把它還原了，為什麼位移密碼這麼容易破？
-2. **hashcrack** - 雜湊號稱「不可逆」，那你是怎麼「還原」出原文的？（提示：你不是解開它，是猜中）
+1. **caesar** - 位移量是多少？沒有金鑰是怎麼找到的？
+2. **hashcrack** - 雜湊號稱「不可逆」，原文是怎麼得到的？（不是解開，是猜中）
+3. **Mind your Ps and Qs** - p、q 是怎麼得到的？有了 p、q 之後如何算出明文？
+
+> 2026-11-20 場次，作業 A6。講義、作業、示範腳本與教師答案：[`sessions/20261120_cylab-crypto/`](ncu_network_security/sessions/20261120_cylab-crypto/)。原規劃排除 RSA，改納入的理由：L12 講義有完整的 RSA 小數字範例（p=7、q=17），兩題 RSA 都只用那四個算式，不涉及額外數論。原帶練的 `62` 13、`144` Mod 26、`68` The Numbers 都是 Easy 的固定位移／代換，改列暖身；`243` HashingJobApp 維持選配。四題的機制依公開解法整理，尚未在 CyLab 實跑；`162` 的 ID 依 picoGym 編號推定。
+
+暖身（Easy）：`62` 13、`144` Mod 26、`68` The Numbers、`243` HashingJobApp。
 
 <details><summary>候選池（25 題）</summary>
 
@@ -319,10 +316,13 @@ Medium：`743` Fool the Lockout（M・3k，每 30 秒重置的鎖定，放慢速
 | `492` | SSTI1 | Web | M5 | ✅ 帶練 | 紅隊補充 |
 | `304` | SQLiLite | Web | M5 | ✅ capstone (Medium) | 紅隊補充 |
 | ~~`270`~~ | ~~Forbidden Paths~~ | Web | — | ❌ 不用（路徑穿越走情境演練 CVE，不重複） | — |
-| `62` | 13（ROT13） | Cryptography | M6 | ✅ 帶練 | L12 |
-| `144` | Mod 26 | Cryptography | M6 | ✅ 練習 | L12 |
-| `68` | The Numbers | Cryptography | M6 | ✅ 練習 | L12 |
-| `475` | hashcrack | Cryptography | M6 | ✅ 帶練(雜湊) | L12 |
+| `470` | EVEN RSA CAN BE BROKEN??? | Cryptography | M6 | ✅ 示範 | L12 |
+| `64` | caesar | Cryptography | M6 | ✅ 必做 (Medium) | L12 |
+| `475` | hashcrack | Cryptography | M6 | ✅ 必做 | L12 |
+| `162` | Mind your Ps and Qs | Cryptography | M6 | ✅ 必做 (Medium) | L12 |
+| `62` | 13（ROT13） | Cryptography | M6 | ⏳ 候選（暖身） | L12 |
+| `144` | Mod 26 | Cryptography | M6 | ⏳ 候選（暖身） | L12 |
+| `68` | The Numbers | Cryptography | M6 | ⏳ 候選（暖身） | L12 |
 | `243` | HashingJobApp | General Skills | M6 | ✅ 選配 | L12 |
 | `129` | Matryoshka doll | Forensics | M7 | ✅ 帶練 | L3 |
 | `268` | File types | Forensics | M7 | ✅ 必做 (Medium) | L3 |
