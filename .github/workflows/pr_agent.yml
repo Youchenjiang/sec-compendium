@@ -32,8 +32,10 @@ permissions:
 jobs:
   pr_agent_job:
     name: AI Code Review
+    # 暫停中：SiliconFlow 帳戶餘額不足，每個 PR 都會出現失敗的檢查。
+    # 重新啟用：把下方 if 條件裡的 `false && ` 拿掉即可。
     # 避免機器人帳號觸發迴圈
-    if: ${{ github.event.sender.type != 'Bot' }}
+    if: ${{ false && github.event.sender.type != 'Bot' }}
     runs-on: ubuntu-latest
     # AI 審查作為輔助建議，不阻擋 CI 合併
     continue-on-error: true
