@@ -2,10 +2,9 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Security Knowledge Base](https://img.shields.io/badge/Security-Blue%20%7C%20Red%20%7C%20Exams-blue.svg)](#-專案三大核心支柱-three-architectural-pillars)
-[![CTFd Platform](https://img.shields.io/badge/Platform-CTFd%20Integration-green.svg)](ctfd/)
 [![Tracks](https://img.shields.io/badge/Tracks-Lab%20%7C%20Club%20%7C%20Courses-orange.svg)](tracks/)
 
-> 本專案為兼具**「資安核心公共技術基石」**、**「三大研訓專軌體系」**與**「CTFd 實戰評測靶場」**之綜合性資安工程體系。
+> 本專案為兼具**「資安核心公共技術基石」**與**「三大研訓專軌體系」**之綜合性資安工程體系。
 
 ---
 
@@ -15,7 +14,6 @@
 graph TD
     Root["ctfd-kit 根目錄"] --> Sec["🛡️ security/<br/>(資安技術基石庫)"]
     Root --> Tracks["🚀 tracks/<br/>(三大研訓專軌庫)"]
-    Root --> CTFd["🎯 ctfd/<br/>(實戰靶場平台)"]
     Root --> Docs["📜 docs/<br/>(專案治理與 RFC)"]
 
     Sec --> SecKnow["knowledge/<br/>(攻防體系知識庫)"]
@@ -32,11 +30,6 @@ graph TD
     Tracks --> TrackLab["lab/ (實驗室 180 天 90-Runs 深耕)"]
     Tracks --> TrackClub["club/ (資安社週五讀書會實作)"]
     Tracks --> TrackCourses["courses/ (學術課程與 CyLab 出題)"]
-
-    CTFd --> CTFdAuto["automation/ (題目同步與結算自動化)"]
-    CTFd --> CTFdChal["challenges/ (實體出題二進制)"]
-    CTFd --> CTFdPlug["plugins/ (動態 Flag 外掛)"]
-    CTFd --> CTFdPatch["patches/ (繁中化與加分機制)"]
 ```
 
 ```text
@@ -57,16 +50,6 @@ ctfd-kit/
 │   ├── club/              # 👥 NCtfU 資安社讀書會 (週五雙軌自適應課表、CTF 出國戰略指南)
 │   └── courses/           # 🎓 大學學術課程專軌 (中央資管《電腦網路安全》與 CyLab 出題指南)
 │
-├── 🎯 ctfd/               # 【CTFd 實戰靶場與演練模組】(線上評測平台)
-│   ├── assets/            # 競賽認證範本、校園圖片素材
-│   ├── automation/        # 平台自動化維運與結算腳本 (sync_challenges.py, send_final_top10.py)
-│   ├── challenges/        # 靶機題目源碼 (C/Reverse) 與二進制檔
-│   ├── database/          # CTFd 初始化資料庫結構與預設帳密 dump
-│   ├── patches/           # CTFd 核心繁中化與首殺加分補丁
-│   ├── plugins/           # dynamic_shuffle_flag 動態 Flag 外掛
-│   ├── event_guide.md     # 🏆 NCU 資管碩一 Mini-CTF 活動手冊暨 Write-Up
-│   └── install.sh         # 一鍵快速部署至目標 CTFd 伺服器
-│
 └── 📜 docs/               # 【專案治理與架構規範】
     └── rfc/               # 0001_architecture_redesign_rfc.md 架構演進提案
 ```
@@ -85,7 +68,6 @@ ctfd-kit/
 | **實驗室深耕成長** | [`tracks/lab/90_runs/`](tracks/lab/90_runs/) | 180 天 90-Runs 課表、HITCON Range 靶場與金盾奪標計畫 |
 | **資安社週五讀書會** | [`tracks/club/`](tracks/club/) | 每週雙軌實作課表、Discord 分流、競賽培訓與 CTF 攻略 |
 | **學術課程與出題專軌** | [`tracks/courses/`](tracks/courses/) | 中央資管陳奕明教授《電腦網路安全》14 週課表對照與 CyLab 出題手冊 |
-| **CTFd 部署與維運** | [`ctfd/`](ctfd/) | 包含自動化結算、動態 Flag 外掛、繁中補丁、活動指南與一鍵部署腳本 |
 
 ---
 

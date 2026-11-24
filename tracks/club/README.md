@@ -29,7 +29,7 @@ tracks/club/
 
 ### 2. 戰隊長期培訓與活動
 - **CTF 戰隊 6 個月培訓與出國指南**：請查閱 [【CTF 出國戰略指南】](ctf_competition_roadmap.md)。
-- **系上 Mini-CTF 活動手冊暨 Write-Up**：請查閱 [【CTFd 官方活動手冊】](../../ctfd/event_guide.md)。
+- **系上 Mini-CTF 活動手冊暨 Write-Up**：已隨 CTFd 平台移至私人倉庫，不在本 repo 公開。
 
 > 💡 **校內學術課程專軌**：
 > 大學學期正課（中央資管陳奕明教授《電腦網路安全》）之 CyLab 加分作業出題指南已獨立移至 👉 [【學術課程專軌】](../courses/README.md)。

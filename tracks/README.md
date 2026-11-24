@@ -27,7 +27,7 @@
   - 14 週完整雙軌自適應課表 (v2.5)：[curriculum_14weeks.md](club/friday_study_group/curriculum_14weeks.md)
   - 雙軌自適應機制與 Discord 分流指南：[dual_track_guide.md](club/friday_study_group/dual_track_guide.md)
   - 紅藍對稱專案攻防參考：[purple_team_ref.md](club/friday_study_group/purple_team_ref.md)
-- 🏆 系上 Mini-CTF 活動手冊暨 Write-Up：👉 [**`ctfd/event_guide.md`**](../ctfd/event_guide.md)
+- 🏆 系上 Mini-CTF 活動手冊暨 Write-Up：已隨 CTFd 平台移至私人倉庫，不在本 repo 公開
 
 ---
 
