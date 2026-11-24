@@ -279,8 +279,8 @@ def main():
     parser.add_argument("--creds-file", default=default_creds,
                         help="憑證檔路徑（內容為 VM_GU= / VM_GP= 兩行；優先於環境變數）")
     parser.add_argument("--timeout", type=int, default=DEFAULT_TIMEOUT)
-    parser.add_argument("--guest-out", default=GUEST_OUT,  # NOSONAR - guest-side path
-                        help="客體輸出暫存檔路徑（預設 C:\\Windows\\Temp\\_vmrun_out.txt；UAC 受限時可改使用者暫存目錄）")
+    parser.add_argument("--guest-out", default=GUEST_OUT,
+                        help=f"客體輸出暫存檔路徑（預設 {GUEST_OUT}；UAC 受限時可改使用者暫存目錄）")
     parser.add_argument("--interactive", action="store_true", help="在互動 session 執行（GUI 程式用）")
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("tools", help="檢查 VMware Tools 狀態與客體 IP（不需憑證）")
