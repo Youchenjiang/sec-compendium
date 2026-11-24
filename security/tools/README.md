@@ -40,7 +40,7 @@
   - `lint`：校驗 PR Body 三大章節、標題長度與 Conventional Commits。
   - `create`：本地全套驗證通過後，一鍵建立帶有標籤之 GitHub Pull Request。
 
-### 7. Governed Collab Bus (`collab_bus.py` / `collab_watch.py` / `collab_protocol.py`)
+### 7. Dual-Profile Collab Bus (`collab_bus.py` / `collab_race.py` / `collab_watch.py` / `collab_protocol.py` / `collab_host_watch.py`)
 - **定位**：HITCON / CTF 多 Session 協作通訊層；tracked Markdown 保存正式 task/evidence，Git-ignored `.collab/runtime/` 保存 ephemeral events/handoffs。runtime 目前仍由 Google Drive 跨機同步，因此它**不是 secret store**。
 - **核心保證**：
   - task 只有 Case Lead 能建立，且只有一個 `Assignee Session`。
@@ -52,12 +52,69 @@
   - `doctor` 可檢查 task metadata、duplicate ID、runtime ignore 與 immutable hash。
   - **傳輸 fallback（browser-free）**：watcher 於 ACK 後確保可重放 handoff 封包存在於 Git-ignored `.collab/runtime/inbox/<Session>/<CaseID>/<TaskID>.json`；若寫入失敗，下輪會從 `ACK` 狀態重試。`--transport {auto,agent,file}` 可選互動式 agent（預設）或純檔案/CLI，`--exec-timeout` 逾時即自動退回封包。
   - **跨機同步韌性**：runtime 目錄實際靠雲端硬碟跨機同步（Drive 不遵守 `.gitignore`）；讀取器以 `is_sync_artifact()` 忽略驅動器產生的衝突副本／暫存碎片，`doctor` 會將其列為 WARN，確保同步競態不會被誤讀成正式 event/handoff。
-  - **Secret boundary**：plaintext password/token/session secret/private key 不得進 tracked `.collab`，也不得進 `.collab/runtime/`；只傳遞 `[REDACTED: local secret ref]` 類型的 host-local reference。
+  - **Secret boundary**：plaintext password/token/session secret/private key 不得進 tracked `.collab`，也不得進 `.collab/runtime/`。Race 可用 `secret_ref + secret_sha256 + secret_exact` 將 exact secret 標成 READY，但 event/board 只保存 redacted host-local reference 與 hash。
   - **Canonical naming / review linkage**：task=`Txxx_TYPE.md`、finding=`FINDING_Txxx.md`、review=`REVIEW_Txxx.md`；`REVIEW` task 必須以 `--review-target-finding FINDING_Txxx` 綁定既有 finding，且 review output 的 `對應 Finding` 必須完全一致。
-  - **MCP bridge（`mcp` 子命令）**：以 `collab_bus.py mcp {list,launch,tools,call}` 作為協作執行路徑的 MCP 入口；服務端清單、金鑰變數名與 runner 均登載於 `.agent/mcp/registry.json`，可由 session 直接呼叫（例：`semgrep` 掃碼、`cve-mcp-server` 查 CVE/EPSS/KEV）。實作見 `collab_mcp.py`；`mcp launch` 為離線檢視（傳輸、argv、金鑰名稱，永不輸出值）。
-  - **節點型傳輸**：`placement.holder_class` 決定連線方式（`kali`→ssh、`flare_vm`→vmrun Guest Operations、`container`→`docker run -i`），MCP 客戶端仍只說 stdio；規劃在 `mcp_transports.py`，橋接器在 `.agent/mcp/tools/`，規範見 `.agent/mcp/README.md` §12。
+  - **MCP bridge（`mcp` 子命令）**：以 `collab_bus.py mcp {list,tools,call}` 作為協作執行路徑的 MCP 入口；服務端清單、金鑰變數名與 runner 均登載於 `.agent/mcp/registry.json`，可由 session 直接呼叫（例：`semgrep` 掃碼、`cve-mcp-server` 查 CVE/EPSS/KEV）。實作見 `collab_mcp.py`。
+  - **常駐 worker-host watcher（`collab_host_watch.py`）**：worker 主機不用逐 session 手動啟動。supervisor 自動掃描 task tree 中 `Session-H2-*`（可用 `--prefix` / `COLLAB_HOST_SESSION_PREFIX` 調整）的 assignee，對每個 session 維持一個 watcher pass，並週期性重新掃描，使主機一新派工的 `Session-H2-Foo` **無須重啟即被接收**；預設 `--transport file`，確保 ACK 與 handoff 不依賴 composer。`--worker-command` 會在每次新 handoff 寫出後自動呼叫 worker（封包路徑接在指令後），接上 agent CLI 即可自動產出 finding/review；未設定時僅排入 inbox 並提示。
 
 ---
+
+#### Race profile (`collab_race.py`)
+
+競賽 Race profile 沿用 governed task / hash / handoff，不另建第二套 transport。差別是 task 以 **Investigation Lane** 分工，一個 lane 可同時覆蓋多個 question；Worker 找到一題就把 append-only answer event 發到 `.collab/runtime/race/`，不等待 `DONE`。
+
+核心規則：
+
+- `Execution Profile: race` 必須同時有 `Lane ID: LNN`；舊 task 缺欄位視為 `governed`。
+- `REVIEW` 不能是 race lane；時間敏感的衝突驗證用 `VERIFY` lane。
+- auto READY = high confidence + 至少 2 個 evidence reference + 無 semantic/review risk；否則 CANDIDATE。
+- secret-valued答案使用 `--secret-ref --secret-sha256 --secret-exact`，不得用 `--answer` 把 plaintext 帶進 runtime。
+- 相同 actor/task/question 的完全相同 answer/evidence/state 重複發布為 idempotent no-op。
+- 不同 lane 的不同答案自動 `CONFLICT`；`review-queue` 只列需要額外確認者。
+- Lead-only submission state machine：`READY → SUBMITTED → ACCEPTED | REJECTED`。
+- `SUBMITTED/ACCEPTED` 鎖定；`REJECTED` 可由新 evidence 重開。
+- `SESSION_CLOSED` 是硬 publication barrier；close 後答案不可再改 benchmark score。
+- 外部 lane 超過 worker START SLO 時用 `watchdog --assist-overdue`；Lead 代打前必須先有 `LANE_ASSISTED`，answer 會記錄精確 `assist_event_id`。Lead 自己持有的 lane 則在 dispatch 時自動 ACK→START。
+- task `ACK/START/DONE` 仍保留完整 audit trail；Race 只讓答案熱路徑不再等待 terminal lifecycle。
+- `board --at <elapsed>` 可重建 cutoff；`metrics` 直接報 first READY、50%/80%/100% milestone、15m/30m readiness 與 worker START SLO breach。
+- `race doctor` 驗 lane/task SHA-256、assignee、question scope、answer evidence、temporal Lead-assist provenance、preflight 與 close barrier。
+
+~~~bash
+python security/tools/collab_race.py preflight --case C01_BottleOut --lead-session Session-Antigravity --image <E01> --dfir-python <pinned-python>
+python security/tools/collab_race.py open --case C01_BottleOut --lead-session Session-Antigravity --budget-minutes 30 --worker-start-slo-seconds 60 --require-dfir-preflight
+python security/tools/collab_race.py lane --case C01_BottleOut --lead-session Session-Antigravity --lane-id L01 --task-id T101 --type TRIAGE --target-role ROLE_01_TRIAGE_HUNTER --assignee-session Session-C01-Triage --execution-environment portable_text_any --questions Q01,Q03,Q06 --domain execution-registry --objective "Resolve execution questions."
+python security/tools/collab_race.py answer --case C01_BottleOut --task-id T101 --session Session-C01-Triage --question Q03 --answer "example.exe" --confidence high --evidence "Prefetch: EXAMPLE.EXE-...pf" --evidence "UserAssist: example.exe"
+python security/tools/collab_race.py watchdog --case C01_BottleOut --lead-session Session-Antigravity --assist-overdue
+python security/tools/collab_race.py board --case C01_BottleOut
+python security/tools/collab_race.py board --case C01_BottleOut --at 15m
+python security/tools/collab_race.py review-queue --case C01_BottleOut
+python security/tools/collab_race.py metrics --case C01_BottleOut
+python security/tools/collab_race.py close --case C01_BottleOut --lead-session Session-Antigravity
+python security/tools/collab_race.py doctor --case C01_BottleOut
+~~~
+
+預設效能目標是 30 秒完成 routing、60 秒內外部 lane 真正 START、3 分鐘內第一個 candidate、一般小題 5 分鐘內 READY、15 分鐘 70–80% ready。這套 hot path 已用真實 blind benchmark 驗證：C01 修正前 baseline 為 **4/10 READY @ 30m**；修正後 C05 PaperGhost raw triage 為 **9/9 READY @ 671.470s、close @ 693.997s**，50%/80% 分別為 482.791s / 608.219s，doctor PASS。C05 仍有兩條外部 lane 超過 60s START SLO，所以 watchdog/Lead fallback 不能移除。跨主機 answer latency 只有在主機時鐘同步時才可視為精確執行秒數。
+
+### 8. Race DFIR Query / Preflight (`dfir_query.py` / `ese_query.py`)
+
+- **定位**：把 E01 / Windows triage bundle 的 parser readiness 移到 Race 計時前；比賽中不再臨時找 `fls/icat`、安裝 parser 或摸索 EWF loader。
+- **已驗證 pinned Windows/Python 3.14 stack**：`dissect.target==3.20`、`dissect.esedb==3.18`、`colorama==0.4.6`，清單在 `requirements-dfir-race.txt`。
+- **E01 fast path**：EWF logical stream 若 offset 0 已是 NTFS OEM ID，直接用 `NtfsFilesystem`；否則才做 volume-system discovery。
+- **查詢能力**：directory/list/stat/extract、raw `$MFT` filename search、deleted MFT recovery、Registry、EVTX、SQLite、bounded pagefile/artifact search。
+- **ESE**：`ese_query.py` 提供 bounded read-only tables/schema/records；preflight 一旦看到 `SRUDB.dat` 或 `Windows.edb` 而 ESE backend 不可用/版本不符，直接 fail closed。
+- **安全性**：extract/recover 不覆寫既有 output；secret plaintext 不應由 query helper 寫進 repo/runtime。
+
+~~~bash
+# 完整 E01
+python security/tools/dfir_query.py preflight --image <sample.E01>
+python security/tools/dfir_query.py find-mft --image <sample.E01> --name Settings.sqlite
+python security/tools/dfir_query.py search-file --image <sample.E01> --path /pagefile.sys --needle jailer
+
+# KAPE / triage bundle
+python security/tools/dfir_query.py preflight --evidence-root <TriageDir>
+python security/tools/ese_query.py tables --database <SRUDB.dat>
+python security/tools/ese_query.py records --database <Windows.edb> --table SystemIndex_PropertyStore --contains EXT-0419
+~~~
 
 ## 🚀 常用指令速查
 
@@ -109,14 +166,16 @@ python security/tools/collab_bus.py mcp list
 # 9. MCP：活體 session 列出伺服器真的暴露的工具
 python security/tools/collab_bus.py mcp tools --server semgrep
 
-# 10. MCP：離線檢視某顆伺服器會怎麼被拉起（傳輸、argv、金鑰名稱；不輸出值）
-python security/tools/collab_bus.py mcp launch --server semgrep
-
-# 11. MCP：呼叫單一工具（註冊表見 .agent/mcp/registry.json）
+# 10. MCP：呼叫單一工具（註冊表見 .agent/mcp/registry.json）
 python security/tools/collab_bus.py mcp call --server cve-mcp-server \
   --tool lookup_cve --args '{"cve_id": "CVE-2021-44228"}'
 python security/tools/collab_bus.py mcp call --server semgrep \
   --tool get_supported_languages
+
+# 11. 常駐 worker-host watcher（主機二）：自動接收主機一派給 Session-H2-* 的工單
+python security/tools/collab_host_watch.py --list-sessions
+python security/tools/collab_host_watch.py --transport file --log .collab/runtime/host_watch.log
+python security/tools/collab_host_watch.py --once   # 單次掃描（cron / Windows Task Scheduler）
 ```
 
 ---
@@ -152,3 +211,39 @@ python security/tools/collab_bus.py status --case C03_MemoryDump
 ```
 
 **通過判準**：主機一在 `events` 中看到 `ACK → START → DONE`，且 `status` 顯示 `DONE`；三方 event 的 `task_sha256` 一致，證明 immutable task 跨機未被改寫。
+
+---
+
+## 🛰️ 常駐 Worker-Host Watcher（主機二）
+
+跨機演練證明了「派工 → 接收 → 回報」可行，但前提是主機二**有人記得為每個 session 開 watcher**。`collab_host_watch.py` 把這件事變成常駐：它自己判斷該盯哪些 session，主機一只要把 task 指派給任一 `Session-H2-*` 名稱，主機二就會自動 ACK 並排入 handoff。
+
+```bash
+# [主機二] 前景常駐（Ctrl-C 停止）
+python security/tools/collab_host_watch.py --transport file
+
+# 先看目前會被盯上的 session（唯讀）
+python security/tools/collab_host_watch.py --list-sessions
+
+# 背景常駐：把輸出留在 log，供稍後查驗
+python security/tools/collab_host_watch.py --transport file \
+  --log .collab/runtime/host_watch.log
+
+# 只用單次掃描：適合 cron / Windows Task Scheduler
+python security/tools/collab_host_watch.py --once
+
+# 接上 worker：每寫出一份新 handoff 就呼叫你的 agent CLI（路徑會附在指令後）
+python security/tools/collab_host_watch.py --transport file \
+  --worker-command <your-agent-cli> --worker-arg <agent-flag>
+```
+
+**行為**：
+- **自動探索**：從 task tree 的 `Assignee Session`、既有 watcher state、以及 inbox 目錄聯集出所有 `Session-H2-*`；`--prefix`（或環境變數 `COLLAB_HOST_SESSION_PREFIX`）可改前綴。
+- **無須重啟**：每 `--rescan-interval`（預設 15s）重新探索，新派工的 `Session-H2-Foo` 會自動被納入。
+- **故障隔離**：單一 session 的任務不合規（例如 host-local gateway 任務落到遠端節點）只會被跳過並記 log，不會拖垮其他 session。
+- **ACK 不依賴 browser**：預設 `--transport file`，先送 `ACK` 再寫持久化 handoff；互動式 composer 可用與否都不影響交付。
+- **產生工件**：watcher 只負責收單、ACK、排入 inbox。真正的 finding/review 由 `--worker-command` 接上的 agent 產出；未設定時，人工或另一個 agent 用 `collab_bus.py inbox --session <S> --show` 消費即可。
+
+> **單一 writer 提醒**：`watchers/<session>.json` 會跨機同步，因此**同一個 session 名稱只能在一台主機執行**。切勿在兩機同時開同名 watcher。
+
+> **常駐方式**：Windows 可用 Task Scheduler 定期跑 `--once`；Linux/macOS 可 `nohup python ... &` 或 systemd service。
