@@ -737,6 +737,7 @@ def run_session(
             env=_child_env(plan, injected),
             cwd=str(protocol.REPO_ROOT),
             timeout=SESSION_TIMEOUT_SECONDS,
+            check=False,  # the probe's exit code is inspected below
         )
     except subprocess.TimeoutExpired as exc:
         raise ValueError(

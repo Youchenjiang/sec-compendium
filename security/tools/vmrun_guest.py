@@ -85,7 +85,7 @@ class Guest:
     def _run(self, args, timeout=None):
         cmd = [self.vmrun, "-T", "ws"] + self.auth + args
         try:
-            proc = subprocess.run(cmd, capture_output=True, text=True,
+            proc = subprocess.run(cmd, capture_output=True, text=True, check=False,
                                   timeout=timeout or self.timeout, errors="replace")
         except subprocess.TimeoutExpired:
             raise VMError(
@@ -251,6 +251,7 @@ def load_creds_file(path, repo_root):
                 text=True,
                 timeout=10,
                 errors="replace",
+                check=False,  # non-zero means "not ignored", handled below
             )
         except (OSError, subprocess.TimeoutExpired) as exc:
             raise VMError(f"無法確認 repo 內憑證檔是否被 Git ignore: {exc}")
