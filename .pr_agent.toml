@@ -7,7 +7,6 @@ ai_timeout = 90
 retry_same_model_on_timeout = false
 fallback_models = []
 ignore_glob = [
-    "ctfd/database/**",
     "**/*.sql",
     "**/*.json",
     "**/migrations/**",
