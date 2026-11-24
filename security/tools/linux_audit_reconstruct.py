@@ -24,7 +24,9 @@ from typing import Iterable
 
 AUDIT_ID_RE = re.compile(r"msg=audit\((?P<epoch>\d+(?:\.\d+)?):(?P<serial>\d+)\)")
 TYPE_RE = re.compile(r"\btype=(?P<type>[^ ]+)")
-FIELD_RE = re.compile(r"(?P<key>[A-Za-z0-9_]+)=(?P<value>\"(?:\\.|[^\"])*\"|'(?:\\.|[^'])*'|\S+)")
+# Quoted bodies exclude the backslash from the plain branch so "\\." and "[^\"\\]"
+# never compete for the same character (no exponential backtracking).
+FIELD_RE = re.compile(r"(?P<key>[A-Za-z0-9_]+)=(?P<value>\"(?:\\.|[^\"\\])*\"|'(?:\\.|[^'\\])*'|\S+)")
 HEX_RE = re.compile(r"^[0-9A-Fa-f]+$")
 
 
