@@ -63,7 +63,7 @@ DEFAULT_IDLE_SECONDS = 120.0
 DEFAULT_CLEANUP_GRACE_SECONDS = 3.0
 
 
-def _read_new_lines(path: str, offset: int) -> tuple[list[str], int]:
+def read_new_lines(path: str, offset: int) -> tuple[list[str], int]:
     """Return complete lines appended past ``offset`` plus the byte offset to resume at.
 
     Reads in binary so the offset is a plain byte count (a text-mode tell() is an
@@ -89,6 +89,10 @@ def _read_new_lines(path: str, offset: int) -> tuple[list[str], int]:
     if lines and lines[-1] == "":
         lines.pop()
     return lines, offset + len(chunk)
+
+
+# Former private name, kept so existing callers and tests keep working.
+_read_new_lines = read_new_lines
 
 
 def parse_argv(raw) -> list[str]:
@@ -144,7 +148,7 @@ def _opt(cli_value, config: dict, key: str, default=None):
     return config.get(key, default)
 
 
-def main(argv: list[str] | None = None) -> int:
+def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Node-side stdio bridge for MCP over vmrun")
     parser.add_argument("--config", default="", help="staged JSON launch description (preferred)")
     parser.add_argument("--argv", default="", help="server command line (JSON list)")
@@ -164,144 +168,181 @@ def main(argv: list[str] | None = None) -> int:
         default=None,
         help="seconds to wait after the shutdown sentinel before deleting staged files",
     )
-    args = parser.parse_args(argv)
+    return parser
 
+
+def _settings(args: argparse.Namespace) -> dict:
+    """Merge CLI flags over the staged config into one launch description."""
     config = load_config(args.config) if args.config else {}
-    server_argv = parse_argv(_opt(args.argv, config, "argv"))
-    requests_path = _opt(args.requests, config, "requests")
-    responses_path = _opt(args.responses, config, "responses")
-    ready_file = _opt(args.ready_file, config, "ready_file", "") or ""
-    cwd = _opt(args.cwd, config, "cwd", "") or None
-    idle = float(_opt(args.idle, config, "idle", DEFAULT_IDLE_SECONDS))
-    cleanup_grace = float(
-        _opt(args.cleanup_grace, config, "cleanup_grace", DEFAULT_CLEANUP_GRACE_SECONDS)
-    )
-    keep_files = bool(args.keep_files or config.get("keep_files"))
     extra_env = _opt(args.env, config, "env", {})
     if isinstance(extra_env, str):
         extra_env = json.loads(extra_env) if extra_env.strip() else {}
-    if not requests_path or not responses_path:
+    return {
+        "server_argv": parse_argv(_opt(args.argv, config, "argv")),
+        "requests": _opt(args.requests, config, "requests"),
+        "responses": _opt(args.responses, config, "responses"),
+        "ready_file": _opt(args.ready_file, config, "ready_file", "") or "",
+        "cwd": _opt(args.cwd, config, "cwd", "") or None,
+        "idle": float(_opt(args.idle, config, "idle", DEFAULT_IDLE_SECONDS)),
+        "cleanup_grace": float(
+            _opt(args.cleanup_grace, config, "cleanup_grace", DEFAULT_CLEANUP_GRACE_SECONDS)
+        ),
+        "keep_files": bool(args.keep_files or config.get("keep_files")),
+        "extra_env": extra_env or {},
+    }
+
+
+def _prepare_files(cfg: dict) -> None:
+    for path in (cfg["requests"], cfg["responses"], cfg["ready_file"]):
+        if path:
+            os.makedirs(os.path.dirname(os.path.abspath(path)), exist_ok=True)
+    if not os.path.exists(cfg["requests"]):
+        open(cfg["requests"], "a", encoding="utf-8").close()
+    if os.path.exists(cfg["responses"]):
+        os.remove(cfg["responses"])
+
+
+def _forward(lines: list[str], server, stderr_sink, stopped: threading.Event) -> None:
+    """Send request lines to the server; a sentinel or a closed stdin stops the relay."""
+    for line in lines:
+        if line.strip() == SHUTDOWN_SENTINEL:
+            stopped.set()
+            return
+        if not line.strip():
+            continue
+        try:
+            server.stdin.write(line + "\n")  # type: ignore[union-attr]
+            server.stdin.flush()  # type: ignore[union-attr]
+        except (BrokenPipeError, ValueError) as exc:
+            stderr_sink.write(f"### bridge: server stdin closed: {exc}\n")
+            stopped.set()
+            return
+
+
+def _relay_requests(cfg: dict, server, stderr_sink, stopped: threading.Event) -> None:
+    """Tail the requests file into the server until stopped or idle for too long."""
+    offset = 0
+    last_activity = time.monotonic()
+    while not stopped.is_set():
+        lines, offset = read_new_lines(cfg["requests"], offset)
+        if lines:
+            last_activity = time.monotonic()
+            _forward(lines, server, stderr_sink, stopped)
+            time.sleep(0.05)
+            continue
+        if time.monotonic() - last_activity > cfg["idle"]:
+            stderr_sink.write(f"### bridge: idle for {cfg['idle']}s, shutting down\n")
+            return
+        time.sleep(0.2)
+
+
+def _stop_server(server, pump: threading.Thread) -> int:
+    """Close stdin and reap the server; kill it (exit 3) if it does not stop in time."""
+    try:
+        server.stdin.close()  # type: ignore[union-attr]
+    except (OSError, ValueError):
+        pass
+    exit_code = 0
+    try:
+        server.wait(timeout=SHUTDOWN_GRACE_SECONDS)
+    except subprocess.TimeoutExpired:
+        server.kill()
+        exit_code = 3
+    pump.join(timeout=SHUTDOWN_GRACE_SECONDS)
+    return exit_code
+
+
+def _run_server(cfg: dict, stderr_sink) -> int:
+    env = dict(os.environ)
+    env.update({str(key): str(value) for key, value in cfg["extra_env"].items()})
+    try:
+        server = subprocess.Popen(
+            cfg["server_argv"],
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            stderr=stderr_sink,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            bufsize=1,
+            env=env,
+            cwd=cfg["cwd"],
+        )
+    except OSError as exc:
+        print(f"bridge: cannot start server {cfg['server_argv']!r}: {exc}", file=sys.stderr)
+        return 2
+
+    responses = open(cfg["responses"], "a", encoding="utf-8", buffering=1)
+    stopped = threading.Event()
+
+    def pump_stdout() -> None:
+        try:
+            for line in server.stdout:  # type: ignore[union-attr]
+                responses.write(line if line.endswith("\n") else line + "\n")
+                responses.flush()
+        finally:
+            stopped.set()
+
+    pump = threading.Thread(target=pump_stdout, name="bridge-stdout", daemon=True)
+    pump.start()
+    if cfg["ready_file"]:
+        with open(cfg["ready_file"], "w", encoding="utf-8") as handle:
+            handle.write(f"{os.getpid()}\n")
+
+    exit_code = 0
+    try:
+        _relay_requests(cfg, server, stderr_sink, stopped)
+    finally:
+        # Never leave an orphaned server behind: it would keep holding the
+        # guest's temp files, which is exactly what breaks the next session.
+        exit_code = _stop_server(server, pump)
+        responses.write(SHUTDOWN_SENTINEL + "\n")
+        responses.flush()
+        responses.close()
+        stderr_sink.write("### bridge exit\n")
+    return exit_code
+
+
+def _remove_staged(cfg: dict, config_path: str) -> None:
+    # Let the host observe the sentinel first, then remove everything this side
+    # staged. The host adapter may already be gone (clients terminate their
+    # child rather than closing stdin), so the guest cannot rely on it.
+    time.sleep(max(cfg["cleanup_grace"], 0.0))
+    for path in (
+        cfg["requests"],
+        cfg["responses"],
+        cfg["responses"] + ".stderr",
+        cfg["ready_file"],
+        config_path,
+        os.path.abspath(__file__),
+    ):
+        if not path:
+            continue
+        try:
+            os.remove(path)
+        except OSError:
+            pass
+
+
+def main(argv: list[str] | None = None) -> int:
+    args = _build_parser().parse_args(argv)
+    cfg = _settings(args)
+    if not cfg["requests"] or not cfg["responses"]:
         print("bridge: --requests and --responses (or a --config providing them) are required", file=sys.stderr)
         return 2
 
-    for path in (requests_path, responses_path, ready_file):
-        if path:
-            os.makedirs(os.path.dirname(os.path.abspath(path)), exist_ok=True)
-    if not os.path.exists(requests_path):
-        open(requests_path, "a", encoding="utf-8").close()
-    if os.path.exists(responses_path):
-        os.remove(responses_path)
-
-    env = dict(os.environ)
-    env.update({str(key): str(value) for key, value in (extra_env or {}).items()})
-    stderr_path = responses_path + ".stderr"
-    with open(stderr_path, "a", encoding="utf-8") as stderr_sink:
-        stderr_sink.write(f"### bridge start {time.strftime('%Y-%m-%dT%H:%M:%S')} argv={server_argv}\n")
+    _prepare_files(cfg)
+    with open(cfg["responses"] + ".stderr", "a", encoding="utf-8") as stderr_sink:
+        stderr_sink.write(
+            f"### bridge start {time.strftime('%Y-%m-%dT%H:%M:%S')} argv={cfg['server_argv']}\n"
+        )
         stderr_sink.flush()
-        try:
-            server = subprocess.Popen(
-                server_argv,
-                stdin=subprocess.PIPE,
-                stdout=subprocess.PIPE,
-                stderr=stderr_sink,
-                text=True,
-                encoding="utf-8",
-                errors="replace",
-                bufsize=1,
-                env=env,
-                cwd=cwd,
-            )
-        except OSError as exc:
-            print(f"bridge: cannot start server {server_argv!r}: {exc}", file=sys.stderr)
-            return 2
+        exit_code = _run_server(cfg, stderr_sink)
+        if exit_code == 2:
+            return exit_code
 
-        responses = open(responses_path, "a", encoding="utf-8", buffering=1)
-        stopped = threading.Event()
-
-        def pump_stdout() -> None:
-            try:
-                for line in server.stdout:  # type: ignore[union-attr]
-                    responses.write(line if line.endswith("\n") else line + "\n")
-                    responses.flush()
-            finally:
-                stopped.set()
-
-        pump = threading.Thread(target=pump_stdout, name="bridge-stdout", daemon=True)
-        pump.start()
-
-        if ready_file:
-            with open(ready_file, "w", encoding="utf-8") as handle:
-                handle.write(f"{os.getpid()}\n")
-
-        offset = 0
-        last_activity = time.monotonic()
-        exit_code = 0
-        try:
-            while True:
-                if stopped.is_set():
-                    break
-                if os.path.exists(requests_path):
-                    lines, offset = _read_new_lines(requests_path, offset)
-                else:
-                    lines = []
-                if lines:
-                    last_activity = time.monotonic()
-                    for line in lines:
-                        if line.strip() == SHUTDOWN_SENTINEL:
-                            stopped.set()
-                            break
-                        if not line.strip():
-                            continue
-                        try:
-                            server.stdin.write(line + "\n")  # type: ignore[union-attr]
-                            server.stdin.flush()  # type: ignore[union-attr]
-                        except (BrokenPipeError, ValueError) as exc:
-                            stderr_sink.write(f"### bridge: server stdin closed: {exc}\n")
-                            stopped.set()
-                            break
-                    time.sleep(0.05)
-                    continue
-                if time.monotonic() - last_activity > idle:
-                    stderr_sink.write(f"### bridge: idle for {idle}s, shutting down\n")
-                    break
-                time.sleep(0.2)
-        finally:
-            # Never leave an orphaned server behind: it would keep holding the
-            # guest's temp files, which is exactly what breaks the next session.
-            try:
-                server.stdin.close()  # type: ignore[union-attr]
-            except (OSError, ValueError):
-                pass
-            try:
-                server.wait(timeout=SHUTDOWN_GRACE_SECONDS)
-            except subprocess.TimeoutExpired:
-                server.kill()
-                exit_code = 3
-            pump.join(timeout=SHUTDOWN_GRACE_SECONDS)
-            responses.write(SHUTDOWN_SENTINEL + "\n")
-            responses.flush()
-            responses.close()
-            stderr_sink.write("### bridge exit\n")
-
-    if not keep_files:
-        # Let the host observe the sentinel first, then remove everything this side
-        # staged. The host adapter may already be gone (clients terminate their
-        # child rather than closing stdin), so the guest cannot rely on it.
-        time.sleep(max(cleanup_grace, 0.0))
-        for path in (
-            requests_path,
-            responses_path,
-            responses_path + ".stderr",
-            ready_file,
-            args.config,
-            os.path.abspath(__file__),
-        ):
-            if not path:
-                continue
-            try:
-                os.remove(path)
-            except OSError:
-                pass
+    if not cfg["keep_files"]:
+        _remove_staged(cfg, args.config)
     return exit_code
 
 

@@ -57,44 +57,43 @@ async def run(args: argparse.Namespace) -> int:
     )
 
     ok = True
-    async with stdio_client(params) as (read, write):
-        async with ClientSession(read, write) as session:
-            init = await session.initialize()
+    async with stdio_client(params) as (read, write), ClientSession(read, write) as session:
+        init = await session.initialize()
+        emit(
+            "initialize",
+            {
+                "serverInfo": init.serverInfo.model_dump() if init.serverInfo else None,
+                "protocolVersion": init.protocolVersion,
+                "capabilities": init.capabilities.model_dump(),
+            },
+        )
+
+        tools = await session.list_tools()
+        emit(
+            "tools/list",
+            {
+                "count": len(tools.tools),
+                "tools": [
+                    {"name": t.name, "description": (t.description or "").strip()}
+                    for t in tools.tools
+                ],
+            },
+        )
+
+        if args.call:
+            arguments = json.loads(args.arguments) if args.arguments else {}
+            emit("tools/call.request", {"name": args.call, "arguments": arguments})
+            result = await session.call_tool(args.call, arguments)
             emit(
-                "initialize",
+                "tools/call.result",
                 {
-                    "serverInfo": init.serverInfo.model_dump() if init.serverInfo else None,
-                    "protocolVersion": init.protocolVersion,
-                    "capabilities": init.capabilities.model_dump(),
+                    "isError": result.isError,
+                    "structuredContent": result.structuredContent,
+                    "content": [c.model_dump() for c in result.content],
                 },
             )
-
-            tools = await session.list_tools()
-            emit(
-                "tools/list",
-                {
-                    "count": len(tools.tools),
-                    "tools": [
-                        {"name": t.name, "description": (t.description or "").strip()}
-                        for t in tools.tools
-                    ],
-                },
-            )
-
-            if args.call:
-                arguments = json.loads(args.arguments) if args.arguments else {}
-                emit("tools/call.request", {"name": args.call, "arguments": arguments})
-                result = await session.call_tool(args.call, arguments)
-                emit(
-                    "tools/call.result",
-                    {
-                        "isError": result.isError,
-                        "structuredContent": result.structuredContent,
-                        "content": [c.model_dump() for c in result.content],
-                    },
-                )
-                if result.isError:
-                    ok = False
+            if result.isError:
+                ok = False
 
     if args.out:
         with open(args.out, "w", encoding="utf-8") as fh:

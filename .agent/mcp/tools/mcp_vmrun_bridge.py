@@ -89,12 +89,14 @@ class VmrunClient:
     def _run(self, args: list[str], *, timeout: float | None = None) -> tuple[int, str, str]:
         cmd = [self.vmrun, "-T", "ws", *self.auth, *args]
         try:
+            # vmrun reports failures through its exit code, which callers inspect.
             proc = subprocess.run(
                 cmd,
                 capture_output=True,
                 text=True,
                 errors="replace",
                 timeout=timeout or self.timeout,
+                check=False,
             )
         except FileNotFoundError as exc:
             raise BridgeError(f"vmrun not found: {self.vmrun}") from exc
@@ -278,7 +280,7 @@ class FileBridge:
             self.client.get(self.guest_responses, self.responses_local)
         except BridgeError:
             return []
-        lines, self.offset = node_bridge._read_new_lines(str(self.responses_local), self.offset)
+        lines, self.offset = node_bridge.read_new_lines(str(self.responses_local), self.offset)
         if lines:
             self.last_output = time.monotonic()
         return lines
@@ -335,13 +337,8 @@ def _stdin_pump(sink: "queue.Queue[str | None]") -> None:
     sink.put(None)
 
 
-def run_bridge(args: argparse.Namespace) -> int:
-    """Stream stdin -> guest -> stdout until the client closes stdin and the guest goes quiet."""
-    server_argv = json.loads(args.exec_argv)
-    if not isinstance(server_argv, list) or not server_argv:
-        raise BridgeError("--exec-argv must be a non-empty JSON list")
-    server_env = json.loads(args.exec_env) if args.exec_env.strip() else {}
-
+def _guest_access(args: argparse.Namespace) -> tuple[str, str, str]:
+    """Return ``(vmx, user, password)`` from flags or the environment names they point at."""
     user = args.guest_user or os.environ.get(args.guest_user_env or "")
     password = args.guest_password
     if password is None and args.guest_password_env:
@@ -356,6 +353,47 @@ def run_bridge(args: argparse.Namespace) -> int:
             "guest credentials missing: set the variables named by --guest-user-env / "
             "--guest-password-env (the registry records names; values live in secrets.env)"
         )
+    return vmx, user, password
+
+
+def _relay(bridge: "FileBridge", sink: "queue.Queue[str | None]", args: argparse.Namespace) -> int:
+    """Pump client lines to the guest and guest lines to stdout until the session ends."""
+    stdin_open = True
+    eof_at: float | None = None
+    while True:
+        line: str | None = ""
+        if stdin_open:
+            try:
+                line = sink.get(timeout=bridge.poll_interval)
+            except queue.Empty:
+                line = ""
+        if line is None:
+            stdin_open = False
+            eof_at = time.monotonic()
+        elif line.strip():
+            bridge.send(line)
+        for out_line in bridge.poll():
+            if out_line.strip() == SHUTDOWN_SENTINEL:
+                return 0
+            sys.stdout.write(out_line + "\n")
+            sys.stdout.flush()
+        if eof_at is not None:
+            # Drain: after the client closes stdin, keep polling until the guest
+            # has been quiet for ``--drain`` seconds. The quiet timer starts at
+            # EOF, never before it - a session's own staging time must not be
+            # mistaken for guest silence (that mistake drops the last replies).
+            idle = time.monotonic() - max(bridge.last_output, eof_at)
+            if idle > float(args.drain) or time.monotonic() - eof_at > float(args.response_timeout):
+                return 0
+
+
+def run_bridge(args: argparse.Namespace) -> int:
+    """Stream stdin -> guest -> stdout until the client closes stdin and the guest goes quiet."""
+    server_argv = json.loads(args.exec_argv)
+    if not isinstance(server_argv, list) or not server_argv:
+        raise BridgeError("--exec-argv must be a non-empty JSON list")
+    server_env = json.loads(args.exec_env) if args.exec_env.strip() else {}
+    vmx, user, password = _guest_access(args)
 
     bridge = FileBridge(
         VmrunClient(args.vmrun_exe, vmx, user, password, timeout=float(args.copy_timeout)),
@@ -373,36 +411,9 @@ def run_bridge(args: argparse.Namespace) -> int:
     sink: "queue.Queue[str | None]" = queue.Queue()
     threading.Thread(target=_stdin_pump, args=(sink,), name="bridge-stdin", daemon=True).start()
 
-    exit_code = 0
-    stdin_open = True
-    eof_at: float | None = None
     try:
         bridge.start()
-        while True:
-            line: str | None = ""
-            if stdin_open:
-                try:
-                    line = sink.get(timeout=bridge.poll_interval)
-                except queue.Empty:
-                    line = ""
-            if line is None:
-                stdin_open = False
-                eof_at = time.monotonic()
-            elif line.strip():
-                bridge.send(line)
-            for out_line in bridge.poll():
-                if out_line.strip() == SHUTDOWN_SENTINEL:
-                    return exit_code
-                sys.stdout.write(out_line + "\n")
-                sys.stdout.flush()
-            if not stdin_open and eof_at is not None:
-                # Drain: after the client closes stdin, keep polling until the guest
-                # has been quiet for ``--drain`` seconds. The quiet timer starts at
-                # EOF, never before it - a session's own staging time must not be
-                # mistaken for guest silence (that mistake drops the last replies).
-                idle = time.monotonic() - max(bridge.last_output, eof_at)
-                if idle > float(args.drain) or time.monotonic() - eof_at > float(args.response_timeout):
-                    return exit_code
+        return _relay(bridge, sink, args)
     except BridgeError as exc:
         tail = bridge.stderr_tail()
         detail = f"\n--- guest bridge log tail ---\n{tail}" if tail else ""
