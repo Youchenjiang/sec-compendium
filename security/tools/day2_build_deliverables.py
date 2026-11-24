@@ -21,6 +21,8 @@ import csv
 import os
 from datetime import datetime, timezone, timedelta
 
+from safe_paths import join_within, resolve_cli_path
+
 
 def read_rows(path):
     with open(path, "r", encoding="utf-8-sig", newline="") as fh:
@@ -55,11 +57,13 @@ def filetime_utc(v):
 
 
 def build(toolout, out):
+    toolout = resolve_cli_path(toolout)
+    out = resolve_cli_path(out)
     os.makedirs(out, exist_ok=True)
 
     # --- 1. prefetch.csv (pass-through, already normalized by PECmd) -----------
-    pf = read_rows(os.path.join(toolout, "prefetch.csv"))
-    with open(os.path.join(out, "prefetch.csv"), "w", encoding="utf-8", newline="") as fh:
+    pf = read_rows(join_within(toolout, "prefetch.csv"))
+    with open(join_within(out, "prefetch.csv"), "w", encoding="utf-8", newline="") as fh:
         w = csv.writer(fh)
         w.writerow(["SourceFilename", "ExecutableName", "RunCount", "LastRun",
                     "PreviousRun0", "PreviousRun1", "PreviousRun2", "PreviousRun3",
@@ -72,8 +76,8 @@ def build(toolout, out):
                         r.get("Size", ""), r.get("Hash", "")])
 
     # --- 2. amcache.csv (SHA-1 of file entries) --------------------------------
-    am = read_rows(os.path.join(toolout, "amcache_UnassociatedFileEntries.csv"))
-    with open(os.path.join(out, "amcache.csv"), "w", encoding="utf-8", newline="") as fh:
+    am = read_rows(join_within(toolout, "amcache_UnassociatedFileEntries.csv"))
+    with open(join_within(out, "amcache.csv"), "w", encoding="utf-8", newline="") as fh:
         w = csv.writer(fh)
         w.writerow(["SHA1", "FullPath", "Name", "Size", "LastWriteTimestampUTC",
                     "LinkDateUTC", "IsOsComponent", "ProductName"])
@@ -84,8 +88,8 @@ def build(toolout, out):
                         r.get("ProductName", "")])
 
     # --- 3. shimcache.csv (pass-through from AppCompatCacheParser) ------------
-    sc = read_rows(os.path.join(toolout, "shimcache.csv"))
-    with open(os.path.join(out, "shimcache.csv"), "w", encoding="utf-8", newline="") as fh:
+    sc = read_rows(join_within(toolout, "shimcache.csv"))
+    with open(join_within(out, "shimcache.csv"), "w", encoding="utf-8", newline="") as fh:
         w = csv.writer(fh)
         w.writerow(["ControlSet", "CacheEntryPosition", "Path", "LastModifiedTimeUTC",
                     "Executed", "Duplicate", "SourceFile"])
@@ -96,7 +100,7 @@ def build(toolout, out):
                         r.get("SourceFile", "")])
 
     # --- 4. usbstore_devices.csv (strip the &0 instance suffix) ----------------
-    usb = read_rows(os.path.join(toolout, "usbstore.csv"))
+    usb = read_rows(join_within(toolout, "usbstore.csv"))
     devices = {}
     for r in usb:
         kp = r.get("KeyPath", "")
@@ -110,7 +114,7 @@ def build(toolout, out):
         d = devices.setdefault(inst, {"dev_type": dev_type, "values": {}})
         if r.get("ValueName"):
             d["values"][r["ValueName"]] = r.get("ValueData", "")
-    with open(os.path.join(out, "usbstore_devices.csv"), "w", encoding="utf-8", newline="") as fh:
+    with open(join_within(out, "usbstore_devices.csv"), "w", encoding="utf-8", newline="") as fh:
         w = csv.writer(fh)
         w.writerow(["InstanceId", "DeviceType", "SerialNumber", "FriendlyName",
                     "DeviceDesc", "Service", "FirstInstallDateUTC"])
@@ -122,8 +126,8 @@ def build(toolout, out):
                         filetime_utc(vals.get("FirstInstallDate"))])
 
     # --- 5. userassist.csv (ROT13 decode + parsed blob) ------------------------
-    ua = read_rows(os.path.join(toolout, "userassist_raw.csv"))
-    with open(os.path.join(out, "userassist.csv"), "w", encoding="utf-8", newline="") as fh:
+    ua = read_rows(join_within(toolout, "userassist_raw.csv"))
+    with open(join_within(out, "userassist.csv"), "w", encoding="utf-8", newline="") as fh:
         w = csv.writer(fh)
         w.writerow(["KeyPath", "ValueNameROT13", "DecodedPath", "RunCount",
                     "LastExecutedUTC", "LastWriteUTC"])
@@ -154,7 +158,7 @@ def build(toolout, out):
                         r.get("LastWriteTimestamp", "")])
 
     # --- 6. consentstore.csv (Start/Stop + duration) ---------------------------
-    cs = read_rows(os.path.join(toolout, "consentstore_raw.csv"))
+    cs = read_rows(join_within(toolout, "consentstore_raw.csv"))
     apps = {}
     for r in cs:
         kp = r.get("KeyPath", "")
@@ -168,7 +172,7 @@ def build(toolout, out):
         cap, inst = seg[0], seg[-1]
         if r.get("ValueName"):
             apps.setdefault((cap, inst), {})[r["ValueName"]] = r.get("ValueData", "")
-    with open(os.path.join(out, "consentstore.csv"), "w", encoding="utf-8", newline="") as fh:
+    with open(join_within(out, "consentstore.csv"), "w", encoding="utf-8", newline="") as fh:
         w = csv.writer(fh)
         w.writerow(["Capability", "Application", "Permission", "LastUsedTimeStartUTC",
                     "LastUsedTimeStopUTC", "DurationSeconds"])

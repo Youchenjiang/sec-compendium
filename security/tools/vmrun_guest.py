@@ -47,6 +47,8 @@ import subprocess
 import sys
 import tempfile
 
+from safe_paths import resolve_cli_path
+
 DEFAULT_VMRUN = r"C:\MyAPP\VMware Workstation\vmrun.exe"
 DEFAULT_VMX = r"C:/Users/LabStrix/Documents/Virtual Machines/Windows 10 x64/Windows 10 x64.vmx"
 GUEST_CMD = r"C:\Windows\System32\cmd.exe"
@@ -233,7 +235,7 @@ def load_creds_file(path, repo_root):
     repo 內檔案僅在 Git 明確判定為 ignored 時允許使用；這讓本機 lab
     可以保留可重用認證，同時避免未受保護的 secret 被誤加入版控。
     """
-    real = os.path.realpath(path)
+    real = str(resolve_cli_path(path))
     inside_repo = False
     if repo_root:
         root = os.path.realpath(repo_root)

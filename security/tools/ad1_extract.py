@@ -29,6 +29,8 @@ import struct
 import sys
 import zlib
 
+from safe_paths import join_within, resolve_cli_path
+
 SEGMENT_SIGNATURE = b"ADSEGMENTEDFILE\x00"
 IMAGE_SIGNATURE = b"ADLOGICALIMAGE\x00\x00"
 IMAGE_HEADER_OFFSET = 0x200
@@ -263,7 +265,9 @@ def cmd_csv(image_path, outfile):
     未識別的 key 一概保留在 extra 欄位，避免臆測語意。
     """
     import csv
-    reader = SegmentReader(find_segments(image_path))
+    image_path = resolve_cli_path(image_path)
+    outfile = resolve_cli_path(outfile)
+    reader = SegmentReader(find_segments(str(image_path)))
     rows = []
     for block in parse_blocks(reader):
         meta = decode_metadata(block["metadata"])
@@ -297,19 +301,22 @@ def cmd_csv(image_path, outfile):
 
 
 def cmd_extract(image_path, outdir, strip_prefix=None):
-    reader = SegmentReader(find_segments(image_path))
+    image_path = resolve_cli_path(image_path)
+    outdir = resolve_cli_path(outdir)
+    reader = SegmentReader(find_segments(str(image_path)))
     written = 0
     skipped = 0
     for block in parse_blocks(reader, verbose=True):
         rel = block["path"]
         if strip_prefix and rel.startswith(strip_prefix):
             rel = rel[len(strip_prefix):].lstrip("/")
-        safe = rel.replace(":", "_").replace("\\", "_")
-        target = os.path.join(outdir, safe)
+        safe = rel.replace(":", "_").replace("\\", "_").lstrip("/")
+        # Item paths come from the image itself: refuse any that climb out of outdir.
+        target = join_within(outdir, safe)
         if block["type"] == ITEM_TYPE_FOLDER:
             os.makedirs(target, exist_ok=True)
             continue
-        os.makedirs(os.path.dirname(target) or ".", exist_ok=True)
+        os.makedirs(target.parent, exist_ok=True)
         if os.path.exists(target):
             skipped += 1
         with open(target, "wb") as out:

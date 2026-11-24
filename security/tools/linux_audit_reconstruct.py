@@ -21,6 +21,9 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Iterable
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from safe_paths import resolve_cli_path  # noqa: E402
+
 
 AUDIT_ID_RE = re.compile(r"msg=audit\((?P<epoch>\d+(?:\.\d+)?):(?P<serial>\d+)\)")
 TYPE_RE = re.compile(r"\btype=(?P<type>[^ ]+)")
@@ -190,6 +193,7 @@ class AuditEvent:
 
 
 def parse_audit_log(path: Path) -> list[AuditEvent]:
+    path = resolve_cli_path(path)
     events: dict[tuple[str, int], AuditEvent] = {}
     with path.open("r", encoding="utf-8", errors="replace") as handle:
         for raw_line in handle:
