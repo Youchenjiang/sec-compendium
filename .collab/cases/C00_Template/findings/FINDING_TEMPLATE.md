@@ -40,6 +40,10 @@
 2. 若引用威脅情報或外部資料，只能作為輔助，不可取代本題工件證據。
 3. `Confidence` 是 evidence 的摘要，不是獨立證明。
 
+## Race profile 補充
+
+> 若對應 task 是 Race lane，本 finding 是完整 provenance / 賽後重現工件，**不是答案熱路徑**。分析途中已確認的小題應先以 `collab_race.py answer` 發布；不得等本 finding 全部寫完才通知 Case Lead。Race answer 仍需回到本 finding 的 Artifact / Tool / Direct Observation / Reproduction / Known Limitations 中留下可追溯證據。
+
 ## 5. 建議下一步
 - **建議答案狀態**：`CANDIDATE` / `VERIFIED`
 - **需要額外 review**：`YES` / `NO`

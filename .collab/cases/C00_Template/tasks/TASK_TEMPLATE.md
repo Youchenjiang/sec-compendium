@@ -12,6 +12,8 @@
 - **發起 Session**：`Session-Main`
 - **發起時間**：`YYYY-MM-DD HH:MM:SS UTC`
 - **Execution Environment**：`host_local_gateway` / `portable_text_any`（必填；對應 canonical metadata `execution_environment`）
+- **Execution Profile**: `governed` / `race`（舊 task 缺省視為 `governed`）
+- **Lane ID**: `L01`（只在 `race` 使用；`governed` 留空）
 - **Review Target Finding**：`FINDING_T000`（僅 `REVIEW` 必填；其他 task 移除此列）
 - **期望技能**：`[代碼逆向 / 去混淆]` / `[海量日誌過濾]` / `[封包解構]` / `[第二意見審查]`
 - **Task ID**：`T000`
@@ -42,3 +44,11 @@ powershell.exe -enc JABjAGwAaQBlAG4AdAAgAD0AIABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAUwB5
 5. `REVIEW` 在 `reviews/` 新增精確 `REVIEW_T000.md`。
 6. `REVIEW` 必須用 `Review Target Finding` 明確指向既有 governed finding；review output 的 `對應 Finding` 必須完全相同。
 7. 若為 `VERIFY` 且既有候選皆不成立，必須明確回報「皆非」並附上反證，不可為了符合題目而硬選 A/B/C。
+
+### Race task 補充規範
+
+- Race 的 task 是 **Investigation Lane**，`對應小題` 可以列多題；應按 evidence domain 分組，不按 question 一題一 task。
+- Worker 每得到一個可用答案就執行 `collab_race.py answer`；答案發布**不等待** governed finding 完成或 `DONE`。
+- `REVIEW` 不可使用 `Execution Profile: race`；時間敏感的反證/衝突確認另建 `VERIFY` lane。
+- Race worker 仍不得修改 task、`CASE_STATE.md`、`questions.md`、`SCOREBOARD.md`；live board 由 runtime race events 推導。
+- 最終仍依原 Evidence Contract 完成 `FINDING_Txxx.md` 與 `DONE`，供賽後重現。

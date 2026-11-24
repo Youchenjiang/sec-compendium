@@ -39,3 +39,16 @@
 2. **單一寫入原則**：只修改自己持有 ownership 的 case 檔案；若不是 Global Coordinator，不修改 `SCOREBOARD.md`。不得要求 Worker 回頭修改已發布 task。
 3. **Secret hygiene**：密碼、token、session secret、private key 不得寫入 tracked `.collab`，也不得寫入會跨機雲端同步的 `.collab/runtime/`；只可引用 host-local secret reference，例如 `[REDACTED: local secret ref]`。
 4. **終端與時區紀律**：所有時間戳一律標明 UTC；禁止在 PowerShell 5.1 用 `>` 重導二進位串流。
+
+## 4. Race Profile：Case Lead 快速作戰責任
+
+當 task 的 `Execution Profile` 為 `race` 時，你的主要工作從「逐題派 task」改為「切 Investigation Lanes 並持續收斂 answer board」：
+
+1. 大題開始立即 `collab_race.py open`；預設 30 分鐘 budget。
+2. 依 evidence domain 一次派出 3–4 條可平行 lane；**一條 lane 可覆蓋多個 question**，不要為每個小題建立一個 task。
+3. 目標 30 秒完成 routing、60 秒內讓所有 lane 進入 handoff/worker 啟動流程；不得等前一 lane DONE 才派下一 lane。
+4. 以 `board` 作競賽 live view；以 `review-queue` 找衝突與語意風險；不要要求 Worker 搶寫 `questions.md` 或 `SCOREBOARD.md`。
+5. `READY` 且 `needs_review=NO` 才可進 submission；衝突或高風險項目另派短 `VERIFY` lane。不得把完整 `REVIEW` task 放進每題 critical path。
+6. Race answer 可早於 task `DONE`；但不得取消 governed output。賽後仍需完成 finding/DONE，保留可重現證據鏈。
+7. 只有你能執行 `submit/accept/reject`；`SUBMITTED` 後答案鎖定，平台若 `REJECTED` 才以新 evidence 重開。
+8. Race metrics 的跨主機時間只是 observed latency；除非時鐘同步，不把它宣稱為精確 worker execution time。

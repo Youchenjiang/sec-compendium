@@ -1,6 +1,6 @@
 # 🌐 多 Agent Session 階層協同作戰手冊 (Hierarchical Multi-Agent Framework)
 
-> **版本**：v2.3 (Governed Case Bus Edition)
+> **版本**：v2.3 (Governed + Race Profiles)
 > **適用場景**：HITCON Cyber Range / CTF 主機鑑識與應急響應  
 > **核心設計**：以 **case-centric、single-writer、evidence-first** 為核心；`.collab/cases/` 是正式 task/evidence 的唯一權威總線。每個 case 只有一個 Lead Session，專項 Session 回傳 finding/review；另由一個 Global Coordinator 維護全域 scoreboard。`.collab/runtime/` 只承載可丟棄的事件與 handoff transport，不是第二套 evidence source of truth。
 
@@ -11,6 +11,7 @@
 1. `CASE_STATE.md`：Case ownership、已接受的 evidence-backed facts 與 case 執行狀態。
 2. `tasks/Txxx_TYPE.md`：發布後 immutable 的任務輸入、唯一 assignee 與 execution environment。
 3. `.collab/runtime/events/`：task runtime lifecycle；只記協作執行狀態，不構成答案證據。
+   - `.collab/runtime/race/`：Race 即時協作狀態與 answer board event；可重建、非正式 evidence source of truth，最終結論仍由 finding/review/canonical case files 支撐。
 4. `findings/` / `reviews/`：Worker / Reviewer 的 governed evidence output。
 5. `questions.md`：答案生命週期與人類平台提交結果。
 6. `SCOREBOARD.md`：Global Coordinator 維護的跨 case 摘要；不得反向覆蓋 case source of truth。
@@ -88,6 +89,104 @@ Watcher 的 `--node-class auto` 採 fail-closed：只有環境變數 `COLLAB_NOD
 ---
 
 ## 3. 任務與答案生命週期
+
+### Execution Profiles（Governed / Race）
+
+`.collab` 使用同一套 immutable task / event / handoff 基礎設施，但提供兩個**執行 profile**。兩者共享 task hash、exact assignee、execution environment 與 provenance 規則；差別只在「答案何時可以被 Lead 使用」。
+
+| Profile | 適用情境 | 工作單位 | 答案熱路徑 |
+| :--- | :--- | :--- | :--- |
+| `governed` | 訓練、完整取證、賽後重現、正式獨立審查 | 一個 atomic task | `DISPATCHED → ACK → START → governed output → DONE → REVIEW/Lead promotion` |
+| `race` | 30 分鐘級競賽搶分、同一大題含多個小題 | **Investigation Lane**；一個 task 可覆蓋多個 question | Worker 找到一題就發布 race answer event；**不等待 task DONE** |
+
+Race task 仍是 v2.3 governed task，只額外帶：
+
+- `Execution Profile: race`
+- `Lane ID: L01`（`LNN` 格式）
+- `Questions` 可包含多個小題，例如 `Q01, Q03, Q06`
+
+舊 task 沒有 `Execution Profile` 時一律解讀為 `governed`；不得把既有歷史 task 原地補成 race。`REVIEW` task 不可標成 race lane；競賽中若某答案有衝突或高語意風險，另派一條短 `VERIFY` lane 做獨立確認，正式 `REVIEW` 留給 Governed mode。
+
+#### Race answer stream
+
+Race mode 的 live answer board **不是共享 Markdown**。Worker / Lead 只新增 Git-ignored `.collab/runtime/race/<CaseID>/events/*.json` append-only event，由 `collab_race.py board` 即時計算目前狀態，避免多 Agent 同時改 `questions.md` 或 `SCOREBOARD.md` 產生衝突。
+
+Race answer lifecycle：
+
+`OPEN → CANDIDATE → READY → SUBMITTED → ACCEPTED | REJECTED`
+
+- `READY` 自動條件：`confidence=high`、至少 2 個 evidence reference、沒有 `semantic_risk`、沒有 `needs_review`。
+- 不滿足上述條件就留在 `CANDIDATE`；不得靠手動提高 confidence 繞過證據缺口。
+- 不同 lane 對同一題給出不同正規化答案時，board 自動變 `CONFLICT` 並進 `review-queue`。
+- `semantic_risk` / `needs_review` 也會進 `review-queue`；例如「artifact presence ≠ execution」、「MEGA artifact ≠ upload completion」。
+- `SUBMITTED` / `ACCEPTED` 期間答案鎖定；`REJECTED` 後可由新證據重新開啟。
+- Race answer 必須仍錨定對應 immutable task SHA-256；Race mode **不是 bypass provenance**。
+- **Secret-aware READY**：若答案本身是 password/token/session secret，不得把 plaintext 放進 tracked 或 cloud-synced runtime。可用 `--secret-ref + --secret-sha256 + --secret-exact` 發布 READY；board 只顯示 `[REDACTED: host-local ...]`，而 exact plaintext 留在同步 workspace 外或 host-local primary evidence。
+- **Idempotence**：同一 Session 對同一題重複發布完全相同的 state/answer/evidence 是 no-op，不新增第二筆 READY event；內容真的改變時才新增 event。
+- **CLOSED 是硬邊界**：`close` 之後 `answer/withdraw/control` 不得再影響 benchmark scoring。賽後若需要補註記，必須明確作 postmortem，不能回灌 cutoff。
+- **Lead assist 不是靜默越權**：Lead 要代打別人的 lane，必須先產生 `LANE_ASSISTED`；Lead answer 會錨定精確 `assist_event_id`，且 doctor 要求該 assist event 與 task/lane/Lead 相符並**早於答案**。
+
+#### Race SLO（目標，不是完成保證）
+
+以 30 分鐘大題為預設 budget：
+
+- `≤ 30 秒`：Case Lead 完成 evidence-domain routing 並建立主要 lanes。
+- `≤ 60 秒`：外部 lane 應看到真正的 worker `START`；未 START 者由 `watchdog` 標成 overdue，Case Lead 立即做 cheap-pivot fallback / `assist --overdue`，不得被 browser/composer bootstrap 卡住。
+- **Lead 自己持有的 lane**：dispatch 後由 Race CLI 自動完成 ACK→START，不再為自己的 lane 額外等待 watcher/bootstrap。
+- `≤ 3 分鐘`：出現第一個 candidate/ready answer。
+- 一般小題目標 `≤ 5 分鐘` 進 READY。
+- `15 分鐘`：目標至少 `70–80%` 小題 READY / SUBMITTED / ACCEPTED。
+- `30 分鐘`：目標是大題主要可答範圍完成；不得因補完整 finding/review 文件阻塞可提交答案。
+
+Race metrics 會直接報 `ready_50_seconds / ready_80_seconds / ready_100_seconds`。Live race 在 15m/30m cutoff **尚未發生時不預測未來比例**；closed race 才能以 frozen event history 重建 `board --at 15m` / `board --at 30m` 與對應 readiness。
+
+跨主機 event 的 wall-clock 可能不同步，因此 `routing_complete_seconds` 可視為 Lead-local latency；worker/answer latency 是 observed latency，只有主機時鐘已同步時才可當成精確 benchmark。
+
+#### Race 開鐘前 DFIR preflight
+
+需要 raw E01 或 Windows triage bundle 的 race **先 preflight、再 open**。工具/版本缺口不得消耗競賽計時：
+
+- `dfir_query.py preflight --image <E01>`：驗 EWF、NTFS、deleted MFT、Registry、EVTX、ESE、SQLite 與 streaming search。
+- `dfir_query.py preflight --evidence-root <TriageDir>`：盤點 Registry/LNK/JumpList/Prefetch/SRUM/Windows Search/SQLite；若存在 `SRUDB.dat` 或 `Windows.edb` 卻沒有 ESE parser，**fail closed**。
+- 已驗證的 Windows/Python 3.14 baseline：`dissect.target==3.20`、`dissect.esedb==3.18`、`colorama==0.4.6`。本環境的 `dissect.target 3.25.1` 曾因 `glob._Globber` 相容性錯誤失敗，不得在開賽後臨時升級碰運氣。
+- EWF logical stream 若 offset 0 的 OEM ID 已是 `NTFS    `，直接走 NTFS fast path；不再先依賴容易誤判的 full Target auto-loader。
+
+#### Race CLI 最小流程
+
+~~~bash
+python security/tools/collab_race.py preflight --case C01_BottleOut --lead-session Session-Antigravity --image <E01> --dfir-python <pinned-python>
+python security/tools/collab_race.py open --case C01_BottleOut --lead-session Session-Antigravity --budget-minutes 30 --worker-start-slo-seconds 60 --require-dfir-preflight
+python security/tools/collab_race.py lane --case C01_BottleOut --lead-session Session-Antigravity --lane-id L01 --task-id T101 --type TRIAGE --target-role ROLE_01_TRIAGE_HUNTER --assignee-session Session-C01-Triage --execution-environment portable_text_any --questions Q01,Q03,Q06 --domain execution-registry --objective "Resolve execution and user-activity questions."
+python security/tools/collab_race.py answer --case C01_BottleOut --task-id T101 --session Session-C01-Triage --question Q03 --answer "example.exe" --confidence high --evidence "Prefetch: EXAMPLE.EXE-...pf" --evidence "UserAssist: example.exe"
+python security/tools/collab_race.py watchdog --case C01_BottleOut --lead-session Session-Antigravity --assist-overdue
+python security/tools/collab_race.py board --case C01_BottleOut
+python security/tools/collab_race.py board --case C01_BottleOut --at 15m
+python security/tools/collab_race.py review-queue --case C01_BottleOut
+python security/tools/collab_race.py metrics --case C01_BottleOut
+python security/tools/collab_race.py close --case C01_BottleOut --lead-session Session-Antigravity
+python security/tools/collab_race.py doctor --case C01_BottleOut
+~~~
+
+`ACK / START / DONE / ERROR` 在 Race mode 仍照既有 state machine 留作 audit trail；**答案發布與 Lead 決策不等待 task 進 terminal state**。外部 worker 的 `START` 仍是啟動 SLO 的真實訊號；Lead 自有 lane 由 Race CLI 直接 ACK→START。Worker 最終仍完成 governed finding 並送 `DONE`，供賽後重現與 provenance 使用。
+
+#### Fresh conversation blind benchmark handoff
+
+要用**全新對話**驗收 Race 架構時，不要把原始 challenge 旁邊的 `analysis/solution/solved-writeup` 目錄直接交給 solver。先建立一個新的 case，並把 solver 可見範圍縮成：
+
+1. `.collab/cases/<CaseID>/START_HERE.md`：新對話唯一 bootstrap；要求自行 preflight、triage、分 lane、watchdog、publish、close、doctor，不等待人類逐步指揮。
+2. `.collab/cases/<CaseID>/CASE_STATE.md`：只列乾淨 evidence root、primary artifact hash、30m budget、START SLO、blind/secret/Git boundary。
+3. `.collab/cases/<CaseID>/questions.md`：只複製題面與答案格式，所有題目從 `OPEN` 開始；不得帶既有 candidate/answer/evidence hint。
+4. 原始 evidence 另外複製到 `Security-LabData/blind-transfer/<CaseID>/`；大型/危險標本仍留 repo 外，solver 不得回頭遍歷原 challenge 來源目錄。
+5. Race close 前 solver 不得讀既有答案、歷史 finding/review、過去聊天/Memory 或 web writeup。若意外暴露答案，該 run 標記 `CONTAMINATED`，不得繼續計分。
+6. Ground truth 由**另一個獨立 verifier session**在 `SESSION_CLOSED` 後比對；solver 不自行打開 answer corpus，因此 post-race scoring 不會污染 timed run。
+
+完成上述 staging 後，人類啟動新對話通常只需一句：`請讀 .collab/cases/<CaseID>/START_HERE.md，依其中規範自主完成整個 blind Race benchmark。` 除非 evidence 缺失、工具/worker orchestration 本身不可用、需要外部平台人工互動或涉及破壞性/不可逆操作，否則 Case Lead 不應中途要求人類決定下一步。
+
+#### 已完成的競賽速度驗收
+
+- **C01_BottleOut baseline blind run**：30:00 cutoff 僅 `4/10 READY`；routing `0.657s`，all-lanes START `108.952s`，未達 50%/80%。這是架構修正前 baseline，不得回寫 post-close 答案美化結果。
+- **C05_PaperGhost blind rerun（raw Triage only）**：routing `0.674s`、first READY `196.547s`、50% `482.791s`、80% `608.219s`、100% `671.470s`，session close `693.997s`；`9/9 READY`、15m/30m cutoff 均 100%、`RACE DOCTOR PASS`。
+- C05 仍觀察到兩條外部 worker lane 超過 60s START SLO（約 73s / 78s），因此 watchdog/Lead fallback **仍是必要機制**；這個 PASS 代表 Race hot path 已能在一個真實大型 host-DFIR 題組內滿足約 30 分鐘目標，不代表所有未來題型必然 11 分鐘完成。
 
 ### Task Types
 - `DISCOVERY`：開放式探索；不得限制 Worker 只能從預設候選中選答案。
@@ -208,6 +307,17 @@ python security/tools/collab_bus.py doctor
 ```
 
 `DONE` 有三道硬門檻：task hash 必須與唯一 `DISPATCHED` event 錨定值一致、governed output 必須存在、output contract 必須填完整。只建立空模板不能宣告 DONE。
+
+### Race 與 runtime lifecycle 的關係
+
+Race profile **不放寬** governed lifecycle：task 仍必須合法地走 `DISPATCHED → ACK → START → DONE | ERROR`，且 `DONE` 仍檢查 immutable task hash 與 governed output contract。Race 只把「answer-ready」從 terminal lifecycle 解耦：只要 lane task 的唯一 `DISPATCHED` hash anchor 成立，exact assignee 就可以在分析途中發布 `CANDIDATE/READY` event。
+
+因此 Lead 在競賽中應同時看兩個視角：
+
+- `collab_race.py board`：現在有哪些答案可提交、哪些衝突、哪些需要 VERIFY。
+- `collab_bus.py status` / `events`：哪些 worker 已 ACK/START/DONE，以及賽後 governed output 是否完整。
+
+不得把 Race board 寫回或視為 `questions.md` / `SCOREBOARD.md` 的替代 source of truth；Race session 結束後，由 Case Lead 將平台回饋與最終 evidence-backed 結論 promotion 到 canonical case files。
 
 ### Browser-free handoff transport
 

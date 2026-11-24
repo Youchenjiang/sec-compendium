@@ -24,6 +24,12 @@
 
 ---
 
+## Race mode 使用方式
+
+> `questions.md` 是 **canonical / long-lived 答題紀錄**，不是 Race mode 的 live hot path。競賽進行中請用 `python security/tools/collab_race.py board --case <CaseID>` 查看 `OPEN / CANDIDATE / READY / CONFLICT / SUBMITTED / ACCEPTED / REJECTED`。Worker 不直接改本檔；平台回饋或 Race session 結束後，由 Case Lead 將最終 evidence-backed 狀態 promotion 回本檔。
+>
+> `READY` 是 Race runtime 狀態，不等同本檔的長期 `VERIFIED`。`VERIFIED` 仍表示 Case Lead 已依 governed evidence/review gate 接受該結論。
+
 ## Answer lifecycle
 - `OPEN`：尚無候選答案。
 - `CANDIDATE`：已有答案，但 evidence contract 尚未滿足。

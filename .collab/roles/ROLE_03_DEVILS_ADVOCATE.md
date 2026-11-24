@@ -29,3 +29,14 @@
    - 結論必須二選一：
      - **`CHALLENGED`**：指出具體 evidence gap、反例或無法重現的步驟。
      - **`APPROVED`**：證據可重現且沒有阻止 Main 升為 `VERIFIED` 的 blocker；不代表平台答案已 `ACCEPTED`。
+
+## 3. Race Profile：只審真正需要審的答案
+
+Race mode 不做「每題一份 REVIEW」。你的競賽責任是壓縮 review latency：
+
+1. 優先處理 `collab_race.py review-queue` 中的 `CONFLICT`、`semantic_risk`、`needs_review` 項目。
+2. 時間敏感的獨立確認由 Case Lead 建立新的 **`VERIFY` race lane** 指派給你；`REVIEW` task 本身維持 Governed mode，不得標成 race lane。
+3. VERIFY lane 必須從原 artifact/source 獨立重現，不以原 candidate 為前提；若能找到替代解釋或證據不足，回報 CANDIDATE/風險而不是硬升 READY。
+4. 若兩個 lane 的答案其實等價，說明正規化理由；若確實衝突，保留衝突並要求下一個 discriminating artifact，不做投票決定。
+5. 平台提交後若 REJECTED，把它視為新 evidence，協助 Lead 重開驗證；不得修改或刪除既有 race event。
+6. 賽後或高風險成果需要完整 provenance 時，再依原規則建立正式 `REVIEW` task / `REVIEW_Txxx.md`。

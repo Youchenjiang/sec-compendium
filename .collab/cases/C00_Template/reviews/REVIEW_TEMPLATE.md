@@ -18,5 +18,9 @@
 - **替代解釋 / False Positive**：列出已排除與仍未排除的合理替代解釋。
 - **格式檢查**：確認大小寫、時間格式、IP:Port、hash、路徑或 flag 格式。
 
+## Race profile 邊界
+
+> 正式 `REVIEW` task 屬 Governed mode，不能作為 Race lane。競賽中需要快速處理 `CONFLICT / semantic_risk / needs_review` 時，由 Lead 另建 `VERIFY` race lane；只有賽後、重大風險或需要完整獨立 provenance 時才進本 REVIEW 模板。
+
 ## 4. Blockers / Residual Risk
 - `None`，或列出阻止 Main 將答案升為 `VERIFIED` 的具體 evidence gap。

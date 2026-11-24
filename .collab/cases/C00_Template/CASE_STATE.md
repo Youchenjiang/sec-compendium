@@ -15,6 +15,15 @@
 
 ---
 
+## 2A. Execution Profile / Race Session（需要時填）
+
+- **Execution Profile**：`governed` / `race`
+- **Race Budget**：`30m`（若非 race 填 `N/A`）
+- **Lane Routing**：例 `L01=execution+registry / L02=filesystem+browser / L03=network+SRUM / L04=reverse`
+- **Live Answer View**：Race 時以 `.collab/runtime/race/<CaseID>/events/` 推導；**不要把 runtime board 複製成第二份 canonical state**。
+
+> Race mode 期間本檔仍只有 Case Lead 可寫；worker 的即時答案走 append-only race events。Race 結束後再將穩定的 evidence-backed facts promotion 到下方核心事實。
+
 ## 3. 已確認之核心事實 (Evidence-backed Facts)
 > 只有已有可追溯 finding/review、可重現且由 Case Lead 接受的事實才記錄於此；每項事實應附來源工件 ID，避免「高信心」取代證據。
 

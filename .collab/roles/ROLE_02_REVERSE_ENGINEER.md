@@ -34,3 +34,13 @@
 - 如果發現任何加密演算法（如 AES、RC4），明確標註 Key、IV 與加密模式。
 - 不得將 password、token、session secret、private key 原文寫入 tracked `.collab` 或 cloud-synced `.collab/runtime/`；以 `[REDACTED: local secret ref]` 類型的 host-local reference 取代。
 - **嚴禁跨節點違規操作**：不得繞過 `Execution Environment` gate，也不得將未經 gateway 實測的推論包裝成工具 observation。
+
+## 4. Race Profile：逆向 Lane 快速輸出
+
+當 task 是 `Execution Profile: race`：
+
+1. 以 lane 的多個 Questions 為共同目標，優先找能一次回答多題的 primitive、constant、解密流程、hash/IOC 或控制流關係。
+2. 每得到一個獨立可提交結論，就立刻用 `collab_race.py answer` 發布；**不要等完整逆向報告完成**。
+3. 對推論鏈較長、需要假設、動態行為未重現、或兩條反編譯路徑衝突的答案標記 `--needs-review` / `--semantic-risk`。
+4. 若 Lead 派你作 `VERIFY` lane，應獨立重現衝突答案，不讀成「把原答案證明成對的」；先找反例與 alternative explanation。
+5. Race answer 只縮短答案熱路徑，不降低 governed finding 的 evidence/reproduction/limitations 要求；最終仍完成原 task DONE。

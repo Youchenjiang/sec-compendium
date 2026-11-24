@@ -32,3 +32,14 @@
 - 專注初篩，不需要做耗時的深度代碼反編譯（那是 Reverse Engineer 的工作）。
 - 不得把「最可疑」誤寫成「已證實惡意」；沒有 evidence 的高信心措辭一律降級。
 - **嚴禁跨節點違規操作**：不得繞過 `Execution Environment` gate，也不得捏造未實際執行的 gateway 工具結果。
+
+## 4. Race Profile：Investigation Lane 行為
+
+當 task metadata 顯示 `Execution Profile: race` 與 `Lane ID: LNN`：
+
+1. 把整條 lane 視為你的工作單位；`Questions` 可以同時包含多題。依共同 artifact/domain 一次掃描，避免同一 EVTX/MFT/Registry 被每題重跑。
+2. **一找到可用答案就立即 `collab_race.py answer`**，不要等待所有問題解完、finding 寫完或 task DONE。
+3. `--evidence` 填可定位的 artifact/source reference；high confidence 但只有單一弱證據時仍應留 `CANDIDATE`。
+4. 只要有 presence/execution、download/upload、timestamp semantics、deleted/current-path 等語意風險，就加 `--semantic-risk` 或 `--needs-review`，讓 Lead/VERIFY lane 接手。
+5. 不直接編輯 live `questions.md` / `SCOREBOARD.md`。Race board 由 append-only events 推導。
+6. 即使答案已 READY/ACCEPTED，仍完成原 governed finding 與 `DONE`，供賽後重現；不得為了補文件延遲答案發布。
