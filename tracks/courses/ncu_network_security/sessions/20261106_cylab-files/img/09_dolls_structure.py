@@ -1,4 +1,4 @@
-import io, sys
+import io, os
 
 W, H = 1200, 720
 X0, FULL = 40, 1120
@@ -15,7 +15,7 @@ layers = [
 
 out = []
 a = out.append
-a('<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><style>')
+a('<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><title>dolls.jpg 結構</title><style>')
 a('html,body{margin:0;background:#fff} body{width:%dpx;height:%dpx;overflow:hidden} svg{display:block}' % (W, H))
 a('text{font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;font-size:18px;fill:#1f2328}')
 a('.mono{font-family:Consolas,"Cascadia Mono",monospace;font-size:16px} .title{font-size:20px;font-weight:700} .small{font-size:15px;fill:#57606a}')
@@ -72,5 +72,6 @@ a('<text x="%d" y="%d" class="mono" text-anchor="middle">flag.txt</text>' % (fx 
 a('<text x="%d" y="%d" class="small" text-anchor="end">最裡面的娃娃</text>' % (fx - 14, fy + 23))
 a('</svg></body></html>')
 
-io.open(sys.argv[1], 'w', encoding='utf-8', newline='\n').write('\n'.join(out))
-print('wrote', sys.argv[1])
+dest = os.path.join(os.path.dirname(os.path.abspath(__file__)), '09_dolls_structure.html')
+io.open(dest, 'w', encoding='utf-8', newline='\n').write('\n'.join(out))
+print('wrote', dest)
