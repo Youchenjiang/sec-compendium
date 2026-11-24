@@ -5,6 +5,7 @@ param(
     [int]$ProcessId,
     [string]$C2IP,
     [string]$TaskName,
+    [string]$ServiceName,
     [string]$RunKeyPath,
     [string]$RunValueName,
     [string]$StatePath = "$env:ProgramData\HITCON-Day6\containment-state.json"
@@ -12,6 +13,7 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $FirewallRuleName = if ($C2IP) { "HITCON-Day6-Block-$C2IP" } else { 'HITCON-Day6-Block-Unset' }
+$ServiceFilterName = if ($ServiceName) { $ServiceName.Replace("'", "''") } else { $null }
 
 function Write-ContainmentLog([string]$Message) {
     "{0}`t{1}" -f ([DateTime]::UtcNow.ToString('o')), $Message
@@ -30,6 +32,18 @@ function Save-State([hashtable]$State) {
     $State | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath $StatePath -Encoding UTF8
 }
 
+function Get-RunValueSnapshot([string]$Path, [string]$Name) {
+    $item = Get-ItemProperty -Path $Path -ErrorAction SilentlyContinue
+    if (-not $item) {
+        return @{ Exists = $false; Data = $null }
+    }
+    $property = $item.PSObject.Properties[$Name]
+    if ($null -eq $property) {
+        return @{ Exists = $false; Data = $null }
+    }
+    return @{ Exists = $true; Data = [string]$property.Value }
+}
+
 function Show-Status {
     if ($ProcessId) {
         $proc = Get-Process -Id $ProcessId -ErrorAction SilentlyContinue
@@ -43,37 +57,104 @@ function Show-Status {
         $task = Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue
         Write-ContainmentLog "task name=$TaskName present=$([bool]$task) state=$($task.State)"
     }
+    if ($ServiceName) {
+        $service = Get-CimInstance Win32_Service -Filter "Name='$ServiceFilterName'" -ErrorAction SilentlyContinue
+        if ($service) {
+            Write-ContainmentLog "service name=$ServiceName present=True state=$($service.State) start_mode=$($service.StartMode)"
+        } else {
+            Write-ContainmentLog "service name=$ServiceName present=False"
+        }
+    }
     if ($RunKeyPath -and $RunValueName) {
-        $value = Get-ItemPropertyValue -Path $RunKeyPath -Name $RunValueName -ErrorAction SilentlyContinue
-        Write-ContainmentLog "run_value path=$RunKeyPath name=$RunValueName present=$($null -ne $value)"
+        $run = Get-RunValueSnapshot -Path $RunKeyPath -Name $RunValueName
+        Write-ContainmentLog "run_value path=$RunKeyPath name=$RunValueName present=$($run.Exists)"
     }
 }
 
 function Apply-Containment {
-    if (-not ($ProcessId -or $C2IP -or $TaskName -or ($RunKeyPath -and $RunValueName))) {
-        throw 'Apply requires at least one explicit scope: ProcessId, C2IP, TaskName, or RunKeyPath+RunValueName.'
+    if (-not ($ProcessId -or $C2IP -or $TaskName -or $ServiceName -or ($RunKeyPath -and $RunValueName))) {
+        throw 'Apply requires at least one explicit scope: ProcessId, C2IP, TaskName, ServiceName, or RunKeyPath+RunValueName.'
     }
     if (($RunKeyPath -and -not $RunValueName) -or ($RunValueName -and -not $RunKeyPath)) {
         throw 'RunKeyPath and RunValueName must be supplied together.'
     }
 
-    $state = @{
-        FirewallAdded = $false
-        TaskWasEnabled = $false
-        RunValueExisted = $false
-        RunValueData = $null
-        ProcessId = $ProcessId
-        C2IP = $C2IP
-        TaskName = $TaskName
-        RunKeyPath = $RunKeyPath
-        RunValueName = $RunValueName
+    $existingState = Get-State
+    $freshApply = -not $existingState
+
+    if ($freshApply) {
+        $state = @{
+            FirewallAdded = $false
+            TaskExisted = $false
+            TaskWasEnabled = $false
+            ServiceExisted = $false
+            ServiceStartMode = $null
+            ServiceWasRunning = $false
+            RunValueExisted = $false
+            RunValueData = $null
+            ProcessId = $ProcessId
+            C2IP = $C2IP
+            TaskName = $TaskName
+            ServiceName = $ServiceName
+            RunKeyPath = $RunKeyPath
+            RunValueName = $RunValueName
+        }
+
+        if ($TaskName) {
+            $task = Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue
+            if ($task) {
+                $state.TaskExisted = $true
+                $state.TaskWasEnabled = $task.State -ne 'Disabled'
+            }
+        }
+
+        if ($ServiceName) {
+            $service = Get-CimInstance Win32_Service -Filter "Name='$ServiceFilterName'" -ErrorAction SilentlyContinue
+            if ($service) {
+                $state.ServiceExisted = $true
+                $state.ServiceStartMode = [string]$service.StartMode
+                $state.ServiceWasRunning = [string]$service.State -eq 'Running'
+            }
+        }
+
+        if ($RunKeyPath -and $RunValueName) {
+            $run = Get-RunValueSnapshot -Path $RunKeyPath -Name $RunValueName
+            if ($run.Exists) {
+                $state.RunValueExisted = $true
+                $state.RunValueData = $run.Data
+            }
+        }
+
+        # Save pristine rollback metadata before the first mutation. Repeated
+        # Apply calls reuse this state instead of overwriting it with an
+        # already-contained snapshot.
+        Save-State $state
+    } else {
+        $state = $existingState
+        $requestedScope = @{
+            ProcessId = $ProcessId
+            C2IP = $C2IP
+            TaskName = $TaskName
+            ServiceName = $ServiceName
+            RunKeyPath = $RunKeyPath
+            RunValueName = $RunValueName
+        }
+        foreach ($name in $requestedScope.Keys) {
+            if ([string]$state.$name -ne [string]$requestedScope[$name]) {
+                throw "Existing rollback state scope mismatch for $name. Use the original scope or a different StatePath."
+            }
+        }
+        Write-ContainmentLog "apply idempotent: existing rollback state preserved path=$StatePath"
     }
 
     if ($C2IP) {
         $existing = Get-NetFirewallRule -DisplayName $FirewallRuleName -ErrorAction SilentlyContinue
         if (-not $existing) {
             New-NetFirewallRule -DisplayName $FirewallRuleName -Direction Outbound -Action Block -RemoteAddress $C2IP | Out-Null
-            $state.FirewallAdded = $true
+            if ($freshApply) {
+                $state.FirewallAdded = $true
+                Save-State $state
+            }
             Write-ContainmentLog "firewall added outbound-only ip=$C2IP rollback=remove script-owned rule"
         } else {
             Write-ContainmentLog "firewall unchanged exact rule already exists"
@@ -83,26 +164,41 @@ function Apply-Containment {
     if ($TaskName) {
         $task = Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue
         if ($task) {
-            $state.TaskWasEnabled = $task.State -ne 'Disabled'
-            if ($state.TaskWasEnabled) { Disable-ScheduledTask -TaskName $TaskName | Out-Null }
-            Write-ContainmentLog "task disabled name=$TaskName rollback=restore previous enabled state"
+            if ($task.State -ne 'Disabled') {
+                Disable-ScheduledTask -TaskName $TaskName | Out-Null
+                Write-ContainmentLog "task disabled name=$TaskName rollback=restore original enabled state"
+            } else {
+                Write-ContainmentLog "task unchanged name=$TaskName already disabled"
+            }
+        }
+    }
+
+    if ($ServiceName) {
+        $service = Get-CimInstance Win32_Service -Filter "Name='$ServiceFilterName'" -ErrorAction SilentlyContinue
+        if ($service) {
+            if ([string]$service.State -eq 'Running') {
+                Stop-Service -Name $ServiceName -ErrorAction Stop
+                Write-ContainmentLog "service stopped name=$ServiceName"
+            }
+            $service = Get-CimInstance Win32_Service -Filter "Name='$ServiceFilterName'" -ErrorAction SilentlyContinue
+            if ([string]$service.StartMode -ne 'Disabled') {
+                Set-Service -Name $ServiceName -StartupType Disabled
+                Write-ContainmentLog "service disabled name=$ServiceName rollback=restore original start mode"
+            } else {
+                Write-ContainmentLog "service unchanged name=$ServiceName already disabled"
+            }
         }
     }
 
     if ($RunKeyPath -and $RunValueName) {
-        $value = Get-ItemPropertyValue -Path $RunKeyPath -Name $RunValueName -ErrorAction SilentlyContinue
-        if ($null -ne $value) {
-            $state.RunValueExisted = $true
-            $state.RunValueData = [string]$value
+        $run = Get-RunValueSnapshot -Path $RunKeyPath -Name $RunValueName
+        if ($run.Exists) {
             Remove-ItemProperty -Path $RunKeyPath -Name $RunValueName
             Write-ContainmentLog "Run value removed path=$RunKeyPath name=$RunValueName rollback=restore exact data"
+        } else {
+            Write-ContainmentLog "Run value unchanged path=$RunKeyPath name=$RunValueName already absent"
         }
     }
-
-    # Persist rollback metadata before touching the target process. A process
-    # stop can fail independently; firewall/task/RunKey rollback must remain
-    # recoverable even if that final action throws.
-    Save-State $state
 
     if ($ProcessId) {
         $proc = Get-Process -Id $ProcessId -ErrorAction SilentlyContinue
@@ -136,11 +232,32 @@ function Rollback-Containment {
         Write-ContainmentLog "task rollback enabled name=$($state.TaskName)"
     }
 
+    if ($state.ServiceExisted -and $state.ServiceName) {
+        $startupType = switch ([string]$state.ServiceStartMode) {
+            'Auto' { 'Automatic' }
+            'Automatic' { 'Automatic' }
+            'Manual' { 'Manual' }
+            'Disabled' { 'Disabled' }
+            default { $null }
+        }
+        if ($startupType) {
+            Set-Service -Name $state.ServiceName -StartupType $startupType -ErrorAction SilentlyContinue
+            Write-ContainmentLog "service rollback start_mode=$startupType name=$($state.ServiceName)"
+        }
+        if ($state.ServiceWasRunning) {
+            Start-Service -Name $state.ServiceName -ErrorAction SilentlyContinue
+            Write-ContainmentLog "service rollback running-state requested name=$($state.ServiceName)"
+        }
+    }
+
     if ($state.RunValueExisted -and $state.RunKeyPath -and $state.RunValueName) {
         if (-not (Test-Path -LiteralPath $state.RunKeyPath)) { New-Item -Path $state.RunKeyPath -Force | Out-Null }
         Set-ItemProperty -Path $state.RunKeyPath -Name $state.RunValueName -Value $state.RunValueData
         Write-ContainmentLog "Run value rollback restored name=$($state.RunValueName)"
     }
+
+    Remove-Item -LiteralPath $StatePath -Force -ErrorAction SilentlyContinue
+    Write-ContainmentLog "rollback state cleared path=$StatePath"
 }
 
 switch ($Mode) {
