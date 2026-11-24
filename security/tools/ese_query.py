@@ -55,6 +55,18 @@ def command_schema(args) -> int:
     return 0
 
 
+def _record_text(raw) -> str:
+    """Join a record's values into one casefolded search string."""
+    return " ".join(
+        (
+            value.decode("utf-16le", "ignore")
+            if isinstance(value, bytes)
+            else str(value)
+        )
+        for value in raw.values()
+    ).casefold()
+
+
 def command_records(args) -> int:
     db = _open(args.database)
     table = db.table(args.table)
@@ -64,19 +76,10 @@ def command_records(args) -> int:
     for record in table.records():
         scanned += 1
         raw = record.as_dict()
-        if needle:
-            haystack = " ".join(
-                (
-                    value.decode("utf-16le", "ignore")
-                    if isinstance(value, bytes)
-                    else str(value)
-                )
-                for value in raw.values()
-            ).casefold()
-            if needle not in haystack:
-                if scanned >= args.max_scan:
-                    break
-                continue
+        if needle and needle not in _record_text(raw):
+            if scanned >= args.max_scan:
+                break
+            continue
         rows.append({str(k): _jsonable(v) for k, v in raw.items()})
         if len(rows) >= args.max_rows or scanned >= args.max_scan:
             break

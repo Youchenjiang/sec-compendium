@@ -165,9 +165,9 @@ def get_changed_files(sha):
     return [line.strip().replace("\\", "/").lower() for line in raw.splitlines() if line.strip()]
 
 
-def validate_commit(_sha, subject, changed_files, strict=False):
+def _subject_errors(subject):
+    """Return the format errors (rules 1-4) for a commit subject."""
     errors = []
-    warnings = []
 
     # 1. 符合正則規範
     if not SUBJECT_REGEX.match(subject):
@@ -185,6 +185,13 @@ def validate_commit(_sha, subject, changed_files, strict=False):
     desc_match = re.sub(rf"^({TYPE_PATTERN})(?:\(({SCOPE_PATTERN})\))?:\s+", "", subject)
     if VAGUE_REGEX.match(desc_match.strip()):
         errors.append(f"描述過於空泛：'{desc_match}' 不符合專案描述具體性要求")
+
+    return errors
+
+
+def validate_commit(_sha, subject, changed_files, strict=False):
+    errors = _subject_errors(subject)
+    warnings = []
 
     # 5. 四權分立搭便車偵測 (Four-Tier Separation Check)
     has_gov = any(any(gp in f for gp in GOVERNANCE_PATTERNS) for f in changed_files)

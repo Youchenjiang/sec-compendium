@@ -7,7 +7,8 @@ from pathlib import Path
 
 MODULE_PATH = Path(__file__).resolve().parents[1] / "linux_audit_reconstruct.py"
 SPEC = importlib.util.spec_from_file_location("linux_audit_reconstruct", MODULE_PATH)
-assert SPEC and SPEC.loader
+assert SPEC
+assert SPEC.loader
 audit = importlib.util.module_from_spec(SPEC)
 sys.modules[SPEC.name] = audit
 SPEC.loader.exec_module(audit)

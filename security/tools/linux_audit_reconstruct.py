@@ -29,7 +29,9 @@ AUDIT_ID_RE = re.compile(r"msg=audit\((?P<epoch>\d+(?:\.\d+)?):(?P<serial>\d+)\)
 TYPE_RE = re.compile(r"\btype=(?P<type>[^ ]+)")
 # Quoted bodies exclude the backslash from the plain branch so "\\." and "[^\"\\]"
 # never compete for the same character (no exponential backtracking).
-FIELD_RE = re.compile(r"(?P<key>[A-Za-z0-9_]+)=(?P<value>\"(?:\\.|[^\"\\])*\"|'(?:\\.|[^'\\])*'|\S+)")
+# (?a:\w+) keeps the key ASCII-only (same as [A-Za-z0-9_]) without making \S
+# ASCII-only for the value.
+FIELD_RE = re.compile(r"(?P<key>(?a:\w+))=(?P<value>\"(?:\\.|[^\"\\])*\"|'(?:\\.|[^'\\])*'|\S+)")
 HEX_RE = re.compile(r"^[0-9A-Fa-f]+$")
 
 
@@ -77,6 +79,14 @@ def decode_proctitle(value: str) -> list[str]:
 def plain(fields: dict[str, str], key: str) -> str:
     value = fields.get(key, "")
     return strip_quotes(value) if value else ""
+
+
+def first_decoded(*sources: tuple[dict[str, str], str]) -> str:
+    """Return the decoded value of the first non-empty (record, key) pair."""
+    for record, key in sources:
+        if record.get(key):
+            return decode_audit_text(record[key])
+    return ""
 
 
 def decode_sockaddr(value: str) -> str:
@@ -180,8 +190,8 @@ class AuditEvent:
             "syscall": plain(syscall, "syscall"),
             "audit_key": plain(syscall, "key"),
             "comm": decode_audit_text(syscall["comm"]) if syscall.get("comm") else "",
-            "exe": decode_audit_text(syscall["exe"]) if syscall.get("exe") else (decode_audit_text(user_cmd["exe"]) if user_cmd.get("exe") else ""),
-            "cwd": decode_audit_text(self.cwd_record["cwd"]) if self.cwd_record.get("cwd") else (decode_audit_text(user_cmd["cwd"]) if user_cmd.get("cwd") else ""),
+            "exe": first_decoded((syscall, "exe"), (user_cmd, "exe")),
+            "cwd": first_decoded((self.cwd_record, "cwd"), (user_cmd, "cwd")),
             "argc": plain(self.execve, "argc"),
             "argv": argv,
             "user_command": user_command,

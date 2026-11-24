@@ -21,13 +21,22 @@ import sys
 import time
 from dataclasses import dataclass
 from pathlib import Path
-from typing import BinaryIO, Iterable
+from typing import Any, BinaryIO, Callable, Iterable
 
 
 PINNED_DISSECT_TARGET = "3.20"
 PINNED_DISSECT_ESEDB = "3.18"
 DEFAULT_CHUNK_SIZE = 8 * 1024 * 1024
 NTFS_OEM_ID = b"NTFS    "
+DISSECT_TARGET = "dissect.target"
+DISSECT_ESEDB = "dissect.esedb"
+# Artifact extractors that need no separate parser once files are reachable.
+RAW_ARTIFACT_CAPABILITIES = (
+    "jumplist_extract",
+    "prefetch_extract",
+    "lnk_extract",
+    "browser_artifact_extract",
+)
 
 
 class BackendUnavailable(RuntimeError):
@@ -36,11 +45,11 @@ class BackendUnavailable(RuntimeError):
 
 @dataclass
 class Backend:
-    copen: object
-    ntfs_filesystem: object
-    registry_hive: object
-    evtx: object
-    disk: object
+    copen: Callable[..., Any]
+    ntfs_filesystem: Callable[..., Any]
+    registry_hive: Callable[..., Any]
+    evtx: Callable[..., Any]
+    disk: Callable[..., Any]
     target_version: str
 
 
@@ -77,7 +86,7 @@ def load_backend() -> Backend:
         registry_hive=RegistryHive,
         evtx=Evtx,
         disk=Disk,
-        target_version=_package_version("dissect.target"),
+        target_version=_package_version(DISSECT_TARGET),
     )
 
 
@@ -88,7 +97,7 @@ def load_ese_backend() -> str:
         raise BackendUnavailable(
             f"ESE backend import failed: {type(exc).__name__}: {exc}"
         ) from exc
-    return _package_version("dissect.esedb")
+    return _package_version(DISSECT_ESEDB)
 
 
 def _read_ntfs_signature(handle: BinaryIO) -> bytes:
@@ -208,6 +217,29 @@ def copy_stream(handle: BinaryIO, output: Path, chunk_size: int = DEFAULT_CHUNK_
     return {"output": str(output), "size": total, "sha256": digest.hexdigest()}
 
 
+def _collect_needle_hits(
+    data: bytes,
+    base: int,
+    label: str,
+    needle: bytes,
+    hits: list[dict],
+    seen: set[tuple[str, int]],
+    max_hits: int,
+) -> None:
+    """Append unseen occurrences of needle in data to hits, up to max_hits."""
+    start = 0
+    while len(hits) < max_hits:
+        idx = data.find(needle, start)
+        if idx < 0:
+            break
+        offset = base + idx
+        key = (label, offset)
+        if key not in seen:
+            seen.add(key)
+            hits.append({"encoding": label, "offset": offset})
+        start = idx + 1
+
+
 def stream_search(
     handle: BinaryIO,
     needles: Iterable[tuple[str, bytes]],
@@ -233,17 +265,7 @@ def stream_search(
         data = tail + chunk
         base = absolute_read - len(tail)
         for label, needle in compiled:
-            start = 0
-            while len(hits) < max_hits:
-                idx = data.find(needle, start)
-                if idx < 0:
-                    break
-                offset = base + idx
-                key = (label, offset)
-                if key not in seen:
-                    seen.add(key)
-                    hits.append({"encoding": label, "offset": offset})
-                start = idx + 1
+            _collect_needle_hits(data, base, label, needle, hits, seen, max_hits)
         absolute_read += len(chunk)
         tail = data[-overlap:] if overlap > 0 else b""
     return sorted(hits, key=lambda row: (row["offset"], row["encoding"]))
@@ -302,6 +324,29 @@ def find_mft_filename(fs, name: str, *, max_hits: int = 50) -> list[dict]:
     return rows
 
 
+REGISTRY_HIVE_NAMES = {"SYSTEM", "SOFTWARE", "SAM", "SECURITY", "DEFAULT", "NTUSER.DAT", "USRCLASS.DAT"}
+
+
+def _count_artifact_signals(signals: dict[str, int], upper_name: str, suffix: str) -> None:
+    """Increment the artifact signal counters matched by one file."""
+    if upper_name in REGISTRY_HIVE_NAMES:
+        signals["registry_hives"] += 1
+    if suffix == ".evtx":
+        signals["evtx"] += 1
+    if suffix == ".lnk":
+        signals["lnk"] += 1
+    if upper_name.endswith((".AUTOMATICDESTINATIONS-MS", ".CUSTOMDESTINATIONS-MS")):
+        signals["jumplist"] += 1
+    if suffix == ".pf":
+        signals["prefetch"] += 1
+    if upper_name == "SRUDB.DAT":
+        signals["srum"] += 1
+    if upper_name == "WINDOWS.EDB":
+        signals["windows_search"] += 1
+    if suffix in {".sqlite", ".sqlite3", ".db"}:
+        signals["sqlite"] += 1
+
+
 def _inventory_evidence_root(root: Path) -> dict:
     if not root.is_dir():
         raise ValueError(f"evidence root does not exist or is not a directory: {root}")
@@ -319,7 +364,6 @@ def _inventory_evidence_root(root: Path) -> dict:
         "windows_search": 0,
         "sqlite": 0,
     }
-    registry_names = {"SYSTEM", "SOFTWARE", "SAM", "SECURITY", "DEFAULT", "NTUSER.DAT", "USRCLASS.DAT"}
     for path in root.rglob("*"):
         if not path.is_file():
             continue
@@ -332,22 +376,7 @@ def _inventory_evidence_root(root: Path) -> dict:
         suffix_counts[suffix] = suffix_counts.get(suffix, 0) + 1
         upper_name = path.name.upper()
         basename_counts[upper_name] = basename_counts.get(upper_name, 0) + 1
-        if upper_name in registry_names:
-            signals["registry_hives"] += 1
-        if suffix == ".evtx":
-            signals["evtx"] += 1
-        if suffix == ".lnk":
-            signals["lnk"] += 1
-        if upper_name.endswith(".AUTOMATICDESTINATIONS-MS") or upper_name.endswith(".CUSTOMDESTINATIONS-MS"):
-            signals["jumplist"] += 1
-        if suffix == ".pf":
-            signals["prefetch"] += 1
-        if upper_name == "SRUDB.DAT":
-            signals["srum"] += 1
-        if upper_name == "WINDOWS.EDB":
-            signals["windows_search"] += 1
-        if suffix in {".sqlite", ".sqlite3", ".db"}:
-            signals["sqlite"] += 1
+        _count_artifact_signals(signals, upper_name, suffix)
     return {
         "path": str(root),
         "file_count": file_count,
@@ -356,6 +385,103 @@ def _inventory_evidence_root(root: Path) -> dict:
         "artifact_signals": signals,
         "stage_required": False,
     }
+
+
+def _probe_image(result: dict, image: str | Path, backend: Backend) -> None:
+    """Open the image and record its layout and capabilities into result."""
+    try:
+        ctx = open_ntfs_image(image, backend)
+        result["image"] = {
+            "path": str(ctx.image),
+            "container": type(ctx.container).__name__,
+            "layout": ctx.layout,
+            "partition_index": ctx.partition_index,
+            "physical_size": ctx.physical_size,
+            "container_logical_size": ctx.container_logical_size,
+            "stage_required": False,
+        }
+        result["capabilities"]["ewf_open"] = True
+        result["capabilities"]["ntfs"] = True
+        result["capabilities"]["deleted_mft"] = hasattr(ctx.fs.ntfs, "mft")
+        # These artifact types need no separate mount/parser to be immediately
+        # extracted or stream-searched once NTFS is available.
+        for key in RAW_ARTIFACT_CAPABILITIES:
+            result["capabilities"][key] = True
+        try:
+            result["image"]["root_entries_sample"] = list(ctx.fs.listdir("/"))[:20]
+        except Exception as exc:
+            result["errors"].append(f"NTFS root listing failed: {type(exc).__name__}: {exc}")
+        result["image"]["artifact_signals"] = _image_ese_signals(ctx)
+    except Exception as exc:
+        result["errors"].append(f"image open failed: {type(exc).__name__}: {exc}")
+
+
+def _image_ese_signals(ctx: ImageContext) -> dict[str, int]:
+    """Report which ESE-backed artifacts exist inside the mounted image."""
+    image_signals = {"srum": 0, "windows_search": 0}
+    for signal, artifact_path in (
+        ("srum", "/Windows/System32/SRU/SRUDB.dat"),
+        (
+            "windows_search",
+            "/ProgramData/Microsoft/Search/Data/Applications/Windows/Windows.edb",
+        ),
+    ):
+        try:
+            ctx.fs.stat(artifact_path)
+            image_signals[signal] = 1
+        except Exception:
+            pass
+    return image_signals
+
+
+def _probe_evidence_root(result: dict, evidence_root: str | Path) -> None:
+    """Inventory an extracted evidence directory into result."""
+    try:
+        root = Path(evidence_root).expanduser().resolve()
+        result["evidence_root"] = _inventory_evidence_root(root)
+        for key in RAW_ARTIFACT_CAPABILITIES:
+            result["capabilities"][key] = True
+    except Exception as exc:
+        result["errors"].append(
+            f"evidence root inventory failed: {type(exc).__name__}: {exc}"
+        )
+
+
+def _required_capabilities(
+    result: dict,
+    image: str | Path | None,
+    evidence_root: str | Path | None,
+) -> tuple[list[str], bool]:
+    """Return the capabilities the run needs and whether ESE parsing is needed."""
+    required = [
+        "registry",
+        "evtx",
+        "sqlite",
+        "stream_search",
+    ]
+    if image is not None:
+        required.extend(["ewf_open", "ntfs", "deleted_mft", *RAW_ARTIFACT_CAPABILITIES])
+        signals = result.get("image", {}).get("artifact_signals", {})
+    elif evidence_root is not None:
+        required.extend(RAW_ARTIFACT_CAPABILITIES)
+        signals = result.get("evidence_root", {}).get("artifact_signals", {})
+    else:
+        return required, False
+    return required, bool(signals.get("srum") or signals.get("windows_search"))
+
+
+def _check_ese(result: dict, ese_version: str, ese_error: str) -> None:
+    """Record an error when the needed ESE parser is missing or unpinned."""
+    if not result["capabilities"]["ese"]:
+        result["errors"].append(
+            "ESE parser required by SRUM/Windows Search artifacts but unavailable: "
+            + (ese_error or "unknown import failure")
+        )
+    elif ese_version != PINNED_DISSECT_ESEDB:
+        result["errors"].append(
+            f"dissect.esedb version {ese_version!r} is not pinned known-good "
+            f"{PINNED_DISSECT_ESEDB!r}"
+        )
 
 
 def preflight(
@@ -369,8 +495,8 @@ def preflight(
         "ready": False,
         "python": sys.version.split()[0],
         "requirements": {
-            "dissect.target": _package_version("dissect.target"),
-            "dissect.esedb": _package_version("dissect.esedb"),
+            DISSECT_TARGET: _package_version(DISSECT_TARGET),
+            DISSECT_ESEDB: _package_version(DISSECT_ESEDB),
             "colorama": _package_version("colorama"),
             "sqlite3": sqlite3.sqlite_version,
         },
@@ -392,7 +518,7 @@ def preflight(
     }
     try:
         backend = load_backend()
-        result["requirements"]["dissect.target"] = backend.target_version
+        result["requirements"][DISSECT_TARGET] = backend.target_version
         result["capabilities"]["registry"] = True
         result["capabilities"]["evtx"] = True
     except BackendUnavailable as exc:
@@ -409,118 +535,21 @@ def preflight(
     ese_error = ""
     try:
         ese_version = load_ese_backend()
-        result["requirements"]["dissect.esedb"] = ese_version
+        result["requirements"][DISSECT_ESEDB] = ese_version
         result["capabilities"]["ese"] = True
     except BackendUnavailable as exc:
         ese_version = "missing"
         ese_error = str(exc)
 
     if image is not None:
-        try:
-            ctx = open_ntfs_image(image, backend)
-            result["image"] = {
-                "path": str(ctx.image),
-                "container": type(ctx.container).__name__,
-                "layout": ctx.layout,
-                "partition_index": ctx.partition_index,
-                "physical_size": ctx.physical_size,
-                "container_logical_size": ctx.container_logical_size,
-                "stage_required": False,
-            }
-            result["capabilities"]["ewf_open"] = True
-            result["capabilities"]["ntfs"] = True
-            result["capabilities"]["deleted_mft"] = hasattr(ctx.fs.ntfs, "mft")
-            # These artifact types need no separate mount/parser to be immediately
-            # extracted or stream-searched once NTFS is available.
-            for key in (
-                "jumplist_extract",
-                "prefetch_extract",
-                "lnk_extract",
-                "browser_artifact_extract",
-            ):
-                result["capabilities"][key] = True
-            try:
-                result["image"]["root_entries_sample"] = list(ctx.fs.listdir("/"))[:20]
-            except Exception as exc:
-                result["errors"].append(f"NTFS root listing failed: {type(exc).__name__}: {exc}")
-            image_signals = {"srum": 0, "windows_search": 0}
-            for signal, artifact_path in (
-                ("srum", "/Windows/System32/SRU/SRUDB.dat"),
-                (
-                    "windows_search",
-                    "/ProgramData/Microsoft/Search/Data/Applications/Windows/Windows.edb",
-                ),
-            ):
-                try:
-                    ctx.fs.stat(artifact_path)
-                    image_signals[signal] = 1
-                except Exception:
-                    pass
-            result["image"]["artifact_signals"] = image_signals
-        except Exception as exc:
-            result["errors"].append(f"image open failed: {type(exc).__name__}: {exc}")
+        _probe_image(result, image, backend)
     elif evidence_root is not None:
-        try:
-            root = Path(evidence_root).expanduser().resolve()
-            result["evidence_root"] = _inventory_evidence_root(root)
-            for key in (
-                "jumplist_extract",
-                "prefetch_extract",
-                "lnk_extract",
-                "browser_artifact_extract",
-            ):
-                result["capabilities"][key] = True
-        except Exception as exc:
-            result["errors"].append(
-                f"evidence root inventory failed: {type(exc).__name__}: {exc}"
-            )
+        _probe_evidence_root(result, evidence_root)
 
-    required = [
-        "registry",
-        "evtx",
-        "sqlite",
-        "stream_search",
-    ]
-    ese_needed = False
-    if image is not None:
-        required.extend(
-            [
-                "ewf_open",
-                "ntfs",
-                "deleted_mft",
-                "jumplist_extract",
-                "prefetch_extract",
-                "lnk_extract",
-                "browser_artifact_extract",
-            ]
-        )
-        image_signals = result.get("image", {}).get("artifact_signals", {})
-        ese_needed = bool(
-            image_signals.get("srum") or image_signals.get("windows_search")
-        )
-    elif evidence_root is not None:
-        required.extend(
-            [
-                "jumplist_extract",
-                "prefetch_extract",
-                "lnk_extract",
-                "browser_artifact_extract",
-            ]
-        )
-        signals = result.get("evidence_root", {}).get("artifact_signals", {})
-        ese_needed = bool(signals.get("srum") or signals.get("windows_search"))
+    required, ese_needed = _required_capabilities(result, image, evidence_root)
     if ese_needed:
         required.append("ese")
-        if not result["capabilities"]["ese"]:
-            result["errors"].append(
-                "ESE parser required by SRUM/Windows Search artifacts but unavailable: "
-                + (ese_error or "unknown import failure")
-            )
-        elif ese_version != PINNED_DISSECT_ESEDB:
-            result["errors"].append(
-                f"dissect.esedb version {ese_version!r} is not pinned known-good "
-                f"{PINNED_DISSECT_ESEDB!r}"
-            )
+        _check_ese(result, ese_version, ese_error)
     result["ready"] = (
         not result["errors"]
         and all(bool(result["capabilities"].get(name)) for name in required)
@@ -689,6 +718,21 @@ def _event_to_dict(event) -> dict:
     return {str(key): _jsonable(value) for key, value in event.items()}
 
 
+def _evtx_row_matches(row: dict, record_id: int | None, needle: str) -> bool:
+    """Apply the --record-id and --needle filters to one decoded event."""
+    if record_id is not None:
+        try:
+            if int(row.get("EventRecordID", -1)) != record_id:
+                return False
+        except Exception:
+            return False
+    if needle:
+        searchable = json.dumps(row, ensure_ascii=False, default=str).casefold()
+        if needle not in searchable:
+            return False
+    return True
+
+
 def command_evtx(args: argparse.Namespace) -> int:
     backend = load_backend()
     ctx = open_ntfs_image(args.image, backend)
@@ -697,16 +741,8 @@ def command_evtx(args: argparse.Namespace) -> int:
     with ctx.fs.open(args.path) as handle:
         for event in backend.evtx(handle):
             row = _event_to_dict(event)
-            if args.record_id is not None:
-                try:
-                    if int(row.get("EventRecordID", -1)) != args.record_id:
-                        continue
-                except Exception:
-                    continue
-            if needle:
-                searchable = json.dumps(row, ensure_ascii=False, default=str).casefold()
-                if needle not in searchable:
-                    continue
+            if not _evtx_row_matches(row, args.record_id, needle):
+                continue
             rows.append(row)
             if len(rows) >= args.max_events:
                 break

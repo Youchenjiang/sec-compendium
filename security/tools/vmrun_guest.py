@@ -99,8 +99,8 @@ class Guest:
             raise VMError("此操作需要客體憑證，請設定環境變數 VM_GU 與 VM_GP")
 
     def info(self):
-        code1, out1, _ = self._run(["checkToolsState", self.vmx], timeout=30)
-        code2, out2, err2 = self._run(["getGuestIPAddress", self.vmx], timeout=30)
+        _, out1, _ = self._run(["checkToolsState", self.vmx], timeout=30)
+        _, out2, _ = self._run(["getGuestIPAddress", self.vmx], timeout=30)
         return {"tools_state": out1 or "(無回應)", "guest_ip": out2 or "(無回應)"}
 
     def ps(self):
@@ -143,21 +143,7 @@ class Guest:
     def kill_matching(self, name):
         """依行程名稱片段清理客體行程；回傳 (殺掉的 pid 清單, 找不到的訊息)。"""
         self._require_auth()
-        listing = self.ps()
-        targets = []
-        for line in listing.splitlines():
-            if "pid=" not in line:
-                continue
-            head, _, cmd = line.partition("cmd=")
-            if name.lower() not in cmd.lower():
-                continue
-            for part in head.split(","):
-                part = part.strip()
-                if part.startswith("pid="):
-                    try:
-                        targets.append(int(part[4:]))
-                    except ValueError:
-                        pass
+        targets = _pids_matching(self.ps(), name)
         killed, failures = [], []
         for pid in targets:
             ok, msg = self.kill(pid)
@@ -231,6 +217,31 @@ class Guest:
         return self._run_payload(guest_command, local_timeout)
 
 
+def _pids_from_head(head):
+    """從 listProcessesInGuest 一行的 `cmd=` 之前部分取出 pid。"""
+    pids = []
+    for part in head.split(","):
+        part = part.strip()
+        if part.startswith("pid="):
+            try:
+                pids.append(int(part[4:]))
+            except ValueError:
+                pass
+    return pids
+
+
+def _pids_matching(listing, name):
+    """回傳 cmd 含有 name（不分大小寫）的行程 pid 清單。"""
+    targets = []
+    for line in listing.splitlines():
+        if "pid=" not in line:
+            continue
+        head, _, cmd = line.partition("cmd=")
+        if name.lower() in cmd.lower():
+            targets.extend(_pids_from_head(head))
+    return targets
+
+
 def load_creds_file(path, repo_root):
     """從憑證檔讀取 VM_GU / VM_GP。
 
@@ -270,8 +281,8 @@ def load_creds_file(path, repo_root):
     return creds
 
 
-def main():
-    parser = argparse.ArgumentParser(description="VMware Guest Operations 包裝工具")
+def _build_parser():
+    parser =argparse.ArgumentParser(description="VMware Guest Operations 包裝工具")
     parser.add_argument("--vmx", default=os.environ.get("VM_VMX", DEFAULT_VMX))
     parser.add_argument("--vmrun", default=os.environ.get("VM_VMRUN", DEFAULT_VMRUN))
     default_creds = os.environ.get("VM_CREDS_FILE")
@@ -305,6 +316,61 @@ def main():
     sp = sub.add_parser("get")
     sp.add_argument("guest_path")
     sp.add_argument("host_path")
+    return parser
+
+
+def _kill_target(guest, target, dry_run):
+    """處理 kill 子命令的單一目標（數字視為 PID，否則為行程名稱片段）。"""
+    if target.isdigit():
+        if dry_run:
+            print(f"[dry-run] 會終止 PID {target}")
+            return
+        ok, msg = guest.kill(int(target))
+        print(f"PID {target}: {'已終止' if ok else '失敗 ' + msg}")
+        return
+    if dry_run:
+        listing = guest.ps()
+        hits = [ln for ln in listing.splitlines() if target.lower() in ln.lower()]
+        print(f"[dry-run] 符合 '{target}' 的行程 {len(hits)} 個:")
+        for h in hits:
+            print("   " + h)
+        return
+    killed, failures = guest.kill_matching(target)
+    print(f"'{target}': 已終止 {killed or '（無）'}　失敗 {failures or '（無）'}")
+
+
+def _dispatch(guest, args):
+    """執行 args.command 對應的子命令。"""
+    if args.command == "tools":
+        info = guest.info()
+        print(f"VMware Tools: {info['tools_state']}")
+        print(f"客體 IP     : {info['guest_ip']}")
+    elif args.command == "ps":
+        print(guest.ps())
+    elif args.command == "kill":
+        for t in args.target:
+            _kill_target(guest, t, args.dry_run)
+    elif args.command == "ls":
+        print(guest.ls(args.guest_dir))
+    elif args.command == "exists":
+        ok, msg = guest.exists(args.guest_path)
+        print(f"{'存在' if ok else '不存在'}: {msg}")
+        sys.exit(0 if ok else 1)
+    elif args.command == "put":
+        guest.put(args.host_path, args.guest_path)
+        print(f"已上傳: {args.host_path} -> {args.guest_path}")
+    elif args.command == "get":
+        guest.get(args.guest_path, args.host_path)
+        print(f"已下載: {args.guest_path} -> {args.host_path}")
+    elif args.command == "exec":
+        print(guest.run_line(' '.join(args.script), args.timeout))
+    elif args.command == "powershell":
+        script = args.script if isinstance(args.script, str) else ' '.join(args.script)
+        print(guest.run_line(f'{GUEST_PS} -NoProfile -Command "{script}"', args.timeout))
+
+
+def main():
+    parser = _build_parser()
     args = parser.parse_args()
     if not args.vmx:
         parser.error("--vmx is required (or set VM_VMX)")
@@ -318,47 +384,7 @@ def main():
             user = creds.get("VM_GU", user)
             password = creds.get("VM_GP", password)
         guest = Guest(args.vmx, user, password, args.vmrun, args.timeout, args.guest_out)
-        if args.command == "tools":
-            info = guest.info()
-            print(f"VMware Tools: {info['tools_state']}")
-            print(f"客體 IP     : {info['guest_ip']}")
-        elif args.command == "ps":
-            print(guest.ps())
-        elif args.command == "kill":
-            for t in args.target:
-                if t.isdigit():
-                    if args.dry_run:
-                        print(f"[dry-run] 會終止 PID {t}")
-                        continue
-                    ok, msg = guest.kill(int(t))
-                    print(f"PID {t}: {'已終止' if ok else '失敗 ' + msg}")
-                else:
-                    if args.dry_run:
-                        listing = guest.ps()
-                        hits = [ln for ln in listing.splitlines() if t.lower() in ln.lower()]
-                        print(f"[dry-run] 符合 '{t}' 的行程 {len(hits)} 個:")
-                        for h in hits:
-                            print("   " + h)
-                        continue
-                    killed, failures = guest.kill_matching(t)
-                    print(f"'{t}': 已終止 {killed or '（無）'}　失敗 {failures or '（無）'}")
-        elif args.command == "ls":
-            print(guest.ls(args.guest_dir))
-        elif args.command == "exists":
-            ok, msg = guest.exists(args.guest_path)
-            print(f"{'存在' if ok else '不存在'}: {msg}")
-            sys.exit(0 if ok else 1)
-        elif args.command == "put":
-            guest.put(args.host_path, args.guest_path)
-            print(f"已上傳: {args.host_path} -> {args.guest_path}")
-        elif args.command == "get":
-            guest.get(args.guest_path, args.host_path)
-            print(f"已下載: {args.guest_path} -> {args.host_path}")
-        elif args.command == "exec":
-            print(guest.run_line(' '.join(args.script), args.timeout))
-        elif args.command == "powershell":
-            script = args.script if isinstance(args.script, str) else ' '.join(args.script)
-            print(guest.run_line(f'{GUEST_PS} -NoProfile -Command "{script}"', args.timeout))
+        _dispatch(guest, args)
     except VMError as exc:
         print(f"錯誤: {exc}", file=sys.stderr)
         sys.exit(2)

@@ -117,8 +117,14 @@ def find_segments(image_path):
     return paths
 
 
-def parse_blocks(reader, verbose=False):
-    """產生 (item_type, path, meta, content_offset_reader) 序列。"""
+def _stop(verbose, message):
+    """在 verbose 模式下印出解析停止的原因。"""
+    if verbose:
+        print(message, file=sys.stderr)
+
+
+def _read_image_header(reader, verbose):
+    """讀取並驗證 image header（簽章、版本、logical path）。"""
     if reader.logical_pos == 0:
         reader.read(IMAGE_HEADER_OFFSET)
     signature = reader.read(16)
@@ -136,70 +142,101 @@ def parse_blocks(reader, verbose=False):
         print(f"# version={version} chunk_size={chunk_size} logical_path={logical_path}",
               file=sys.stderr)
 
+
+def _read_block_header(reader, verbose):
+    """讀取一個 block 的 header；遇到異常或結尾時回傳 None。"""
+    try:
+        block_start = reader.logical_pos
+        header = reader.read(40)
+        next_group, next_in_group, next_block, start_of_data, decompressed_size = struct.unpack("<5q", header)
+        item_type, name_length = struct.unpack("<2I", reader.read(8))
+        if item_type not in (ITEM_TYPE_FILE, ITEM_TYPE_FOLDER):
+            _stop(verbose, f"# 停止: 未知 item_type={item_type} @0x{block_start:x}")
+            return None
+        if not 0 < name_length < MAX_NAME_LENGTH:
+            _stop(verbose, f"# 停止: 名稱長度異常 {name_length} @0x{block_start:x}")
+            return None
+        raw_name = reader.read(name_length)
+        name = raw_name.decode("utf-8")
+        folder_index, = struct.unpack("<q", reader.read(8))
+        if decompressed_size < 0 or decompressed_size > 8 * 1024 ** 3:
+            _stop(verbose, f"# 停止: 大小異常 {decompressed_size} @0x{block_start:x}")
+            return None
+    except (EOFError, struct.error, UnicodeDecodeError):
+        _stop(verbose, f"# 停止: 解析中斷 @0x{reader.logical_pos:x}")
+        return None
+    return {
+        "block_start": block_start,
+        "next_group": next_group,
+        "next_in_group": next_in_group,
+        "next_block": next_block,
+        "start_of_data": start_of_data,
+        "decompressed_size": decompressed_size,
+        "item_type": item_type,
+        "name": name,
+        "folder_index": folder_index,
+    }
+
+
+def _read_content(reader, decompressed_size):
+    """讀取並解壓 block 的 zlib chunk 內容。"""
+    if decompressed_size <= 0:
+        return b""
+    chunk_count, = struct.unpack("<q", reader.read(8))
+    chunk_count += 1
+    offsets = struct.unpack(f"<{chunk_count}q", reader.read(8 * chunk_count))
+    parts = []
+    for i in range(1, chunk_count):
+        compressed = reader.read(offsets[i] - offsets[i - 1])
+        parts.append(zlib.decompress(compressed))
+    return b"".join(parts)
+
+
+def _read_metadata(reader, next_block):
+    """沿 metadata 鏈讀出 {category: {key: value}}。"""
+    metadata = {}
+    while next_block > 0:
+        next_block, = struct.unpack("<q", reader.read(8))
+        category, key, value_length = struct.unpack("<3I", reader.read(12))
+        value = reader.read(value_length)
+        metadata.setdefault(category, {})[key] = value
+    return metadata
+
+
+def parse_blocks(reader, verbose=False):
+    """產生 (item_type, path, meta, content_offset_reader) 序列。"""
+    _read_image_header(reader, verbose)
+
     folder_cache = {}
     count = 0
     while True:
-        try:
-            block_start = reader.logical_pos
-            header = reader.read(40)
-            next_group, next_in_group, next_block, start_of_data, decompressed_size = struct.unpack("<5q", header)
-            item_type, name_length = struct.unpack("<2I", reader.read(8))
-            if item_type not in (ITEM_TYPE_FILE, ITEM_TYPE_FOLDER):
-                if verbose:
-                    print(f"# 停止: 未知 item_type={item_type} @0x{block_start:x}", file=sys.stderr)
-                break
-            if not 0 < name_length < MAX_NAME_LENGTH:
-                if verbose:
-                    print(f"# 停止: 名稱長度異常 {name_length} @0x{block_start:x}", file=sys.stderr)
-                break
-            raw_name = reader.read(name_length)
-            name = raw_name.decode("utf-8")
-            folder_index, = struct.unpack("<q", reader.read(8))
-            if decompressed_size < 0 or decompressed_size > 8 * 1024 ** 3:
-                if verbose:
-                    print(f"# 停止: 大小異常 {decompressed_size} @0x{block_start:x}", file=sys.stderr)
-                break
-        except (EOFError, struct.error, UnicodeDecodeError):
-            if verbose:
-                print(f"# 停止: 解析中斷 @0x{reader.logical_pos:x}", file=sys.stderr)
+        head = _read_block_header(reader, verbose)
+        if head is None:
             break
+        block_start = head["block_start"]
+        name = head["name"]
 
-        parent = folder_cache.get(folder_index + IMAGE_HEADER_OFFSET, "")
+        parent = folder_cache.get(head["folder_index"] + IMAGE_HEADER_OFFSET, "")
         path = f"{parent}/{name}" if parent else name
         folder_cache[block_start] = path
 
-        content = b""
-        if decompressed_size > 0:
-            chunk_count, = struct.unpack("<q", reader.read(8))
-            chunk_count += 1
-            offsets = struct.unpack(f"<{chunk_count}q", reader.read(8 * chunk_count))
-            parts = []
-            for i in range(1, chunk_count):
-                compressed = reader.read(offsets[i] - offsets[i - 1])
-                parts.append(zlib.decompress(compressed))
-            content = b"".join(parts)
-
-        metadata = {}
-        while next_block > 0:
-            next_block, = struct.unpack("<q", reader.read(8))
-            category, key, value_length = struct.unpack("<3I", reader.read(12))
-            value = reader.read(value_length)
-            metadata.setdefault(category, {})[key] = value
+        content = _read_content(reader, head["decompressed_size"])
+        metadata = _read_metadata(reader, head["next_block"])
 
         count += 1
         if count > MAX_BLOCK_COUNT:
             raise AD1Error("block 數量超過上限，可能解析錯誤")
         yield {
-            "type": item_type,
+            "type": head["item_type"],
             "path": path,
             "name": name,
-            "size": decompressed_size,
+            "size": head["decompressed_size"],
             "content": content,
             "metadata": metadata,
             "offset": block_start,
-            "start_of_data": start_of_data,
-            "next_group": next_group,
-            "next_in_group": next_in_group,
+            "start_of_data": head["start_of_data"],
+            "next_group": head["next_group"],
+            "next_in_group": head["next_in_group"],
         }
 
 
@@ -291,7 +328,7 @@ def cmd_csv(image_path, outfile):
             "mode": cat1.get("8193", ""),
             "md5": cat1.get("20481", ""),
             "sha1": cat1.get("20482", ""),
-            "extra": json.dumps({k: v for k, v in sorted(extra.items())}, ensure_ascii=False),
+            "extra": json.dumps(dict(sorted(extra.items())), ensure_ascii=False),
         })
     with open(outfile, "w", newline="", encoding="utf-8-sig") as fh:
         writer = csv.DictWriter(fh, fieldnames=list(rows[0].keys()))

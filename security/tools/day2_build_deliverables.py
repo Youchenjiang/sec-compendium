@@ -56,12 +56,8 @@ def filetime_utc(v):
     return dt.strftime("%Y-%m-%d %H:%M:%S.%f")[:-3] + "Z"
 
 
-def build(toolout, out):
-    toolout = resolve_cli_path(toolout)
-    out = resolve_cli_path(out)
-    os.makedirs(out, exist_ok=True)
-
-    # --- 1. prefetch.csv (pass-through, already normalized by PECmd) -----------
+def _write_prefetch(toolout, out):
+    """Pass-through prefetch.csv (already normalized by PECmd)."""
     pf = read_rows(join_within(toolout, "prefetch.csv"))
     with open(join_within(out, "prefetch.csv"), "w", encoding="utf-8", newline="") as fh:
         w = csv.writer(fh)
@@ -75,7 +71,9 @@ def build(toolout, out):
                         r.get("PreviousRun2", ""), r.get("PreviousRun3", ""),
                         r.get("Size", ""), r.get("Hash", "")])
 
-    # --- 2. amcache.csv (SHA-1 of file entries) --------------------------------
+
+def _write_amcache(toolout, out):
+    """amcache.csv: SHA-1 of Amcache file entries."""
     am = read_rows(join_within(toolout, "amcache_UnassociatedFileEntries.csv"))
     with open(join_within(out, "amcache.csv"), "w", encoding="utf-8", newline="") as fh:
         w = csv.writer(fh)
@@ -87,7 +85,9 @@ def build(toolout, out):
                         r.get("LinkDate", ""), r.get("IsOsComponent", ""),
                         r.get("ProductName", "")])
 
-    # --- 3. shimcache.csv (pass-through from AppCompatCacheParser) ------------
+
+def _write_shimcache(toolout, out):
+    """Pass-through shimcache.csv from AppCompatCacheParser."""
     sc = read_rows(join_within(toolout, "shimcache.csv"))
     with open(join_within(out, "shimcache.csv"), "w", encoding="utf-8", newline="") as fh:
         w = csv.writer(fh)
@@ -99,7 +99,9 @@ def build(toolout, out):
                         r.get("Executed", ""), r.get("Duplicate", ""),
                         r.get("SourceFile", "")])
 
-    # --- 4. usbstore_devices.csv (strip the &0 instance suffix) ----------------
+
+def _write_usbstore(toolout, out):
+    """usbstore_devices.csv: strip the &0 instance suffix."""
     usb = read_rows(join_within(toolout, "usbstore.csv"))
     devices = {}
     for r in usb:
@@ -125,7 +127,9 @@ def build(toolout, out):
                         vals.get("DeviceDesc", ""), vals.get("Service", ""),
                         filetime_utc(vals.get("FirstInstallDate"))])
 
-    # --- 5. userassist.csv (ROT13 decode + parsed blob) ------------------------
+
+def _write_userassist(toolout, out):
+    """userassist.csv: ROT13 decode plus the parsed blob."""
     ua = read_rows(join_within(toolout, "userassist_raw.csv"))
     with open(join_within(out, "userassist.csv"), "w", encoding="utf-8", newline="") as fh:
         w = csv.writer(fh)
@@ -157,7 +161,9 @@ def build(toolout, out):
             w.writerow([r.get("KeyPath", ""), vn, path, runcount, last,
                         r.get("LastWriteTimestamp", "")])
 
-    # --- 6. consentstore.csv (Start/Stop + duration) ---------------------------
+
+def _write_consentstore(toolout, out):
+    """consentstore.csv: Start/Stop timestamps and duration."""
     cs = read_rows(join_within(toolout, "consentstore_raw.csv"))
     apps = {}
     for r in cs:
@@ -186,6 +192,19 @@ def build(toolout, out):
                     dur = ""
             w.writerow([cap, inst, v.get("Value", ""), filetime_utc(start),
                         filetime_utc(stop), dur])
+
+
+def build(toolout, out):
+    toolout = resolve_cli_path(toolout)
+    out = resolve_cli_path(out)
+    os.makedirs(out, exist_ok=True)
+
+    _write_prefetch(toolout, out)
+    _write_amcache(toolout, out)
+    _write_shimcache(toolout, out)
+    _write_usbstore(toolout, out)
+    _write_userassist(toolout, out)
+    _write_consentstore(toolout, out)
 
     print("deliverables written to", out)
 
