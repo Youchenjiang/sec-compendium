@@ -11,6 +11,7 @@
 | :--- | :--- | :--- |
 | **金盾獎 30 天極速衝刺課表 (v2.1)** | [`30days_sprint_roadmap.md`](30days_sprint_roadmap.md) | 15 個 Run 逐日完整規劃、3 人小隊主修領域包幹分工、聚會三部曲（亮點展示 ➔ 限時情境模擬對戰 ➔ 盲點檢討） |
 | **歷屆試題深度剖析手冊** | [`exam_analysis_manual.md`](exam_analysis_manual.md) | 金盾獎初賽單選真題與技能競賽網路安全職類試題解構、易混淆考點防陷阱分析 |
+| **隊員 A 專屬準備手冊與教材庫** | [`member_a/README.md`](member_a/README.md) | 隊員 A（Web、Android/Java 逆向、Misc 通識 1/3）專屬衝刺手冊與 30 篇實戰教學 Playbook 彙整 |
 
 ---
 
