@@ -12,6 +12,11 @@
 ---
 
 ## 📋 Current Active Tasks
+- **2026-11-24 拆分後待辦**：
+  - 向 GitHub Support 申請清除含 dump 的舊 commit（舊 commit 編號仍可讀取到 dump；編號不記在此公開檔案），並決定是否通知參賽者。
+  - PR-Agent AI 審查暫停中（SiliconFlow 餘額不足）；儲值後把 `.github/workflows/pr_agent.yml` 的 `false && ` 拿掉即恢復。
+  - `ctfd-platform` worktree 仍掛在本 repo 下；CTFd 工作改由 clone 私人倉庫 `sec-ctfd-platform` 進行後再移除此 worktree。
+  - 本機 `backup/*`、`docs/golden-shield-sprint-materials`、`chore/ctfd-archive-and-practice` 等舊分支歷史仍含 dump，絕不可推上公開倉庫。
 - **金盾獎初賽隊員 A（蔣）衝刺專案**：
   - 確立專屬目錄：`tracks/lab/golden_shield_sprint/member_a/`（含專屬手冊 `README.md`、三位一體推進表 `SPRINT_PLAN_7DAYS.md`、30 篇實戰 Playbook）。
   - **確立隊員 A「6 大核心作戰單元」體系**：
@@ -21,7 +26,7 @@
     - 單元四：Android / Java 逆向工程 (APK 結構 / Smali 語法 / 四大工具分工)
     - 單元五：隊員 A 專屬通識 1/3 (Linux 權限 / 14 大 Ports / 雲端共同責任模型 / 隱寫)
     - 單元六：工具總表辨識與全真出題對抗 (防誘答陷阱 / 15 題出題 / 一頁紙速查表)
-  - 全面升級 `R10.1_sql_query_injection.md`：補齊「攻擊者決策樹」、「白話頻寬定義」、「四大 DB 延遲函數對比」、「寬字節逃逸」與「SQL 五大維度及秒殺公式」。
+  - 全面升級 `R10.1_sql_query_injection.md`：補齊「攻擊者決策樹」、「白話頻寬定義」、「四大 DB 延遲函數對比」、「寬字節逃逸」與「SQL 五大維度及秒殺公式」。（2026-11-24 因手冊 150~210 行上限，擴充內容已移至學習路徑 `05_web_interpreter_injections.md` 1.2 節）
 - **先前完成之治理任務**：
   - 四階段 PR 拆分（PR #28 ~ PR #31）已全數合併至 `main`。
   - 工具腳本 Scaffolding 規則已反向同步至 `tool-scripts` (PR #4)。
@@ -44,19 +49,16 @@
     - `lab/`: 實驗室專屬深耕計畫 (180 天 90-Runs 課表與 CyLab 教室建置、金盾 30 天衝刺、HITCON Range 與 Wargame 案例庫)
     - `club/`: NCtfU 資安社讀書會 (週五讀書會 14 週雙軌課表、Discord 分流、CTF 戰隊 6 個月培訓與出國指南，已徹底清除冗餘 archive/ 歷史目錄)
     - `courses/`: 大學學術課程與教學出題專軌 (中央資管陳奕明教授《電腦網路安全》14 週課表與 CyLab 出題指南)
-  - `ctfd/` (實戰評測靶場模組):
-    - `event_guide.md`: 🏆 中央資管碩一茶會 Mini-CTF 全套活動手冊暨官方解題指南 (Write-Up)
-    - `plugins/dynamic_shuffle_flag/`: Python / Flask 防作弊動態 Flag 外掛
-    - `challenges/`: 題目原始碼、二進制編譯與自架題目 CSV
-    - `patches/`: CTFd 核心繁中化與首殺加分補丁
-    - `database/ctfd_dump_2026.sql`: 初始化資料庫結構
-    - `automation/send_final_top10.py`: 賽後自動化結算信件工具
-    - `assets/`: 競賽認證範本與素材資源
-    - `install.sh`: 一鍵快速套用腳本
+  - CTFd 平台：2026-11-24 起移至私人倉庫 `Youchenjiang/sec-ctfd-platform`（只含 `ctfd/` 歷史、不含資料庫 dump），本 repo 不再收 CTFd 程式、賽事資料與參賽者資訊。
 
 ---
 
 ## ✅ Completed Decisions & Lessons Learned
+- **2026-11-24 倉庫拆分與個資清除**：
+  - 原 `docs/golden-shield-sprint-materials` 混裝分支拆成主題 PR：#32 金盾、#33 移除 `ctfd/`、#34 暫停 AI 審查、#35 練習與知識庫、#36 《電腦網路安全》課程教材，全數合併。
+  - 公開 `main` 以 filter-branch 移除 `database/ctfd_dump_2026.sql` 與 `ctfd/database/`（437 commits 訊息、作者、日期不變），暫停 ruleset 後 force push；dump 只留在 repo 外的 `Security-LabData/ctfd-event-2026/`。
+  - 教訓：公開 repo 不放真實賽事資料；PR 前先跑 `lint_commits.py --strict`、`validate_playbooks.py --all`、敏感資料掃描；PR 說明照 `.github/pull_request_template.md`。
+  - CI 例外：TruffleHog 排除 CVE 講義內嵌 base64 截圖（`.github/trufflehog-exclude.txt`）；Sonar 排除課程攻擊腳本與 deck-studio 重複率。
 - Initialized with `research` scaffolding preset.
 - **2026-09-13 專案轉型決策**：確立以「讀書會輔助」為核心主體，CTFd 套件收斂為「實戰靶場演練模組」。
 - 更新 `policy.yml` 允許 scope 擴充 `study`, `plan`, `ctfd`, `labs`, `challenge`, `infra`, `build`, `release`, `governance`, `sec`, `agent`, `tracks`。
