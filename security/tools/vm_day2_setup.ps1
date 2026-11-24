@@ -60,7 +60,9 @@ Say ''
 Say '=== 2. stage a distinctive test program ==='
 $custom = Join-Path $base 'sprint_day2_app.exe'
 Copy-Item "$env:SystemRoot\System32\cmd.exe" $custom -Force
-$sha1   = (Get-FileHash $custom -Algorithm SHA1).Hash
+# SHA-1 is not used for security here: Amcache records each file's SHA-1, so the
+# answer key must carry the same algorithm to be comparable.
+$sha1   = (Get-FileHash $custom -Algorithm SHA1).Hash  # NOSONAR
 $sha256 = (Get-FileHash $custom -Algorithm SHA256).Hash
 Say ('  path   : ' + $custom)
 Say ('  sha1   : ' + $sha1)
@@ -74,7 +76,8 @@ Remove-Item $uniq -Force -ErrorAction SilentlyContinue
 try {
     Add-Type -TypeDefinition 'public class S2 { public static void Main() { System.Console.WriteLine("day2-unique"); } }' `
         -OutputAssembly $uniq -OutputType ConsoleApplication -ErrorAction Stop
-    $uSha1 = (Get-FileHash $uniq -Algorithm SHA1).Hash
+    # Amcache answer key: must match the SHA-1 that Amcache itself stores.
+    $uSha1 = (Get-FileHash $uniq -Algorithm SHA1).Hash  # NOSONAR
     Say ('  unique path : ' + $uniq)
     Say ('  unique sha1 : ' + $uSha1)
     AddGt 'amcache' 'sprint_day2_unique.exe' $uSha1 'expected SHA1 line in amcache (unique binary)'
