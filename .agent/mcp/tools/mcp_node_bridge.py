@@ -111,8 +111,22 @@ def parse_argv(raw) -> list[str]:
     return shlex.split(raw)
 
 
+def staged_config_path(path: str) -> str:
+    """Canonical ``--config`` path, which must sit next to this bridge script.
+
+    The host stages the config and this script into the same guest directory, so a
+    config anywhere else is not one the host wrote and is refused.
+    """
+    staging_dir = os.path.dirname(os.path.realpath(__file__))
+    real = os.path.realpath(path)
+    if os.path.dirname(real) != staging_dir:
+        raise SystemExit(f"--config must be staged next to the bridge ({staging_dir}): {path}")
+    return real
+
+
 def load_config(path: str) -> dict:
     """Read the staged launch description written by the host-side bridge."""
+    path = staged_config_path(path)
     try:
         with open(path, "r", encoding="utf-8", errors="replace") as handle:
             data = json.load(handle)
