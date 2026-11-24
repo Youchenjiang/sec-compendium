@@ -353,8 +353,7 @@ def command_list(args: argparse.Namespace) -> int:
     found = protocol.discover_assigned_tasks(protocol.CASES_DIR, args.session, case_filters)
     if not found:
         print("No assigned tasks.")
-        return 0
-    for task_path, metadata in found:
+    for task_path, metadata in found or []:
         state = protocol.latest_task_state(metadata["case_id"], metadata["task_id"])
         output = protocol.output_path_for_task(task_path, metadata)
         print(
@@ -387,7 +386,6 @@ def command_inbox(args: argparse.Namespace) -> int:
     rows = _inbox_rows(args)
     if not rows:
         print("Inbox empty.")
-        return 0
     for handoff_path, payload, state in rows:
         print(
             f"{payload.get('created_utc')} {payload.get('case_id')}/{payload.get('task_id')} "
@@ -449,10 +447,10 @@ def command_status(args: argparse.Namespace) -> int:
         )
     if not rows:
         print("No tasks.")
-        return 0
-    print("CASE TASK TYPE ASSIGNEE ENV STATE OUTPUT")
-    for row in rows:
-        print(" ".join(row))
+    else:
+        print("CASE TASK TYPE ASSIGNEE ENV STATE OUTPUT")
+        for row in rows:
+            print(" ".join(row))
     return 0
 
 
@@ -482,7 +480,6 @@ def command_events(args: argparse.Namespace) -> int:
 
     if not rows:
         print("No events.")
-        return 0
     rows.sort(key=lambda payload: int(payload.get("created_ns", 0)))
     for payload in rows:
         print(
