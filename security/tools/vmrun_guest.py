@@ -50,10 +50,12 @@ import tempfile
 from safe_paths import resolve_cli_path
 
 DEFAULT_VMRUN = r"C:\MyAPP\VMware Workstation\vmrun.exe"
-DEFAULT_VMX = r"C:/Users/LabStrix/Documents/Virtual Machines/Windows 10 x64/Windows 10 x64.vmx"
+# No machine-specific default: pass --vmx or set VM_VMX (see secrets.env.example).
+DEFAULT_VMX = None
 GUEST_CMD = r"C:\Windows\System32\cmd.exe"
 GUEST_PS = r"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe"
-GUEST_OUT = r"C:\Windows\Temp\_vmrun_out.txt"
+# Path inside the guest VM (written by the guest, never opened on this host).
+GUEST_OUT = r"C:\Windows\Temp\_vmrun_out.txt"  # NOSONAR
 DEFAULT_TIMEOUT = 90
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 DEFAULT_CREDS_FILE = os.path.join(REPO_ROOT, "secrets.env")
@@ -277,7 +279,7 @@ def main():
     parser.add_argument("--creds-file", default=default_creds,
                         help="憑證檔路徑（內容為 VM_GU= / VM_GP= 兩行；優先於環境變數）")
     parser.add_argument("--timeout", type=int, default=DEFAULT_TIMEOUT)
-    parser.add_argument("--guest-out", default=GUEST_OUT,
+    parser.add_argument("--guest-out", default=GUEST_OUT,  # NOSONAR - guest-side path
                         help="客體輸出暫存檔路徑（預設 C:\\Windows\\Temp\\_vmrun_out.txt；UAC 受限時可改使用者暫存目錄）")
     parser.add_argument("--interactive", action="store_true", help="在互動 session 執行（GUI 程式用）")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -303,6 +305,8 @@ def main():
     sp.add_argument("guest_path")
     sp.add_argument("host_path")
     args = parser.parse_args()
+    if not args.vmx:
+        parser.error("--vmx is required (or set VM_VMX)")
 
     user = os.environ.get("VM_GU")
     password = os.environ.get("VM_GP")

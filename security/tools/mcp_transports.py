@@ -66,7 +66,8 @@ DEFAULT_SSH_OPTIONS = (
     "ConnectTimeout=15",
 )
 DEFAULT_VMRUN = r"C:\MyAPP\VMware Workstation\vmrun.exe"
-GUEST_DIR_WINDOWS = r"C:\Windows\Temp\mcp-bridge"
+# Directory inside the Windows guest VM; the host never opens it.
+GUEST_DIR_WINDOWS = r"C:\Windows\Temp\mcp-bridge"  # NOSONAR
 DEFAULT_GUEST_PYTHON = "python.exe"
 DEFAULT_POLL_INTERVAL = "0.4"
 DEFAULT_IDLE_SECONDS = "120"
