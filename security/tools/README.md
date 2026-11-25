@@ -40,7 +40,22 @@
   - `lint`：校驗 PR Body 三大章節、標題長度與 Conventional Commits。
   - `create`：本地全套驗證通過後，一鍵建立帶有標籤之 GitHub Pull Request。
 
-### 7. Dual-Profile Collab Bus (`collab_bus.py` / `collab_race.py` / `collab_watch.py` / `collab_protocol.py` / `collab_host_watch.py`)
+### 7. [PR Review Tool](pr_tool.py) (PR 審查、診斷與最終驗收工具)
+- **路徑**：`security/tools/pr_tool.py`（搭配 `pr_audit.py`、`pr_verification.py`、`pr_reports.py`、`sonar_audit.py`、`gh_guard.py`、`process_guard.py`）
+- **來源**：移植自 Clickra 倉庫的 `scripts/pr_tool.py`（Apache-2.0）；只保留審查與驗收功能。建立 PR 與 PR 說明檢查仍用 `pr_helper.py`，推送仍由人明確核准後手動執行。
+- **原則**：除了 `resolve` 以外全部唯讀；`resolve` 一次只處理一個 thread，預設只預覽，需 `--execute --authorize <PR>:<thread>`；絕不發表或修改留言；不為了讓 PR 變綠而關掉還沒修好的問題。
+- **子命令**：
+  - `status` / `review`：PR 狀態、CI 彙總與所有未解決 review thread（DeepSource 留言只顯示標題）。
+  - `audit [--json] [--sonar]`：逐頁讀取 inline 留言、一般留言與 review 摘要，不改變任何審查狀態。
+  - `sonar [--json]`：列出 SonarCloud 該 PR 的 open/confirmed issues 與 quality gate。
+  - `diagnose [--reports failed|all]`：讀取失敗 check 的 log、GitHub Check Run 摘要與 DeepSource 行內發現。
+  - `verify`：唯讀最終驗收；確認 PR HEAD 等於遠端分支 SHA，盤點 review threads、SonarCloud issues 與必要 CI checks，任一未通過即回傳非 0。
+  - `body --output <新檔>`：把既有 PR 說明匯出成新檔（不覆寫既有檔案）。
+  - `resolve <PR> --thread <PRRT_...>`：預覽或在明確授權下解決單一已驗證修好的 thread。
+- **SonarCloud 專案**：依序取 `SONAR_PROJECT_KEY`、`sonar-project.properties` 的 `sonar.projectKey`、`owner_repo`；私有專案設 `SONAR_TOKEN`。
+- **必要 checks**（`pr_verification.REQUIRED`）：PR and commit policy、Documentation & Playbooks Quality Audit、TruffleHog Secrets Scan、DeepSource: Secrets、SonarCloud、SonarCloud Code Analysis；有 `.py` 變更時另需 DeepSource: Python。缺少或被略過的必要 check 一律視為未通過。
+
+### 8. Dual-Profile Collab Bus (`collab_bus.py` / `collab_race.py` / `collab_watch.py` / `collab_protocol.py` / `collab_host_watch.py`)
 - **定位**：HITCON / CTF 多 Session 協作通訊層；tracked Markdown 保存正式 task/evidence，Git-ignored `.collab/runtime/` 保存 ephemeral events/handoffs。runtime 目前仍由 Google Drive 跨機同步，因此它**不是 secret store**。
 - **核心保證**：
   - task 只有 Case Lead 能建立，且只有一個 `Assignee Session`。
@@ -95,7 +110,7 @@ python security/tools/collab_race.py doctor --case C01_BottleOut
 
 預設效能目標是 30 秒完成 routing、60 秒內外部 lane 真正 START、3 分鐘內第一個 candidate、一般小題 5 分鐘內 READY、15 分鐘 70–80% ready。這套 hot path 已用真實 blind benchmark 驗證：C01 修正前 baseline 為 **4/10 READY @ 30m**；修正後 C05 PaperGhost raw triage 為 **9/9 READY @ 671.470s、close @ 693.997s**，50%/80% 分別為 482.791s / 608.219s，doctor PASS。C05 仍有兩條外部 lane 超過 60s START SLO，所以 watchdog/Lead fallback 不能移除。跨主機 answer latency 只有在主機時鐘同步時才可視為精確執行秒數。
 
-### 8. Race DFIR Query / Preflight (`dfir_query.py` / `ese_query.py`)
+### 9. Race DFIR Query / Preflight (`dfir_query.py` / `ese_query.py`)
 
 - **定位**：把 E01 / Windows triage bundle 的 parser readiness 移到 Race 計時前；比賽中不再臨時找 `fls/icat`、安裝 parser 或摸索 EWF loader。
 - **已驗證 pinned Windows/Python 3.14 stack**：`dissect.target==3.20`、`dissect.esedb==3.18`、`colorama==0.4.6`，清單在 `requirements-dfir-race.txt`。
@@ -176,6 +191,17 @@ python security/tools/collab_bus.py mcp call --server semgrep \
 python security/tools/collab_host_watch.py --list-sessions
 python security/tools/collab_host_watch.py --transport file --log .collab/runtime/host_watch.log
 python security/tools/collab_host_watch.py --once   # 單次掃描（cron / Windows Task Scheduler）
+
+# 12. 查看 PR 未解決的 review threads 與失敗 check 的原因 (唯讀)
+python security/tools/pr_tool.py review 38
+python security/tools/pr_tool.py diagnose 38
+
+# 13. 合併前的唯讀最終驗收 (未通過時回傳非 0，並列出原因)
+python security/tools/pr_tool.py verify 38
+
+# 14. 預覽、再於明確授權後解決一個已驗證修好的 review thread (不留言)
+python security/tools/pr_tool.py resolve 38 --thread PRRT_xxx
+python security/tools/pr_tool.py resolve 38 --thread PRRT_xxx --execute --authorize 38:PRRT_xxx
 ```
 
 ---
