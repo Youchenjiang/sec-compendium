@@ -128,6 +128,18 @@ def _write_usbstore(toolout, out):
                         filetime_utc(vals.get("FirstInstallDate"))])
 
 
+def _userassist_extras(row):
+    """Return (run count, last executed) parsed from ValueData2/ValueData3."""
+    runcount = ""
+    last = ""
+    for extra in (row.get("ValueData2", ""), row.get("ValueData3", "")):
+        if "Run count:" in extra:
+            runcount = extra.split("Run count:")[-1].strip()
+        if extra.startswith("Last executed:"):
+            last = extra.split("Last executed:", 1)[1].strip()
+    return runcount, last
+
+
 def _write_userassist(toolout, out):
     """userassist.csv: ROT13 decode plus the parsed blob."""
     ua = read_rows(join_within(toolout, "userassist_raw.csv"))
@@ -146,14 +158,7 @@ def _write_userassist(toolout, out):
             path = r.get("ValueData", "") if r.get("ValueData", "").startswith("C:") else decoded
             # RECmd's UserAssist plugin splits the parsed blob across ValueData2/3:
             #   ValueData2 -> "Last executed: <stamp>"   ValueData3 -> "Run count: N"
-            runcount = ""
-            for extra in (r.get("ValueData2", ""), r.get("ValueData3", "")):
-                if "Run count:" in extra:
-                    runcount = extra.split("Run count:")[-1].strip()
-            last = ""
-            for extra in (r.get("ValueData2", ""), r.get("ValueData3", "")):
-                if extra.startswith("Last executed:"):
-                    last = extra.split("Last executed:", 1)[1].strip()
+            runcount, last = _userassist_extras(r)
             sig = (vn, path, runcount, last)
             if sig in seen:
                 continue

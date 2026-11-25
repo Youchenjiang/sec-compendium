@@ -422,29 +422,32 @@ def _status_task_errors(task_path: Path, metadata: dict) -> list[str]:
     return errors
 
 
+def _status_row(task_path: Path, metadata: dict) -> tuple[str, ...]:
+    errors = _status_task_errors(task_path, metadata)
+    if errors:
+        state, output = "INVALID", None
+    else:
+        state = protocol.latest_task_state(metadata["case_id"], metadata["task_id"])
+        output = protocol.output_path_for_task(task_path, metadata)
+    return (
+        metadata.get("case_id", "?"),
+        metadata.get("task_id", "?"),
+        metadata.get("task_type", "?"),
+        metadata.get("assignee_session", "?"),
+        metadata.get("execution_environment") or "legacy",
+        state,
+        "yes" if output and output.exists() else "no",
+    )
+
+
 def command_status(args: argparse.Namespace) -> int:
     case_filters = {args.case} if args.case else None
     rows = []
     for task_path in protocol.iter_tasks(protocol.CASES_DIR, case_filters) or []:
         metadata = protocol.parse_task_metadata(task_path)
-        errors = _status_task_errors(task_path, metadata)
-        state = "INVALID" if errors else protocol.latest_task_state(
-            metadata["case_id"], metadata["task_id"]
-        )
         if args.session and metadata.get("assignee_session") != args.session:
             continue
-        output = protocol.output_path_for_task(task_path, metadata) if not errors else None
-        rows.append(
-            (
-                metadata.get("case_id", "?"),
-                metadata.get("task_id", "?"),
-                metadata.get("task_type", "?"),
-                metadata.get("assignee_session", "?"),
-                metadata.get("execution_environment") or "legacy",
-                state,
-                "yes" if output and output.exists() else "no",
-            )
-        )
+        rows.append(_status_row(task_path, metadata))
     if not rows:
         print("No tasks.")
     else:
@@ -537,6 +540,34 @@ def _doctor_check_stale_handoffs(warnings: list[str]) -> None:
                 )
 
 
+def _doctor_check_task(
+    task_path: Path,
+    seen_ids: dict[tuple[str, str], Path],
+    errors: list[str],
+    warnings: list[str],
+) -> None:
+    metadata = protocol.parse_task_metadata(task_path)
+    anchor_errors = protocol.validate_task_dispatch_anchor(task_path, metadata)
+    allow_legacy = not metadata.get("protocol_contract") and not anchor_errors
+    task_errors = protocol.validate_task_metadata(
+        task_path, metadata, allow_legacy=allow_legacy
+    )
+    for error in [*task_errors, *anchor_errors]:
+        errors.append(f"{protocol.relative_posix(task_path)}: {error}")
+
+    key = (metadata.get("case_id", ""), metadata.get("task_id", ""))
+    if key[1]:
+        if key in seen_ids:
+            errors.append(
+                f"duplicate Task ID {key[0]}/{key[1]}: "
+                f"{seen_ids[key]} and {task_path}"
+            )
+        seen_ids[key] = task_path
+
+    if not task_errors and not anchor_errors:
+        _doctor_check_valid_task(task_path, metadata, errors, warnings)
+
+
 def command_doctor(args: argparse.Namespace) -> int:
     errors: list[str] = []
     warnings: list[str] = []
@@ -549,26 +580,7 @@ def command_doctor(args: argparse.Namespace) -> int:
     seen_ids: dict[tuple[str, str], Path] = {}
     case_filters = {args.case} if args.case else None
     for task_path in protocol.iter_tasks(protocol.CASES_DIR, case_filters) or []:
-        metadata = protocol.parse_task_metadata(task_path)
-        anchor_errors = protocol.validate_task_dispatch_anchor(task_path, metadata)
-        allow_legacy = not metadata.get("protocol_contract") and not anchor_errors
-        task_errors = protocol.validate_task_metadata(
-            task_path, metadata, allow_legacy=allow_legacy
-        )
-        for error in [*task_errors, *anchor_errors]:
-            errors.append(f"{protocol.relative_posix(task_path)}: {error}")
-
-        key = (metadata.get("case_id", ""), metadata.get("task_id", ""))
-        if key[1]:
-            if key in seen_ids:
-                errors.append(
-                    f"duplicate Task ID {key[0]}/{key[1]}: "
-                    f"{seen_ids[key]} and {task_path}"
-                )
-            seen_ids[key] = task_path
-
-        if not task_errors and not anchor_errors:
-            _doctor_check_valid_task(task_path, metadata, errors, warnings)
+        _doctor_check_task(task_path, seen_ids, errors, warnings)
 
     _doctor_check_stale_handoffs(warnings)
 

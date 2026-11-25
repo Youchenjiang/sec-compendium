@@ -339,34 +339,68 @@ def _kill_target(guest, target, dry_run):
     print(f"'{target}': 已終止 {killed or '（無）'}　失敗 {failures or '（無）'}")
 
 
+def _cmd_tools(guest, _args):
+    info = guest.info()
+    print(f"VMware Tools: {info['tools_state']}")
+    print(f"客體 IP     : {info['guest_ip']}")
+
+
+def _cmd_ps(guest, _args):
+    print(guest.ps())
+
+
+def _cmd_kill(guest, args):
+    for t in args.target:
+        _kill_target(guest, t, args.dry_run)
+
+
+def _cmd_ls(guest, args):
+    print(guest.ls(args.guest_dir))
+
+
+def _cmd_exists(guest, args):
+    ok, msg = guest.exists(args.guest_path)
+    print(f"{'存在' if ok else '不存在'}: {msg}")
+    sys.exit(0 if ok else 1)
+
+
+def _cmd_put(guest, args):
+    guest.put(args.host_path, args.guest_path)
+    print(f"已上傳: {args.host_path} -> {args.guest_path}")
+
+
+def _cmd_get(guest, args):
+    guest.get(args.guest_path, args.host_path)
+    print(f"已下載: {args.guest_path} -> {args.host_path}")
+
+
+def _cmd_exec(guest, args):
+    print(guest.run_line(' '.join(args.script), args.timeout))
+
+
+def _cmd_powershell(guest, args):
+    script = args.script if isinstance(args.script, str) else ' '.join(args.script)
+    print(guest.run_line(f'{GUEST_PS} -NoProfile -Command "{script}"', args.timeout))
+
+
+_COMMANDS = {
+    "tools": _cmd_tools,
+    "ps": _cmd_ps,
+    "kill": _cmd_kill,
+    "ls": _cmd_ls,
+    "exists": _cmd_exists,
+    "put": _cmd_put,
+    "get": _cmd_get,
+    "exec": _cmd_exec,
+    "powershell": _cmd_powershell,
+}
+
+
 def _dispatch(guest, args):
     """執行 args.command 對應的子命令。"""
-    if args.command == "tools":
-        info = guest.info()
-        print(f"VMware Tools: {info['tools_state']}")
-        print(f"客體 IP     : {info['guest_ip']}")
-    elif args.command == "ps":
-        print(guest.ps())
-    elif args.command == "kill":
-        for t in args.target:
-            _kill_target(guest, t, args.dry_run)
-    elif args.command == "ls":
-        print(guest.ls(args.guest_dir))
-    elif args.command == "exists":
-        ok, msg = guest.exists(args.guest_path)
-        print(f"{'存在' if ok else '不存在'}: {msg}")
-        sys.exit(0 if ok else 1)
-    elif args.command == "put":
-        guest.put(args.host_path, args.guest_path)
-        print(f"已上傳: {args.host_path} -> {args.guest_path}")
-    elif args.command == "get":
-        guest.get(args.guest_path, args.host_path)
-        print(f"已下載: {args.guest_path} -> {args.host_path}")
-    elif args.command == "exec":
-        print(guest.run_line(' '.join(args.script), args.timeout))
-    elif args.command == "powershell":
-        script = args.script if isinstance(args.script, str) else ' '.join(args.script)
-        print(guest.run_line(f'{GUEST_PS} -NoProfile -Command "{script}"', args.timeout))
+    handler = _COMMANDS.get(args.command)
+    if handler:
+        handler(guest, args)
 
 
 def main():
