@@ -1,0 +1,219 @@
+{
+  "version": 1,
+  "description": "Registry of MCP servers wired into the hitcon-range-sprint agent framework. Source of truth; see README.md for the wiring policy.",
+  "policy": {
+    "mount_point": ".agent/mcp",
+    "import_mode": "reference external snapshot (Security-LabData/external-mcp-tools/<name>) and pin upstream commit, release version, and any submodule commit; do not vendor server source",
+    "default_transport": "stdio",
+    "holder_node": "Primary Analysis Gateway (host LabStrix), in a dedicated version-pinned runtime; never the host default interpreter when deps pin an older Python",
+    "fallback_holders": ["Kali analysis VM", "FLARE-VM", "container image"],
+    "secrets": "environment variables only; never committed; registry records variable names, not values",
+    "secret_injection": "values live in the gitignored secrets.env at the repo root; a session receives only the names its own entry declares, and only on the host gateway that holds the file",
+    "node_placement": "one node per server: host gateway (big RAM/disk, repo-local tooling, secrets), flare-vm (Windows artifact parsers, vmrun guest operations), kali (Linux CLI, pcap, document/macro work), container (isolated offensive tooling); never place a server where its data or OS is absent",
+    "node_transports": {
+      "policy_version": 1,
+      "description": "how a placement.holder_class is turned into a runnable session; implemented by security/tools/mcp_transports.py and driven through collab_bus.py mcp launch/tools/call",
+      "holder_defaults": {
+        "host_gateway": "stdio_local",
+        "kali": "ssh",
+        "flare_vm": "vmrun_guest",
+        "container": "container"
+      },
+      "probe_env": ".agent/mcp/.verify/probe",
+      "guest_bridge": ".agent/mcp/tools/mcp_node_bridge.py",
+      "vmrun_bridge": ".agent/mcp/tools/mcp_vmrun_bridge.py",
+      "rules": [
+        "the transport is derived from placement.holder_class; an entry may only deviate by declaring runner.node.transport explicitly",
+        "the MCP client still speaks stdio: ssh, docker -i and the vmrun bridge all forward stdin/stdout, so mcp_probe.py stays transport-agnostic",
+        "node transports run the probe from policy.node_transports.probe_env on the host gateway, because the server venv exists on the node only",
+        "secret values never enter a node: runner.node.exec.env may not reference a secret, and only container.secrets (forwarded as docker -e NAME, value read from the wrapper environment) may cross",
+        "container mounts must resolve inside the repository, and container networking defaults to none; a server that needs either must declare it",
+        "a node transport is not wired until its server document records a live verification and the runtime is provisioned on that node"
+      ]
+    },
+    "capability_classes": [
+      "read_only",
+      "analysis",
+      "network",
+      "write",
+      "command_exec"
+    ],
+    "authorization": "command-capable servers (command_exec/write, or an entry that declares no capability at all) are denied until an explicit allowlist entry exists; the decision and its stated reason are audited",
+    "commit_split": [
+      "wiring/registration (this policy + registry skeleton)",
+      "single server introduction (registry entry + servers/<name>.md)",
+      "runnable verification evidence (servers/<name>.verification.md)"
+    ]
+  },
+  "authorization": {
+    "policy_version": 1,
+    "default_decision": "deny",
+    "applies_to_capabilities": ["command_exec", "write", "unclassified"],
+    "authorization_env": "MCP_AUTHORIZATION",
+    "allowlist_entry_required_fields": ["server", "tools", "paths_allow", "requires_authorization"],
+    "allowlist_entry_optional_fields": ["deny_patterns", "expires", "authorization_env", "note", "reviewed_by"],
+    "command_exec_allowlist": [],
+    "enforcement": "security/tools/collab_mcp.py (mcp gate / mcp call); every decision is appended to .collab/runtime/mcp-gate.jsonl"
+  },
+  "retired": [
+    {
+      "name": "semgrep-mcp",
+      "retired_date": "2026-09-27",
+      "replaced_by": "semgrep",
+      "reason": "Upstream deprecated semgrep-mcp 0.9.0; its tools/list exposed only the deprecation_notice tool. Superseded by the `semgrep mcp` subcommand built into semgrep.",
+      "reverified": {
+        "date": "2026-09-28",
+        "python": "3.14.7",
+        "venv": ".agent/mcp/.verify/semgrep-mcp314 (gitignored)",
+        "outcome": "Installs on 3.14 (pip 26 accepts the cp39.cp310.cp311 compressed-tag wheel, so the earlier wheel-ceiling claim was wrong) but the pinned semgrep 1.135.0 crashes at runtime on protobuf 4.25.9; after overriding the pin (protobuf 7.36.2, setuptools<81) the server launches and answers initialize with Semgrep/1.12.2, yet tools/list still exposes only the upstream deprecation_notice tombstone and it cannot scan. The same venv's OSS semgrep 1.135.0 also refuses MCP mode (requires Pro Engine). Retirement unchanged; scans come from the semgrep 1.178.0 entry.",
+        "evidence": "servers/retired/semgrep-mcp.verification.md (section 5)"
+      },
+      "previous_source": {
+        "snapshot": "Security-LabData/external-mcp-tools/semgrep-mcp",
+        "upstream": "https://github.com/semgrep/mcp",
+        "commit": "cade782501e611373844696edc2ceef31eb7e1f7",
+        "package": "semgrep-mcp==0.9.0",
+        "submodule": "src/semgrep_mcp/semgrep_interfaces@3ce3539b8d9e46b98cf73d08f0b44ef63c3e80a0",
+        "requires_python": ">=3.10 (PyPI metadata)",
+        "wheel_tags": "semgrep==1.135.0 ships only cp39.cp310.cp311 compressed-tag wheels; pip 26 still installs them on 3.14, the runtime failure is protobuf 4.25.9 upb"
+      },
+      "docs": "servers/retired/semgrep-mcp.md",
+      "evidence": "servers/retired/semgrep-mcp.verification.md"
+    }
+  ],
+  "servers": [
+    {
+      "name": "semgrep",
+      "status": "wired",
+      "purpose": "Current Semgrep MCP server (OSS engine) exposed via the `semgrep mcp` subcommand for code-security scanning.",
+      "source": {
+        "kind": "pypi",
+        "package": "semgrep==1.178.0",
+        "upstream": "https://github.com/semgrep/semgrep",
+        "license": "LGPL-2.1",
+        "note": "server code is bundled in the semgrep package at semgrep/mcp/server.py; no external snapshot or submodule"
+      },
+      "placement": {
+        "holder_class": "host_gateway",
+        "rationale": "needs repo-local file access and the host's cp314-native runtime; the scans are read-only over paths we hand it, so no node hop is worth the copy cost",
+        "fallback": ["container"]
+      },
+      "capability_class": ["read_only", "analysis"],
+      "runtime": {
+        "holder_node": "Primary Analysis Gateway (host LabStrix)",
+        "requires_python": ">=3.10",
+        "verified_runtime": "host python 3.14.7 (.agent/mcp/.verify/semgrep178, gitignored)",
+        "entrypoint": "semgrep mcp",
+        "transport": "stdio",
+        "tools": [
+          "semgrep_rule_schema",
+          "get_supported_languages",
+          "semgrep_findings",
+          "semgrep_scan_with_custom_rule",
+          "semgrep_scan",
+          "get_abstract_syntax_tree",
+          "semgrep_scan_supply_chain"
+        ]
+      },
+      "runner": {
+        "venv": ".agent/mcp/.verify/semgrep178",
+        "script": "semgrep",
+        "args": ["mcp", "-t", "stdio"]
+      },
+      "secrets_binding": {
+        "required": false,
+        "inject": "host-env",
+        "env": ["SEMGREP_APP_TOKEN"]
+      },
+      "secrets": {
+        "required": false,
+        "env": ["SEMGREP_APP_TOKEN"],
+        "note": "optional; only needed for platform findings, remote and Pro features"
+      },
+      "pinned_by": "semgrep 1.178.0 ships cp314 wheels, so the host default interpreter runs it natively",
+      "docs": "servers/semgrep.md",
+      "evidence": "servers/semgrep.verification.md"
+    },
+    {
+      "name": "cve-mcp-server",
+      "status": "wired",
+      "purpose": "CVE/vulnerability intelligence MCP server spanning 20+ sources (NVD, EPSS, CISA KEV, OSV, GitHub Advisory, ...) with a triage_cve orchestrator; aligns with the framework CVE/EPSS/KEV/CVSS research line.",
+      "source": {
+        "snapshot": "Security-LabData/external-mcp-tools/cve-mcp-server",
+        "upstream": "https://github.com/mukul975/cve-mcp-server",
+        "commit": "d666bac3743574cecc98bcbf524558c2bf0d8e61",
+        "package": "cve-mcp-server==0.2.0",
+        "license": "MIT",
+        "snapshot_note": "working tree has 2 deleted tracked files (src/cve_mcp/server.py, src/cve_mcp/api/report_generator.py); restored from HEAD into a scratch copy; snapshot itself untouched"
+      },
+      "placement": {
+        "holder_class": "host_gateway",
+        "rationale": "reaches external intelligence APIs and needs the host-held secrets.env; keep it off the VMs so tokens never travel onto the analysis nodes",
+        "fallback": ["container"]
+      },
+      "capability_class": ["read_only", "network"],
+      "runtime": {
+        "holder_node": "Primary Analysis Gateway (host LabStrix)",
+        "requires_python": ">=3.10",
+        "verified_runtime": "host python 3.14.7 (.agent/mcp/.verify/cve-mcp, gitignored)",
+        "entrypoint": "cve_mcp.server:main",
+        "transport": "stdio",
+        "tools_count": 28,
+        "extra_hard_deps": ["mcp<2 (snapshot declares mcp[cli]>=1.7.0 which resolves to mcp 2.x and breaks: FastMCP renamed to MCPServer)"],
+        "runtime_paths": ["CACHE_DB_PATH (default ~/.cve-mcp)", "AUDIT_LOG_PATH (default ~/.cve-mcp)"]
+      },
+      "runner": {
+        "venv": ".agent/mcp/.verify/cve-mcp",
+        "script": "cve-mcp",
+        "args": [],
+        "env": {
+          "CACHE_DB_PATH": ".agent/mcp/.verify/cve-cache.db",
+          "AUDIT_LOG_PATH": ".agent/mcp/.verify/cve-audit.log"
+        }
+      },
+      "secrets_binding": {
+        "required": false,
+        "inject": "host-env",
+        "env": [
+          "NVD_API_KEY",
+          "GITHUB_TOKEN",
+          "VULNCHECK_TOKEN",
+          "ABUSEIPDB_KEY",
+          "VIRUSTOTAL_KEY",
+          "URLSCAN_KEY",
+          "SHODAN_KEY",
+          "GREYNOISE_API_KEY",
+          "CIRCL_PDNS_USER",
+          "CIRCL_PDNS_PASS"
+        ]
+      },
+      "secrets": {
+        "required": false,
+        "env": [
+          "NVD_API_KEY",
+          "GITHUB_TOKEN",
+          "VULNCHECK_TOKEN",
+          "ABUSEIPDB_KEY",
+          "VIRUSTOTAL_KEY",
+          "URLSCAN_KEY",
+          "SHODAN_KEY",
+          "GREYNOISE_API_KEY",
+          "CIRCL_PDNS_USER",
+          "CIRCL_PDNS_PASS"
+        ]
+      },
+      "no_key_public_tools": [
+        "lookup_cve",
+        "search_cves",
+        "get_epss_score",
+        "check_kev",
+        "get_cve_summary",
+        "check_package_vulns",
+        "parse_cvss",
+        "health_check"
+      ],
+      "docs": "servers/cve-mcp-server.md",
+      "evidence": "servers/cve-mcp-server.verification.md"
+    }
+  ]
+}

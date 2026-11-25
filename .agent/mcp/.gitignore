@@ -1,0 +1,6 @@
+# Local verification scratch (venvs, downloads, conda envs) — never commit.
+.verify/
+*.venv/
+venv*/
+__pycache__/
+*.egg-info/

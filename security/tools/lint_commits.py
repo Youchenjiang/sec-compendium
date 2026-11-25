@@ -165,9 +165,9 @@ def get_changed_files(sha):
     return [line.strip().replace("\\", "/").lower() for line in raw.splitlines() if line.strip()]
 
 
-def validate_commit(_sha, subject, changed_files, strict=False):
+def _subject_errors(subject):
+    """Return the format errors (rules 1-4) for a commit subject."""
     errors = []
-    warnings = []
 
     # 1. 符合正則規範
     if not SUBJECT_REGEX.match(subject):
@@ -186,10 +186,21 @@ def validate_commit(_sha, subject, changed_files, strict=False):
     if VAGUE_REGEX.match(desc_match.strip()):
         errors.append(f"描述過於空泛：'{desc_match}' 不符合專案描述具體性要求")
 
+    return errors
+
+
+def validate_commit(_sha, subject, changed_files, strict=False):
+    errors = _subject_errors(subject)
+    warnings = []
+
     # 5. 四權分立搭便車偵測 (Four-Tier Separation Check)
     has_gov = any(any(gp in f for gp in GOVERNANCE_PATTERNS) for f in changed_files)
     has_knowledge = any(any(kp in f for kp in KNOWLEDGE_PATTERNS) for f in changed_files)
-    has_tools = any(f.startswith("security/tools/") or f.endswith(".py") for f in changed_files)
+    # Files under .agent/ (skill scripts, MCP helpers) are governance assets, not repo tooling.
+    has_tools = any(
+        not f.startswith(".agent/") and (f.startswith("security/tools/") or f.endswith(".py"))
+        for f in changed_files
+    )
 
     if has_gov and (has_knowledge or has_tools):
         msg = "違反四權分立：偵測到治理文檔 (HANDOVER/MEMORY) 與功能代碼或知識手冊混雜提交（嚴禁搭便車）"
