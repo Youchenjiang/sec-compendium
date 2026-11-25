@@ -27,6 +27,7 @@ GIT_READ_OPERATIONS = {
 }
 GH_READ_VERBS = {("pr", "view"), ("pr", "checks"), ("pr", "list"),
                  ("run", "view"), ("run", "list"), ("workflow", "list")}
+GRAPHQL_ARGS_ERROR = "unauthorized GraphQL arguments"
 GRAPHQL_FIELDS = {"-f": {"query", "owner", "name", "after", "id"}, "-F": {"number"}}
 GRAPHQL_QUERY = re.compile(r"^(?:query\(|mutation\(\$id:ID!\)\{resolveReviewThread\()")
 LS_REMOTE_TARGET = re.compile(r"^(?:origin|https://github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+\.git)\Z")
@@ -52,17 +53,17 @@ def executable(name):
 def _validate_graphql_args(fields):
     """Accept only ``-f``/``-F key=value`` pairs with known keys and query shapes."""
     if not fields or len(fields) % 2:
-        raise ValueError("unauthorized GraphQL arguments")
+        raise ValueError(GRAPHQL_ARGS_ERROR)
     keys = set()
     for flag, pair in zip(fields[0::2], fields[1::2]):
         key, sep, value = pair.partition("=")
         if flag not in GRAPHQL_FIELDS or not sep or key not in GRAPHQL_FIELDS[flag] or key in keys:
-            raise ValueError("unauthorized GraphQL arguments")
+            raise ValueError(GRAPHQL_ARGS_ERROR)
         if key == "query" and not GRAPHQL_QUERY.match(value):
             raise ValueError("unauthorized GraphQL operation")
         keys.add(key)
     if "query" not in keys:
-        raise ValueError("unauthorized GraphQL arguments")
+        raise ValueError(GRAPHQL_ARGS_ERROR)
 
 
 def _validate_github_args(argv):
