@@ -55,5 +55,47 @@ class ProcessGuardTests(unittest.TestCase):
             self.assertIs(False, run.call_args.kwargs["check"])
 
 
+    def test_graphql_accepts_only_known_fields_and_operations(self):
+        fake = Path(__file__).resolve()
+        good = (["gh", "api", "graphql", "-f", "query=query($owner:String!){x}", "-f", "owner=o",
+                 "-f", "name=n", "-F", "number=1", "-f", "after=abc"],
+                ["gh", "api", "graphql", "-f",
+                 "query=mutation($id:ID!){resolveReviewThread(input:{threadId:$id}){thread{id}}}",
+                 "-f", "id=PRRT_x"])
+        bad = (["gh", "api", "graphql"],
+               ["gh", "api", "graphql", "-f", "query=mutation{deleteRepository(x)}"],
+               ["gh", "api", "graphql", "-f", "query=query{x}", "--hostname", "evil.invalid"],
+               ["gh", "api", "graphql", "-f", "query=query{x}", "-H", "X: y"],
+               ["gh", "api", "graphql", "-f", "query=query{x}", "--input", "file"],
+               ["gh", "api", "graphql", "-f", "owner=o"],
+               ["gh", "api", "graphql", "-F", "query=@file"])
+        with patch.object(process_guard.shutil, "which", return_value=str(fake)), \
+             patch.object(process_guard.subprocess, "run") as run:
+            for args in good:
+                with self.subTest(args=args):
+                    process_guard.invoke(args)
+            for args in bad:
+                with self.subTest(args=args), self.assertRaises(ValueError):
+                    process_guard.invoke(args)
+        self.assertEqual(len(good), run.call_count)
+
+    def test_ls_remote_accepts_only_origin_or_github_and_branch_refs(self):
+        fake = Path(__file__).resolve()
+        good = (["git", "ls-remote", "origin", "refs/heads/feat/pr-tool"],
+                ["git", "ls-remote", "https://github.com/someone/fork.git", "refs/heads/main"])
+        bad = (["git", "ls-remote", "--upload-pack=evil", "refs/heads/main"],
+               ["git", "ls-remote", "https://evil.invalid/a/b.git", "refs/heads/main"],
+               ["git", "ls-remote", "origin", "refs/heads/../x"],
+               ["git", "ls-remote", "origin", "refs/tags/v1"])
+        with patch.object(process_guard.shutil, "which", return_value=str(fake)), \
+             patch.object(process_guard.subprocess, "run") as run:
+            for args in good:
+                process_guard.invoke(args)
+            for args in bad:
+                with self.subTest(args=args), self.assertRaises(ValueError):
+                    process_guard.invoke(args)
+        self.assertEqual(len(good), run.call_count)
+
+
 if __name__ == "__main__":
     unittest.main()

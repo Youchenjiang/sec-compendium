@@ -27,6 +27,10 @@ GIT_READ_OPERATIONS = {
 }
 GH_READ_VERBS = {("pr", "view"), ("pr", "checks"), ("pr", "list"),
                  ("run", "view"), ("run", "list"), ("workflow", "list")}
+GRAPHQL_FIELDS = {"-f": {"query", "owner", "name", "after", "id"}, "-F": {"number"}}
+GRAPHQL_QUERY = re.compile(r"^(?:query\(|mutation\(\$id:ID!\)\{resolveReviewThread\()")
+LS_REMOTE_TARGET = re.compile(r"^(?:origin|https://github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+\.git)\Z")
+LS_REMOTE_REF = re.compile(r"^refs/heads/[A-Za-z0-9._/-]+\Z")
 REST_READ_PATH = re.compile(r"^repos/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+/(?:"
                             r"commits/[0-9a-fA-F]{40}/check-runs\?per_page=100|"
                             r"(?:issues|pulls)/[1-9][0-9]*/(?:comments|reviews)\?per_page=100&page=[1-9][0-9]*"
@@ -45,11 +49,30 @@ def executable(name):
     return str(resolved)
 
 
+def _validate_graphql_args(fields):
+    """Accept only ``-f``/``-F key=value`` pairs with known keys and query shapes."""
+    if not fields or len(fields) % 2:
+        raise ValueError("unauthorized GraphQL arguments")
+    keys = set()
+    for flag, pair in zip(fields[0::2], fields[1::2]):
+        key, sep, value = pair.partition("=")
+        if flag not in GRAPHQL_FIELDS or not sep or key not in GRAPHQL_FIELDS[flag] or key in keys:
+            raise ValueError("unauthorized GraphQL arguments")
+        if key == "query" and not GRAPHQL_QUERY.match(value):
+            raise ValueError("unauthorized GraphQL operation")
+        keys.add(key)
+    if "query" not in keys:
+        raise ValueError("unauthorized GraphQL arguments")
+
+
 def _validate_github_args(argv):
     if len(argv) < 3:
         raise ValueError("unauthorized GitHub operation")
     command = tuple(argv[1:3])
-    if command in GH_READ_VERBS or command == ("api", "graphql"):
+    if command in GH_READ_VERBS:
+        return
+    if command == ("api", "graphql"):
+        _validate_graphql_args(argv[3:])
         return
     if argv[1] == "api" and len(argv) == 3 and REST_READ_PATH.fullmatch(argv[2]):
         return
@@ -65,6 +88,9 @@ def _validate_argv(argv):
         args = tuple(argv[1:])
         if args in GIT_READ_OPERATIONS:
             return
+        if (len(argv) == 4 and argv[1] == "ls-remote" and LS_REMOTE_TARGET.fullmatch(argv[2])
+                and LS_REMOTE_REF.fullmatch(argv[3]) and ".." not in argv[3]):
+            return
         if (len(argv) == 6 and argv[1:5] == ["diff", "-z", "--name-only", "--no-renames"]
                 and DIFF_TARGET_PATTERN.fullmatch(argv[5])):
             return
@@ -78,6 +104,7 @@ def invoke(argv, *, capture=True, env=None, timeout=30):
     _validate_argv(argv)
     if env is not None and not isinstance(env, dict):
         raise ValueError("invalid environment")
-    return subprocess.run([executable(argv[0]), *argv[1:]], text=True,
+    # argv was checked against the git/gh allowlist above and shell is off.
+    return subprocess.run([executable(argv[0]), *argv[1:]], text=True,  # NOSONAR nosemgrep
                           capture_output=capture, env=env, timeout=timeout,
                           check=False, shell=False)

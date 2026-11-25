@@ -13,11 +13,10 @@ import json
 import os
 import re
 from pathlib import Path
-import subprocess
 import sys
 
 from gh_guard import resolve_thread
-from process_guard import executable, invoke
+from process_guard import invoke
 from pr_audit import inventory, paged
 from sonar_audit import inventory as sonar_inventory
 from sonar_audit import quality_metrics
@@ -46,13 +45,25 @@ def sonar_project(repo):
     return repo.replace("/", "_")
 
 
-def remote_head(branch):
-    """Exact SHA of ``refs/heads/<branch>`` on origin, or an error if it cannot be verified."""
+REPO_PART = re.compile(r"^[A-Za-z0-9_.-]+\Z")
+
+
+def head_remote(pr):
+    """``origin`` for same-repository PRs, else the fork's GitHub clone URL."""
+    if not pr.get("isCrossRepository"):
+        return "origin"
+    owner = (pr.get("headRepositoryOwner") or {}).get("login", "")
+    name = (pr.get("headRepository") or {}).get("name", "")
+    if not REPO_PART.fullmatch(owner) or not REPO_PART.fullmatch(name):
+        raise ValueError("invalid PR head repository")
+    return f"https://github.com/{owner}/{name}.git"
+
+
+def remote_head(branch, remote="origin"):
+    """Exact SHA of ``refs/heads/<branch>`` on ``remote``, or an error if it cannot be verified."""
     if not BRANCH.fullmatch(branch) or ".." in branch or "//" in branch:
         raise ValueError("invalid remote branch")
-    result = subprocess.run(
-        [executable("git"), "ls-remote", "origin", f"refs/heads/{branch}"],
-        capture_output=True, text=True, check=False, shell=False, timeout=30)
+    result = invoke(["git", "ls-remote", remote, f"refs/heads/{branch}"])
     fields = result.stdout.split()
     if (result.returncode or len(fields) != 2 or fields[1] != f"refs/heads/{branch}"
             or not SHA.fullmatch(fields[0])):
@@ -99,7 +110,9 @@ def pr_number(value, repo, branch, run=command):
 
 def inspect(repo, number, run=command):
     raw = run(["gh", "pr", "view", str(number), "--repo", repo,
-               "--json", "number,title,state,isDraft,baseRefName,headRefName,headRefOid,mergeable,reviewDecision,statusCheckRollup,files,url,body"])
+               "--json", "number,title,state,isDraft,baseRefName,headRefName,headRefOid,"
+               "headRepository,headRepositoryOwner,isCrossRepository,"
+               "mergeable,reviewDecision,statusCheckRollup,files,url,body"])
     data = json.loads(raw)
     if not isinstance(data, dict) or data.get("number") != number:
         raise ValueError("GitHub returned an unexpected PR")
@@ -494,7 +507,7 @@ def _verify_pr(run, repo, number):
         sonar_project(repo), number,
         base_url=os.environ.get("SONAR_HOST_URL", SONAR_HOST_DEFAULT),
         token=os.environ.get("SONAR_TOKEN"))
-    remote = (remote_head(pr.get("headRefName", ""))
+    remote = (remote_head(pr.get("headRefName", ""), head_remote(pr))
               if pr.get("state") == "OPEN" else None)
     result = summarize(pr, report, remote_sha=remote)
     print(json.dumps(result, indent=2, ensure_ascii=False))
