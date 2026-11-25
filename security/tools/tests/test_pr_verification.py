@@ -232,5 +232,34 @@ class VerificationTests(unittest.TestCase):
         self.assertTrue(any("1 unaddressed top-level review finding(s)" in p for p in result["problems"]))
 
 
+    def test_unscoped_and_current_findings_cannot_be_cleared_by_body_text(self):
+        review = {"author": "llamapreview[bot]", "state": "COMMENTED",
+                  "body": "### LlamaPReview - Blocking issues found"}
+        body = "Fixed everything @llamapreview"
+        for relation, addressed in (("unscoped", False), ("current", False), ("historical", True)):
+            with self.subTest(relation=relation):
+                found = pr_verification.extract_top_review_findings(
+                    [dict(review, head_relation=relation)], body)
+                self.assertEqual(addressed, found[0]["addressed"])
+
+    def test_change_request_superseded_by_later_approval_is_dropped(self):
+        reviews = [{"author": "alice", "state": "CHANGES_REQUESTED", "body": "fix it"},
+                   {"author": "alice", "state": "APPROVED", "body": ""}]
+        self.assertEqual([], pr_verification.extract_top_review_findings(reviews))
+        still_open = [{"author": "alice", "state": "APPROVED", "body": ""},
+                      {"author": "alice", "state": "CHANGES_REQUESTED", "body": "again"}]
+        self.assertEqual(1, len(pr_verification.extract_top_review_findings(still_open)))
+
+    def test_playbook_audit_required_only_when_its_paths_change(self):
+        check = pr_verification.PLAYBOOK_CHECK
+        for path, required in ((".github/workflows/policy.yml", False),
+                               ("security/tools/pr_tool.py", True), ("README.md", True),
+                               ("tracks/lab/notes.md", True), ("scripts/x.sh", False),
+                               (".github/workflows/validate-playbooks.yml", True)):
+            with self.subTest(path=path):
+                self.assertEqual(required, check in pr_verification._required_checks([{"path": path}]))
+        self.assertIn(check, pr_verification._required_checks(None))
+
+
 if __name__ == "__main__":
     unittest.main()

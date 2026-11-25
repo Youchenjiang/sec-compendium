@@ -50,12 +50,28 @@ def _pr_problems(pr, remote_sha):
     return problems
 
 
+PLAYBOOK_CHECK = "Documentation & Playbooks Quality Audit"
+PLAYBOOK_WORKFLOW = ".github/workflows/validate-playbooks.yml"
+PLAYBOOK_PREFIXES = ("security/", "tracks/", "docs/")
+
+
+def _triggers_playbook_check(path):
+    """Mirror the pull_request path filter of validate-playbooks.yml."""
+    return (path.startswith(PLAYBOOK_PREFIXES) or path == PLAYBOOK_WORKFLOW
+            or ("/" not in path and path.endswith(".md")))
+
+
 def _required_checks(files):
     if files is not None and not isinstance(files, list):
         raise RuntimeError("invalid changed-file inventory")
     required = set(REQUIRED)
-    if files and any(file.get("path", "").endswith(".py") for file in files):
+    if not files:
+        return required
+    paths = [file.get("path", "") for file in files]
+    if any(path.endswith(".py") for path in paths):
         required.add("DeepSource: Python")
+    if not any(_triggers_playbook_check(path) for path in paths):
+        required.discard(PLAYBOOK_CHECK)
     return required
 
 
@@ -70,6 +86,22 @@ def _is_finding_addressed(author, pr_body):
     return bool(pattern.search(pr_body.lower().replace("[bot]", "")))
 
 
+DECISIONS = {"APPROVED", "CHANGES_REQUESTED", "DISMISSED"}
+
+
+def _review_author(item):
+    return item.get("author") or (item.get("user") or {}).get("login") or "unknown"
+
+
+def _latest_decisions(reviews):
+    """Index of each author's most recent approve / request-changes / dismiss review."""
+    latest = {}
+    for index, item in enumerate(reviews):
+        if item.get("state") in DECISIONS:
+            latest[_review_author(item)] = index
+    return latest
+
+
 def extract_top_review_findings(reviews, pr_body=""):
     """Detect top-level reviews reporting issues, changes requested, or blocker findings."""
     findings = []
@@ -81,15 +113,20 @@ def extract_top_review_findings(reviews, pr_body=""):
         r"\b(?:no\s+(?:blocking\s+)?issues\s+found|0\s+issues\s+found|no\s+findings)\b",
         re.IGNORECASE,
     )
-    for item in reviews:
+    latest = _latest_decisions(reviews)
+    for index, item in enumerate(reviews):
         body = item.get("body") or ""
         state = item.get("state")
-        author = item.get("author") or (item.get("user") or {}).get("login") or "unknown"
+        author = _review_author(item)
         relation = item.get("head_relation") or item.get("relation") or "unscoped"
+        if state == "CHANGES_REQUESTED" and latest.get(author) != index:
+            continue  # superseded by a later approval, dismissal or new request
         stripped_body = clean_pattern.sub("", body)
         if state == "CHANGES_REQUESTED" or bool(pattern.search(stripped_body)):
+            # Only findings on an older head may be cleared by PR-body text;
+            # current and unscoped findings stay blocking.
             addressed = (state != "CHANGES_REQUESTED" and
-                         relation != "current" and
+                         relation == "historical" and
                          _is_finding_addressed(author, pr_body))
             findings.append({
                 "author": author,
